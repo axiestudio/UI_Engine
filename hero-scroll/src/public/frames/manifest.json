@@ -1,0 +1,11 @@
+{
+  "source": "hero-animated.mp4",
+  "frames": 109,
+  "fps": 15,
+  "width": 1280,
+  "quality": 75,
+  "size": "4.6M",
+  "avgKB": 43,
+  "dimensions": { "width": 1280, "height": 542 },
+  "pattern": "frame_%04d.webp"
+}

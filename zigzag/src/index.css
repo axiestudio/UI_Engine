@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── ZigZag Brandkit — copied from Habesha globals.css v2 ─────────────────
+   Lovable source: oklch 97% .015 75 bg, 18% .025 40 fg, spice 55% .18 30, gold 72% .13 70
+   Mapped to hsl for Tailwind + oklch spice/gold for hero.
+   Fonts: Fraunces (display) + Inter (sans) + JetBrains Mono (mono)
+   Hero tunnel tokens: #1d0d07→#39150f gradient + grain + shadow-warm
+   Use with: import "zigzag/styles.css" or copy :root vars to your globals.css
+─────────────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --background: 36 33% 98%;
+    --foreground: 30 15% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 30 15% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 15% 14%;
+    --primary: 18 82% 38%;
+    --primary-foreground: 38 100% 97%;
+    --secondary: 36 30% 94%;
+    --secondary-foreground: 30 15% 14%;
+    --muted: 36 20% 94%;
+    --muted-foreground: 30 8% 42%;
+    --accent: 38 90% 94%;
+    --accent-foreground: 18 82% 32%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 36 18% 88%;
+    --input: 36 18% 88%;
+    --ring: 18 82% 38%;
+    --radius: 0.875rem;
+
+    --brand: 18 82% 38%;
+    --brand-foreground: 38 100% 97%;
+    /* oklch for hero — exact Lovable */
+    --spice: oklch(55% 0.18 30);
+    --gold: oklch(72% 0.13 70);
+
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-display: "Fraunces", "Space Grotesk", Georgia, serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  .dark {
+    --background: 18 25% 9%;
+    --foreground: 38 30% 96%;
+    --card: 18 18% 12%;
+    --card-foreground: 38 30% 96%;
+    --popover: 18 18% 12%;
+    --popover-foreground: 38 30% 96%;
+    --primary: 38 90% 56%;
+    --primary-foreground: 18 25% 9%;
+    --secondary: 18 12% 16%;
+    --secondary-foreground: 38 30% 96%;
+    --muted: 18 12% 16%;
+    --muted-foreground: 36 10% 64%;
+    --accent: 18 12% 16%;
+    --accent-foreground: 38 30% 96%;
+    --border: 18 10% 18%;
+    --input: 18 10% 18%;
+    --ring: 38 90% 56%;
+    --brand: 38 90% 56%;
+    --brand-foreground: 18 25% 9%;
+    --spice: oklch(55% 0.18 30);
+    --gold: oklch(72% 0.13 70);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.018em;
+    font-weight: 500;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+}
+
+::selection {
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Habesha hero tunnel tokens — keep exact #1d0d07→#39150f + grain + warm shadow */
+.hero-gradient {
+  background: linear-gradient(135deg, #1d0d07, #39150f);
+}
+.bg-grain {
+  background-image: radial-gradient(#321b130f 1px, #0000 1px);
+  background-size: 4px 4px;
+}
+.shadow-warm {
+  box-shadow:
+    0 30px 60px -20px #321b1340,
+    0 8px 20px -8px #c5382926;
+}
+.text-gradient-warm {
+  color: transparent;
+  background: linear-gradient(135deg, #d8953d, #d06a33, #c53829);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
