@@ -128,7 +128,7 @@ export function HeroTicker({
               <Button
                 size="lg"
                 asChild={Boolean(primaryAction.href)}
-                onClick={primaryAction.onClick}
+                onClick={primaryAction.href ? undefined : primaryAction.onClick}
                 className={cn(
                   "group relative h-12 overflow-hidden rounded-full px-8 text-sm font-semibold shadow-sm transition-all duration-300 hover:shadow-md motion-reduce:transition-none",
                   ink
@@ -136,19 +136,23 @@ export function HeroTicker({
                     : "bg-primary text-primary-foreground hover:bg-primary/90",
                 )}
               >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.25)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
-                />
                 {primaryAction.href ? (
                   <a href={primaryAction.href} className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
                     <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.25)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
+                    />
                   </a>
                 ) : (
                   <span className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
                     <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.25)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
+                    />
                   </span>
                 )}
               </Button>
@@ -158,7 +162,7 @@ export function HeroTicker({
                 size="lg"
                 variant="ghost"
                 asChild={Boolean(secondaryAction.href)}
-                onClick={secondaryAction.onClick}
+                onClick={secondaryAction.href ? undefined : secondaryAction.onClick}
                 className={cn(
                   "h-12 rounded-full px-6 text-sm font-semibold",
                   ink
@@ -166,7 +170,11 @@ export function HeroTicker({
                     : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                 )}
               >
-                <span>{secondaryAction.label}</span>
+                {secondaryAction.href ? (
+                  <a href={secondaryAction.href} className="inline-flex items-center">{secondaryAction.label}</a>
+                ) : (
+                  <span>{secondaryAction.label}</span>
+                )}
               </Button>
             )}
           </div>

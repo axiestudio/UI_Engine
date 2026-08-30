@@ -74,7 +74,7 @@ export function ReviewMoment({
                           key={n}
                           type="button"
                           role="radio"
-                          aria-checked={rating === n}
+                          aria-checked={false} // ask panel renders only while unrated
                           aria-label={`${n} of 5 — ${MSGS[n - 1]}`}
                           onMouseEnter={() => setHover(n)}
                           onFocus={() => setHover(n)}

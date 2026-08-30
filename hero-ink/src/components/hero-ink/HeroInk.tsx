@@ -119,23 +119,27 @@ export function HeroInk({
               <Button
                 size="lg"
                 asChild={Boolean(primaryAction.href)}
-                onClick={primaryAction.onClick}
+                onClick={primaryAction.href ? undefined : primaryAction.onClick}
                 className="group relative h-12 overflow-hidden rounded-full bg-background px-7 text-sm font-semibold text-foreground shadow-[0_8px_30px_-8px_hsl(0_0%_100%/0.35)] transition-all duration-300 hover:bg-background/90 hover:shadow-[0_12px_40px_-8px_hsl(0_0%_100%/0.45)] focus-visible:ring-background/50 motion-reduce:transition-none"
               >
-                {/* sheen sweep */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.35)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
-                />
+                {/* single slotted child — sheen rides inside it */}
                 {primaryAction.href ? (
                   <a href={primaryAction.href} className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
                     <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.35)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
+                    />
                   </a>
                 ) : (
                   <span className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
                     <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.35)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
+                    />
                   </span>
                 )}
               </Button>
@@ -145,10 +149,14 @@ export function HeroInk({
                 size="lg"
                 variant="ghost"
                 asChild={Boolean(secondaryAction.href)}
-                onClick={secondaryAction.onClick}
+                onClick={secondaryAction.href ? undefined : secondaryAction.onClick}
                 className="h-12 rounded-full border border-background/15 px-6 text-sm font-semibold text-background/80 hover:bg-background/10 hover:text-background focus-visible:ring-background/50"
               >
-                <span>{secondaryAction.label}</span>
+                {secondaryAction.href ? (
+                  <a href={secondaryAction.href} className="inline-flex items-center">{secondaryAction.label}</a>
+                ) : (
+                  <span>{secondaryAction.label}</span>
+                )}
               </Button>
             )}
           </div>
