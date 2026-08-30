@@ -2,7 +2,7 @@
 
 import { motion, type SpringOptions, useScroll, useSpring } from 'motion/react';
 import { cn } from '@/lib/utils';
-import type { RefObject } from 'react';
+import { type RefObject } from 'react';
 
 export type ScrollProgressProps = {
   className?: string;
@@ -21,9 +21,10 @@ export function ScrollProgress({
   springOptions,
   containerRef,
 }: ScrollProgressProps) {
+  // Local compat patch: motion v13 removed UseScrollOptions.layoutEffect.
   const { scrollYProgress } = useScroll({
     container: containerRef,
-  });
+  } as Parameters<typeof useScroll>[0]);
 
   const scaleX = useSpring(scrollYProgress, {
     ...DEFAULT_SPRING_OPTIONS,

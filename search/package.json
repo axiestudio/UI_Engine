@@ -1,0 +1,59 @@
+{
+  "name": "search",
+  "version": "0.1.0",
+  "description": "Command palette site search \u2014 \u2318K dialog with grouped results, keywords and keyboard nav (shadcn/ui new-york-v4 command + dialog)",
+  "type": "module",
+  "main": "dist/search.cjs.js",
+  "module": "dist/search.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/search.es.js",
+      "require": "./dist/search.cjs.js"
+    },
+    "./styles.css": "./dist/search.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "motion-primitives": [],
+    "shadcn-ui": [
+      "https://ui.shadcn.com/r/styles/new-york-v4/button.json",
+      "https://ui.shadcn.com/r/styles/new-york-v4/command.json",
+      "https://ui.shadcn.com/r/styles/new-york-v4/dialog.json"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "motion": "^13.1.1",
+    "radix-ui": "^1.4.2",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwind-merge": "^3.6.0",
+    "lucide-react": "^1.34.0",
+    "cmdk": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}
