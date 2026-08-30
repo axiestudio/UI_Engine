@@ -49,8 +49,8 @@ export function HeroManifesto({
   const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
   const lineReveal = (delay: number) => ({
     variants: { hidden: { y: "115%" }, visible: { y: "0%" } },
-    transition: { duration: 0.85, delay, ease },
-    viewOptions: { once: true, margin: "-80px" },
+    transition: { duration: 0.85, delay, ease: ease as [number, number, number, number] },
+    viewOptions: { once: true, margin: "-80px" as const },
   })
 
   return (

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
-import { Menu, X } from "lucide-react"
+import { ArrowUpRight, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -20,13 +20,14 @@ export type HeaderEditorialProps = {
 }
 
 // ── HeaderEditorial ──────────────────────────────────────────────────────────
-// Design decisions (hand-tuned):
-// · A newspaper masthead, not a navbar: thin utility strip (mono, tracking
-//   0.2em) above a three-column main row — links LEFT, WORDMARK CENTER in
-//   display caps with letterspacing, links RIGHT.
-// · Signature: the DOUBLE RULE under the masthead (1px + 3px gap + 1px) —
-//   pure print DNA, impossible to mistake for a SaaS bar.
-// · No CTA button in the bar — this header trusts typography.
+// Design decisions (refactored):
+// · Still a newspaper masthead, not a navbar: utility strip up top, then the
+//   three-column main row — links LEFT, WORDMARK CENTER in display caps,
+//   links RIGHT — closed by the double rule (2px + gap + 1px), pure print DNA.
+// · Links earn a print hover: the underline draws itself in from the left
+//   (scale-x origin-left), the way headlines get ruled in print.
+// · Mobile rows carry ordinals (01, 02 …) and an up-right arrow — a table of
+//   contents, not a dropdown.
 export function HeaderEditorial({
   brand = "The Journal",
   logo,
@@ -41,42 +42,52 @@ export function HeaderEditorial({
   const left = links.slice(0, half)
   const right = links.slice(half)
 
-  const linkCls = "font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+  const linkCls =
+    "group relative font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 
   return (
-    <header className={cn(sticky && "sticky top-0 z-50 bg-background/95 backdrop-blur", "relative", className)}>
+    <header className={cn(sticky && "sticky top-0 z-50 bg-background/90 backdrop-blur-md", "relative", className)}>
       {/* utility strip */}
       {(meta || metaRight) && (
-        <div className="border-b border-border/70">
-          <div className="mx-auto flex h-8 w-full max-w-[1200px] items-center justify-between px-4 sm:px-6">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{meta}</span>
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{metaRight}</span>
+        <div className="border-b border-border/60 bg-secondary/40">
+          <div className="mx-auto flex h-9 w-full max-w-[1280px] items-center justify-between px-4 sm:px-6">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">{meta}</span>
+            <span className="hidden items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground sm:flex">
+              <span aria-hidden className="size-[4px] rotate-45 bg-current opacity-60" />
+              {metaRight}
+            </span>
           </div>
         </div>
       )}
 
       {/* masthead */}
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
         {/* desktop row */}
-        <div className="hidden h-16 items-center justify-between md:flex">
-          <nav aria-label="Primary left" className="flex flex-1 items-center gap-6">
+        <div className="hidden h-[72px] items-center justify-between md:flex">
+          <nav aria-label="Primary left" className="flex flex-1 items-center gap-7">
             {left.map((l) => (
               <a key={l.label} href={l.href} className={linkCls}>
                 {l.label}
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-foreground transition-transform duration-300 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
+                />
               </a>
             ))}
           </nav>
-          <a href="#" aria-label={brand} className="shrink-0 px-6">
+          <a href="#" aria-label={brand} className="shrink-0 rounded-sm px-8 outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
             {logo ?? (
-              <span className="font-display text-xl font-black uppercase tracking-[0.08em] text-foreground">
-                {brand}
-              </span>
+              <span className="font-display text-[22px] font-black uppercase leading-none tracking-[0.1em] text-foreground">{brand}</span>
             )}
           </a>
-          <nav aria-label="Primary right" className="flex flex-1 items-center justify-end gap-6">
+          <nav aria-label="Primary right" className="flex flex-1 items-center justify-end gap-7">
             {right.map((l) => (
               <a key={l.label} href={l.href} className={linkCls}>
                 {l.label}
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-foreground transition-transform duration-300 ease-out hover:scale-x-100 motion-reduce:transition-none"
+                />
               </a>
             ))}
           </nav>
@@ -84,7 +95,7 @@ export function HeaderEditorial({
 
         {/* mobile row */}
         <div className="flex h-16 items-center justify-between md:hidden">
-          <a href="#" aria-label={brand}>
+          <a href="#" aria-label={brand} className="outline-none focus-visible:ring-2 focus-visible:ring-ring/50">
             {logo ?? <span className="font-display text-lg font-black uppercase tracking-[0.08em]">{brand}</span>}
           </a>
           <button
@@ -92,7 +103,7 @@ export function HeaderEditorial({
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex size-9 items-center justify-center rounded-none border border-border text-foreground transition-colors hover:bg-secondary"
+            className="inline-flex size-9 items-center justify-center border border-border text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
@@ -100,12 +111,12 @@ export function HeaderEditorial({
       </div>
 
       {/* the double rule — signature */}
-      <div aria-hidden className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div aria-hidden className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
         <div className="border-t-2 border-foreground" />
         <div className="mt-[3px] border-t border-foreground/40" />
       </div>
 
-      {/* mobile sheet */}
+      {/* mobile sheet — table of contents */}
       <AnimatePresence>
         {open && (
           <motion.nav
@@ -116,19 +127,24 @@ export function HeaderEditorial({
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden md:hidden"
           >
-            <div className="mx-auto flex max-w-[1200px] flex-col px-4 sm:px-6">
+            <div className="mx-auto flex max-w-[1280px] flex-col px-4 sm:px-6">
               {links.map((l, i) => (
                 <a
                   key={l.label}
                   href={l.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "flex items-center justify-between border-b border-border/70 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.2em]",
-                    i === 0 && "border-t",
+                    "group flex items-baseline justify-between gap-4 border-b border-border/60 py-4",
+                    i === 0 && "border-t-0",
                   )}
                 >
-                  {l.label}
-                  <span aria-hidden className="text-muted-foreground/40">→</span>
+                  <span className="flex items-baseline gap-3">
+                    <span aria-hidden className="font-mono text-[10px] font-bold tabular-nums text-muted-foreground/60">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-foreground">{l.label}</span>
+                  </span>
+                  <ArrowUpRight className="size-3.5 text-muted-foreground/50 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden />
                 </a>
               ))}
             </div>
