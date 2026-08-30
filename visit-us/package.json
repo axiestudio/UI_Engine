@@ -1,0 +1,56 @@
+{
+  "name": "visit-us",
+  "version": "0.1.0",
+  "description": "Professional visit-us/location preset — Google Maps embed 2:1 grid, address, hours, phone/email, directions (Watermelon UI + Motion-Primitives)",
+  "type": "module",
+  "main": "dist/visit-us.cjs.js",
+  "module": "dist/visit-us.es.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/visit-us.es.js",
+      "require": "./dist/visit-us.cjs.js"
+    },
+    "./styles.css": "./dist/visit-us.css"
+  },
+  "sideEffects": ["*.css"],
+  "presetSources": {
+    "motion-primitives": ["in-view", "tilt"],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/view-on-map.json",
+      "https://registry.watermelon.sh/r/view-on-map-base.json",
+      "https://registry.watermelon.sh/r/button.json"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "lint": "oxlint",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@radix-ui/react-slot": "^1.3.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.34.0",
+    "motion": "^13.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "react-icons": "^5.0.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

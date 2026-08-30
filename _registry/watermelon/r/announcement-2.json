@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "announcement-2",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "announcement",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/components/watermelon-ui/announcement-2.tsx",
+      "content": "\"use client\";\n\nimport { X } from \"lucide-react\";\n\nimport { Button } from \"@/components/ui/button\";\n\nimport { HiSparkles, HiArrowRight } from \"react-icons/hi2\";\n\nexport default function Announcement2() {\n  return (\n    <div className=\"flex h-full w-full items-center justify-center\">\n      <div className=\"border-primary relative flex w-full items-center justify-center border-b px-8 py-1.5 sm:px-4\">\n        <div className=\"flex w-full items-center justify-center gap-2\">\n          <div className=\"text-muted-foreground flex min-w-0 items-center gap-1\">\n            <HiSparkles className=\"text-primary h-4 w-4 shrink-0\" />\n            <p className=\"truncate\">\n              Hackathon registrations are now open — build fast, ship faster,\n              and win big.\n            </p>\n          </div>\n          <div className=\"group flex items-center gap-1\">\n            <Button className=\"shrink-0 rounded-full\">\n              Join now\n              <HiArrowRight className=\"h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5\" />\n            </Button>\n          </div>\n        </div>\n\n        <Button\n          variant=\"ghost\"\n          size=\"icon\"\n          className=\"text-primary hover:text-primary/70 absolute right-1 shrink-0 rounded-lg hover:bg-transparent dark:hover:bg-transparent\"\n        >\n          <X className=\"h-4 w-4\" />\n        </Button>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/announcement-2.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

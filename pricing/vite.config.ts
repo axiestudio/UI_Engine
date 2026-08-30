@@ -1,0 +1,19 @@
+import react from "@vitejs/plugin-react"
+import path from "path"
+import { defineConfig } from "vite"
+import dts from "vite-plugin-dts"
+
+export default defineConfig({
+  plugins: [react(), dts({ include: ["src"] })],
+  resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "Pricing",
+      formats: ["es", "cjs"],
+      fileName: (format) => (format === "es" ? "pricing.es.js" : "pricing.cjs.js"),
+    },
+    rollupOptions: { external: ["react", "react-dom", "react/jsx-runtime", "@radix-ui/react-slot", "@radix-ui/react-switch", "react-icons", "react-icons/md", "react-icons/io5", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "tailwind-merge"] },
+    cssCodeSplit: false,
+  },
+})

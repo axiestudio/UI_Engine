@@ -1,0 +1,71 @@
+{
+  "name": "contact",
+  "version": "0.1.0",
+  "description": "Professional contact form schema-driven preset with validation, honeypot and async submit (Watermelon UI + Motion-Primitives)",
+  "type": "module",
+  "main": "dist/contact.cjs.js",
+  "module": "dist/contact.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/contact.es.js",
+      "require": "./dist/contact.cjs.js"
+    },
+    "./styles.css": "./dist/contact.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "motion-primitives": [
+      "in-view",
+      "magnetic",
+      "text-effect"
+    ],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/contact-3.json",
+      "https://registry.watermelon.sh/r/button.json",
+      "https://registry.watermelon.sh/r/input.json",
+      "https://registry.watermelon.sh/r/label.json",
+      "https://registry.watermelon.sh/r/select.json",
+      "https://registry.watermelon.sh/r/textarea.json",
+      "https://registry.watermelon.sh/r/card.json"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@radix-ui/react-label": "^2.1.15",
+    "@radix-ui/react-select": "^2.3.7",
+    "@radix-ui/react-slot": "^1.3.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.34.0",
+    "motion": "^13.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "react-icons": "^5.7.0",
+    "tailwind-merge": "^3.6.0",
+    "@radix-ui/react-avatar": "^1.2.6",
+    "@radix-ui/react-accordion": "^1.2.20"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

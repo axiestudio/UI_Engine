@@ -1,0 +1,3339 @@
+{
+  "sha": "92586e62a951eb9b6bfd1cc7c8a4e6e2ab6ba17d",
+  "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/92586e62a951eb9b6bfd1cc7c8a4e6e2ab6ba17d",
+  "tree": [
+    {
+      "path": ".eslintrc.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a76b3ac926f4a63b6bdb1cda181dba4aa1535fb",
+      "size": 134,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0a76b3ac926f4a63b6bdb1cda181dba4aa1535fb"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4d41d6cd020fd06174b2a6b89de49ddaf0ba144b",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/4d41d6cd020fd06174b2a6b89de49ddaf0ba144b"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "23c3240e264133e8fdea55a701e5f2c074b5188c",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/23c3240e264133e8fdea55a701e5f2c074b5188c"
+    },
+    {
+      "path": ".github/workflows/pr-registry-build.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62f2e7a7e66b5d391898e74df35ccc0c43aea3b3",
+      "size": 1164,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/62f2e7a7e66b5d391898e74df35ccc0c43aea3b3"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dbbacaf2f25477997d82add87f1c184bc1c2fd8",
+      "size": 424,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8dbbacaf2f25477997d82add87f1c184bc1c2fd8"
+    },
+    {
+      "path": ".vercelignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3864e8788749dc12bbdcdc4597e5666a7489b66d",
+      "size": 5,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/3864e8788749dc12bbdcdc4597e5666a7489b66d"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c21e1e07ac635de6986e9f9f7765a0ec746cf267",
+      "size": 2570,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c21e1e07ac635de6986e9f9f7765a0ec746cf267"
+    },
+    {
+      "path": "LICENCE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a911b3bb726a0ceb00a6270853fdab52dff598d",
+      "size": 1077,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1a911b3bb726a0ceb00a6270853fdab52dff598d"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cbbeeee210f70418daf10ae495452b33ae08c044",
+      "size": 715,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/cbbeeee210f70418daf10ae495452b33ae08c044"
+    },
+    {
+      "path": "app",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "63e011ba0325650cace37c8901e9a88a6d100428",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/63e011ba0325650cace37c8901e9a88a6d100428"
+    },
+    {
+      "path": "app/docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7915ea1eb50cdc71107b81ddc2c49604bb6d92e8",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/7915ea1eb50cdc71107b81ddc2c49604bb6d92e8"
+    },
+    {
+      "path": "app/docs/accordion",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "945f840c0fcd128268428930e0556613ac669e89",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/945f840c0fcd128268428930e0556613ac669e89"
+    },
+    {
+      "path": "app/docs/accordion/accordion-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b8ba8ba01c8d6032d2e21776972bcc36921a0fe",
+      "size": 3103,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4b8ba8ba01c8d6032d2e21776972bcc36921a0fe"
+    },
+    {
+      "path": "app/docs/accordion/accordion-icons.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1133992da2e8ee6fc2c513f1fa64f3aaffa55a5",
+      "size": 4196,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a1133992da2e8ee6fc2c513f1fa64f3aaffa55a5"
+    },
+    {
+      "path": "app/docs/accordion/accordion-variant.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9202320eb0dbb3d0c4193c125528e0bf688f6897",
+      "size": 4414,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9202320eb0dbb3d0c4193c125528e0bf688f6897"
+    },
+    {
+      "path": "app/docs/accordion/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04aac395cc93ab00fda34483ad3f56d1ec61e36d",
+      "size": 4551,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/04aac395cc93ab00fda34483ad3f56d1ec61e36d"
+    },
+    {
+      "path": "app/docs/animated-background",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a1ee28a6ef79308f4f7dfaebecad061956c03653",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/a1ee28a6ef79308f4f7dfaebecad061956c03653"
+    },
+    {
+      "path": "app/docs/animated-background/animated-card-background-hover.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e72c2985f875c3af44a4f3799f26f0fa051b8c5",
+      "size": 1618,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4e72c2985f875c3af44a4f3799f26f0fa051b8c5"
+    },
+    {
+      "path": "app/docs/animated-background/animated-tabs-hover.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "709105a2923e904ed980c43638385bdf39bcfbc8",
+      "size": 854,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/709105a2923e904ed980c43638385bdf39bcfbc8"
+    },
+    {
+      "path": "app/docs/animated-background/animated-tabs.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10b79f7603aad98d6c0a36317b5e5bd4432fee81",
+      "size": 1360,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/10b79f7603aad98d6c0a36317b5e5bd4432fee81"
+    },
+    {
+      "path": "app/docs/animated-background/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e453bdef5c0892e46f9d9447d98bb509dee6b00",
+      "size": 4191,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9e453bdef5c0892e46f9d9447d98bb509dee6b00"
+    },
+    {
+      "path": "app/docs/animated-background/segmented-control.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90552931b280906569f145769ca48755b2e99aa1",
+      "size": 920,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/90552931b280906569f145769ca48755b2e99aa1"
+    },
+    {
+      "path": "app/docs/animated-group",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f8ffe7d9d683248ff4e8bf57904bfea2bb812e29",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/f8ffe7d9d683248ff4e8bf57904bfea2bb812e29"
+    },
+    {
+      "path": "app/docs/animated-group/animated-group-custom-variants-2.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56fbf6ca78b2f76f5dbfb83bc68fa37f1e936e7b",
+      "size": 1467,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/56fbf6ca78b2f76f5dbfb83bc68fa37f1e936e7b"
+    },
+    {
+      "path": "app/docs/animated-group/animated-group-custom-variants.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e408dfd6cade80f6d10005289da4c2d6147f9652",
+      "size": 1680,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e408dfd6cade80f6d10005289da4c2d6147f9652"
+    },
+    {
+      "path": "app/docs/animated-group/animated-group-preset.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5f948734cbe8edbcbfa76b251530b99f79191ff",
+      "size": 1139,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d5f948734cbe8edbcbfa76b251530b99f79191ff"
+    },
+    {
+      "path": "app/docs/animated-group/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b4cc23959dfa1f1b68eeaabed6a409be67e8ffe",
+      "size": 3265,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/3b4cc23959dfa1f1b68eeaabed6a409be67e8ffe"
+    },
+    {
+      "path": "app/docs/animated-number",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "74b253c15758841a6e19248a9ee78f01bcb3ee1d",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/74b253c15758841a6e19248a9ee78f01bcb3ee1d"
+    },
+    {
+      "path": "app/docs/animated-number/animated-number-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61c08cd5f5103798317e8897f009d598dd25424b",
+      "size": 1111,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/61c08cd5f5103798317e8897f009d598dd25424b"
+    },
+    {
+      "path": "app/docs/animated-number/animated-number-counter.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e688840ce3be418631be7ae8a83ed78127981b21",
+      "size": 915,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e688840ce3be418631be7ae8a83ed78127981b21"
+    },
+    {
+      "path": "app/docs/animated-number/animated-number-in-view.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e90a49cdb99af0eafdf2c5ada2c563bc72ef649a",
+      "size": 717,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e90a49cdb99af0eafdf2c5ada2c563bc72ef649a"
+    },
+    {
+      "path": "app/docs/animated-number/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c964da6045f6db4b0091bed862162e7f2422d3cf",
+      "size": 2284,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c964da6045f6db4b0091bed862162e7f2422d3cf"
+    },
+    {
+      "path": "app/docs/border-trail",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5ad89fdd2aba77a563c1cdbe6afe9b053e84d6a5",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/5ad89fdd2aba77a563c1cdbe6afe9b053e84d6a5"
+    },
+    {
+      "path": "app/docs/border-trail/border-trail-card-1.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b9f521aeee732c68885f71280022a8179426430",
+      "size": 1002,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9b9f521aeee732c68885f71280022a8179426430"
+    },
+    {
+      "path": "app/docs/border-trail/border-trail-card-2.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a1aa6e8b9c7970ac632c787829ee5c85e63c183",
+      "size": 1664,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4a1aa6e8b9c7970ac632c787829ee5c85e63c183"
+    },
+    {
+      "path": "app/docs/border-trail/border-trail-textarea.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a17f779161801798ca410dfc74bcab158169497",
+      "size": 624,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1a17f779161801798ca410dfc74bcab158169497"
+    },
+    {
+      "path": "app/docs/border-trail/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76922b0597218f59e97aa33fc9f63071f570d206",
+      "size": 2221,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/76922b0597218f59e97aa33fc9f63071f570d206"
+    },
+    {
+      "path": "app/docs/carousel",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "164613d2d0957062125ed61f97bb9f461604c503",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/164613d2d0957062125ed61f97bb9f461604c503"
+    },
+    {
+      "path": "app/docs/carousel/carousel-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dd1ff96e6768b649ac52bcc6c89408eb49008b0",
+      "size": 1299,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8dd1ff96e6768b649ac52bcc6c89408eb49008b0"
+    },
+    {
+      "path": "app/docs/carousel/carousel-custom-indicator.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b18706dfe588d33b6fd040c85aaaf1571ab2e33",
+      "size": 1330,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8b18706dfe588d33b6fd040c85aaaf1571ab2e33"
+    },
+    {
+      "path": "app/docs/carousel/carousel-custom-sizes.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "579f7185c52afe7bfc916ec1ccd8ebbc2fbfcef0",
+      "size": 2074,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/579f7185c52afe7bfc916ec1ccd8ebbc2fbfcef0"
+    },
+    {
+      "path": "app/docs/carousel/carousel-spacing.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "339827390dcbd60cc8e9266715d3747d41d0fd4e",
+      "size": 2211,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/339827390dcbd60cc8e9266715d3747d41d0fd4e"
+    },
+    {
+      "path": "app/docs/carousel/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18f99172db6db0753b67ec040f77ddf74a03a6f0",
+      "size": 5764,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/18f99172db6db0753b67ec040f77ddf74a03a6f0"
+    },
+    {
+      "path": "app/docs/cursor",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "938c7c511b52a78d31cf66c9aeb586734b26a239",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/938c7c511b52a78d31cf66c9aeb586734b26a239"
+    },
+    {
+      "path": "app/docs/cursor/cursor-1.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50be8b468d20512505deb49221697990ec59cf23",
+      "size": 2321,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/50be8b468d20512505deb49221697990ec59cf23"
+    },
+    {
+      "path": "app/docs/cursor/cursor-2.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fe70da5d523b84d8d0673f3b26112eed73a6766",
+      "size": 1729,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2fe70da5d523b84d8d0673f3b26112eed73a6766"
+    },
+    {
+      "path": "app/docs/cursor/cursor-3.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbd100aaa795e938075205ef612cf92e86bec5e9",
+      "size": 908,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/dbd100aaa795e938075205ef612cf92e86bec5e9"
+    },
+    {
+      "path": "app/docs/cursor/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3849ba332692df09f78e6d4fd673e559f1ef78e",
+      "size": 3303,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d3849ba332692df09f78e6d4fd673e559f1ef78e"
+    },
+    {
+      "path": "app/docs/dialog",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "647d4267e1d6aa4721d8f87e89c71bb93e500c5f",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/647d4267e1d6aa4721d8f87e89c71bb93e500c5f"
+    },
+    {
+      "path": "app/docs/dialog/dialog-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32ebe7668721e1389fe9f236eff53a22010a3baf",
+      "size": 1693,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/32ebe7668721e1389fe9f236eff53a22010a3baf"
+    },
+    {
+      "path": "app/docs/dialog/dialog-controlled.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "215d3ea2667b8957673cc5210bc7e7267b3d11b7",
+      "size": 1820,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/215d3ea2667b8957673cc5210bc7e7267b3d11b7"
+    },
+    {
+      "path": "app/docs/dialog/dialog-custom-backdrop.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fa595843cc9533d4cf7c396a02b08e00fb60dc5",
+      "size": 1753,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7fa595843cc9533d4cf7c396a02b08e00fb60dc5"
+    },
+    {
+      "path": "app/docs/dialog/dialog-custom-exit.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1725fa14595c7a9076a0cda5743e8684e79d636c",
+      "size": 2161,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1725fa14595c7a9076a0cda5743e8684e79d636c"
+    },
+    {
+      "path": "app/docs/dialog/dialog-custom-variants-transtion.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "247d80105cc2191b9902e54d67005b241bf6e2f4",
+      "size": 2127,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/247d80105cc2191b9902e54d67005b241bf6e2f4"
+    },
+    {
+      "path": "app/docs/dialog/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e730b2bee85cce5eeeaccd64a77cfbdb5c37ce86",
+      "size": 6805,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e730b2bee85cce5eeeaccd64a77cfbdb5c37ce86"
+    },
+    {
+      "path": "app/docs/disclosure",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9029922460b523b2b77fcac466e646fd98083916",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/9029922460b523b2b77fcac466e646fd98083916"
+    },
+    {
+      "path": "app/docs/disclosure/disclosure-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "219b7ec7dcf9cc23af6894bb48edc187afc5e0f4",
+      "size": 1206,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/219b7ec7dcf9cc23af6894bb48edc187afc5e0f4"
+    },
+    {
+      "path": "app/docs/disclosure/disclosure-card.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd01e445c717e99916f2ecff937fe84d53e53321",
+      "size": 2756,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/cd01e445c717e99916f2ecff937fe84d53e53321"
+    },
+    {
+      "path": "app/docs/disclosure/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e43425fa55e187963a8e241e2dd61029cf745cc",
+      "size": 3791,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5e43425fa55e187963a8e241e2dd61029cf745cc"
+    },
+    {
+      "path": "app/docs/dock",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "70bfddc60d33ed76409ad63347cb60f209588fb9",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/70bfddc60d33ed76409ad63347cb60f209588fb9"
+    },
+    {
+      "path": "app/docs/dock/apple-style-dock.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a74de81002b9254bdc2377a626b3f6d2ee29229a",
+      "size": 1747,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a74de81002b9254bdc2377a626b3f6d2ee29229a"
+    },
+    {
+      "path": "app/docs/dock/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad49f453099715d679f97c5eeb852474f2b2fdb0",
+      "size": 3946,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ad49f453099715d679f97c5eeb852474f2b2fdb0"
+    },
+    {
+      "path": "app/docs/glow-effect",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a56ae8cc74dd2ad7aac1d9bbabc28bce7408c812",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/a56ae8cc74dd2ad7aac1d9bbabc28bce7408c812"
+    },
+    {
+      "path": "app/docs/glow-effect/glow-effect-button.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7932c2002528fb6a0626b51d451629745ce87f8",
+      "size": 606,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a7932c2002528fb6a0626b51d451629745ce87f8"
+    },
+    {
+      "path": "app/docs/glow-effect/glow-effect-card-background.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22cfe307e2c9da99a8e0ea157af6b557bc4baff9",
+      "size": 1031,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/22cfe307e2c9da99a8e0ea157af6b557bc4baff9"
+    },
+    {
+      "path": "app/docs/glow-effect/glow-effect-card-mode.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52d7411b35ff9069779b501a5f44514748455550",
+      "size": 1587,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/52d7411b35ff9069779b501a5f44514748455550"
+    },
+    {
+      "path": "app/docs/glow-effect/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42952ac9fa902d029af88beedd14658122dec7f6",
+      "size": 3915,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/42952ac9fa902d029af88beedd14658122dec7f6"
+    },
+    {
+      "path": "app/docs/image-comparison",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2655fe6f3b101a59df84701815668403065e7d11",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/2655fe6f3b101a59df84701815668403065e7d11"
+    },
+    {
+      "path": "app/docs/image-comparison/image-comparison-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c265194f293e1c20efeb9fb2f656a39f07f89d6",
+      "size": 620,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4c265194f293e1c20efeb9fb2f656a39f07f89d6"
+    },
+    {
+      "path": "app/docs/image-comparison/image-comparison-custom-slider.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "438dd06fe479144d73f10c774e2c851f75827d28",
+      "size": 835,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/438dd06fe479144d73f10c774e2c851f75827d28"
+    },
+    {
+      "path": "app/docs/image-comparison/image-comparison-hover.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5b2d78c46c814f8468e72ca0ee14814039d045e",
+      "size": 649,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f5b2d78c46c814f8468e72ca0ee14814039d045e"
+    },
+    {
+      "path": "app/docs/image-comparison/image-comparison-spring.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0275ecedef9296d8d692537627ea96458138eea9",
+      "size": 729,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0275ecedef9296d8d692537627ea96458138eea9"
+    },
+    {
+      "path": "app/docs/image-comparison/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70031dc06eb74447b751acca67f64106e851b0db",
+      "size": 3706,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/70031dc06eb74447b751acca67f64106e851b0db"
+    },
+    {
+      "path": "app/docs/in-view",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c62469b92fcca1ca48ab62f73a87e12e09923d35",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/c62469b92fcca1ca48ab62f73a87e12e09923d35"
+    },
+    {
+      "path": "app/docs/in-view/in-view-basic-multiple.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b75e83054254ce55f4dc3c7b2962cce44445f3cf",
+      "size": 2746,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b75e83054254ce55f4dc3c7b2962cce44445f3cf"
+    },
+    {
+      "path": "app/docs/in-view/in-view-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f4a5f62311a796460a4e6ef1bc2ceed36d74b5f",
+      "size": 1164,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4f4a5f62311a796460a4e6ef1bc2ceed36d74b5f"
+    },
+    {
+      "path": "app/docs/in-view/in-view-images-grid.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96ec3f5b72ae291a7cc031d39658c1ebf9fe97e5",
+      "size": 2543,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/96ec3f5b72ae291a7cc031d39658c1ebf9fe97e5"
+    },
+    {
+      "path": "app/docs/in-view/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3bd6d91a11e0e62e09f2d3311fcb2fd2e264173",
+      "size": 3309,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d3bd6d91a11e0e62e09f2d3311fcb2fd2e264173"
+    },
+    {
+      "path": "app/docs/infinite-slider",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "aec8c4e4254ce5757e255da3e648cd166accbbe0",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/aec8c4e4254ce5757e255da3e648cd166accbbe0"
+    },
+    {
+      "path": "app/docs/infinite-slider/infinite-slider-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71ab9ec35dadadfe1ded66ce87d10385519007c0",
+      "size": 883,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/71ab9ec35dadadfe1ded66ce87d10385519007c0"
+    },
+    {
+      "path": "app/docs/infinite-slider/infinite-slider-hover-speed.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8da6c9e644c42589c6386e72427c1f8dcb4ea8c2",
+      "size": 1418,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8da6c9e644c42589c6386e72427c1f8dcb4ea8c2"
+    },
+    {
+      "path": "app/docs/infinite-slider/infinite-slider-vertical.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c47f126c1fb963798c42d8676b63ec457efb667f",
+      "size": 2871,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c47f126c1fb963798c42d8676b63ec457efb667f"
+    },
+    {
+      "path": "app/docs/infinite-slider/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e92228c5cd1985167fa2df776f121ea201dc1809",
+      "size": 3279,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e92228c5cd1985167fa2df776f121ea201dc1809"
+    },
+    {
+      "path": "app/docs/installation",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f3cc47dff92131437057aefb1a68c92e25f2ed5a",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/f3cc47dff92131437057aefb1a68c92e25f2ed5a"
+    },
+    {
+      "path": "app/docs/installation/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4800a4f4200e8ac5b7bacfa011a589318e9e3653",
+      "size": 1284,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4800a4f4200e8ac5b7bacfa011a589318e9e3653"
+    },
+    {
+      "path": "app/docs/layout.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e0913bc3b64fcd6777e62b7017ed14f80cfc521",
+      "size": 6145,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6e0913bc3b64fcd6777e62b7017ed14f80cfc521"
+    },
+    {
+      "path": "app/docs/magnetic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ee57466d9c1fb10093a31c898efdb2887b4c0776",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/ee57466d9c1fb10093a31c898efdb2887b4c0776"
+    },
+    {
+      "path": "app/docs/magnetic/magnetic-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79f69ab728dfbda7934e018742935657aa36031e",
+      "size": 481,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/79f69ab728dfbda7934e018742935657aa36031e"
+    },
+    {
+      "path": "app/docs/magnetic/magnetic-nested.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "364c36f71d64d2d11018b3ca7634a970d1fc7243",
+      "size": 793,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/364c36f71d64d2d11018b3ca7634a970d1fc7243"
+    },
+    {
+      "path": "app/docs/magnetic/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1067d2ce4a8a27ee73467ebc28933ced7d107475",
+      "size": 2698,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1067d2ce4a8a27ee73467ebc28933ced7d107475"
+    },
+    {
+      "path": "app/docs/morphing-dialog",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6cffda31a05f2d54d1820dfbebf9ad002266a7ac",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/6cffda31a05f2d54d1820dfbebf9ad002266a7ac"
+    },
+    {
+      "path": "app/docs/morphing-dialog/morphing-dialog-basic-1.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14613df789435e38f9edecd9767fd5d93a000098",
+      "size": 4400,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/14613df789435e38f9edecd9767fd5d93a000098"
+    },
+    {
+      "path": "app/docs/morphing-dialog/morphing-dialog-basic-2.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0f7c44203a6d17ff6eeb35bbe79d58d5969c0fb",
+      "size": 4716,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e0f7c44203a6d17ff6eeb35bbe79d58d5969c0fb"
+    },
+    {
+      "path": "app/docs/morphing-dialog/morphing-dialog-image.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0929914ac527b6977050109140ef5f6cac0a77f",
+      "size": 1794,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a0929914ac527b6977050109140ef5f6cac0a77f"
+    },
+    {
+      "path": "app/docs/morphing-dialog/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f3a440b6b4f57137cc35f06cf799d790da50fb1",
+      "size": 6263,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6f3a440b6b4f57137cc35f06cf799d790da50fb1"
+    },
+    {
+      "path": "app/docs/morphing-popover",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7f95ed224f2c67d9c1b264bcdbb4b4fb7ae4a450",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/7f95ed224f2c67d9c1b264bcdbb4b4fb7ae4a450"
+    },
+    {
+      "path": "app/docs/morphing-popover/morphing-popover-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "017a155c51cdc40e68dc9b82d344bbb0c28f3bef",
+      "size": 2490,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/017a155c51cdc40e68dc9b82d344bbb0c28f3bef"
+    },
+    {
+      "path": "app/docs/morphing-popover/morphing-popover-custom-transition-variants.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e54acd6b4b9a78d2db49637f281d2a3d72ab4a80",
+      "size": 2859,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e54acd6b4b9a78d2db49637f281d2a3d72ab4a80"
+    },
+    {
+      "path": "app/docs/morphing-popover/morphing-popover-textarea.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2816624f9043fef172ccea4031d23c053a783fd",
+      "size": 3276,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b2816624f9043fef172ccea4031d23c053a783fd"
+    },
+    {
+      "path": "app/docs/morphing-popover/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43d77351bd36a39f2431d10f24b4c0fc1f4a36ce",
+      "size": 4272,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/43d77351bd36a39f2431d10f24b4c0fc1f4a36ce"
+    },
+    {
+      "path": "app/docs/navigation.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9793f541de912eccd21e3692f884c9c4ff05eec",
+      "size": 3533,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d9793f541de912eccd21e3692f884c9c4ff05eec"
+    },
+    {
+      "path": "app/docs/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d0048969b7893623178d3c8cffc5b7095a55be1",
+      "size": 1250,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8d0048969b7893623178d3c8cffc5b7095a55be1"
+    },
+    {
+      "path": "app/docs/progressive-blur",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "555bb2d3190d9d2dd25effd6521a0b50e4df0265",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/555bb2d3190d9d2dd25effd6521a0b50e4df0265"
+    },
+    {
+      "path": "app/docs/progressive-blur/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36264286455154006253ce7aa6548061174d5c19",
+      "size": 2643,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/36264286455154006253ce7aa6548061174d5c19"
+    },
+    {
+      "path": "app/docs/progressive-blur/progressive-blur-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "603e8e5e93249bc0b88fda1ac978b592384dd784",
+      "size": 937,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/603e8e5e93249bc0b88fda1ac978b592384dd784"
+    },
+    {
+      "path": "app/docs/progressive-blur/progressive-blur-hover.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4429bb2c875aceee6a53a536e0e8f92a4d1ab0a",
+      "size": 1520,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b4429bb2c875aceee6a53a536e0e8f92a4d1ab0a"
+    },
+    {
+      "path": "app/docs/progressive-blur/progressive-blur-slider.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94cad2b4568faa0da3642ba1c9c924850c6b8717",
+      "size": 1744,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/94cad2b4568faa0da3642ba1c9c924850c6b8717"
+    },
+    {
+      "path": "app/docs/scroll-progress",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0a347c624262044d69aa5014a050d95f87dbd031",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/0a347c624262044d69aa5014a050d95f87dbd031"
+    },
+    {
+      "path": "app/docs/scroll-progress/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0544bae2118bea03004748e4cd91e146e55fecef",
+      "size": 2251,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0544bae2118bea03004748e4cd91e146e55fecef"
+    },
+    {
+      "path": "app/docs/scroll-progress/scroll-progress-basic-1.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fcf0006303eabecb424bdf437220a75db2aa56d",
+      "size": 1469,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8fcf0006303eabecb424bdf437220a75db2aa56d"
+    },
+    {
+      "path": "app/docs/scroll-progress/scroll-progress-basic-2.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cc7ecf67921c6a06df50031725a5939771ba567",
+      "size": 1852,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0cc7ecf67921c6a06df50031725a5939771ba567"
+    },
+    {
+      "path": "app/docs/scroll-progress/scroll-progress-basic-3.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1aeb430af7b168f27b85813c556533985cbf8c3b",
+      "size": 1718,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1aeb430af7b168f27b85813c556533985cbf8c3b"
+    },
+    {
+      "path": "app/docs/sliding-number",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "38e1b7357eb40d3afee0b8cfacd2dbcd7a2e6fb6",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/38e1b7357eb40d3afee0b8cfacd2dbcd7a2e6fb6"
+    },
+    {
+      "path": "app/docs/sliding-number/clock.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6f13b5cfe8ff0eb2d8db5e83723bd5c91270e3c",
+      "size": 733,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b6f13b5cfe8ff0eb2d8db5e83723bd5c91270e3c"
+    },
+    {
+      "path": "app/docs/sliding-number/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06d1df476b7d9add0ecba1c4e8e7130c8a7aca85",
+      "size": 2181,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/06d1df476b7d9add0ecba1c4e8e7130c8a7aca85"
+    },
+    {
+      "path": "app/docs/sliding-number/sliding-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b26a3fecfa7292f591569953909a6c0e10dd7b4",
+      "size": 879,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6b26a3fecfa7292f591569953909a6c0e10dd7b4"
+    },
+    {
+      "path": "app/docs/sliding-number/sliding-slider.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "575c99cfc95abe81e33469ed9e59e07f858cdfba",
+      "size": 752,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/575c99cfc95abe81e33469ed9e59e07f858cdfba"
+    },
+    {
+      "path": "app/docs/spinning-text",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3d19003ff546cde3b3b5095a1bd31ad5fb09ed4c",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/3d19003ff546cde3b3b5095a1bd31ad5fb09ed4c"
+    },
+    {
+      "path": "app/docs/spinning-text/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1514d71e666293cb6e0a0cd8f14da7dd7f53036",
+      "size": 3212,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d1514d71e666293cb6e0a0cd8f14da7dd7f53036"
+    },
+    {
+      "path": "app/docs/spinning-text/spinning-text-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fa5506dac71fb0975f7a5734261a82fdb690d6f",
+      "size": 299,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5fa5506dac71fb0975f7a5734261a82fdb690d6f"
+    },
+    {
+      "path": "app/docs/spinning-text/spinning-text-custom-transition.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c10feb30308aea0047fca16909293ef6a4eb0625",
+      "size": 396,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c10feb30308aea0047fca16909293ef6a4eb0625"
+    },
+    {
+      "path": "app/docs/spinning-text/spinning-text-custom-variants.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5dba69ed38949d228f3170b6b2d1df6a1ec4c018",
+      "size": 920,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5dba69ed38949d228f3170b6b2d1df6a1ec4c018"
+    },
+    {
+      "path": "app/docs/spotlight",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d7e1b899eb57db98a34a34ae811b4ce847b55c5f",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/d7e1b899eb57db98a34a34ae811b4ce847b55c5f"
+    },
+    {
+      "path": "app/docs/spotlight/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0919a024d10a90ae9402be43bae5848db35c6f3",
+      "size": 2457,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f0919a024d10a90ae9402be43bae5848db35c6f3"
+    },
+    {
+      "path": "app/docs/spotlight/spotlight-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e5d56c03ce675d51224338ebe9403483992fab4",
+      "size": 1167,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/3e5d56c03ce675d51224338ebe9403483992fab4"
+    },
+    {
+      "path": "app/docs/spotlight/spotlight-border.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abdc624eb1770ced5c9bb278801d63a1f1b708de",
+      "size": 501,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/abdc624eb1770ced5c9bb278801d63a1f1b708de"
+    },
+    {
+      "path": "app/docs/spotlight/spotlight-custom-color.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "543dbdd090039bb56ffcceb2f78a1b492cb5d285",
+      "size": 1350,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/543dbdd090039bb56ffcceb2f78a1b492cb5d285"
+    },
+    {
+      "path": "app/docs/text-effect",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "34d4195f7f73945eb4f16225a2f0bcf2a8127c2c",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/34d4195f7f73945eb4f16225a2f0bcf2a8127c2c"
+    },
+    {
+      "path": "app/docs/text-effect/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a87fa1d713d8ab2adc454f40de9e59765050b1f",
+      "size": 6124,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9a87fa1d713d8ab2adc454f40de9e59765050b1f"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-custom-delay.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28e231274901700c98b85ce5e335ebbe11705f52",
+      "size": 1155,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/28e231274901700c98b85ce5e335ebbe11705f52"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-exit.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d257706e878389ae23420b0f6b2417500f8dea26",
+      "size": 1306,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d257706e878389ae23420b0f6b2417500f8dea26"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-line.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1aa93b2018bc675a93abc7dbea18838e486173f0",
+      "size": 794,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1aa93b2018bc675a93abc7dbea18838e486173f0"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-per-char.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d33e2f90a2aa0c5024ce58b1204a289cbadf6c8e",
+      "size": 225,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d33e2f90a2aa0c5024ce58b1204a289cbadf6c8e"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-per-word.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ff60bf01069bc34098fdfa6b2b5b15f4fdda286",
+      "size": 240,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8ff60bf01069bc34098fdfa6b2b5b15f4fdda286"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-preset.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa652749ef71d104e3d9f65e6c6fb3ae5d53aad2",
+      "size": 237,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/fa652749ef71d104e3d9f65e6c6fb3ae5d53aad2"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-speed.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c033e00228db0ec64b859ccd8094e9473f85edcc",
+      "size": 258,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c033e00228db0ec64b859ccd8094e9473f85edcc"
+    },
+    {
+      "path": "app/docs/text-effect/text-effect-variants.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed694b6b7cf139980fae162be1793fca73ccc002",
+      "size": 1114,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ed694b6b7cf139980fae162be1793fca73ccc002"
+    },
+    {
+      "path": "app/docs/text-loop",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "859698e0d9efad09915252988823078eee9d11d4",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/859698e0d9efad09915252988823078eee9d11d4"
+    },
+    {
+      "path": "app/docs/text-loop/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25dfd8cd923459f1b75c78d605f782280f0c602a",
+      "size": 3339,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/25dfd8cd923459f1b75c78d605f782280f0c602a"
+    },
+    {
+      "path": "app/docs/text-loop/text-loop-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be6fdf9efb7db86c2ea0ea555849c5ffda85b301",
+      "size": 324,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/be6fdf9efb7db86c2ea0ea555849c5ffda85b301"
+    },
+    {
+      "path": "app/docs/text-loop/text-loop-custom-variants-transition.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9245f913969b2896f2c47928aabd3a80de788820",
+      "size": 1002,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9245f913969b2896f2c47928aabd3a80de788820"
+    },
+    {
+      "path": "app/docs/text-loop/text-loop-on-index.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23e30081dff1bca45f910eae439fc87aa22d4d1c",
+      "size": 1150,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/23e30081dff1bca45f910eae439fc87aa22d4d1c"
+    },
+    {
+      "path": "app/docs/text-morph",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e6951c5e3652289c20dc833407a92c053ad75dfd",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/e6951c5e3652289c20dc833407a92c053ad75dfd"
+    },
+    {
+      "path": "app/docs/text-morph/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73516758131c3551b72d134355f23a4a3cf17701",
+      "size": 2263,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/73516758131c3551b72d134355f23a4a3cf17701"
+    },
+    {
+      "path": "app/docs/text-morph/text-morph-button.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ceae889dcb75fd21b07dc695eaeed901aa2cc668",
+      "size": 592,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ceae889dcb75fd21b07dc695eaeed901aa2cc668"
+    },
+    {
+      "path": "app/docs/text-morph/text-morph-input.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21e824a0f505098fa627f02575ef04bd07f84a57",
+      "size": 771,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/21e824a0f505098fa627f02575ef04bd07f84a57"
+    },
+    {
+      "path": "app/docs/text-roll",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e3511137bd48a7c519f7d026fc5643866c487120",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/e3511137bd48a7c519f7d026fc5643866c487120"
+    },
+    {
+      "path": "app/docs/text-roll/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc6cd7cf03e968f1ebe63f9802681d7d5b1d8e77",
+      "size": 3234,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/bc6cd7cf03e968f1ebe63f9802681d7d5b1d8e77"
+    },
+    {
+      "path": "app/docs/text-roll/text-roll-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "690370590a9c68696d7fd1f5d7dbc049c39b693c",
+      "size": 212,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/690370590a9c68696d7fd1f5d7dbc049c39b693c"
+    },
+    {
+      "path": "app/docs/text-roll/text-roll-custom-transition-delay.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "714691afb44b2390e1de9a4506a158aa2ea40cbf",
+      "size": 641,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/714691afb44b2390e1de9a4506a158aa2ea40cbf"
+    },
+    {
+      "path": "app/docs/text-roll/text-roll-custom-variants.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ba041edd37935f7e15f167eac17e91d3463fa2d",
+      "size": 540,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8ba041edd37935f7e15f167eac17e91d3463fa2d"
+    },
+    {
+      "path": "app/docs/text-scramble",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "de97f86f0549b94ae38aa77eea6bb900ee0eac5b",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/de97f86f0549b94ae38aa77eea6bb900ee0eac5b"
+    },
+    {
+      "path": "app/docs/text-scramble/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36b9fa2621ec6124b11b6f13508a63e2a7a6d890",
+      "size": 3445,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/36b9fa2621ec6124b11b6f13508a63e2a7a6d890"
+    },
+    {
+      "path": "app/docs/text-scramble/text-scramble-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e8f019503234a0d0508018009c53ca637d31e5d",
+      "size": 220,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2e8f019503234a0d0508018009c53ca637d31e5d"
+    },
+    {
+      "path": "app/docs/text-scramble/text-scramble-custom-char-duration.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db3187824e96f94ba1a0536e214143916fb75023",
+      "size": 298,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/db3187824e96f94ba1a0536e214143916fb75023"
+    },
+    {
+      "path": "app/docs/text-scramble/text-scramble-custom-trigger.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b009f85adfcadf1fec0a0691accf3f544a493b65",
+      "size": 664,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b009f85adfcadf1fec0a0691accf3f544a493b65"
+    },
+    {
+      "path": "app/docs/text-shimmer-wave",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "93fa50bd0dd6d26ddd451437f6dcdeb9f7adc599",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/93fa50bd0dd6d26ddd451437f6dcdeb9f7adc599"
+    },
+    {
+      "path": "app/docs/text-shimmer-wave/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f179dcd0b93516f2de1270dba5e64b5be959b6d8",
+      "size": 2726,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f179dcd0b93516f2de1270dba5e64b5be959b6d8"
+    },
+    {
+      "path": "app/docs/text-shimmer-wave/text-shimmer-wave-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da406367878d450644eb2559e4521913150730b9",
+      "size": 244,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/da406367878d450644eb2559e4521913150730b9"
+    },
+    {
+      "path": "app/docs/text-shimmer-wave/text-shimmer-wave-color.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09ba2d9a042f5267bfd5bafa025c3ef1453e432a",
+      "size": 398,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/09ba2d9a042f5267bfd5bafa025c3ef1453e432a"
+    },
+    {
+      "path": "app/docs/text-shimmer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8a8fae7b8d2528dd3c6fe173753ceda0dc783b05",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/8a8fae7b8d2528dd3c6fe173753ceda0dc783b05"
+    },
+    {
+      "path": "app/docs/text-shimmer/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee6da69aff923059d4fe1eac1121351f8f767ff7",
+      "size": 2405,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ee6da69aff923059d4fe1eac1121351f8f767ff7"
+    },
+    {
+      "path": "app/docs/text-shimmer/text-shimmer-basic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7346fbdac522f7fe80420356d95756edef000a0",
+      "size": 223,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a7346fbdac522f7fe80420356d95756edef000a0"
+    },
+    {
+      "path": "app/docs/text-shimmer/text-shimmer-color.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0cf433497730b79bdd9803e2df843e1570d54b4",
+      "size": 418,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c0cf433497730b79bdd9803e2df843e1570d54b4"
+    },
+    {
+      "path": "app/docs/tilt",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dc88d5af400eb9cc61ef494bbf59a25b9d0f7ed0",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/dc88d5af400eb9cc61ef494bbf59a25b9d0f7ed0"
+    },
+    {
+      "path": "app/docs/tilt/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3620cd8e7c78ac9617b82987128c006d53419e1e",
+      "size": 2288,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/3620cd8e7c78ac9617b82987128c006d53419e1e"
+    },
+    {
+      "path": "app/docs/tilt/tilt-card-1.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e65307f0fd0c683c8a2b4d58b23272454b7f193",
+      "size": 851,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1e65307f0fd0c683c8a2b4d58b23272454b7f193"
+    },
+    {
+      "path": "app/docs/tilt/tilt-spotlight.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "547a3608dff8b4f04b2b6feff5bc992bb38689ab",
+      "size": 1421,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/547a3608dff8b4f04b2b6feff5bc992bb38689ab"
+    },
+    {
+      "path": "app/docs/toolbar-dynamic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "aab4846e4fcc1f68af3d8fac4a4ed16b431995b8",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/aab4846e4fcc1f68af3d8fac4a4ed16b431995b8"
+    },
+    {
+      "path": "app/docs/toolbar-dynamic/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab234be0cd168594ec7a07c3de9a903d3c04eef6",
+      "size": 775,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ab234be0cd168594ec7a07c3de9a903d3c04eef6"
+    },
+    {
+      "path": "app/docs/toolbar-expandable",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "45ffbf67d6966e0bdcaa5fb69b88114eb596dda6",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/45ffbf67d6966e0bdcaa5fb69b88114eb596dda6"
+    },
+    {
+      "path": "app/docs/toolbar-expandable/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d710b1caf76d8e7c875604dd6df790d1ece556ed",
+      "size": 892,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d710b1caf76d8e7c875604dd6df790d1ece556ed"
+    },
+    {
+      "path": "app/docs/transition-panel",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e1405f6942c1f6e9fbe267c54b0c2e61304223d6",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/e1405f6942c1f6e9fbe267c54b0c2e61304223d6"
+    },
+    {
+      "path": "app/docs/transition-panel/page.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d49995572f7bc599322df15cace99362407e9af4",
+      "size": 3178,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d49995572f7bc599322df15cace99362407e9af4"
+    },
+    {
+      "path": "app/docs/transition-panel/transition-panel-card.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83e5b6fe4e58ef7fcdba90c27f4138aa118745a1",
+      "size": 4346,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/83e5b6fe4e58ef7fcdba90c27f4138aa118745a1"
+    },
+    {
+      "path": "app/docs/transition-panel/transition-panel-tabs.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e6d07ed082ed81016637bc52eeab00232237740",
+      "size": 2457,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4e6d07ed082ed81016637bc52eeab00232237740"
+    },
+    {
+      "path": "app/globals.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1641b0d2c848a606d8f743d3ded632b514f1bb05",
+      "size": 5564,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1641b0d2c848a606d8f743d3ded632b514f1bb05"
+    },
+    {
+      "path": "app/icon.ico",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57e9913c2ab805e7fbaf23495d899597775e6cb6",
+      "size": 7170,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/57e9913c2ab805e7fbaf23495d899597775e6cb6"
+    },
+    {
+      "path": "app/layout.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38b438b3f805f1fbde64f2891d7761eaa55e4607",
+      "size": 1346,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/38b438b3f805f1fbde64f2891d7761eaa55e4607"
+    },
+    {
+      "path": "app/opengraph-image.alt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b386ebec8b121cf78935b09a5410d43480b1457",
+      "size": 85,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0b386ebec8b121cf78935b09a5410d43480b1457"
+    },
+    {
+      "path": "app/opengraph-image.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95437e293f8dce5a79e8e23975eededbc5bdd65d",
+      "size": 35379,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/95437e293f8dce5a79e8e23975eededbc5bdd65d"
+    },
+    {
+      "path": "app/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7dbf172be6537ac22874184deec031b1a7e5bf2e",
+      "size": 8916,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7dbf172be6537ac22874184deec031b1a7e5bf2e"
+    },
+    {
+      "path": "app/twitter-image.alt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b386ebec8b121cf78935b09a5410d43480b1457",
+      "size": 85,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0b386ebec8b121cf78935b09a5410d43480b1457"
+    },
+    {
+      "path": "app/twitter-image.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95437e293f8dce5a79e8e23975eededbc5bdd65d",
+      "size": 35379,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/95437e293f8dce5a79e8e23975eededbc5bdd65d"
+    },
+    {
+      "path": "cli",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4770a54da840a04f3318bc32330d40c05b0c3d22",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/4770a54da840a04f3318bc32330d40c05b0c3d22"
+    },
+    {
+      "path": "cli/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53d8edef2b04ac2090c868e57fa058d95c8f0829",
+      "size": 1833,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/53d8edef2b04ac2090c868e57fa058d95c8f0829"
+    },
+    {
+      "path": "cli/package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a801b5dca1b466f0211925a9a02055a51697f962",
+      "size": 24733,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a801b5dca1b466f0211925a9a02055a51697f962"
+    },
+    {
+      "path": "cli/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46683f3b5a4d6dbd310a1e508893eb800bd766dc",
+      "size": 817,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/46683f3b5a4d6dbd310a1e508893eb800bd766dc"
+    },
+    {
+      "path": "cli/src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "874c4e72e0181eccf826ebaa71238091c0c669c4",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/874c4e72e0181eccf826ebaa71238091c0c669c4"
+    },
+    {
+      "path": "cli/src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb4fd2ea7d2c0120fb06d196e0d207ca28ca5a26",
+      "size": 8432,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/bb4fd2ea7d2c0120fb06d196e0d207ca28ca5a26"
+    },
+    {
+      "path": "cli/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9908c50fb86e9889eebcedc2120b6a0afd6c257",
+      "size": 261,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b9908c50fb86e9889eebcedc2120b6a0afd6c257"
+    },
+    {
+      "path": "components.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a3c7506d04ec327bedd759a52abc127316cc1d1",
+      "size": 423,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5a3c7506d04ec327bedd759a52abc127316cc1d1"
+    },
+    {
+      "path": "components",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6e29fd0430bb1041951bcc59112808dc9bba8f36",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/6e29fd0430bb1041951bcc59112808dc9bba8f36"
+    },
+    {
+      "path": "components/core",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4601a5427abfb66d90e3e01d964d6f2bfcf25a37",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/4601a5427abfb66d90e3e01d964d6f2bfcf25a37"
+    },
+    {
+      "path": "components/core/accordion.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9bbb9dcc9edfbcb393d8ede6b26d99553fabee3",
+      "size": 4806,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d9bbb9dcc9edfbcb393d8ede6b26d99553fabee3"
+    },
+    {
+      "path": "components/core/animated-background.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae0a1ffc5b375ee59744089c83527cdbe6acec8b",
+      "size": 2190,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ae0a1ffc5b375ee59744089c83527cdbe6acec8b"
+    },
+    {
+      "path": "components/core/animated-group.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba1cc085c32228e73508917bfc2df1cd6f97a8ec",
+      "size": 3110,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ba1cc085c32228e73508917bfc2df1cd6f97a8ec"
+    },
+    {
+      "path": "components/core/animated-number.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d962410dea49542e6668928469c62af4bebfd890",
+      "size": 828,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d962410dea49542e6668928469c62af4bebfd890"
+    },
+    {
+      "path": "components/core/border-trail.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "634b3dcd5867a00250dec7a824bf0891e6c00299",
+      "size": 1183,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/634b3dcd5867a00250dec7a824bf0891e6c00299"
+    },
+    {
+      "path": "components/core/carousel.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e4210acee427eb07fa2760d5ffdd336684ba706",
+      "size": 8269,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1e4210acee427eb07fa2760d5ffdd336684ba706"
+    },
+    {
+      "path": "components/core/cursor.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38f627b0165e2fada3c65506d115b9d8b36af148",
+      "size": 3381,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/38f627b0165e2fada3c65506d115b9d8b36af148"
+    },
+    {
+      "path": "components/core/dialog.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "670a3167204547978f982de72fb59b5790d5895d",
+      "size": 8279,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/670a3167204547978f982de72fb59b5790d5895d"
+    },
+    {
+      "path": "components/core/disclosure.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6edec9fb2ce15539f42ce5bd9124689b7fdf671",
+      "size": 4270,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b6edec9fb2ce15539f42ce5bd9124689b7fdf671"
+    },
+    {
+      "path": "components/core/dock.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb024ec7648e14fffff5bdb40e657d46c7766312",
+      "size": 5625,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/eb024ec7648e14fffff5bdb40e657d46c7766312"
+    },
+    {
+      "path": "components/core/glow-effect.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "815e4dd95c960a5034f89fce5da73d8db2228247",
+      "size": 3535,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/815e4dd95c960a5034f89fce5da73d8db2228247"
+    },
+    {
+      "path": "components/core/image-comparison.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb62a9e7df6e70381f9a9b63651ac4fa5fe0a6d8",
+      "size": 3606,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/fb62a9e7df6e70381f9a9b63651ac4fa5fe0a6d8"
+    },
+    {
+      "path": "components/core/in-view.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd8911453cac4457672b5b9781eee2e8843dcd1f",
+      "size": 1134,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/dd8911453cac4457672b5b9781eee2e8843dcd1f"
+    },
+    {
+      "path": "components/core/infinite-slider.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c43ec4256764109ef5ef9a8d61ebb63523a6a44",
+      "size": 2867,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2c43ec4256764109ef5ef9a8d61ebb63523a6a44"
+    },
+    {
+      "path": "components/core/magnetic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9a04c694fa5a2ecfd65a018ac52c648b040f8dd",
+      "size": 2937,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f9a04c694fa5a2ecfd65a018ac52c648b040f8dd"
+    },
+    {
+      "path": "components/core/morphing-dialog.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02b8e24fc774d30beacb9650ddfe46c6843ae849",
+      "size": 9858,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/02b8e24fc774d30beacb9650ddfe46c6843ae849"
+    },
+    {
+      "path": "components/core/morphing-popover.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad38c5dbd3a408e9b13bae077ee75657bac93f14",
+      "size": 5434,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ad38c5dbd3a408e9b13bae077ee75657bac93f14"
+    },
+    {
+      "path": "components/core/progressive-blur.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "760c001ffcf20d90480fa4a2a0d736cb046b6a88",
+      "size": 1676,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/760c001ffcf20d90480fa4a2a0d736cb046b6a88"
+    },
+    {
+      "path": "components/core/scroll-progress.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0f79c1912e5cf862e79825894df2b9257c5ef91",
+      "size": 900,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a0f79c1912e5cf862e79825894df2b9257c5ef91"
+    },
+    {
+      "path": "components/core/sliding-number.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6dd5208d1d4ada5f6daf393e8b47f338352a3a8",
+      "size": 3086,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e6dd5208d1d4ada5f6daf393e8b47f338352a3a8"
+    },
+    {
+      "path": "components/core/spinning-text.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4728d7c531a7bf4c9c452ef619b65fab6a3610e1",
+      "size": 2344,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4728d7c531a7bf4c9c452ef619b65fab6a3610e1"
+    },
+    {
+      "path": "components/core/spotlight.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59012f27dd56cee2f718fb4e93b9c77d048547a9",
+      "size": 2542,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/59012f27dd56cee2f718fb4e93b9c77d048547a9"
+    },
+    {
+      "path": "components/core/text-effect.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d19f6d0ef3437aefde35d93c6aa2801c9773acc6",
+      "size": 7271,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d19f6d0ef3437aefde35d93c6aa2801c9773acc6"
+    },
+    {
+      "path": "components/core/text-loop.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f3c7e0c48d4b5a8c773163145ac2806654f9dd0",
+      "size": 1764,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0f3c7e0c48d4b5a8c773163145ac2806654f9dd0"
+    },
+    {
+      "path": "components/core/text-morph.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8ea5f7f9b5b65f66ec3e8373553b1923a910e2f",
+      "size": 1841,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f8ea5f7f9b5b65f66ec3e8373553b1923a910e2f"
+    },
+    {
+      "path": "components/core/text-roll.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4718536d6c2f6fd1545e11478fd7ca0e01dd7f7",
+      "size": 2861,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b4718536d6c2f6fd1545e11478fd7ca0e01dd7f7"
+    },
+    {
+      "path": "components/core/text-scramble.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93104ead82aa9cb7961bc52dc1a13d092d1ec965",
+      "size": 1999,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/93104ead82aa9cb7961bc52dc1a13d092d1ec965"
+    },
+    {
+      "path": "components/core/text-shimmer-wave.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a6ec1a3ed0fa1817d5f008e99de2997bf0ff62e",
+      "size": 2334,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5a6ec1a3ed0fa1817d5f008e99de2997bf0ff62e"
+    },
+    {
+      "path": "components/core/text-shimmer.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a91eae1d73ecbc48a264214475e05db61db796e",
+      "size": 1735,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8a91eae1d73ecbc48a264214475e05db61db796e"
+    },
+    {
+      "path": "components/core/tilt.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "565a79a9184979bcee99cf13eed3d4310b00c579",
+      "size": 1937,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/565a79a9184979bcee99cf13eed3d4310b00c579"
+    },
+    {
+      "path": "components/core/toolbar-dynamic.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f9a96b1c96d28b8cfb0120c46105a011a247fb2",
+      "size": 2894,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9f9a96b1c96d28b8cfb0120c46105a011a247fb2"
+    },
+    {
+      "path": "components/core/toolbar-expandable.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d659dd60dabe3d2aa3c1852b4c287aa9b7ef5ff3",
+      "size": 6497,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d659dd60dabe3d2aa3c1852b4c287aa9b7ef5ff3"
+    },
+    {
+      "path": "components/core/transition-panel.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15091cc22fb4ceab8ced13a5e155dd02abe30523",
+      "size": 1015,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/15091cc22fb4ceab8ced13a5e155dd02abe30523"
+    },
+    {
+      "path": "components/ui",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b8bc9e8b56adc24ca04246b77c20a2352bd3798b",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/b8bc9e8b56adc24ca04246b77c20a2352bd3798b"
+    },
+    {
+      "path": "components/ui/button.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2405df6c944006aef2da4e7beb592161edecbf9b",
+      "size": 1925,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2405df6c944006aef2da4e7beb592161edecbf9b"
+    },
+    {
+      "path": "components/ui/input.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69b64fb2455114c3eeda2d18741af0027b3c5e89",
+      "size": 768,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/69b64fb2455114c3eeda2d18741af0027b3c5e89"
+    },
+    {
+      "path": "components/ui/label.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "534182176bf87f9308355514adc884d2b69750a5",
+      "size": 724,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/534182176bf87f9308355514adc884d2b69750a5"
+    },
+    {
+      "path": "components/ui/tooltip.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81c61793cefdeb3bae07f17848a0b20223c21575",
+      "size": 1841,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/81c61793cefdeb3bae07f17848a0b20223c21575"
+    },
+    {
+      "path": "components/website",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0112272c04481ffd919d2880981fe7b7c5623937",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/0112272c04481ffd919d2880981fe7b7c5623937"
+    },
+    {
+      "path": "components/website/card-example-landing.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b48f2b38927f0063181c8191b6ac148301ec60c9",
+      "size": 1516,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b48f2b38927f0063181c8191b6ac148301ec60c9"
+    },
+    {
+      "path": "components/website/code-block.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84138a859193387e967b35dce4a03d46c67db0b0",
+      "size": 810,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/84138a859193387e967b35dce4a03d46c67db0b0"
+    },
+    {
+      "path": "components/website/code-preview.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "029b9f8f15edf1b9478893227121830026402728",
+      "size": 1371,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/029b9f8f15edf1b9478893227121830026402728"
+    },
+    {
+      "path": "components/website/code-renderer.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04242ce8c9016fa9cc0ac36c0bdf5d1107e80066",
+      "size": 355,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/04242ce8c9016fa9cc0ac36c0bdf5d1107e80066"
+    },
+    {
+      "path": "components/website/component-code-preview.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cc87905cd3c87efbf4d2dd70eb25a249b234b54",
+      "size": 1599,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9cc87905cd3c87efbf4d2dd70eb25a249b234b54"
+    },
+    {
+      "path": "components/website/component-preview.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03923048c50092f0b3e214cfbf8cba1c70d01184",
+      "size": 1889,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/03923048c50092f0b3e214cfbf8cba1c70d01184"
+    },
+    {
+      "path": "components/website/dropdown-menu.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53b0213904aebe786ae6af84569ae6305f94a253",
+      "size": 7659,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/53b0213904aebe786ae6af84569ae6305f94a253"
+    },
+    {
+      "path": "components/website/header.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "639ff5770fb3bafdba5a04fc1583e725e8a6c346",
+      "size": 3377,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/639ff5770fb3bafdba5a04fc1583e725e8a6c346"
+    },
+    {
+      "path": "components/website/icons",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1c35084ea3b48df166ac59556f17299f6bec2ef5",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/1c35084ea3b48df166ac59556f17299f6bec2ef5"
+    },
+    {
+      "path": "components/website/icons/github.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad0634b96ab58eabb57620464a53fbeace556f1a",
+      "size": 980,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ad0634b96ab58eabb57620464a53fbeace556f1a"
+    },
+    {
+      "path": "components/website/icons/motion-primitives-logo.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f2a59d7cdfa7fc69c847417f5fad813e28b109b",
+      "size": 744,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2f2a59d7cdfa7fc69c847417f5fad813e28b109b"
+    },
+    {
+      "path": "components/website/icons/shadcn-logo.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7a70593e6d17e78e19e024759e0dfdb966154ec",
+      "size": 898,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a7a70593e6d17e78e19e024759e0dfdb966154ec"
+    },
+    {
+      "path": "components/website/icons/x.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af7ed92f29c9c3a5e222fae42e7b79b96ef57df1",
+      "size": 405,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/af7ed92f29c9c3a5e222fae42e7b79b96ef57df1"
+    },
+    {
+      "path": "components/website/installation-cli.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43ba382bf0d9d692337bb555d313c9cec8cdbd05",
+      "size": 3563,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/43ba382bf0d9d692337bb555d313c9cec8cdbd05"
+    },
+    {
+      "path": "components/website/launch-banner.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d81afe6ad7ef22843991f40c7bacdf8c93886d00",
+      "size": 489,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d81afe6ad7ef22843991f40c7bacdf8c93886d00"
+    },
+    {
+      "path": "components/website/open-in-v0.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83780c304e2d4dfb60f2bc5c626a4c9ed5a69cf8",
+      "size": 1595,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/83780c304e2d4dfb60f2bc5c626a4c9ed5a69cf8"
+    },
+    {
+      "path": "components/website/scroll-area.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c26f37c82d4f18a21f162f9cb0cb0ace654b928",
+      "size": 1668,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7c26f37c82d4f18a21f162f9cb0cb0ace654b928"
+    },
+    {
+      "path": "components/website/table-of-contents.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93c4cdef2fe90a15f14fe979602950ca9be6eac5",
+      "size": 2087,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/93c4cdef2fe90a15f14fe979602950ca9be6eac5"
+    },
+    {
+      "path": "components/website/tabs.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8944fd0726c89c2e64103176be40f9fbdf21656",
+      "size": 3682,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c8944fd0726c89c2e64103176be40f9fbdf21656"
+    },
+    {
+      "path": "components/website/theme-provider.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "530befd6e72948d3cca0e920b5eb9dc5b0a7ffb9",
+      "size": 332,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/530befd6e72948d3cca0e920b5eb9dc5b0a7ffb9"
+    },
+    {
+      "path": "components/website/theme-switch.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec4aa4d966505b5942d1feccec1bf290e4cd5834",
+      "size": 1193,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ec4aa4d966505b5942d1feccec1bf290e4cd5834"
+    },
+    {
+      "path": "hooks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "54cd928dfb3f586130d2ae88953177ca16447f82",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/54cd928dfb3f586130d2ae88953177ca16447f82"
+    },
+    {
+      "path": "hooks/useClickOutside.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "708a050ab8d4e55efab41f781f1bb36b705e9509",
+      "size": 755,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/708a050ab8d4e55efab41f781f1bb36b705e9509"
+    },
+    {
+      "path": "hooks/usePreventScroll.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "462df631e8b6c42801e4ffdb4d7175e059e9b0bb",
+      "size": 12254,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/462df631e8b6c42801e4ffdb4d7175e059e9b0bb"
+    },
+    {
+      "path": "lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "97924a1e2a52932f0b8f91dcfdba0faae82a6dc7",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/97924a1e2a52932f0b8f91dcfdba0faae82a6dc7"
+    },
+    {
+      "path": "lib/browser.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9685db9b54e2dc5c169fb641c2f625d25e54a8a5",
+      "size": 1083,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9685db9b54e2dc5c169fb641c2f625d25e54a8a5"
+    },
+    {
+      "path": "lib/code.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1e99a326a59780f23c6e0d22fa46f892595e94f",
+      "size": 169,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d1e99a326a59780f23c6e0d22fa46f892595e94f"
+    },
+    {
+      "path": "lib/custom-theme.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b42e0a5ce1462b1a8664df1e3479fd4d7b169ec",
+      "size": 213,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9b42e0a5ce1462b1a8664df1e3479fd4d7b169ec"
+    },
+    {
+      "path": "lib/shiki.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98075a8a372d6cb3ba15f359f05765c9ea061f8c",
+      "size": 414,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/98075a8a372d6cb3ba15f359f05765c9ea061f8c"
+    },
+    {
+      "path": "lib/theme-css-variables.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7dd3787801435c7a92d17e5b1d38d74fae29b904",
+      "size": 7651,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7dd3787801435c7a92d17e5b1d38d74fae29b904"
+    },
+    {
+      "path": "lib/utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2819a830d242f11fda91c4e8951794ab815cec77",
+      "size": 169,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2819a830d242f11fda91c4e8951794ab815cec77"
+    },
+    {
+      "path": "mdx-components.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61628295128485b8bf2412d7c4aba6b9f21e9abb",
+      "size": 4238,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/61628295128485b8bf2412d7c4aba6b9f21e9abb"
+    },
+    {
+      "path": "next.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c75f7f2e009295c91fa4246aea96be08e16e16c6",
+      "size": 460,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c75f7f2e009295c91fa4246aea96be08e16e16c6"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0557942246883200dc85f30a109b80cdfbb1dd8",
+      "size": 352071,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c0557942246883200dc85f30a109b80cdfbb1dd8"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9fe9e92abfc8de0a3a9b1699b09d4da02f1df381",
+      "size": 1531,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9fe9e92abfc8de0a3a9b1699b09d4da02f1df381"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d6d8457f78b7118cdd4dd97c1e38da55a80d608",
+      "size": 146,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5d6d8457f78b7118cdd4dd97c1e38da55a80d608"
+    },
+    {
+      "path": "prettier.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83cb86b5be91c01f36afff5a7bfbe314ba927fee",
+      "size": 205,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/83cb86b5be91c01f36afff5a7bfbe314ba927fee"
+    },
+    {
+      "path": "public",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e9645651239ba38517f54f48277fb45707c78240",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/e9645651239ba38517f54f48277fb45707c78240"
+    },
+    {
+      "path": "public/apple_music_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53bfccb3fe3a78e40412e03c3087c483b02afce8",
+      "size": 3471,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/53bfccb3fe3a78e40412e03c3087c483b02afce8"
+    },
+    {
+      "path": "public/c",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7cfbcc211283acac053b00286675d65ddd71960d",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/7cfbcc211283acac053b00286675d65ddd71960d"
+    },
+    {
+      "path": "public/c/accordion.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fa73b674a0ad4ed527e8d771997a6a8dc2d21d0",
+      "size": 5326,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6fa73b674a0ad4ed527e8d771997a6a8dc2d21d0"
+    },
+    {
+      "path": "public/c/animated-background.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9032b3f8ac4753fa26e26c0677dddb0cbb4a7a8",
+      "size": 2623,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f9032b3f8ac4753fa26e26c0677dddb0cbb4a7a8"
+    },
+    {
+      "path": "public/c/animated-group.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df9de4217d903a43badb06f89a784f977f113493",
+      "size": 3586,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/df9de4217d903a43badb06f89a784f977f113493"
+    },
+    {
+      "path": "public/c/animated-number.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12409841c46859b06e255895e4ab9d93078037bd",
+      "size": 1198,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/12409841c46859b06e255895e4ab9d93078037bd"
+    },
+    {
+      "path": "public/c/border-trail.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "add6f86643cad4dc04a91a202f132e7f42588ab4",
+      "size": 1555,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/add6f86643cad4dc04a91a202f132e7f42588ab4"
+    },
+    {
+      "path": "public/c/carousel.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5658b53e651c3fd9a7c92bb1857f60d56f371852",
+      "size": 8941,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5658b53e651c3fd9a7c92bb1857f60d56f371852"
+    },
+    {
+      "path": "public/c/cursor.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e335cdf71963dfdb6b05446aa541aa842bab7b4c",
+      "size": 3832,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e335cdf71963dfdb6b05446aa541aa842bab7b4c"
+    },
+    {
+      "path": "public/c/dialog.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "647b72505eb89c8c04f91a9b550dfa6f31477fe9",
+      "size": 21657,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/647b72505eb89c8c04f91a9b550dfa6f31477fe9"
+    },
+    {
+      "path": "public/c/disclosure.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4473932326d6264755faff6ba060f237fbc14f88",
+      "size": 4786,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4473932326d6264755faff6ba060f237fbc14f88"
+    },
+    {
+      "path": "public/c/dock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8f97ad2f9767520957722863bd646d2c1ecb94d",
+      "size": 6164,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d8f97ad2f9767520957722863bd646d2c1ecb94d"
+    },
+    {
+      "path": "public/c/glow-effect.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7a9df12653bbe42f35b0340f5bb05323e790c62",
+      "size": 4013,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d7a9df12653bbe42f35b0340f5bb05323e790c62"
+    },
+    {
+      "path": "public/c/image-comparison.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c78ad2aec9abb12ac582a23a517542a5c3defa38",
+      "size": 4090,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c78ad2aec9abb12ac582a23a517542a5c3defa38"
+    },
+    {
+      "path": "public/c/in-view.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb6cbc2dba95f44205ee1769fd1ad3b93b52a5b1",
+      "size": 1515,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/fb6cbc2dba95f44205ee1769fd1ad3b93b52a5b1"
+    },
+    {
+      "path": "public/c/infinite-slider.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02607005d1f0cbf8386cbee397ad6f87e4c7748d",
+      "size": 3281,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/02607005d1f0cbf8386cbee397ad6f87e4c7748d"
+    },
+    {
+      "path": "public/c/magnetic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80ae1390a7a01089e69014a8705c100860f9b037",
+      "size": 3370,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/80ae1390a7a01089e69014a8705c100860f9b037"
+    },
+    {
+      "path": "public/c/morphing-dialog.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d88f26a3be83c362ad2b4835c9f9d24a5510c428",
+      "size": 11505,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d88f26a3be83c362ad2b4835c9f9d24a5510c428"
+    },
+    {
+      "path": "public/c/morphing-popover.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b99816d8fadad52ab835ccb47d8fc03cbbd5bf8",
+      "size": 6883,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8b99816d8fadad52ab835ccb47d8fc03cbbd5bf8"
+    },
+    {
+      "path": "public/c/progressive-blur.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7d0beb6ad8d2e5105226c904382c009b5ee7374",
+      "size": 2076,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c7d0beb6ad8d2e5105226c904382c009b5ee7374"
+    },
+    {
+      "path": "public/c/registry.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "783727984492357c0c9f0bc829e3e47d4d665705",
+      "size": 17909,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/783727984492357c0c9f0bc829e3e47d4d665705"
+    },
+    {
+      "path": "public/c/scroll-progress.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6751c03aee88bb11aa425d181b3b767c1a8a713b",
+      "size": 1277,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6751c03aee88bb11aa425d181b3b767c1a8a713b"
+    },
+    {
+      "path": "public/c/sliding-number.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a09592f4e4ea6e05eee2f5b22b398d0ec0a85d97",
+      "size": 3557,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a09592f4e4ea6e05eee2f5b22b398d0ec0a85d97"
+    },
+    {
+      "path": "public/c/spinning-text.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7106b3bc7a93c05d0d5286c12bfd7e4dffdb6fb",
+      "size": 2779,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d7106b3bc7a93c05d0d5286c12bfd7e4dffdb6fb"
+    },
+    {
+      "path": "public/c/spotlight.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a2f9fad949e557286212a80797280f32a4b2419",
+      "size": 2950,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9a2f9fad949e557286212a80797280f32a4b2419"
+    },
+    {
+      "path": "public/c/text-effect.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "423404d0c4538ca8517d574304faacafa2d0a24a",
+      "size": 7894,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/423404d0c4538ca8517d574304faacafa2d0a24a"
+    },
+    {
+      "path": "public/c/text-loop.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6e0e0fad0a9b44b628124cee71f671879baca47",
+      "size": 2159,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c6e0e0fad0a9b44b628124cee71f671879baca47"
+    },
+    {
+      "path": "public/c/text-morph.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c19dcf0e0a8f184da51fec538d5c4214067ac58",
+      "size": 2240,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9c19dcf0e0a8f184da51fec538d5c4214067ac58"
+    },
+    {
+      "path": "public/c/text-roll.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46d9cf1c818f080b89fdf39052faf1ca33b0e5d0",
+      "size": 3289,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/46d9cf1c818f080b89fdf39052faf1ca33b0e5d0"
+    },
+    {
+      "path": "public/c/text-scramble.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92715d17f711358235db377360accb281b3a0544",
+      "size": 2347,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/92715d17f711358235db377360accb281b3a0544"
+    },
+    {
+      "path": "public/c/text-shimmer-wave.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e779b8f4e55c1a6e17951ffb54165598428c4f3b",
+      "size": 2762,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e779b8f4e55c1a6e17951ffb54165598428c4f3b"
+    },
+    {
+      "path": "public/c/text-shimmer.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4295f6d1da6da42fd372aab7a611c3055b3f38d8",
+      "size": 2121,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4295f6d1da6da42fd372aab7a611c3055b3f38d8"
+    },
+    {
+      "path": "public/c/tilt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb319868868013ee7d183c32102197c8d88c63a2",
+      "size": 2342,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/bb319868868013ee7d183c32102197c8d88c63a2"
+    },
+    {
+      "path": "public/c/toolbar-dynamic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1ebb47f57eb2f1f6bba311a25fa59a70094a90f",
+      "size": 4207,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e1ebb47f57eb2f1f6bba311a25fa59a70094a90f"
+    },
+    {
+      "path": "public/c/toolbar-expandable.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "540a5f9a8fb6b6cd48c1dd60762c4c7ee4bba8ac",
+      "size": 7937,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/540a5f9a8fb6b6cd48c1dd60762c4c7ee4bba8ac"
+    },
+    {
+      "path": "public/c/transition-panel.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c82fa0143a6717e59afe512061b9946f6171f54f",
+      "size": 1400,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c82fa0143a6717e59afe512061b9946f6171f54f"
+    },
+    {
+      "path": "public/chrome_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e7c4c048b87b1006d847f38259afa8ab4d4ea5b",
+      "size": 5561,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0e7c4c048b87b1006d847f38259afa8ab4d4ea5b"
+    },
+    {
+      "path": "public/e",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "eb813664b92e5286c96a53d48fa984701c9b5c2c",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/eb813664b92e5286c96a53d48fa984701c9b5c2c"
+    },
+    {
+      "path": "public/e/accordion-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "942dd08aa65f24fd0bab708a5a1bc86ff792a6a0",
+      "size": 8590,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/942dd08aa65f24fd0bab708a5a1bc86ff792a6a0"
+    },
+    {
+      "path": "public/e/accordion-icons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "244459684b4eb09ecfb87d0c9f4bd599f3a107c3",
+      "size": 9703,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/244459684b4eb09ecfb87d0c9f4bd599f3a107c3"
+    },
+    {
+      "path": "public/e/accordion-variant.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "046401469e780376a607c8f5d30b5c3faa3fb666",
+      "size": 9933,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/046401469e780376a607c8f5d30b5c3faa3fb666"
+    },
+    {
+      "path": "public/e/animated-card-background-hover.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df7dbd7505bf5f753c968ae1478cb929bc1a88ed",
+      "size": 4409,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/df7dbd7505bf5f753c968ae1478cb929bc1a88ed"
+    },
+    {
+      "path": "public/e/animated-group-custom-variants-2.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37a6656a0ee593c4c6786bd77ab900d42cf2b0e9",
+      "size": 5258,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/37a6656a0ee593c4c6786bd77ab900d42cf2b0e9"
+    },
+    {
+      "path": "public/e/animated-group-custom-variants.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abbc34781a0146579a7ed8a1a2fb5bd39aaba262",
+      "size": 5443,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/abbc34781a0146579a7ed8a1a2fb5bd39aaba262"
+    },
+    {
+      "path": "public/e/animated-group-preset.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b79d733dc74fdfcedd7fa150ca1896f4e749e1b1",
+      "size": 4844,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b79d733dc74fdfcedd7fa150ca1896f4e749e1b1"
+    },
+    {
+      "path": "public/e/animated-number-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7739d3739199d18a70d7e98748eff1ea5653b2de",
+      "size": 2432,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7739d3739199d18a70d7e98748eff1ea5653b2de"
+    },
+    {
+      "path": "public/e/animated-number-counter.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ed66ac8ef9af16fcad07da1356aa69fe720c87e",
+      "size": 2262,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9ed66ac8ef9af16fcad07da1356aa69fe720c87e"
+    },
+    {
+      "path": "public/e/animated-number-in-view.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54c73baa9439f4f4988a9dfd376fcb90d9d381f0",
+      "size": 2039,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/54c73baa9439f4f4988a9dfd376fcb90d9d381f0"
+    },
+    {
+      "path": "public/e/animated-tabs-hover.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "355ea7855d06244f1dfa1b2d6241d51a32f065ce",
+      "size": 3594,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/355ea7855d06244f1dfa1b2d6241d51a32f065ce"
+    },
+    {
+      "path": "public/e/animated-tabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f583d32585aed839b7a49b4d9b6c7889a1fb6474",
+      "size": 4114,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f583d32585aed839b7a49b4d9b6c7889a1fb6474"
+    },
+    {
+      "path": "public/e/apple-style-dock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6ff7550f2ef5a41705af3e3bfd2960f47f0e6a2",
+      "size": 8063,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c6ff7550f2ef5a41705af3e3bfd2960f47f0e6a2"
+    },
+    {
+      "path": "public/e/border-trail-card-1.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "176eae491dfe219820980932337656c4ee8b00f7",
+      "size": 2665,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/176eae491dfe219820980932337656c4ee8b00f7"
+    },
+    {
+      "path": "public/e/border-trail-card-2.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ef9a791847ab6741baf557617f1839a53f9fc50",
+      "size": 3361,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/8ef9a791847ab6741baf557617f1839a53f9fc50"
+    },
+    {
+      "path": "public/e/border-trail-textarea.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9112727775b63c3164462fce1835dc02b91406b5",
+      "size": 2290,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9112727775b63c3164462fce1835dc02b91406b5"
+    },
+    {
+      "path": "public/e/carousel-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "659ec44d6d3752e6dd34cb6a71e81af303e0de97",
+      "size": 10349,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/659ec44d6d3752e6dd34cb6a71e81af303e0de97"
+    },
+    {
+      "path": "public/e/carousel-custom-indicator.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fbf367a947d26373b1e7239963a49fcf8c1ac6d",
+      "size": 10419,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7fbf367a947d26373b1e7239963a49fcf8c1ac6d"
+    },
+    {
+      "path": "public/e/carousel-custom-sizes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "264128262362e65df5357391cfff9bdbb1f512a6",
+      "size": 11169,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/264128262362e65df5357391cfff9bdbb1f512a6"
+    },
+    {
+      "path": "public/e/carousel-spacing.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f64d1657bce8dfc9655c9fe753297b256dbe645",
+      "size": 11281,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2f64d1657bce8dfc9655c9fe753297b256dbe645"
+    },
+    {
+      "path": "public/e/clock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c93df1e4af77ba0161700b03ac32a6e9b52e149a",
+      "size": 4570,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c93df1e4af77ba0161700b03ac32a6e9b52e149a"
+    },
+    {
+      "path": "public/e/cursor-1.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2be5acb06c2dfe1910ca58c93e4b00ab91564afb",
+      "size": 6276,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2be5acb06c2dfe1910ca58c93e4b00ab91564afb"
+    },
+    {
+      "path": "public/e/cursor-2.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a685fc288bfb016526d9fd00e0eb5af2c4135ce3",
+      "size": 5681,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a685fc288bfb016526d9fd00e0eb5af2c4135ce3"
+    },
+    {
+      "path": "public/e/cursor-3.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d7680416c55fad17126e2d4fc760fd287f39ef5",
+      "size": 4836,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0d7680416c55fad17126e2d4fc760fd287f39ef5"
+    },
+    {
+      "path": "public/e/dialog-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa3a2d72e44622f3914771cd9e0339e89062a827",
+      "size": 23470,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/fa3a2d72e44622f3914771cd9e0339e89062a827"
+    },
+    {
+      "path": "public/e/dialog-controlled.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f4cd68bbbcde6a93b87531022f7d93aa190070b",
+      "size": 23623,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1f4cd68bbbcde6a93b87531022f7d93aa190070b"
+    },
+    {
+      "path": "public/e/dialog-custom-backdrop.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31fc7b23cb383b237938a1b6c925e424afd03ec9",
+      "size": 23569,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/31fc7b23cb383b237938a1b6c925e424afd03ec9"
+    },
+    {
+      "path": "public/e/dialog-custom-exit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f06bf8dc5de7d89930c105e4b42982a2c1240550",
+      "size": 23985,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f06bf8dc5de7d89930c105e4b42982a2c1240550"
+    },
+    {
+      "path": "public/e/dialog-custom-variants-transtion.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0675c2f89b89cf1924ae5b77be553c85a94ece59",
+      "size": 23978,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0675c2f89b89cf1924ae5b77be553c85a94ece59"
+    },
+    {
+      "path": "public/e/disclosure-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b3c36be4b5e346e0f0b93ac4359558d44e42762",
+      "size": 6103,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9b3c36be4b5e346e0f0b93ac4359558d44e42762"
+    },
+    {
+      "path": "public/e/disclosure-card.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3737c2210a220776437d085eba399d7730a145d",
+      "size": 7695,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c3737c2210a220776437d085eba399d7730a145d"
+    },
+    {
+      "path": "public/e/glow-effect-button.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "659936a10dfe01385abea26067a9c55a4e9e2724",
+      "size": 917,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/659936a10dfe01385abea26067a9c55a4e9e2724"
+    },
+    {
+      "path": "public/e/glow-effect-card-background.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d7626650ed9b1e95de6be6e9edffdf0b26cc750",
+      "size": 5196,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2d7626650ed9b1e95de6be6e9edffdf0b26cc750"
+    },
+    {
+      "path": "public/e/glow-effect-card-mode.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bcd20b22dcd0b17299398b145925b387a56d072",
+      "size": 7769,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/9bcd20b22dcd0b17299398b145925b387a56d072"
+    },
+    {
+      "path": "public/e/image-comparison-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd3f99026f3fd6d71f5c5773a50f0036aab62a8d",
+      "size": 4826,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/bd3f99026f3fd6d71f5c5773a50f0036aab62a8d"
+    },
+    {
+      "path": "public/e/image-comparison-custom-slider.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c57a7c520e38809fdb86f077b189f2d166082d8a",
+      "size": 5068,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c57a7c520e38809fdb86f077b189f2d166082d8a"
+    },
+    {
+      "path": "public/e/image-comparison-hover.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78ff7d4e2295280388dae838dcd38fc553a80b44",
+      "size": 4856,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/78ff7d4e2295280388dae838dcd38fc553a80b44"
+    },
+    {
+      "path": "public/e/image-comparison-spring.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85c08427474cf4a2ad42ffd299bd04cfa17fdec5",
+      "size": 4952,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/85c08427474cf4a2ad42ffd299bd04cfa17fdec5"
+    },
+    {
+      "path": "public/e/in-view-basic-multiple.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88fe10ce90baa3ce3e08a157b30024b83f1e2e7d",
+      "size": 4461,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/88fe10ce90baa3ce3e08a157b30024b83f1e2e7d"
+    },
+    {
+      "path": "public/e/in-view-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2065d838af8c8ac69fddcd8eb6b0e002382d197",
+      "size": 2798,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a2065d838af8c8ac69fddcd8eb6b0e002382d197"
+    },
+    {
+      "path": "public/e/in-view-images-grid.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "219d821d0207713fa1dc19c8d816753d68e6f240",
+      "size": 4224,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/219d821d0207713fa1dc19c8d816753d68e6f240"
+    },
+    {
+      "path": "public/e/infinite-slider-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b9b0228542ab331e0ccc55574f5397f5a6ac8ae",
+      "size": 4267,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/0b9b0228542ab331e0ccc55574f5397f5a6ac8ae"
+    },
+    {
+      "path": "public/e/infinite-slider-hover-speed.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21e9d657569e527d670df022632953dd88bfd0c3",
+      "size": 4822,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/21e9d657569e527d670df022632953dd88bfd0c3"
+    },
+    {
+      "path": "public/e/infinite-slider-vertical.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1ef10cdc50f915e7cfebff4f5b2af3addeba7e1",
+      "size": 6302,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a1ef10cdc50f915e7cfebff4f5b2af3addeba7e1"
+    },
+    {
+      "path": "public/e/magnetic-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c09418ac36dcb22200810338af3fc0f16a9cc532",
+      "size": 3942,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/c09418ac36dcb22200810338af3fc0f16a9cc532"
+    },
+    {
+      "path": "public/e/magnetic-nested.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b32b9ae65799151116ce5be66ac3b5aba0df3c75",
+      "size": 4274,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/b32b9ae65799151116ce5be66ac3b5aba0df3c75"
+    },
+    {
+      "path": "public/e/morphing-dialog-basic-1.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36824b4539334202835ab8a39edb79d00e24457a",
+      "size": 16118,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/36824b4539334202835ab8a39edb79d00e24457a"
+    },
+    {
+      "path": "public/e/morphing-dialog-basic-2.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d356f91f536fdb5db3954d54f065c4d3726d8d37",
+      "size": 16464,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d356f91f536fdb5db3954d54f065c4d3726d8d37"
+    },
+    {
+      "path": "public/e/morphing-dialog-image.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0051e247377931207b88d7cfe9e542302d91688",
+      "size": 13459,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a0051e247377931207b88d7cfe9e542302d91688"
+    },
+    {
+      "path": "public/e/morphing-popover-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9a00608038b429ec9418148ed3cb753d4ba9160",
+      "size": 9553,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f9a00608038b429ec9418148ed3cb753d4ba9160"
+    },
+    {
+      "path": "public/e/morphing-popover-custom-transition-variants.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32ceff01d9773b4cdd32e7972be3679bcb442a29",
+      "size": 9984,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/32ceff01d9773b4cdd32e7972be3679bcb442a29"
+    },
+    {
+      "path": "public/e/morphing-popover-textarea.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4bd1182c587611e2e1d9b4cb2e5ce1a1726b45a",
+      "size": 10350,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e4bd1182c587611e2e1d9b4cb2e5ce1a1726b45a"
+    },
+    {
+      "path": "public/e/progressive-blur-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "433813a12c3cb3ba3aada36390faab12cfcd8e31",
+      "size": 3121,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/433813a12c3cb3ba3aada36390faab12cfcd8e31"
+    },
+    {
+      "path": "public/e/progressive-blur-hover.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31df1a3e11b67325c58010ca9039e7105cbddc25",
+      "size": 3735,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/31df1a3e11b67325c58010ca9039e7105cbddc25"
+    },
+    {
+      "path": "public/e/progressive-blur-slider.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1683df6fc6dc4344cf8c84d474e2e875a992341e",
+      "size": 3958,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/1683df6fc6dc4344cf8c84d474e2e875a992341e"
+    },
+    {
+      "path": "public/e/scroll-progress-basic-1.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89e475a88cd6854dcd7bb41c9e0acc40d9986ec3",
+      "size": 2869,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/89e475a88cd6854dcd7bb41c9e0acc40d9986ec3"
+    },
+    {
+      "path": "public/e/scroll-progress-basic-2.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40d54157ac542bc068c437bb2c47b498abdebf81",
+      "size": 3274,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/40d54157ac542bc068c437bb2c47b498abdebf81"
+    },
+    {
+      "path": "public/e/scroll-progress-basic-3.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2211852d6c16d2207ef52b115c5b09c09a9a5801",
+      "size": 3129,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2211852d6c16d2207ef52b115c5b09c09a9a5801"
+    },
+    {
+      "path": "public/e/segmented-control.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30334cad481e9b01837983260b065a183a2c31ee",
+      "size": 3659,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/30334cad481e9b01837983260b065a183a2c31ee"
+    },
+    {
+      "path": "public/e/sliding-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30591016be46ab48f43c076dd8fd440d3c47675d",
+      "size": 4504,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/30591016be46ab48f43c076dd8fd440d3c47675d"
+    },
+    {
+      "path": "public/e/sliding-slider.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ed1fba33750b419125e4e9fb587a910b60fcf36",
+      "size": 4383,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/3ed1fba33750b419125e4e9fb587a910b60fcf36"
+    },
+    {
+      "path": "public/e/spinning-text-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "936b8796e3bc1da4a351f774ce17fdaf60160025",
+      "size": 3166,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/936b8796e3bc1da4a351f774ce17fdaf60160025"
+    },
+    {
+      "path": "public/e/spinning-text-custom-transition.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e017e85848b23856822bad8ce7381e9b2887683",
+      "size": 3299,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/3e017e85848b23856822bad8ce7381e9b2887683"
+    },
+    {
+      "path": "public/e/spinning-text-custom-variants.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad1876fad40392cc92c383c08a22afcd8132a6e6",
+      "size": 3832,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ad1876fad40392cc92c383c08a22afcd8132a6e6"
+    },
+    {
+      "path": "public/e/spotlight-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5805a3c2f6e72ac3bf19fb8389ac16b0921b7f0d",
+      "size": 4215,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5805a3c2f6e72ac3bf19fb8389ac16b0921b7f0d"
+    },
+    {
+      "path": "public/e/spotlight-border.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3802ee582b1b38e8aa0886de0ee5583329e6a802",
+      "size": 3528,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/3802ee582b1b38e8aa0886de0ee5583329e6a802"
+    },
+    {
+      "path": "public/e/spotlight-custom-color.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7012c33d8f7360ec56b99d6021bdd44955d383e9",
+      "size": 4424,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7012c33d8f7360ec56b99d6021bdd44955d383e9"
+    },
+    {
+      "path": "public/e/text-effect-custom-delay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b769902d6568a4b2c52a9f80496cd48568f45c",
+      "size": 9187,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d4b769902d6568a4b2c52a9f80496cd48568f45c"
+    },
+    {
+      "path": "public/e/text-effect-exit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "add7ff0a433a2912c2cf2789b6042a03c58f492d",
+      "size": 9321,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/add7ff0a433a2912c2cf2789b6042a03c58f492d"
+    },
+    {
+      "path": "public/e/text-effect-line.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8241239380fdac779bd705d8916a7d7ff254377",
+      "size": 8780,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f8241239380fdac779bd705d8916a7d7ff254377"
+    },
+    {
+      "path": "public/e/text-effect-per-char.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba27136ecb050f9de77f3a4f86dfb4a3a187a66b",
+      "size": 8201,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/ba27136ecb050f9de77f3a4f86dfb4a3a187a66b"
+    },
+    {
+      "path": "public/e/text-effect-per-word.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c6ea01b69425b2ab2b11bd5f59bbb88e05a3845",
+      "size": 8206,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/7c6ea01b69425b2ab2b11bd5f59bbb88e05a3845"
+    },
+    {
+      "path": "public/e/text-effect-preset.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ee9b30be8f25c442834a173486be7cc5ff67740",
+      "size": 8213,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2ee9b30be8f25c442834a173486be7cc5ff67740"
+    },
+    {
+      "path": "public/e/text-effect-speed.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71cec3c775e05beae62ac32b53b42e1dd5ebea61",
+      "size": 8229,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/71cec3c775e05beae62ac32b53b42e1dd5ebea61"
+    },
+    {
+      "path": "public/e/text-effect-variants.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "069a5ef07045d9d059f5a6ab377585b30457c6bb",
+      "size": 9145,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/069a5ef07045d9d059f5a6ab377585b30457c6bb"
+    },
+    {
+      "path": "public/e/text-loop-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "435ddc5627e627bbc5fb31fe541920a4f064f999",
+      "size": 2561,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/435ddc5627e627bbc5fb31fe541920a4f064f999"
+    },
+    {
+      "path": "public/e/text-loop-custom-variants-transition.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb49bb33b667968fc9e382a901acf22fa2003ac8",
+      "size": 3321,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/fb49bb33b667968fc9e382a901acf22fa2003ac8"
+    },
+    {
+      "path": "public/e/text-loop-on-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75767fd24224ee6d358276a1c0372751320b8378",
+      "size": 3437,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/75767fd24224ee6d358276a1c0372751320b8378"
+    },
+    {
+      "path": "public/e/text-morph-button.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66541e0b96e878f635dbabf0363b00299568d4e6",
+      "size": 2922,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/66541e0b96e878f635dbabf0363b00299568d4e6"
+    },
+    {
+      "path": "public/e/text-morph-input.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c280ee4aadb06ac7087c72d286109e661d7da87",
+      "size": 3107,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6c280ee4aadb06ac7087c72d286109e661d7da87"
+    },
+    {
+      "path": "public/e/text-roll-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b4a66e9c4fa465c544ada89b5d174d43159d51b",
+      "size": 3583,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/4b4a66e9c4fa465c544ada89b5d174d43159d51b"
+    },
+    {
+      "path": "public/e/text-roll-custom-transition-delay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51956ca8607c1587a9bd5e1cc2fcc281a65c2029",
+      "size": 4062,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/51956ca8607c1587a9bd5e1cc2fcc281a65c2029"
+    },
+    {
+      "path": "public/e/text-roll-custom-variants.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "586af3c9f259578c6336dd32ef6dc896dd20af0b",
+      "size": 3929,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/586af3c9f259578c6336dd32ef6dc896dd20af0b"
+    },
+    {
+      "path": "public/e/text-scramble-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d7d4650219434f2c9d981f1ba54357e81401fca",
+      "size": 2651,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/5d7d4650219434f2c9d981f1ba54357e81401fca"
+    },
+    {
+      "path": "public/e/text-scramble-custom-char-duration.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "987e43ff33b37c5b4d481cf704d5dea7e5a6d60c",
+      "size": 2770,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/987e43ff33b37c5b4d481cf704d5dea7e5a6d60c"
+    },
+    {
+      "path": "public/e/text-scramble-custom-trigger.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "174f194ebcd99878fb639b039e406b0bc9f47e4b",
+      "size": 3124,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/174f194ebcd99878fb639b039e406b0bc9f47e4b"
+    },
+    {
+      "path": "public/e/text-shimmer-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66580418e82a3dea894ea46a3243581bdfdbaadb",
+      "size": 2425,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/66580418e82a3dea894ea46a3243581bdfdbaadb"
+    },
+    {
+      "path": "public/e/text-shimmer-color.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb4806542518c0caf989797d21d91cd32c43d910",
+      "size": 2621,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/fb4806542518c0caf989797d21d91cd32c43d910"
+    },
+    {
+      "path": "public/e/text-shimmer-wave-basic.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05a7f4ea4204adb61c38c62d0f0c6b2fa76a0374",
+      "size": 3108,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/05a7f4ea4204adb61c38c62d0f0c6b2fa76a0374"
+    },
+    {
+      "path": "public/e/text-shimmer-wave-color.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7d5c254efe2fb3e2a1bee51254351407616d123",
+      "size": 3267,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d7d5c254efe2fb3e2a1bee51254351407616d123"
+    },
+    {
+      "path": "public/e/tilt-card-1.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adddd4c22ff3a124dd9f6db26dc587c4bcf7b93f",
+      "size": 3273,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/adddd4c22ff3a124dd9f6db26dc587c4bcf7b93f"
+    },
+    {
+      "path": "public/e/tilt-spotlight.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c92b80fab3c300f1aeae2a8343878d51ab595c1",
+      "size": 6627,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6c92b80fab3c300f1aeae2a8343878d51ab595c1"
+    },
+    {
+      "path": "public/e/transition-panel-card.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e92d4133764ddf91010b28f15a48e8238ad8083",
+      "size": 5969,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/2e92d4133764ddf91010b28f15a48e8238ad8083"
+    },
+    {
+      "path": "public/e/transition-panel-tabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "071852fd906fbeebc078b6e4921853f20e8ecb84",
+      "size": 4021,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/071852fd906fbeebc078b6e4921853f20e8ecb84"
+    },
+    {
+      "path": "public/eb-27-lamp-edouard-wilfrid-buquet.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52f7685e761bf6fee6079ac0f85351f7fa31c6aa",
+      "size": 35667,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/52f7685e761bf6fee6079ac0f85351f7fa31c6aa"
+    },
+    {
+      "path": "public/gucci_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66f20393b798dc2d9b411fc4d01643066b2ecadf",
+      "size": 1898,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/66f20393b798dc2d9b411fc4d01643066b2ecadf"
+    },
+    {
+      "path": "public/h",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a693d9705d224234bcaa74aadad283146d5fb905",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/a693d9705d224234bcaa74aadad283146d5fb905"
+    },
+    {
+      "path": "public/h/useClickOutside.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbf72076e2309281cf2cf0e29b6a380627a4c200",
+      "size": 956,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/fbf72076e2309281cf2cf0e29b6a380627a4c200"
+    },
+    {
+      "path": "public/h/usePreventScroll.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f259c10aaa3bdef62e595e9745299d30c25e6134",
+      "size": 12795,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/f259c10aaa3bdef62e595e9745299d30c25e6134"
+    },
+    {
+      "path": "public/jquery_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "533804390c35c6b95b40c526ea4dbedff25bb3e0",
+      "size": 3949,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/533804390c35c6b95b40c526ea4dbedff25bb3e0"
+    },
+    {
+      "path": "public/mp_dark.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83d7ce61beac5eb23693cf0533602a69d1117e8c",
+      "size": 84305,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/83d7ce61beac5eb23693cf0533602a69d1117e8c"
+    },
+    {
+      "path": "public/mp_light.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d52ae79d5c8af3ab32106727d70319eb514b1e63",
+      "size": 80325,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d52ae79d5c8af3ab32106727d70319eb514b1e63"
+    },
+    {
+      "path": "public/national_geographic_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "579e4bc1a5777a3a3a42fb081988e5f0912323a4",
+      "size": 3660,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/579e4bc1a5777a3a3a42fb081988e5f0912323a4"
+    },
+    {
+      "path": "public/nintendo_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62c7efad92a85aba319075ddb0b038f1e2c18b3c",
+      "size": 3270,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/62c7efad92a85aba319075ddb0b038f1e2c18b3c"
+    },
+    {
+      "path": "public/prada_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06f165aabca62a0a2da66190f53c5dd108b23d78",
+      "size": 3408,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/06f165aabca62a0a2da66190f53c5dd108b23d78"
+    },
+    {
+      "path": "public/sony_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25d952dcc1382a6b99c2e27a9ae0e11a240f7fcd",
+      "size": 2457,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/25d952dcc1382a6b99c2e27a9ae0e11a240f7fcd"
+    },
+    {
+      "path": "public/strava_logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bc11a0be7b0f2c541fa09d3f5c85af64645ebeb",
+      "size": 2696,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/6bc11a0be7b0f2c541fa09d3f5c85af64645ebeb"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d8ebc9eb5029bf4263d7de13636035d42ebdf402",
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/trees/d8ebc9eb5029bf4263d7de13636035d42ebdf402"
+    },
+    {
+      "path": "scripts/registry-build.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06e18a126e669ab7e6a7ffc9cc3b1ded9597da83",
+      "size": 5478,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/06e18a126e669ab7e6a7ffc9cc3b1ded9597da83"
+    },
+    {
+      "path": "scripts/registry-components.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "feca730219cbd1063079a1eb1339f56cfde1dae7",
+      "size": 9998,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/feca730219cbd1063079a1eb1339f56cfde1dae7"
+    },
+    {
+      "path": "scripts/registry-examples.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a77f899fdac658c1638e58ee26817cff8efb0545",
+      "size": 40460,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/a77f899fdac658c1638e58ee26817cff8efb0545"
+    },
+    {
+      "path": "scripts/registry-hooks.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8c5217976d46327726c661caa976dc2b5591fb1",
+      "size": 258,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/d8c5217976d46327726c661caa976dc2b5591fb1"
+    },
+    {
+      "path": "scripts/registry-schema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "698bfdad6fd75b0f4de8b85380e4713e52eccd67",
+      "size": 714,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/698bfdad6fd75b0f4de8b85380e4713e52eccd67"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7ff90fd2767199e09b281bfa87e08a90f33270e",
+      "size": 574,
+      "url": "https://api.github.com/repos/ibelick/motion-primitives/git/blobs/e7ff90fd2767199e09b281bfa87e08a90f33270e"
+    }
+  ],
+  "truncated": false
+}

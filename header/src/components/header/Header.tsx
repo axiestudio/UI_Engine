@@ -126,27 +126,48 @@ function ListItem({
 
 // ── Header ───────────────────────────────────────────────────────────────────
 
-export function Header() {
-  const [scrolled, setScrolled] = React.useState(false)
-  const [hidden, setHidden] = React.useState(false)
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-  const [searchOpen, setSearchOpen] = React.useState(false)
+export type HeaderProps = {
+  /** "sticky" (default, takes layout space) or "fixed" (floats above the hero). */
+  position?: "sticky" | "fixed"
+  /** Controlled state — pass from the host to sync overlays (e.g. hero header offset). Omit to self-manage. */
+  scrolled?: boolean
+  hidden?: boolean
+  mobileOpen?: boolean
+  setMobileOpen?: React.Dispatch<React.SetStateAction<boolean>>
+  searchOpen?: boolean
+  setSearchOpen?: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function Header(props: HeaderProps = {}) {
+  const [innerScrolled, setInnerScrolled] = React.useState(false)
+  const [innerHidden, setInnerHidden] = React.useState(false)
+  const [innerMobileOpen, setInnerMobileOpen] = React.useState(false)
+  const [innerSearchOpen, setInnerSearchOpen] = React.useState(false)
   const lastY = React.useRef(0)
 
+  const position = props.position ?? "sticky"
+  const scrolled = props.scrolled ?? innerScrolled
+  const hidden = props.hidden ?? innerHidden
+  const mobileOpen = props.mobileOpen ?? innerMobileOpen
+  const setMobileOpen = props.setMobileOpen ?? setInnerMobileOpen
+  const searchOpen = props.searchOpen ?? innerSearchOpen
+  const setSearchOpen = props.setSearchOpen ?? setInnerSearchOpen
+
   React.useEffect(() => {
+    if (props.scrolled !== undefined && props.hidden !== undefined) return
     const onScroll = () => {
       const y = window.scrollY
       const diff = y - lastY.current
       // hide on scroll down past 80px, show on scroll up
-      if (y > 80 && diff > 6 && !mobileOpen && !searchOpen) setHidden(true)
-      else if (diff < -6 || y < 80) setHidden(false)
-      setScrolled(y > 8)
+      if (y > 80 && diff > 6 && !mobileOpen && !searchOpen) setInnerHidden(true)
+      else if (diff < -6 || y < 80) setInnerHidden(false)
+      setInnerScrolled(y > 8)
       lastY.current = y
     }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
-  }, [mobileOpen, searchOpen])
+  }, [mobileOpen, searchOpen, props.scrolled, props.hidden])
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -183,7 +204,8 @@ export function Header() {
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ type: "spring", stiffness: 300, damping: 30, mass: 0.8 }}
         className={cn(
-          "sticky top-0 z-50 w-full border-b backdrop-blur-xl",
+          "top-0 z-50 w-full border-b backdrop-blur-xl",
+          position === "fixed" ? "fixed" : "sticky",
           scrolled
             ? "border-border bg-background/90 supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_0_0_hsl(var(--border)),0_8px_24px_-16px_hsl(var(--foreground)/0.16)]"
             : "border-transparent bg-background",

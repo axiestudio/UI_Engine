@@ -1,0 +1,117 @@
+import * as React from "react"
+import { X } from "lucide-react"
+import { TextRoll } from "@/components/primitives/text-roll"
+import { TextLoop } from "@/components/primitives/text-loop"
+import { BorderTrail } from "@/components/primitives/border-trail"
+import { cn } from "@/lib/utils"
+
+// ── Types ────────────────────────────────────────────────────────────────────
+export type AnnouncementMessage = {
+  text?: string
+  /** Text before/after a rolled word-pair, e.g. "Now " + roll("open"->"booked") + " again". */
+  before?: string
+  roll?: string[]
+  after?: string
+}
+
+export type AnnouncementBarProps = {
+  /** One string or message object — or an array that rotates on a timer. */
+  messages: (string | AnnouncementMessage)[] | string | AnnouncementMessage
+  /** Whole-strip action link shown as a chip on the right of the message. */
+  cta?: { label: string; href: string }
+  tone?: "ink" | "paper"
+  /** Persist dismissal with this localStorage key (so it doesn't return). */
+  dismissKey?: string
+  /** Seconds per message when rotating. Default 3. */
+  interval?: number
+  className?: string
+}
+
+function normalize(messages: AnnouncementBarProps["messages"]): AnnouncementMessage[] {
+  if (typeof messages === "string") return [{ text: messages }]
+  if (Array.isArray(messages)) return messages.map((m) => (typeof m === "string" ? { text: m } : m))
+  return messages && typeof messages === "object" ? [messages] : []
+}
+
+function renderMessage(m: AnnouncementMessage) {
+  if (m.roll && m.roll.length === 2) {
+    // TextRoll takes an two-word string: first word exits, second enters.
+    const phrase = `${m.before ?? ""}${m.roll.join(" ")}${m.after ?? ""}`
+    return <TextRoll duration={0.55} className="font-mono text-[11px] font-bold uppercase tracking-widest sm:text-xs" children={phrase} />
+  }
+  return <span>{m.text ?? `${m.before ?? ""}${m.after ?? ""}`}</span>
+}
+
+// ── AnnouncementBar ──────────────────────────────────────────────────────────
+
+export function AnnouncementBar({
+  messages,
+  cta,
+  tone = "ink",
+  dismissKey,
+  interval = 3,
+  className,
+}: AnnouncementBarProps) {
+  const [open, setOpen] = React.useState(() => {
+    if (!dismissKey) return true
+    try {
+      return typeof window === "undefined" ? true : window.localStorage.getItem(dismissKey) !== "1"
+    } catch {
+      return true
+    }
+  })
+
+  if (!open) return null
+  const list = normalize(messages)
+  if (!list.length) return null
+  const ink = tone === "ink"
+
+  const label = "Announcement"
+  const dismiss = () => {
+    setOpen(false)
+    if (dismissKey) {
+      try {
+        window.localStorage.setItem(dismissKey, "1")
+      } catch {
+        /* ignore */
+      }
+    }
+  }
+
+  return (
+    <div
+      role="region"
+      aria-label={label}
+      className={cn("relative overflow-hidden", ink ? "bg-foreground text-background" : "border-b bg-card text-foreground", className)}
+    >
+      <BorderTrail className={ink ? "bg-background/40" : "bg-foreground/25"} size={90} />
+      <div className="mx-auto flex h-10 w-full max-w-[1280px] items-center justify-center gap-4 px-12 text-center sm:px-14">
+        {list.length === 1 ? (
+          renderMessage(list[0])
+        ) : (
+          <TextLoop interval={interval} className="font-mono text-[11px] font-bold uppercase tracking-widest sm:text-xs">
+            {list.map((m, i) => (
+              <span key={i}>{renderMessage(m)}</span>
+            ))}
+          </TextLoop>
+        )}
+        {cta && (
+          <a
+            href={cta.href}
+            className={cn("shrink-0 rounded-full px-3 py-1 font-display text-[11px] font-black uppercase tracking-tight transition-opacity hover:opacity-90", ink ? "bg-background text-foreground" : "bg-foreground text-background")}
+          >
+            {cta.label}
+          </a>
+        )}
+      </div>
+      <button
+        type="button"
+        onClick={dismiss}
+        aria-label={`Dismiss ${label.toLowerCase()}`}
+        className={cn("absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full opacity-70 transition-opacity hover:opacity-100", ink ? "text-background hover:bg-background/10" : "text-foreground hover:bg-accent")}
+      >
+        <X className="h-3.5 w-3.5 stroke-[2.5]" />
+      </button>
+    </div>
+  )
+}
