@@ -22,4 +22,4 @@
   signature={{ name: "Astrid Lindqvist", role: "founder & therapist, 24 years" }}
 />
 ```
-Build: `npm run build --workspace=UI/promise`
+Build: `npm run build --workspace=promise`

@@ -18,4 +18,4 @@ Search requires `answer` to be a string (ReactNode allowed but not searchable). 
 ## Compat patches to vendored files (annotated inline)
 - `accordion.tsx`: `type` imports; `cloneElement` cast for React 19 types.
 
-Build: `npm run build --workspace=UI/faq`.
+Build: `npm run build --workspace=faq`.

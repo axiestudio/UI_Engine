@@ -25,4 +25,4 @@
   ]}
 />
 ```
-Build: `npm run build --workspace=UI/place`
+Build: `npm run build --workspace=place`

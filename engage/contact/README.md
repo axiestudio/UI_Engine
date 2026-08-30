@@ -21,4 +21,4 @@ Production contact FORM: schema-driven fields, inline validation (blur + submit,
 ## Customizing
 Business sites pass their own fields/copy/endpoint. `ProjectInquirySection` is the verbatim vendor if you want the registry layout as-is.
 
-Build: `npm run build --workspace=UI/contact`.
+Build: `npm run build --workspace=contact`.

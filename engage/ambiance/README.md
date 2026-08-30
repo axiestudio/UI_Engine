@@ -20,4 +20,4 @@
   shots={[{ src: "/room.webp", alt: "Treatment room" }, { src: "/oils.webp", alt: "Oils" }, { src: "/halls.webp", alt: "Hall" }]}
 />
 ```
-Build: `npm run build --workspace=UI/ambiance`
+Build: `npm run build --workspace=ambiance`

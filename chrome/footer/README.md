@@ -48,7 +48,7 @@ Workspace package: `import { Footer } from "footer"` + `import "footer/styles.cs
 ## Build
 
 ```bash
-npm run build --workspace=UI/footer   # tsc -b && vite build → dist/footer.{es,cjs}.js + footer.css
+npm run build --workspace=footer   # tsc -b && vite build → dist/footer.{es,cjs}.js + footer.css
 ```
 
 ## Customizing for a business site

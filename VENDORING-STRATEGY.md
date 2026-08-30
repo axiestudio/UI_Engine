@@ -12,8 +12,8 @@ Context: every package in `UI/` already **vendors** its component source — sha
 | No network at runtime | `grep` for `fetch(/axios/XMLHttpRequest/WebSocket/http-imports` across all 19 packages' `src`: **0 hits** |
 | No fetch at build time | `vite.config.ts` / `postcss.config.js` / `tailwind.config.js` contain **0** registry URLs — those exist only in comments and `presetSources` metadata |
 | No registry npm packages | `node_modules` contains **no** watermelon / aicanvas / motion-primitives packages — only standard infra (react, motion, radix-ui, cmdk, cva, clsx, tailwind-merge, lucide) |
-| Local install works | `engine` consumes every preset via `file:../UI/<name>` → npm symlinks in root `node_modules` point back into this repo |
-| Works with the internet unplugged | dist bundle is self-contained (only react/motion/radix-ui/cva/clsx/tailwind-merge as external *infra* imports); `import('UI/steps/dist/steps.es.js')` in Node exports `Steps`, `TextEffect`, `BorderTrail`, … and they run |
+| Local install works | `engine` consumes every preset via `file:../UI/<category>/<name>` (see `UI/CATEGORIES.json`) → npm symlinks in root `node_modules` point back into this repo |
+| Works with the internet unplugged | dist bundle is self-contained (only react/motion/radix-ui/cva/clsx/tailwind-merge as external *infra* imports); `import('UI/content/steps/dist/steps.es.js')` in Node exports `Steps`, `TextEffect`, `BorderTrail`, … and they run |
 | Consumers own the source | `files: ["dist", "src", "README.md"]` — `npm pack` ships the **raw editable `.tsx`** alongside compiled dist, so `npm install steps` gives consumers both a drop-in build *and* the source to fork |
 
 ---

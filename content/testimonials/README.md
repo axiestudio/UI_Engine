@@ -23,4 +23,4 @@ Social proof section, data-driven only (no fabricated reviews in src).
   items={[{ author: "Jane", rating: 5, body: "…", source: "Google" }]}
 />
 ```
-Build: `npm run build --workspace=UI/testimonials`.
+Build: `npm run build --workspace=testimonials`.

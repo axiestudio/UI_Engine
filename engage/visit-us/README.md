@@ -25,4 +25,4 @@ Location / visit section: Google Maps embed (NO API key) in a **2:1 grid** (map 
 ## Themes / tokens
 shadcn-style CSS variables + `.dark`, same brandkit tokens as `header`/`hero-scroll`. Reduced motion respected by `InView` once-triggers.
 
-Build: `npm run build --workspace=UI/visit-us` → `dist/visit-us.{es,cjs}.js + visit-us.css` (+ `import "visit-us/styles.css"`).
+Build: `npm run build --workspace=visit-us` → `dist/visit-us.{es,cjs}.js + visit-us.css` (+ `import "visit-us/styles.css"`).
