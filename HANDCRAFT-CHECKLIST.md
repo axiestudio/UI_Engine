@@ -29,30 +29,30 @@ Status: ✅ crafted · 🔧 surgical pass · ⬜ pending
 | hero | land the 5-second promise | confident inevitability | asymmetric 5/6 grid; magnetic glow CTA + sheen; visual pinned −1.5° with ticks; grain+dots bottom-left only | ✅ |
 | steps | remove fear of process | momentum | numerals cropped by card corners; letterpress hover; self-drawing connector; sign-off rule | ✅ |
 | auth | trust at the door | quiet competence | ink aside: grain + ruled rails + serif quote + sign-off diamond | 🔧 |
-| consent | compliance without annoyance | respect | cornered ink slip, slide-up choreography, ledger switches | 🔧 |
+| consent | compliance without annoyance | respect | cornered ink slip, slide-up choreography, ledger switches | ✅ |
 | changelog | show momentum | "they ship" | true rail with square nodes (filled=latest), ledger rows, shimmering "● Latest", "end of log" | ✅ |
 | error | recover with dignity | calm, slightly wry | clipped outlined code plate; incident-report strip; ordinal links | ✅ |
 | marquee | ambient proof | pulse | odometer of items ◆ separators; progressive-blur edge dissolve; mono label | 🔧 |
 | newsletter | trade email for value | considered | mailed subscription slip: dashed tear, rotated stamp, signing-line input, hard-offset magnetic button | ✅ |
 | showcase | tangible product | desire | browser frame with corner ticks + grain + sheen; film-strip tabs | 🔧 |
-| search | navigate fast | mastery | ⌘K palette; mono trigger with kbd hint | ⬜ |
+| search | navigate fast | mastery | ⌘K palette; hard-offset kbd stamp on mono trigger | ✅ |
 | video-demo | proof in motion | credibility | chrome frame + play plate | ⬜ |
 | compare | honest contrast | clarity | lifted highlight column: gradient top bar + side rails + "This product" stamp | 🔧 |
-| roadmap | credible plan | transparency | column rails + status nodes | ⬜ |
-| careers | recruit trust | welcome | ledger rows with ordinals + slide arrows | ⬜ |
+| roadmap | credible plan | transparency | transit-map nodes (pulse=Now, hollow=queued), dashed rails, odometer votes | ✅ |
+| careers | recruit trust | welcome | ledger rows with ordinals, slide-on-hover, department counts, "write us anyway" sign-off | ✅ |
 | events | urgency + concreteness | anticipation | printed tickets: perforated date block, punched notches, −0.5° settle, rotated LIVE stamp | ✅ |
 | waitlist | anticipation | held breath | odometer counter in digit cells; pulsing beacon; dotted horizon; oversized tight-tracked type | ✅ |
-| help-center | orientation | reassurance | search-first + ticked category cards | ⬜ |
+| help-center | orientation | reassurance | signing-line search as hero, masked dots, ticked index cards | ✅ |
 | case-study | proof | conviction | 260px serif quote mark bleeding off the corner; serif-italic quote; report tiles | ✅ |
-| empty-state | guide the next step | patience | numbered tips ledger | ⬜ |
+| empty-state | guide the next step | patience | slow-spinning dashed ring icon, numbered tips ledger | ✅ |
 
 ## Other agent's autonomous set
 
 | Preset | JOB | EMOTION | SIGNATURE | Status |
 |---|---|---|---|---|
 | cta | convert | readiness | cornered ink panel + sheen button + ticks | 🔧 |
-| stats | credibility at a glance | solidity | ⬜ | ⬜ |
-| announcement | interrupt politely | urgency | ⬜ | ⬜ |
+| stats | credibility at a glance | solidity | count-up tiles as hairline band w/ ordinals (SectionShell) | 🔧 |
+| announcement | interrupt politely | urgency | printed-ribbon corner ticks + shimmering border trail | 🔧 |
 | bento | breadth of capability | curiosity | ⬜ | ⬜ |
 | blog | editorial authority | trust | ⬜ | ⬜ |
 | features | explain the product | confidence | ⬜ | ⬜ |

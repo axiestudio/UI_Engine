@@ -85,6 +85,13 @@ export function AnnouncementBar({
       className={cn("relative overflow-hidden", ink ? "bg-foreground text-background" : "border-b bg-card text-foreground", className)}
     >
       <BorderTrail className={ink ? "bg-background/40" : "bg-foreground/25"} size={90} />
+      {/* corner ticks — placed like a printed ribbon, not a banner dump */}
+      <span aria-hidden className={cn("pointer-events-none absolute inset-0 hidden sm:block", ink ? "text-background/35" : "text-foreground/25")}>
+        <span className="absolute left-2 top-2 size-2 border-l border-t border-current" />
+        <span className="absolute right-2 top-2 size-2 border-r border-t border-current" />
+        <span className="absolute bottom-2 left-2 size-2 border-b border-l border-current" />
+        <span className="absolute bottom-2 right-2 size-2 border-b border-r border-current" />
+      </span>
       <div className="mx-auto flex h-10 w-full max-w-[1280px] items-center justify-center gap-4 px-12 text-center sm:px-14">
         {list.length === 1 ? (
           renderMessage(list[0])
