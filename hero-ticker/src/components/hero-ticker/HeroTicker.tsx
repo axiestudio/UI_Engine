@@ -1,10 +1,9 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
-import { Grain, MonoLabel } from "@/components/primitives/handcraft"
+import { Grain } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { TextLoop } from "@/components/primitives/text-loop"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -26,12 +25,14 @@ export type HeroTickerProps = {
 }
 
 // ── HeroTicker ───────────────────────────────────────────────────────────────
-// Design decisions (hand-tuned):
-// · One kinetic idea: the headline never sits still — a TextLoop word flips
-//   every 2.4s inside it, framed by fixed words. The rest of the hero is
-//   completely static so the motion has nowhere to hide.
-// · The ticker base strip (dashed top rule, 26s loop, pause on hover) doubles
-//   as social proof — it's the footer of the hero, not a decoration.
+// Design decisions (refactored):
+// · One kinetic idea, kept: the headline never sits still — a TextLoop word
+//   flips every 2.4s inside it. The word now sits in a soft "slot" (rounded
+//   highlight) so the motion reads as a UI state change, not a gimmick.
+// · The base ticker doubles as social proof: dashed top rule, ◆ separators,
+//   gradient edge dissolve, pause on hover, frozen for reduced-motion users.
+// · CTAs upgraded to the proper shadcn pair; everything else stays still so
+//   the motion has nowhere to hide.
 export function HeroTicker({
   eyebrow,
   title = "Build",
@@ -47,27 +48,55 @@ export function HeroTicker({
   const ink = tone === "ink"
 
   return (
-    <section className={cn(ink && "bg-foreground", "relative isolate flex w-full flex-col overflow-hidden", className)} aria-label={title}>
-      <Grain opacity={ink ? 0.07 : 0.045} />
-      <div className="relative mx-auto flex w-full max-w-[1100px] flex-1 flex-col items-center justify-center px-4 py-24 text-center sm:px-6 sm:py-32">
-        {eyebrow && <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</MonoLabel>}
+    <section
+      className={cn(ink && "bg-foreground", "relative isolate flex w-full flex-col overflow-hidden", className)}
+      aria-label={title}
+    >
+      <Grain opacity={ink ? 0.06 : 0.04} />
 
-        <h1 className={cn("mt-7 font-display text-[clamp(2.6rem,7vw,5.5rem)] font-black leading-[0.98] tracking-[-0.045em]", ink ? "text-background" : "text-foreground")}>
+      <div className="relative mx-auto flex w-full max-w-[1100px] flex-1 flex-col items-center justify-center px-4 py-24 text-center sm:px-6 sm:py-32">
+        {eyebrow && (
+          <InView
+            variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            viewOptions={{ once: true, margin: "-60px" }}
+          >
+            <span
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em]",
+                ink ? "border-background/15 text-background/60" : "border-border text-muted-foreground",
+              )}
+            >
+              <span aria-hidden className="size-[5px] rotate-45 bg-current" />
+              {eyebrow}
+            </span>
+          </InView>
+        )}
+
+        <h1
+          className={cn(
+            "mt-8 font-display text-[clamp(2.5rem,6.5vw,5.25rem)] font-black leading-[1.04] tracking-[-0.045em]",
+            ink ? "text-background" : "text-foreground",
+          )}
+        >
           <span className="block">{title}</span>
-          <span className={cn("block", ink ? "text-background/60" : "text-muted-foreground")}>
-            <span className="inline-flex items-baseline justify-center gap-[0.28em]">
+          <span className={cn("block", ink ? "text-background/55" : "text-muted-foreground")}>
+            <span className="inline-flex flex-wrap items-baseline justify-center gap-x-[0.26em] gap-y-2">
               <TextLoop
                 interval={2.4}
-                className={cn("inline-block", ink ? "text-background" : "text-foreground")}
+                className={cn(
+                  "inline-block rounded-xl px-[0.22em] align-baseline",
+                  ink ? "bg-background/10" : "bg-secondary",
+                )}
                 variants={{
-                  enter: { y: "110%", opacity: 0 },
-                  center: { y: "0%", opacity: 1 },
+                  initial: { y: "110%", opacity: 0 },
+                  animate: { y: "0%", opacity: 1 },
                   exit: { y: "-110%", opacity: 0 },
                 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
               >
                 {rotating.map((word) => (
-                  <span key={word} className="inline-block underline decoration-dotted decoration-[3px] underline-offset-[0.14em]">
+                  <span key={word} className={cn("inline-block", ink ? "text-background" : "text-foreground")}>
                     {word}
                   </span>
                 ))}
@@ -83,7 +112,7 @@ export function HeroTicker({
             transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             viewOptions={{ once: true, margin: "-60px" }}
           >
-            <p className={cn("mx-auto mt-6 max-w-md text-[15px] font-medium leading-[1.75]", ink ? "text-background/60" : "text-muted-foreground")}>
+            <p className={cn("mx-auto mt-7 max-w-[48ch] text-[15px] leading-[1.75]", ink ? "text-background/60" : "text-muted-foreground")}>
               {subtitle}
             </p>
           </InView>
@@ -94,38 +123,51 @@ export function HeroTicker({
           transition={{ duration: 0.5, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
           viewOptions={{ once: true, margin: "-60px" }}
         >
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             {primaryAction && (
               <Button
                 size="lg"
                 asChild={Boolean(primaryAction.href)}
                 onClick={primaryAction.onClick}
-                className={cn("group rounded-none px-7 font-mono text-xs font-bold uppercase tracking-[0.16em] transition-shadow duration-300 hover:shadow-[3px_4px_0_0_currentColor]", ink && "bg-background text-foreground hover:bg-background/90")}
+                className={cn(
+                  "group relative h-12 overflow-hidden rounded-full px-8 text-sm font-semibold shadow-sm transition-all duration-300 hover:shadow-md motion-reduce:transition-none",
+                  ink
+                    ? "bg-background text-foreground hover:bg-background/90 focus-visible:ring-background/50"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90",
+                )}
               >
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.25)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
+                />
                 {primaryAction.href ? (
-                  <a href={primaryAction.href} className="inline-flex items-center gap-2">
+                  <a href={primaryAction.href} className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-2">
+                  <span className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
                   </span>
                 )}
               </Button>
             )}
             {secondaryAction && (
-              <a
-                href={secondaryAction.href ?? "#"}
+              <Button
+                size="lg"
+                variant="ghost"
+                asChild={Boolean(secondaryAction.href)}
                 onClick={secondaryAction.onClick}
                 className={cn(
-                  "rounded-full font-semibold underline decoration-dotted decoration-2 underline-offset-8 hover:no-underline",
-                  ink ? "text-background/70 hover:text-background" : "text-muted-foreground hover:text-foreground",
+                  "h-12 rounded-full px-6 text-sm font-semibold",
+                  ink
+                    ? "border border-background/15 text-background/80 hover:bg-background/10 hover:text-background focus-visible:ring-background/50"
+                    : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                 )}
               >
-                {secondaryAction.label}
-              </a>
+                <span>{secondaryAction.label}</span>
+              </Button>
             )}
           </div>
         </InView>
@@ -135,22 +177,25 @@ export function HeroTicker({
       {ticker.length > 0 && (
         <InView variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.6, delay: 0.3 }} viewOptions={{ once: true }}>
           <div className={cn("relative border-t border-dashed py-4", ink ? "border-background/15" : "border-border")}>
-            <div className="group flex overflow-hidden">
+            <div className="group relative flex overflow-hidden">
               <div
                 className="ui-ticker-track flex w-max shrink-0 items-center motion-reduce:[animation:none]"
-                style={{ animation: "ui-ticker-scroll 26s linear infinite" }}
+                style={{ animation: "ui-ticker-scroll 30s linear infinite" }}
               >
                 {[0, 1].map((copy) => (
-                  <span key={copy} aria-hidden={copy === 1 || undefined} className={cn("flex items-center", ink ? "text-background/45" : "text-muted-foreground")}>
+                  <span key={copy} aria-hidden={copy === 1 || undefined} className={cn("flex items-center", ink ? "text-background/40" : "text-muted-foreground/90")}>
                     {ticker.map((t, i) => (
-                      <span key={i} className="flex items-center gap-6 whitespace-nowrap pr-6 font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
+                      <span key={i} className="flex items-center gap-7 whitespace-nowrap pr-7 font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
                         {t}
-                        <span aria-hidden className="text-[8px] opacity-50">◆</span>
+                        <span aria-hidden className="text-[8px] opacity-40">◆</span>
                       </span>
                     ))}
                   </span>
                 ))}
               </div>
+              {/* edge dissolve */}
+              <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r", ink ? "from-foreground" : "from-background")} />
+              <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l", ink ? "from-foreground" : "from-background")} />
             </div>
             <style>{`
               @keyframes ui-ticker-scroll {
@@ -158,6 +203,9 @@ export function HeroTicker({
                 to { transform: translateX(-50%); }
               }
               .group:hover .ui-ticker-track { animation-play-state: paused; }
+              @media (prefers-reduced-motion: reduce) {
+                .ui-ticker-track { animation: none !important; }
+              }
             `}</style>
           </div>
         </InView>

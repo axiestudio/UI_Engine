@@ -1,10 +1,9 @@
 import * as React from "react"
-import { ArrowRight } from "lucide-react"
-import { Grain, MonoLabel } from "@/components/primitives/handcraft"
-import { GlowEffect } from "@/components/primitives/glow-effect"
+import { ArrowRight, Star } from "lucide-react"
+import { Grain } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { TextEffect } from "@/components/primitives/text-effect"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 
@@ -24,13 +23,14 @@ export type HeroInkProps = {
 }
 
 // ── HeroInk ──────────────────────────────────────────────────────────────────
-// Design decisions (hand-tuned):
-// · Always ink (forced dark band) — this hero is the moody one in the family.
-// · Signature: a breathing GLOW ORB anchored behind the headline's left edge
-//   (asymmetric, not centered) + corner ticks at the four section corners —
-//   the whole viewport becomes a framed plate.
-// · A coordinates strip runs along the bottom edge (mono, spaced dots) — the
-//   "you are here" detail.
+// Design decisions (refactored):
+// · The forced-ink band stays, but the mood shifts from brutalist plate to a
+//   lit stage: a soft aurora bloom low-left, a hairline grid fading out from
+//   the top-right, and a faint top sheen — depth instead of noise.
+// · Eyebrow upgrades to a beta-badge pill (pulsing dot, hairline ring) so the
+//   first read is "product", not "poster".
+// · Signature kept: corner ticks + the coordinates strip — now quieter, with
+//   diamond separators and a proper hairline above.
 export function HeroInk({
   eyebrow,
   title,
@@ -48,38 +48,52 @@ export function HeroInk({
       className={cn("relative isolate flex w-full items-center overflow-hidden bg-foreground", fullPage && "min-h-svh", className)}
       aria-label={title}
     >
-      <Grain opacity={0.08} />
-      {/* asymmetric dotted field — right side only */}
+      <Grain opacity={0.06} />
+
+      {/* hairline grid, fading out from the top-right */}
       <span
         aria-hidden
-        className="pointer-events-none absolute right-0 top-0 h-full w-1/2 [background-image:radial-gradient(circle_at_1px_1px,hsl(0_0%_100%)_1px,transparent_0)] [background-size:22px_22px] opacity-[0.1] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_70%)]"
+        className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,hsl(0_0%_100%)_1px,transparent_0),linear-gradient(to_bottom,hsl(0_0%_100%)_1px,transparent_0)] [background-size:72px_72px] [mask-image:radial-gradient(ellipse_60%_50%_at_78%_0%,black_30%,transparent_75%)]"
       />
-      {/* the glow orb — anchored off-left behind the headline */}
-      <span aria-hidden className="pointer-events-none absolute -left-40 top-1/3 size-[560px] opacity-40">
-        <GlowEffect
-          colors={["#ffffff", "#737373", "#ffffff"]}
-          mode="breathe"
-          blur="strongest"
-          duration={6}
-          className="rounded-full"
-        />
+      {/* aurora bloom — low-left, breathing through CSS only */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -left-48 bottom-[-30%] size-[720px] rounded-full bg-[radial-gradient(circle_at_center,hsl(0_0%_100%/0.09),transparent_65%)] blur-2xl motion-safe:animate-pulse [animation-duration:7s]"
+      />
+      {/* top sheen */}
+      <span aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-background/25 to-transparent" />
+
+      {/* corner ticks — the framed-plate signature, now hairline */}
+      <span aria-hidden className="pointer-events-none absolute inset-0 text-background/35">
+        <span className="absolute left-6 top-6 size-3.5 border-l border-t border-current" />
+        <span className="absolute right-6 top-6 size-3.5 border-r border-t border-current" />
+        <span className="absolute bottom-12 left-6 size-3.5 border-b border-l border-current" />
+        <span className="absolute bottom-12 right-6 size-3.5 border-b border-r border-current" />
       </span>
 
-      {/* corner ticks at the four section corners */}
-      <span aria-hidden className="pointer-events-none absolute inset-0 text-background/50">
-        <span className="absolute left-5 top-5 size-4 border-l-2 border-t-2 border-current" />
-        <span className="absolute right-5 top-5 size-4 border-r-2 border-t-2 border-current" />
-        <span className="absolute bottom-5 left-5 size-4 border-b-2 border-l-2 border-current" />
-        <span className="absolute bottom-5 right-5 size-4 border-b-2 border-r-2 border-current" />
-      </span>
+      <div className="relative mx-auto flex w-full max-w-[1020px] flex-col items-start px-6 py-28 sm:px-10 sm:py-32">
+        {eyebrow && (
+          <InView
+            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            viewOptions={{ once: true, margin: "-60px" }}
+          >
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-background/15 bg-background/[0.04] py-1.5 pl-3 pr-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background/70">
+              <span aria-hidden className="relative flex size-1.5">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-background/60 motion-reduce:hidden" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-background" />
+              </span>
+              {eyebrow}
+            </span>
+          </InView>
+        )}
 
-      <div className="relative mx-auto flex w-full max-w-[1000px] flex-col items-start px-10 py-28 sm:px-14">
-        {eyebrow && <MonoLabel className="text-background/55">{eyebrow}</MonoLabel>}
-
-        <h1 className="mt-6 max-w-[16ch] font-display text-[clamp(2.6rem,6.5vw,5rem)] font-black leading-[0.95] tracking-[-0.05em] text-background">
-          {title}
+        <h1 className="mt-7 max-w-[15ch] font-display text-[clamp(2.7rem,6.5vw,5.2rem)] font-black leading-[0.94] tracking-[-0.05em] text-background">
+          <TextEffect as="span" preset="blur" per="word" delay={0.1}>
+            {title}
+          </TextEffect>
           {titleHighlight && (
-            <TextEffect as="span" preset="blur" per="word" delay={0.2} className="block text-background/55">
+            <TextEffect as="span" preset="blur" per="word" delay={0.25} className="block text-background/50">
               {titleHighlight}
             </TextEffect>
           )}
@@ -88,18 +102,16 @@ export function HeroInk({
         {subtitle && (
           <InView
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             viewOptions={{ once: true, margin: "-60px" }}
           >
-            <p className="mt-6 max-w-md text-[15px] font-medium leading-[1.75] text-background/60">
-              {subtitle}
-            </p>
+            <p className="mt-6 max-w-[44ch] text-base leading-[1.75] text-background/60">{subtitle}</p>
           </InView>
         )}
 
         <InView
           variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.5, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           viewOptions={{ once: true, margin: "-60px" }}
         >
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -108,58 +120,74 @@ export function HeroInk({
                 size="lg"
                 asChild={Boolean(primaryAction.href)}
                 onClick={primaryAction.onClick}
-                className="group relative overflow-hidden rounded-none px-7 font-mono text-xs font-bold uppercase tracking-[0.16em]"
+                className="group relative h-12 overflow-hidden rounded-full bg-background px-7 text-sm font-semibold text-foreground shadow-[0_8px_30px_-8px_hsl(0_0%_100%/0.35)] transition-all duration-300 hover:bg-background/90 hover:shadow-[0_12px_40px_-8px_hsl(0_0%_100%/0.45)] focus-visible:ring-background/50 motion-reduce:transition-none"
               >
+                {/* sheen sweep */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(0_0%_100%/0.35)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%] motion-reduce:hidden"
+                />
                 {primaryAction.href ? (
                   <a href={primaryAction.href} className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
                   </a>
                 ) : (
                   <span className="relative z-10 inline-flex items-center gap-2">
                     {primaryAction.label}
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
                   </span>
                 )}
               </Button>
             )}
             {secondaryAction && (
-              <a
-                href={secondaryAction.href ?? "#"}
+              <Button
+                size="lg"
+                variant="ghost"
+                asChild={Boolean(secondaryAction.href)}
                 onClick={secondaryAction.onClick}
-                className="rounded-full font-semibold text-background/70 underline decoration-dotted decoration-2 underline-offset-8 transition-colors hover:text-background hover:no-underline"
+                className="h-12 rounded-full border border-background/15 px-6 text-sm font-semibold text-background/80 hover:bg-background/10 hover:text-background focus-visible:ring-background/50"
               >
-                {secondaryAction.label}
-              </a>
+                <span>{secondaryAction.label}</span>
+              </Button>
             )}
           </div>
 
           {proof && (
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-9 flex items-center gap-3.5">
               {proof.avatars && proof.avatars.length > 0 && (
-                <span className="flex -space-x-2">
+                <span className="flex -space-x-2.5">
                   {proof.avatars.slice(0, 5).map((a, i) => (
-                    <Avatar key={i} className="size-7 border-2 border-foreground">
-                      <AvatarFallback className="bg-background/15 font-mono text-[8px] font-bold text-background">
+                    <Avatar key={i} className="size-8 ring-2 ring-foreground">
+                      <AvatarFallback className="bg-background/15 font-mono text-[9px] font-bold text-background">
                         {a.initials ?? "?"}
                       </AvatarFallback>
                     </Avatar>
                   ))}
                 </span>
               )}
-              {proof.label && <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background/50">{proof.label}</span>}
+              {proof.label && (
+                <span className="flex flex-col gap-1">
+                  <span aria-hidden className="flex gap-0.5 text-background">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="size-3 fill-current" />
+                    ))}
+                  </span>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-background/50">{proof.label}</span>
+                </span>
+              )}
             </div>
           )}
         </InView>
       </div>
 
-      {/* coordinates strip */}
-      <div className="absolute inset-x-0 bottom-0 border-t border-background/10">
-        <div className="mx-auto flex h-9 w-full max-w-[1100px] items-center justify-between px-10 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-background/35 sm:px-14">
+      {/* coordinates strip — the "you are here" detail */}
+      <div className="absolute inset-x-0 bottom-0 border-t border-background/10 bg-foreground/60 backdrop-blur-sm">
+        <div className="mx-auto flex h-11 w-full max-w-[1100px] items-center justify-between gap-4 overflow-x-auto px-6 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-background/40 sm:px-10">
           {strip.map((s, i) => (
             <React.Fragment key={i}>
-              <span>{s}</span>
-              {i < strip.length - 1 && <span aria-hidden className="size-1 rotate-45 bg-background/30" />}
+              <span className="whitespace-nowrap">{s}</span>
+              {i < strip.length - 1 && <span aria-hidden className="size-1 shrink-0 rotate-45 bg-background/30" />}
             </React.Fragment>
           ))}
         </div>
