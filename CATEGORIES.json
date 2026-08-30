@@ -58,7 +58,8 @@
     "receipt",
     "showcase",
     "video-demo",
-    "audio"
+    "audio",
+    "district-map-forward"
   ],
   "commerce": [
     "cta",

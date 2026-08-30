@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── DISTRICT / MAP-FORWARD Brandkit ───────────────────────────────────
+   Visual direction: Civic & Public Service — Service Landings.
+   Reference: unslop.site "District / Map-forward".
+   Palette: paper #eef0ed surface · #fafbf9 panels · #0d1112 ink ·
+            civic red #cf2424 · map blue #3a5c84 · white fields.
+   Type: Archivo (800/900 display + 400/700 UI) · IBM Plex Mono (labels).
+   Treatment: hard 1–2px ink borders, square corners, ruled dividers,
+   uppercase mono micro-labels, cartographic ledger.
+─────────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --background: 100 9% 94%;              /* #eef0ed — page surface */
+    --foreground: 192 16% 6%;              /* #0d1112 — ink */
+    --card: 90 20% 98%;                    /* #fafbf9 — panel */
+    --card-foreground: 192 16% 6%;
+    --popover: 90 20% 98%;
+    --popover-foreground: 192 16% 6%;
+    --primary: 192 16% 6%;                 /* ink */
+    --primary-foreground: 90 20% 98%;
+    --secondary: 90 20% 98%;
+    --secondary-foreground: 192 16% 6%;
+    --muted: 100 9% 94%;
+    --muted-foreground: 204 10% 19%;       /* #2c3236 */
+    --accent: 0 70% 48%;                   /* #cf2424 — civic red */
+    --accent-foreground: 90 20% 98%;
+    --destructive: 0 70% 48%;
+    --destructive-foreground: 90 20% 98%;
+    --border: 192 16% 6%;                  /* ink rules #0d1112 */
+    --input: 0 0% 100%;                    /* white fields */
+    --ring: 192 16% 6%;
+    --radius: 0rem;                        /* square corners */
+
+    --brand: 0 70% 48%;                    /* civic red */
+    --brand-foreground: 90 20% 98%;
+    --district-blue: 212 39% 37%;          /* #3a5c84 — map accent */
+    --dist-muted: 212 6% 44%;              /* #6a7077 — soft micro-label */
+
+    --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
+    --font-display: "Archivo", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  .dark {
+    --background: 192 16% 6%;
+    --foreground: 90 20% 96%;
+    --card: 192 14% 9%;
+    --card-foreground: 90 20% 96%;
+    --popover: 192 14% 9%;
+    --popover-foreground: 90 20% 96%;
+    --primary: 90 20% 96%;
+    --primary-foreground: 192 16% 6%;
+    --secondary: 192 14% 10%;
+    --secondary-foreground: 90 20% 96%;
+    --muted: 192 14% 12%;
+    --muted-foreground: 204 12% 78%;
+    --accent: 0 84% 56%;
+    --accent-foreground: 192 16% 6%;
+    --border: 90 20% 96%;
+    --input: 192 16% 10%;
+    --ring: 90 20% 96%;
+    --brand: 0 84% 56%;
+    --brand-foreground: 192 16% 6%;
+    --district-blue: 212 46% 58%;
+    --dist-muted: 212 16% 74%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    border-radius: 0;
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+  }
+}
+
+::selection {
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

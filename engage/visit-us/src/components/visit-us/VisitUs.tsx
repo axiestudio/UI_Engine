@@ -212,7 +212,8 @@ export function VisitUs({
                   <p className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                     <Clock className="h-3 w-3" /> Hours
                   </p>
-                  <table className="mt-2 w-full text-sm">
+                  <div className="mt-2 overflow-x-auto">
+                  <table className="w-full min-w-[220px] text-sm">
                     <tbody>
                       {hours.map((h, i) => (
                         <tr key={h.day} className={cn("align-top", i === today && "font-extrabold")}>
@@ -231,6 +232,7 @@ export function VisitUs({
                       ))}
                     </tbody>
                   </table>
+                  </div>
                 </div>
               )}
 

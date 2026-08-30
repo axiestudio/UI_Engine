@@ -159,7 +159,7 @@ export function CaseStudy({
               </div>
             )}
             {metrics && metrics.length > 0 && (
-              <dl className={cn("grid border", metrics.length >= 3 ? "grid-cols-3" : "grid-cols-2", ink ? "border-background/10" : "border-border")}>
+              <dl className={cn("grid border", metrics.length >= 3 ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-2", ink ? "border-background/10" : "border-border")}>
                 {metrics.map((m, i) => (
                   <div
                     key={m.label}

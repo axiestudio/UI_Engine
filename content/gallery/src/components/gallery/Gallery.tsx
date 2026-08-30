@@ -72,16 +72,17 @@ export function Gallery({
           )}
         </div>
 
-        <MorphingDialog transition={{ type: "spring", bounce: 0.05, duration: 0.45 }}>
-          <div className={cn("grid grid-cols-1 gap-4 sm:grid-cols-2", columns === 3 && "lg:grid-cols-3", columns === 4 && "lg:grid-cols-4", columns === 2 && "lg:grid-cols-2")}>
+        {/* one dialog per photo: the MorphingDialog context owns a single
+            isOpen/uniqueId, so per-item instances are the correct multi-image pattern */}
+        <div className={cn("grid grid-cols-1 gap-4 sm:grid-cols-2", columns === 3 && "lg:grid-cols-3", columns === 4 && "lg:grid-cols-4")}>
           {photos.map((p, i) => (
+            <MorphingDialog key={p.id ?? i} transition={{ type: "spring", bounce: 0.05, duration: 0.45 }}>
               <MorphingDialogTrigger
-                key={p.id ?? i}
                 style={{ borderRadius: 20 }}
                 className="flex aspect-[4/3] cursor-zoom-in flex-col overflow-hidden rounded-[20px] border bg-card shadow-sm"
                 aria-label={p.title ?? p.alt}
               >
-                <MorphingDialogImage src={p.src} alt={p.alt} className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]" />
+                <MorphingDialogImage src={p.src} alt={p.alt} className="h-full w-full object-cover" />
                 <span className="pointer-events-none absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm backdrop-blur">
                   <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
                 </span>
@@ -89,26 +90,23 @@ export function Gallery({
                   <span className="sr-only">{[p.title, p.caption].filter(Boolean).join(" — ")}</span>
                 )}
               </MorphingDialogTrigger>
-            ))}
-          </div>
 
-          <MorphingDialogContainer>
-          {photos.map((p, i) => (
-            <MorphingDialogContent key={`panel-${p.id ?? i}`} className="flex max-h-[90vh] w-[92vw] max-w-[1000px] flex-col gap-0 overflow-hidden rounded-[22px] bg-background text-foreground shadow-2xl outline-none">
-              <MorphingDialogImage src={p.src} alt={p.alt} className="max-h-[54vh] min-h-[240px] w-full grow bg-muted object-cover" />
-              <div className="flex items-start justify-between gap-6 border-t px-6 py-5">
-                <div>
-                  {p.title && <MorphingDialogTitle className="font-display text-lg font-extrabold tracking-tight">{p.title}</MorphingDialogTitle>}
-                  {p.caption && <MorphingDialogDescription className="mt-1 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{p.caption}</MorphingDialogDescription>}
-                  {p.title && !p.caption && <MorphingDialogSubtitle className="hidden">{p.title}</MorphingDialogSubtitle>}
-                </div>
-                <MorphingDialogClose className="text-muted-foreground" />
-              </div>
-            </MorphingDialogContent>
+              <MorphingDialogContainer>
+                <MorphingDialogContent className="flex max-h-[90vh] w-[92vw] max-w-[1000px] flex-col gap-0 overflow-hidden rounded-[22px] bg-background text-foreground shadow-2xl outline-none">
+                  <MorphingDialogImage src={p.src} alt={p.alt} className="max-h-[54vh] min-h-[240px] w-full grow bg-muted object-cover" />
+                  <div className="flex items-start justify-between gap-6 border-t px-6 py-5">
+                    <div>
+                      {p.title && <MorphingDialogTitle className="font-display text-lg font-extrabold tracking-tight">{p.title}</MorphingDialogTitle>}
+                      {p.caption && <MorphingDialogDescription className="mt-1 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{p.caption}</MorphingDialogDescription>}
+                      {!p.caption && <MorphingDialogSubtitle className="hidden">{p.title}</MorphingDialogSubtitle>}
+                    </div>
+                    <MorphingDialogClose className="text-muted-foreground" />
+                  </div>
+                </MorphingDialogContent>
+              </MorphingDialogContainer>
+            </MorphingDialog>
           ))}
-          </MorphingDialogContainer>
-        </MorphingDialog>
-      </div>
+        </div>      </div>
     </section>
   )
 }

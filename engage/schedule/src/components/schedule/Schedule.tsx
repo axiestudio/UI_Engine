@@ -93,7 +93,7 @@ export function Schedule({
               <h3 className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 <Clock3 className="h-3 w-3" /> Week
               </h3>
-              <table className="mt-3 w-full text-sm">
+              <div className="mt-3 overflow-x-auto"><table className="w-full min-w-[240px] text-sm">
                 <tbody>
                   {week.map((d, i) => (
                     <tr key={d.day} className={cn("align-top", i === today && "font-extrabold")}>
@@ -113,7 +113,7 @@ export function Schedule({
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table></div>
             </div>
 
             {/* next slots */}
