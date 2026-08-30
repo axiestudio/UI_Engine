@@ -130,17 +130,24 @@ export function Compare({
                       <TableHead
                         key={p.name}
                         className={cn(
-                          "min-w-36 py-5 text-center",
+                          "relative min-w-36 py-5 text-center",
                           i === highlightIndex && (ink ? "bg-background/10" : "bg-secondary/70"),
                           ink ? "text-background/50" : "text-muted-foreground",
                         )}
                       >
+                        {/* lifted column: gradient top bar */}
+                        {i === highlightIndex && (
+                          <span
+                            aria-hidden
+                            className={cn("absolute inset-x-0 top-0 h-[3px]", ink ? "bg-gradient-to-r from-background/20 via-background to-background/20" : "bg-gradient-to-r from-foreground/20 via-foreground to-foreground/20")}
+                          />
+                        )}
                         <div className="flex flex-col items-center gap-1.5">
                           <span className={cn("font-display text-base font-extrabold tracking-tight", ink ? "text-background" : "text-foreground")}>
                             {p.name}
                           </span>
                           {p.highlight && (
-                            <Badge className={cn("rounded-full px-2.5 font-mono text-[10px] font-bold uppercase tracking-widest", ink ? "bg-background text-foreground" : "bg-foreground text-background")}>
+                            <Badge className={cn("rounded-none px-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em]", ink ? "bg-background text-foreground" : "bg-foreground text-background")}>
                               This product
                             </Badge>
                           )}
@@ -164,10 +171,17 @@ export function Compare({
                         <TableCell
                           key={p.name}
                           className={cn(
-                            "py-4 text-center",
+                            "relative py-4 text-center transition-colors duration-300",
                             i === highlightIndex && (ink ? "bg-background/10" : "bg-secondary/70"),
                           )}
                         >
+                          {/* column side-rails on the lifted column */}
+                          {i === highlightIndex && (
+                            <span
+                              aria-hidden
+                              className={cn("pointer-events-none absolute inset-y-0 left-0 w-px", ink ? "bg-background/20" : "bg-border")}
+                            />
+                          )}
                           <div className="flex justify-center">
                             <CellValue value={row.values[i] ?? false} ink={ink} />
                           </div>

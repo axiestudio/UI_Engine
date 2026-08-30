@@ -116,7 +116,7 @@ export function VideoDemo({
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-4xl gap-0 overflow-hidden border-none bg-black p-0">
+        <DialogContent className="!max-w-4xl gap-0 overflow-hidden border-none bg-black p-0">
           <DialogTitle className="sr-only">{title}</DialogTitle>
           <div className="aspect-video w-full">
             {direct ? (

@@ -4,6 +4,7 @@ export { Stats } from "./components/stats/Stats"
 export type { StatsProps, StatItem } from "./components/stats/Stats"
 
 // Vendored upstream registry sources (provenance kept for direct use):
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { default as Stats2 } from "./components/watermelon/stats-2"
 export { AnimatedNumber } from "./components/primitives/animated-number"
 export { BorderTrail } from "./components/primitives/border-trail"

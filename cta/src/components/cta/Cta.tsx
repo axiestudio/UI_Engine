@@ -1,5 +1,6 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
+import { CornerTicks, Grain, MonoLabel } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Magnetic } from "@/components/primitives/magnetic"
 import { TextShimmer } from "@/components/primitives/text-shimmer"
@@ -50,50 +51,57 @@ export function Cta({
   const ink = tone === "ink"
   const ghost = tone === "ghost"
 
-  const primaryLabel = (
-    <>
-      {primary.label}
-      <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-    </>
-  )
   const primaryBtn = primary.href ? (
-    <Button asChild variant={ink ? "secondary" : "default"} className="h-11 rounded-full px-7 font-display text-sm font-extrabold tracking-tight">
+    <Button asChild variant={ink ? "secondary" : "default"} className="group relative h-11 overflow-hidden rounded-none px-7 font-display text-sm font-extrabold tracking-tight transition-shadow duration-300 hover:shadow-[3px_3px_0_0_currentColor]">
       <a href={primary.href} onClick={primary.onClick}>
-        {primaryLabel}
+        <span className="relative z-10 inline-flex items-center">
+          {primary.label}
+          <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+        </span>
+        <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.3)_50%,transparent_60%)] transition-transform duration-700 group-hover:translate-x-[110%]" />
       </a>
     </Button>
   ) : (
-    <Button onClick={primary.onClick} variant={ink ? "secondary" : "default"} className="h-11 rounded-full px-7 font-display text-sm font-extrabold tracking-tight">
-      {primaryLabel}
+    <Button onClick={primary.onClick} variant={ink ? "secondary" : "default"} className="group relative h-11 overflow-hidden rounded-none px-7 font-display text-sm font-extrabold tracking-tight transition-shadow duration-300 hover:shadow-[3px_3px_0_0_currentColor]">
+      <span className="relative z-10 inline-flex items-center">
+        {primary.label}
+        <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+      </span>
+      <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.3)_50%,transparent_60%)] transition-transform duration-700 group-hover:translate-x-[110%]" />
     </Button>
   )
 
   return (
     <section className={cn("w-full bg-background text-foreground", className)} aria-label={typeof title === "string" ? title : "Call to action"}>
       <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
-        <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[1120px] px-4 py-16 sm:px-6 lg:px-8">
           <div
             className={cn(
-              "relative overflow-hidden rounded-[28px] px-6 py-12 sm:px-10 sm:py-14 lg:px-14",
-              ink && "bg-foreground text-background shadow-lg",
-              tone === "paper" && "border bg-card shadow-sm",
-              ghost && "bg-transparent"
+              "group relative overflow-hidden border px-6 py-12 sm:px-10 sm:py-14 lg:px-14",
+              ink && "border-background/15 bg-foreground text-background",
+              tone === "paper" && "border-border bg-card shadow-sm",
+              ghost && "border-transparent bg-transparent"
             )}
           >
+            {/* craft layer: grain + corner ticks + cornered panel (no pill card) */}
+            <Grain opacity={ink ? 0.07 : 0.04} />
+            <CornerTicks size={14} offset={10} className={cn(ink ? "text-background/35" : "text-foreground/20")} />
             {ink && (
-              // restrained depth: soft radial wash instead of decorative blobs
               <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.35]" style={{ background: "radial-gradient(120% 90% at 85% -10%, hsl(0 0% 100% / 0.14), transparent 55%)" }} />
+            )}
+            {tone === "paper" && (
+              <span aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-foreground/10 via-foreground to-foreground/10" />
             )}
 
             <div className="relative flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
               <div className="max-w-2xl">
+                {eyebrow && (
+                  <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground", badge && "mt-0", !badge && "mt-0")}>{eyebrow}</MonoLabel>
+                )}
                 {badge && (
-                  <span className={cn("inline-flex items-center rounded-full px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest", ink ? "bg-background/15 text-background/90 ring-1 ring-background/25" : "border bg-background text-muted-foreground")}>
+                  <span className={cn("mt-4 inline-flex items-center rounded-none border px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em]", ink ? "border-background/25 bg-transparent text-background/80" : "border-border bg-background text-muted-foreground", eyebrow && "ml-0")}>
                     {badge}
                   </span>
-                )}
-                {eyebrow && (
-                  <p className={cn("mt-4 font-mono text-[11px] font-bold uppercase tracking-widest", ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</p>
                 )}
                 {shimmer && ink && typeof title === "string" ? (
                   <TextShimmer as="h2" duration={2.8} spread={3} className="mt-2 font-display text-[30px] font-black leading-[1.02] tracking-[-0.03em] sm:text-[40px]">

@@ -4,6 +4,7 @@ export { Waitlist } from "./components/waitlist/Waitlist"
 export type { WaitlistProps } from "./components/waitlist/Waitlist"
 
 // Vendored upstream registry sources (provenance kept for direct use):
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { GlowEffect } from "./components/primitives/glow-effect"
 export { InView } from "./components/primitives/in-view"
 export { TextEffect } from "./components/primitives/text-effect"

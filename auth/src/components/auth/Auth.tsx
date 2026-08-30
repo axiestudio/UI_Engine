@@ -67,28 +67,52 @@ function ProviderButton({ provider, ink }: { provider: SocialProvider; ink?: boo
 function AsidePanel({ aside }: { aside: AuthAside }) {
   return (
     <aside className="relative hidden overflow-hidden bg-foreground lg:flex lg:flex-col lg:justify-between">
+      {/* layered craft: grain + spotlight + ruled rail — quiet, tactile, ink */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] mix-blend-overlay"
+        style={{
+          opacity: 0.07,
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        }}
+      />
+      <span aria-hidden className="pointer-events-none absolute inset-y-0 left-8 hidden w-px bg-background/15 xl:block" />
+      <span aria-hidden className="pointer-events-none absolute inset-y-0 right-8 hidden w-px bg-background/15 xl:block" />
       <Spotlight size={420} className="bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.16),transparent_80%)] blur-2xl" />
       {aside.imageSrc && (
         <img
           src={aside.imageSrc}
           alt={aside.imageAlt ?? ""}
-          className="absolute inset-0 h-full w-full object-cover opacity-30"
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
           loading="lazy"
         />
       )}
-      <p className="relative z-10 p-10 font-mono text-[11px] font-bold uppercase tracking-widest text-background/50">
+      <p className="relative z-10 p-10 font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-background/45">
         {aside.title}
+        <span aria-hidden className="mt-4 block h-px w-10 bg-background/30" />
       </p>
-      <div className="relative z-10 p-10">
-        <TextEffect preset="blur" per="word" className="font-display text-3xl font-extrabold leading-[1.05] tracking-[-0.03em] text-background">
+      <div className="relative z-10 p-10 pb-12">
+        <TextEffect preset="blur" per="word" className="max-w-[16ch] font-display text-[34px] font-black leading-[1.02] tracking-[-0.04em] text-background">
           {aside.description ?? aside.title}
         </TextEffect>
         {aside.quote && (
-          <figure className="mt-8 border-l-2 border-background/25 pl-4">
-            <blockquote className="text-sm font-medium leading-relaxed text-background/80">{aside.quote}</blockquote>
-            {aside.quoteAuthor && <figcaption className="mt-2 text-xs font-semibold text-background/50">{aside.quoteAuthor}</figcaption>}
+          <figure className="mt-9 border-l-2 border-background/25 pl-4">
+            <blockquote className="font-serif text-[15px] italic leading-relaxed text-background/80" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+              “{aside.quote}”
+            </blockquote>
+            {aside.quoteAuthor && (
+              <figcaption className="mt-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background/45">
+                {aside.quoteAuthor}
+              </figcaption>
+            )}
           </figure>
         )}
+        {/* sign-off rule */}
+        <div aria-hidden className="mt-10 flex items-center gap-3">
+          <span className="h-px flex-1 bg-background/15" />
+          <span className="size-1.5 rotate-45 bg-background/40" />
+        </div>
       </div>
     </aside>
   )

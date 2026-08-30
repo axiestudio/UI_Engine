@@ -4,6 +4,7 @@ export { VideoDemo } from "./components/video-demo/VideoDemo"
 export type { VideoDemoProps } from "./components/video-demo/VideoDemo"
 
 // Vendored upstream registry sources (provenance kept for direct use):
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { InView } from "./components/primitives/in-view"
 export { Button, buttonVariants } from "./components/ui/button"
 export {

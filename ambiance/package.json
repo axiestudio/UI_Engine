@@ -1,0 +1,59 @@
+{
+  "name": "ambiance",
+  "version": "0.1.0",
+  "description": "Sensory parallax collage \u2014 make the room felt through the screen (Watermelon UI hero craft + Motion-Primitives)",
+  "type": "module",
+  "main": "dist/ambiance.cjs.js",
+  "module": "dist/ambiance.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/ambiance.es.js",
+      "require": "./dist/ambiance.cjs.js"
+    },
+    "./styles.css": "./dist/ambiance.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "motion-primitives": [
+      "in-view"
+    ],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/hero-4.json"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.34.0",
+    "motion": "^13.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwind-merge": "^3.6.0",
+    "framer-motion": "^13.1.1",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

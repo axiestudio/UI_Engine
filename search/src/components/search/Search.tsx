@@ -83,7 +83,7 @@ export function Search({
           <SearchIcon className="size-4" />
           {triggerLabel}
         </span>
-        {hotkeyHint && <kbd className="pointer-events-none rounded border bg-muted px-1.5 font-mono text-[10px] font-semibold text-muted-foreground">⌘K</kbd>}
+        {hotkeyHint && <kbd className="pointer-events-none rounded-[3px] border px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-muted-foreground shadow-[1px_1px_0_0_currentColor]">⌘K</kbd>}
       </Button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>

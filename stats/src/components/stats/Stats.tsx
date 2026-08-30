@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, useInView, useMotionValue, useSpring, useTransform, useReducedMotion } from "motion/react"
 import { BorderTrail } from "@/components/primitives/border-trail"
+import { Grain, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -67,7 +68,8 @@ function StatTile({ item, tone, separators, index }: { item: StatItem; tone: "pa
       )}
     >
       {separators && <BorderTrail size={40} className="absolute inset-x-0 top-0 h-px" style={{ background: "transparent", backgroundColor: "transparent" }} />}
-      <p className={cn("font-display text-[40px] font-black leading-none tracking-[-0.04em] sm:text-[52px]", ink ? "text-background" : "text-foreground")}>
+      <Ordinal n={index + 1} total={undefined} className={cn("absolute right-4 top-4", ink ? "text-background/35" : "text-muted-foreground/50")} />
+      <p className={cn("font-display text-[40px] font-black leading-none tracking-[-0.04em] tabular-nums sm:text-[52px]", ink ? "text-background" : "text-foreground")}>
         {item.prefix}
         {typeof item.value === "number" ? <CountUp value={item.value} decimals={item.decimals ?? 0} /> : item.value}
         {item.suffix && <span className={cn("text-[22px] font-extrabold sm:text-[26px]", ink ? "text-background/70" : "text-muted-foreground")}>{item.suffix}</span>}
@@ -98,27 +100,22 @@ export function Stats({
   const sep = separators ?? tone === "ink"
 
   return (
-    <section className={cn("w-full", className)} aria-label={title ?? "Key numbers"}>
-      <div className={cn("mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8", tone === "ink" && "px-4 sm:px-6 lg:px-8")}>
-        {(eyebrow || title) && (
-          <InView variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
-            <header className="mb-8 max-w-2xl">
-              {eyebrow && (
-                <p className={cn("font-mono text-[11px] font-bold uppercase tracking-widest", tone === "ink" ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
-              )}
-              {title && (
-                <h2 className={cn("mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl", tone === "ink" ? "text-background" : "text-foreground")}>{title}</h2>
-              )}
-              {subtitle && <p className={cn("mt-3 text-sm font-medium leading-relaxed", tone === "ink" ? "text-background/70" : "text-muted-foreground")}>{subtitle}</p>}
-            </header>
-          </InView>
-        )}
+    <SectionShell tone={tone} width={1120} rails grain padding="roomy" className={className} id={undefined}>
+      {(eyebrow || title || subtitle) && (
+        <InView variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
+          <SectionHead
+            eyebrow={eyebrow}
+            title={title ?? ""}
+            subtitle={subtitle}
+            index="06"
+            tone={tone}
+            className="mb-10"
+          />
+        </InView>
+      )}
 
-        <div className={cn("overflow-hidden rounded-[24px] shadow-sm", tone === "ink" ? "bg-foreground" : "border bg-card")}>
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gridTemplateColumns: undefined }} data-cols={cols}>
-            <div
-              className={cn("grid gap-0", cols === 2 && "sm:grid-cols-2", cols === 3 && "sm:grid-cols-2 lg:grid-cols-3", cols === 4 && "sm:grid-cols-2 lg:grid-cols-4")}
-            >
+        <div className={cn("overflow-hidden border", tone === "ink" ? "border-background/15" : "border-border bg-card shadow-sm")}>
+          <div className={cn("grid grid-cols-1 sm:grid-cols-2", cols === 2 && "sm:grid-cols-2", cols === 3 && "sm:grid-cols-2 lg:grid-cols-3", cols === 4 && "sm:grid-cols-2 lg:grid-cols-4")} data-cols={cols}>
               {items.map((item, i) => (
                 <InView
                   key={item.id ?? item.label}
@@ -130,10 +127,8 @@ export function Stats({
                   <StatTile item={item} tone={tone} separators={sep} index={i} />
                 </InView>
               ))}
-            </div>
           </div>
         </div>
-      </div>
-    </section>
+    </SectionShell>
   )
 }

@@ -4,6 +4,7 @@ export { Auth } from "./components/auth/Auth"
 export type { AuthProps, AuthAside, AuthFooter, SocialProvider } from "./components/auth/Auth"
 
 // Vendored upstream registry sources (provenance kept for direct use):
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { Spotlight } from "./components/primitives/spotlight"
 export { TextEffect } from "./components/primitives/text-effect"
 export { Button, buttonVariants } from "./components/ui/button"

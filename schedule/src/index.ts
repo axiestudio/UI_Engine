@@ -12,3 +12,5 @@ export { ScheduleButton } from "./components/watermelon/schedule-button"
 export { Magnetic } from "./components/primitives/magnetic"
 export { InView } from "./components/primitives/in-view"
 export { Button, buttonVariants } from "./components/ui/button"
+
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"

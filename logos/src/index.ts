@@ -8,3 +8,5 @@ export { default as Integrations1 } from "./components/watermelon/integrations-1
 export { default as Integrations3 } from "./components/watermelon/integrations-3"
 export { InfiniteSlider } from "./components/primitives/infinite-slider"
 export { InView } from "./components/primitives/in-view"
+
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"

@@ -1,0 +1,1182 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ui-presets",
+  "homepage": "https://github.com/",
+  "items": [
+    {
+      "name": "steps",
+      "type": "registry:block",
+      "title": "Steps",
+      "description": "How-it-works process section \u2014 numbered step flow with connector line, registry-sourced variants (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/border-trail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/steps/Steps.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "auth",
+      "type": "registry:block",
+      "title": "Auth",
+      "description": "Login / signup auth section \u2014 split-panel form with social providers, registry-sourced variants (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/auth/Auth.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/spotlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "consent",
+      "type": "registry:block",
+      "title": "Consent",
+      "description": "GDPR cookie consent banner with preferences dialog \u2014 localStorage persistence (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/consent/Consent.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "changelog",
+      "type": "registry:block",
+      "title": "Changelog",
+      "description": "Product changelog feed \u2014 versioned release entries with typed changes and sticky header (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/changelog/Changelog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/border-trail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/scroll-progress.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "error",
+      "type": "registry:block",
+      "title": "Error",
+      "description": "Error states (404/500) \u2014 full-viewport error page with giant display code and recovery actions (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/error/ErrorState.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/spotlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:block",
+      "title": "Marquee",
+      "description": "Infinite scrolling text ribbon \u2014 ticker-tape band with pause-on-hover, reverse and speed control (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/marquee/Marquee.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-loop.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "newsletter",
+      "type": "registry:block",
+      "title": "Newsletter",
+      "description": "Newsletter subscribe section \u2014 ink band card with animated headline, inline email form and success state (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/newsletter/Newsletter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/border-trail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/spotlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "showcase",
+      "type": "registry:block",
+      "title": "Showcase",
+      "description": "App screenshot showcase \u2014 browser-chrome framed shots with thumbnail switcher and spotlight hover (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/border-trail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/spotlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/showcase/Showcase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "search",
+      "type": "registry:block",
+      "title": "Search",
+      "description": "Command palette site search \u2014 \u2318K dialog with grouped results, keywords and keyboard nav (shadcn/ui new-york-v4 command + dialog)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "cmdk",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/search/Search.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/command.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero",
+      "type": "registry:block",
+      "title": "Hero",
+      "description": "Hero section \u2014 split or centered launch header with animated headline, CTAs and social proof (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/hero/Hero.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/glow-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/spotlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "video-demo",
+      "type": "registry:block",
+      "title": "Video Demo",
+      "description": "Video demo section \u2014 poster with play overlay opening a lightbox dialog (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/video-demo/VideoDemo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "compare",
+      "type": "registry:block",
+      "title": "Compare",
+      "description": "Feature comparison table \u2014 highlighted own-column versus alternatives with check/cross matrix (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/compare/Compare.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "roadmap",
+      "type": "registry:block",
+      "title": "Roadmap",
+      "description": "Public roadmap \u2014 Now / Next / Later columns with status-badged item cards (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/border-trail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/roadmap/Roadmap.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "careers",
+      "type": "registry:block",
+      "title": "Careers",
+      "description": "Careers board \u2014 grouped open roles with location, type and apply actions (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/careers/Careers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "events",
+      "type": "registry:block",
+      "title": "Events",
+      "description": "Events & webinars \u2014 date-block cards with register actions (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/events/Events.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/border-trail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "waitlist",
+      "type": "registry:block",
+      "title": "Waitlist",
+      "description": "Coming-soon waitlist page \u2014 oversized display headline, glow CTA email capture and counter (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/glow-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/waitlist/Waitlist.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "help-center",
+      "type": "registry:block",
+      "title": "Help Center",
+      "description": "Help center \u2014 searchable category card grid linking into docs or FAQs (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/help-center/HelpCenter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "case-study",
+      "type": "registry:block",
+      "title": "Case Study",
+      "description": "Customer story \u2014 feature quote, metric row and brand proof panel (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/case-study/CaseStudy.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/spotlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:block",
+      "title": "Empty State",
+      "description": "Empty states \u2014 icon-led zero-data panels with guidance actions (shadcn/ui new-york-v4 + Motion-Primitives)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/empty-state/EmptyState.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/progressive-blur.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

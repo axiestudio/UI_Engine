@@ -143,10 +143,20 @@ export function Consent({
           >
             <div
               className={cn(
-                "mx-auto flex max-w-[1280px] flex-col gap-5 rounded-[24px] border p-6 shadow-lg sm:px-8 sm:py-7 lg:flex-row lg:items-center lg:justify-between",
+                "mx-auto flex max-w-[1120px] flex-col gap-5 border p-6 shadow-lg sm:px-8 sm:py-7 lg:flex-row lg:items-center lg:justify-between",
                 ink ? "border-background/15 bg-foreground text-background" : "border-border bg-card text-foreground",
               )}
             >
+              {/* corner ticks — the consent slip is placed, not dropped */}
+              <span
+                aria-hidden
+                className={cn("pointer-events-none absolute inset-0", ink ? "text-background/30" : "text-foreground/20")}
+              >
+                <span className="absolute left-2 top-2 size-2.5 border-l border-t border-current" />
+                <span className="absolute right-2 top-2 size-2.5 border-r border-t border-current" />
+                <span className="absolute bottom-2 left-2 size-2.5 border-b border-l border-current" />
+                <span className="absolute bottom-2 right-2 size-2.5 border-b border-r border-current" />
+              </span>
               <div className="max-w-2xl">
                 <h2 className={cn("font-display text-lg font-extrabold tracking-tight", ink ? "text-background" : "text-foreground")}>
                   {title}

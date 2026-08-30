@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "{pkg[0].upper() + pkg[1:]}",
+      name: "Cta",
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "cta.es.js" : "cta.cjs.js"),
     },

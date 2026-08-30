@@ -4,6 +4,7 @@ export { Cta } from "./components/cta/Cta"
 export type { CtaProps, CtaAction } from "./components/cta/Cta"
 
 // Vendored upstream registry sources (provenance kept for direct use):
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { Cta1 } from "./components/watermelon/cta-1"
 export { default as Cta2 } from "./components/watermelon/cta-2"
 export { InView } from "./components/primitives/in-view"

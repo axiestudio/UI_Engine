@@ -6,3 +6,5 @@ export type { TimelineProps, TimelineMilestone } from "./components/timeline/Tim
 export { BorderTrail } from "./components/primitives/border-trail"
 export { TextLoop } from "./components/primitives/text-loop"
 export { InView } from "./components/primitives/in-view"
+
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"

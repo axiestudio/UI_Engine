@@ -1,4 +1,5 @@
 import * as React from "react"
+import { CornerTicks, Grain, MonoLabel } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { Badge } from "@/components/ui/badge"
@@ -78,10 +79,12 @@ export function Showcase({
           <figure className="group relative mx-auto max-w-5xl">
             <div
               className={cn(
-                "relative overflow-hidden rounded-[20px] border shadow-2xl",
+                "relative overflow-hidden rounded-[20px] border shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.005]",
                 ink ? "border-background/20 bg-background/5" : "border-border bg-card",
               )}
             >
+              <CornerTicks size={14} offset={-8} className={cn(ink ? "text-background/40" : "text-foreground/25")} />
+              <Grain opacity={ink ? 0.06 : 0.035} />
               <Spotlight size={460} className={cn("blur-2xl", ink ? "bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12),transparent_75%)]" : "bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05),transparent_75%)]")} />
               <div className={cn("relative flex items-center gap-3 border-b px-4 py-3", ink ? "border-background/10 bg-background/5" : "border-border bg-muted/50")}>
                 <span className="flex gap-1.5" aria-hidden>
@@ -104,8 +107,13 @@ export function Showcase({
                   key={shot.src}
                   src={shot.src}
                   alt={shot.alt}
-                  className="h-full w-full object-cover object-top"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                   loading="lazy"
+                />
+                {/* sheen sweep on hover */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_42%,rgba(255,255,255,0.16)_50%,transparent_58%)] transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%]"
                 />
               </div>
             </div>

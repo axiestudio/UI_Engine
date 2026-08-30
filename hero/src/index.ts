@@ -4,6 +4,7 @@ export { Hero } from "./components/hero/Hero"
 export type { HeroProps, HeroAction, HeroProof } from "./components/hero/Hero"
 
 // Vendored upstream registry sources (provenance kept for direct use):
+export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { GlowEffect } from "./components/primitives/glow-effect"
 export { InView } from "./components/primitives/in-view"
 export { Spotlight } from "./components/primitives/spotlight"
