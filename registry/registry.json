@@ -4212,6 +4212,756 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "stack-burger",
+      "type": "registry:block",
+      "title": "Stack Burger",
+      "description": "Interactive layer builder \u2014 every ingredient is its own component; the composed stack assembles them",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-burger/StackBurger.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-burger/layers/BunBottom.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-burger/layers/BunTop.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-burger/layers/Cheese.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-burger/layers/Lettuce.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-burger/layers/Patty.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-burger/layers/Tomato.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-pricing",
+      "type": "registry:block",
+      "title": "Stack Pricing",
+      "description": "Composable pricing plan \u2014 top band, price, perk rows and base CTA are separate layer components",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-pricing/StackPricing.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-pricing/layers/PlanBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-pricing/layers/PlanPerk.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-pricing/layers/PlanPrice.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-pricing/layers/PlanTop.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-proof",
+      "type": "registry:block",
+      "title": "Stack Proof",
+      "description": "Composable proof stack \u2014 brand band, quote, metrics, person and sign-off as separate layers",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-proof/StackProof.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-proof/layers/ProofBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-proof/layers/ProofHead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-proof/layers/ProofMetrics.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-proof/layers/ProofPerson.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-proof/layers/ProofQuote.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-receipt",
+      "type": "registry:block",
+      "title": "Stack Receipt",
+      "description": "Composable receipt \u2014 head, repeatable line items, total band and barcode base as separate layers",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-receipt/StackReceipt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-receipt/layers/ReceiptBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-receipt/layers/ReceiptHead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-receipt/layers/ReceiptLine.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-receipt/layers/ReceiptTotal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-onboard",
+      "type": "registry:block",
+      "title": "Stack Onboard",
+      "description": "Composable onboarding stack \u2014 head, repeatable task rows, progress rail and action base",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-onboard/StackOnboard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-onboard/layers/BoardBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-onboard/layers/BoardProgress.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-onboard/layers/BoardTask.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-onboard/layers/BoardTop.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-event",
+      "type": "registry:block",
+      "title": "Stack Event",
+      "description": "Composable event detail \u2014 head, meta band, repeatable agenda talks and RSVP base as separate layers",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-event/StackEvent.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-event/layers/EventBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-event/layers/EventHead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-event/layers/EventMeta.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-event/layers/EventTalk.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-fund",
+      "type": "registry:block",
+      "title": "Stack Fund",
+      "description": "Composable fundraiser \u2014 progress band, selectable backer tiers and CTA base as separate layers",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-fund/StackFund.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-fund/layers/FundBackers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-fund/layers/FundBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-fund/layers/FundHead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-fund/layers/FundProgress.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-fund/layers/FundTier.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-course",
+      "type": "registry:block",
+      "title": "Stack Course",
+      "description": "Composable course card \u2014 head, meta band, repeatable module rows and enroll base as separate layers",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-course/StackCourse.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-course/layers/CourseBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-course/layers/CourseHead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-course/layers/CourseMeta.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-course/layers/CourseModule.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-job",
+      "type": "registry:block",
+      "title": "Stack Job",
+      "description": "Composable job post \u2014 title band, meta chips, repeatable text sections and apply base as separate layers",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-job/StackJob.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-job/layers/JobBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-job/layers/JobHead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-job/layers/JobMeta.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-job/layers/JobSection.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stack-listing",
+      "type": "registry:block",
+      "title": "Stack Listing",
+      "description": "Composable property listing \u2014 media band, price head, facts band, agent row and viewing base as separate layers",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-listing/StackListing.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-listing/layers/ListingAgent.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-listing/layers/ListingBase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-listing/layers/ListingFacts.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-listing/layers/ListingHead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stack-listing/layers/ListingMedia.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-lookbook",
+      "type": "registry:block",
+      "title": "Embla Lookbook",
+      "description": "Drag lookbook \u2014 center-focus scale/opacity slides with a thumbnail rail (Embla)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-lookbook/EmblaLookbook.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-time-picker",
+      "type": "registry:block",
+      "title": "Embla Time Picker",
+      "description": "iOS-style loop time pickers on the y-axis for booking slots (Embla)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-time-picker/EmblaTimePicker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-chip-rail",
+      "type": "registry:block",
+      "title": "Embla Chip Rail",
+      "description": "Draggable variable-width filter chip rail with snap (Embla)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-chip-rail/EmblaChipRail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-filter-toolbar",
+      "type": "registry:block",
+      "title": "Floating Filter Toolbar",
+      "description": "Data table toolbar \u2014 filter popover, columns menu, tooltips; flips and shifts at edges (Floating UI)",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-filter-toolbar/FloatingFilterToolbar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-pin-notes",
+      "type": "registry:block",
+      "title": "Floating Pin Notes",
+      "description": "Annotated image with numbered pins opening collision-aware floating notes (Floating UI)",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-pin-notes/FloatingPinNotes.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-share-sheet",
+      "type": "registry:block",
+      "title": "Floating Share Sheet",
+      "description": "Share anchor with a floating share sheet, copy-link morph and tooltip (Floating UI)",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-share-sheet/FloatingShareSheet.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-assembly-line",
+      "type": "registry:block",
+      "title": "Gsap Assembly Line",
+      "description": "Exploded product view that assembles itself on a pinned scroll scrub (GSAP ScrollTrigger)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-assembly-line/GsapAssemblyLine.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-kinetic-marquee",
+      "type": "registry:block",
+      "title": "Gsap Kinetic Marquee",
+      "description": "Velocity-reactive marquee band \u2014 speed, skew and direction follow your scroll (GSAP)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-kinetic-marquee/GsapKineticMarquee.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-flip-grid",
+      "type": "registry:block",
+      "title": "Gsap Flip Grid",
+      "description": "Filterable work grid that FLIP-animates between filter states (GSAP Flip)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-flip-grid/GsapFlipGrid.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-split-band",
+      "type": "registry:block",
+      "title": "Gsap Split Band",
+      "description": "Ink statement band with SplitText masked line cascade on scroll (GSAP)",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-split-band/GsapSplitBand.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

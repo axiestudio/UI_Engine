@@ -33,7 +33,7 @@ export function SettingsHub({ className }: SettingsHubProps) {
   const [pw, setPw] = React.useState("")
   const [files, setFiles] = React.useState<UploadFile[]>([{ id: "1", name: "avatar.jpg", size: 240000, status: "uploading", progress: 58 }])
   const [bio, setBio] = React.useState("")
-  const [toasts, setToasts] = React.useState<{ id: string; title: string; tone?: "ok" | "warn" | "info" }[]>([])
+  const [toasts, setToasts] = React.useState<{ id: string; title: string; tone?: "ok" | "warn" | "err" | "info" }[]>([])
   const push = (title: string, tone: "ok" | "warn" | "err" | "info" = "info") => setToasts((t) => [...t.slice(-2), { id: String(Date.now() + Math.random()), title, tone }])
   React.useEffect(() => { const iv = setInterval(() => setFiles((fs) => fs.map((f) => (f.status === "uploading" ? { ...f, progress: (f.progress ?? 0) + 10, ...(f.progress! + 10 >= 100 ? { status: "done" as const, progress: 100 } : {}) } : f))), 400); return () => clearInterval(iv) }, [])
 

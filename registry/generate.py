@@ -125,6 +125,15 @@ PACKAGES = [
 
     # device stage family (showcase mockups)
     "device-desktop", "device-laptop", "device-tablet", "device-mobile", "device-responsive",
+
+    # layer-stack family (composable sandwiches)
+    "stack-burger", "stack-pricing", "stack-proof", "stack-receipt", "stack-onboard",
+    "stack-event", "stack-fund", "stack-course", "stack-job", "stack-listing",
+
+    # embla · floating-ui · gsap composites
+    "embla-lookbook", "embla-time-picker", "embla-chip-rail",
+    "floating-filter-toolbar", "floating-pin-notes", "floating-share-sheet",
+    "gsap-assembly-line", "gsap-kinetic-marquee", "gsap-flip-grid", "gsap-split-band",
 ]
 # infra peers the consumer's project must have (react/react-dom assumed present)
 EXCLUDED_PEER = {"react", "react-dom"}

@@ -14,7 +14,7 @@ export type ScrollPinnedPanelsProps = {
   className?: string
 }
 
-const DEFAULT_PANELS = [
+const DEFAULT_PANELS: PinnedPanel[] = [
   { id: "pn1", kicker: "ACT I", title: "The room goes quiet", body: "Machines off, hand tools out. You can hear the chisel again.", tone: "paper" },
   { id: "pn2", kicker: "ACT II", title: "Glue takes its time", body: "Clamps set for an hour. Nobody rushes the chemistry.", tone: "ink" },
   { id: "pn3", kicker: "ACT III", title: "The last coat", body: "Oil applied, wiped, waited on. Then it rests a week.", tone: "paper" },

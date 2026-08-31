@@ -1,0 +1,56 @@
+{
+  "name": "video-chapter-rail",
+  "version": "0.1.0",
+  "description": "Video with chapter markers and an embla chapter strip",
+  "type": "module",
+  "main": "dist/video-chapter-rail.cjs.js",
+  "module": "dist/video-chapter-rail.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/video-chapter-rail.es.js",
+      "require": "./dist/video-chapter-rail.cjs.js"
+    },
+    "./styles.css": "./dist/video-chapter-rail.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "motion-primitives": [
+      "in-view"
+    ],
+    "watermelon-ui": []
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.34.0",
+    "motion": "^13.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwind-merge": "^3.6.0",
+    "embla-carousel-react": "^8.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

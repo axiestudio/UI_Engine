@@ -1,4 +1,5 @@
 import * as React from "react"
+import { LuTent, LuHammer, LuWrench } from "react-icons/lu"
 import { ListStack, type ListItem } from "@/components/watermelon/list-stack"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
@@ -8,7 +9,7 @@ export type StackProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  /** Same shape the vendored registry item consumes: title, blurb, rows, accent color. */
+  /** Same shape the vendored registry item consumes: title, location, date, icon. */
   items: ListItem[]
   className?: string
 }
@@ -16,9 +17,9 @@ export type StackProps = {
 // ── Stack ────────────────────────────────────────────────────────────────────
 
 const DEFAULT_ITEMS: ListItem[] = [
-  { title: "Signed inside the back panel", blurb: "The maker's initials — accountability you can point at.", rows: ["Full-scale drawing kept on file", "Joints logged in the job book"], accent: "#2f2b28" },
-  { title: "Annual check-up", blurb: "We visit, tighten, re-oil, and leave a card.", rows: ["Included for ten years", "Booked, not chased"], accent: "#5d4a38" },
-  { title: "Standard hardware", blurb: "Every fitting is a size you can still buy in 2050.", rows: ["Documented in the care kit", "No proprietary fittings"], accent: "#4a5d43" },
+  { id: "st1", title: "Workbench residency", location: "Bench 4, north wall", date: "Year-round", icon: LuHammer },
+  { id: "st2", title: "Annual check-up", location: "In your home or ours", date: "Every spring", icon: LuWrench },
+  { id: "st3", title: "Field demonstrations", location: "Maker fair, pavilion B", date: "Each October", icon: LuTent },
 ]
 export function Stack({ eyebrow = "Highlights", title = "Pinned, one at a time", subtitle, items = DEFAULT_ITEMS, className }: StackProps) {
   if (!items.length) return null

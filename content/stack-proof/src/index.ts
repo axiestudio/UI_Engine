@@ -1,0 +1,12 @@
+import "./index.css"
+
+export { StackProof } from "./components/stack-proof/StackProof"
+export type { StackProofProps } from "./components/stack-proof/StackProof"
+export { ProofHead } from "./components/stack-proof/layers/ProofHead"
+export { ProofQuote } from "./components/stack-proof/layers/ProofQuote"
+export { ProofMetrics } from "./components/stack-proof/layers/ProofMetrics"
+export type { ProofMetric } from "./components/stack-proof/layers/ProofMetrics"
+export { ProofPerson } from "./components/stack-proof/layers/ProofPerson"
+export { ProofBase } from "./components/stack-proof/layers/ProofBase"
+export { InView } from "./components/primitives/in-view"
+export { Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, SectionShell, SectionHead, Ordinal } from "./components/primitives/handcraft"

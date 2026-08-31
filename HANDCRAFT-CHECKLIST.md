@@ -166,3 +166,42 @@ Webapp surface PRIMARY (the engine wraps each in an app window with real studio-
 | device-responsive | prove every viewport holds | control | draggable viewport scrubber — magnetic breakpoint snap, live ruler, reel mode, `role="slider"` keyboard | ✅ |
 
 Hardware (bezel/island/deck) is a deliberate physical constant — black like real devices in every theme; screens take `src` screenshots or live `children`.
+
+## Layer-stack family ("sandwich architecture" — 5 presets)
+
+One component per part; the composed section imports the layers and stacks them. Fillings repeat freely.
+
+| Preset | Layers (one component each) | The composed stack | Status |
+|---|---|---|---|
+| stack-burger | BunTop · Lettuce · Tomato · Cheese · Patty · BunBottom | interactive builder — chips spring layers in/out | ✅ |
+| stack-pricing | PlanTop · PlanPrice · PlanPerk× · PlanBase | two plan cards, staggered stack reveal, POPULAR lift | ✅ |
+| stack-proof | ProofHead · ProofQuote · ProofMetrics · ProofPerson · ProofBase | alternating slide-in, serif quote w/ bleed mark | ✅ |
+| stack-receipt | ReceiptHead · ReceiptLine× · ReceiptTotal · ReceiptBase | print-downward reveal, perforated paper, dashed leaders | ✅ |
+| stack-onboard | BoardTop · BoardTask× · BoardProgress · BoardBase | real checklist state — last tick snaps the CTA awake | ✅ |
+
+Ingredient/product colors (lettuce green, tomato red, wood swatches) are content data — deliberate, documented, never theme tokens.
+
+## Layer-stack family, wave 2 (5 presets)
+
+| Preset | Layers (one component each) | The composed stack | Status |
+|---|---|---|---|
+| stack-event | EventHead · EventMeta · EventTalk× · EventBase | agenda rows deal in; RSVP confirms into primary ink | ✅ |
+| stack-fund | FundHead · FundProgress · FundTier× · FundBackers · FundBase | selectable radio tiers — the base CTA reads your pick ("· 250 kr") | ✅ |
+| stack-course | CourseHead · CourseMeta · CourseModule× · CourseBase | syllabus dealt open: done / active / locked states at a glance | ✅ |
+| stack-job | JobHead · JobMeta · JobSection× · JobBase | salary in the head band, sections reorder like paragraphs | ✅ |
+| stack-listing | ListingMedia · ListingHead · ListingFacts · ListingAgent · ListingBase | brochure-flip settle; swap media/gallery layer and the card holds | ✅ |
+
+## Embla · Floating UI · GSAP composites (10 presets)
+
+| Preset | Library | The one move | Status |
+|---|---|---|---|
+| embla-lookbook | Embla | center-focus scale+opacity deck with thumbnail rail + loop | ✅ |
+| embla-time-picker | Embla | y-axis loop wheels under a selection window — native picker feel | ✅ |
+| embla-chip-rail | Embla | drag-free variable-width chip rail, selected chip pulls into view | ✅ |
+| floating-filter-toolbar | Floating UI | filter popover + columns menu + tooltips — flip/shift at every edge | ✅ |
+| floating-pin-notes | Floating UI | numbered pins with collision-aware notes + welded arrow | ✅ |
+| floating-share-sheet | Floating UI | share sheet that flips; copy-link morphs with a spoken receipt | ✅ |
+| gsap-assembly-line | GSAP ScrollTrigger | pinned scrub — five exploded parts bolt themselves together | ✅ |
+| gsap-kinetic-marquee | GSAP | velocity-reactive ribbons — speed, skew, direction follow scroll | ✅ |
+| gsap-flip-grid | GSAP Flip | filter re-deals the grid; survivors glide, enter/leave unfold | ✅ |
+| gsap-split-band | GSAP SplitText | masked line cascade + self-drawing rule on an ink band | ✅ |
