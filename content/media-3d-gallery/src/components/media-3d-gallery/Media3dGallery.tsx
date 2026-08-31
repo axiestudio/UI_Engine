@@ -25,7 +25,7 @@ export function Media3dGallery({ eyebrow = "DEPTH", title = "A deep carousel.", 
   const cycle = (d: number) => setActive((a) => (a + d + n) % n)
 
   return (
-    <SectionShell tone={tone} width={1280} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
@@ -43,7 +43,7 @@ export function Media3dGallery({ eyebrow = "DEPTH", title = "A deep carousel.", 
                   key={f.id}
                   animate={{ x, z, rotateY: adj * -16, opacity, scale: adj === 0 ? 1 : 0.92 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-1/2 top-0 h-[300px] w-[420px] -translate-x-1/2 overflow-hidden rounded-2xl border bg-muted shadow-2xl"
+                  className="absolute left-1/2 top-0 h-[300px] w-[420px] -translate-x-1/2 overflow-hidden rounded-xl border bg-muted shadow-2xl"
                   onClick={() => setActive(i)}
                 >
                   {f.src ? <img src={f.src} alt={f.alt ?? ""} className="h-full w-full object-cover" draggable={false} /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}

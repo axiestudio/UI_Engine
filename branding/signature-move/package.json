@@ -7,10 +7,14 @@
   "module": "dist/signature-move.es.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/signature-move.es.js",
       "require": "./dist/signature-move.cjs.js"
     },
@@ -25,7 +29,11 @@
       "in-view"
     ],
     "watermelon-ui": [],
-    "shadcn-ui": []
+    "shadcn-ui": [
+      "https://ui.shadcn.com/r/styles/new-york-v4/badge.json",
+      "https://ui.shadcn.com/r/styles/new-york-v4/button.json",
+      "https://ui.shadcn.com/r/styles/new-york-v4/card.json"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",
@@ -53,5 +61,6 @@
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
     "vite-plugin-dts": "^4.5.4"
-  }
+  },
+  "license": "MIT"
 }

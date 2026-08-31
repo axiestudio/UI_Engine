@@ -21,12 +21,12 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
   const idx = hoverIdx ?? versions.length - 1
   return (
     <div className={cn("rounded-xl border bg-card p-4 font-sans", className)}>
-      <div className="relative aspect-[16/9] overflow-hidden rounded-lg border bg-[hsl(var(--app-code))]">
+      <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border/60 bg-muted/40">
         {versions.map((v, i) => (
           <div key={v.id} aria-hidden={i !== idx} className={cn("absolute inset-0 transition-opacity duration-200", i === idx ? "opacity-100" : "opacity-0")}>{render(v)}</div>
         ))}
         {hoverIdx !== null && hoverIdx < versions.length - 1 && (
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute right-2 top-2 flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-white"><History className="size-3" /> previewing</motion.span>
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute right-2 top-2 flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-white"><History className="size-3" /> previewing</motion.span>
         )}
       </div>
       <div className="relative mt-5 h-8">
@@ -38,7 +38,7 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
             {versions.map((v, i) => (
               <li key={v.id}>
                 <button aria-label={`Preview ${v.label}`} onMouseEnter={() => { setHoverIdx(i); i < versions.length - 1 && setPending(v) }} onMouseLeave={() => hoverIdx !== null && setHoverIdx(null)} className="group grid size-6 place-items-center">
-                  <motion.span animate={{ scale: i === idx ? 1.5 : 1, background: i === idx ? "hsl(var(--app-focus))" : "hsl(var(--muted-foreground))" }} transition={{ type: "spring", stiffness: 400, damping: 24 }} className="block size-1.5 rounded-full ring-4 ring-card" />
+                  <motion.span animate={{ scale: i === idx ? 1.5 : 1, background: i === idx ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground))" }} transition={{ type: "spring", stiffness: 400, damping: 24 }} className="block size-1.5 rounded-full ring-4 ring-card" />
                 </button>
               </li>
             ))}
@@ -46,9 +46,9 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
         </div>
       </div>
       <div className="mt-2 flex items-center justify-between">
-        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{head ?? "history"} · {versions.length} versions</p>
+        <p className="text-xs text-muted-foreground">{head ?? "history"} · {versions.length} versions</p>
         <AnimatePresence>
-          {pending && <motion.button initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} onClick={() => { onRestore(pending.id); setPending(null); setHoverIdx(null) }} className="flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-[11px] font-black uppercase tracking-[0.1em] text-primary-foreground"><RotateCcw className="size-3.5" /> restore “{pending.label}”</motion.button>}
+          {pending && <motion.button initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} onClick={() => { onRestore(pending.id); setPending(null); setHoverIdx(null) }} className="flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-xs font-medium text-primary-foreground shadow-sm"><RotateCcw className="size-3.5" /> restore “{pending.label}”</motion.button>}
         </AnimatePresence>
       </div>
       <p className="sr-only" aria-live="polite">{pending ? `Previewing ${pending.label}. Press restore to apply.` : "At latest version."}</p>

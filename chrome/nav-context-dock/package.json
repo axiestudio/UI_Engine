@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/nav-context-dock.es.js",
       "require": "./dist/nav-context-dock.cjs.js"
     },

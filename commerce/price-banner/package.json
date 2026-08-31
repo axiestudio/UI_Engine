@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/price-banner.es.js",
       "require": "./dist/price-banner.cjs.js"
     },

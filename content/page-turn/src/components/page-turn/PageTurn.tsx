@@ -103,7 +103,7 @@ export function PageTurn({ brand = "HOUSE PRESS", pages, index: indexProp, onInd
 function PageBody({ page }: { page: Page }) {
   return (
     <div className="text-[hsl(var(--book-ink))]">
-      {page.head && <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] opacity-50">{page.head}</p>}
+      {page.head && <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] opacity-50">{page.head}</p>}
       <h3 className="mt-3 font-serif text-[20px] font-bold leading-tight sm:text-[24px]">{page.title}</h3>
       <div className="mt-4 space-y-2 font-serif text-[13px] leading-[1.85] opacity-80 sm:text-[14px]">{page.body}</div>
     </div>

@@ -49,7 +49,7 @@ function Avatar({ m }: { m: TeamMember }) {
     return <img src={m.avatarSrc} alt={m.name} onError={() => setFailed(true)} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
   }
   return (
-    <div role="img" aria-label={m.name} className="flex h-full w-full items-center justify-center bg-muted font-display text-5xl font-black text-muted-foreground">
+    <div role="img" aria-label={m.name} className="flex h-full w-full items-center justify-center bg-muted font-display text-5xl font-bold text-muted-foreground">
       {m.initials ?? initialsOf(m.name)}
     </div>
   )
@@ -71,7 +71,7 @@ function MemberCard({ m, tilt = true, showBios = false }: { m: TeamMember; tilt?
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-lg font-extrabold leading-tight tracking-tight">{m.name}</h3>
+        <h3 className="font-display text-lg font-bold leading-tight tracking-tight">{m.name}</h3>
         <p className="mt-0.5 font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{m.role}</p>
         {showBios && m.bio && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{m.bio}</p>}
         {m.links && m.links.length > 0 && (
@@ -119,7 +119,7 @@ export function Team({ eyebrow = "The people", title = "Meet the team", subtitle
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
               {subtitle && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
             </div>
             <p className="font-mono text-xs font-bold text-muted-foreground">{String(members.length).padStart(2, "0")}</p>

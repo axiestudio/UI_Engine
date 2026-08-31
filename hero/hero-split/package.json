@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-split.es.js",
       "require": "./dist/hero-split.cjs.js"
     },

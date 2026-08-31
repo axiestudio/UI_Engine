@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/type-marquee-collage.es.js",
       "require": "./dist/type-marquee-collage.cjs.js"
     },

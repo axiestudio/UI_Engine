@@ -43,7 +43,7 @@ function Cell({ c, glow }: { c: BentoCell; glow: boolean }) {
       <img src={c.image} alt={c.imageAlt ?? ""} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
       <div className="relative p-6 text-white">
-        {c.title && <h3 className="font-display text-lg font-extrabold leading-snug tracking-tight">{c.title}</h3>}
+        {c.title && <h3 className="font-display text-lg font-bold leading-snug tracking-tight">{c.title}</h3>}
         {c.description && <p className="mt-1 text-sm font-medium text-white/85">{c.description}</p>}
       </div>
     </div>
@@ -52,7 +52,7 @@ function Cell({ c, glow }: { c: BentoCell; glow: boolean }) {
       <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl border", ink ? "border-background/20 bg-background/10" : "bg-background shadow-xs")}>
         {Icon && <Icon className="h-5 w-5 stroke-[2]" />}
       </span>
-      {c.title && <h3 className="mt-4 font-display text-[17px] font-extrabold leading-snug tracking-tight">{c.title}</h3>}
+      {c.title && <h3 className="mt-4 font-display text-[17px] font-bold leading-snug tracking-tight">{c.title}</h3>}
       {c.description && <p className={cn("mt-1.5 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{c.description}</p>}
       {c.content && <div className="mt-auto pt-4">{c.content}</div>}
     </div>
@@ -79,7 +79,7 @@ export function Bento({ eyebrow, title, subtitle, cells, spotlight = true, class
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="mb-10 max-w-2xl">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              {title && <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>}
+              {title && <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
               {subtitle && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
             </header>
           </InView>

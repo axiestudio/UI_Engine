@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/nav-multilevel-menu.es.js",
       "require": "./dist/nav-multilevel-menu.cjs.js"
     },

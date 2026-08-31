@@ -31,7 +31,7 @@ export function InteractiveTimelineScrub({ eyebrow = "SCRUB", title = "Drag thro
   }
   const m = milestones[active]
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
@@ -50,9 +50,9 @@ export function InteractiveTimelineScrub({ eyebrow = "SCRUB", title = "Drag thro
           {milestones.map((mi) => <span key={mi.id}>{mi.year}</span>)}
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-[auto_1fr] sm:items-center">
-          <p className="font-display text-5xl font-black opacity-20">{m.year}</p>
+          <p className="font-display text-5xl font-bold opacity-20">{m.year}</p>
           <div>
-            <h3 className="font-display text-xl font-black">{m.title}</h3>
+            <h3 className="font-display text-xl font-bold">{m.title}</h3>
             {m.body && <p className={cn("mt-1 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{m.body}</p>}
           </div>
         </div>

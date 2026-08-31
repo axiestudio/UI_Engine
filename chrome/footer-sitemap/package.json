@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/footer-sitemap.es.js",
       "require": "./dist/footer-sitemap.cjs.js"
     },

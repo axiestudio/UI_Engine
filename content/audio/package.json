@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/audio.es.js",
       "require": "./dist/audio.cjs.js"
     },

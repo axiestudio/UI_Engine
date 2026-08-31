@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/media-image-marquee.es.js",
       "require": "./dist/media-image-marquee.cjs.js"
     },

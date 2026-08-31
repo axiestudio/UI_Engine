@@ -23,7 +23,7 @@ export function ImageFrame({
   eyebrow = "FRAME",
   title = "A frame for the shot.",
   subtitle = "The image sits inside a viewfinder — corner ticks, a caption rail, no clutter.",
-  src = "/frames/frame_0008.webp",
+  src = "/showcase/content/content-01-office.webp",
   alt = "Framed shot",
   caption = "FRAME 01 · EVENING LIGHT",
   aspect = "aspect-[4/3]",
@@ -32,7 +32,7 @@ export function ImageFrame({
 }: ImageFrameProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
       </InView>

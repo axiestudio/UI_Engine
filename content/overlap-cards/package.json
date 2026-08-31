@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/overlap-cards.es.js",
       "require": "./dist/overlap-cards.cjs.js"
     },

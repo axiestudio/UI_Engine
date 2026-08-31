@@ -12,8 +12,8 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 // ═══ JOB      show the mood of the brand as an openable object
 // ═══ EMOTION  curiosity through a keyhole — petals of atmosphere
 // ═══ SIGNATURE aperture petals: blob-shaped colour fields that tilt toward
-//               the cursor; one opens a morph-in dialog on the shared layout
-//               key, with the note set in serif italic. Text colour on each
+//               the cursor; one opens a spring-morph dialog with Radix
+//               focus handling, the note set in serif italic. Text colour on each
 //               petal is computed from the mood tint, not guessed per id.
 //   SITE      → studio about pages, interior/hospitality brands
 //   APP       → board/collection pickers; petals are data

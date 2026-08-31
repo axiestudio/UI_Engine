@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/calculator.es.js",
       "require": "./dist/calculator.cjs.js"
     },

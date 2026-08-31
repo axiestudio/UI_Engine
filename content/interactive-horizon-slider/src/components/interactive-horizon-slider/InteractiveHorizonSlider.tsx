@@ -20,19 +20,19 @@ export type InteractiveHorizonSliderProps = {
 export function InteractiveHorizonSlider({
   eyebrow = "REVEAL",
   title = "Two ways to see it.",
-  before = { src: "/frames/frame_0032.webp", alt: "Before" },
-  after = { src: "/frames/frame_0044.webp", alt: "After" },
+  before = { src: "/showcase/content/content-01-office.webp", alt: "Before" },
+  after = { src: "/showcase/content/content-02-team.webp", alt: "After" },
   labelBefore = "SKETCH",
   labelAfter = "BUILT",
   className,
 }: InteractiveHorizonSliderProps) {
   return (
-    <SectionShell width={920} grain rule="bottom" className={className}>
+    <SectionShell width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.98 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="mt-10 overflow-hidden rounded-2xl border bg-muted">
+        <div className="mt-10 overflow-hidden rounded-xl border bg-muted">
           <ImageComparison enableHover className="relative aspect-[16/9] w-full">
             <ImageComparisonImage src={before.src} alt={before.alt ?? "Before"} position="right" />
             <ImageComparisonImage src={after.src} alt={after.alt ?? "After"} position="left" />

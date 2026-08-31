@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/partners-strip.es.js",
       "require": "./dist/partners-strip.cjs.js"
     },

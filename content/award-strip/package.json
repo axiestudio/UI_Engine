@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/award-strip.es.js",
       "require": "./dist/award-strip.cjs.js"
     },

@@ -26,7 +26,7 @@ export function ImageTextSplit({
   eyebrow = "APPROACH",
   title = "A method, not a theme.",
   subtitle = "Every section ships with real typography, texture and a single signature move — so a site feels made by hand.",
-  image = { src: "/frames/frame_0032.webp", alt: "Detail" },
+  image = { src: "/showcase/content/content-01-office.webp", alt: "Detail" },
   points = ["Token-first, re-themes instantly", "Accessible and reduced-motion aware", "One deliberate interaction per section"],
   ctaLabel = "Read the process",
   ctaHref = "#",
@@ -36,7 +36,7 @@ export function ImageTextSplit({
 }: ImageTextSplitProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <div className={cn("grid gap-10 lg:grid-cols-2 lg:items-center", className)}>
         <InView once variants={{ hidden: { opacity: 0, x: flip ? 24 : -24 }, visible: { opacity: 1, x: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div className={cn("img-hover-wash aspect-[4/3] overflow-hidden rounded-[24px] border", flip && "lg:order-last")}>

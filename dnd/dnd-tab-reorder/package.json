@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-tab-reorder.es.js",
       "require": "./dist/dnd-tab-reorder.cjs.js"
     },

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-pull-quote-cinematic.es.js",
       "require": "./dist/hero-pull-quote-cinematic.cjs.js"
     },

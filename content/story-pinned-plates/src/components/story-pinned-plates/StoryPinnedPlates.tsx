@@ -33,13 +33,13 @@ export function StoryPinnedPlates({ eyebrow = "PLATES", plates, className }: Sto
           const opacity = useTransform(scrollYProgress, [start, Math.max(start + 0.08, end)], [1, 0.7])
           return (
             <motion.div key={p.id} style={{ y, scale, opacity }} className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-5 sm:px-8">
-              <div className="mx-auto grid max-w-[1120px] gap-6 rounded-2xl border bg-card p-8 shadow-2xl sm:grid-cols-[0.8fr_1.2fr] sm:items-center">
+              <div className="mx-auto grid max-w-[1120px] gap-6 rounded-xl border bg-card p-8 shadow-2xl sm:grid-cols-[0.8fr_1.2fr] sm:items-center">
                 <div className="img-hover-wash aspect-[4/3] overflow-hidden rounded-xl bg-muted">
                   {p.src ? <img src={p.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                 </div>
                 <div>
                   <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{p.kicker}</p>
-                  <h2 className="mt-2 font-display text-3xl font-black tracking-[-0.03em] sm:text-4xl">{p.title}</h2>
+                  <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">{p.title}</h2>
                   {p.body && <p className="mt-3 text-base font-medium leading-relaxed text-muted-foreground">{p.body}</p>}
                 </div>
               </div>

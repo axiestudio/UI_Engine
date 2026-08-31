@@ -37,8 +37,8 @@ export function ScrollDeckMaster({ eyebrow = "DECK MASTER", steps, tone = "paper
           <motion.div style={{ x }} className="absolute inset-0 flex grow-0">
             {steps.map((s) => (
               <div key={s.id} className="flex h-full w-full shrink-0 flex-col items-center justify-center px-5 text-center sm:px-8">
-                {s.stat && <p className="font-display text-8xl font-black text-background/20 sm:text-9xl">{s.stat}</p>}
-                <h2 className="mt-4 font-display text-4xl font-black tracking-[-0.03em] sm:text-6xl">{s.title}</h2>
+                {s.stat && <p className="font-display text-8xl font-bold text-background/20 sm:text-9xl">{s.stat}</p>}
+                <h2 className="mt-4 font-display text-4xl font-bold tracking-[-0.03em] sm:text-6xl">{s.title}</h2>
                 {s.body && <p className="mt-4 max-w-md text-base font-medium leading-relaxed text-background/70">{s.body}</p>}
               </div>
             ))}

@@ -32,13 +32,13 @@ export function ImageShowcase({
   const [activeId, setActiveId] = React.useState(frames[0]?.id ?? "")
   const active = frames.find((f) => f.id === activeId) ?? frames[0]
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
         <div className="mt-10">
-          <div className="img-hover-wash aspect-[3/2] overflow-hidden rounded-2xl border bg-muted">
+          <div className="img-hover-wash aspect-[3/2] overflow-hidden rounded-xl border bg-muted">
             {active?.src ? <img src={active.src} alt={active.alt ?? ""} className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
           </div>
           {caption && <p className={cn("mt-3 text-right font-mono text-[10px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/55" : "text-muted-foreground")}>{caption}</p>}

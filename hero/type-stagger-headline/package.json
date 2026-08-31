@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/type-stagger-headline.es.js",
       "require": "./dist/type-stagger-headline.cjs.js"
     },

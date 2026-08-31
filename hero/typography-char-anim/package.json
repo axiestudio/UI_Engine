@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/typography-char-anim.es.js",
       "require": "./dist/typography-char-anim.cjs.js"
     },

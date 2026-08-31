@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-page-builder.es.js",
       "require": "./dist/dnd-page-builder.cjs.js"
     },

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-path-following.es.js",
       "require": "./dist/scroll-path-following.cjs.js"
     },

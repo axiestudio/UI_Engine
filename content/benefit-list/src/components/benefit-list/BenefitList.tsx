@@ -27,7 +27,7 @@ export function BenefitList({ eyebrow = "BENEFITS", title = "What you get.", ite
 ], footnote = "Every benefit, by construction, not by promise.", tone = "paper", className }: BenefitListProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <SectionHead eyebrow={eyebrow} title={title} tone={tone} />

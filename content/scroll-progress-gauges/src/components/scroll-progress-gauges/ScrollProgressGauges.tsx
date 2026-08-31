@@ -20,7 +20,7 @@ export function ScrollProgressGauges({ eyebrow = "GAUGES", gauges, className }: 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
   const sp = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       <div ref={ref} className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
         {gauges.map((g, i) => <GaugeDial key={g.id} gauge={g} progress={sp} index={i} />)}
@@ -47,7 +47,7 @@ function GaugeDial({ gauge, progress, index }: { gauge: Gauge; progress: MotionV
             className="stroke-foreground"
             strokeDasharray={C} style={{ strokeDashoffset: dash }} />
         </svg>
-        <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-black tabular-nums">
+        <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-bold tabular-nums">
           {shown}{gauge.suffix}
         </span>
       </div>

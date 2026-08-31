@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/quiz-flip-deck.es.js",
       "require": "./dist/quiz-flip-deck.cjs.js"
     },

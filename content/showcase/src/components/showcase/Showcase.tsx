@@ -59,7 +59,7 @@ export function Showcase({
               </Badge>
             )}
             {title && (
-              <h2 className={cn("font-display text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl", ink ? "text-background" : "text-foreground")}>
+              <h2 className={cn("font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl", ink ? "text-background" : "text-foreground")}>
                 {title}
               </h2>
             )}

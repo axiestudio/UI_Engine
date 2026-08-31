@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/type-animated-outline.es.js",
       "require": "./dist/type-animated-outline.cjs.js"
     },

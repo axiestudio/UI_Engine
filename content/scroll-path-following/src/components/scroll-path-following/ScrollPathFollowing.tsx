@@ -25,8 +25,8 @@ export function ScrollPathFollowing({ eyebrow = "ROUTE", stops, tone = "paper", 
   const [active, setActive] = React.useState(0)
   React.useEffect(() => scrollYProgress.on("change", (v) => setActive(Math.min(stops.length - 1, Math.floor(v * stops.length)))), [scrollYProgress, stops.length])
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={cn("relative", className)}>
-      <ScrollProgress className="absolute left-0 top-0 z-10 h-1 w-full bg-[hsl(var(--site-accent)/0.7)]" />
+    <SectionShell tone={tone} width={920} rule="bottom" className={cn("relative", className)}>
+      <ScrollProgress className="absolute left-0 top-0 z-10 h-1 w-full bg-[hsl(var(--primary)/0.7)]" />
       <div ref={ref} style={{ height: runway }} className="relative">
         <div className="sticky top-10 flex h-[70vh] items-center">
           <ol className="relative ml-4 w-full space-y-10 border-l pl-8">

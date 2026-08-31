@@ -60,13 +60,13 @@ export function Expert({
                   />
                 ) : null}
                 {!photo && (
-                  <span aria-hidden className="flex h-full w-full items-center justify-center bg-muted font-display text-[110px] font-black text-muted-foreground">
+                  <span aria-hidden className="flex h-full w-full items-center justify-center bg-muted font-display text-[110px] font-bold text-muted-foreground">
                     {name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase()}
                   </span>
                 )}
               </div>
               <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent px-5 pb-5 pt-20">
-                <h2 id="expert-name" className="font-display text-2xl font-black leading-tight tracking-tight text-white">
+                <h2 id="expert-name" className="font-display text-2xl font-bold leading-tight tracking-tight text-white">
                   {name}
                 </h2>
                 <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/80">{role}</p>
@@ -74,7 +74,7 @@ export function Expert({
             </figure>
             {counter && (
               <div className="mt-5 flex items-baseline gap-3 lg:hidden">
-                <span className="font-mono text-4xl font-black tabular-nums tracking-tighter">{counter.value}</span>
+                <span className="font-mono text-4xl font-bold tabular-nums tracking-tighter">{counter.value}</span>
                 <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{counter.label}</span>
               </div>
             )}
@@ -84,7 +84,7 @@ export function Expert({
           <div className="min-w-0">
             {counter && (
               <div className="mb-8 hidden items-baseline gap-3 lg:flex">
-                <span className="font-mono text-[56px] font-black leading-none tabular-nums tracking-tighter">{counter.value}</span>
+                <span className="font-mono text-[56px] font-bold leading-none tabular-nums tracking-tighter">{counter.value}</span>
                 <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{counter.label}</span>
               </div>
             )}
@@ -92,7 +92,7 @@ export function Expert({
             {quote && (
               <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
                 <blockquote className="relative pl-8">
-                  <span aria-hidden className="absolute left-0 top-1 font-display text-5xl font-black leading-none text-foreground/25 select-none">“</span>
+                  <span aria-hidden className="absolute left-0 top-1 font-display text-5xl font-bold leading-none text-foreground/25 select-none">“</span>
                   <p className="font-display text-[22px] font-bold leading-snug tracking-tight sm:text-2xl">{quote}</p>
                 </blockquote>
               </InView>
@@ -118,7 +118,7 @@ export function Expert({
             {tags.length > 0 && (
               <div className="mt-8 flex flex-wrap gap-1.5">
                 {tags.map((t) => (
-                  <span key={t} className="rounded-full border bg-card px-3 py-1 text-xs font-bold tracking-tight">
+                  <span key={t} className="rounded-full border bg-card shadow-sm px-3 py-1 text-xs font-bold tracking-tight">
                     {t}
                   </span>
                 ))}
@@ -130,11 +130,11 @@ export function Expert({
                 {cta &&
                   (() => {
                     const label = cta.href ? (
-                      <a href={cta.href} className="inline-flex h-11 items-center rounded-full bg-foreground px-7 font-display text-sm font-extrabold tracking-tight text-background transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                      <a href={cta.href} className="inline-flex h-11 items-center rounded-full bg-foreground px-7 font-display text-sm font-bold tracking-tight text-background transition-transform hover:scale-[1.02] active:scale-[0.98]">
                         {cta.label}
                       </a>
                     ) : (
-                      <button type="button" onClick={cta.onClick} className="inline-flex h-11 items-center rounded-full bg-foreground px-7 font-display text-sm font-extrabold tracking-tight text-background transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                      <button type="button" onClick={cta.onClick} className="inline-flex h-11 items-center rounded-full bg-foreground px-7 font-display text-sm font-bold tracking-tight text-background transition-transform hover:scale-[1.02] active:scale-[0.98]">
                         {cta.label}
                       </button>
                     )

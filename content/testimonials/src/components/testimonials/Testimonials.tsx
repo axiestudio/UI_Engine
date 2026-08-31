@@ -96,7 +96,7 @@ function Avatar({ t }: { t: Testimonial }) {
     return <img src={t.avatarSrc} alt="" onError={() => setFailed(true)} className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-border" />
   }
   return (
-    <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground font-mono text-xs font-black text-background">
+    <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground font-mono text-xs font-bold text-background">
       {initials}
     </span>
   )
@@ -109,7 +109,7 @@ export function ReviewCard({ t, className }: { t: Testimonial; className?: strin
       <div className="flex items-start justify-between gap-3">
         <div>
           {t.rating !== undefined && <Stars rating={t.rating} />}
-          {t.title && <p className="mt-3 font-display text-[15px] font-extrabold leading-snug tracking-tight">“{t.title}”</p>}
+          {t.title && <p className="mt-3 font-display text-[15px] font-bold leading-snug tracking-tight">“{t.title}”</p>}
         </div>
         {t.source && <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 font-mono text-[10px] font-bold tracking-wide text-muted-foreground">{t.source}</span>}
       </div>
@@ -192,14 +192,14 @@ export function Testimonials({
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
               {intro && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{intro}</p>}
             </div>
             {summary && (
               <div className="rounded-[20px] border bg-card px-6 py-4 shadow-sm">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{summary.label ?? "Rated by our guests"}</p>
                 <div className="mt-2 flex items-center gap-3">
-                  <SpringValue value={summary.rating} decimals={1} className="font-display text-4xl font-black leading-none tracking-tight tabular-nums" />
+                  <SpringValue value={summary.rating} decimals={1} className="font-display text-4xl font-bold leading-none tracking-tight tabular-nums" />
                   <div>
                     <Stars rating={summary.rating} size="h-4 w-4" />
                     <p className="mt-1 font-mono text-[11px] font-semibold text-muted-foreground">

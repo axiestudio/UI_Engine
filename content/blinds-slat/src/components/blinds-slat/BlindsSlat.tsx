@@ -58,7 +58,7 @@ export function BlindsSlat({ before, after, slats = 12, height = "230vh", value,
               <Slat key={i} i={i} slats={slats} mv={mv} controlled={controlled} before={before.src} reduce={reduce} />
             ))}
           </div>
-          <figcaption className="relative flex items-center justify-between gap-4 border-t bg-card px-5 py-3.5">
+          <figcaption className="relative flex items-center justify-between gap-4 border-t bg-card shadow-sm px-5 py-3.5">
             <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
             {caption && <p className="truncate text-[12px] font-semibold text-muted-foreground">{caption}</p>}
             <span className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground"><Eye className="size-3.5" /> after</span>
@@ -101,7 +101,7 @@ function AfterPanel({ data, label }: { data: BlindsSlatProps["after"]; label?: s
     </div>
   ) : (
     <div className="grid aspect-[16/10] w-full place-items-center bg-muted">
-      <span className="px-6 text-center font-display text-2xl font-black text-muted-foreground">{data.label}</span>
+      <span className="px-6 text-center font-display text-2xl font-bold text-muted-foreground">{data.label}</span>
     </div>
   )
 }

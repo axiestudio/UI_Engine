@@ -40,14 +40,14 @@ export function MasonryGallery({
   const ink = tone === "ink"
   const cols = columns === 2 ? "columns-2" : columns === 4 ? "columns-2 lg:columns-4 sm:columns-3" : "columns-2 lg:columns-3"
   return (
-    <SectionShell tone={tone} width={1280} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <div className={cn("mt-10 gap-4 [column-fill:_balance]", cols)}>
           {items.map((it) => (
-            <figure key={it.id} className="mb-4 break-inside-avoid overflow-hidden rounded-2xl border bg-muted">
+            <figure key={it.id} className="mb-4 break-inside-avoid overflow-hidden rounded-xl border bg-muted">
               <div className={cn("img-hover-wash", RATIOS[it.ratio ?? "square"])}>
                 {it.src ? <img src={it.src} alt={it.alt ?? ""} className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
               </div>

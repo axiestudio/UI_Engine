@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/schedule.es.js",
       "require": "./dist/schedule.cjs.js"
     },

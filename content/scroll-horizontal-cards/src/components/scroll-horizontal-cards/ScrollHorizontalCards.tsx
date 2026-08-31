@@ -34,7 +34,7 @@ export function ScrollHorizontalCards({ eyebrow = "PAN", title = "A section that
         </div>
         <motion.div style={{ x }} className="mt-10 flex flex-nowrap gap-4 px-5">
           {cards.map((c) => (
-            <div key={c.id} className={cn("w-[72vw] max-w-[420px] shrink-0 rounded-2xl border p-6 sm:w-[38vw]", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
+            <div key={c.id} className={cn("w-[72vw] max-w-[420px] shrink-0 rounded-xl border p-6 sm:w-[38vw]", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
               <div className="mb-4 aspect-[16/10] overflow-hidden rounded-xl bg-muted">
                 {c.src ? <img src={c.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
               </div>

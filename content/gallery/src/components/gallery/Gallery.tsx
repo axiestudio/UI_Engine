@@ -54,7 +54,7 @@ export function Gallery({
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="max-w-xl">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
               {subtitle && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
             </header>
           </InView>
@@ -96,7 +96,7 @@ export function Gallery({
                   <MorphingDialogImage src={p.src} alt={p.alt} className="max-h-[54vh] min-h-[240px] w-full grow bg-muted object-cover" />
                   <div className="flex items-start justify-between gap-6 border-t px-6 py-5">
                     <div>
-                      {p.title && <MorphingDialogTitle className="font-display text-lg font-extrabold tracking-tight">{p.title}</MorphingDialogTitle>}
+                      {p.title && <MorphingDialogTitle className="font-display text-lg font-bold tracking-tight">{p.title}</MorphingDialogTitle>}
                       {p.caption && <MorphingDialogDescription className="mt-1 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{p.caption}</MorphingDialogDescription>}
                       {!p.caption && <MorphingDialogSubtitle className="hidden">{p.title}</MorphingDialogSubtitle>}
                     </div>

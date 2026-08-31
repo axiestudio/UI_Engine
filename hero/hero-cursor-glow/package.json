@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-cursor-glow.es.js",
       "require": "./dist/hero-cursor-glow.cjs.js"
     },

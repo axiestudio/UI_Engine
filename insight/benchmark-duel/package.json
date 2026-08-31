@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/benchmark-duel.es.js",
       "require": "./dist/benchmark-duel.cjs.js"
     },

@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ScrollProgress } from "@/components/primitives/scroll-progress"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { KpiTileLive } from "kpi-tile-live"
 import { FunnelStageBars } from "funnel-stage-bars"
 import { ActivityHeatmap } from "activity-heatmap"
@@ -58,18 +57,17 @@ export function AnalyticsDeck({ title = "Chair Economics — Q4", onExport, clas
   const onSaveCut = () => { setCuts((c) => [{ id: "u" + c.length, at: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), label: "cut " + (c.length + 1) }, ...c]); push("saved to version rail", "ok") }
 
   return (
-    <div className={cn("relative isolate min-h-[620px] overflow-hidden rounded-2xl border bg-background font-sans", className)}>
+    <div className={cn("relative isolate min-h-[620px] overflow-hidden rounded-xl border border-border/70 bg-background", className)}>
       <ScrollProgress />
-      <Grain opacity={0.035} />
-      <header className="flex flex-wrap items-end gap-4 border-b bg-card px-5 py-4">
+      <header className="flex flex-wrap items-end gap-4 border-b border-border/60 bg-card px-5 py-4">
         <div>
-          <MonoLabel>BI / DECK 01</MonoLabel>
-          <h2 className="mt-1 font-display text-xl font-black tracking-tight">{title}</h2>
+          <p className="text-xs font-medium text-muted-foreground">BI / DECK 01</p>
+          <h2 className="mt-1 font-display text-xl font-semibold tracking-tight">{title}</h2>
         </div>
         <span className="ml-auto flex flex-wrap items-center gap-3">
-          <Badge variant="secondary" className="font-mono text-[9px]">{tokens.length} filter{tokens.length === 1 ? "" : "s"} · {range ? "custom" : "all time"} · v{deck + 1}</Badge>
-          <button onClick={onSaveCut} className="h-8 rounded-md border px-3 font-mono text-[10px] font-black uppercase tracking-[0.14em] hover:bg-muted">save cut</button>
-          <button onClick={() => { onExport?.(); push("CSV queued in the job tray", "ok") }} className="flex h-8 items-center gap-1.5 rounded-md bg-primary px-3 font-mono text-[10px] font-black uppercase tracking-[0.14em] text-primary-foreground"><Download className="size-3.5" /> export</button>
+          <Badge variant="secondary" className="text-xs">{tokens.length} filter{tokens.length === 1 ? "" : "s"} · {range ? "custom" : "all time"} · v{deck + 1}</Badge>
+          <button onClick={onSaveCut} className="h-8 rounded-md border border-border/70 px-3 text-sm font-medium hover:bg-muted">save cut</button>
+          <button onClick={() => { onExport?.(); push("CSV queued in the job tray", "ok") }} className="flex h-8 items-center gap-1.5 rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground shadow-sm"><Download className="size-3.5" /> export</button>
         </span>
       </header>
 
@@ -93,9 +91,9 @@ export function AnalyticsDeck({ title = "Chair Economics — Q4", onExport, clas
 
         <Card>
           <CardContent className="p-5">
-            <div className="mb-3 flex items-center gap-2"><Table2 aria-hidden className="size-4 text-muted-foreground" /><MonoLabel className="text-muted-foreground">SAVED CUTS — scrub to preview, restore to load</MonoLabel></div>
+            <div className="mb-3 flex items-center gap-2"><Table2 aria-hidden className="size-4 text-muted-foreground" /><p className="text-sm font-medium text-muted-foreground">SAVED CUTS — scrub to preview, restore to load</p></div>
             <UndoHistorySlider head="deck versions" versions={cuts} render={(v) => (
-              <div className="grid h-full grid-cols-3 place-content-center gap-3 p-8 opacity-90"><p aria-hidden className="col-span-3 text-center font-display text-3xl font-black tabular-nums">{Math.round(seedFrom([v.id, deck])() * 9000 + 1200).toLocaleString()} kr</p>{[0, 1, 2].map((i) => <div key={i} className="h-4 rounded" style={{ background: "hsl(var(--info)/0.25)" }} />)}</div>
+              <div className="grid h-full grid-cols-3 place-content-center gap-3 p-8 opacity-90"><p aria-hidden className="col-span-3 text-center font-display text-3xl font-semibold tabular-nums tracking-tight">{Math.round(seedFrom([v.id, deck])() * 9000 + 1200).toLocaleString()} kr</p>{[0, 1, 2].map((i) => <div key={i} className="h-4 rounded" style={{ background: "hsl(var(--info)/0.25)" }} />)}</div>
             )} onRestore={(id) => { setDeck(cuts.findIndex((c) => c.id === id)); push("deck restored", "ok") }} />
           </CardContent>
         </Card>

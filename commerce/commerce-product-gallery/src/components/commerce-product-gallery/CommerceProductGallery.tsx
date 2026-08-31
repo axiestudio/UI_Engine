@@ -19,7 +19,7 @@ export type CommerceProductGalleryProps = {
   className?: string
 }
 
-export function CommerceProductGallery({ eyebrow = "PRODUCT", name = "The Chair, No. 04", price = "€890", frames, className }: CommerceProductGalleryProps) {
+export function CommerceProductGallery({ eyebrow = "PRODUCT", name = "Product gallery", price = "€890", frames, className }: CommerceProductGalleryProps) {
   const [sel, setSel] = React.useState(0)
   const cur = frames[sel]
   return (

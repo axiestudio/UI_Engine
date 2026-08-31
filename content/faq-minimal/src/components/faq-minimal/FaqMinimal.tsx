@@ -21,7 +21,7 @@ export function FaqMinimal({ eyebrow = "FAQ", title = "Quick answers.", items, t
   const ink = tone === "ink"
   const [openId, setOpenId] = React.useState<string | null>(items[0]?.id ?? null)
   return (
-    <SectionShell tone={tone} width={760} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={760} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>

@@ -23,30 +23,30 @@ export function PipelineRunGraph({ run, stages, onRerunFailed, className }: Pipe
   React.useEffect(() => { logBox.current?.scrollTo(0, logBox.current.scrollHeight) }, [log?.log?.length])
   const failed = stages.some((s) => s.status === "fail")
   return (
-    <div className={cn("rounded-xl border bg-card p-4 font-sans", className)}>
-      <div className="mb-4 flex items-center gap-2 text-[12px]">
-        <span className="font-black">{run ? `RUN ${run}` : "RUN"}</span>
+    <div className={cn("rounded-xl border border-border/70 bg-card p-4 shadow-sm", className)}>
+      <div className="mb-4 flex items-center gap-2 text-sm">
+        <span className="font-semibold">{run ? `RUN ${run}` : "RUN"}</span>
         <span aria-hidden className="flex items-center gap-0.5">{stages.map((s) => <span key={s.id} className={cn("h-2 w-6 rounded-sm", s.status === "pass" ? "bg-[hsl(var(--ok))]" : s.status === "running" ? "bg-[hsl(var(--info))] animate-pulse" : s.status === "fail" ? "bg-[hsl(var(--err))]" : s.status === "skip" ? "bg-muted" : "bg-border")} />)}</span>
-        {failed && onRerunFailed && <button onClick={onRerunFailed} className="ml-auto rounded-full border border-[hsl(var(--err)/0.5)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.1em] text-[hsl(var(--err))] hover:bg-[hsl(var(--err)/0.08)]">rerun failed</button>}
+        {failed && onRerunFailed && <button onClick={onRerunFailed} className="ml-auto rounded-full border border-[hsl(var(--err)/0.5)] px-3 py-1 text-xs font-medium text-[hsl(var(--err))] hover:bg-[hsl(var(--err)/0.08)]">rerun failed</button>}
       </div>
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-3">
         {stages.map((s, i) => { const I = IC[s.status]; return (
           <li key={s.id} className="flex items-center gap-2">
-            <button onClick={() => setLog(s)} aria-label={`${s.label}: ${s.status}`} className={cn("group flex items-center gap-2 rounded-full border px-3.5 py-2 text-[12px] font-bold transition-colors hover:bg-muted/50", s.status === "running" && "border-[hsl(var(--info)/0.6)] bg-[hsl(var(--info)/0.08)]", s.status === "pass" && "border-[hsl(var(--ok)/0.5)]", s.status === "fail" && "border-[hsl(var(--err))]")}
+            <button onClick={() => setLog(s)} aria-label={`${s.label}: ${s.status}`} className={cn("group flex items-center gap-2 rounded-full border border-border/70 px-3.5 py-2 text-sm font-medium transition-colors hover:bg-muted/50", s.status === "running" && "border-[hsl(var(--info)/0.6)] bg-[hsl(var(--info)/0.08)]", s.status === "pass" && "border-[hsl(var(--ok)/0.5)]", s.status === "fail" && "border-[hsl(var(--err))]")}
             >
               <I aria-hidden className={cn("size-4", s.status === "running" && "animate-spin", s.status === "pass" && "text-[hsl(var(--ok))]", s.status === "fail" && "text-[hsl(var(--err))]")} />
               {s.label}
-              {s.duration && <span className="font-mono text-[9px] font-black text-muted-foreground">{s.duration}</span>}
+              {s.duration && <span className="font-mono text-[10px] font-medium text-muted-foreground">{s.duration}</span>}
             </button>
-            {i < stages.length - 1 && <motion.span aria-hidden className="h-px w-5 bg-border" animate={{ background: s.status === "pass" ? "hsl(var(--ok))" : "hsl(var(--app-line))" }} />}
+            {i < stages.length - 1 && <motion.span aria-hidden className="h-px w-5 bg-border" animate={{ background: s.status === "pass" ? "hsl(var(--ok))" : "hsl(var(--border))" }} />}
           </li>
         )})}
       </ol>
       <AnimatePresence>
         {log && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-            <div className="mt-3 flex items-center gap-2 border-t pt-3 text-[11px] font-black uppercase tracking-[0.12em]"><ScrollText className="size-3.5" /> {log.label} <span className="font-mono text-[9px] normal-case text-muted-foreground">{log.status}</span><button className="ml-auto text-[10px] font-black text-muted-foreground" onClick={() => setLog(null)}>close ✕</button></div>
-            <pre ref={logBox} className="mt-2 max-h-52 overflow-y-auto rounded-lg bg-[hsl(var(--app-code))] p-3 font-mono text-[11px] leading-relaxed text-muted-foreground" aria-label="Stage log">{(log.log ?? []).join("\n")}</pre>
+            <div className="mt-3 flex items-center gap-2 border-t border-border/60 pt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground"><ScrollText className="size-3.5" /> {log.label} <span className="font-mono text-[10px] font-medium normal-case text-muted-foreground">{log.status}</span><button className="ml-auto text-xs font-medium text-muted-foreground hover:text-foreground" onClick={() => setLog(null)}>close ✕</button></div>
+            <pre ref={logBox} className="mt-2 max-h-52 overflow-y-auto rounded-lg bg-muted/40 p-3 font-mono text-[11px] leading-relaxed text-muted-foreground" aria-label="Stage log">{(log.log ?? []).join("\n")}</pre>
           </motion.div>
         )}
       </AnimatePresence>

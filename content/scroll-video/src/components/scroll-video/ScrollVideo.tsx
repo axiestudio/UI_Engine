@@ -23,7 +23,7 @@ export function ScrollVideo({
   eyebrow = "SCROLL",
   title = "A scene that follows you.",
   description = "Scroll to move the stage — the video scales and the progress rail fills as you go.",
-  src = "/videos/hero.mp4",
+  src = "/showcase/content/video/editorial-drift.mp4",
   poster,
   runway = "340vh",
   className,
@@ -45,7 +45,7 @@ export function ScrollVideo({
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-gradient-to-t from-black/60 to-transparent p-8 pb-12 text-center text-background">
           <MonoLabel className="text-background/60">{eyebrow}</MonoLabel>
-          <h2 className="mt-2 font-display text-4xl font-black tracking-[-0.035em] sm:text-5xl">{title}</h2>
+          <h2 className="mt-2 font-display text-4xl font-bold tracking-[-0.035em] sm:text-5xl">{title}</h2>
           <p className="mt-3 max-w-md text-sm font-medium leading-relaxed text-background/70">{description}</p>
         </div>
       </div>

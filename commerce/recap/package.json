@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/recap.es.js",
       "require": "./dist/recap.cjs.js"
     },

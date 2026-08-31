@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/media-panorama-drag.es.js",
       "require": "./dist/media-panorama-drag.cjs.js"
     },

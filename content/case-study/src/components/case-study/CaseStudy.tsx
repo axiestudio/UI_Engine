@@ -48,7 +48,7 @@ export function CaseStudy({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} grain padding="roomy" className={className}>
+    <SectionShell tone={tone} width={1120} padding="roomy" className={className}>
       <InView
         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -95,7 +95,7 @@ export function CaseStudy({
 
             {author && (
               <figcaption className="mt-7">
-                <span className={cn("block font-display text-sm font-extrabold tracking-tight", ink ? "text-background" : "text-foreground")}>
+                <span className={cn("block font-display text-sm font-bold tracking-tight", ink ? "text-background" : "text-foreground")}>
                   {author.name}
                 </span>
                 {author.role && (
@@ -169,7 +169,7 @@ export function CaseStudy({
                       ink ? "bg-background/[0.03]" : "bg-muted/40",
                     )}
                   >
-                    <dd className={cn("font-display text-3xl font-black tracking-[-0.04em] sm:text-4xl", ink ? "text-background" : "text-foreground")}>
+                    <dd className={cn("font-display text-3xl font-bold tracking-[-0.04em] sm:text-4xl", ink ? "text-background" : "text-foreground")}>
                       {m.value}
                     </dd>
                     <dt className={cn("font-mono text-[9px] font-bold uppercase tracking-[0.2em]", ink ? "text-background/45" : "text-muted-foreground")}>

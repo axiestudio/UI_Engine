@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/misc-interactive-bg.es.js",
       "require": "./dist/misc-interactive-bg.cjs.js"
     },

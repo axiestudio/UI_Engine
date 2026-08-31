@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/quote-feature.es.js",
       "require": "./dist/quote-feature.cjs.js"
     },

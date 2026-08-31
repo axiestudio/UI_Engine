@@ -24,7 +24,7 @@ export function FeatureRail({ eyebrow = "RAIL", title = "Slide through the stack
   const ref = React.useRef<HTMLDivElement>(null)
   const scroll = (dir: number) => ref.current?.scrollBy({ left: dir * 320, behavior: "smooth" })
   return (
-    <SectionShell tone={tone} width={1280} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
       <div className="flex items-end justify-between gap-6">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
@@ -39,7 +39,7 @@ export function FeatureRail({ eyebrow = "RAIL", title = "Slide through the stack
           {items.map((it) => {
             const Icon = it.icon
             return (
-              <div key={it.id} className={cn("rounded-2xl border p-6 [scroll-snap-align:start]", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
+              <div key={it.id} className={cn("rounded-xl border p-6 [scroll-snap-align:start]", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
                 {Icon && <span className={cn("mb-4 flex h-10 w-10 items-center justify-center rounded-xl", ink ? "bg-background/10" : "bg-accent")}><Icon className="h-5 w-5" /></span>}
                 <h3 className="font-display text-lg font-bold">{it.title}</h3>
                 {it.body && <p className={cn("mt-2 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{it.body}</p>}

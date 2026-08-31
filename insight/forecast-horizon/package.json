@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/forecast-horizon.es.js",
       "require": "./dist/forecast-horizon.cjs.js"
     },

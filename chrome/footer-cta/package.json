@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/footer-cta.es.js",
       "require": "./dist/footer-cta.cjs.js"
     },

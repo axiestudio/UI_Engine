@@ -43,7 +43,7 @@ export function ScrollPinnedChapters({ eyebrow = "CHAPTERS", chapters, tone = "p
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn("absolute inset-0", i !== idx && "pointer-events-none")}
               >
-                <h2 className="font-display text-4xl font-black tracking-[-0.03em] sm:text-6xl">{c.title}</h2>
+                <h2 className="font-display text-4xl font-bold tracking-[-0.03em] sm:text-6xl">{c.title}</h2>
                 {c.body && <p className={cn("mx-auto mt-4 max-w-md text-base font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{c.body}</p>}
                 <p className="mt-6 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">CHAPTER {i + 1} / {chapters.length}</p>
               </motion.div>

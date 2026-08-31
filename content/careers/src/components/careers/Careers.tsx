@@ -58,7 +58,7 @@ export function Careers({
     : [["All roles", jobs] as [string, Job[]]]
 
   return (
-    <SectionShell tone={tone} width={920} rails grain padding="roomy" className={className}>
+    <SectionShell tone={tone} width={920} rails padding="roomy" className={className}>
       <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} index="02" tone={tone} />
 
       <div className="mt-12 flex flex-col gap-12">
@@ -87,7 +87,7 @@ export function Careers({
                   >
                     <Ordinal n={i + 1} className={cn("hidden shrink-0 sm:block", ink ? "text-background/50" : "text-muted-foreground/70")} />
                     <div className="min-w-0 flex-1">
-                      <h3 className={cn("truncate font-display text-lg font-extrabold tracking-[-0.02em] sm:text-xl", ink ? "text-background" : "text-foreground")}>
+                      <h3 className={cn("truncate font-display text-lg font-bold tracking-[-0.02em] sm:text-xl", ink ? "text-background" : "text-foreground")}>
                         {job.title}
                       </h3>
                       <p className={cn("mt-1 flex flex-wrap items-center gap-x-4 gap-y-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em]", ink ? "text-background/50" : "text-muted-foreground")}>

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/commerce-loyalty-tier.es.js",
       "require": "./dist/commerce-loyalty-tier.cjs.js"
     },

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-pairing.es.js",
       "require": "./dist/dnd-pairing.cjs.js"
     },

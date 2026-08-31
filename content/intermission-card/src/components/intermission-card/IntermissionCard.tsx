@@ -44,8 +44,8 @@ export function IntermissionCard({ act = "INTERMISSION", title, line = "Coffee, 
           {[["-top-2 -left-2", "border-t-2 border-l-2"], ["-top-2 -right-2", "border-t-2 border-r-2"], ["-bottom-2 -left-2", "border-b-2 border-l-2"], ["-bottom-2 -right-2", "border-b-2 border-r-2"]].map(([pos, side]) => (
             <span key={pos} aria-hidden className={cn("absolute size-4", pos, side, ink ? "border-white/70" : "border-[hsl(var(--inter-frame))]/70")} />
           ))}
-          <p className="font-mono text-[11px] font-black uppercase tracking-[0.5em] opacity-70">— {act} —</p>
-          {title && <p className="mx-auto mt-4 max-w-[560px] px-4 font-display text-[30px] font-black uppercase leading-[1.05] tracking-tight sm:text-[44px]">{title}</p>}
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.5em] opacity-70">— {act} —</p>
+          {title && <p className="mx-auto mt-4 max-w-[560px] px-4 font-display text-[30px] font-bold uppercase leading-[1.05] tracking-tight sm:text-[44px]">{title}</p>}
           <p className={cn("mx-auto mt-4 max-w-[440px] px-6 font-serif text-[15px] italic leading-relaxed", ink ? "opacity-75" : "opacity-70")}>{line}</p>
           <span aria-hidden className="mx-auto mt-6 flex w-fit items-center gap-2">
             {[10, 4, 10].map((w, i) => <span key={i} className={cn("h-[3px]", i === 1 ? "w-1.5 rounded-full" : "w-2.5")} style={{ background: "currentColor", opacity: i === 1 ? 0.5 : 1 }} />)}

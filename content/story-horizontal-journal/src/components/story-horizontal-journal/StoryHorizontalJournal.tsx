@@ -34,11 +34,11 @@ export function StoryHorizontalJournal({ eyebrow = "JOURNAL", spreads, className
             <div key={s.id} className="flex min-w-[100vw] items-center px-5 sm:px-8">
               <div className="mx-auto grid w-full max-w-[1120px] gap-8 sm:grid-cols-[0.9fr_1.1fr] sm:items-center">
                 <div>
-                  <p className="font-display text-7xl font-black opacity-10">{s.index}</p>
-                  <h2 className="font-display text-4xl font-black tracking-[-0.03em] sm:text-6xl">{s.title}</h2>
+                  <p className="font-display text-7xl font-bold opacity-10">{s.index}</p>
+                  <h2 className="font-display text-4xl font-bold tracking-[-0.03em] sm:text-6xl">{s.title}</h2>
                   {s.body && <p className="mt-4 max-w-md text-base font-medium leading-relaxed text-muted-foreground">{s.body}</p>}
                 </div>
-                <div className="img-hover-wash aspect-[4/5] overflow-hidden rounded-2xl border bg-muted">
+                <div className="img-hover-wash aspect-[4/5] overflow-hidden rounded-xl border bg-muted">
                   {s.src ? <img src={s.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                 </div>
               </div>

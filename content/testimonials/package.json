@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/testimonials.es.js",
       "require": "./dist/testimonials.cjs.js"
     },

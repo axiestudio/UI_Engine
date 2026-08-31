@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-tilt-follow.es.js",
       "require": "./dist/scroll-tilt-follow.cjs.js"
     },

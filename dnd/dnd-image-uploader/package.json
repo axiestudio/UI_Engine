@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-image-uploader.es.js",
       "require": "./dist/dnd-image-uploader.cjs.js"
     },

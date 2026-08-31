@@ -46,7 +46,7 @@ export function RevealParallax({
   const maskReveal = useTransform(scrollYProgress, [0, 0.5], ["inset(0 0 100% 0)", "inset(0 0 0% 0)"])
 
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <div ref={ref} className="relative">
         <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
           <div className={cn("grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center", ink && "text-background")}>
@@ -63,13 +63,13 @@ export function RevealParallax({
 
             <motion.div style={{ y: textY }}>
               <p className="font-mono text-[11px] font-bold tracking-[0.25em] text-muted-foreground">{eyebrow}</p>
-              <h2 className="mt-3 font-display text-3xl font-black leading-[0.98] tracking-[-0.03em] sm:text-5xl">{title}</h2>
+              <h2 className="mt-3 font-display text-3xl font-bold leading-[0.98] tracking-[-0.03em] sm:text-5xl">{title}</h2>
               {subtitle && <p className={cn("mt-4 max-w-md text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{subtitle}</p>}
               <dl className="mt-8 grid grid-cols-3 gap-3">
                 {rows.map((r) => (
                   <div key={r.id} className="rounded-xl border p-4 text-center">
                     <dt className={cn("text-[11px] font-medium uppercase tracking-widest", ink ? "text-background/60" : "text-muted-foreground")}>{r.label}</dt>
-                    <dd className="font-display text-2xl font-extrabold">{r.value}</dd>
+                    <dd className="font-display text-2xl font-bold">{r.value}</dd>
                   </div>
                 ))}
               </dl>

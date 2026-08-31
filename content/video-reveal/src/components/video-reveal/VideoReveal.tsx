@@ -24,7 +24,7 @@ export function VideoReveal({
   eyebrow = "REVEAL",
   title = "A film that opens.",
   subtitle = "The video splits open from a hairline as it enters view.",
-  src = "/videos/hero.mp4",
+  src = "/showcase/content/video/editorial-drift.mp4",
   poster,
   slit = 50,
   caption = "SCROLL — THE SLIT OPENS",
@@ -44,9 +44,9 @@ export function VideoReveal({
   }), [openSpring, slit])
 
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
-      <div ref={ref} className="relative mt-10 overflow-hidden rounded-2xl bg-foreground">
+      <div ref={ref} className="relative mt-10 overflow-hidden rounded-xl bg-foreground">
         <video
           autoPlay={play}
           loop

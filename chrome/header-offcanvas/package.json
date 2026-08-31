@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/header-offcanvas.es.js",
       "require": "./dist/header-offcanvas.cjs.js"
     },

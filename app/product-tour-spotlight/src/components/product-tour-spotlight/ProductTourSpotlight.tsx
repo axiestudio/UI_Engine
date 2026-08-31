@@ -46,19 +46,19 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
       </svg>
       <div className="fixed left-1/2 w-[min(92vw,420px)] -translate-x-1/2" style={{ top: below ? Math.min(window.innerHeight - 220, rect.y + rect.h + 14) : undefined, bottom: below ? undefined : Math.max(16, window.innerHeight - (rect.y - 14) - 220) }}>
         <AnimatePresence mode="wait">
-          <motion.div key={step} initial={{ opacity: 0, y: below ? 8 : -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.25 }} className="rounded-xl border bg-popover p-5 shadow-2xl">
+          <motion.div key={step} initial={{ opacity: 0, y: below ? 8 : -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.25 }} className="rounded-xl border border-border/70 bg-popover p-5 shadow-xl">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Step {step + 1} / {steps.length}</p>
-                <h4 className="mt-1.5 font-display text-base font-black tracking-tight">{steps[step].title}</h4>
+                <p className="text-xs text-muted-foreground">Step {step + 1} / {steps.length}</p>
+                <h4 className="mt-1.5 font-display text-base font-semibold tracking-tight">{steps[step].title}</h4>
               </div>
-              <button aria-label="Exit tour" onClick={onExit} className="grid size-7 place-items-center rounded-md hover:bg-muted"><X className="size-4" /></button>
+              <button aria-label="Exit tour" onClick={onExit} className="grid size-7 place-items-center rounded-md text-muted-foreground hover:bg-muted"><X className="size-4" /></button>
             </div>
-            <div className="mt-2 text-[13px] font-medium leading-relaxed text-muted-foreground">{steps[step].body}</div>
+            <div className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{steps[step].body}</div>
             <div className="mt-5 flex items-center gap-2">
-              <button onClick={() => (step === steps.length - 1 ? onExit?.() : go(step + 1))} className="h-9 rounded-md bg-primary px-4 text-[11px] font-bold uppercase tracking-[0.12em] text-primary-foreground">{step === steps.length - 1 ? "Finish" : "Next"}</button>
-              {step > 0 && <button onClick={() => go(step - 1)} className="h-9 rounded-md border px-3 text-[11px] font-bold uppercase tracking-[0.12em] hover:bg-muted">Back</button>}
-              <button onClick={onExit} className="ml-auto text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground">Skip tour</button>
+              <button onClick={() => (step === steps.length - 1 ? onExit?.() : go(step + 1))} className="h-9 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm">{step === steps.length - 1 ? "Finish" : "Next"}</button>
+              {step > 0 && <button onClick={() => go(step - 1)} className="h-9 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted">Back</button>}
+              <button onClick={onExit} className="ml-auto text-sm font-medium text-muted-foreground hover:text-foreground">Skip tour</button>
             </div>
           </motion.div>
         </AnimatePresence>

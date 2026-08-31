@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/skill-tree-rail.es.js",
       "require": "./dist/skill-tree-rail.cjs.js"
     },

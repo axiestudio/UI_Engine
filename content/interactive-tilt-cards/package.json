@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-tilt-cards.es.js",
       "require": "./dist/interactive-tilt-cards.cjs.js"
     },

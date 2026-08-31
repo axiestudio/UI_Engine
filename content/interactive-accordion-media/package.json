@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-accordion-media.es.js",
       "require": "./dist/interactive-accordion-media.cjs.js"
     },

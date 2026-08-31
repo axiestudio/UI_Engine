@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/text-and-gallery.es.js",
       "require": "./dist/text-and-gallery.cjs.js"
     },

@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/gauge-cluster.es.js",
       "require": "./dist/gauge-cluster.cjs.js"
     },

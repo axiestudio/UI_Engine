@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-snap-grid.es.js",
       "require": "./dist/dnd-snap-grid.cjs.js"
     },

@@ -20,7 +20,7 @@ export type BundleUpsellProps = {
   className?: string
 }
 
-export function BundleUpsell({ eyebrow = "BUNDLE", title = "Add the bundle.", bundle = { name: "The full set", items: ["All sections", "Motion kit", "Tokens", "Playground"], price: "€240", save: "Save €60" }, cta = "Add bundle", tone = "paper", className }: BundleUpsellProps) {
+export function BundleUpsell({ eyebrow = "BUNDLE", title = "Complete the set", bundle = { name: "Bundle & save", items: ["All sections", "Motion kit", "Tokens", "Playground"], price: "€240", save: "Save €60" }, cta = "Add bundle", tone = "paper", className }: BundleUpsellProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={760} grain={!ink} rule="bottom" className={className}>

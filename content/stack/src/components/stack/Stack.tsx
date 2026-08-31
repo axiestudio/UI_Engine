@@ -22,7 +22,7 @@ export function Stack({ eyebrow = "Highlights", title = "Pinned, one at a time",
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[780px] px-4 pt-16 text-center sm:px-6">
           {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-          {title && <h2 className="mt-1 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>}
+          {title && <h2 className="mt-1 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
           {subtitle && <p className="mx-auto mt-2 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
         </div>
       </InView>

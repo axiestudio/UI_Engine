@@ -25,13 +25,13 @@ export function StorySplit({
     "We wanted sections that read like they were written — so we built them as sentences, not rectangles.",
   ],
   signature = "— The founders",
-  image = { src: "/frames/frame_0008.webp", alt: "Early days" },
+  image = { src: "/showcase/content/content-01-office.webp", alt: "Early days" },
   tone = "paper",
   className,
 }: StorySplitProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
         <InView once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div>

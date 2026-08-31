@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/report-unfold.es.js",
       "require": "./dist/report-unfold.cjs.js"
     },

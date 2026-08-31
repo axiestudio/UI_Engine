@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-hover-swap.es.js",
       "require": "./dist/interactive-hover-swap.cjs.js"
     },

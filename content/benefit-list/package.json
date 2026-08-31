@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/benefit-list.es.js",
       "require": "./dist/benefit-list.cjs.js"
     },

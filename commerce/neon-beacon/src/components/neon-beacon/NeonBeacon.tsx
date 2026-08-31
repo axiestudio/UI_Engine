@@ -31,7 +31,7 @@ export function NeonBeacon({ word, under, eyebrow, status: statusProp, onToggle,
   const letters = (word ?? (status === "open" ? "OPEN" : "CLOSED")).toUpperCase().split("")
   const col = status === "open" ? "hsl(var(--neon))" : "hsl(var(--neon-alt))"
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--brick))]", compact ? "px-5 py-10" : "px-6 py-20 sm:py-24", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-brick", compact ? "px-5 py-10" : "px-6 py-20 sm:py-24", className)}>
       {/* brick courses */}
       <span aria-hidden className="absolute inset-0 opacity-[0.16]" style={{ backgroundImage: "repeating-linear-gradient(0deg, hsl(var(--brick-line)) 0 1px, transparent 1px 16px), repeating-linear-gradient(90deg, hsl(var(--brick-line)) 0 1px, transparent 1px 40px)" }} />
       <div className={cn("relative mx-auto text-center", compact ? "max-w-[420px]" : "max-w-[760px]")}>
@@ -70,9 +70,9 @@ export function NeonBeacon({ word, under, eyebrow, status: statusProp, onToggle,
             aria-checked={status === "open"}
             aria-label="Neon status"
             onClick={() => { const next = status === "open" ? "closed" : "open"; if (statusProp === undefined) setInner(next); onToggle(next) }}
-            className={cn("group mt-7 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors", status === "open" ? "border-[hsl(var(--neon)/0.5)] text-[hsl(var(--neon))]" : "border-[hsl(var(--neon-alt)/0.5)] text-[hsl(var(--neon-alt))]")}
+            className={cn("group mt-7 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors", status === "open" ? "border-[hsl(var(--neon)/0.5)] text-neon" : "border-[hsl(var(--neon-alt)/0.5)] text-neon-alt")}
           >
-            <span className={cn("size-2 rounded-full transition-all", status === "open" ? "bg-[hsl(var(--neon))] shadow-sm" : "bg-[hsl(var(--neon-alt))] shadow-[0_0_10px_hsl(var(--neon-alt))]")} />
+            <span className={cn("size-2 rounded-full transition-all", status === "open" ? "bg-neon shadow-sm" : "bg-neon-alt shadow-[0_0_10px_hsl(var(--neon-alt))]")} />
             {status === "open" ? "switch off" : "switch on"}
             <span className="sr-only"> — currently {status}</span>
           </button>

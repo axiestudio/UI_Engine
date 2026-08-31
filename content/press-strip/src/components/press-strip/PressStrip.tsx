@@ -24,7 +24,7 @@ export function PressStrip({
 }: PressStripProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <div className={cn("grid gap-4 border-y py-8 sm:grid-cols-3", ink ? "border-background/20" : "border-border")}>
           {mentions.map((m) => (

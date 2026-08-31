@@ -97,8 +97,8 @@ export function Letter({
                   <ProgressiveBlur direction="top" blurLayers={5} blurIntensity={0.45} className="absolute inset-0" />
                 </div>
               )}
-              <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-muted-foreground">{title}</p>
-              <p className="mt-4 font-display text-2xl font-black italic leading-[1.15] tracking-tight">{greeting}</p>
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{title}</p>
+              <p className="mt-4 font-display text-2xl font-bold italic leading-[1.15] tracking-tight">{greeting}</p>
               <p className="mt-4 max-w-prose text-[15px] font-medium leading-[1.8] text-muted-foreground">{body}</p>
               {signedBy && (
                 <p className="mt-6 font-display text-sm font-bold tracking-tight">
@@ -125,7 +125,7 @@ export function Letter({
                       disabled={status === "busy"}
                       className="h-11 flex-1 rounded-full bg-background shadow-none"
                     />
-                    <Button type="submit" disabled={status === "busy"} className="h-11 shrink-0 rounded-full px-6 font-display text-sm font-extrabold tracking-tight">
+                    <Button type="submit" disabled={status === "busy"} className="h-11 shrink-0 rounded-full px-6 font-display text-sm font-bold tracking-tight">
                       {status === "busy" ? <><Loader2 className="mr-1 h-3.5 w-3.5 animate-spin" />Addressing…</> : subscribeLabel}
                     </Button>
                   </div>

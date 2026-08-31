@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/media-360-viewer.es.js",
       "require": "./dist/media-360-viewer.cjs.js"
     },

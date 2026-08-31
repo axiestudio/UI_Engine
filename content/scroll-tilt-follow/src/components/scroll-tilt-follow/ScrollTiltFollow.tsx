@@ -15,12 +15,12 @@ export type ScrollTiltFollowProps = {
   className?: string
 }
 
-export function ScrollTiltFollow({ eyebrow = "FOLLOW", title = "It tilts two ways.", body = "Scroll rotates the card; the cursor tilts it. Both at once.", image = "/frames/frame_0008.webp", className }: ScrollTiltFollowProps) {
+export function ScrollTiltFollow({ eyebrow = "FOLLOW", title = "It tilts two ways.", body = "Scroll rotates the card; the cursor tilts it. Both at once.", image = "/showcase/content/content-01-office.webp", className }: ScrollTiltFollowProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
   const rotY = useTransform(scrollYProgress, [0, 1], [-10, 10])
   return (
-    <SectionShell width={920} grain rule="bottom" className={className}>
+    <SectionShell width={920} rule="bottom" className={className}>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       <div ref={ref} className="mt-10 grid place-items-center [perspective:1200px]">
         <motion.div style={{ rotateY: rotY }} className="w-full max-w-md">
@@ -30,7 +30,7 @@ export function ScrollTiltFollow({ eyebrow = "FOLLOW", title = "It tilts two way
                 <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" />
               </div>
               <div className="p-6">
-                <h3 className="font-display text-xl font-black">{title}</h3>
+                <h3 className="font-display text-xl font-bold">{title}</h3>
                 <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{body}</p>
               </div>
             </div>

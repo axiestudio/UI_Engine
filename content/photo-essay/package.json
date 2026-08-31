@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/photo-essay.es.js",
       "require": "./dist/photo-essay.cjs.js"
     },

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/curtain-clip-path.es.js",
       "require": "./dist/curtain-clip-path.cjs.js"
     },

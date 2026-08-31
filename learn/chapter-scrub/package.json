@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/chapter-scrub.es.js",
       "require": "./dist/chapter-scrub.cjs.js"
     },

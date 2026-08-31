@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/loyalty-cta.es.js",
       "require": "./dist/loyalty-cta.cjs.js"
     },

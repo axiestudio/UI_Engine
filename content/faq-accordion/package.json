@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/faq-accordion.es.js",
       "require": "./dist/faq-accordion.cjs.js"
     },

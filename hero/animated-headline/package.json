@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/animated-headline.es.js",
       "require": "./dist/animated-headline.cjs.js"
     },

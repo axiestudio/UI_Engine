@@ -24,17 +24,17 @@ export function PhotoEssay({ eyebrow = "ESSAY", title = "A room, in four blocks.
   "The first decision is usually the quiet one: what you leave out.",
   "Textures carry the story when the palette stays disciplined.",
 ], images = [
-  { id: "p1", src: "/frames/frame_0032.webp", alt: "Plate 1", caption: "PLATE I" },
-  { id: "p2", src: "/frames/frame_0008.webp", alt: "Plate 2", caption: "PLATE II", offset: true },
-  { id: "p3", src: "/frames/frame_0056.webp", alt: "Plate 3", caption: "PLATE III" },
+  { id: "p1", src: "/showcase/content/content-01-office.webp", alt: "Plate 1", caption: "PLATE I" },
+  { id: "p2", src: "/showcase/content/content-02-team.webp", alt: "Plate 2", caption: "PLATE II", offset: true },
+  { id: "p3", src: "/showcase/content/content-03-product.webp", alt: "Plate 3", caption: "PLATE III" },
 ], tone = "paper", className }: PhotoEssayProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <div className="max-w-2xl">
           <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl font-black leading-[0.98] tracking-[-0.03em] sm:text-5xl">{title}</h2>
+          <h2 className="mt-3 font-display text-3xl font-bold leading-[0.98] tracking-[-0.03em] sm:text-5xl">{title}</h2>
           <p className={cn("mt-4 text-base font-medium leading-relaxed", ink ? "text-background/75" : "text-muted-foreground")}>{intro}</p>
         </div>
       </InView>
@@ -47,7 +47,7 @@ export function PhotoEssay({ eyebrow = "ESSAY", title = "A room, in four blocks.
         {images.map((img, i) => (
           <InView key={img.id} once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
             <figure className={cn(img.offset ? "sm:ml-auto sm:w-3/4" : "sm:w-4/5")}>
-              <div className="img-hover-wash aspect-[16/9] overflow-hidden rounded-2xl border bg-muted">
+              <div className="img-hover-wash aspect-[16/9] overflow-hidden rounded-xl border bg-muted">
                 {img.src ? <img src={img.src} alt={img.alt ?? ""} className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
               </div>
               {img.caption && <figcaption className={cn("mt-2 font-mono text-[10px] font-bold uppercase tracking-widest", ink ? "text-background/50" : "text-muted-foreground")}>{img.caption}</figcaption>}

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/proof-quote.es.js",
       "require": "./dist/proof-quote.cjs.js"
     },

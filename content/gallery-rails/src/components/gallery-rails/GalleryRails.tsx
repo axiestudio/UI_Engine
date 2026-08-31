@@ -32,7 +32,7 @@ export function GalleryRails({ eyebrow = "THE WALL", title, subtitle, works, onS
       <div className="relative mx-auto w-full max-w-[1120px]">
         <div className="mb-10 max-w-xl text-[hsl(var(--plate-ink))]">
           <MonoLabel className="opacity-60">{eyebrow}</MonoLabel>
-          {title && <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-[40px]">{title}</h2>}
+          {title && <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-[40px]">{title}</h2>}
           {subtitle && <p className="mt-3 text-[15px] font-medium leading-relaxed opacity-70">{subtitle}</p>}
         </div>
 
@@ -63,7 +63,7 @@ export function GalleryRails({ eyebrow = "THE WALL", title, subtitle, works, onS
                 </div>
                 {/* engraved plate */}
                 <figcaption className="mx-auto mt-3 w-fit min-w-[120px] max-w-full rounded-[2px] border border-black/15 bg-gradient-to-b from-[hsl(var(--plate))] to-[hsl(var(--plate)/0.75)] px-3 py-1.5 text-center shadow-sm">
-                  <span className="block truncate font-mono text-[10px] font-black uppercase tracking-[0.18em] text-[hsl(var(--plate-ink))]">{w.title}</span>
+                  <span className="block truncate font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[hsl(var(--plate-ink))]">{w.title}</span>
                   {(w.year || w.note) && <span className="mt-0.5 block font-serif text-[10px] italic text-[hsl(var(--plate-ink))/0.75]">{[w.year, w.note].filter(Boolean).join(" · ")}</span>}
                 </figcaption>
               </motion.figure>

@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/anomaly-wire.es.js",
       "require": "./dist/anomaly-wire.cjs.js"
     },

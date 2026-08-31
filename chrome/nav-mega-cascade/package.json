@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/nav-mega-cascade.es.js",
       "require": "./dist/nav-mega-cascade.cjs.js"
     },

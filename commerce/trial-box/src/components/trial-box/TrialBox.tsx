@@ -19,7 +19,7 @@ export type TrialBoxProps = {
   className?: string
 }
 
-export function TrialBox({ eyebrow = "TRY IT", title = "14 days, everything on.", body = "Full access to every section. Keep whatever you ship.", point = "No card required", cta = "Start trial", tone = "paper", className }: TrialBoxProps) {
+export function TrialBox({ eyebrow = "TRY IT", title = "Start your 14-day trial", body = "Full access — no credit card required.", point = "No card required", cta = "Start trial", tone = "paper", className }: TrialBoxProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={760} grain={!ink} rule="bottom" className={className}>

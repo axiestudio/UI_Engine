@@ -49,8 +49,10 @@ export function DndTableCols({
   const [activeId, setActiveId] = React.useState<string | null>(null)
   const [announce, setAnnounce] = React.useState("")
 
-  const sensors = useSensors(useSensor(PointerSensor,
-  KeyboardSensor, { activationConstraint: { distance: 6 } }))
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  )
 
   const onDragEnd = (e: DragEndEvent) => {
     setActiveId(null)

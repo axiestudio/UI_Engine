@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/image-before-after.es.js",
       "require": "./dist/image-before-after.cjs.js"
     },

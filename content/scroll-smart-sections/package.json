@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-smart-sections.es.js",
       "require": "./dist/scroll-smart-sections.cjs.js"
     },

@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/table.es.js",
       "require": "./dist/table.cjs.js"
     },

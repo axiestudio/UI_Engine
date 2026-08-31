@@ -20,7 +20,7 @@ export type TypeMarqueeCollageProps = {
 export function TypeMarqueeCollage({ eyebrow = "COLLAGE", title = "Images and words, on a loop.", items, reverse = false, className }: TypeMarqueeCollageProps) {
   const key = reverse ? "collage-rev" : "collage-fwd"
   return (
-    <SectionShell width={1280} grain rule="bottom" className={className}>
+    <SectionShell width={1280} rule="bottom" className={className}>
       <style>{`@keyframes ${key} { from { transform: translateX(0) } to { transform: translateX(-50%) } }`}</style>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
@@ -34,7 +34,7 @@ export function TypeMarqueeCollage({ eyebrow = "COLLAGE", title = "Images and wo
                   {it.src ? <img src={it.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                 </div>
               ) : (
-                <span key={i} className="shrink-0 whitespace-nowrap font-display text-4xl font-black uppercase tracking-tight sm:text-5xl">{it.text}</span>
+                <span key={i} className="shrink-0 whitespace-nowrap font-display text-4xl font-bold uppercase tracking-tight sm:text-5xl">{it.text}</span>
               )
             )}
           </div>

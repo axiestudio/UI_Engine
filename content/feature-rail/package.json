@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/feature-rail.es.js",
       "require": "./dist/feature-rail.cjs.js"
     },

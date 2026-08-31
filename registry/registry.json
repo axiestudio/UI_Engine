@@ -181,6 +181,10 @@
           "type": "registry:component"
         },
         {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/ui/button.tsx",
           "type": "registry:component"
         },
@@ -190,6 +194,14 @@
         },
         {
           "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/label.tsx",
           "type": "registry:component"
         },
         {
@@ -315,11 +327,31 @@
           "type": "registry:component"
         },
         {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/ui/button.tsx",
           "type": "registry:component"
         },
         {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
           "type": "registry:component"
         }
       ]
@@ -551,7 +583,15 @@
           "type": "registry:component"
         },
         {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
           "type": "registry:component"
         },
         {
@@ -560,6 +600,18 @@
         },
         {
           "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
           "type": "registry:component"
         }
       ]
@@ -1169,11 +1221,31 @@
           "type": "registry:component"
         },
         {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/ui/button.tsx",
           "type": "registry:component"
         },
         {
           "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
           "type": "registry:component"
         }
       ]
@@ -1832,6 +1904,34 @@
         },
         {
           "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
           "type": "registry:component"
         }
       ]
@@ -2989,6 +3089,986 @@
         },
         {
           "path": "components/segmented-control/SegmentedControl.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "ink-trust",
+      "type": "registry:block",
+      "title": "Ink Trust",
+      "description": "Brand manifesto band serif-italic statement turns to ink band with letterpress sign-off",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ink-trust/InkTrust.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/animated-group.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "archive-stamp",
+      "type": "registry:block",
+      "title": "Archive Stamp",
+      "description": "Brand archive stamp wall wax seals of product eras stamp on click",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/archive-stamp/ArchiveStamp.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/glow-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "brand-badge-wall",
+      "type": "registry:block",
+      "title": "Brand Badge Wall",
+      "description": "Credential badge wall 3D tilt badges for awards and certs",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/brand-badge-wall/BrandBadgeWall.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/glow-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "brand-field-guide",
+      "type": "registry:block",
+      "title": "Brand Field Guide",
+      "description": "Do dont field guide split cards that stamp APPROVED or AVOID on toggle",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/brand-field-guide/BrandFieldGuide.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/animated-group.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "brand-heartbeat",
+      "type": "registry:block",
+      "title": "Brand Heartbeat",
+      "description": "Living logo strip: ECG pulse drives the mark's glow \u2014 the brand has a pulse",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/brand-heartbeat/BrandHeartbeat.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/animated-number.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "brand-lexicon",
+      "type": "registry:block",
+      "title": "Brand Lexicon",
+      "description": "Lexicon wall brand dictionary terms flip cards with usage",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/brand-lexicon/BrandLexicon.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-loop.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "brand-pattern-lab",
+      "type": "registry:block",
+      "title": "Brand Pattern Lab",
+      "description": "Generative brand pattern wall seed a pattern from the logo geometry",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/brand-pattern-lab/BrandPatternLab.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/animated-background.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "brand-timeline-echo",
+      "type": "registry:block",
+      "title": "Brand Timeline Echo",
+      "description": "Heritage wall years ripple as echo cards through brand eras",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/brand-timeline-echo/BrandTimelineEcho.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/animated-group.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "co-brand-lockup",
+      "type": "registry:block",
+      "title": "Co Brand Lockup",
+      "description": "Co-brand lockup builder drag two marks get approved lockups",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/co-brand-lockup/CoBrandLockup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/dock.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-constellation",
+      "type": "registry:block",
+      "title": "Logo Constellation",
+      "description": "Logomark system grid: every size, tone and clearspace variant of one mark",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/logo-constellation/LogoConstellation.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-motion-library",
+      "type": "registry:block",
+      "title": "Logo Motion Library",
+      "description": "Logo motion rules replayable intro outro loading animation spec",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/logo-motion-library/LogoMotionLibrary.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-scroll-mark",
+      "type": "registry:block",
+      "title": "Logo Scroll Mark",
+      "description": "Scroll-drawn logomark SVG path draws itself as you scrub down the page",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/logo-scroll-mark/LogoScrollMark.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/scroll-progress.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "mission-etch",
+      "type": "registry:block",
+      "title": "Mission Etch",
+      "description": "Mission statement etched in glass text outline fills on scroll haptic ticks",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/mission-etch/MissionEtch.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "mood-portal",
+      "type": "registry:block",
+      "title": "Mood Portal",
+      "description": "Moodboard iris portal hover petals of imagery that open like an aperture",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/mood-portal/MoodPortal.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/tilt.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "palette-recipe",
+      "type": "registry:block",
+      "title": "Palette Recipe",
+      "description": "Color recipe cards mix ingredients with percentages get brand swatches",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/palette-recipe/PaletteRecipe.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/animated-number.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "signature-move",
+      "type": "registry:block",
+      "title": "Signature Move",
+      "description": "Signature move spec the one hover gesture your brand owns demoed",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/cursor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/signature-move/SignatureMove.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sound-of-brand",
+      "type": "registry:block",
+      "title": "Sound Of Brand",
+      "description": "Sonic identity card waveform motif notes brand voice taglines with shimmer",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/glow-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer-wave.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/sound-of-brand/SoundOfBrand.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "swatch-spectrum",
+      "type": "registry:block",
+      "title": "Swatch Spectrum",
+      "description": "Color system explorer: click to copy token, contrast check, tint ramps",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/swatch-spectrum/SwatchSpectrum.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tone-ribbon",
+      "type": "registry:block",
+      "title": "Tone Ribbon",
+      "description": "Voice ticker ribbon infinite slider of sayings in brand tone",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "react-use-measure",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/infinite-slider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-shimmer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/tone-ribbon/ToneRibbon.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "typo-ramp-brand",
+      "type": "registry:block",
+      "title": "Typo Ramp Brand",
+      "description": "Type specimen ramp display scale ladder from micro to mega with tracking",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/typo-ramp-brand/TypoRampBrand.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "value-orbit",
+      "type": "registry:block",
+      "title": "Value Orbit",
+      "description": "Core values orbit chips orbit the mark in gravity wells",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/spinning-text.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/value-orbit/ValueOrbit.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "voice-magnet",
+      "type": "registry:block",
+      "title": "Voice Magnet",
+      "description": "Tone-of-voice dial: pick we-say / we-dont-say pairs with magnetic flip cards",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/magnetic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/voice-magnet/VoiceMagnet.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "wordmark-lab",
+      "type": "registry:block",
+      "title": "Wordmark Lab",
+      "description": "Variable wordmark playground: weight, slant, tracking, case \u2014 live brand type explorer",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/text-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/wordmark-lab/WordmarkLab.tsx",
           "type": "registry:component"
         }
       ]

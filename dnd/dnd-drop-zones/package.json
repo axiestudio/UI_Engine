@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-drop-zones.es.js",
       "require": "./dist/dnd-drop-zones.cjs.js"
     },

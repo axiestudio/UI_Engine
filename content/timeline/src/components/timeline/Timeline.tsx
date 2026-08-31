@@ -56,7 +56,7 @@ export function Timeline({ eyebrow = "History", title = "Our story", subtitle, i
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="mb-12 max-w-2xl">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
               {subtitle && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
             </header>
           </InView>
@@ -107,15 +107,15 @@ function MilestoneBody({ m, right }: { m: TimelineMilestone; right?: boolean }) 
   return (
     <div className={cn("flex flex-col gap-3 sm:flex-row-reverse sm:items-start", right && "sm:flex-row")}>
       <div className="min-w-0 flex-1 space-y-1.5">
-        <p className="font-mono text-[11px] font-black uppercase tracking-[0.2em] text-muted-foreground">{m.time}</p>
-        <h3 className="font-display text-lg font-extrabold leading-tight tracking-tight">
+        <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{m.time}</p>
+        <h3 className="font-display text-lg font-bold leading-tight tracking-tight">
           {m.title}
-          {m.now && <span className="ml-2 inline-flex items-center rounded-full bg-foreground px-2 py-0.5 align-middle font-mono text-[9px] font-black tracking-widest text-background">NOW</span>}
+          {m.now && <span className="ml-2 inline-flex items-center rounded-full bg-foreground px-2 py-0.5 align-middle font-mono text-[9px] font-bold tracking-widest text-background">NOW</span>}
         </h3>
         {m.description && <p className="text-sm font-medium leading-relaxed text-muted-foreground">{m.description}</p>}
       </div>
       {m.image && (
-        <div className="aspect-[16/10] w-full overflow-hidden rounded-2xl sm:w-[180px] sm:shrink-0 lg:w-[210px]">
+        <div className="aspect-[16/10] w-full overflow-hidden rounded-xl sm:w-[180px] sm:shrink-0 lg:w-[210px]">
           <img src={m.image} alt={m.imageAlt ?? ""} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]" />
         </div>
       )}

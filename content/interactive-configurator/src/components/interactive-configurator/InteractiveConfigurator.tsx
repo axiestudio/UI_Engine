@@ -30,12 +30,12 @@ export function InteractiveConfigurator({ eyebrow = "CONFIGURE", title = "Make i
     }
     return t
   }, [basePrice, groups, selected])
-  const previewColor = groups[0]?.options.find((o) => o.id === selected[groups[0].id])?.swatch ?? "hsl(var(--site-accent))"
+  const previewColor = groups[0]?.options.find((o) => o.id === selected[groups[0].id])?.swatch ?? "hsl(var(--primary))"
 
   const toggle = (gid: string, oid: string) => setSelected((s) => ({ ...s, [gid]: s[gid] === oid ? s[gid] : oid }))
 
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
       </InView>
@@ -44,12 +44,12 @@ export function InteractiveConfigurator({ eyebrow = "CONFIGURE", title = "Make i
           <div className="sticky top-8">
             <motion.div animate={{ backgroundColor: previewColor }} className="aspect-square overflow-hidden rounded-[28px] border shadow-2xl" transition={{ duration: 0.5 }}>
               <div className="flex h-full items-center justify-center bg-gradient-to-br from-black/5 to-transparent">
-                <span className="font-display text-7xl font-black text-white/90 drop-shadow-lg">◓</span>
+                <span className="font-display text-7xl font-bold text-white/90 drop-shadow-lg">◓</span>
               </div>
             </motion.div>
-            <div className="mt-4 rounded-2xl border p-5">
+            <div className="mt-4 rounded-xl border p-5">
               <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Total</p>
-              <p className="font-display text-4xl font-black">{currency}{total.toFixed(0)}</p>
+              <p className="font-display text-4xl font-bold">{currency}{total.toFixed(0)}</p>
             </div>
           </div>
         </InView>

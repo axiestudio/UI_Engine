@@ -20,8 +20,8 @@ export function InteractiveHoverSwap({ eyebrow = "INDEX", rows, className }: Int
   const [active, setActive] = React.useState(0)
   const a = rows[active]
   return (
-    <SectionShell width={1280} grain rule="bottom" className={className}>
-      <div className="relative overflow-hidden rounded-2xl border">
+    <SectionShell width={1280} rule="bottom" className={className}>
+      <div className="relative overflow-hidden rounded-xl border">
         {/* backdrop swaps */}
         {rows.map((r, i) => (
           <motion.img key={r.id} src={r.src} alt=""
@@ -37,7 +37,7 @@ export function InteractiveHoverSwap({ eyebrow = "INDEX", rows, className }: Int
                 onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)}
                 className="group flex w-full items-center gap-4 border-t border-foreground/10 px-6 py-5 text-left">
                 <span className="font-mono text-[10px] font-bold text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className={cn("flex-1 font-display text-3xl font-black tracking-[-0.02em] transition-colors sm:text-5xl", i === active ? "text-foreground" : "text-muted-foreground")}>{r.title}</h3>
+                <h3 className={cn("flex-1 font-display text-3xl font-bold tracking-[-0.02em] transition-colors sm:text-5xl", i === active ? "text-foreground" : "text-muted-foreground")}>{r.title}</h3>
                 <span className={cn("shrink-0 font-mono text-[11px] font-bold uppercase tracking-widest transition-opacity", i === active ? "opacity-100" : "opacity-0")}>{r.body ?? "View"}</span>
               </button>
             ))}

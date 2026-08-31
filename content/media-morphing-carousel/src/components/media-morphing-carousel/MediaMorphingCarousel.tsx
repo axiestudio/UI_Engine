@@ -26,12 +26,12 @@ export function MediaMorphingCarousel({ eyebrow = "MORPH", title = "One frame me
   }, [frames.length, interval])
   const active = frames[idx]
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.98 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="relative mt-10 overflow-hidden rounded-2xl border bg-foreground">
+        <div className="relative mt-10 overflow-hidden rounded-xl border bg-foreground">
           <div className="relative aspect-[21/9]">
             {frames.map((f, i) => (
               <motion.img

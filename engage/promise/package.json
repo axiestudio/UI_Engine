@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/promise.es.js",
       "require": "./dist/promise.cjs.js"
     },

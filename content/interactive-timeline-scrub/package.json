@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-timeline-scrub.es.js",
       "require": "./dist/interactive-timeline-scrub.cjs.js"
     },

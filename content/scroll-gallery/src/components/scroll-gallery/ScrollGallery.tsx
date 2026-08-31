@@ -17,9 +17,9 @@ export type ScrollGalleryProps = {
 }
 
 export function ScrollGallery({ eyebrow = "PARALLAX", title = "A gallery that moves.", frames = [
-  { src: "/frames/frame_0008.webp", alt: "1" }, { src: "/frames/frame_0020.webp", alt: "2" },
-  { src: "/frames/frame_0032.webp", alt: "3" }, { src: "/frames/frame_0044.webp", alt: "4" },
-  { src: "/frames/frame_0056.webp", alt: "5" }, { src: "/frames/frame_0068.webp", alt: "6" },
+  { src: "/showcase/content/content-01-office.webp", alt: "1" }, { src: "/showcase/content/content-02-team.webp", alt: "2" },
+  { src: "/showcase/content/content-03-product.webp", alt: "3" }, { src: "/showcase/content/content-04-architecture.webp", alt: "4" },
+  { src: "/showcase/content/content-05-workshop.webp", alt: "5" }, { src: "/showcase/content/content-06-nature.webp", alt: "6" },
 ], tone = "paper", className }: ScrollGalleryProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
@@ -30,7 +30,7 @@ export function ScrollGallery({ eyebrow = "PARALLAX", title = "A gallery that mo
   const cols = [frames.slice(0, 2), frames.slice(2, 4), frames.slice(4, 6)]
   const ys = [y1, y2, y3]
   return (
-    <SectionShell tone={tone} width={1280} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>

@@ -101,7 +101,7 @@ export function Compare({
               </Badge>
             )}
             {title && (
-              <h2 className={cn("font-display text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl", ink ? "text-background" : "text-foreground")}>
+              <h2 className={cn("font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl", ink ? "text-background" : "text-foreground")}>
                 {title}
               </h2>
             )}
@@ -143,7 +143,7 @@ export function Compare({
                           />
                         )}
                         <div className="flex flex-col items-center gap-1.5">
-                          <span className={cn("font-display text-base font-extrabold tracking-tight", ink ? "text-background" : "text-foreground")}>
+                          <span className={cn("font-display text-base font-bold tracking-tight", ink ? "text-background" : "text-foreground")}>
                             {p.name}
                           </span>
                           {p.highlight && (

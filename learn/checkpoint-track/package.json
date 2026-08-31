@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/checkpoint-track.es.js",
       "require": "./dist/checkpoint-track.cjs.js"
     },

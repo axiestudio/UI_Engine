@@ -69,10 +69,10 @@ function StatTile({ item, tone, separators, index }: { item: StatItem; tone: "pa
     >
       {separators && <BorderTrail size={40} className="absolute inset-x-0 top-0 h-px" style={{ background: "transparent", backgroundColor: "transparent" }} />}
       <Ordinal n={index + 1} total={undefined} className={cn("absolute right-4 top-4", ink ? "text-background/35" : "text-muted-foreground/50")} />
-      <p className={cn("font-display text-[40px] font-black leading-none tracking-[-0.04em] tabular-nums sm:text-[52px]", ink ? "text-background" : "text-foreground")}>
+      <p className={cn("font-display text-[40px] font-bold leading-none tracking-[-0.04em] tabular-nums sm:text-[52px]", ink ? "text-background" : "text-foreground")}>
         {item.prefix}
         {typeof item.value === "number" ? <CountUp value={item.value} decimals={item.decimals ?? 0} /> : item.value}
-        {item.suffix && <span className={cn("text-[22px] font-extrabold sm:text-[26px]", ink ? "text-background/70" : "text-muted-foreground")}>{item.suffix}</span>}
+        {item.suffix && <span className={cn("text-[22px] font-bold sm:text-[26px]", ink ? "text-background/70" : "text-muted-foreground")}>{item.suffix}</span>}
       </p>
       <p className={cn("mt-3 flex items-center gap-1.5 font-display text-sm font-bold tracking-tight", ink ? "text-background/90" : "text-foreground")}>
         {Icon && <Icon className={cn("h-4 w-4", ink ? "text-background/60" : "text-muted-foreground")} />}
@@ -100,7 +100,7 @@ export function Stats({
   const sep = separators ?? tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} rails grain padding="roomy" className={className} id={undefined}>
+    <SectionShell tone={tone} width={1120} rails padding="roomy" className={className} id={undefined}>
       {(eyebrow || title || subtitle) && (
         <InView variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
           <SectionHead

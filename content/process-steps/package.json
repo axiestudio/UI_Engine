@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/process-steps.es.js",
       "require": "./dist/process-steps.cjs.js"
     },

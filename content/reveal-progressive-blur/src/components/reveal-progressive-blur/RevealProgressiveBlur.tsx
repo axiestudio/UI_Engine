@@ -36,7 +36,7 @@ export function RevealProgressiveBlur({
 }: RevealProgressiveBlurProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule={ink ? "top" : "none"} className={className}>
+    <SectionShell tone={tone} width={920} rule={ink ? "top" : "none"} className={className}>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
         <div className="relative">
           <div className="relative overflow-hidden">
@@ -44,7 +44,7 @@ export function RevealProgressiveBlur({
               <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
               <div className="mt-10 grid gap-6 sm:grid-cols-2">
                 {statements.map((s) => (
-                  <div key={s.id} className={cn("rounded-2xl border p-6", ink ? "border-background/15" : "border-border")}>
+                  <div key={s.id} className={cn("rounded-xl border p-6", ink ? "border-background/15" : "border-border")}>
                     <h3 className="font-display text-lg font-bold">{s.heading}</h3>
                     {s.body && <p className={cn("mt-2 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{s.body}</p>}
                   </div>

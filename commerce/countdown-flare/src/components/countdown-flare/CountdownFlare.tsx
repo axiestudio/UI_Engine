@@ -52,7 +52,7 @@ export function CountdownFlare({ to, title = "Launch countdown", lead = "Offer b
   const units: [string, string][] = d > 0 ? [["days", pad(d)], ["hrs", pad(h)], ["min", pad(m)], ["sec", pad(s)]] : [["hours", pad(h)], ["minutes", pad(m)], ["seconds", pad(s)]]
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--flare-bg))] text-white", compact ? "py-10" : "py-20 sm:py-24", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-flare-bg text-white", compact ? "py-10" : "py-20 sm:py-24", className)}>
       {/* horizon */}
       <motion.span aria-hidden animate={fired && !reduce ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0.35 }} transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }} className="absolute inset-x-0 bottom-0 block h-40 bg-gradient-to-t from-[hsl(var(--flare-hot)/0.5)] via-[hsl(var(--flare-hot)/0.12)] to-transparent" />
       <AnimatePresence>
@@ -62,7 +62,7 @@ export function CountdownFlare({ to, title = "Launch countdown", lead = "Offer b
       </AnimatePresence>
 
       <div className="relative mx-auto w-full max-w-[900px] px-6 text-center">
-        <MonoLabel className={cn(fired ? "text-[hsl(var(--flare-hot))]" : "text-white/45")}>{fired ? firedLabel : lead}</MonoLabel>
+        <MonoLabel className={cn(fired ? "text-flare-hot" : "text-white/45")}>{fired ? firedLabel : lead}</MonoLabel>
         {!fired && (
           <>
             {title && <p className="mt-2 font-display text-lg font-semibold tracking-[-0.02em] text-white/85 sm:text-xl">{title}</p>}
@@ -75,7 +75,7 @@ export function CountdownFlare({ to, title = "Launch countdown", lead = "Offer b
         <AnimatePresence>
           {fired && (
             <motion.div initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="py-10">
-              <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[hsl(var(--flare-hot))] shadow-[0_0_40px_hsl(var(--flare-hot)/0.6)]"><Timer className="size-7 text-black" /></div>
+              <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-flare-hot shadow-[0_0_40px_hsl(var(--flare-hot)/0.6)]"><Timer className="size-7 text-black" /></div>
               {title && <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">{title}</h2>}
               <div className="mt-4">{children ?? <p className="text-sm font-medium text-white/60">The launch has cleared the tower — this slot is yours.</p>}</div>
             </motion.div>
@@ -89,8 +89,8 @@ export function CountdownFlare({ to, title = "Launch countdown", lead = "Offer b
 function Cell({ n, label, compact }: { n: string; label: string; compact?: boolean }) {
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="relative flex items-center justify-center overflow-hidden rounded-md border border-border bg-[hsl(var(--flare-panel))] shadow-sm">
-        <span key={n} className={cn("relative block font-display font-semibold tabular-nums text-[hsl(var(--flare-led))]", compact ? "px-3 py-2 text-[30px]" : "px-4 py-3 text-[40px] sm:px-6 sm:text-[64px]")} style={{ textShadow: "0 0 22px hsl(var(--flare-hot)/0.5)" }}>
+      <div className="relative flex items-center justify-center overflow-hidden rounded-md border border-border bg-flare-panel shadow-sm">
+        <span key={n} className={cn("relative block font-display font-semibold tabular-nums text-flare-led", compact ? "px-3 py-2 text-[30px]" : "px-4 py-3 text-[40px] sm:px-6 sm:text-[64px]")} style={{ textShadow: "0 0 22px hsl(var(--flare-hot)/0.5)" }}>
           {n}
           <span className="font-mono text-[9px] align-top opacity-50">{"\u00A0"}</span>
         </span>

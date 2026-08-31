@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/review-moment.es.js",
       "require": "./dist/review-moment.cjs.js"
     },

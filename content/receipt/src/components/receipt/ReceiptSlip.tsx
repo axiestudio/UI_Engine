@@ -100,7 +100,7 @@ export function ReceiptSlip({
               {/* header */}
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-display text-base font-extrabold tracking-[-0.01em]">{brand}</p>
+                  <p className="font-display text-base font-bold tracking-[-0.01em]">{brand}</p>
                   <p className="mt-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{title}</p>
                 </div>
                 <p className="pt-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{date}</p>
@@ -139,7 +139,7 @@ export function ReceiptSlip({
                 )}
                 <div className={cn("mt-2 flex items-baseline justify-between border-t-2 pt-3", ink ? "border-foreground/30" : "border-foreground/70")}>
                   <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]">Total</span>
-                  <span className="font-display text-xl font-black tabular-nums tracking-[-0.02em]">{sum}</span>
+                  <span className="font-display text-xl font-bold tabular-nums tracking-[-0.02em]">{sum}</span>
                 </div>
               </div>
 
@@ -176,7 +176,7 @@ export function ReceiptSlip({
             {/* the stamp */}
             <span
               aria-hidden
-              className="pointer-events-none absolute right-5 top-16 inline-flex -rotate-[8deg] items-center justify-center rounded-md border-[2.5px] border-destructive/70 px-4 py-1.5 font-mono text-sm font-black uppercase tracking-[0.3em] text-destructive/80"
+              className="pointer-events-none absolute right-5 top-16 inline-flex -rotate-[8deg] items-center justify-center rounded-md border-[2.5px] border-destructive/70 px-4 py-1.5 font-mono text-sm font-bold uppercase tracking-[0.3em] text-destructive/80"
             >
               {stamp}
               <span className="absolute inset-1 rounded-sm border border-destructive/40" />

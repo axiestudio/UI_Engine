@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/match-pair-wire.es.js",
       "require": "./dist/match-pair-wire.cjs.js"
     },

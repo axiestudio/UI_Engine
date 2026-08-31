@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/cta.es.js",
       "require": "./dist/cta.cjs.js"
     },

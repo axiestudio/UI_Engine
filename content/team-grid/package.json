@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/team-grid.es.js",
       "require": "./dist/team-grid.cjs.js"
     },

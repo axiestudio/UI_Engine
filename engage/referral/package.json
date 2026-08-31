@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/referral.es.js",
       "require": "./dist/referral.cjs.js"
     },

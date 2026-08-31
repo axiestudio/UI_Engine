@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-word-roll.es.js",
       "require": "./dist/hero-word-roll.cjs.js"
     },

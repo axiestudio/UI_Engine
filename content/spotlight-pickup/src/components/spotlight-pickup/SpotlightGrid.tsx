@@ -44,7 +44,7 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
       <div className="mx-auto w-full max-w-[1120px]">
         <div className="mb-9">
           <MonoLabel className="text-white/45">{eyebrow}</MonoLabel>
-          {title && <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-[40px]">{title}</h2>}
+          {title && <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-[40px]">{title}</h2>}
         </div>
         <div
           ref={hostRef}
@@ -62,12 +62,12 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
                     <img src={it.img} alt={it.label} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
                   ) : (
                     <div className="flex h-full w-full items-end p-4" style={{ background: "repeating-linear-gradient(135deg, hsl(var(--stage-cell)), hsl(var(--stage-cell)) 12px, hsl(var(--stage)) 12px, hsl(var(--stage)) 24px)" }}>
-                      <span className="font-display text-2xl font-black text-white/25">{it.label.slice(0, 18)}</span>
+                      <span className="font-display text-2xl font-bold text-white/25">{it.label.slice(0, 18)}</span>
                     </div>
                   )}
                 </div>
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4 pt-10">
-                  <p className="font-display text-[15px] font-extrabold tracking-tight">{it.label}</p>
+                  <p className="font-display text-[15px] font-bold tracking-tight">{it.label}</p>
                   {it.meta && <p className="mt-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">{it.meta}</p>}
                 </div>
                 <span className="sr-only">{it.label}{it.meta ? ` — ${it.meta}` : ""}</span>

@@ -21,7 +21,7 @@ export function InteractiveAccordionMedia({ eyebrow = "KNOW", title = "Pick a ch
   const [openId, setOpenId] = React.useState(rows[0]?.id ?? "")
   const active = rows.find((r) => r.id === openId) ?? rows[0]
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
       </InView>
@@ -34,7 +34,7 @@ export function InteractiveAccordionMedia({ eyebrow = "KNOW", title = "Pick a ch
                 <div className="flex items-center justify-between gap-4">
                   <span className="flex items-center gap-3">
                     <span className="font-mono text-[10px] font-bold text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
-                    <span className={cn("font-display text-xl font-black sm:text-2xl", open ? "text-foreground" : "text-muted-foreground")}>{r.title}</span>
+                    <span className={cn("font-display text-xl font-bold sm:text-2xl", open ? "text-foreground" : "text-muted-foreground")}>{r.title}</span>
                   </span>
                   <span className={cn("font-mono text-xl transition-transform", open ? "rotate-45 text-foreground" : "text-muted-foreground")}>+</span>
                 </div>
@@ -43,7 +43,7 @@ export function InteractiveAccordionMedia({ eyebrow = "KNOW", title = "Pick a ch
             )
           })}
         </div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-muted">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl border bg-muted">
           {rows.map((r) => (
             <motion.img key={r.id} src={r.src} alt={r.title}
               className="absolute inset-0 h-full w-full object-cover"

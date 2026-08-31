@@ -7,10 +7,14 @@
   "module": "dist/tone-ribbon.es.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/tone-ribbon.es.js",
       "require": "./dist/tone-ribbon.cjs.js"
     },
@@ -25,7 +29,9 @@
       "text-shimmer"
     ],
     "watermelon-ui": [],
-    "shadcn-ui": []
+    "shadcn-ui": [
+      "https://ui.shadcn.com/r/styles/new-york-v4/badge.json"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",
@@ -54,5 +60,6 @@
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
     "vite-plugin-dts": "^4.5.4"
-  }
+  },
+  "license": "MIT"
 }

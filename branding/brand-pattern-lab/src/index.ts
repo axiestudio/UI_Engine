@@ -1,3 +1,5 @@
 import "./index.css"
 export { BrandPatternLab, type BrandPatternLabProps } from "./components/brand-pattern-lab/BrandPatternLab"
 export { Grain, Dots, CornerTicks, Sheen, MonoLabel, SectionShell } from "./components/primitives/handcraft"
+export { Badge, badgeVariants } from "./components/ui/badge"
+export { Button, buttonVariants } from "./components/ui/button"

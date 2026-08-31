@@ -24,8 +24,8 @@ export function ImageBeforeAfter({
   eyebrow = "TRANSFORM",
   title = "See the difference.",
   subtitle = "Drag the handle to compare before and after — the slider rides between two frames.",
-  before = { src: "/frames/frame_0032.webp", alt: "Before" },
-  after = { src: "/frames/frame_0044.webp", alt: "After" },
+  before = { src: "/showcase/content/content-01-office.webp", alt: "Before" },
+  after = { src: "/showcase/content/content-02-team.webp", alt: "After" },
   labelBefore = "BEFORE",
   labelAfter = "AFTER",
   tone = "paper",
@@ -33,12 +33,12 @@ export function ImageBeforeAfter({
 }: ImageBeforeAfterProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.97 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="mt-10 overflow-hidden rounded-2xl border bg-muted">
+        <div className="mt-10 overflow-hidden rounded-xl border bg-muted">
           <ImageComparison enableHover className="relative aspect-[16/10] w-full">
             <ImageComparisonImage src={before.src} alt={before.alt ?? "Before"} position="right" />
             <ImageComparisonImage src={after.src} alt={after.alt ?? "After"} position="left" />

@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/drawer.es.js",
       "require": "./dist/drawer.cjs.js"
     },

@@ -18,7 +18,7 @@ export type TypeInfinityMarqueeProps = {
 export function TypeInfinityMarquee({ eyebrow = "STREAM", title = "On and on.", phrases = ["design", "motion", "tokens", "accessibility", "shipping", "sections"], reverse = false, className }: TypeInfinityMarqueeProps) {
   const key = reverse ? "infRev" : "infFwd"
   return (
-    <SectionShell width={1280} grain rule="bottom" className={className}>
+    <SectionShell width={1280} rule="bottom" className={className}>
       <style>{`@keyframes ${key} { from { transform: translateX(0) } to { transform: translateX(-50%) } }`}</style>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
@@ -27,7 +27,7 @@ export function TypeInfinityMarquee({ eyebrow = "STREAM", title = "On and on.", 
         <div className="mt-10 overflow-hidden border-y [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
           <div className="flex w-max items-center gap-8 py-6 hover:[animation-play-state:paused]" style={{ animation: `${key} 28s linear infinite` }}>
             {[...phrases, ...phrases].map((p, i) => (
-              <span key={i} className="flex items-center gap-8 font-display text-5xl font-black uppercase tracking-tight sm:text-7xl">
+              <span key={i} className="flex items-center gap-8 font-display text-5xl font-bold uppercase tracking-tight sm:text-7xl">
                 {p}
                 <span className="text-2xl text-muted-foreground/40">·</span>
               </span>

@@ -19,7 +19,7 @@ export type MediaTiltStackProps = {
 
 export function MediaTiltStack({ eyebrow = "TILT", title = "Cards you can nudge.", cards, className }: MediaTiltStackProps) {
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
       </InView>
@@ -28,7 +28,7 @@ export function MediaTiltStack({ eyebrow = "TILT", title = "Cards you can nudge.
           <InView key={c.id} once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.06 }}>
             <div className="[perspective:1000px]">
               <Tilt rotationFactor={12} className="h-full">
-                <div className="flex h-full flex-col overflow-hidden rounded-2xl border bg-card">
+                <div className="flex h-full flex-col overflow-hidden rounded-xl border bg-card shadow-sm">
                   <div className="img-hover-wash mb-4 aspect-[16/10] overflow-hidden bg-muted">
                     {c.src ? <img src={c.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                   </div>

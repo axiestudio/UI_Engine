@@ -46,6 +46,12 @@ export function DndTaskBoard({ eyebrow = "LIFEBOARD", title = "Move work forward
   React.useEffect(() => { setState(tasks) }, [tasks])
   const [activeId, setActiveId] = React.useState<string | null>(null)
   const [announce, setAnnounce] = React.useState("")
+  const initialRef = React.useRef(tasks)
+  const handleReset = () => {
+    setState(initialRef.current)
+    onChange?.(initialRef.current)
+    setAnnounce("Board reset")
+  }
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -91,8 +97,6 @@ export function DndTaskBoard({ eyebrow = "LIFEBOARD", title = "Move work forward
     const activeIdv = String(active.id)
     const overId = String(over.id)
     setState((prev) => {
-  const initialRef = React.useRef(tasks)
-  const handleReset = () => { setState(tasks); onChange?.(tasks); setAnnounce("Board reset"); }
       const activeKind = findKind(activeIdv, prev)
       const overKind = findKind(overId, prev)
       if (!activeKind) return prev
@@ -189,9 +193,9 @@ function TaskCard({ task, overlay = false }: { task: TaskItem; overlay?: boolean
     >
       <GripVertical className="h-4 w-4 shrink-0 text-muted-foreground" />
       <p className="flex-1 text-sm font-semibold tracking-tight">{task.title}</p>
-      <button type="button" aria-label={`Delete ${task.title}`} className="text-muted-foreground transition-colors hover:text-destructive">
+      <Button variant="ghost" size="icon-sm" aria-label={`Delete ${task.title}`} className="text-muted-foreground hover:text-destructive hover:bg-destructive/10">
         <Trash2 className="h-4 w-4" />
-      </button>
+      </Button>
     </div>
   )
 }

@@ -16,13 +16,13 @@ export type ImageTriptychProps = {
 }
 
 export function ImageTriptych({ eyebrow = "TRIPTYCH", title = "Three frames.", frames = [
-  { src: "/frames/frame_0008.webp", alt: "A", caption: "01" },
-  { src: "/frames/frame_0032.webp", alt: "B", caption: "02" },
-  { src: "/frames/frame_0056.webp", alt: "C", caption: "03" },
+  { src: "/showcase/content/content-01-office.webp", alt: "A", caption: "01" },
+  { src: "/showcase/content/content-02-team.webp", alt: "B", caption: "02" },
+  { src: "/showcase/content/content-03-product.webp", alt: "C", caption: "03" },
 ], tone = "paper", className }: ImageTriptychProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>

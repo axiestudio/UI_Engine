@@ -19,16 +19,16 @@ export type VideoCalloutProps = {
   className?: string
 }
 
-export function VideoCallout({ eyebrow = "FILM", title = "One watch.", src = "/videos/hero.mp4", poster, duration = "02:14", caption = "WATCH — THE METHOD", tone = "paper", className }: VideoCalloutProps) {
+export function VideoCallout({ eyebrow = "FILM", title = "One watch.", src = "/showcase/content/video/editorial-drift.mp4", poster, duration = "02:14", caption = "WATCH — THE METHOD", tone = "paper", className }: VideoCalloutProps) {
   const ink = tone === "ink"
   const [playing, setPlaying] = React.useState(false)
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.97 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="relative mt-10 overflow-hidden rounded-2xl border bg-foreground">
+        <div className="relative mt-10 overflow-hidden rounded-xl border bg-foreground">
           <video className="aspect-video w-full object-cover" src={src} poster={poster} controls={playing} autoPlay={playing} playsInline muted loop />
           {!playing && (
             <button type="button" onClick={() => setPlaying(true)} className="absolute inset-0 flex items-center justify-center group" aria-label="Play video">

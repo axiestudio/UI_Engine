@@ -2,88 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── WEBSITE Brandkit ─────────────────────────────────────────────────────
-   Editorial marketing/landing surface. Uses the shared shadcn token set so
-   every preset re-themes with the engine; `--site*` tokens make the signature
-   moves (gradient headline, hover wash, split rail) deliberate per brand.
-─────────────────────────────────────────────────────────────────────────── */
+/* ─── Professional DND Design System ─────────────────────────────────────
+   Neutral, calm palette tuned for productivity surfaces. Tokens stay
+   compatible with shadcn theming so engine re-themes still work.
+   Drag states are subtle but unmistakable.
+────────────────────────────────────────────────────────────────────────── */
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 5% 9%;
+    --foreground: 240 8% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 240 5% 9%;
+    --card-foreground: 240 8% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 5% 9%;
-    --primary: 240 5% 9%;
+    --popover-foreground: 240 8% 10%;
+    --primary: 240 6% 14%;
     --primary-foreground: 0 0% 98%;
     --secondary: 240 5% 96%;
-    --secondary-foreground: 240 5% 9%;
+    --secondary-foreground: 240 6% 14%;
     --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-    --accent: 240 5% 96%;
-    --accent-foreground: 240 5% 9%;
-    --destructive: 0 84% 60%;
+    --muted-foreground: 240 4% 44%;
+    --accent: 240 5% 94%;
+    --accent-foreground: 240 6% 14%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 6% 90%;
     --input: 240 6% 90%;
-    --ring: 240 5% 9%;
-    --radius: 0.625rem;
+    --ring: 240 6% 14%;
+    --radius: 0.75rem;
 
-    --brand: 240 5% 9%;
+    --brand: 240 6% 14%;
     --brand-foreground: 0 0% 98%;
 
-    --site-accent: 42 72% 52%;
-    --site-accent-2: 262 72% 52%;
-    --site-accent-fg: 0 0% 98%;
-
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-    --font-display: "Space Grotesk", system-ui, sans-serif;
+    --font-display: "Inter", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
   }
 
   .dark {
-    --background: 240 6% 7%;
-    --foreground: 0 0% 96%;
-    --card: 240 6% 9%;
-    --card-foreground: 0 0% 96%;
-    --popover: 240 6% 9%;
-    --popover-foreground: 0 0% 96%;
-    --primary: 0 0% 96%;
-    --primary-foreground: 240 6% 7%;
-    --secondary: 240 5% 15%;
-    --secondary-foreground: 0 0% 96%;
-    --muted: 240 5% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 240 5% 15%;
-    --accent-foreground: 0 0% 96%;
+    --background: 240 8% 6%;
+    --foreground: 0 0% 97%;
+    --card: 240 6% 8%;
+    --card-foreground: 0 0% 97%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 0 0% 97%;
+    --primary: 0 0% 97%;
+    --primary-foreground: 240 8% 6%;
+    --secondary: 240 5% 14%;
+    --secondary-foreground: 0 0% 97%;
+    --muted: 240 5% 14%;
+    --muted-foreground: 240 5% 62%;
+    --accent: 240 5% 16%;
+    --accent-foreground: 0 0% 97%;
     --border: 240 5% 18%;
     --input: 240 5% 18%;
-    --ring: 0 0% 83%;
-    --brand: 0 0% 96%;
-    --brand-foreground: 240 6% 7%;
-
-    --site-accent: 42 72% 58%;
-    --site-accent-2: 262 72% 62%;
+    --ring: 0 0% 84%;
+    --brand: 0 0% 97%;
+    --brand-foreground: 240 8% 6%;
   }
 }
 
 @layer base {
   * { @apply border-border; }
   html { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
-  body { @apply bg-background text-foreground; font-family: var(--font-sans); }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; }
+  body { @apply bg-background text-foreground antialiased; font-family: var(--font-sans); }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; font-weight: 600; }
 }
 
-/* gradient headline / accent text helpers */
-.gradient-text {
-  background-image: linear-gradient(110deg, hsl(var(--site-accent)), hsl(var(--site-accent-2)));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* ─── Drag & Drop polish ──────────────────────────────────────────────── */
+.dnd-lift {
+  box-shadow: 0 10px 28px -10px hsl(var(--foreground) / 0.2), 0 4px 10px -4px hsl(var(--foreground) / 0.1);
+  outline: 1.5px solid hsl(var(--ring) / 0.9);
+  outline-offset: 0;
+  transform: rotate(0.6deg) scale(1.015);
+  z-index: 50;
+}
+.dnd-over {
+  outline: 1.5px dashed hsl(var(--ring) / 0.45);
+  outline-offset: 2px;
+  background: hsl(var(--accent) / 0.5);
 }
 
-/* hover image wash used by hover-image / image-text-split */
-.img-hover-wash { position: relative; overflow: hidden; }
-.img-hover-wash img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s; }
-.img-hover-wash:hover img { transform: scale(1.05); }
+/* Smooth sortable transitions */
+[data-sortable] { will-change: transform; }

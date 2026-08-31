@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-firewatch-text.es.js",
       "require": "./dist/hero-firewatch-text.cjs.js"
     },

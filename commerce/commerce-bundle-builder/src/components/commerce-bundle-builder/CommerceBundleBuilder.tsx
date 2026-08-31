@@ -18,7 +18,7 @@ export type CommerceBundleBuilderProps = {
   className?: string
 }
 
-export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Bundled by you.", parts, className }: CommerceBundleBuilderProps) {
+export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Build your bundle", parts, className }: CommerceBundleBuilderProps) {
   const [counts, setCounts] = React.useState<Record<string, number>>({})
   const total = React.useMemo(() => parts.reduce((t, p) => t + (counts[p.id] ?? 0) * p.price, 0), [parts, counts])
   const ordered = parts.filter((p) => (counts[p.id] ?? 0) > 0)

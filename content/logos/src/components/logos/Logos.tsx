@@ -34,7 +34,7 @@ function LogoItem({ logo, muted = true }: { logo: Logo; muted?: boolean }) {
   ) : logo.src ? (
     <img src={logo.src} alt={logo.name} loading="lazy" className="h-6 w-auto max-w-[130px] shrink-0 object-contain" />
   ) : (
-    <span className="font-display text-base font-extrabold tracking-tight">{logo.name}</span>
+    <span className="font-display text-base font-bold tracking-tight">{logo.name}</span>
   )
   const content = (
     <span className="flex items-center justify-center gap-2 text-foreground/70 transition-all duration-300 group-hover:text-foreground">{inner}</span>

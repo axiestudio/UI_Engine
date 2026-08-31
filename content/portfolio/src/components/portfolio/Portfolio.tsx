@@ -32,7 +32,7 @@ export function Portfolio({
   const ink = tone === "ink"
   const cols = columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
   return (
-    <SectionShell tone={tone} width={1280} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
       </InView>
@@ -40,7 +40,7 @@ export function Portfolio({
         {items.map((p, i) => (
           <InView key={p.id} once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.04 }}>
             <a href="#" className="group block" aria-label={p.title}>
-              <div className="img-hover-wash aspect-[4/3] rounded-2xl border bg-muted">
+              <div className="img-hover-wash aspect-[4/3] rounded-xl border bg-muted">
                 {p.image ? <img src={p.image} alt={p.title} className="h-full w-full object-cover" loading="lazy" /> : <div className="flex h-full items-center justify-center bg-gradient-to-br from-secondary to-muted" />}
               </div>
               <div className="mt-3 flex items-center justify-between">

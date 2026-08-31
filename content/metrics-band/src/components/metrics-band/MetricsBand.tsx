@@ -21,16 +21,16 @@ export type MetricsBandProps = {
 export function MetricsBand({ eyebrow = "METRICS", title = "The numbers.", metrics, tone = "paper", className }: MetricsBandProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <div className="flex items-end justify-between gap-4">
           <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
         </div>
       </InView>
-      <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border sm:grid-cols-4">
+      <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border sm:grid-cols-4">
         {metrics.map((m) => (
           <div key={m.id} className={cn("p-6", ink ? "bg-background/5" : "bg-card")}>
-            <dd className="font-display text-3xl font-black tabular-nums sm:text-4xl">
+            <dd className="font-display text-3xl font-bold tabular-nums sm:text-4xl">
               <AnimatedNumber value={m.value} decimals={m.decimals} />
               <span className="text-xl">{m.suffix}</span>
             </dd>

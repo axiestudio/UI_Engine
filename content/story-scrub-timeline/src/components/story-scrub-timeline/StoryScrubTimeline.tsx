@@ -24,7 +24,7 @@ export function StoryScrubTimeline({ eyebrow = "EPOCHS", epochs, className }: St
   const barScale = useTransform(scrollYProgress, [0, 1], [0, 1])
   const epoch = epochs[idx]
   return (
-    <SectionShell width={1120} grain rule="bottom" className={cn("relative", className)}>
+    <SectionShell width={1120} rule="bottom" className={cn("relative", className)}>
       <div ref={ref} style={{ height: runway }} className="relative">
         <div className="sticky top-8 ml-4 flex h-[72vh] flex-col justify-center">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
@@ -34,7 +34,7 @@ export function StoryScrubTimeline({ eyebrow = "EPOCHS", epochs, className }: St
             {epochs.map((e, i) => (
               <div key={e.id} className={cn("py-4 transition-opacity", i === idx ? "opacity-100" : "opacity-20")}>
                 <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{e.year}</p>
-                <h3 className="font-display text-2xl font-black sm:text-3xl">{e.title}</h3>
+                <h3 className="font-display text-2xl font-bold sm:text-3xl">{e.title}</h3>
                 {i === idx && e.body && <p className="mt-2 max-w-md text-sm font-medium leading-relaxed text-muted-foreground">{e.body}</p>}
               </div>
             ))}

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-stack-cards.es.js",
       "require": "./dist/scroll-stack-cards.cjs.js"
     },

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/misc-quote-rotator.es.js",
       "require": "./dist/misc-quote-rotator.cjs.js"
     },

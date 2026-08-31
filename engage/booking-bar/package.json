@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/booking-bar.es.js",
       "require": "./dist/booking-bar.cjs.js"
     },

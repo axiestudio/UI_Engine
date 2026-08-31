@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/parallax-tiles.es.js",
       "require": "./dist/parallax-tiles.cjs.js"
     },

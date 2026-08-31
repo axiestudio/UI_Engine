@@ -28,12 +28,12 @@ export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotat
   }, [frames.length, interval])
   const active = frames[idx]
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.97 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="relative mt-10 overflow-hidden rounded-2xl border bg-muted">
+        <div className="relative mt-10 overflow-hidden rounded-xl border bg-muted">
           <div className="relative aspect-[16/9]">
             <AnimatePresence mode="sync">
               <motion.img

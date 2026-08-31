@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-canvas-particles.es.js",
       "require": "./dist/hero-canvas-particles.cjs.js"
     },

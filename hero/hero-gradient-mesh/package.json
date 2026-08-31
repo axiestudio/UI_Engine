@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-gradient-mesh.es.js",
       "require": "./dist/hero-gradient-mesh.cjs.js"
     },

@@ -15,7 +15,7 @@ export type MediaPanoramaDragProps = {
   className?: string
 }
 
-export function MediaPanoramaDrag({ eyebrow = "PANORAMA", caption = "DRAG TO PAN", src = "/frames/frame_0068.webp", className }: MediaPanoramaDragProps) {
+export function MediaPanoramaDrag({ eyebrow = "PANORAMA", caption = "DRAG TO PAN", src = "/showcase/content/content-01-office.webp", className }: MediaPanoramaDragProps) {
   const railRef = React.useRef<HTMLDivElement>(null)
   const [dragX, setDragX] = React.useState(0)
   const dragging = React.useRef(false)
@@ -28,14 +28,14 @@ export function MediaPanoramaDrag({ eyebrow = "PANORAMA", caption = "DRAG TO PAN
     return Math.min(0, Math.max(vw - w, v))
   }
   return (
-    <SectionShell width={1280} grain rule="bottom" className={className}>
+    <SectionShell width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       </InView>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
         <div
           ref={railRef}
-          className="relative mt-10 h-[52vh] cursor-grab select-none overflow-hidden rounded-2xl border bg-foreground active:cursor-grabbing"
+          className="relative mt-10 h-[52vh] cursor-grab select-none overflow-hidden rounded-xl border bg-foreground active:cursor-grabbing"
           style={{ touchAction: "none" }}
           onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerLeave={onUp}
         >

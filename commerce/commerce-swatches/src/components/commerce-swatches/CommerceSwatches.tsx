@@ -19,7 +19,7 @@ export type CommerceSwatchesProps = {
   className?: string
 }
 
-export function CommerceSwatches({ eyebrow = "FINISH", name = "The Lamp, No. 2", basePrice = 240, swatches, className }: CommerceSwatchesProps) {
+export function CommerceSwatches({ eyebrow = "FINISH", name = "Color options", basePrice = 240, swatches, className }: CommerceSwatchesProps) {
   const [sel, setSel] = React.useState(0)
   const s = swatches[sel]
   const price = basePrice + (s?.price ?? 0)

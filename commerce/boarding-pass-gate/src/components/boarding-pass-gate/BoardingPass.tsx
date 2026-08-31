@@ -53,7 +53,7 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
         </div>
 
         <motion.div initial={reduce ? undefined : { y: 18, opacity: 0, rotate: -0.4 }} animate={{ y: 0, opacity: 1, rotate: reduce ? 0 : -0.4 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative select-none">
-          <div className="relative flex overflow-hidden rounded-lg border-2 border-[hsl(var(--pass-ink))] bg-[hsl(var(--pass-paper))] text-[hsl(var(--pass-ink))] shadow-sm border">
+          <div className="relative flex overflow-hidden rounded-lg border-2 border-pass-ink bg-pass-paper text-pass-ink shadow-sm border">
             <Grain opacity={0.045} />
             {/* main stub */}
             <div className="relative min-w-0 flex-1 px-6 py-6 sm:px-8">
@@ -62,7 +62,7 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
                   <Ticket className="size-3.5 -rotate-45" strokeWidth={2.6} /> {pass.from} → {pass.to}
                 </span>
                 {pass.stamp && (
-                  <span className="-rotate-[8deg] border-2 border-[hsl(var(--pass-accent))] px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-[hsl(var(--pass-accent))]">{pass.stamp}</span>
+                  <span className="-rotate-[8deg] border-2 border-pass-accent px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-pass-accent">{pass.stamp}</span>
                 )}
               </div>
               <p className="mt-5 font-display text-[30px] font-semibold leading-none tracking-[-0.02em] sm:text-[38px]">{pass.holder}</p>
@@ -72,11 +72,11 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
                 {pass.seat && <Field label="Seat" value={pass.seat} />}
                 {pass.validUntil && <Field label="Valid thru" value={pass.validUntil} />}
               </dl>
-              <CornerTicks size={10} offset={6} className="text-[hsl(var(--pass-ink))]/50" corners={["tl", "bl"]} />
+              <CornerTicks size={10} offset={6} className="text-pass-ink/50" corners={["tl", "bl"]} />
             </div>
 
             {/* perforation */}
-            <div aria-hidden className="relative w-0 border-l-2 border-dashed border-[hsl(var(--pass-ink))]/50">
+            <div aria-hidden className="relative w-0 border-l-2 border-dashed border-pass-ink/50">
               <span className="absolute -top-2.5 left-1/2 size-5 -translate-x-1/2 rounded-full bg-background" />
               <span className="absolute -bottom-2.5 left-1/2 size-5 -translate-x-1/2 rounded-full bg-background" />
             </div>
@@ -90,7 +90,7 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
                     initial={{ top: 0 }}
                     animate={{ top: ["-12%", "108%"] }}
                     transition={{ duration: 1.4, times: [0, 1], repeat: Infinity, repeatDelay: 0.2, ease: "easeInOut" }}
-                    className="absolute inset-x-0 h-3 bg-[hsl(var(--pass-accent))]/25 shadow-[0_0_12px_hsl(var(--pass-accent)/0.5)]"
+                    className="absolute inset-x-0 h-3 bg-pass-accent/25 shadow-[0_0_12px_hsl(var(--pass-accent)/0.5)]"
                   />
                 </div>
               ) : (
@@ -103,7 +103,7 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
                 <a
                   href={cta.href ?? "#"}
                   onClick={cta.onClick}
-                  className="mt-1 w-full rounded-sm bg-[hsl(var(--pass-ink))] px-3 py-2 text-center font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--pass-paper))] transition-transform hover:-translate-y-px active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--pass-accent))]"
+                  className="mt-1 w-full rounded-sm bg-pass-ink px-3 py-2 text-center font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-pass-paper transition-transform hover:-translate-y-px active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--pass-accent))]"
                 >
                   {cta.label}
                 </a>

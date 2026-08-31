@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/lightbox-gallery.es.js",
       "require": "./dist/lightbox-gallery.cjs.js"
     },

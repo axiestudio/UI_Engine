@@ -39,15 +39,15 @@ export type MediaVideoFollowProps = {
 export function MediaVideoFollow({ eyebrow = "PLAY", title = "Hover to preview.", posts, tone = "paper", className }: MediaVideoFollowProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1280} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
       <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {posts.map((p, i) => (
           <InView key={p.id} once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}>
-            <div className="group relative overflow-hidden rounded-2xl border bg-foreground">
-              <HoverVideo src={p.src ?? "/videos/hero.mp4"} />
+            <div className="group relative overflow-hidden rounded-xl border bg-foreground">
+              <HoverVideo src={p.src ?? "/showcase/content/video/editorial-drift.mp4"} />
               <div className="flex items-center justify-between p-4">
                 <p className="font-display text-sm font-bold">{p.title ?? `Piece ${i + 1}`}</p>
                 {p.kind && <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{p.kind}</span>}

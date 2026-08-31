@@ -17,11 +17,11 @@ export type TextAndGalleryProps = {
 }
 
 export function TextAndGallery({ eyebrow = "FIELD NOTES", title = "The process, in frames.", body = "Words above, images below — a running record of how a section comes together.", frames = [
-  { src: "/frames/frame_0008.webp", alt: "1" }, { src: "/frames/frame_0020.webp", alt: "2" }, { src: "/frames/frame_0032.webp", alt: "3" }
+  { src: "/showcase/content/content-01-office.webp", alt: "1" }, { src: "/showcase/content/content-02-team.webp", alt: "2" }, { src: "/showcase/content/content-03-product.webp", alt: "3" }
 ], tone = "paper", className }: TextAndGalleryProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <div className="max-w-2xl">
           <SectionHead eyebrow={eyebrow} title={title} tone={tone} />

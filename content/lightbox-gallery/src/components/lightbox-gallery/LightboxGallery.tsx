@@ -23,7 +23,7 @@ export function LightboxGallery({ eyebrow = "LIGHTBOX", title = "Look closer.", 
   const [activeId, setActiveId] = React.useState<string | null>(frames[0]?.id ?? null)
   const active = frames.find((f) => f.id === activeId) ?? frames[0]
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
@@ -37,7 +37,7 @@ export function LightboxGallery({ eyebrow = "LIGHTBOX", title = "Look closer.", 
             </button>
           ))}
         </div>
-        <div className="mt-4 overflow-hidden rounded-2xl border bg-muted">
+        <div className="mt-4 overflow-hidden rounded-xl border bg-muted">
           {active?.src ? <img src={active.src} alt={active.alt ?? ""} className="aspect-[16/9] w-full object-cover" /> : <div className="aspect-[16/9] w-full bg-gradient-to-br from-secondary to-muted" />}
         </div>
       </InView>

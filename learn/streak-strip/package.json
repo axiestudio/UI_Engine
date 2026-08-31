@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/streak-strip.es.js",
       "require": "./dist/streak-strip.cjs.js"
     },

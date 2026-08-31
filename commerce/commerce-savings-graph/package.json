@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/commerce-savings-graph.es.js",
       "require": "./dist/commerce-savings-graph.cjs.js"
     },

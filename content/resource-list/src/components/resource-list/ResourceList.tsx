@@ -24,7 +24,7 @@ export function ResourceList({ eyebrow = "RESOURCES", title = "Downloads & docs.
   const [active, setActive] = React.useState("All")
   const shown = resources.filter((r) => active === "All" || (r.type ?? "Other") === active)
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>

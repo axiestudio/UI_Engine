@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-pinned-panels.es.js",
       "require": "./dist/scroll-pinned-panels.cjs.js"
     },

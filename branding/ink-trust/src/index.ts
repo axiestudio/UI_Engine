@@ -1,3 +1,6 @@
 import "./index.css"
 export { InkTrust, type InkTrustProps } from "./components/ink-trust/InkTrust"
 export { Grain, Dots, CornerTicks, Sheen, MonoLabel, SectionShell } from "./components/primitives/handcraft"
+export { Badge, badgeVariants } from "./components/ui/badge"
+export { Button, buttonVariants } from "./components/ui/button"
+export { Separator } from "./components/ui/separator"

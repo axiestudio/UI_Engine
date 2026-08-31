@@ -40,7 +40,7 @@ export function Audio({
           {(eyebrow || title) && (
             <header className="mb-6">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              {title && <h2 className="mt-1 font-display text-2xl font-extrabold tracking-tight sm:text-3xl">{title}</h2>}
+              {title && <h2 className="mt-1 font-display text-2xl font-bold tracking-tight sm:text-3xl">{title}</h2>}
               {subtitle && <p className="mt-2 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
             </header>
           )}

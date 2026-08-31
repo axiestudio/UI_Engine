@@ -38,7 +38,7 @@ export function RevealInViewWipe({
   const ink = tone === "ink"
   const cols = columns === 1 ? "sm:grid-cols-1" : columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
         <div className={cn(ink && "text-background")}>
           <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
@@ -63,7 +63,7 @@ export function RevealInViewWipe({
 function WipeCard({ title, body, ink }: { title: string; body?: React.ReactNode; ink: boolean }) {
   return (
     <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-      <div className={cn("relative h-full overflow-hidden rounded-2xl border p-6", ink ? "border-background/15" : "border-border")}>
+      <div className={cn("relative h-full overflow-hidden rounded-xl border p-6", ink ? "border-background/15" : "border-border")}>
         <BorderTrail size={60} className="bg-[hsl(var(--curtain-glow)/0.9)]" transition={{ ease: "linear", duration: 4 }} />
         <h3 className="font-display text-lg font-bold">{title}</h3>
         {body && <p className={cn("mt-2 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{body}</p>}

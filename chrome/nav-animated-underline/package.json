@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/nav-animated-underline.es.js",
       "require": "./dist/nav-animated-underline.cjs.js"
     },

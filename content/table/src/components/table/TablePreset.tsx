@@ -80,7 +80,7 @@ export function TablePreset({
           {(eyebrow || title) && (
             <header className="mb-8">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              {title && <h2 className="mt-1 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>}
+              {title && <h2 className="mt-1 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
               {description && <p className="mt-2 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{description}</p>}
             </header>
           )}
@@ -97,7 +97,7 @@ export function TablePreset({
                       <TableHead
                         key={col.key}
                         aria-sort={isSorted ? (sort!.dir === "asc" ? "ascending" : "descending") : undefined}
-                        className={cn("font-mono text-[10px] font-black uppercase tracking-widest", col.align === "right" && "text-right", col.align === "center" && "text-center", col.className)}
+                        className={cn("font-mono text-[10px] font-bold uppercase tracking-widest", col.align === "right" && "text-right", col.align === "center" && "text-center", col.className)}
                       >
                         {sortable ? (
                           <button type="button" onClick={() => toggle(col.key)} className={cn("group inline-flex items-center gap-1 uppercase tracking-widest", col.align === "right" && "flex-row-reverse")}>

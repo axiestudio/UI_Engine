@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-split-flap.es.js",
       "require": "./dist/hero-split-flap.cjs.js"
     },

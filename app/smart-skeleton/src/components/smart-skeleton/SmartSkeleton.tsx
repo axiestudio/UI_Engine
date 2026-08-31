@@ -29,7 +29,7 @@ export function SmartSkeleton({ loading, lines = 3, avatar, slowLabel = "Fetchin
           {Array.from({ length: lines }, (_, i) => <Shimmer key={i} className={cn("h-3.5", i === lines - 1 ? "w-2/3" : "w-full")} />)}
         </div>
         <motion.div animate={{ height: slow ? 34 : 0, opacity: slow ? 1 : 0 }} className="overflow-hidden">
-          <p className="mt-3 flex items-center gap-2 rounded-lg bg-[hsl(var(--warn)/0.12)] px-3 py-2 text-[11px] font-bold text-[hsl(var(--warn))]"><Clock3 className="size-3.5 shrink-0" /> {slowLabel}</p>
+          <p className="mt-3 flex items-center gap-2 rounded-lg bg-[hsl(var(--warn)/0.12)] px-3 py-2 text-xs font-medium text-[hsl(var(--warn))]"><Clock3 className="size-3.5 shrink-0" /> {slowLabel}</p>
         </motion.div>
       </motion.div>
       <motion.div aria-hidden={loading} animate={{ opacity: loading ? 0 : 1, y: loading ? 8 : 0 }} transition={{ duration: 0.35 }} className={cn(loading && "pointer-events-none")}>{children}</motion.div>

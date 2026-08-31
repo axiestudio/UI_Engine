@@ -115,7 +115,7 @@ export function ActivityFeed({
                 </span>
               </InView>
             )}
-            <h2 className={cn("mt-6 max-w-[14ch] font-display text-[clamp(1.9rem,4vw,2.8rem)] font-black leading-[1.02] tracking-[-0.03em]", ink ? "text-background" : "text-foreground")}>
+            <h2 className={cn("mt-6 max-w-[14ch] font-display text-[clamp(1.9rem,4vw,2.8rem)] font-bold leading-[1.02] tracking-[-0.03em]", ink ? "text-background" : "text-foreground")}>
               {title}
             </h2>
             {subtitle && (

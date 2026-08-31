@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/stack.es.js",
       "require": "./dist/stack.cjs.js"
     },

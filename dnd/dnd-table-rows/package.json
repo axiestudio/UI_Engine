@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-table-rows.es.js",
       "require": "./dist/dnd-table-rows.cjs.js"
     },

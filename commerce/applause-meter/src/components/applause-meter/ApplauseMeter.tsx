@@ -48,18 +48,18 @@ export function ApplauseMeter({ value, max = 5, count, countLabel = "verified vo
   const target = rated ?? value
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--ovation-stage))] px-4 py-16 text-white sm:px-6 lg:px-8", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-ovation-stage px-4 py-16 text-white sm:px-6 lg:px-8", className)}>
       {/* warm floor glow proportional to the score */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-56" style={{ background: `radial-gradient(60% 100% at 50% 100%, hsl(var(--ovation)/${0.16 + ratio * 0.24}), transparent)` }} />
       <div className="relative mx-auto grid w-full max-w-[980px] items-center gap-10 lg:grid-cols-[1fr_auto]">
         <div>
-          <MonoLabel className="text-[hsl(var(--ovation))]">{eyebrow}</MonoLabel>
+          <MonoLabel className="text-ovation">{eyebrow}</MonoLabel>
           <p className="mt-3 font-display text-[44px] font-semibold leading-none tracking-[-0.02em] sm:text-[56px]">
             {shown.toFixed(1)}<span className="text-white/35 text-[24px]"> / {max}</span>
           </p>
           {label && <p className="mt-2 max-w-sm text-sm font-medium text-white/60">{label}</p>}
           <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white/45">
-            {count !== undefined && <>{count.toLocaleString()} {countLabel}</>} {standing && <span className="ml-3 inline-flex items-center gap-1.5 text-[hsl(var(--ovation))]" aria-hidden><Star className="size-3 fill-current" /> Average rating</span>}
+            {count !== undefined && <>{count.toLocaleString()} {countLabel}</>} {standing && <span className="ml-3 inline-flex items-center gap-1.5 text-ovation" aria-hidden><Star className="size-3 fill-current" /> Average rating</span>}
           </p>
           <Bars ratio={ratio / (value ? target / value : 1) || 1} live={Math.max(ratio, (target ?? 0) / max)} reduce={reduce} />
           {ratingRow(onRate, setRated, rated, max, reduce)}
@@ -116,8 +116,8 @@ function ratingRow(onRate: ((v: number) => void) | undefined, setRated: (n: numb
       {Array.from({ length: max }, (_, i) => i + 1).map((v) => (
         <label key={v} className="cursor-pointer">
           <input type="radio" name="ovation" value={v} className="peer sr-only" checked={rated === v} />
-          <span className={cn("grid size-11 place-items-center rounded-full border transition-all", rated !== null && v <= rated ? "border-[hsl(var(--ovation))] bg-[hsl(var(--ovation))]/15" : "border-white/20", "peer-focus-visible:ring-2 peer-focus-visible:ring-[hsl(var(--ovation))]", !reduce && "hover:scale-110")}>
-            <Star className={cn("size-5", rated !== null && v <= rated ? "fill-[hsl(var(--ovation))] text-[hsl(var(--ovation))]" : "text-white/40")} />
+          <span className={cn("grid size-11 place-items-center rounded-full border transition-all", rated !== null && v <= rated ? "border-ovation bg-ovation/15" : "border-white/20", "peer-focus-visible:ring-2 peer-focus-visible:ring-[hsl(var(--ovation))]", !reduce && "hover:scale-110")}>
+            <Star className={cn("size-5", rated !== null && v <= rated ? "fill-[hsl(var(--ovation))] text-ovation" : "text-white/40")} />
           </span>
           <span className="sr-only">{v} of {max}</span>
         </label>

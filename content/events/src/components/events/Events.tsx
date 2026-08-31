@@ -53,7 +53,7 @@ export function Events({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} rails grain padding="roomy" className={className}>
+    <SectionShell tone={tone} width={1120} rails padding="roomy" className={className}>
       <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} index="04" tone={tone} />
 
       <div className={cn("mt-12 grid gap-5 sm:gap-6", columns === 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2")}>
@@ -83,7 +83,7 @@ export function Events({
               >
                 {/* punched notches — ticket perforation */}
                 <span aria-hidden className={cn("absolute -left-[7px] top-1/2 size-3 -translate-y-1/2 rounded-full border", ink ? "border-background/20 bg-background" : "border-border bg-background")} />
-                <span className={cn("font-display text-[28px] font-black leading-none tracking-[-0.04em]", ink ? "text-background" : "text-foreground")}>
+                <span className={cn("font-display text-[28px] font-bold leading-none tracking-[-0.04em]", ink ? "text-background" : "text-foreground")}>
                   {event.day}
                 </span>
                 <span className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.22em]", ink ? "text-background/55" : "text-muted-foreground")}>
@@ -98,7 +98,7 @@ export function Events({
 
               <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className={cn("font-display text-lg font-extrabold leading-snug tracking-[-0.02em]", ink ? "text-background" : "text-foreground")}>
+                  <h3 className={cn("font-display text-lg font-bold leading-snug tracking-[-0.02em]", ink ? "text-background" : "text-foreground")}>
                     {event.title}
                   </h3>
                   {event.featured && (

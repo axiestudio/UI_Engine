@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/zigzag.es.js",
       "require": "./dist/zigzag.cjs.js"
     },

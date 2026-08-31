@@ -40,10 +40,10 @@ export function ScrollStackCards({ eyebrow = "DECK", cards, tone = "paper", clas
                 style={{ y, rotate: rot, opacity: op }}
                 className={cn("absolute inset-0 overflow-hidden rounded-3xl border bg-card p-6 shadow-2xl", i === cards.length - 1 && "z-10")}
               >
-                <div className="img-hover-wash mb-4 aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
+                <div className="img-hover-wash mb-4 aspect-[4/3] overflow-hidden rounded-xl bg-muted">
                   {c.src ? <img src={c.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                 </div>
-                <h3 className="font-display text-xl font-black">{c.title}</h3>
+                <h3 className="font-display text-xl font-bold">{c.title}</h3>
                 {c.body && <p className={cn("mt-2 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{c.body}</p>}
                 <p className="mt-4 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">CARD {i + 1} / {cards.length}</p>
               </motion.div>

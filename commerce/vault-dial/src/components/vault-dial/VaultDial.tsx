@@ -26,7 +26,7 @@ export type VaultDialProps = {
   className?: string
 }
 
-export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, resetLabel = "Spin again", className }: VaultDialProps) {
+export function VaultDial({ eyebrow = "Secure vault", title, tiers, onUnlock, resetLabel = "Spin again", className }: VaultDialProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const n = Math.max(2, tiers.length)
   const stepDeg = 360 / n
@@ -82,7 +82,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
   const tier = tiers[index]
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--steel-deep))] px-4 py-20 text-white sm:px-6 lg:px-8", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-steel-deep px-4 py-20 text-white sm:px-6 lg:px-8", className)}>
       <div className="mx-auto grid w-full max-w-[1080px] items-center gap-12 lg:grid-cols-[auto_1fr]">
         {/* dial */}
         <div className="relative mx-auto size-[300px] shrink-0 select-none" style={{ perspective: 900 }}>
@@ -119,12 +119,12 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
               aria-hidden
               initial={{ opacity: 0, y: reduce ? 0 : 6 }}
               animate={{ opacity: unlocked ? 0 : 1, y: 0 }}
-              className="absolute inset-4 grid place-items-center rounded-full border-2 border-dashed border-border bg-[hsl(var(--vault-face))] font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white/50"
+              className="absolute inset-4 grid place-items-center rounded-full border-2 border-dashed border-border bg-vault-face font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white/50"
               style={{ rotate: counter }}
             >
               {unlocked ? null : "⟲ drag"}
             </motion.span>
-            <span aria-hidden className="absolute left-1/2 top-2 h-7 w-1 -translate-x-1/2 rounded-full bg-[hsl(var(--brass))]" />
+            <span aria-hidden className="absolute left-1/2 top-2 h-7 w-1 -translate-x-1/2 rounded-full bg-brass" />
           </motion.div>
           {/* fixed top indicator */}
           <span aria-hidden className="absolute left-1/2 top-[-4px] -translate-x-1/2 border-x-8 border-t-[12px] border-x-transparent border-t-[hsl(var(--brass))]" />
@@ -132,7 +132,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
 
         {/* panel */}
         <div className="min-w-0">
-          <MonoLabel className="text-[hsl(var(--brass))]">{eyebrow}</MonoLabel>
+          <MonoLabel className="text-brass">{eyebrow}</MonoLabel>
           {title && <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-[40px]">{title}</h2>}
           <ul className="mt-7 space-y-2">
             {tiers.map((t, i) => (
@@ -142,7 +142,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
                   onClick={() => { if (!unlocked) snapTo(i) }}
                   className={cn(
                     "flex w-full items-center justify-between rounded-md border px-4 py-3 text-left transition-all",
-                    i === index && !unlocked && "border-[hsl(var(--brass))] bg-[hsl(var(--brass)/0.08)]",
+                    i === index && !unlocked && "border-brass bg-[hsl(var(--brass)/0.08)]",
                     i === index && unlocked && "border-white/20 bg-white/10",
                     i > index && !unlocked && "cursor-pointer opacity-45 hover:opacity-70",
                     unlocked && i !== index && "opacity-25",
@@ -157,7 +157,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
           </ul>
           <motion.div initial={false} animate={{ height: unlocked ? "auto" : 0, opacity: unlocked ? 1 : 0, marginTop: unlocked ? 24 : 0 }} transition={{ duration: reduce ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }} className="overflow-hidden">
             <div className="rounded-lg border border-[hsl(var(--brass)/0.5)] bg-black/30 p-5">
-              <p className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-[hsl(var(--brass))]">
+              <p className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-brass">
                 <LockKeyholeOpen className="size-4" /> bolt retracted — {tier?.label}
               </p>
               {tier?.hint && <p className="mt-2 text-sm font-medium text-white/60">{tier.hint}</p>}

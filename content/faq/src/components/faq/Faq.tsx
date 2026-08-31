@@ -116,11 +116,11 @@ export function Faq({
         <div className="mx-auto w-full max-w-[880px] px-4 py-16 sm:px-6 lg:px-8">
           <header className="max-w-2xl">
             {badge && (
-              <span className="inline-flex items-center rounded-full border bg-card px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+              <span className="inline-flex items-center rounded-full border bg-card shadow-sm px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 {badge}
               </span>
             )}
-            <h2 id="faq-title" className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 id="faq-title" className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
               {title}
             </h2>
             {subtitle && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
@@ -222,7 +222,7 @@ export function Faq({
               <Magnetic intensity={0.25} range={40}>
                 <a
                   href={cta.href}
-                  className="inline-flex h-10 items-center rounded-full bg-background px-5 font-display text-sm font-extrabold tracking-tight text-foreground shadow transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex h-10 items-center rounded-full bg-background px-5 font-display text-sm font-bold tracking-tight text-foreground shadow transition-transform hover:scale-[1.02] active:scale-[0.98]"
                 >
                   {cta.label}
                 </a>

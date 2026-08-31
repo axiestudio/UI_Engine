@@ -22,13 +22,13 @@ export type FaqAccordionProps = {
 export function FaqAccordion({ eyebrow = "FAQ", title = "Questions, answered.", subtitle = "The things people ask before they start.", items, tone = "paper", className }: FaqAccordionProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <Accordion
-          className={cn("mt-10 divide-y", ink ? "divide-background/15 border-background/15" : "divide-border border-border border rounded-2xl")}
+          className={cn("mt-10 divide-y", ink ? "divide-background/15 border-background/15" : "divide-border border-border border rounded-xl")}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         >
           {items.map((q) => (

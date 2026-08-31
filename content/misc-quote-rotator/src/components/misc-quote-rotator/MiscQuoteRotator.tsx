@@ -24,7 +24,7 @@ export function MiscQuoteRotator({ eyebrow = "WORDS", title = "What clients keep
   const [idx, setIdx] = React.useState(0)
   const q = quotes[Math.min(idx, quotes.length - 1)]
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
@@ -38,7 +38,7 @@ export function MiscQuoteRotator({ eyebrow = "WORDS", title = "What clients keep
               className="block"
             >
               {quotes.map((quote) => (
-                <p key={quote.id} className={cn("font-display text-2xl font-black leading-[1.2] tracking-[-0.02em] sm:text-3xl", ink ? "text-background" : "text-foreground")}>“{quote.quote}”</p>
+                <p key={quote.id} className={cn("font-display text-2xl font-bold leading-[1.2] tracking-[-0.02em] sm:text-3xl", ink ? "text-background" : "text-foreground")}>“{quote.quote}”</p>
               ))}
             </TextLoop>
           </blockquote>

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/commerce-pricing-toggle.es.js",
       "require": "./dist/commerce-pricing-toggle.cjs.js"
     },

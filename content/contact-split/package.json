@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/contact-split.es.js",
       "require": "./dist/contact-split.cjs.js"
     },

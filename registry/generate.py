@@ -115,6 +115,13 @@ PACKAGES = [
     "pipeline-run-graph",
     "storage-ring-meter",
     "segmented-control",
+
+    # branding family (professional pass 2026-08-31)
+    "ink-trust", "archive-stamp", "brand-badge-wall", "brand-field-guide", "brand-heartbeat",
+    "brand-lexicon", "brand-pattern-lab", "brand-timeline-echo", "co-brand-lockup",
+    "logo-constellation", "logo-motion-library", "logo-scroll-mark", "mission-etch",
+    "mood-portal", "palette-recipe", "signature-move", "sound-of-brand", "swatch-spectrum",
+    "tone-ribbon", "typo-ramp-brand", "value-orbit", "voice-magnet", "wordmark-lab",
 ]
 # infra peers the consumer's project must have (react/react-dom assumed present)
 EXCLUDED_PEER = {"react", "react-dom"}

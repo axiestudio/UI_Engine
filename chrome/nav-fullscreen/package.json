@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/nav-fullscreen.es.js",
       "require": "./dist/nav-fullscreen.cjs.js"
     },

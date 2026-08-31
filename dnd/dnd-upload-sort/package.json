@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-upload-sort.es.js",
       "require": "./dist/dnd-upload-sort.cjs.js"
     },

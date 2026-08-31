@@ -1,3 +1,8 @@
 import "./index.css"
 export { MoodPortal, type MoodCard, type MoodPortalProps } from "./components/mood-portal/MoodPortal"
 export { Grain, Dots, CornerTicks, Sheen, MonoLabel, SectionShell } from "./components/primitives/handcraft"
+export { Badge, badgeVariants } from "./components/ui/badge"
+export { Button, buttonVariants } from "./components/ui/button"
+export { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent } from "./components/ui/card"
+export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from "./components/ui/dialog"
+export { Separator } from "./components/ui/separator"

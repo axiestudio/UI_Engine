@@ -18,8 +18,8 @@ export type Media360ViewerProps = {
 }
 
 export function Media360Viewer({ eyebrow = "360°", title = "Give it a spin.", frames = [
-  { src: "/frames/frame_0008.webp" }, { src: "/frames/frame_0020.webp" }, { src: "/frames/frame_0032.webp" },
-  { src: "/frames/frame_0044.webp" }, { src: "/frames/frame_0056.webp" }, { src: "/frames/frame_0068.webp" },
+  { src: "/showcase/content/content-01-office.webp" }, { src: "/showcase/content/content-02-team.webp" }, { src: "/showcase/content/content-03-product.webp" },
+  { src: "/showcase/content/content-04-architecture.webp" }, { src: "/showcase/content/content-05-workshop.webp" }, { src: "/showcase/content/content-06-nature.webp" },
 ], hint = "DRAG TO ROTATE", tone = "paper", className }: Media360ViewerProps) {
   const ink = tone === "ink"
   const boxRef = React.useRef<HTMLDivElement>(null)
@@ -39,14 +39,14 @@ export function Media360Viewer({ eyebrow = "360°", title = "Give it a spin.", f
   const reset = () => animate(dragX, 0, { duration: 0.6, ease: [0.16, 1, 0.3, 1] })
 
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.97 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
         <div
           ref={boxRef}
-          className="relative mt-10 overflow-hidden rounded-2xl border bg-muted"
+          className="relative mt-10 overflow-hidden rounded-xl border bg-muted"
           style={{ cursor: "grab", touchAction: "none" }}
           onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId) }}
         >

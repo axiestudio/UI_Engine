@@ -105,7 +105,7 @@ function PlanCard({ plan, yearly, currency, periodLabel }: { plan: PricingPlan; 
 
 export function Pricing({
   eyebrow = "Pricing",
-  title = "Simple, honest pricing",
+  title = "Pricing plans",
   subtitle,
   plans,
   toggleable,

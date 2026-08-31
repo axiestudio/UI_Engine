@@ -21,7 +21,7 @@ export function InteractiveHoverSections({ eyebrow = "INDEX", rows, tone = "pape
   const [active, setActive] = React.useState(0)
   const a = rows[active]
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <div className={cn("flex flex-col gap-8", ink ? "text-background" : "")}>
         <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div className="space-y-2">
@@ -32,13 +32,13 @@ export function InteractiveHoverSections({ eyebrow = "INDEX", rows, tone = "pape
                 className={cn("block w-full border-b py-4 text-left transition-all", i === active ? "opacity-100" : ink ? "opacity-40" : "opacity-50")}>
                 <span className="flex items-baseline gap-3">
                   <span className="font-mono text-[10px] font-bold">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="font-display text-2xl font-black sm:text-3xl">{r.title}</span>
+                  <span className="font-display text-2xl font-bold sm:text-3xl">{r.title}</span>
                 </span>
                 {i === active && r.body && <span className={cn("mt-2 block pl-7 text-sm font-medium", ink ? "text-background/70" : "text-muted-foreground")}>{r.body}</span>}
               </button>
             ))}
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border bg-muted">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-xl border bg-muted">
             {rows.map((r, i) => (
               <motion.img
                 key={r.id}

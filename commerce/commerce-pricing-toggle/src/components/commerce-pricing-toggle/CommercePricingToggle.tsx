@@ -18,7 +18,7 @@ export type CommercePricingToggleProps = {
   className?: string
 }
 
-export function CommercePricingToggle({ eyebrow = "PRICING", title = "Pick a plan, switch anytime.", tiers, className }: CommercePricingToggleProps) {
+export function CommercePricingToggle({ eyebrow = "PRICING", title = "Flexible billing — switch anytime", tiers, className }: CommercePricingToggleProps) {
   const [annual, setAnnual] = React.useState(true)
   return (
     <SectionShell width={1120} grain rule="bottom" className={className}>

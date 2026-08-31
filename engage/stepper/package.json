@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/stepper.es.js",
       "require": "./dist/stepper.cjs.js"
     },

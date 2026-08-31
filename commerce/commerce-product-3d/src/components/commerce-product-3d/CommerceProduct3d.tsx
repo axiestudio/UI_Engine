@@ -19,7 +19,7 @@ export type CommerceProduct3dProps = {
   className?: string
 }
 
-export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Held like a thing.", price = 89, colorways = [
+export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Interactive preview", price = 89, colorways = [
   { id: "ink", label: "Ink", swatch: "hsl(var(--foreground))" },
   { id: "cream", label: "Cream", swatch: "hsl(var(--muted))" },
   { id: "amber", label: "Amber", swatch: "hsl(var(--site-accent))" },

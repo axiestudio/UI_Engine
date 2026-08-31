@@ -38,7 +38,7 @@ export type AppDownloadProps = {
 //   keeps to check glyphs. QR cells are deterministic so SSR never flickers.
 export function AppDownload({
   eyebrow = "Mobile app",
-  title = "The studio, in your pocket.",
+  title = "Download the app",
   titleHighlight,
   subtitle = "Bookings, payments and reminders — synced in real time, wherever the day takes you.",
   features,

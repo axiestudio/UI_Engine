@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/action-bar.es.js",
       "require": "./dist/action-bar.cjs.js"
     },

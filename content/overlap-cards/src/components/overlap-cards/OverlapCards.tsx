@@ -30,7 +30,7 @@ export function OverlapCards({ eyebrow = "LAYERS", title = "Cards that crest.", 
         <div className="mt-12 grid gap-4 sm:grid-cols-3">
           {cards.map((c, i) => (
             <InView key={c.id} once variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}>
-              <div className={cn("rounded-2xl border bg-card p-6 shadow-xl", i === 1 && "sm:-translate-y-4")}>
+              <div className={cn("rounded-xl border bg-card p-6 shadow-xl", i === 1 && "sm:-translate-y-4")}>
                 {c.icon && <div className="mb-4">{c.icon}</div>}
                 <h3 className="font-display text-xl font-bold">{c.title}</h3>
                 {c.body && <p className={cn("mt-2 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{c.body}</p>}

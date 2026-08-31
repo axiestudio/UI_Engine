@@ -20,11 +20,11 @@ export function ScrollBlurVeil({ eyebrow = "VEIL", title = "It sharpens when it 
   const filter = useTransform(blur, (b) => `blur(${b}px)`)
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5])
   return (
-    <SectionShell width={920} grain rule="bottom" className={className}>
+    <SectionShell width={920} rule="bottom" className={className}>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       <div ref={ref} className="mt-10">
         <motion.div style={{ filter, opacity }} className="rounded-[28px] border bg-card p-10 text-center shadow-2xl">
-          <h2 className="font-display text-4xl font-black tracking-[-0.03em] sm:text-5xl">{title}</h2>
+          <h2 className="font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">{title}</h2>
           <p className="mx-auto mt-4 max-w-md text-base font-medium leading-relaxed text-muted-foreground">{body}</p>
         </motion.div>
       </div>

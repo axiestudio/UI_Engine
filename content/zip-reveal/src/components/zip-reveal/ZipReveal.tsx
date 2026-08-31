@@ -68,7 +68,7 @@ export function ZipReveal({ eyebrow = "UNSEALED ON ARRIVAL", label = "drop-01.zi
         <MonoLabel className="opacity-60">{eyebrow}</MonoLabel>
         {children ?? (
           <>
-            <h3 className="mt-3 max-w-sm font-display text-2xl font-black tracking-tight sm:text-[30px]">{title}</h3>
+            <h3 className="mt-3 max-w-sm font-display text-2xl font-bold tracking-tight sm:text-[30px]">{title}</h3>
             <ul className="mt-5 grid gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] sm:grid-cols-2">
               {["01 / lookbook-cover.webp", "02 / studio-reel.mp4", "03 / colour-bar-cuts", "04 / press-kit.pdf"].map((f) => (
                 <li key={f} className="flex items-center gap-2 rounded-sm bg-black/8 px-3 py-2"><span className="size-1.5 rounded-full bg-current opacity-60" /> {f}</li>
@@ -83,7 +83,7 @@ export function ZipReveal({ eyebrow = "UNSEALED ON ARRIVAL", label = "drop-01.zi
       {/* kraft flap over the content, clipped by the zip */}
       <motion.div aria-hidden style={{ clipPath: flap }} className="absolute inset-0 z-[1]">
         <div className="absolute inset-0" style={{ background: "linear-gradient(115deg, hsl(var(--parcel-deep)) 0%, hsl(var(--parcel)) 32%, hsl(var(--parcel-deep)) 100%)" }} />
-        <span className="absolute left-8 top-8 -rotate-3 border border-dashed border-[hsl(var(--parcel-ink))/0.5] bg-white/70 px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.14em] text-[hsl(var(--parcel-ink))]">{label}</span>
+        <span className="absolute left-8 top-8 -rotate-3 border border-dashed border-[hsl(var(--parcel-ink))/0.5] bg-white/70 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--parcel-ink))]">{label}</span>
         <span className="absolute inset-y-0 left-1/2 w-10 -translate-x-1/2 -rotate-2 bg-white/25 mix-blend-multiply" />
         <Grain opacity={0.1} />
         {/* flap's cut edge rides with the clip */}

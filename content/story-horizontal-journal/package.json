@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/story-horizontal-journal.es.js",
       "require": "./dist/story-horizontal-journal.cjs.js"
     },

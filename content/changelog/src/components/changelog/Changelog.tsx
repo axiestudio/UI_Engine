@@ -93,7 +93,7 @@ function ReleaseEntry({ release, index, total, tone, latest }: { release: Releas
           )}
         >
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <h3 className={cn("font-display text-xl font-extrabold tracking-[-0.02em]", ink ? "text-background" : "text-foreground")}>
+            <h3 className={cn("font-display text-xl font-bold tracking-[-0.02em]", ink ? "text-background" : "text-foreground")}>
               {release.title}
             </h3>
             {latest && (
@@ -169,7 +169,7 @@ export function Changelog({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={920} rails grain padding="roomy" className={className}>
+    <SectionShell tone={tone} width={920} rails padding="roomy" className={className}>
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} index="03" tone={tone} />
         {subscribe && (

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-drag-overlay.es.js",
       "require": "./dist/dnd-drag-overlay.cjs.js"
     },

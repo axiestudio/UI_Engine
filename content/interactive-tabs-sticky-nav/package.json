@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-tabs-sticky-nav.es.js",
       "require": "./dist/interactive-tabs-sticky-nav.cjs.js"
     },

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/image-frame.es.js",
       "require": "./dist/image-frame.cjs.js"
     },

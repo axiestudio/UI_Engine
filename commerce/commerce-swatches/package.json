@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/commerce-swatches.es.js",
       "require": "./dist/commerce-swatches.cjs.js"
     },

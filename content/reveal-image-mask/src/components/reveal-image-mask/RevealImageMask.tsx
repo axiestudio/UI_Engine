@@ -47,11 +47,11 @@ export function RevealImageMask({
   }, [openSpring])
 
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="top" className={className}>
+    <SectionShell tone={tone} width={1120} rule="top" className={className}>
       <div className={cn("grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center", ink && "text-background")}>
         <div>
           <p className="font-mono text-[11px] font-bold tracking-[0.25em] text-muted-foreground">{eyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl font-black leading-[0.98] tracking-[-0.03em] sm:text-4xl">{title}</h2>
+          <h2 className="mt-3 font-display text-3xl font-bold leading-[0.98] tracking-[-0.03em] sm:text-4xl">{title}</h2>
           {subtitle && <p className={cn("mt-4 max-w-md text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{subtitle}</p>}
         </div>
 

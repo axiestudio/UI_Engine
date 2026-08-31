@@ -75,7 +75,7 @@ export function Marquee({
                   <li
                     key={i}
                     className={cn(
-                      "flex items-center gap-8 whitespace-nowrap pr-8 font-display text-base font-extrabold tracking-tight sm:text-lg",
+                      "flex items-center gap-8 whitespace-nowrap pr-8 font-display text-base font-bold tracking-tight sm:text-lg",
                       ink ? "text-background/90" : "text-foreground",
                     )}
                   >

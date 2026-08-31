@@ -22,7 +22,7 @@ export function InteractiveTabsDeep({ eyebrow = "DEEP", title = "A drill-down th
   const [active, setActive] = React.useState(0)
   const tab = tabs[active]
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
@@ -35,9 +35,9 @@ export function InteractiveTabsDeep({ eyebrow = "DEEP", title = "A drill-down th
             </button>
           ))}
         </div>
-        <div className="rounded-2xl border p-6 sm:p-8">
+        <div className="rounded-xl border p-6 sm:p-8">
           <p className={cn("font-mono text-[10px] font-bold uppercase tracking-widest", ink ? "text-background/50" : "text-muted-foreground")}>{String(active + 1).padStart(2, "0")}</p>
-          <h3 className="mt-2 font-display text-2xl font-black">{tab.title}</h3>
+          <h3 className="mt-2 font-display text-2xl font-bold">{tab.title}</h3>
           {tab.body && <p className={cn("mt-3 text-base font-medium leading-relaxed", ink ? "text-background/75" : "text-muted-foreground")}>{tab.body}</p>}
           {tab.points && (
             <ul className="mt-6 grid gap-2 sm:grid-cols-2">

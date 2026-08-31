@@ -91,7 +91,7 @@ export function Newsletter({
               preset="slide"
               per="word"
               speedReveal={1.3}
-              className={cn("mt-4 font-display text-[30px] font-black leading-[1.02] tracking-[-0.035em] sm:text-4xl", ink ? "text-background" : "text-foreground")}
+              className={cn("mt-4 font-display text-[30px] font-bold leading-[1.02] tracking-[-0.035em] sm:text-4xl", ink ? "text-background" : "text-foreground")}
             >
               {title}
             </TextEffect>
@@ -110,7 +110,7 @@ export function Newsletter({
                 <span className={cn("inline-flex size-11 items-center justify-center rounded-full", ink ? "bg-background text-foreground" : "bg-foreground text-background")}>
                   <Check className="size-5" strokeWidth={3} />
                 </span>
-                <p className={cn("mt-4 font-display text-lg font-extrabold tracking-tight", ink ? "text-background" : "text-foreground")}>
+                <p className={cn("mt-4 font-display text-lg font-bold tracking-tight", ink ? "text-background" : "text-foreground")}>
                   {successTitle}
                 </p>
                 <p className={cn("mt-1.5 text-sm font-medium leading-relaxed", ink ? "text-background/60" : "text-muted-foreground")}>

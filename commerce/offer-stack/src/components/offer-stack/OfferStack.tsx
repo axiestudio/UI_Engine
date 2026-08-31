@@ -20,7 +20,7 @@ export type OfferStackProps = {
   className?: string
 }
 
-export function OfferStack({ eyebrow = "OFFERS", title = "Pick your package.", offers, cta = "Choose", tone = "paper", className }: OfferStackProps) {
+export function OfferStack({ eyebrow = "OFFERS", title = "Choose a package", offers, cta = "Choose", tone = "paper", className }: OfferStackProps) {
   const ink = tone === "ink"
   const featured = offers.find((o) => o.feature) ?? offers[0]
   const rest = offers.filter((o) => o !== featured)

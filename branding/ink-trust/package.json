@@ -7,10 +7,14 @@
   "module": "dist/ink-trust.es.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/ink-trust.es.js",
       "require": "./dist/ink-trust.cjs.js"
     },
@@ -21,8 +25,9 @@
   ],
   "presetSources": {
     "motion-primitives": [
-      "text-effect",
-      "animated-group"
+      "animated-group",
+      "in-view",
+      "text-effect"
     ],
     "watermelon-ui": [],
     "shadcn-ui": [
@@ -57,5 +62,6 @@
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
     "vite-plugin-dts": "^4.5.4"
-  }
+  },
+  "license": "MIT"
 }

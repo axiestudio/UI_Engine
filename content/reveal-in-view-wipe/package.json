@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/reveal-in-view-wipe.es.js",
       "require": "./dist/reveal-in-view-wipe.cjs.js"
     },

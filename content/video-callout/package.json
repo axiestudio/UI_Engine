@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/video-callout.es.js",
       "require": "./dist/video-callout.cjs.js"
     },

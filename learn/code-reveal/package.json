@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/code-reveal.es.js",
       "require": "./dist/code-reveal.cjs.js"
     },

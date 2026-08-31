@@ -44,7 +44,7 @@ function formatDate(d: string) {
 
 function PostCard({ post, lead, shimmer }: { post: BlogPost; lead?: boolean; shimmer?: boolean }) {
   const title = (
-    <h3 className={cn("font-display font-extrabold leading-snug tracking-tight group-hover:underline decoration-2 underline-offset-4", lead ? "text-2xl sm:text-[28px] max-w-xl" : "text-lg")}>
+    <h3 className={cn("font-display font-bold leading-snug tracking-tight group-hover:underline decoration-2 underline-offset-4", lead ? "text-2xl sm:text-[28px] max-w-xl" : "text-lg")}>
       {shimmer ? <TextShimmer className="text-inherit">{post.title}</TextShimmer> : post.title}
     </h3>
   )
@@ -96,7 +96,7 @@ export function BlogGrid({ eyebrow, title, subtitle, posts, lead, shimmerTitles 
           <header className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              {title && <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>}
+              {title && <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
               {subtitle && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
             </div>
             {moreLink && (

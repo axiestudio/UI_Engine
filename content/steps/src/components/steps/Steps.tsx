@@ -81,7 +81,7 @@ function StepCard({
             <span
               aria-hidden
               className={cn(
-                "pointer-events-none absolute -right-2 -top-7 select-none font-display text-[104px] font-black leading-none tracking-[-0.06em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] sm:-right-3 sm:-top-9 sm:text-[128px]",
+                "pointer-events-none absolute -right-2 -top-7 select-none font-display text-[104px] font-bold leading-none tracking-[-0.06em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] sm:-right-3 sm:-top-9 sm:text-[128px]",
                 ink ? "text-background opacity-[0.16]" : "text-foreground opacity-[0.13]",
               )}
             >
@@ -102,7 +102,7 @@ function StepCard({
             )}
             <h3
               className={cn(
-                "font-display text-[22px] font-extrabold leading-tight tracking-[-0.02em]",
+                "font-display text-[22px] font-bold leading-tight tracking-[-0.02em]",
                 (numbered || Icon) && "mt-4",
                 ink ? "text-background" : "text-foreground",
               )}
@@ -138,7 +138,7 @@ export function Steps({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} rails rule="bottom" grain padding="roomy" className={className} id="how">
+    <SectionShell tone={tone} width={1120} rails rule="bottom" padding="roomy" className={className} id="how">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHead
           eyebrow={eyebrow}

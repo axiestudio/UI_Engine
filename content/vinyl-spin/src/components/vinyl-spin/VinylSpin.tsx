@@ -62,7 +62,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
             style={{ width: compact ? 210 : 264, height: compact ? 210 : 264, background: "hsl(var(--sleeve))" }}
           >
             <span className="absolute inset-x-6 top-6 block h-[42%] rounded-sm" style={{ background: "linear-gradient(140deg, hsl(var(--sleeve-art)) 0%, hsl(var(--label)) 60%, hsl(var(--sleeve-art)) 100%)", opacity: 0.9 }} />
-            <span className="absolute bottom-6 left-6 right-6 block font-mono text-[9px] font-black uppercase leading-[1.6] tracking-[0.12em]" style={{ color: "hsl(var(--vinyl-ink))", opacity: 0.8 }}>{String(title).slice(0, 28)}</span>
+            <span className="absolute bottom-6 left-6 right-6 block font-mono text-[9px] font-bold uppercase leading-[1.6] tracking-[0.12em]" style={{ color: "hsl(var(--vinyl-ink))", opacity: 0.8 }}>{String(title).slice(0, 28)}</span>
             <span className="absolute inset-y-0 left-0 w-[10px] bg-black/45" />
             <Grain opacity={0.12} />
             {/* sleeve opening where the disc exits */}
@@ -73,7 +73,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
         {/* copy + play control */}
         <div className={cn("min-w-0 flex-1", compact ? "text-center sm:text-left" : "")}>
           <MonoLabel className="text-muted-foreground">{artist}</MonoLabel>
-          <h2 className={cn("mt-3 font-display font-black tracking-tight", compact ? "text-2xl" : "text-[32px] sm:text-[40px]")}>{title}</h2>
+          <h2 className={cn("mt-3 font-display font-bold tracking-tight", compact ? "text-2xl" : "text-[32px] sm:text-[40px]")}>{title}</h2>
           <AnimatePresence mode="wait">
             {out && (
               <motion.blockquote key="q" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ delay: 0.35, duration: 0.5 }} className="mt-4 max-w-md border-l-2 pl-4 font-serif text-[15px] italic leading-relaxed text-muted-foreground">
@@ -85,7 +85,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
             type="button"
             aria-pressed={out}
             onClick={() => { const next = !out; if (playingProp === undefined) setInner(next); onToggle?.(next) }}
-            className={cn("mt-6 inline-flex h-12 items-center gap-3 rounded-full pl-2 pr-6 font-mono text-[11px] font-black uppercase tracking-[0.2em] transition-colors", out ? "bg-foreground text-background" : "border-2 border-foreground text-foreground hover:bg-foreground/5")}
+            className={cn("mt-6 inline-flex h-12 items-center gap-3 rounded-full pl-2 pr-6 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors", out ? "bg-foreground text-background" : "border-2 border-foreground text-foreground hover:bg-foreground/5")}
           >
             <span className={cn("grid size-9 place-items-center rounded-full", out ? "bg-background text-foreground" : "bg-foreground text-background")}>
               {out ? <Pause className="size-4" /> : <Play className="size-4 translate-x-[1px]" />}

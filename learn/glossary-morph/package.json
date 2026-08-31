@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/glossary-morph.es.js",
       "require": "./dist/glossary-morph.cjs.js"
     },

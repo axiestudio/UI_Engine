@@ -54,7 +54,7 @@ function FeatureCard({ f, glow }: { f: FeatureItem; glow: boolean }) {
           <Icon className="h-5 w-5 stroke-[2]" />
         </span>
       )}
-      <h3 className="mt-5 font-display text-lg font-extrabold leading-snug tracking-tight">{f.title}</h3>
+      <h3 className="mt-5 font-display text-lg font-bold leading-snug tracking-tight">{f.title}</h3>
       {f.description && <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{f.description}</p>}
       {f.bullets && f.bullets.length > 0 && (
         <ul className="mt-4 flex flex-col gap-1.5">
@@ -102,7 +102,7 @@ export function Features({ eyebrow, title, subtitle, items, columns = 3, spotlig
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="mb-10 max-w-2xl">
               {eyebrow && <p className={cn("font-mono text-[11px] font-bold uppercase tracking-widest", ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</p>}
-              {title && <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>}
+              {title && <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
               {subtitle && <p className={cn("mt-3 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{subtitle}</p>}
             </header>
           </InView>

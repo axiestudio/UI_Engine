@@ -19,7 +19,7 @@ export type PriceBannerProps = {
   className?: string
 }
 
-export function PriceBanner({ eyebrow = "LAUNCH OFFER", title = "Everything, one price.", price = "€0", period = "/ until June", note = "Then €12/mo", cta = "Start free", tone = "paper", className }: PriceBannerProps) {
+export function PriceBanner({ eyebrow = "LAUNCH OFFER", title = "All features — one price", price = "€0", period = "/ until June", note = "Then €12/mo", cta = "Start free", tone = "paper", className }: PriceBannerProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>

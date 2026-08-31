@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/ops-heartbeat.es.js",
       "require": "./dist/ops-heartbeat.cjs.js"
     },

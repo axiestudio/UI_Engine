@@ -38,7 +38,7 @@ export function QuoteFeature({ quote, author, role, alsoFrom = [], moreLink, int
       >
         <div className="relative mx-auto w-full max-w-[900px] px-4 py-24 sm:px-6 lg:py-32">
           {/* architecture glyph */}
-          <span aria-hidden className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none font-display text-[34vw] font-black leading-none text-foreground/[0.05] sm:text-[220px] lg:text-[300px]">
+          <span aria-hidden className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none font-display text-[34vw] font-bold leading-none text-foreground/[0.05] sm:text-[220px] lg:text-[300px]">
             “
           </span>
 

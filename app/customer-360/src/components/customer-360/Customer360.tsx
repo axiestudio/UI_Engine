@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { TabsOverflowStrip, type AppTab } from "tabs-overflow-strip"
 import { EventTimelineDay } from "event-timeline-day"
 import { SwitchAuditTrail } from "switch-audit-trail"
@@ -50,27 +49,26 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
   ]
 
   return (
-    <div className={cn("relative isolate overflow-hidden rounded-2xl border bg-background font-sans", className)}>
-      <Grain opacity={0.035} />
+    <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-background", className)}>
       {/* identity header */}
-      <div className="flex flex-wrap items-center gap-4 border-b bg-card px-5 py-4">
-        <Avatar className="size-12 ring-2 ring-[hsl(var(--app-focus))]/25 ring-offset-background">
-          <AvatarFallback className="bg-accent text-[13px] font-black">{name.split(/[ .]/).map((w) => w[0]).join("").slice(0, 2).toUpperCase()}</AvatarFallback>
+      <div className="flex flex-wrap items-center gap-4 border-b border-border/60 bg-card px-5 py-4">
+        <Avatar className="size-12 ring-2 ring-ring/20 ring-offset-background">
+          <AvatarFallback className="bg-accent text-[13px] font-semibold">{name.split(/[ .]/).map((w) => w[0]).join("").slice(0, 2).toUpperCase()}</AvatarFallback>
         </Avatar>
         <div className="min-w-0">
-          <motion.h2 animate={{ textShadow: toasts.length ? "0 0 24px hsl(var(--app-focus)/0.55)" : "none" }} className="font-display text-lg font-black tracking-tight">{name}</motion.h2>
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{since} · {chair}</p>
+          <motion.h2 animate={{ textShadow: toasts.length ? "0 0 24px hsl(var(--ring)/0.5)" : "none" }} className="font-display text-lg font-semibold tracking-tight">{name}</motion.h2>
+          <p className="text-xs text-muted-foreground">{since} · {chair}</p>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <Badge variant="secondary" className="gap-1 font-mono text-[9px]"><Wallet className="size-3" aria-hidden /> 12 visits · 4.9★</Badge>
+          <Badge variant="secondary" className="gap-1 text-xs"><Wallet className="size-3" aria-hidden /> 12 visits · 4.9★</Badge>
         </div>
       </div>
 
       <TabsOverflowStrip tabs={TABS} value={tab} onChange={setTab} onClose={(id) => push(`detached ${id}`)} onPin={(id) => push(id + " pinned", "ok")} />
 
       <div className="grid gap-5 p-5 lg:grid-cols-[1fr_320px]">
-        <div className="rounded-xl border bg-card p-5">
-          <MonoLabel className="mb-4 text-muted-foreground">{tab.toUpperCase()} — {tab === "history" ? "every edit, with receipt" : "the long view"}</MonoLabel>
+        <div className="rounded-xl border border-border/70 bg-card p-5">
+          <p className="mb-4 text-sm font-medium text-muted-foreground">{tab.toUpperCase()} — {tab === "history" ? "every edit, with receipt" : "the long view"}</p>
           {tab === "history" ? (
             <SwitchAuditTrail entries={entries} onRevert={(e) => { setEntries((x) => [{ id: Math.random().toFixed(2), at: new Date().toISOString(), actor: "you", field: e.field, from: e.to, to: e.from }, ...x]); push("reverted + stamped", "ok") }} />
           ) : (
@@ -90,17 +88,17 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
             <CardContent className="space-y-4 p-4">
               <CopySecretField label="Client portal link" value="https://house.fit/a/ahl-2021-m" />
               <CopySecretField label="Booking token" value="tk_live_88·41·02·7f" onRotate={() => { push("token rotated", "warn") }} />
-              <button onClick={() => setDrawer(true)} className="h-9 w-full rounded-lg border text-[10px] font-black uppercase tracking-[0.18em] hover:bg-muted">open full record → side drawer</button>
+              <button onClick={() => setDrawer(true)} className="h-9 w-full rounded-lg border border-border/70 text-sm font-medium hover:bg-muted">open full record → side drawer</button>
             </CardContent>
           </Card>
         </aside>
       </div>
 
       <DetailDrawerSplit open={drawer} onClose={() => setDrawer(false)} title={`${name} · full record`} index={editIndex} count={3} onPrev={() => setEditIndex((i) => Math.max(0, i - 1))} onNext={() => { const n = Math.min(2, editIndex + 1); setEditIndex(n); onAction?.("record " + n) }} persistKey="c360">
-        <div className="space-y-3 text-[13px]">
+          <div className="space-y-3 text-[13px]">
           <p className="text-muted-foreground">Record {editIndex + 1} — hairline edit rail, same data.</p>
-          <div className="h-40 rounded-lg border bg-[hsl(var(--app-code))]" /><div className="h-24 rounded-lg border bg-[hsl(var(--app-code))]" />
-          <button className="mt-2 h-9 w-full rounded-md bg-[hsl(var(--err))] font-mono text-[10px] font-black uppercase tracking-[0.18em] text-white" onClick={() => { push("anonymisation scheduled", "warn"); setDrawer(false) }}>anonymise account</button>
+          <div className="h-40 rounded-lg border border-border/60 bg-muted/40" /><div className="h-24 rounded-lg border border-border/60 bg-muted/40" />
+          <button className="mt-2 h-9 w-full rounded-md bg-[hsl(var(--err))] text-sm font-medium text-white" onClick={() => { push("anonymisation scheduled", "warn"); setDrawer(false) }}>anonymise account</button>
         </div>
       </DetailDrawerSplit>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} />

@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/blog-grid.es.js",
       "require": "./dist/blog-grid.cjs.js"
     },

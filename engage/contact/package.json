@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/contact.es.js",
       "require": "./dist/contact.cjs.js"
     },

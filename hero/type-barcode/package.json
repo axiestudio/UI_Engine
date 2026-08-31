@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/type-barcode.es.js",
       "require": "./dist/type-barcode.cjs.js"
     },

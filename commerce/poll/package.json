@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/poll.es.js",
       "require": "./dist/poll.cjs.js"
     },

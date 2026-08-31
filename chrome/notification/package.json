@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/notification.es.js",
       "require": "./dist/notification.cjs.js"
     },

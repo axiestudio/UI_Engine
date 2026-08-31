@@ -39,7 +39,7 @@ export function FilmStrip({ frames, eyebrow = "THE REEL", title, height = "320vh
         <div className="mx-auto mb-8 flex w-full max-w-[1120px] items-end justify-between px-6">
           <div>
             <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
-            {title && <h2 className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">{title}</h2>}
+            {title && <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
           </div>
         </div>
         <div className="flex snap-x gap-4 overflow-x-auto pb-4">
@@ -70,7 +70,7 @@ function HeadLine({ eyebrow, title, idx, total }: { eyebrow: string; title?: Rea
     <div className="mx-auto flex w-full max-w-[1120px] items-end justify-between px-6">
       <div>
         <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
-        {title && <h2 className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">{title}</h2>}
+        {title && <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
       </div>
       <p className="font-mono text-[12px] font-bold tracking-[0.18em] text-muted-foreground">
         <motion.span>{label}</motion.span> / {String(total).padStart(2, "0")}
@@ -102,7 +102,7 @@ function FrameInner({ frame }: { frame: FilmFrame }) {
       <span className="pointer-events-none absolute inset-x-0 top-0 h-5 bg-[repeating-linear-gradient(90deg,hsl(var(--film-ink)/0.9)_0_10px,transparent_10px_22px)] opacity-[0.06]" aria-hidden />
       <figcaption className="px-4 py-3.5">
         {frame.kicker && <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{frame.kicker}</p>}
-        <h3 className="mt-1 font-display text-lg font-extrabold tracking-tight">{frame.title}</h3>
+        <h3 className="mt-1 font-display text-lg font-bold tracking-tight">{frame.title}</h3>
         {frame.copy && <p className="mt-1.5 text-[13px] font-medium leading-relaxed text-muted-foreground">{frame.copy}</p>}
       </figcaption>
     </figure>

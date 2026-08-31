@@ -18,7 +18,7 @@ export function ScrollLensFocus({ eyebrow = "LENS", text = "Scroll to move the l
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "end 0.1"] })
   const words = text.split(" ")
   return (
-    <SectionShell width={920} grain rule="bottom" className={className}>
+    <SectionShell width={920} rule="bottom" className={className}>
       <div ref={ref} className="py-16">
         <p className="mb-6 font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
         <p className="flex flex-wrap font-display text-2xl font-bold leading-[1.5] sm:text-4xl">

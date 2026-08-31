@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-parallax-depth.es.js",
       "require": "./dist/hero-parallax-depth.cjs.js"
     },

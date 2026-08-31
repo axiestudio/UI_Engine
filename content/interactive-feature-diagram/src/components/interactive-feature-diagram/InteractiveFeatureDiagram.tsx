@@ -19,17 +19,17 @@ export type InteractiveFeatureDiagramProps = {
   className?: string
 }
 
-export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at what matters.", src = "/frames/frame_0008.webp", pins, tone = "paper", className }: InteractiveFeatureDiagramProps) {
+export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at what matters.", src = "/showcase/content/content-01-office.webp", pins, tone = "paper", className }: InteractiveFeatureDiagramProps) {
   const ink = tone === "ink"
   const [active, setActive] = React.useState<string | null>(pins[0]?.id ?? null)
   const activePin = pins.find((p) => p.id === active)
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.98 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="relative mt-10 overflow-hidden rounded-2xl border bg-foreground">
+        <div className="relative mt-10 overflow-hidden rounded-xl border bg-foreground">
           <div className="relative aspect-[16/10]">
             <img src={src} alt="" className="h-full w-full object-cover opacity-80" />
             <div className="absolute inset-0">
@@ -52,7 +52,7 @@ export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at w
           <div className="absolute bottom-0 inset-x-0 bg-background/90 p-6 backdrop-blur">
             {activePin && (
               <div className="flex items-center gap-4">
-                <span className="font-display text-2xl font-black">{String(pins.findIndex((p) => p.id === activePin.id) + 1).padStart(2, "0")}</span>
+                <span className="font-display text-2xl font-bold">{String(pins.findIndex((p) => p.id === activePin.id) + 1).padStart(2, "0")}</span>
                 <div>
                   <p className="font-display text-lg font-bold">{activePin.label}</p>
                   {activePin.body && <p className={cn("text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{activePin.body}</p>}

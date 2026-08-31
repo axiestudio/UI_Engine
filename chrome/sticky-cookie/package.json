@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/sticky-cookie.es.js",
       "require": "./dist/sticky-cookie.cjs.js"
     },

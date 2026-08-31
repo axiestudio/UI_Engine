@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/activity-constellation.es.js",
       "require": "./dist/activity-constellation.cjs.js"
     },

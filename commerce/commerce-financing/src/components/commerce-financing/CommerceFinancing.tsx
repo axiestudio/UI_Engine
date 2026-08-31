@@ -18,7 +18,7 @@ export type CommerceFinancingProps = {
   className?: string
 }
 
-export function CommerceFinancing({ eyebrow = "PAY", title = "Own it monthly.", price = 1200, minTerm = 3, maxTerm = 36, apr = 0.15, className }: CommerceFinancingProps) {
+export function CommerceFinancing({ eyebrow = "PAY", title = "Monthly financing", price = 1200, minTerm = 3, maxTerm = 36, apr = 0.15, className }: CommerceFinancingProps) {
   const [term, setTerm] = React.useState(12)
   const monthly = React.useMemo(() => {
     const r = apr / 12

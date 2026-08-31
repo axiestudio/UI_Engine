@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/cohort-waves.es.js",
       "require": "./dist/cohort-waves.cjs.js"
     },

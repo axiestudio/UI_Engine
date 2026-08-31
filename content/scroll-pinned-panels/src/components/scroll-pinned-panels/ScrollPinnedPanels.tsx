@@ -32,7 +32,7 @@ export function ScrollPinnedPanels({ eyebrow = "PANELS", panels, className }: Sc
           return (
             <motion.div key={p.id} style={{ y }} className={cn("absolute inset-0 flex flex-col items-center justify-center px-6 text-center", p.tone === "ink" ? "bg-foreground text-background" : "bg-background")}>
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{p.kicker}</p>
-              <h2 className="mt-4 max-w-2xl font-display text-4xl font-black leading-[0.98] tracking-[-0.03em] sm:text-6xl">{p.title}</h2>
+              <h2 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-[0.98] tracking-[-0.03em] sm:text-6xl">{p.title}</h2>
               {p.body && <p className="mt-4 max-w-md text-base font-medium leading-relaxed text-muted-foreground">{p.body}</p>}
               <span className="mt-8 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{i + 1} / {panels.length}</span>
             </motion.div>

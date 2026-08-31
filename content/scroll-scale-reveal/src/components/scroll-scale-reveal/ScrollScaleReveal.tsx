@@ -34,10 +34,10 @@ export function ScrollScaleReveal({ eyebrow = "ZOOM", blocks, tone = "paper", cl
           </InView>
           <div className="mt-8 space-y-6">
             {blocks.map((b, i) => (
-              <div key={b.id} className={cn("grid gap-5 rounded-2xl border p-6 sm:grid-cols-[auto_1fr] sm:items-center", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
-                <span className="font-display text-4xl font-black opacity-20">{String(i + 1).padStart(2, "0")}</span>
+              <div key={b.id} className={cn("grid gap-5 rounded-xl border p-6 sm:grid-cols-[auto_1fr] sm:items-center", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
+                <span className="font-display text-4xl font-bold opacity-20">{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <h3 className="font-display text-2xl font-black">{b.title}</h3>
+                  <h3 className="font-display text-2xl font-bold">{b.title}</h3>
                   {b.body && <p className={cn("mt-1 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{b.body}</p>}
                 </div>
               </div>

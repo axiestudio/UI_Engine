@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/curriculum-rail.es.js",
       "require": "./dist/curriculum-rail.cjs.js"
     },

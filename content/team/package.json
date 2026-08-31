@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/team.es.js",
       "require": "./dist/team.cjs.js"
     },

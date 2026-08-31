@@ -34,7 +34,7 @@ export function AiAnswerToolbar({ tokensUsed, onCopy, onRegenerate, onThumbs, ra
             </button>
           )}
           {onRegenerate && <button aria-label="Regenerate answer" onClick={() => { setSpin((s) => s + 1); onRegenerate() }} className="grid size-8 place-items-center rounded-md text-muted-foreground hover:bg-muted"><motion.span animate={{ rotate: spin * 360 }} transition={{ duration: 0.7 }}><RefreshCw className="size-4" /></motion.span></button>}
-          {tokensUsed !== undefined && <span className="ml-auto font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground">{tokensUsed} tokens · 1.2s</span>}
+          {tokensUsed !== undefined && <span className="ml-auto text-xs text-muted-foreground">{tokensUsed} tokens · 1.2s</span>}
         </motion.div>
       )}
     </AnimatePresence>

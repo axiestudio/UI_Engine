@@ -19,16 +19,16 @@ export type InteractiveSpotlightIndexProps = {
   className?: string
 }
 
-export function InteractiveSpotlightIndex({ eyebrow = "INDEX", title = "Point to a part.", image = "/frames/frame_0032.webp", entries, className }: InteractiveSpotlightIndexProps) {
+export function InteractiveSpotlightIndex({ eyebrow = "INDEX", title = "Point to a part.", image = "/showcase/content/content-01-office.webp", entries, className }: InteractiveSpotlightIndexProps) {
   const [active, setActive] = React.useState(0)
   const cur = entries[active]
   return (
-    <SectionShell width={1280} grain rule="bottom" className={className}>
+    <SectionShell width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
       </InView>
       <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-center">
-        <div className="relative overflow-hidden rounded-2xl border bg-foreground">
+        <div className="relative overflow-hidden rounded-xl border bg-foreground">
           <img src={image} alt="" className="aspect-[4/3] w-full object-cover opacity-80" />
           <AnimatePresence>
             {cur && (
@@ -39,7 +39,7 @@ export function InteractiveSpotlightIndex({ eyebrow = "INDEX", title = "Point to
                 initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 1.4, opacity: 0 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className="block h-40 w-40 rounded-full blur-2xl" style={{ background: "radial-gradient(circle, hsl(var(--site-accent)/0.7), transparent 65%)" }} />
+                <span className="block h-40 w-40 rounded-full blur-2xl" style={{ background: "radial-gradient(circle, hsl(var(--primary)/0.7), transparent 65%)" }} />
               </motion.span>
             )}
           </AnimatePresence>
@@ -56,7 +56,7 @@ export function InteractiveSpotlightIndex({ eyebrow = "INDEX", title = "Point to
           <div className="mt-6 min-h-[80px]">
             <AnimatePresence mode="wait">
               {cur && <motion.div key={cur.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }}>
-                <h3 className="font-display text-xl font-black">{cur.label}</h3>
+                <h3 className="font-display text-xl font-bold">{cur.label}</h3>
                 {cur.body && <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{cur.body}</p>}
               </motion.div>}
             </AnimatePresence>

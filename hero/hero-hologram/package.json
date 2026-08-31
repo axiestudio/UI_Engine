@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/hero-hologram.es.js",
       "require": "./dist/hero-hologram.cjs.js"
     },

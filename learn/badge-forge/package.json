@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/badge-forge.es.js",
       "require": "./dist/badge-forge.cjs.js"
     },

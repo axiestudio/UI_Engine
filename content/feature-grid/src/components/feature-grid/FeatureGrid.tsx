@@ -33,7 +33,7 @@ export function FeatureGrid({
   const ink = tone === "ink"
   const cols = columns === 2 ? "sm:grid-cols-2" : columns === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3"
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
       </InView>
@@ -42,7 +42,7 @@ export function FeatureGrid({
           const Icon = item.icon
           return (
             <InView key={item.id} once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.04 }}>
-              <div className={cn("h-full rounded-2xl border p-6", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
+              <div className={cn("h-full rounded-xl border p-6", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
                 <div className="flex items-center gap-3">
                   <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl", ink ? "bg-background/10 text-background" : "bg-accent text-foreground")}>
                     {Icon ? <Icon className="h-5 w-5" /> : <Check className="h-5 w-5" />}

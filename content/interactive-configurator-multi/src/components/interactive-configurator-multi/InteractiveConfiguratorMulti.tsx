@@ -31,10 +31,10 @@ export function InteractiveConfiguratorMulti({ eyebrow = "COMPOSE", title = "Two
     return t
   }, [basePrice, groups, sel])
   const colorOpt = groups.find((g) => g.options[0].swatch)
-  const preview = colorOpt?.options.find((o) => o.id === sel[colorOpt.id])?.swatch ?? "hsl(var(--site-accent))"
+  const preview = colorOpt?.options.find((o) => o.id === sel[colorOpt.id])?.swatch ?? "hsl(var(--primary))"
   const toggle = (gid: string, oid: string) => setSel((s) => ({ ...s, [gid]: oid }))
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} />
       </InView>
@@ -49,9 +49,9 @@ export function InteractiveConfiguratorMulti({ eyebrow = "COMPOSE", title = "Two
                 ))}
               </div>
             </motion.div>
-            <div className="mt-4 flex items-center justify-between rounded-2xl border bg-card p-5">
+            <div className="mt-4 flex items-center justify-between rounded-xl border bg-card shadow-sm p-5">
               <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Running total</p>
-              <p className="font-display text-3xl font-black tabular-nums">€{total}</p>
+              <p className="font-display text-3xl font-bold tabular-nums">€{total}</p>
             </div>
           </div>
         </InView>

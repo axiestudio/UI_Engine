@@ -22,7 +22,7 @@ export function InteractiveAccordionMega({ eyebrow = "MEGA", title = "Rows worth
   const [openId, setOpenId] = React.useState<string | null>(rows[0]?.id ?? null)
   const active = rows.find((r) => r.id === openId)
   return (
-    <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
@@ -31,11 +31,11 @@ export function InteractiveAccordionMega({ eyebrow = "MEGA", title = "Rows worth
           {rows.map((r) => {
             const open = r.id === openId
             return (
-              <div key={r.id} className={cn("overflow-hidden rounded-2xl border transition-colors", open && (ink ? "border-background/30 bg-background/5" : "border-foreground bg-card"))}>
+              <div key={r.id} className={cn("overflow-hidden rounded-xl border transition-colors", open && (ink ? "border-background/30 bg-background/5" : "border-foreground bg-card"))}>
                 <button type="button" onClick={() => setOpenId(open ? null : r.id)} aria-expanded={open} className="flex w-full items-center justify-between gap-4 p-6 text-left">
                   <div className="flex items-baseline gap-4">
                     <span className={cn("font-mono text-[11px] font-bold tracking-[0.2em]", ink ? "text-background/45" : "text-muted-foreground")}>{r.meta ?? "0" + (rows.indexOf(r) + 1)}</span>
-                    <h3 className="font-display text-2xl font-black sm:text-3xl">{r.title}</h3>
+                    <h3 className="font-display text-2xl font-bold sm:text-3xl">{r.title}</h3>
                   </div>
                   <span className={cn("shrink-0 font-mono text-xl", open ? "rotate-45" : "", ink ? "text-background/60" : "text-muted-foreground")}>+</span>
                 </button>

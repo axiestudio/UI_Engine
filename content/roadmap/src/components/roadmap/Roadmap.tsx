@@ -66,7 +66,7 @@ function RoadmapCard({ item, ink }: { item: RoadmapItem; ink: boolean }) {
           {item.tag}
         </span>
       )}
-      <h3 className={cn("font-display text-[15px] font-extrabold leading-snug tracking-[-0.01em]", ink ? "text-background" : "text-foreground")}>
+      <h3 className={cn("font-display text-[15px] font-bold leading-snug tracking-[-0.01em]", ink ? "text-background" : "text-foreground")}>
         {item.title}
       </h3>
       {item.description && (
@@ -95,7 +95,7 @@ export function Roadmap({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} rails grain padding="roomy" className={className}>
+    <SectionShell tone={tone} width={1120} rails padding="roomy" className={className}>
       <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} index="05" tone={tone} />
 
       <div className="mt-12 grid gap-8 lg:grid-cols-3 lg:gap-6">
@@ -125,7 +125,7 @@ export function Roadmap({
                     )}
                   />
                 </span>
-                <h3 className={cn("font-display text-lg font-extrabold tracking-[-0.02em]", ink ? "text-background" : "text-foreground")}>
+                <h3 className={cn("font-display text-lg font-bold tracking-[-0.02em]", ink ? "text-background" : "text-foreground")}>
                   {col.label ?? STATUS_LABEL[col.status]}
                 </h3>
                 <span className={cn("ml-auto font-mono text-[10px] font-bold uppercase tracking-[0.18em]", ink ? "text-background/40" : "text-muted-foreground/70")}>

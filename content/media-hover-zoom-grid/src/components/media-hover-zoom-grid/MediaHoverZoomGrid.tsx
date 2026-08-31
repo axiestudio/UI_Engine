@@ -20,7 +20,7 @@ export type MediaHoverZoomGridProps = {
 export function MediaHoverZoomGrid({ eyebrow = "HOVER", title = "Get closer.", tiles, tone = "paper", className }: MediaHoverZoomGridProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1280} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>

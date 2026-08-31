@@ -50,8 +50,10 @@ export function DndTabReorder({
   const [selected, setSelected] = React.useState<string | null>(activeId ?? list[0]?.id ?? null)
   const [activeMoveId, setActiveMoveId] = React.useState<string | null>(null)
   const [announce, setAnnounce] = React.useState("")
-  const sensors = useSensors(useSensor(PointerSensor,
-  KeyboardSensor, { activationConstraint: { distance: 6 } }))
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  )
 
   const select = (id: string) => {
     setSelected(id)

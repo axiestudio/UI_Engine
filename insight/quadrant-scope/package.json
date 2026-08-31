@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/quadrant-scope.es.js",
       "require": "./dist/quadrant-scope.cjs.js"
     },

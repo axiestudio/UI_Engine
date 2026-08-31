@@ -27,7 +27,7 @@ export function MediaProgressiveParallax({ eyebrow = "DEPTH", title = "Layers th
   const yAlt = useTransform(scrollYProgress, [0, 1], [-60, 60])
   const blurAlt = useTransform(scrollYProgress, [0, 0.5, 1], [6, 0, 6])
   return (
-    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
       </InView>
@@ -36,7 +36,7 @@ export function MediaProgressiveParallax({ eyebrow = "DEPTH", title = "Layers th
           <motion.div
             key={l.id}
             style={{ y: i % 2 ? yAlt : y, filter: i % 2 ? blurAlt : blur }}
-            className={cn("img-hover-wash overflow-hidden rounded-2xl border bg-muted", i === 1 && "lg:-mt-6")}
+            className={cn("img-hover-wash overflow-hidden rounded-xl border bg-muted", i === 1 && "lg:-mt-6")}
           >
             {l.src ? <img src={l.src} alt={l.alt ?? ""} className="aspect-[4/5] w-full object-cover" loading="lazy" /> : <div className="aspect-[4/5] w-full bg-gradient-to-br from-secondary to-muted" />}
           </motion.div>

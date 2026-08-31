@@ -17,7 +17,7 @@ export type CommerceLoyaltyTierProps = {
   className?: string
 }
 
-export function CommerceLoyaltyTier({ eyebrow = "MEMBERSHIP", title = "Levels, not coupons.", tiers, className }: CommerceLoyaltyTierProps) {
+export function CommerceLoyaltyTier({ eyebrow = "MEMBERSHIP", title = "Loyalty tiers", tiers, className }: CommerceLoyaltyTierProps) {
   return (
     <SectionShell width={1120} grain rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

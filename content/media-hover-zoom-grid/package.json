@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/media-hover-zoom-grid.es.js",
       "require": "./dist/media-hover-zoom-grid.cjs.js"
     },

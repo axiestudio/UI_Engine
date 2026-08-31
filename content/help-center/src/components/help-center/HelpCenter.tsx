@@ -54,7 +54,7 @@ export function HelpCenter({
   if (!categories.length) return null
 
   return (
-    <SectionShell tone={tone} width={1120} grain padding="roomy" className={className}>
+    <SectionShell tone={tone} width={1120} padding="roomy" className={className}>
       <header className="relative mx-auto max-w-2xl text-center">
         {/* masked dots behind the header only */}
         <Dots
@@ -65,7 +65,7 @@ export function HelpCenter({
           )}
         />
         <MonoLabel className={cn("justify-center", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</MonoLabel>
-        <h2 className={cn("mt-4 font-display text-[clamp(1.9rem,4.5vw,2.75rem)] font-black leading-[1.02] tracking-[-0.035em]", ink ? "text-background" : "text-foreground")}>
+        <h2 className={cn("mt-4 font-display text-[clamp(1.9rem,4.5vw,2.75rem)] font-bold leading-[1.02] tracking-[-0.035em]", ink ? "text-background" : "text-foreground")}>
           {title}
         </h2>
         <p className={cn("mt-3 text-[15px] font-medium leading-[1.7]", ink ? "text-background/60" : "text-muted-foreground")}>
@@ -115,7 +115,7 @@ export function HelpCenter({
                 <span className={cn("inline-flex size-10 items-center justify-center border transition-transform duration-300 group-hover:-rotate-6", ink ? "border-background/20 bg-background/10 text-background" : "border-border bg-secondary text-foreground")}>
                   <Icon className="size-5" strokeWidth={2.25} />
                 </span>
-                <span className={cn("mt-4 inline-flex items-center gap-1.5 font-display text-[15px] font-extrabold tracking-[-0.01em]", ink ? "text-background" : "text-foreground")}>
+                <span className={cn("mt-4 inline-flex items-center gap-1.5 font-display text-[15px] font-bold tracking-[-0.01em]", ink ? "text-background" : "text-foreground")}>
                   {cat.title}
                   <ArrowUpRight className={cn("size-3.5 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100", ink ? "text-background" : "text-foreground")} />
                 </span>

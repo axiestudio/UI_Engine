@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-magnetic-menu.es.js",
       "require": "./dist/interactive-magnetic-menu.cjs.js"
     },

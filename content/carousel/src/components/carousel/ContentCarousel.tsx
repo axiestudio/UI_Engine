@@ -50,7 +50,7 @@ function SlideCard({ slide, perView }: { slide: Slide; perView: number }) {
       )}
       <div className="flex flex-1 flex-col p-6">
         {slide.eyebrow && <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{slide.eyebrow}</p>}
-        {slide.title && <h3 className={cn("mt-2 font-display font-extrabold tracking-tight", perView > 1 ? "text-lg" : "text-2xl lg:text-3xl")}>{slide.title}</h3>}
+        {slide.title && <h3 className={cn("mt-2 font-display font-bold tracking-tight", perView > 1 ? "text-lg" : "text-2xl lg:text-3xl")}>{slide.title}</h3>}
         {slide.body && <p className="mt-2 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{slide.body}</p>}
         {slide.action && (
           <a href={slide.action.href} className="mt-4 inline-flex items-center gap-1 text-sm font-bold underline-offset-4 hover:underline" >
@@ -91,7 +91,7 @@ export function ContentCarousel({
             <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
               <div className="max-w-2xl">
                 {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-                {title && <h2 className="mt-1 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>}
+                {title && <h2 className="mt-1 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
               </div>
               {showArrows && (
                 <div className="flex gap-2">

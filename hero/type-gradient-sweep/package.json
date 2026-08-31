@@ -15,6 +15,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/type-gradient-sweep.es.js",
       "require": "./dist/type-gradient-sweep.cjs.js"
     },
