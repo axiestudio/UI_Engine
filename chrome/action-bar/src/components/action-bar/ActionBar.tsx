@@ -29,7 +29,9 @@ export type ActionBarProps = {
   className?: string
 }
 
-export function ActionBar({ action, aside, note, appearAfter = 480, retirementId, mobileOnly = true, className }: ActionBarProps) {
+const DEFAULT_ACTION = { label: "Book a bench visit", href: "#booking" }
+
+export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 480, retirementId, mobileOnly = true, className }: ActionBarProps) {
   const reduce = useReducedMotion()
   const [shown, setShown] = React.useState(false)
   const [retired, setRetired] = React.useState(false)
@@ -64,7 +66,7 @@ export function ActionBar({ action, aside, note, appearAfter = 480, retirementId
       initial={false}
       animate={reduce ? { opacity: visible ? 1 : 0 } : { y: visible ? 0 : 72 }}
       transition={{ type: "spring", bounce: 0.28, duration: 0.55 }}
-      className={cn("fixed inset-x-0 bottom-0 z-40", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none", className)}
+      className={cn("fixed bottom-0 z-40 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none", className)}
       style={{ paddingBottom: "max(env(safe-area-inset-bottom, 12px), 12px)" }}
     >
       <div className="mx-auto flex w-full max-w-[560px] items-center gap-2 px-3 py-2.5 backdrop-blur-xl">

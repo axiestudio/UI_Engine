@@ -19,7 +19,13 @@ export type CapabilitiesProps = {
   className?: string
 }
 
-export function Capabilities({ eyebrow = "CAPABILITIES", title = "What we do well.", subtitle = "Each card draws its own edge as you reach it.", items, tone = "paper", className }: CapabilitiesProps) {
+const DEFAULT_ITEMS = [
+  { id: "1", title: "Measured twice", body: "Every cut is checked against the drawing before it leaves the bench." },
+  { id: "2", title: "Named hands", body: "The person who built your piece signs the back panel." },
+  { id: "3", title: "Quiet hardware", body: "Soft-close everything. You hear the room, not the fittings." },
+  { id: "4", title: "Ten-year promise", body: "If a joint fails, we drive out and refit it. In writing." },
+]
+export function Capabilities({ eyebrow = "CAPABILITIES", title = "What we do well.", subtitle = "Each card draws its own edge as you reach it.", items = DEFAULT_ITEMS, tone = "paper", className }: CapabilitiesProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1120} rule="bottom" className={className}>

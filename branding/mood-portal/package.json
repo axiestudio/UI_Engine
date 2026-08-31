@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/mood-portal.cjs.js",
   "module": "dist/mood-portal.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/mood-portal.es.js",
       "require": "./dist/mood-portal.cjs.js"
     },

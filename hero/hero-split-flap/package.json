@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-split-flap.cjs.js",
   "module": "dist/hero-split-flap.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-split-flap.es.js",
       "require": "./dist/hero-split-flap.cjs.js"
     },

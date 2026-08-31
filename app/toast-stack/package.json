@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/toast-stack.js",
   "module": "dist/toast-stack.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/toast-stack.es.js",
       "require": "./dist/toast-stack.cjs.js"
     },

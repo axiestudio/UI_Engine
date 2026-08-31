@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/dnd-pairing.cjs.js",
   "module": "dist/dnd-pairing.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/dnd-pairing.es.js",
       "require": "./dist/dnd-pairing.cjs.js"
     },

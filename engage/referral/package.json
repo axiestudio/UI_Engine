@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/referral.cjs.js",
   "module": "dist/referral.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/referral.es.js",
       "require": "./dist/referral.cjs.js"
     },

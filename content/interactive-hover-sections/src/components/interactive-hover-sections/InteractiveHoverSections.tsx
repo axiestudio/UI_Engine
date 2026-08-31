@@ -16,7 +16,12 @@ export type InteractiveHoverSectionsProps = {
   className?: string
 }
 
-export function InteractiveHoverSections({ eyebrow = "INDEX", rows, tone = "paper", className }: InteractiveHoverSectionsProps) {
+const DEFAULT_ROWS = [
+  { id: "h1", title: "Full-scale drawings", body: "Taped out on the floor before the first cut.", src: "/showcase/content/content-04-architecture.webp", stat: "1:1" },
+  { id: "h2", title: "One maker per piece", body: "The same hands from lumber to sign-off.", src: "/showcase/content/content-02-team.webp", stat: "1:1" },
+  { id: "h3", title: "Ten-year promise", body: "Joints, finishes, hardware — all of it.", src: "/showcase/gallery-04.webp", stat: "10 yr" },
+]
+export function InteractiveHoverSections({ eyebrow = "INDEX", rows = DEFAULT_ROWS, tone = "paper", className }: InteractiveHoverSectionsProps) {
   const ink = tone === "ink"
   const [active, setActive] = React.useState(0)
   const a = rows[active]

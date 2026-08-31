@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/dnd-sortable-list.cjs.js",
   "module": "dist/dnd-sortable-list.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/dnd-sortable-list.es.js",
       "require": "./dist/dnd-sortable-list.cjs.js"
     },

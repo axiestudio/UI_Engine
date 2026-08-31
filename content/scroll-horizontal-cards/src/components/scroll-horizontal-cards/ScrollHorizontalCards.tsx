@@ -18,7 +18,13 @@ export type ScrollHorizontalCardsProps = {
   className?: string
 }
 
-export function ScrollHorizontalCards({ eyebrow = "PAN", title = "A section that moves sideways.", cards, tone = "paper", className }: ScrollHorizontalCardsProps) {
+const DEFAULT_CARDS = [
+  { id: "c1", title: "The first visit", body: "Coffee, drawings, and the floor taped full-scale.", src: "/showcase/content/content-01-office.webp" },
+  { id: "c2", title: "Timber selection", body: "You see and touch every board before we cut.", src: "/showcase/content/content-06-nature.webp" },
+  { id: "c3", title: "Bench time", body: "Fridays, photos. You watch it become furniture.", src: "/showcase/content/content-05-workshop.webp" },
+  { id: "c4", title: "The handover", body: "Placed, levelled, and explained by its maker.", src: "/showcase/content/content-03-product.webp" },
+]
+export function ScrollHorizontalCards({ eyebrow = "PAN", title = "A section that moves sideways.", cards = DEFAULT_CARDS, tone = "paper", className }: ScrollHorizontalCardsProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })

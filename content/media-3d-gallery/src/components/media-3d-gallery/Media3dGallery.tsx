@@ -18,7 +18,15 @@ export type Media3dGalleryProps = {
   className?: string
 }
 
-export function Media3dGallery({ eyebrow = "DEPTH", title = "A deep carousel.", frames, tone = "paper", className }: Media3dGalleryProps) {
+const DEFAULT_FRAMES = [
+  { id: "f1", src: "/showcase/gallery-01.webp", alt: "Showroom long shot" },
+  { id: "f2", src: "/showcase/gallery-02.webp", alt: "Oak detail" },
+  { id: "f3", src: "/showcase/gallery-03.webp", alt: "Brass hardware" },
+  { id: "f4", src: "/showcase/gallery-04.webp", alt: "Studio corner" },
+  { id: "f5", src: "/showcase/gallery-05.webp", alt: "Freshly oiled top" },
+  { id: "f6", src: "/showcase/gallery-06.webp", alt: "Evening bench" },
+]
+export function Media3dGallery({ eyebrow = "DEPTH", title = "A deep carousel.", frames = DEFAULT_FRAMES, tone = "paper", className }: Media3dGalleryProps) {
   const ink = tone === "ink"
   const [active, setActive] = React.useState(0)
   const n = frames.length

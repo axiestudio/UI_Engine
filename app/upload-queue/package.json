@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/upload-queue.js",
   "module": "dist/upload-queue.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/upload-queue.es.js",
       "require": "./dist/upload-queue.cjs.js"
     },

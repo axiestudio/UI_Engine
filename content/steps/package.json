@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/steps.cjs.js",
   "module": "dist/steps.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/steps.es.js",
       "require": "./dist/steps.cjs.js"
     },

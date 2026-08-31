@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/warehouse-scan.cjs.js",
   "module": "dist/warehouse-scan.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/warehouse-scan.es.js",
       "require": "./dist/warehouse-scan.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/filter-token-builder.js",
   "module": "dist/filter-token-builder.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/filter-token-builder.es.js",
       "require": "./dist/filter-token-builder.cjs.js"
     },

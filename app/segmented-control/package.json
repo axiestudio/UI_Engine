@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/segmented-control.js",
   "module": "dist/segmented-control.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/segmented-control.es.js",
       "require": "./dist/segmented-control.cjs.js"
     },

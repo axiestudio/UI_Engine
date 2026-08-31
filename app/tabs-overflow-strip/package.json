@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/tabs-overflow-strip.js",
   "module": "dist/tabs-overflow-strip.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/tabs-overflow-strip.es.js",
       "require": "./dist/tabs-overflow-strip.cjs.js"
     },

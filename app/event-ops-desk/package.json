@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/event-ops-desk.cjs.js",
   "module": "dist/event-ops-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/event-ops-desk.es.js",
       "require": "./dist/event-ops-desk.cjs.js"
     },

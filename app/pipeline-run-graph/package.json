@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/pipeline-run-graph.js",
   "module": "dist/pipeline-run-graph.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/pipeline-run-graph.es.js",
       "require": "./dist/pipeline-run-graph.cjs.js"
     },

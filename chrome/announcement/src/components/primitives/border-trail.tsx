@@ -1,5 +1,10 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT). components/core/border-trail.tsx — fetched 2026-08-30. Do not edit casually.
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/border-trail.tsx
+ *
+ * Local craft (HANDCRAFT-CHECKLIST): upstream bg-zinc-500 → --muted-foreground token,
+ * so the trail themes with the host brandkit. The #000 in the mask-image is
+ * invisible mask maths, deliberately left as-is.
  */
 'use client';
 import { cn } from '@/lib/utils';
@@ -29,7 +34,7 @@ export function BorderTrail({
   return (
     <div className='pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]'>
       <motion.div
-        className={cn('absolute aspect-square bg-zinc-500', className)}
+        className={cn('absolute aspect-square bg-[hsl(var(--muted-foreground))]', className)}
         style={{
           width: size,
           offsetPath: `rect(0 auto auto 0 round ${size}px)`,

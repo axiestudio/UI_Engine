@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/scroll-pinned-chapters.cjs.js",
   "module": "dist/scroll-pinned-chapters.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/scroll-pinned-chapters.es.js",
       "require": "./dist/scroll-pinned-chapters.cjs.js"
     },

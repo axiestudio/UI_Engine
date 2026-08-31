@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/stage-lights-up.cjs.js",
   "module": "dist/stage-lights-up.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/stage-lights-up.es.js",
       "require": "./dist/stage-lights-up.cjs.js"
     },

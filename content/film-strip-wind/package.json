@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/film-strip-wind.cjs.js",
   "module": "dist/film-strip-wind.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/film-strip-wind.es.js",
       "require": "./dist/film-strip-wind.cjs.js"
     },

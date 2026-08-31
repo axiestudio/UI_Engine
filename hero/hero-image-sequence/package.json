@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-image-sequence.cjs.js",
   "module": "dist/hero-image-sequence.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-image-sequence.es.js",
       "require": "./dist/hero-image-sequence.cjs.js"
     },

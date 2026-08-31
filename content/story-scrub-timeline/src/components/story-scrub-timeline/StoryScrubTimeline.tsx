@@ -15,7 +15,13 @@ export type StoryScrubTimelineProps = {
   className?: string
 }
 
-export function StoryScrubTimeline({ eyebrow = "EPOCHS", epochs, className }: StoryScrubTimelineProps) {
+const DEFAULT_EPOCHS = [
+  { id: "ep1", year: "1962", title: "Grandfather's bench", body: "Built from a barn's beams. Still perfectly flat." },
+  { id: "ep2", year: "1988", title: "The craft standard", body: "One page of rules, written by the second generation." },
+  { id: "ep3", year: "2014", title: "The workshop", body: "The third generation opens the north-light room." },
+  { id: "ep4", year: "2026", title: "Still here", body: "Same rules. The espresso machine is now ours." },
+]
+export function StoryScrubTimeline({ eyebrow = "EPOCHS", epochs = DEFAULT_EPOCHS, className }: StoryScrubTimelineProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
   const runway = `${epochs.length * 80}vh`

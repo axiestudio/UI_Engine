@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/blog-grid.cjs.js",
   "module": "dist/blog-grid.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/blog-grid.es.js",
       "require": "./dist/blog-grid.cjs.js"
     },

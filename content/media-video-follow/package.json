@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/media-video-follow.cjs.js",
   "module": "dist/media-video-follow.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/media-video-follow.es.js",
       "require": "./dist/media-video-follow.cjs.js"
     },

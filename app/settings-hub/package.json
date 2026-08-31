@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/settings-hub.cjs.js",
   "module": "dist/settings-hub.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/settings-hub.es.js",
       "require": "./dist/settings-hub.cjs.js"
     },

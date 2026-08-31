@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/ticket-rush.cjs.js",
   "module": "dist/ticket-rush.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ticket-rush.es.js",
       "require": "./dist/ticket-rush.cjs.js"
     },

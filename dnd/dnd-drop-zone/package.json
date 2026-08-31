@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/dnd-drop-zone.cjs.js",
   "module": "dist/dnd-drop-zone.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/dnd-drop-zone.es.js",
       "require": "./dist/dnd-drop-zone.cjs.js"
     },

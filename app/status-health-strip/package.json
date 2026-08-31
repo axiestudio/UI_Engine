@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/status-health-strip.js",
   "module": "dist/status-health-strip.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/status-health-strip.es.js",
       "require": "./dist/status-health-strip.cjs.js"
     },

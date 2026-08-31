@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/funnel-stage-bars.js",
   "module": "dist/funnel-stage-bars.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/funnel-stage-bars.es.js",
       "require": "./dist/funnel-stage-bars.cjs.js"
     },

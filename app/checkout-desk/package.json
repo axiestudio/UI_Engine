@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/checkout-desk.cjs.js",
   "module": "dist/checkout-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/checkout-desk.es.js",
       "require": "./dist/checkout-desk.cjs.js"
     },

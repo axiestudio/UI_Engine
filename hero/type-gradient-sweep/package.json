@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/type-gradient-sweep.cjs.js",
   "module": "dist/type-gradient-sweep.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/type-gradient-sweep.es.js",
       "require": "./dist/type-gradient-sweep.cjs.js"
     },

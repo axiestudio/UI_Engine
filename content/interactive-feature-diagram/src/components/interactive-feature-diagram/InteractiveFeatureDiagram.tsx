@@ -19,7 +19,12 @@ export type InteractiveFeatureDiagramProps = {
   className?: string
 }
 
-export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at what matters.", src = "/showcase/content/content-01-office.webp", pins, tone = "paper", className }: InteractiveFeatureDiagramProps) {
+const DEFAULT_PINS = [
+  { id: "p1", x: 18, y: 30, label: "Dovetailed rails", body: "Cut by hand, fitted to a whisper." },
+  { id: "p2", x: 52, y: 58, label: "Levelling feet", body: "Thirty millimetres of travel for old floors." },
+  { id: "p3", x: 80, y: 24, label: "Cable channel", body: "Hidden groove down the back leg." },
+]
+export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at what matters.", src = "/showcase/content/content-01-office.webp", pins = DEFAULT_PINS, tone = "paper", className }: InteractiveFeatureDiagramProps) {
   const ink = tone === "ink"
   const [active, setActive] = React.useState<string | null>(pins[0]?.id ?? null)
   const activePin = pins.find((p) => p.id === active)

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/trend-scrub.cjs.js",
   "module": "dist/trend-scrub.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/trend-scrub.es.js",
       "require": "./dist/trend-scrub.cjs.js"
     },

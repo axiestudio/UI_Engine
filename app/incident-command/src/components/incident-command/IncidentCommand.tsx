@@ -29,7 +29,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
     { id: "c", author: "Klara (SRE)", at: new Date(Date.now() - 120e3).toISOString(), text: "queue draining on 2/3 nodes" },
   ])
   const [toasts, setToasts] = React.useState<{ id: string; title: string; tone?: "ok" | "warn" | "err" }[]>([])
-  const [jobs, setJobs] = React.useState([{ id: "j1", label: "proxy rollback", status: "running" as const, progress: 40, log: ["draining…", "node-3 ok"] }])
+  const [jobs, setJobs] = React.useState<{ id: string; label: string; status: "running" | "done" | "error" | "queued"; progress?: number; log?: string[]; error?: string }[]>([{ id: "j1", label: "proxy rollback", status: "running", progress: 40, log: ["draining…", "node-3 ok"] }])
   const [stages, setStages] = React.useState<Stage[]>([
     { id: "s1", label: "Detect", status: "pass" as const, duration: "12s" },
     { id: "s2", label: "Rollback", status: "running" as const, log: ["proxy v9 → v8"] },
@@ -50,7 +50,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
 
   return (
     <div className={cn("relative isolate min-h-[600px] overflow-hidden rounded-2xl border bg-background font-sans", hot && "border-[hsl(var(--err)/0.6)]", className)}>
-      {hot && <GlowEffect color="hsl(0 80% 55%)" spread={70} />}
+      {hot && <GlowEffect colors={["hsl(0 80% 55%)", "hsl(0 60% 35%)"]} mode="pulse" blur="strong" />}
       <OfflineQueueBanner online={true} queued={0} />
       <StatusHealthStrip services={[
         { name: "Checkout API", state: hot ? "degraded" : "operational", region: "eu" }, { name: "Payments", state: hot ? "down" : "operational", region: "eu", note: hot ? "proxy rollback mid-flight" : undefined }, { name: "Board websockets", state: "operational", region: "eu" },

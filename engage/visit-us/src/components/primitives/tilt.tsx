@@ -6,15 +6,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  type MotionStyle,
-  type SpringOptions,
-} from 'motion/react';
+import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform, type MotionStyle, type SpringOptions,  } from 'motion/react';
 
 export type TiltProps = {
   children: React.ReactNode;

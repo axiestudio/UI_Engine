@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/flashcard-swipe.cjs.js",
   "module": "dist/flashcard-swipe.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/flashcard-swipe.es.js",
       "require": "./dist/flashcard-swipe.cjs.js"
     },

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/quiz-flip-deck.cjs.js",
   "module": "dist/quiz-flip-deck.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/quiz-flip-deck.es.js",
       "require": "./dist/quiz-flip-deck.cjs.js"
     },

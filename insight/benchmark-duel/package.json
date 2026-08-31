@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/benchmark-duel.cjs.js",
   "module": "dist/benchmark-duel.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/benchmark-duel.es.js",
       "require": "./dist/benchmark-duel.cjs.js"
     },

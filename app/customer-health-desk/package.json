@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/customer-health-desk.cjs.js",
   "module": "dist/customer-health-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/customer-health-desk.es.js",
       "require": "./dist/customer-health-desk.cjs.js"
     },

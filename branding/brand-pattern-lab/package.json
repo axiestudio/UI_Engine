@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/brand-pattern-lab.cjs.js",
   "module": "dist/brand-pattern-lab.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/brand-pattern-lab.es.js",
       "require": "./dist/brand-pattern-lab.cjs.js"
     },

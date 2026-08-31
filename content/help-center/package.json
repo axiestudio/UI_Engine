@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/help-center.cjs.js",
   "module": "dist/help-center.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/help-center.es.js",
       "require": "./dist/help-center.cjs.js"
     },

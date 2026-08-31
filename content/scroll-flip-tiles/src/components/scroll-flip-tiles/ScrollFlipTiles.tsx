@@ -18,7 +18,13 @@ export type ScrollFlipTilesProps = {
   className?: string
 }
 
-export function ScrollFlipTiles({ eyebrow = "FLIP", title = "Cards with a second side.", tiles, tone = "paper", className }: ScrollFlipTilesProps) {
+const DEFAULT_TILES = [
+  { id: "f1", title: "Dovetails", body: "Cut by hand, fitted to a paper's width.", src: "/showcase/gallery-02.webp", tag: "joinery" },
+  { id: "f2", title: "Drawers", body: "Felt-lined bottoms, full extension.", src: "/showcase/gallery-03.webp", tag: "hardware" },
+  { id: "f3", title: "Tops", body: "Stave-glued so the grain runs true.", src: "/showcase/gallery-05.webp", tag: "timber" },
+  { id: "f4", title: "Feet", body: "Thirty millimetres of levelling travel.", src: "/showcase/gallery-06.webp", tag: "details" },
+]
+export function ScrollFlipTiles({ eyebrow = "FLIP", title = "Cards with a second side.", tiles = DEFAULT_TILES, tone = "paper", className }: ScrollFlipTilesProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1120} rule="bottom" className={className}>

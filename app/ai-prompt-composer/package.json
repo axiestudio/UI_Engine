@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/ai-prompt-composer.js",
   "module": "dist/ai-prompt-composer.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ai-prompt-composer.es.js",
       "require": "./dist/ai-prompt-composer.cjs.js"
     },

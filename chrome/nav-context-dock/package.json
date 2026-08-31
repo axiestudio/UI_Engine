@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/nav-context-dock.cjs.js",
   "module": "dist/nav-context-dock.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/nav-context-dock.es.js",
       "require": "./dist/nav-context-dock.cjs.js"
     },

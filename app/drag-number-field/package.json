@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/drag-number-field.js",
   "module": "dist/drag-number-field.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/drag-number-field.es.js",
       "require": "./dist/drag-number-field.cjs.js"
     },

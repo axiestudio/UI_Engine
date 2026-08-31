@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/breadcrumb-collapse.js",
   "module": "dist/breadcrumb-collapse.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/breadcrumb-collapse.es.js",
       "require": "./dist/breadcrumb-collapse.cjs.js"
     },

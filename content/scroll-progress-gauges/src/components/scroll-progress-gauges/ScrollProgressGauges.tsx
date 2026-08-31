@@ -15,7 +15,13 @@ export type ScrollProgressGaugesProps = {
   className?: string
 }
 
-export function ScrollProgressGauges({ eyebrow = "GAUGES", gauges, className }: ScrollProgressGaugesProps) {
+const DEFAULT_GAUGES = [
+  { id: "g1", label: "Drawings approved", target: 100, suffix: "%" },
+  { id: "g2", label: "On-time delivery", target: 96, suffix: "%" },
+  { id: "g3", label: "Repairs under warranty", target: 2, suffix: "yr" },
+  { id: "g4", label: "Clients who return", target: 81, suffix: "%" },
+]
+export function ScrollProgressGauges({ eyebrow = "GAUGES", gauges = DEFAULT_GAUGES, className }: ScrollProgressGaugesProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
   const sp = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })

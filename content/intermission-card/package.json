@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/intermission-card.cjs.js",
   "module": "dist/intermission-card.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/intermission-card.es.js",
       "require": "./dist/intermission-card.cjs.js"
     },

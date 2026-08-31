@@ -6,13 +6,7 @@
 'use client';
 // Local patch for workspace tsconfig (verbatimModuleSyntax): type-only imports only, no behavior change.
 import { useRef, useState, type ReactNode } from 'react';
-import {
-  motion,
-  useInView,
-  type Variant,
-  type Transition,
-  type UseInViewOptions,
-} from 'motion/react';
+import { motion, useInView, type Variant, type Transition, type UseInViewOptions,  } from 'motion/react';
 
 export type InViewProps = {
   children: ReactNode;

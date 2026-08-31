@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/waitlist-band.cjs.js",
   "module": "dist/waitlist-band.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/waitlist-band.es.js",
       "require": "./dist/waitlist-band.cjs.js"
     },

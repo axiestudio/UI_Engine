@@ -19,7 +19,15 @@ export type MediaFullscreenLightboxProps = {
   className?: string
 }
 
-export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, then look closer.", frames, tone = "paper", className }: MediaFullscreenLightboxProps) {
+const DEFAULT_FRAMES = [
+  { id: "f1", src: "/showcase/gallery-01.webp", alt: "Showroom long shot" },
+  { id: "f2", src: "/showcase/gallery-02.webp", alt: "Oak detail" },
+  { id: "f3", src: "/showcase/gallery-03.webp", alt: "Brass hardware" },
+  { id: "f4", src: "/showcase/gallery-04.webp", alt: "Studio corner" },
+  { id: "f5", src: "/showcase/gallery-05.webp", alt: "Freshly oiled top" },
+  { id: "f6", src: "/showcase/gallery-06.webp", alt: "Evening bench" },
+]
+export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, then look closer.", frames = DEFAULT_FRAMES, tone = "paper", className }: MediaFullscreenLightboxProps) {
   const ink = tone === "ink"
   const [openIdx, setOpenIdx] = React.useState<number | null>(null)
   React.useEffect(() => {

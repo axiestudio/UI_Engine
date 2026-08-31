@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/kpi-tile-live.js",
   "module": "dist/kpi-tile-live.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/kpi-tile-live.es.js",
       "require": "./dist/kpi-tile-live.cjs.js"
     },

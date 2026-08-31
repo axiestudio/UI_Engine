@@ -4,7 +4,7 @@ import { defineConfig } from "vite"
 import dts from "vite-plugin-dts"
 
 export default defineConfig({
-  plugins: [react(), dts({ include: ["src"], tsconfigPath: "./tsconfig.app.json", entryRoot: "src", insertTypesEntry: true })],
+  plugins: [react(), dts({ include: ["src"], tsconfigPath: "./tsconfig.app.json", entryRoot: "src" })],
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
   build: {
     lib: { entry: path.resolve(__dirname, "src/index.ts"), name: "HeroCentered", formats: ["es","cjs"], fileName: (f) => (f==="es"?"hero-centered.es.js":"hero-centered.cjs.js") },

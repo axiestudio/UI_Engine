@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/elevator-floors.cjs.js",
   "module": "dist/elevator-floors.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/elevator-floors.es.js",
       "require": "./dist/elevator-floors.cjs.js"
     },

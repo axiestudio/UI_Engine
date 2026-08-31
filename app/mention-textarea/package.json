@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/mention-textarea.js",
   "module": "dist/mention-textarea.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/mention-textarea.es.js",
       "require": "./dist/mention-textarea.cjs.js"
     },

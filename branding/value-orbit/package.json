@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/value-orbit.cjs.js",
   "module": "dist/value-orbit.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/value-orbit.es.js",
       "require": "./dist/value-orbit.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/cmd-palette.js",
   "module": "dist/cmd-palette.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/cmd-palette.es.js",
       "require": "./dist/cmd-palette.cjs.js"
     },

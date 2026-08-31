@@ -21,7 +21,12 @@ export type CommerceCheckoutRecapProps = {
   className?: string
 }
 
-export function CommerceCheckoutRecap({ eyebrow = "CHECKOUT", title = "Almost there.", lines, shipping = "Free", tax = "€12", cta = "Pay now", className }: CommerceCheckoutRecapProps) {
+const DEFAULT_LINES = [
+  { id: "l1", label: "Workshop weekend, two seats", price: "€240", qty: 1 },
+  { id: "l2", label: "Tool kit — take home", price: "€38", qty: 2 },
+  { id: "l3", label: "Bench time, Saturday afternoon", price: "€60", qty: 1 },
+]
+export function CommerceCheckoutRecap({ eyebrow = "CHECKOUT", title = "Almost there.", lines = DEFAULT_LINES, shipping = "Free", tax = "€12", cta = "Pay now", className }: CommerceCheckoutRecapProps) {
   return (
     <SectionShell width={1120} grain rule="bottom" className={className}>
       <div className="grid gap-10 lg:grid-cols-[1fr_380px]">

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/grade-desk.cjs.js",
   "module": "dist/grade-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/grade-desk.es.js",
       "require": "./dist/grade-desk.cjs.js"
     },

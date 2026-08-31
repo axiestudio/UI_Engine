@@ -41,7 +41,7 @@ export function HeaderPill({
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24))
 
   return (
-    <header className={cn("fixed inset-x-0 top-4 z-50 flex justify-center px-4", className)}>
+    <header className={cn("fixed top-4 z-50 flex justify-center px-4 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", className)}>
       <motion.div
         layout
         animate={{ paddingTop: scrolled ? 7 : 10, paddingBottom: scrolled ? 7 : 10 }}

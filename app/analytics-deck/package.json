@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/analytics-deck.cjs.js",
   "module": "dist/analytics-deck.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/analytics-deck.es.js",
       "require": "./dist/analytics-deck.cjs.js"
     },

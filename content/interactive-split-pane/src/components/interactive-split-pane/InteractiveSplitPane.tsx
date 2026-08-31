@@ -18,7 +18,9 @@ export type InteractiveSplitPaneProps = {
   className?: string
 }
 
-export function InteractiveSplitPane({ eyebrow = "SPLIT", title = "Two ways at once.", left, right, className }: InteractiveSplitPaneProps) {
+const DEFAULT_LEFT = { title: "Drawn first", body: "Full-scale on the shop floor, taped out and argued over.", src: "/showcase/content/content-04-architecture.webp" }
+const DEFAULT_RIGHT = { title: "Built once", body: "The drawing becomes the piece; the piece outlives the trend.", src: "/showcase/gallery-01.webp" }
+export function InteractiveSplitPane({ eyebrow = "SPLIT", title = "Two ways at once.", left = DEFAULT_LEFT, right = DEFAULT_RIGHT, className }: InteractiveSplitPaneProps) {
   const [split, setSplit] = React.useState(50)
   const boxRef = React.useRef<HTMLDivElement>(null)
   const onMove = (e: React.PointerEvent) => {

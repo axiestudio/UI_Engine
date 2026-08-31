@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/scroll-zoom-stack.cjs.js",
   "module": "dist/scroll-zoom-stack.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/scroll-zoom-stack.es.js",
       "require": "./dist/scroll-zoom-stack.cjs.js"
     },

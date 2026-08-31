@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/inventory-warroom.cjs.js",
   "module": "dist/inventory-warroom.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/inventory-warroom.es.js",
       "require": "./dist/inventory-warroom.cjs.js"
     },

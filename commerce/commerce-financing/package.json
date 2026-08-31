@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/commerce-financing.cjs.js",
   "module": "dist/commerce-financing.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/commerce-financing.es.js",
       "require": "./dist/commerce-financing.cjs.js"
     },

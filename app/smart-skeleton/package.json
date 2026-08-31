@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/smart-skeleton.js",
   "module": "dist/smart-skeleton.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/smart-skeleton.es.js",
       "require": "./dist/smart-skeleton.cjs.js"
     },

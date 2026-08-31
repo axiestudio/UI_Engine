@@ -137,7 +137,7 @@ export function Consent({
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              "fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6",
+              "fixed bottom-0 z-50 p-4 sm:p-6 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]",
               className,
             )}
           >

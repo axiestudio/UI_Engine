@@ -14,7 +14,14 @@ export type NavScrollspyProps = {
   className?: string
 }
 
-export function NavScrollspy({ brand = "STUDIO", sections, className }: NavScrollspyProps) {
+const DEFAULT_SECTIONS = [
+  { id: "top", label: "Top" },
+  { id: "work", label: "Work" },
+  { id: "process", label: "Process" },
+  { id: "studio", label: "Studio" },
+  { id: "visit", label: "Visit" },
+]
+export function NavScrollspy({ brand = "STUDIO", sections = DEFAULT_SECTIONS, className }: NavScrollspyProps) {
   const [active, setActive] = React.useState(sections[0]?.id ?? "")
   React.useEffect(() => {
     const onScroll = () => {

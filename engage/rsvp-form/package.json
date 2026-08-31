@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/rsvp-form.cjs.js",
   "module": "dist/rsvp-form.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/rsvp-form.es.js",
       "require": "./dist/rsvp-form.cjs.js"
     },

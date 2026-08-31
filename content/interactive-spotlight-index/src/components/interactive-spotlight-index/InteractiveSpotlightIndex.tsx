@@ -19,7 +19,12 @@ export type InteractiveSpotlightIndexProps = {
   className?: string
 }
 
-export function InteractiveSpotlightIndex({ eyebrow = "INDEX", title = "Point to a part.", image = "/showcase/content/content-01-office.webp", entries, className }: InteractiveSpotlightIndexProps) {
+const DEFAULT_ENTRIES = [
+  { id: "e1", label: "Oak", body: "Quarter-sawn, kilned slow." },
+  { id: "e2", label: "Brass", body: "Left to darken with use." },
+  { id: "e3", label: "Felt", body: "Wool, where wood meets wood." },
+]
+export function InteractiveSpotlightIndex({ eyebrow = "INDEX", title = "Point to a part.", image = "/showcase/content/content-01-office.webp", entries = DEFAULT_ENTRIES, className }: InteractiveSpotlightIndexProps) {
   const [active, setActive] = React.useState(0)
   const cur = entries[active]
   return (

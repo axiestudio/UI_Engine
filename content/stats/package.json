@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/stats.cjs.js",
   "module": "dist/stats.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/stats.es.js",
       "require": "./dist/stats.cjs.js"
     },

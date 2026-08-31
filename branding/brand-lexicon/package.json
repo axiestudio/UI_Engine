@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/brand-lexicon.cjs.js",
   "module": "dist/brand-lexicon.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/brand-lexicon.es.js",
       "require": "./dist/brand-lexicon.cjs.js"
     },

@@ -1,11 +1,11 @@
 {
   "name": "activity",
   "version": "0.1.0",
-  "description": "Live activity rail — typed event nodes, breathing latest item, mono timestamps (shadcn/ui new-york-v4 + Motion-Primitives)",
+  "description": "Live activity rail \u2014 typed event nodes, breathing latest item, mono timestamps (shadcn/ui new-york-v4 + Motion-Primitives)",
   "type": "module",
   "main": "dist/activity.cjs.js",
   "module": "dist/activity.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/activity.es.js",
       "require": "./dist/activity.cjs.js"
     },

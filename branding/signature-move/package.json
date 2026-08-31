@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/signature-move.cjs.js",
   "module": "dist/signature-move.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/signature-move.es.js",
       "require": "./dist/signature-move.cjs.js"
     },

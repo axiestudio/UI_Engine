@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/checkpoint-track.cjs.js",
   "module": "dist/checkpoint-track.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/checkpoint-track.es.js",
       "require": "./dist/checkpoint-track.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/aperture-hero.cjs.js",
   "module": "dist/aperture-hero.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/aperture-hero.es.js",
       "require": "./dist/aperture-hero.cjs.js"
     },

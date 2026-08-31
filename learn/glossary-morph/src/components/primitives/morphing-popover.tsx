@@ -1,6 +1,10 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/morphing-popover.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/morphing-popover.tsx
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/morphing-popover.tsx
+ *
+ * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
+ * the upstream zinc palette classes are replaced with the shadcn token set, so the
+ * component themes with the host brandkit and dark mode flips automatically.
  */
 'use client';
 
@@ -196,7 +200,7 @@ function MorphingPopoverContent({
             role='dialog'
             aria-modal='true'
             className={cn(
-              'absolute overflow-hidden rounded-md border border-zinc-950/10 bg-white p-2 text-zinc-950 shadow-md dark:border-zinc-50/10 dark:bg-zinc-700 dark:text-zinc-50',
+              'absolute overflow-hidden rounded-md border border-border bg-popover p-2 text-popover-foreground shadow-md',
               className
             )}
             initial='initial'

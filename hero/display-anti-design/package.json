@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/display-anti-design.cjs.js",
   "module": "dist/display-anti-design.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/display-anti-design.es.js",
       "require": "./dist/display-anti-design.cjs.js"
     },

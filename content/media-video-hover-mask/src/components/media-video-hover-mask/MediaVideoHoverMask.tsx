@@ -17,7 +17,12 @@ export type MediaVideoHoverMaskProps = {
   className?: string
 }
 
-export function MediaVideoHoverMask({ eyebrow = "MASK", title = "Hover to unmask.", cards, className }: MediaVideoHoverMaskProps) {
+const DEFAULT_CARDS = [
+  { id: "m1", title: "First cut", meta: "0:42", src: "/showcase/video/bench.mp4" },
+  { id: "m2", title: "The glue-up", meta: "1:18", src: "/showcase/video/build.mp4" },
+  { id: "m3", title: "Final fit", meta: "0:56", src: "/showcase/video/studio.mp4" },
+]
+export function MediaVideoHoverMask({ eyebrow = "MASK", title = "Hover to unmask.", cards = DEFAULT_CARDS, className }: MediaVideoHoverMaskProps) {
   return (
     <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

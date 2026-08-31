@@ -1,7 +1,12 @@
 /**
- * Vendored verbatim from motion-primitives (https://motion-primitives.com) by ibelick.
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
  * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/text-shimmer.tsx
- * Fetched 2026-08-29 from main branch. Do not edit unless intentionally adopting upstream changes.
+ *
+ * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
+ * the upstream zinc hexes (#a1a1aa / #71717a / #000 / #ffffff) are replaced with the
+ * shadcn token set (--muted-foreground / --foreground), so the shimmer follows the
+ * host brandkit and dark mode flips automatically. The #0000 stops below are
+ * transparent mask maths, deliberately left as-is.
  */
 'use client';
 import React, { useMemo, type JSX } from 'react';
@@ -35,9 +40,8 @@ function TextShimmerComponent({
     <MotionComponent
       className={cn(
         'relative inline-block bg-[length:250%_100%,auto] bg-clip-text',
-        'text-transparent [--base-color:#a1a1aa] [--base-gradient-color:#000]',
+        'text-transparent [--base-color:hsl(var(--muted-foreground))] [--base-gradient-color:hsl(var(--foreground))]',
         '[background-repeat:no-repeat,padding-box] [--bg:linear-gradient(90deg,#0000_calc(50%-var(--spread)),var(--base-gradient-color),#0000_calc(50%+var(--spread)))]',
-        'dark:[--base-color:#71717a] dark:[--base-gradient-color:#ffffff] dark:[--bg:linear-gradient(90deg,#0000_calc(50%-var(--spread)),var(--base-gradient-color),#0000_calc(50%+var(--spread)))]',
         className
       )}
       initial={{ backgroundPosition: '100% center' }}

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-pull-quote-cinematic.cjs.js",
   "module": "dist/hero-pull-quote-cinematic.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-pull-quote-cinematic.es.js",
       "require": "./dist/hero-pull-quote-cinematic.cjs.js"
     },

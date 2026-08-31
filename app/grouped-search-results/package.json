@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/grouped-search-results.js",
   "module": "dist/grouped-search-results.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/grouped-search-results.es.js",
       "require": "./dist/grouped-search-results.cjs.js"
     },

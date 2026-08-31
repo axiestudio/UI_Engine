@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/price-banner.cjs.js",
   "module": "dist/price-banner.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/price-banner.es.js",
       "require": "./dist/price-banner.cjs.js"
     },

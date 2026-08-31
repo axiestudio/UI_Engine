@@ -17,7 +17,12 @@ export type InteractiveScrollTriggeredTabsProps = {
   className?: string
 }
 
-export function InteractiveScrollTriggeredTabs({ eyebrow = "SCROLLABLE", title = "The tabs follow your reading.", rows, className }: InteractiveScrollTriggeredTabsProps) {
+const DEFAULT_ROWS = [
+  { id: "t1", label: "Materials", title: "Chosen slowly", body: "Two sawmills, both within a day's drive." },
+  { id: "t2", label: "Joinery", title: "Cut by hand", body: "Dovetails fitted to a paper's width." },
+  { id: "t3", label: "Finish", title: "Oiled, then oiled again", body: "Three coats, seven days, one finish." },
+]
+export function InteractiveScrollTriggeredTabs({ eyebrow = "SCROLLABLE", title = "The tabs follow your reading.", rows = DEFAULT_ROWS, className }: InteractiveScrollTriggeredTabsProps) {
   const [active, setActive] = React.useState(0)
   const wrap = React.useRef<HTMLDivElement>(null)
   React.useEffect(() => {

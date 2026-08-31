@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/radial-gauge.js",
   "module": "dist/radial-gauge.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/radial-gauge.es.js",
       "require": "./dist/radial-gauge.cjs.js"
     },

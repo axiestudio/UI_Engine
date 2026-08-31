@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/countdown-flare.cjs.js",
   "module": "dist/countdown-flare.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/countdown-flare.es.js",
       "require": "./dist/countdown-flare.cjs.js"
     },

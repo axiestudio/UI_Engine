@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/storage-ring-meter.js",
   "module": "dist/storage-ring-meter.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/storage-ring-meter.es.js",
       "require": "./dist/storage-ring-meter.cjs.js"
     },

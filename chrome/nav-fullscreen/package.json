@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/nav-fullscreen.cjs.js",
   "module": "dist/nav-fullscreen.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/nav-fullscreen.es.js",
       "require": "./dist/nav-fullscreen.cjs.js"
     },

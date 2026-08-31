@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/undo-history-slider.js",
   "module": "dist/undo-history-slider.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/undo-history-slider.es.js",
       "require": "./dist/undo-history-slider.cjs.js"
     },

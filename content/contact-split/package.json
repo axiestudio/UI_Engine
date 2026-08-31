@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/contact-split.cjs.js",
   "module": "dist/contact-split.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/contact-split.es.js",
       "require": "./dist/contact-split.cjs.js"
     },

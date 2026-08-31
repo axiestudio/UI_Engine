@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/departure-board.cjs.js",
   "module": "dist/departure-board.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/departure-board.es.js",
       "require": "./dist/departure-board.cjs.js"
     },

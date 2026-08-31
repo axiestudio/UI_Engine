@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/code-reveal.cjs.js",
   "module": "dist/code-reveal.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/code-reveal.es.js",
       "require": "./dist/code-reveal.cjs.js"
     },

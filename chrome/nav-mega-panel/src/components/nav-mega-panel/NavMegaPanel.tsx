@@ -14,7 +14,18 @@ export type NavMegaPanelProps = {
   className?: string
 }
 
-export function NavMegaPanel({ brand = "STUDIO", items, cta = "Start", className }: NavMegaPanelProps) {
+const DEFAULT_ITEMS = [
+  { id: "furniture", label: "Furniture", columns: [
+    { title: "Pieces", links: ["Tables", "Seating", "Storage", "Beds"] },
+    { title: "Collections", links: ["Atelier", "Northlight", "Archive"] },
+  ]},
+  { id: "services", label: "Services", columns: [
+    { title: "Workshops", links: ["Commissions", "Restoration", "Site visits"] },
+  ]},
+  { id: "studio", label: "Studio" },
+  { id: "journal", label: "Journal" },
+]
+export function NavMegaPanel({ brand = "STUDIO", items = DEFAULT_ITEMS, cta = "Start", className }: NavMegaPanelProps) {
   const [open, setOpen] = React.useState<string | null>(null)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const activeItem = items.find((i) => i.id === open)

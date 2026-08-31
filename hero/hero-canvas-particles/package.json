@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-canvas-particles.cjs.js",
   "module": "dist/hero-canvas-particles.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-canvas-particles.es.js",
       "require": "./dist/hero-canvas-particles.cjs.js"
     },

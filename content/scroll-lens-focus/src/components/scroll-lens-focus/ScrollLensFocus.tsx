@@ -32,7 +32,9 @@ export function ScrollLensFocus({ eyebrow = "LENS", text = "Scroll to move the l
 }
 
 function LensWord({ progress, range, children }: { progress: MotionValue<number>; range: [number, number]; children: string }) {
-  const opacity = useTransform(progress, range, [0.16, 1, 0.16])
-  const scale = useTransform(progress, range, [0.94, 1, 0.94])
+  // [start, peak, end] — the word sharpens as it crosses the lens centre
+  const full = [range[0], (range[0] + range[1]) / 2, range[1]] as [number, number, number]
+  const opacity = useTransform(progress, full, [0.16, 1, 0.16])
+  const scale = useTransform(progress, full, [0.94, 1, 0.94])
   return <motion.span style={{ opacity, scale }} className="mr-[0.32em] inline-block">{children}</motion.span>
 }

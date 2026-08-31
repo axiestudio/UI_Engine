@@ -15,7 +15,12 @@ export type ScrollSmartSectionsProps = {
   className?: string
 }
 
-export function ScrollSmartSections({ eyebrow = "INDEX", sections, className }: ScrollSmartSectionsProps) {
+const DEFAULT_SECTIONS = [
+  { id: "s1", label: "01", title: "North light only", body: "Colour judgement needs one honest light.", stat: "6 benches" },
+  { id: "s2", label: "02", title: "Dust leaves at the source", body: "Extraction at every station, swept twice daily.", stat: "2x daily" },
+  { id: "s3", label: "03", title: "The wall of standards", body: "Every joint we promise, cut and pinned for reference.", stat: "14 joints" },
+]
+export function ScrollSmartSections({ eyebrow = "INDEX", sections = DEFAULT_SECTIONS, className }: ScrollSmartSectionsProps) {
   const wrap = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrap, offset: ["start start", "end end"] })
   const progress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])

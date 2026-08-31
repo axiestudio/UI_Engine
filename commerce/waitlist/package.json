@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/waitlist.cjs.js",
   "module": "dist/waitlist.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/waitlist.es.js",
       "require": "./dist/waitlist.cjs.js"
     },

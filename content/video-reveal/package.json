@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/video-reveal.cjs.js",
   "module": "dist/video-reveal.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/video-reveal.es.js",
       "require": "./dist/video-reveal.cjs.js"
     },

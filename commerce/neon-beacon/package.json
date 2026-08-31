@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/neon-beacon.cjs.js",
   "module": "dist/neon-beacon.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/neon-beacon.es.js",
       "require": "./dist/neon-beacon.cjs.js"
     },

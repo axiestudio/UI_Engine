@@ -4,7 +4,7 @@
  */
 'use client';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { motion, useSpring, useTransform, SpringOptions } from 'motion/react';
+import { motion, useSpring, useTransform, type SpringOptions } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 export type SpotlightProps = {

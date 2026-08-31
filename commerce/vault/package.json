@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/vault.cjs.js",
   "module": "dist/vault.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/vault.es.js",
       "require": "./dist/vault.cjs.js"
     },

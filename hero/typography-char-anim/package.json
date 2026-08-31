@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/typography-char-anim.cjs.js",
   "module": "dist/typography-char-anim.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/typography-char-anim.es.js",
       "require": "./dist/typography-char-anim.cjs.js"
     },

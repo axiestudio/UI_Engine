@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/boarding-pass-gate.cjs.js",
   "module": "dist/boarding-pass-gate.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/boarding-pass-gate.es.js",
       "require": "./dist/boarding-pass-gate.cjs.js"
     },

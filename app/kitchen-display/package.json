@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/kitchen-display.cjs.js",
   "module": "dist/kitchen-display.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/kitchen-display.es.js",
       "require": "./dist/kitchen-display.cjs.js"
     },

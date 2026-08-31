@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/commerce-loyalty-tier.cjs.js",
   "module": "dist/commerce-loyalty-tier.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/commerce-loyalty-tier.es.js",
       "require": "./dist/commerce-loyalty-tier.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/event-timeline-day.js",
   "module": "dist/event-timeline-day.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/event-timeline-day.es.js",
       "require": "./dist/event-timeline-day.cjs.js"
     },

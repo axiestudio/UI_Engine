@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/skill-tree-rail.cjs.js",
   "module": "dist/skill-tree-rail.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/skill-tree-rail.es.js",
       "require": "./dist/skill-tree-rail.cjs.js"
     },

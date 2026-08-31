@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/switch-audit-trail.js",
   "module": "dist/switch-audit-trail.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/switch-audit-trail.es.js",
       "require": "./dist/switch-audit-trail.cjs.js"
     },

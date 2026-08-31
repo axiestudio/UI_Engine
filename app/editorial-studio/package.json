@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/editorial-studio.cjs.js",
   "module": "dist/editorial-studio.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/editorial-studio.es.js",
       "require": "./dist/editorial-studio.cjs.js"
     },

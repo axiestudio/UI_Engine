@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/consent.cjs.js",
   "module": "dist/consent.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/consent.es.js",
       "require": "./dist/consent.cjs.js"
     },

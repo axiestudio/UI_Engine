@@ -18,7 +18,13 @@ export type InteractiveTimelineScrubProps = {
   className?: string
 }
 
-export function InteractiveTimelineScrub({ eyebrow = "SCRUB", title = "Drag through the years.", milestones, tone = "paper", className }: InteractiveTimelineScrubProps) {
+const DEFAULT_MILESTONES = [
+  { id: "ms1", year: "2014", title: "A borrowed garage", body: "One bench, one router, the owner's espresso machine." },
+  { id: "ms2", year: "2017", title: "First craft standard", body: "Written on a single sheet, still pinned to the wall." },
+  { id: "ms3", year: "2021", title: "The workshop opens", body: "Six benches, north light, a proper dust plant." },
+  { id: "ms4", year: "2026", title: "Still finishing", body: "Same standard sheet. Third rewrite, same rule: finish." },
+]
+export function InteractiveTimelineScrub({ eyebrow = "SCRUB", title = "Drag through the years.", milestones = DEFAULT_MILESTONES, tone = "paper", className }: InteractiveTimelineScrubProps) {
   const ink = tone === "ink"
   const trackRef = React.useRef<HTMLDivElement>(null)
   const [pos, setPos] = React.useState(0)

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/swatch-spectrum.cjs.js",
   "module": "dist/swatch-spectrum.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/swatch-spectrum.es.js",
       "require": "./dist/swatch-spectrum.cjs.js"
     },

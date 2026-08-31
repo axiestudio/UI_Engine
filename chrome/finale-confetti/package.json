@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/finale-confetti.cjs.js",
   "module": "dist/finale-confetti.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/finale-confetti.es.js",
       "require": "./dist/finale-confetti.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/search.cjs.js",
   "module": "dist/search.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/search.es.js",
       "require": "./dist/search.cjs.js"
     },

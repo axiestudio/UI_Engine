@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/courier-dispatch.cjs.js",
   "module": "dist/courier-dispatch.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/courier-dispatch.es.js",
       "require": "./dist/courier-dispatch.cjs.js"
     },

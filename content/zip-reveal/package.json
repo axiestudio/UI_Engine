@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/zip-reveal.cjs.js",
   "module": "dist/zip-reveal.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/zip-reveal.es.js",
       "require": "./dist/zip-reveal.cjs.js"
     },

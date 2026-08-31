@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/header-minimal.cjs.js",
   "module": "dist/header-minimal.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/header-minimal.es.js",
       "require": "./dist/header-minimal.cjs.js"
     },

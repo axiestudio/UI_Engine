@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/changelog.cjs.js",
   "module": "dist/changelog.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/changelog.es.js",
       "require": "./dist/changelog.cjs.js"
     },

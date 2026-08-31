@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/co-brand-lockup.cjs.js",
   "module": "dist/co-brand-lockup.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/co-brand-lockup.es.js",
       "require": "./dist/co-brand-lockup.cjs.js"
     },

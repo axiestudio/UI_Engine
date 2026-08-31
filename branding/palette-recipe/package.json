@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/palette-recipe.cjs.js",
   "module": "dist/palette-recipe.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/palette-recipe.es.js",
       "require": "./dist/palette-recipe.cjs.js"
     },

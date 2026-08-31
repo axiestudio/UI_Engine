@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/footer-sitemap.cjs.js",
   "module": "dist/footer-sitemap.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/footer-sitemap.es.js",
       "require": "./dist/footer-sitemap.cjs.js"
     },

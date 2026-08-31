@@ -17,7 +17,12 @@ export type InteractiveTabsDeepProps = {
   className?: string
 }
 
-export function InteractiveTabsDeep({ eyebrow = "DEEP", title = "A drill-down that stays put.", tabs, tone = "paper", className }: InteractiveTabsDeepProps) {
+const DEFAULT_TABS = [
+  { id: "d1", label: "The room", title: "One bench, north light", body: "Everything happens within six steps.", points: ["North-facing glazing", "Dust extraction at each station", "Radios off by agreement"] },
+  { id: "d2", label: "The method", title: "Measure, argue, cut", body: "Full-scale drawings catch mistakes while they are cheap.", points: ["Taped outlines on the floor", "Second opinion before glue", "Cuts logged in the job book"] },
+  { id: "d3", label: "The handover", title: "Signed, oiled, delivered", body: "You meet the maker. They show you how to care for it.", points: ["Care kit included", "Annual check-up booked", "Direct line to the bench"] },
+]
+export function InteractiveTabsDeep({ eyebrow = "DEEP", title = "A drill-down that stays put.", tabs = DEFAULT_TABS, tone = "paper", className }: InteractiveTabsDeepProps) {
   const ink = tone === "ink"
   const [active, setActive] = React.useState(0)
   const tab = tabs[active]

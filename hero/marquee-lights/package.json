@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/marquee-lights.cjs.js",
   "module": "dist/marquee-lights.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/marquee-lights.es.js",
       "require": "./dist/marquee-lights.cjs.js"
     },

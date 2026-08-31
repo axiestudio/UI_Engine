@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/ink-trust.cjs.js",
   "module": "dist/ink-trust.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ink-trust.es.js",
       "require": "./dist/ink-trust.cjs.js"
     },

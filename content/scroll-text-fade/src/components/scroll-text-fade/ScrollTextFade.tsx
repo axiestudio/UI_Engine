@@ -34,8 +34,10 @@ export function ScrollTextFade({ eyebrow = "READ", text = "Scroll slowly. As eac
 }
 
 function Word({ progress, range, children, ink }: { progress: MotionValue<number>; range: [number, number]; children: string; ink: boolean }) {
-  const opacity = useTransform(progress, range, ink ? [0.18, 1, 0.18] : [0.15, 1, 0.15])
-  const y = useTransform(progress, range, [6, 0, 6])
+  // [start, peak, end] — the phrase brightens as it crosses the screen centre
+  const full = [range[0], (range[0] + range[1]) / 2, range[1]] as [number, number, number]
+  const opacity = useTransform(progress, full, ink ? [0.18, 1, 0.18] : [0.15, 1, 0.15])
+  const y = useTransform(progress, full, [6, 0, 6])
   return (
     <motion.span style={{ opacity, y }} className="mr-[0.35em] inline-block">{children}</motion.span>
   )

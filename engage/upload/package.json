@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/upload.cjs.js",
   "module": "dist/upload.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/upload.es.js",
       "require": "./dist/upload.cjs.js"
     },

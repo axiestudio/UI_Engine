@@ -17,7 +17,12 @@ export type InteractiveAccordionMegaProps = {
   className?: string
 }
 
-export function InteractiveAccordionMega({ eyebrow = "MEGA", title = "Rows worth opening.", rows, tone = "paper", className }: InteractiveAccordionMegaProps) {
+const DEFAULT_ROWS = [
+  { id: "m1", title: "Design", body: "Drawn full-scale before anything is cut.", src: "/showcase/content/content-04-architecture.webp", meta: "chapter 01" },
+  { id: "m2", title: "Build", body: "One maker per piece, start to finish.", src: "/showcase/content/content-05-workshop.webp", meta: "chapter 02" },
+  { id: "m3", title: "Care", body: "Annual check-up included, forever.", src: "/showcase/gallery-06.webp", meta: "chapter 03" },
+]
+export function InteractiveAccordionMega({ eyebrow = "MEGA", title = "Rows worth opening.", rows = DEFAULT_ROWS, tone = "paper", className }: InteractiveAccordionMegaProps) {
   const ink = tone === "ink"
   const [openId, setOpenId] = React.useState<string | null>(rows[0]?.id ?? null)
   const active = rows.find((r) => r.id === openId)

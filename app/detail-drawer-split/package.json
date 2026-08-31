@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/detail-drawer-split.js",
   "module": "dist/detail-drawer-split.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/detail-drawer-split.es.js",
       "require": "./dist/detail-drawer-split.cjs.js"
     },

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/footer.cjs.js",
   "module": "dist/footer.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/footer.es.js",
       "require": "./dist/footer.cjs.js"
     },

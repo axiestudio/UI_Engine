@@ -5,7 +5,7 @@
  */
 
 import { useState, type ReactNode } from 'react';
-import { motion, AnimatePresence, type Variants } from 'motion/react';
+import { motion, AnimatePresence, type Variant } from 'motion/react';
 import {
   TrendingUp,
   Shield,
@@ -60,7 +60,7 @@ export interface Hero4Props {
   socialLinks?: Hero4SocialLink[];
 }
 
-const container: Variants = {
+const container: { hidden: Variant; visible: Variant } = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -71,7 +71,7 @@ const container: Variants = {
   },
 };
 
-const item: Variants = {
+const item: { hidden: Variant; visible: Variant } = {
   hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,

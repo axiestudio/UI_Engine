@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/header-command.cjs.js",
   "module": "dist/header-command.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/header-command.es.js",
       "require": "./dist/header-command.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/sparkline-cell.js",
   "module": "dist/sparkline-cell.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/sparkline-cell.es.js",
       "require": "./dist/sparkline-cell.cjs.js"
     },

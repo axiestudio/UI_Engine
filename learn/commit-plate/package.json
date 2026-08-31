@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/commit-plate.cjs.js",
   "module": "dist/commit-plate.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/commit-plate.es.js",
       "require": "./dist/commit-plate.cjs.js"
     },

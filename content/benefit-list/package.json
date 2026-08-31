@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/benefit-list.cjs.js",
   "module": "dist/benefit-list.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/benefit-list.es.js",
       "require": "./dist/benefit-list.cjs.js"
     },

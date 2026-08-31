@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/chapter-scrub.cjs.js",
   "module": "dist/chapter-scrub.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/chapter-scrub.es.js",
       "require": "./dist/chapter-scrub.cjs.js"
     },

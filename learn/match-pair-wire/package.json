@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/match-pair-wire.cjs.js",
   "module": "dist/match-pair-wire.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/match-pair-wire.es.js",
       "require": "./dist/match-pair-wire.cjs.js"
     },

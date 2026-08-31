@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/type-infinity-marquee.cjs.js",
   "module": "dist/type-infinity-marquee.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/type-infinity-marquee.es.js",
       "require": "./dist/type-infinity-marquee.cjs.js"
     },

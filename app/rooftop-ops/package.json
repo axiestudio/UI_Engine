@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/rooftop-ops.cjs.js",
   "module": "dist/rooftop-ops.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/rooftop-ops.es.js",
       "require": "./dist/rooftop-ops.cjs.js"
     },

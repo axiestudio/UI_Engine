@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/empty-state.cjs.js",
   "module": "dist/empty-state.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/empty-state.es.js",
       "require": "./dist/empty-state.cjs.js"
     },

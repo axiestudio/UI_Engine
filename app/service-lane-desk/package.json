@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/service-lane-desk.cjs.js",
   "module": "dist/service-lane-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/service-lane-desk.es.js",
       "require": "./dist/service-lane-desk.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/citation-hover-card.js",
   "module": "dist/citation-hover-card.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/citation-hover-card.es.js",
       "require": "./dist/citation-hover-card.cjs.js"
     },

@@ -16,7 +16,13 @@ export type ScrollPinnedChaptersProps = {
   className?: string
 }
 
-export function ScrollPinnedChapters({ eyebrow = "CHAPTERS", chapters, tone = "paper", className }: ScrollPinnedChaptersProps) {
+const DEFAULT_CHAPTERS = [
+  { id: "ch1", title: "Listen", body: "An hour in the workshop before any drawing exists.", progress: 0.25 },
+  { id: "ch2", title: "Draw", body: "Full-scale, taped on the floor, argued over twice.", progress: 0.5 },
+  { id: "ch3", title: "Build", body: "One maker, one piece, photos every Friday.", progress: 0.75 },
+  { id: "ch4", title: "Hand over", body: "Placed, levelled, cared for — in writing.", progress: 1 },
+]
+export function ScrollPinnedChapters({ eyebrow = "CHAPTERS", chapters = DEFAULT_CHAPTERS, tone = "paper", className }: ScrollPinnedChaptersProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })

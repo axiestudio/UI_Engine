@@ -16,7 +16,13 @@ export type ScrollDeckMasterProps = {
   className?: string
 }
 
-export function ScrollDeckMaster({ eyebrow = "DECK MASTER", steps, tone = "paper", className }: ScrollDeckMasterProps) {
+const DEFAULT_STEPS = [
+  { id: "d1", title: "Pick the timber", body: "Grain matched across every visible face.", stat: "01" },
+  { id: "d2", title: "Cut the joinery", body: "Hand-fitted, tested dry, then glued.", stat: "02" },
+  { id: "d3", title: "Finish and rest", body: "Three coats, seven days of cure.", stat: "03" },
+  { id: "d4", title: "Deliver and sign", body: "Initials inside the back panel.", stat: "04" },
+]
+export function ScrollDeckMaster({ eyebrow = "DECK MASTER", steps = DEFAULT_STEPS, tone = "paper", className }: ScrollDeckMasterProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })

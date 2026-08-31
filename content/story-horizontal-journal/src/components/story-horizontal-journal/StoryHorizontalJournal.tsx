@@ -15,7 +15,13 @@ export type StoryHorizontalJournalProps = {
   className?: string
 }
 
-export function StoryHorizontalJournal({ eyebrow = "JOURNAL", spreads, className }: StoryHorizontalJournalProps) {
+const DEFAULT_SPREADS = [
+  { id: "sp1", index: "01", title: "The brief", body: "A kitchen table for Sunday dough and Monday emails.", src: "/showcase/content/content-01-office.webp" },
+  { id: "sp2", index: "02", title: "The argument", body: "They wanted white. The room wanted oak. The room won.", src: "/showcase/content/content-07-corner.webp" },
+  { id: "sp3", index: "03", title: "The build", body: "Nineteen days, four of them waiting on glue.", src: "/showcase/content/content-05-workshop.webp" },
+  { id: "sp4", index: "04", title: "The table", body: "Delivered flat, finished in situ, first dough the same night.", src: "/showcase/content/content-03-product.webp" },
+]
+export function StoryHorizontalJournal({ eyebrow = "JOURNAL", spreads = DEFAULT_SPREADS, className }: StoryHorizontalJournalProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
   const runway = `${spreads.length * 110}vh`

@@ -20,7 +20,23 @@ export type InteractiveConfiguratorProps = {
   className?: string
 }
 
-export function InteractiveConfigurator({ eyebrow = "CONFIGURE", title = "Make it yours.", basePrice = 120, groups, currency = "€", className }: InteractiveConfiguratorProps) {
+const DEFAULT_GROUPS = [
+  { id: "wood", label: "Timber", options: [
+    { id: "oak", label: "White oak", price: 0, swatch: "#c9b18c" },
+    { id: "walnut", label: "Black walnut", price: 480, swatch: "#5d4a38" },
+    { id: "ash", label: "Ash", price: -120, swatch: "#e2d6bf" },
+  ]},
+  { id: "finish", label: "Finish", options: [
+    { id: "oil", label: "Hardwax oil", price: 0, swatch: "#b99b72" },
+    { id: "soap", label: "White soap", price: 90, swatch: "#e8ddc9" },
+    { id: "black", label: "Black stain", price: 140, swatch: "#2f2b28" },
+  ]},
+  { id: "hardware", label: "Hardware", options: [
+    { id: "brass", label: "Unlacquered brass", price: 110, swatch: "#b08d57" },
+    { id: "steel", label: "Blackened steel", price: 0, swatch: "#3a3a3a" },
+  ]},
+]
+export function InteractiveConfigurator({ eyebrow = "CONFIGURE", title = "Make it yours.", basePrice = 120, groups = DEFAULT_GROUPS, currency = "€", className }: InteractiveConfiguratorProps) {
   const [selected, setSelected] = React.useState<Record<string, string>>({})
   const total = React.useMemo(() => {
     let t = basePrice

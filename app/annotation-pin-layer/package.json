@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/annotation-pin-layer.js",
   "module": "dist/annotation-pin-layer.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/annotation-pin-layer.es.js",
       "require": "./dist/annotation-pin-layer.cjs.js"
     },

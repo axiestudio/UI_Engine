@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/activity-heatmap.js",
   "module": "dist/activity-heatmap.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/activity-heatmap.es.js",
       "require": "./dist/activity-heatmap.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/dnd-form-builder.cjs.js",
   "module": "dist/dnd-form-builder.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/dnd-form-builder.es.js",
       "require": "./dist/dnd-form-builder.cjs.js"
     },

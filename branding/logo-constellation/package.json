@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/logo-constellation.cjs.js",
   "module": "dist/logo-constellation.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/logo-constellation.es.js",
       "require": "./dist/logo-constellation.cjs.js"
     },

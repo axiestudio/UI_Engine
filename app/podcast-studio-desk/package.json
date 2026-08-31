@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/podcast-studio-desk.cjs.js",
   "module": "dist/podcast-studio-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/podcast-studio-desk.es.js",
       "require": "./dist/podcast-studio-desk.cjs.js"
     },

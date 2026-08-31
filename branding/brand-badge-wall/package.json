@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/brand-badge-wall.cjs.js",
   "module": "dist/brand-badge-wall.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/brand-badge-wall.es.js",
       "require": "./dist/brand-badge-wall.cjs.js"
     },

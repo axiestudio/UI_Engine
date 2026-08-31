@@ -100,7 +100,7 @@ export function SectionShell({
   width = 1120,
   tone = "paper",
   padding = "roomy",
-  rails = false, = false,
+  rails = false,
   rule = "none",
   id,
   className,
@@ -109,7 +109,7 @@ export function SectionShell({
   width?: ShellWidth
   tone?: "paper" | "ink"
   padding?: "roomy" | "tight" | "grand"
-  rails?: boolean?: boolean
+  rails?: boolean
   rule?: "none" | "top" | "bottom" | "both"
   id?: string
   className?: string

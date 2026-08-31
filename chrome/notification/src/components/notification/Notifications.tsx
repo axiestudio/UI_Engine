@@ -113,10 +113,16 @@ function Row({ n, dismissable, onRead, onDismiss, index }: { n: NotificationItem
 
 // ── Notifications ────────────────────────────────────────────────────────────
 
+const DEFAULT_ITEMS = [
+  { id: "n1", title: "Bench time confirmed", message: "Saturday 09:00 — bring the drawings.", time: "2 min ago", kind: "success" },
+  { id: "n2", title: "Oak delivery delayed", message: "New ETA Thursday. Nothing on your job slips.", time: "1 h ago", kind: "warning" },
+  { id: "n3", title: "Invoice #114 paid", message: "Thank you — receipt attached.", time: "Yesterday", kind: "info", read: true },
+]
+
 export function Notifications({
   eyebrow = "Inbox",
   title = "Notifications",
-  items,
+  items = DEFAULT_ITEMS,
   onDismiss,
   onMarkAllRead,
   emptyLabel = "You're all caught up",

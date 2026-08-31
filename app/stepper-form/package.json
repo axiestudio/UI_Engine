@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/stepper-form.js",
   "module": "dist/stepper-form.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/stepper-form.es.js",
       "require": "./dist/stepper-form.cjs.js"
     },

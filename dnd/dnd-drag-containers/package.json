@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/dnd-drag-containers.cjs.js",
   "module": "dist/dnd-drag-containers.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/dnd-drag-containers.es.js",
       "require": "./dist/dnd-drag-containers.cjs.js"
     },

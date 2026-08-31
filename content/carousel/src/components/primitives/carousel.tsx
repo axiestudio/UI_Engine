@@ -1,10 +1,16 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/carousel.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/carousel.tsx
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/carousel.tsx
+ *
+ * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
+ * the upstream zinc palette classes are replaced with the shadcn token set, so the
+ * component themes with the host brandkit and dark mode flips automatically.
  */
 'use client';
-import { Children, type ReactNode, createContext, useContext, useEffect, useRef, useState } from 'react';
-import { motion, type Transition, useMotionValue } from 'motion/react';
+import type { ReactNode } from 'react';
+import { Children, createContext, useContext, useEffect, useRef, useState } from 'react';
+import type { Transition } from 'motion/react';
+import { motion, useMotionValue } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -133,7 +139,7 @@ function CarouselNavigation({
         type='button'
         aria-label='Previous slide'
         className={cn(
-          'pointer-events-auto h-fit w-fit rounded-full bg-zinc-50 p-2 transition-opacity duration-300 dark:bg-zinc-950',
+          'pointer-events-auto h-fit w-fit rounded-full bg-background p-2 transition-opacity duration-300',
           alwaysShow
             ? 'opacity-100'
             : 'opacity-0 group-hover/hover:opacity-100',
@@ -150,14 +156,14 @@ function CarouselNavigation({
         }}
       >
         <ChevronLeft
-          className='stroke-zinc-600 dark:stroke-zinc-50'
+          className='stroke-muted-foreground'
           size={16}
         />
       </button>
       <button
         type='button'
         className={cn(
-          'pointer-events-auto h-fit w-fit rounded-full bg-zinc-50 p-2 transition-opacity duration-300 dark:bg-zinc-950',
+          'pointer-events-auto h-fit w-fit rounded-full bg-background p-2 transition-opacity duration-300',
           alwaysShow
             ? 'opacity-100'
             : 'opacity-0 group-hover/hover:opacity-100',
@@ -175,7 +181,7 @@ function CarouselNavigation({
         }}
       >
         <ChevronRight
-          className='stroke-zinc-600 dark:stroke-zinc-50'
+          className='stroke-muted-foreground'
           size={16}
         />
       </button>
@@ -211,8 +217,8 @@ function CarouselIndicator({
             className={cn(
               'h-2 w-2 rounded-full transition-opacity duration-300',
               index === i
-                ? 'bg-zinc-950 dark:bg-zinc-50'
-                : 'bg-zinc-900/50 dark:bg-zinc-100/50',
+                ? 'bg-foreground'
+                : 'bg-foreground/50',
               classNameButton
             )}
           />

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/appointment-desk.cjs.js",
   "module": "dist/appointment-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/appointment-desk.es.js",
       "require": "./dist/appointment-desk.cjs.js"
     },

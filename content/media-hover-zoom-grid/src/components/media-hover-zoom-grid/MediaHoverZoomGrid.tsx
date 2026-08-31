@@ -17,7 +17,15 @@ export type MediaHoverZoomGridProps = {
   className?: string
 }
 
-export function MediaHoverZoomGrid({ eyebrow = "HOVER", title = "Get closer.", tiles, tone = "paper", className }: MediaHoverZoomGridProps) {
+const DEFAULT_TILES = [
+  { id: "f1", src: "/showcase/gallery-01.webp", alt: "Detail one", title: "Look closer" },
+  { id: "f2", src: "/showcase/gallery-02.webp", alt: "Detail two", title: "Look closer" },
+  { id: "f3", src: "/showcase/gallery-03.webp", alt: "Detail three", title: "Look closer" },
+  { id: "f4", src: "/showcase/gallery-04.webp", alt: "Detail four", title: "Look closer" },
+  { id: "f5", src: "/showcase/gallery-05.webp", alt: "Detail five", title: "Look closer" },
+  { id: "f6", src: "/showcase/gallery-06.webp", alt: "Detail six", title: "Look closer" },
+]
+export function MediaHoverZoomGrid({ eyebrow = "HOVER", title = "Get closer.", tiles = DEFAULT_TILES, tone = "paper", className }: MediaHoverZoomGridProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1280} rule="bottom" className={className}>

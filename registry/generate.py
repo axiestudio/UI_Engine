@@ -122,6 +122,9 @@ PACKAGES = [
     "logo-constellation", "logo-motion-library", "logo-scroll-mark", "mission-etch",
     "mood-portal", "palette-recipe", "signature-move", "sound-of-brand", "swatch-spectrum",
     "tone-ribbon", "typo-ramp-brand", "value-orbit", "voice-magnet", "wordmark-lab",
+
+    # device stage family (showcase mockups)
+    "device-desktop", "device-laptop", "device-tablet", "device-mobile", "device-responsive",
 ]
 # infra peers the consumer's project must have (react/react-dom assumed present)
 EXCLUDED_PEER = {"react", "react-dom"}

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/ambiance.cjs.js",
   "module": "dist/ambiance.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ambiance.es.js",
       "require": "./dist/ambiance.cjs.js"
     },

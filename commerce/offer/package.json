@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/offer.cjs.js",
   "module": "dist/offer.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/offer.es.js",
       "require": "./dist/offer.cjs.js"
     },

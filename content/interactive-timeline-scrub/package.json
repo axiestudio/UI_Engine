@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/interactive-timeline-scrub.cjs.js",
   "module": "dist/interactive-timeline-scrub.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/interactive-timeline-scrub.es.js",
       "require": "./dist/interactive-timeline-scrub.cjs.js"
     },

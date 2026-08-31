@@ -4072,6 +4072,146 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "device-desktop",
+      "type": "registry:block",
+      "title": "Device Desktop",
+      "description": "Website section \u2014 desktop browser mockup with power-on reveal, tab strip and caption rail",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/device-desktop/DeviceDesktop.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "device-laptop",
+      "type": "registry:block",
+      "title": "Device Laptop",
+      "description": "Website section \u2014 laptop mockup whose lid opens on scroll into view",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/device-laptop/DeviceLaptop.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "device-tablet",
+      "type": "registry:block",
+      "title": "Device Tablet",
+      "description": "Website section \u2014 landscape tablet mockup with film-strip screen switcher",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/device-tablet/DeviceTablet.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "device-mobile",
+      "type": "registry:block",
+      "title": "Device Mobile",
+      "description": "Website section \u2014 phone mockup with dynamic island, floating tilt and grip shadow",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/device-mobile/DeviceMobile.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "device-responsive",
+      "type": "registry:block",
+      "title": "Device Responsive",
+      "description": "Website section \u2014 browser frame you drag between breakpoints with a live ruler",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/device-responsive/DeviceResponsive.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

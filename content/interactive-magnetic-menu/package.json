@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/interactive-magnetic-menu.cjs.js",
   "module": "dist/interactive-magnetic-menu.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/interactive-magnetic-menu.es.js",
       "require": "./dist/interactive-magnetic-menu.cjs.js"
     },

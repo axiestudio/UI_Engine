@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/merge-conflict-panel.js",
   "module": "dist/merge-conflict-panel.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/merge-conflict-panel.es.js",
       "require": "./dist/merge-conflict-panel.cjs.js"
     },

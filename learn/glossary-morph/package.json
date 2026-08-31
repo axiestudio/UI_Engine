@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/glossary-morph.cjs.js",
   "module": "dist/glossary-morph.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/glossary-morph.es.js",
       "require": "./dist/glossary-morph.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/scroll-lens-focus.cjs.js",
   "module": "dist/scroll-lens-focus.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/scroll-lens-focus.es.js",
       "require": "./dist/scroll-lens-focus.cjs.js"
     },

@@ -19,7 +19,15 @@ export type MediaSlideshowMaskProps = {
   className?: string
 }
 
-export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotation.", frames, interval = 4200, tone = "paper", className }: MediaSlideshowMaskProps) {
+const DEFAULT_FRAMES = [
+  { id: "f1", src: "/showcase/content/content-01-office.webp", alt: "The workshop floor", caption: "Made, not manufactured" },
+  { id: "f2", src: "/showcase/content/content-02-team.webp", alt: "The crew", caption: "Made, not manufactured" },
+  { id: "f3", src: "/showcase/content/content-03-product.webp", alt: "Finished piece", caption: "Made, not manufactured" },
+  { id: "f4", src: "/showcase/content/content-04-architecture.webp", alt: "Building exterior", caption: "Made, not manufactured" },
+  { id: "f5", src: "/showcase/content/content-05-workshop.webp", alt: "Bench time", caption: "Made, not manufactured" },
+  { id: "f6", src: "/showcase/content/content-06-nature.webp", alt: "Material study", caption: "Made, not manufactured" },
+]
+export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotation.", frames = DEFAULT_FRAMES, interval = 4200, tone = "paper", className }: MediaSlideshowMaskProps) {
   const ink = tone === "ink"
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => {

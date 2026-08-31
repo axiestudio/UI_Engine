@@ -17,7 +17,12 @@ export type ScrollStackCardsProps = {
   className?: string
 }
 
-export function ScrollStackCards({ eyebrow = "DECK", cards, tone = "paper", className }: ScrollStackCardsProps) {
+const DEFAULT_CARDS = [
+  { id: "sc1", title: "Solid timber only", body: "No veneer on visible faces. Ever.", src: "/showcase/gallery-02.webp" },
+  { id: "sc2", title: "Hardware you can service", body: "Standard sizes, documented, replaceable.", src: "/showcase/gallery-03.webp" },
+  { id: "sc3", title: "Finished by hand", body: "Oil applied and wiped by the maker who built it.", src: "/showcase/gallery-05.webp" },
+]
+export function ScrollStackCards({ eyebrow = "DECK", cards = DEFAULT_CARDS, tone = "paper", className }: ScrollStackCardsProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })

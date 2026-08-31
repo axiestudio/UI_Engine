@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/dnd-page-builder.cjs.js",
   "module": "dist/dnd-page-builder.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/dnd-page-builder.es.js",
       "require": "./dist/dnd-page-builder.cjs.js"
     },

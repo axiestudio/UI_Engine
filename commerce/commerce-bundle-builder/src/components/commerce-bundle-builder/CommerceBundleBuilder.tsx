@@ -18,7 +18,13 @@ export type CommerceBundleBuilderProps = {
   className?: string
 }
 
-export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Build your bundle", parts, className }: CommerceBundleBuilderProps) {
+const DEFAULT_PARTS = [
+  { id: "desk", label: "Oak worktop", price: 2400, desc: "Solid stave-glued oak, oiled by hand." },
+  { id: "frame", label: "Steel frame", price: 1100, desc: "Powder-coated, levelling feet included." },
+  { id: "drawers", label: "Drawer pair", price: 780, desc: "Full extension, felt-lined bottoms." },
+  { id: "light", label: "Task lamp", price: 320, desc: "Warm 2700K, clamp-mounted." },
+]
+export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Build your bundle", parts = DEFAULT_PARTS, className }: CommerceBundleBuilderProps) {
   const [counts, setCounts] = React.useState<Record<string, number>>({})
   const total = React.useMemo(() => parts.reduce((t, p) => t + (counts[p.id] ?? 0) * p.price, 0), [parts, counts])
   const ordered = parts.filter((p) => (counts[p.id] ?? 0) > 0)

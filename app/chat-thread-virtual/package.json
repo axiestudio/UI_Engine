@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/chat-thread-virtual.js",
   "module": "dist/chat-thread-virtual.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/chat-thread-virtual.es.js",
       "require": "./dist/chat-thread-virtual.cjs.js"
     },

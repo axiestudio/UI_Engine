@@ -18,7 +18,12 @@ export type CommercePricingToggleProps = {
   className?: string
 }
 
-export function CommercePricingToggle({ eyebrow = "PRICING", title = "Flexible billing — switch anytime", tiers, className }: CommercePricingToggleProps) {
+const DEFAULT_TIERS = [
+  { id: "bench", name: "Bench", monthly: 29, annual: 290, note: "One maker, one room.", perks: ["Booking page", "Card payments", "Email reminders"] },
+  { id: "studio", name: "Studio", monthly: 79, annual: 790, note: "For small teams that ship.", perks: ["Everything in Bench", "Four staff seats", "Inventory sync"], highlight: true },
+  { id: "house", name: "House", monthly: 190, annual: 1900, note: "Multi-location, one ledger.", perks: ["Everything in Studio", "Unlimited seats", "Priority support"] },
+]
+export function CommercePricingToggle({ eyebrow = "PRICING", title = "Flexible billing — switch anytime", tiers = DEFAULT_TIERS, className }: CommercePricingToggleProps) {
   const [annual, setAnnual] = React.useState(true)
   return (
     <SectionShell width={1120} grain rule="bottom" className={className}>

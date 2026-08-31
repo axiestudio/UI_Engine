@@ -15,7 +15,18 @@ export type NavMultilevelMenuProps = {
   className?: string
 }
 
-export function NavMultilevelMenu({ brand = "STUDIO", menu, className }: NavMultilevelMenuProps) {
+const DEFAULT_MENU = [
+  { id: "work", label: "Work", children: [
+    { id: "tables", label: "Tables", href: "#tables" },
+    { id: "seating", label: "Seating", href: "#seating", children: [
+      { id: "stools", label: "Stools", href: "#stools" },
+      { id: "benches", label: "Benches", href: "#benches" },
+    ]},
+  ]},
+  { id: "studio", label: "Studio", href: "#studio" },
+  { id: "journal", label: "Journal", href: "#journal" },
+]
+export function NavMultilevelMenu({ brand = "STUDIO", menu = DEFAULT_MENU, className }: NavMultilevelMenuProps) {
   const [open, setOpen] = React.useState<string | null>(null)
   const [openSub, setOpenSub] = React.useState<string | null>(null)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])

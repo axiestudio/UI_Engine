@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/vault-dial.cjs.js",
   "module": "dist/vault-dial.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/vault-dial.es.js",
       "require": "./dist/vault-dial.cjs.js"
     },

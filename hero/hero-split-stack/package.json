@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-split-stack.cjs.js",
   "module": "dist/hero-split-stack.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-split-stack.es.js",
       "require": "./dist/hero-split-stack.cjs.js"
     },

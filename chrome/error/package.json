@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/error.cjs.js",
   "module": "dist/error.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/error.es.js",
       "require": "./dist/error.cjs.js"
     },

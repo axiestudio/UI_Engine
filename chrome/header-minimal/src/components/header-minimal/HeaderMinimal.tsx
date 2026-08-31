@@ -40,7 +40,7 @@ export function HeaderMinimal({
     "group relative font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50", className)}>
+    <header className={cn("fixed top-0 z-50 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", className)}>
       <motion.div
         animate={{
           backgroundColor: scrolled ? "hsl(var(--background) / 0.82)" : "hsl(var(--background) / 0)",

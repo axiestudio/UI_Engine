@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/permission-matrix.js",
   "module": "dist/permission-matrix.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/permission-matrix.es.js",
       "require": "./dist/permission-matrix.cjs.js"
     },

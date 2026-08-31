@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/ritual.cjs.js",
   "module": "dist/ritual.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ritual.es.js",
       "require": "./dist/ritual.cjs.js"
     },

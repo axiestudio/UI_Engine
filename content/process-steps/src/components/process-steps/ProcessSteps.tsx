@@ -18,7 +18,13 @@ export type ProcessStepsProps = {
   className?: string
 }
 
-export function ProcessSteps({ eyebrow = "PROCESS", title = "How it works.", subtitle = "Three steps, in order, with no detours.", steps, tone = "paper", className }: ProcessStepsProps) {
+const DEFAULT_STEPS = [
+  { id: "p1", title: "Conversation", body: "An hour in the workshop. We listen more than we talk." },
+  { id: "p2", title: "Drawing", body: "Full-scale on the floor. You stand inside it before we cut." },
+  { id: "p3", title: "The build", body: "One maker, start to finish. You get photos on Fridays." },
+  { id: "p4", title: "Delivery", body: "We carry it in, place it, and show you how to care for it." },
+]
+export function ProcessSteps({ eyebrow = "PROCESS", title = "How it works.", subtitle = "Three steps = DEFAULT_STEPS, in order, with no detours.", steps, tone = "paper", className }: ProcessStepsProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1120} rule="bottom" className={className}>

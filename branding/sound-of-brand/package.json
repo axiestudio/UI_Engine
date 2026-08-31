@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/sound-of-brand.cjs.js",
   "module": "dist/sound-of-brand.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/sound-of-brand.es.js",
       "require": "./dist/sound-of-brand.cjs.js"
     },

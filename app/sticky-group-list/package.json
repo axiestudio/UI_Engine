@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/sticky-group-list.js",
   "module": "dist/sticky-group-list.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/sticky-group-list.es.js",
       "require": "./dist/sticky-group-list.cjs.js"
     },

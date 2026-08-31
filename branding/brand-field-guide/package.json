@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/brand-field-guide.cjs.js",
   "module": "dist/brand-field-guide.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/brand-field-guide.es.js",
       "require": "./dist/brand-field-guide.cjs.js"
     },

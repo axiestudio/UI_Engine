@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/stamp-fold.cjs.js",
   "module": "dist/stamp-fold.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/stamp-fold.es.js",
       "require": "./dist/stamp-fold.cjs.js"
     },

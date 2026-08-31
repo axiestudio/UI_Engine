@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/copy-secret-field.js",
   "module": "dist/copy-secret-field.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/copy-secret-field.es.js",
       "require": "./dist/copy-secret-field.cjs.js"
     },

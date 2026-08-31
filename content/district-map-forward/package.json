@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/district-map-forward.cjs.js",
   "module": "dist/district-map-forward.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/district-map-forward.es.js",
       "require": "./dist/district-map-forward.cjs.js"
     },

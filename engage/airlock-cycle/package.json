@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/airlock-cycle.cjs.js",
   "module": "dist/airlock-cycle.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/airlock-cycle.es.js",
       "require": "./dist/airlock-cycle.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/tone-ribbon.cjs.js",
   "module": "dist/tone-ribbon.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/tone-ribbon.es.js",
       "require": "./dist/tone-ribbon.cjs.js"
     },

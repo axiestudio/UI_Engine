@@ -19,7 +19,12 @@ export type MiscQuoteRotatorProps = {
   className?: string
 }
 
-export function MiscQuoteRotator({ eyebrow = "WORDS", title = "What clients keep saying.", quotes, interval = 3800, tone = "paper", className }: MiscQuoteRotatorProps) {
+const DEFAULT_QUOTES = [
+  { id: "q1", quote: "They argued with us about the drawer pulls. We were wrong.", name: "Elin H.", role: "Client since 2019" },
+  { id: "q2", quote: "The bench arrived early and better than the drawing.", name: "Jonas R.", role: "Head chef" },
+  { id: "q3", quote: "Five years in, it looks like it was made yesterday.", name: "Marta L.", role: "Studio owner" },
+]
+export function MiscQuoteRotator({ eyebrow = "WORDS", title = "What clients keep saying.", quotes = DEFAULT_QUOTES, interval = 3800, tone = "paper", className }: MiscQuoteRotatorProps) {
   const ink = tone === "ink"
   const [idx, setIdx] = React.useState(0)
   const q = quotes[Math.min(idx, quotes.length - 1)]

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/ghost-suggest-input.js",
   "module": "dist/ghost-suggest-input.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ghost-suggest-input.es.js",
       "require": "./dist/ghost-suggest-input.cjs.js"
     },

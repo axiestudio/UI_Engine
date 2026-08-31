@@ -153,7 +153,11 @@ export function Waitlist({
               />
               <span className="relative inline-flex shrink-0">
                 <GlowEffect
-                  colors={ink ? ["#ffffff", "#8f8f8f", "#ffffff"] : ["#121212", "#6b6b6b", "#121212"]}
+                  colors={
+                    ink
+                      ? ["hsl(var(--background))", "hsl(var(--muted-foreground))", "hsl(var(--background))"]
+                      : ["hsl(var(--foreground))", "hsl(var(--muted-foreground))", "hsl(var(--foreground))"]
+                  }
                   mode="breathe"
                   blur="medium"
                   duration={4}

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/password-meter.js",
   "module": "dist/password-meter.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/password-meter.es.js",
       "require": "./dist/password-meter.cjs.js"
     },

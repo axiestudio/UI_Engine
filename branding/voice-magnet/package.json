@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/voice-magnet.cjs.js",
   "module": "dist/voice-magnet.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/voice-magnet.es.js",
       "require": "./dist/voice-magnet.cjs.js"
     },

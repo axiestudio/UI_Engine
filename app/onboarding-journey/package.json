@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/onboarding-journey.cjs.js",
   "module": "dist/onboarding-journey.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/onboarding-journey.es.js",
       "require": "./dist/onboarding-journey.cjs.js"
     },

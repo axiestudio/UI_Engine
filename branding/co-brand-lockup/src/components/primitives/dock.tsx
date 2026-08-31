@@ -1,6 +1,10 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/dock.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/dock.tsx
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/dock.tsx
+ *
+ * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
+ * the upstream gray/neutral palette classes are replaced with the shadcn token set,
+ * so the dock themes with the host brandkit and dark mode flips automatically.
  */
 'use client';
 
@@ -101,7 +105,7 @@ function Dock({
           mouseX.set(Infinity);
         }}
         className={cn(
-          'mx-auto flex w-fit gap-4 rounded-2xl bg-gray-50 px-4 dark:bg-neutral-900',
+          'mx-auto flex w-fit gap-4 rounded-2xl bg-muted px-4',
           className
         )}
         style={{ height: panelHeight }}
@@ -182,7 +186,7 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
           exit={{ opacity: 0, y: 0 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            'absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-gray-200 bg-gray-100 px-2 py-0.5 text-xs text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white',
+            'absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-border bg-popover px-2 py-0.5 text-xs text-popover-foreground',
             className
           )}
           role='tooltip'

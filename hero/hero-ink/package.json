@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-ink.cjs.js",
   "module": "dist/hero-ink.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-ink.es.js",
       "require": "./dist/hero-ink.cjs.js"
     },

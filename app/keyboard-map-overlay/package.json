@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/keyboard-map-overlay.js",
   "module": "dist/keyboard-map-overlay.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/keyboard-map-overlay.es.js",
       "require": "./dist/keyboard-map-overlay.cjs.js"
     },

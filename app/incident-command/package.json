@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/incident-command.cjs.js",
   "module": "dist/incident-command.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/incident-command.es.js",
       "require": "./dist/incident-command.cjs.js"
     },

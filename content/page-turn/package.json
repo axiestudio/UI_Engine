@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/page-turn.cjs.js",
   "module": "dist/page-turn.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/page-turn.es.js",
       "require": "./dist/page-turn.cjs.js"
     },

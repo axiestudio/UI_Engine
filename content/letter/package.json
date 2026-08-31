@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/letter.cjs.js",
   "module": "dist/letter.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/letter.es.js",
       "require": "./dist/letter.cjs.js"
     },

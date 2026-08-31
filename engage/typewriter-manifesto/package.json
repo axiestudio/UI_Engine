@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/typewriter-manifesto.cjs.js",
   "module": "dist/typewriter-manifesto.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/typewriter-manifesto.es.js",
       "require": "./dist/typewriter-manifesto.cjs.js"
     },

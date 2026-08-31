@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/nav-scroll-collapse.cjs.js",
   "module": "dist/nav-scroll-collapse.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/nav-scroll-collapse.es.js",
       "require": "./dist/nav-scroll-collapse.cjs.js"
     },

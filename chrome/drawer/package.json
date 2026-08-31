@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/drawer.cjs.js",
   "module": "dist/drawer.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/drawer.es.js",
       "require": "./dist/drawer.cjs.js"
     },

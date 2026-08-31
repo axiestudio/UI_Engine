@@ -18,7 +18,15 @@ export type MediaMorphingCarouselProps = {
   className?: string
 }
 
-export function MediaMorphingCarousel({ eyebrow = "MORPH", title = "One frame melts to the next.", frames, interval = 5000, className }: MediaMorphingCarouselProps) {
+const DEFAULT_FRAMES = [
+  { id: "f1", src: "/showcase/gallery-01.webp", alt: "Showroom long shot", caption: "From the spring shoot" },
+  { id: "f2", src: "/showcase/gallery-02.webp", alt: "Oak detail", caption: "From the spring shoot" },
+  { id: "f3", src: "/showcase/gallery-03.webp", alt: "Brass hardware", caption: "From the spring shoot" },
+  { id: "f4", src: "/showcase/gallery-04.webp", alt: "Studio corner", caption: "From the spring shoot" },
+  { id: "f5", src: "/showcase/gallery-05.webp", alt: "Freshly oiled top", caption: "From the spring shoot" },
+  { id: "f6", src: "/showcase/gallery-06.webp", alt: "Evening bench", caption: "From the spring shoot" },
+]
+export function MediaMorphingCarousel({ eyebrow = "MORPH", title = "One frame melts to the next.", frames = DEFAULT_FRAMES, interval = 5000, className }: MediaMorphingCarouselProps) {
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % frames.length), interval)

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/switchboard-reveal.cjs.js",
   "module": "dist/switchboard-reveal.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/switchboard-reveal.es.js",
       "require": "./dist/switchboard-reveal.cjs.js"
     },

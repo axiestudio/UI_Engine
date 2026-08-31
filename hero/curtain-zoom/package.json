@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/curtain-zoom.cjs.js",
   "module": "dist/curtain-zoom.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/curtain-zoom.es.js",
       "require": "./dist/curtain-zoom.cjs.js"
     },

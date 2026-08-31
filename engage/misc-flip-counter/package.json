@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/misc-flip-counter.cjs.js",
   "module": "dist/misc-flip-counter.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/misc-flip-counter.es.js",
       "require": "./dist/misc-flip-counter.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/roadmap.cjs.js",
   "module": "dist/roadmap.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/roadmap.es.js",
       "require": "./dist/roadmap.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/date-range-presets.js",
   "module": "dist/date-range-presets.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/date-range-presets.es.js",
       "require": "./dist/date-range-presets.cjs.js"
     },

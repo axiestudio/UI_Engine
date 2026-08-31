@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/careers.cjs.js",
   "module": "dist/careers.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/careers.es.js",
       "require": "./dist/careers.cjs.js"
     },

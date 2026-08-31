@@ -17,7 +17,12 @@ export type MediaTiltStackProps = {
   className?: string
 }
 
-export function MediaTiltStack({ eyebrow = "TILT", title = "Cards you can nudge.", cards, className }: MediaTiltStackProps) {
+const DEFAULT_CARDS = [
+  { id: "c1", title: "The first bench", body: "Pine, screws slightly proud. Still in use.", src: "/showcase/gallery-01.webp" },
+  { id: "c2", title: "The long table", body: "Eleven feet of oak for a bakery that outgrew us.", src: "/showcase/gallery-03.webp" },
+  { id: "c3", title: "The quiet cabinet", body: "Felt-lined, brass, no visible fixings.", src: "/showcase/gallery-04.webp" },
+]
+export function MediaTiltStack({ eyebrow = "TILT", title = "Cards you can nudge.", cards = DEFAULT_CARDS, className }: MediaTiltStackProps) {
   return (
     <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/typography-outline.cjs.js",
   "module": "dist/typography-outline.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/typography-outline.es.js",
       "require": "./dist/typography-outline.cjs.js"
     },

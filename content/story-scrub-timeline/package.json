@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/story-scrub-timeline.cjs.js",
   "module": "dist/story-scrub-timeline.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/story-scrub-timeline.es.js",
       "require": "./dist/story-scrub-timeline.cjs.js"
     },

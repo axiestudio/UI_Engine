@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/social-scheduler.cjs.js",
   "module": "dist/social-scheduler.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/social-scheduler.es.js",
       "require": "./dist/social-scheduler.cjs.js"
     },

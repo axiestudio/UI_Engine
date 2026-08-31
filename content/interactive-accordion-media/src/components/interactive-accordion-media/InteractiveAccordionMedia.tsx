@@ -17,7 +17,12 @@ export type InteractiveAccordionMediaProps = {
   className?: string
 }
 
-export function InteractiveAccordionMedia({ eyebrow = "KNOW", title = "Pick a chapter, see the frame.", rows, className }: InteractiveAccordionMediaProps) {
+const DEFAULT_ROWS = [
+  { id: "a1", title: "Where the wood comes from", body: "Two sawmills, both within a day's drive. We visit.", src: "/showcase/content/content-05-workshop.webp" },
+  { id: "a2", title: "How finishes are chosen", body: "Oiled first, lacquered only where hands land.", src: "/showcase/gallery-02.webp" },
+  { id: "a3", title: "What we will not build", body: "Anything we couldn't stand behind in ten years.", src: "/showcase/content/content-03-product.webp" },
+]
+export function InteractiveAccordionMedia({ eyebrow = "KNOW", title = "Pick a chapter, see the frame.", rows = DEFAULT_ROWS, className }: InteractiveAccordionMediaProps) {
   const [openId, setOpenId] = React.useState(rows[0]?.id ?? "")
   const active = rows.find((r) => r.id === openId) ?? rows[0]
   return (

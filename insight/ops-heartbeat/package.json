@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/ops-heartbeat.cjs.js",
   "module": "dist/ops-heartbeat.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ops-heartbeat.es.js",
       "require": "./dist/ops-heartbeat.cjs.js"
     },

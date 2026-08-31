@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/nav-mega-panel.cjs.js",
   "module": "dist/nav-mega-panel.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/nav-mega-panel.es.js",
       "require": "./dist/nav-mega-panel.cjs.js"
     },

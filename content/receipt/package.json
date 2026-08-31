@@ -1,11 +1,11 @@
 {
   "name": "receipt",
   "version": "0.1.0",
-  "description": "Printed receipt slip — perforated tears, punched notches, mono ledger, barcode, rotated PAID stamp (shadcn/ui new-york-v4 + Motion-Primitives)",
+  "description": "Printed receipt slip \u2014 perforated tears, punched notches, mono ledger, barcode, rotated PAID stamp (shadcn/ui new-york-v4 + Motion-Primitives)",
   "type": "module",
   "main": "dist/receipt.cjs.js",
   "module": "dist/receipt.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/receipt.es.js",
       "require": "./dist/receipt.cjs.js"
     },

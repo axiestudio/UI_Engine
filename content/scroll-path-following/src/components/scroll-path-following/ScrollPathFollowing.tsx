@@ -17,7 +17,14 @@ export type ScrollPathFollowingProps = {
   className?: string
 }
 
-export function ScrollPathFollowing({ eyebrow = "ROUTE", stops, tone = "paper", className }: ScrollPathFollowingProps) {
+const DEFAULT_STOPS = [
+  { id: "st1", label: "Drawing" },
+  { id: "st2", label: "Timber" },
+  { id: "st3", label: "Joinery" },
+  { id: "st4", label: "Finish" },
+  { id: "st5", label: "Delivery" },
+]
+export function ScrollPathFollowing({ eyebrow = "ROUTE", stops = DEFAULT_STOPS, tone = "paper", className }: ScrollPathFollowingProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })

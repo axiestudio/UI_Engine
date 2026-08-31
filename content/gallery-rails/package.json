@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/gallery-rails.cjs.js",
   "module": "dist/gallery-rails.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/gallery-rails.es.js",
       "require": "./dist/gallery-rails.cjs.js"
     },

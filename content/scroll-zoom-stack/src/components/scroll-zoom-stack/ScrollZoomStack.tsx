@@ -14,7 +14,12 @@ export type ScrollZoomStackProps = {
   className?: string
 }
 
-export function ScrollZoomStack({ eyebrow = "PUSH", layers, className }: ScrollZoomStackProps) {
+const DEFAULT_LAYERS = [
+  { id: "z1", title: "The room", body: "Six benches under north glass.", src: "/showcase/content/content-05-workshop.webp" },
+  { id: "z2", title: "The bench", body: "Flat within a credit card over three metres.", src: "/showcase/gallery-01.webp" },
+  { id: "z3", title: "The detail", body: "Dovetails you can run a fingernail across.", src: "/showcase/gallery-02.webp" },
+]
+export function ScrollZoomStack({ eyebrow = "PUSH", layers = DEFAULT_LAYERS, className }: ScrollZoomStackProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
   const runway = `${layers.length * 90}vh`

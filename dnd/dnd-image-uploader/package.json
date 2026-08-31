@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/dnd-image-uploader.cjs.js",
   "module": "dist/dnd-image-uploader.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/dnd-image-uploader.es.js",
       "require": "./dist/dnd-image-uploader.cjs.js"
     },

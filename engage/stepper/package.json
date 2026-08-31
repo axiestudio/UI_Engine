@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/stepper.cjs.js",
   "module": "dist/stepper.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/stepper.es.js",
       "require": "./dist/stepper.cjs.js"
     },

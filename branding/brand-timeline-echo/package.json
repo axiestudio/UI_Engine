@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/brand-timeline-echo.cjs.js",
   "module": "dist/brand-timeline-echo.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/brand-timeline-echo.es.js",
       "require": "./dist/brand-timeline-echo.cjs.js"
     },

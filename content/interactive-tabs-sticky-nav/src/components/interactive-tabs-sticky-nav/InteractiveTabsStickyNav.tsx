@@ -17,7 +17,12 @@ export type InteractiveTabsStickyNavProps = {
   className?: string
 }
 
-export function InteractiveTabsStickyNav({ eyebrow = "STICKY", title = "Tabs that stay within reach.", tabs, onView, className }: InteractiveTabsStickyNavProps) {
+const DEFAULT_TABS = [
+  { id: "t1", label: "Shop", title: "The floor", body: "Six benches, one assembly table, no bottlenecks." },
+  { id: "t2", label: "Finish", title: "The finishing room", body: "Separate, dust-free, and deliberately slow." },
+  { id: "t3", label: "Dispatch", title: "The loading door", body: "Blankets, straps, and a driver who helps carry." },
+]
+export function InteractiveTabsStickyNav({ eyebrow = "STICKY", title = "Tabs that stay within reach.", tabs = DEFAULT_TABS, onView, className }: InteractiveTabsStickyNavProps) {
   const [active, setActive] = React.useState(tabs[0]?.id ?? "")
   const select = (id: string) => { setActive(id); onView?.(id); document.getElementById(`panel-${id}`)?.scrollIntoView({ behavior: "smooth", block: "center" }) }
   return (

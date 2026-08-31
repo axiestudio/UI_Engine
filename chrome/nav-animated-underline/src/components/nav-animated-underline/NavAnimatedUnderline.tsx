@@ -13,7 +13,13 @@ export type NavAnimatedUnderlineProps = {
   className?: string
 }
 
-export function NavAnimatedUnderline({ brand = "STUDIO", links, className }: NavAnimatedUnderlineProps) {
+const DEFAULT_LINKS = [
+  { id: "n1", label: "Work", href: "#work" },
+  { id: "n2", label: "Studio", href: "#studio" },
+  { id: "n3", label: "Journal", href: "#journal" },
+  { id: "n4", label: "Contact", href: "#contact" },
+]
+export function NavAnimatedUnderline({ brand = "STUDIO", links = DEFAULT_LINKS, className }: NavAnimatedUnderlineProps) {
   const [active, setActive] = React.useState(links[0]?.id ?? "")
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/blinds-slat.cjs.js",
   "module": "dist/blinds-slat.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/blinds-slat.es.js",
       "require": "./dist/blinds-slat.cjs.js"
     },

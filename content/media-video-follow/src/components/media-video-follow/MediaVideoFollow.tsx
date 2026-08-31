@@ -36,7 +36,12 @@ export type MediaVideoFollowProps = {
   className?: string
 }
 
-export function MediaVideoFollow({ eyebrow = "PLAY", title = "Hover to preview.", posts, tone = "paper", className }: MediaVideoFollowProps) {
+const DEFAULT_POSTS = [
+  { id: "v1", title: "Oiling the top", src: "/showcase/video/bench.mp4", kind: "process" },
+  { id: "v2", title: "Assembly, timelapse", src: "/showcase/video/build.mp4", kind: "timelapse" },
+  { id: "v3", title: "Evening sweep", src: "/showcase/video/studio.mp4", kind: "scene" },
+]
+export function MediaVideoFollow({ eyebrow = "PLAY", title = "Hover to preview.", posts = DEFAULT_POSTS, tone = "paper", className }: MediaVideoFollowProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1280} rule="bottom" className={className}>

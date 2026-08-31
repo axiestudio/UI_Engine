@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/tree-grid-table.js",
   "module": "dist/tree-grid-table.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/tree-grid-table.es.js",
       "require": "./dist/tree-grid-table.cjs.js"
     },

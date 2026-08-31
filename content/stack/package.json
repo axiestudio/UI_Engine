@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/stack.cjs.js",
   "module": "dist/stack.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/stack.es.js",
       "require": "./dist/stack.cjs.js"
     },

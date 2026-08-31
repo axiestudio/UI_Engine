@@ -1,3 +1,11 @@
+/**
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/glow-effect.tsx
+ *
+ * Local craft (HANDCRAFT-CHECKLIST): the upstream demo-palette default
+ * (['#FF5733', '#33FF57', '#3357FF', '#F1C40F']) becomes the host brandkit's
+ * chart-free token set, so the glow themes + flips in dark mode out of the box.
+ */
 'use client';
 import { cn } from '@/lib/utils';
 import { motion, type Transition, type TargetAndTransition } from 'motion/react';
@@ -30,7 +38,12 @@ export type GlowEffectProps = {
 export function GlowEffect({
   className,
   style,
-  colors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F'],
+  colors = [
+    'hsl(var(--primary))',
+    'hsl(var(--accent))',
+    'hsl(var(--ring))',
+    'hsl(var(--secondary))',
+  ],
   mode = 'rotate',
   blur = 'medium',
   transition,

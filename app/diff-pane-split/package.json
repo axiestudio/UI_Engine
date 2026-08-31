@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/diff-pane-split.js",
   "module": "dist/diff-pane-split.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/diff-pane-split.es.js",
       "require": "./dist/diff-pane-split.cjs.js"
     },

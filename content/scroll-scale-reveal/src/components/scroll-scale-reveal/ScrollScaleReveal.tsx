@@ -17,7 +17,12 @@ export type ScrollScaleRevealProps = {
   className?: string
 }
 
-export function ScrollScaleReveal({ eyebrow = "ZOOM", blocks, tone = "paper", className }: ScrollScaleRevealProps) {
+const DEFAULT_BLOCKS = [
+  { id: "b1", title: "Chosen slowly", body: "Two sawmills. Every board seen before it is bought.", src: "/showcase/content/content-06-nature.webp" },
+  { id: "b2", title: "Built once", body: "One maker per piece, from lumber to sign-off.", src: "/showcase/content/content-05-workshop.webp" },
+  { id: "b3", title: "Kept forever", body: "Annual check-up included. Joints guaranteed ten years.", src: "/showcase/gallery-04.webp" },
+]
+export function ScrollScaleReveal({ eyebrow = "ZOOM", blocks = DEFAULT_BLOCKS, tone = "paper", className }: ScrollScaleRevealProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })

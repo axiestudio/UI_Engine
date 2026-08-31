@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/case-study.cjs.js",
   "module": "dist/case-study.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/case-study.es.js",
       "require": "./dist/case-study.cjs.js"
     },

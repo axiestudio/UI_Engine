@@ -18,7 +18,15 @@ export type MediaKenBurnsProps = {
   className?: string
 }
 
-export function MediaKenBurns({ eyebrow = "MOTION", title = "A slow drift.", frames, interval = 7000, className }: MediaKenBurnsProps) {
+const DEFAULT_FRAMES = [
+  { id: "f1", src: "/showcase/content/content-01-office.webp", alt: "The workshop floor", caption: "Studio, 2026" },
+  { id: "f2", src: "/showcase/content/content-02-team.webp", alt: "The crew", caption: "Studio, 2026" },
+  { id: "f3", src: "/showcase/content/content-03-product.webp", alt: "Finished piece", caption: "Studio, 2026" },
+  { id: "f4", src: "/showcase/content/content-04-architecture.webp", alt: "Building exterior", caption: "Studio, 2026" },
+  { id: "f5", src: "/showcase/content/content-05-workshop.webp", alt: "Bench time", caption: "Studio, 2026" },
+  { id: "f6", src: "/showcase/content/content-06-nature.webp", alt: "Material study", caption: "Studio, 2026" },
+]
+export function MediaKenBurns({ eyebrow = "MOTION", title = "A slow drift.", frames = DEFAULT_FRAMES, interval = 7000, className }: MediaKenBurnsProps) {
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % frames.length), interval)

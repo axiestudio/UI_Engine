@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-product.cjs.js",
   "module": "dist/hero-product.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-product.es.js",
       "require": "./dist/hero-product.cjs.js"
     },

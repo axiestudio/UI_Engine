@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/applause-meter.cjs.js",
   "module": "dist/applause-meter.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/applause-meter.es.js",
       "require": "./dist/applause-meter.cjs.js"
     },

@@ -30,10 +30,18 @@ export type PollProps = {
 
 // ── Poll ─────────────────────────────────────────────────────────────────────
 
+const DEFAULT_QUESTION = "Which finish should we stock more of?"
+const DEFAULT_OPTIONS = [
+  { id: "o1", label: "Oil finish, hands down", votes: 214 },
+  { id: "o2", label: "Black stain, bold choice", votes: 96 },
+  { id: "o3", label: "White soap, scandinavian calm", votes: 158 },
+  { id: "o4", label: "Let the oak speak alone", votes: 341 },
+]
+
 export function Poll({
-  question,
+  question = DEFAULT_QUESTION,
   note,
-  options,
+  options = DEFAULT_OPTIONS,
   onVote,
   voted = false,
   voteLabel = "Vote",

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/overlap-cards.cjs.js",
   "module": "dist/overlap-cards.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/overlap-cards.es.js",
       "require": "./dist/overlap-cards.cjs.js"
     },

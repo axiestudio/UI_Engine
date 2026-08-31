@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/projection-burn.cjs.js",
   "module": "dist/projection-burn.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/projection-burn.es.js",
       "require": "./dist/projection-burn.cjs.js"
     },

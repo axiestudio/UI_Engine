@@ -204,8 +204,10 @@ export function Header(props: HeaderProps = {}) {
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ type: "spring", stiffness: 300, damping: 30, mass: 0.8 }}
         className={cn(
-          "top-0 z-50 w-full border-b backdrop-blur-xl",
-          position === "fixed" ? "fixed" : "sticky",
+          "top-0 z-50 border-b backdrop-blur-xl",
+          position === "fixed"
+            ? "fixed left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)] w-auto"
+            : "sticky w-full",
           scrolled
             ? "border-border bg-background/90 supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_0_0_hsl(var(--border)),0_8px_24px_-16px_hsl(var(--foreground)/0.16)]"
             : "border-transparent bg-background",

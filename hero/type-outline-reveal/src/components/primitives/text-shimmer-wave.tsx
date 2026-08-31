@@ -1,10 +1,16 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/text-shimmer-wave.tsx
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/text-shimmer-wave.tsx
+ *
+ * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
+ * the upstream zinc hexes (#a1a1aa / #71717a / #000 / #ffffff) are replaced with the
+ * shadcn token set (--muted-foreground / --foreground), so the wave themes with the
+ * host brandkit and dark mode flips automatically.
  */
 'use client';
-import  from 'react';
-import type { Transition } from 'motion/react';
+
 import { motion } from 'motion/react';
+import type { Transition } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 export type TextShimmerWaveProps = {
@@ -42,8 +48,7 @@ export function TextShimmerWave({
     <MotionComponent
       className={cn(
         'relative inline-block [perspective:500px]',
-        '[--base-color:#a1a1aa] [--base-gradient-color:#000]',
-        'dark:[--base-color:#71717a] dark:[--base-gradient-color:#ffffff]',
+        '[--base-color:hsl(var(--muted-foreground))] [--base-gradient-color:hsl(var(--foreground))]',
         className
       )}
       style={{ color: 'var(--base-color)' }}

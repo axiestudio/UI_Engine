@@ -18,7 +18,13 @@ export type ParallaxTilesProps = {
   className?: string
 }
 
-export function ParallaxTiles({ eyebrow = "DRIFT", title = "A field that drifts.", tiles, tone = "paper", className }: ParallaxTilesProps) {
+const DEFAULT_TILES = [
+  { id: "t1", src: "/showcase/gallery-01.webp", alt: "Showroom", offset: 12 },
+  { id: "t2", src: "/showcase/gallery-02.webp", alt: "Oak detail", offset: -18 },
+  { id: "t3", src: "/showcase/gallery-04.webp", alt: "Studio corner", offset: 8 },
+  { id: "t4", src: "/showcase/gallery-06.webp", alt: "Evening bench", offset: -10 },
+]
+export function ParallaxTiles({ eyebrow = "DRIFT", title = "A field that drifts.", tiles = DEFAULT_TILES, tone = "paper", className }: ParallaxTilesProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })

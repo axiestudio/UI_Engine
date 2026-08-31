@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/hero-floating-cards.cjs.js",
   "module": "dist/hero-floating-cards.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/hero-floating-cards.es.js",
       "require": "./dist/hero-floating-cards.cjs.js"
     },

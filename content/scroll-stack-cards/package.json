@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/scroll-stack-cards.cjs.js",
   "module": "dist/scroll-stack-cards.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/scroll-stack-cards.es.js",
       "require": "./dist/scroll-stack-cards.cjs.js"
     },

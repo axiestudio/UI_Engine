@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/timeline.cjs.js",
   "module": "dist/timeline.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/timeline.es.js",
       "require": "./dist/timeline.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/offline-queue-banner.js",
   "module": "dist/offline-queue-banner.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/offline-queue-banner.es.js",
       "require": "./dist/offline-queue-banner.cjs.js"
     },

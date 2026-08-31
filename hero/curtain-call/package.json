@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/curtain-call.cjs.js",
   "module": "dist/curtain-call.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/curtain-call.es.js",
       "require": "./dist/curtain-call.cjs.js"
     },

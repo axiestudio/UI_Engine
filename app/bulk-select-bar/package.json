@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/bulk-select-bar.js",
   "module": "dist/bulk-select-bar.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/bulk-select-bar.es.js",
       "require": "./dist/bulk-select-bar.cjs.js"
     },

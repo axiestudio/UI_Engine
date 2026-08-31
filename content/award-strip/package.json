@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/award-strip.cjs.js",
   "module": "dist/award-strip.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/award-strip.es.js",
       "require": "./dist/award-strip.cjs.js"
     },

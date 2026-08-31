@@ -62,7 +62,7 @@ export function StickyCookie({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: reduce ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 bottom-0 z-50 p-4"
+            className="fixed bottom-0 z-50 p-4 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]"
           >
             <div className="mx-auto flex max-w-[760px] flex-col items-center justify-between gap-4 rounded-xl border bg-card p-4 shadow-lg sm:flex-row">
               <p className="text-sm font-medium leading-relaxed text-foreground">{message}</p>

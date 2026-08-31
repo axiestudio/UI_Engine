@@ -15,7 +15,12 @@ export type HeroScrollSceneProps = {
   className?: string
 }
 
-export function HeroScrollScene({ eyebrow = "SCENE", scenes, className }: HeroScrollSceneProps) {
+const DEFAULT_SCENES = [
+  { id: "s1", kicker: "01 · MORNING", title: "The room before the noise.", body: "North light, one bench, tools laid out the night before.", from: "#faf7f2", to: "#e8e2d6" },
+  { id: "s2", kicker: "02 · MIDDAY", title: "Chips fly, coffee cools.", body: "Two hours of honest noise. The radio stays off.", from: "#e8e2d6", to: "#cfc6b4" },
+  { id: "s3", kicker: "03 · EVENING", title: "Sweep, oil, sign off.", body: "Every piece is finished before the lights go down.", from: "#cfc6b4", to: "#2b2925" },
+]
+export function HeroScrollScene({ eyebrow = "SCENE", scenes = DEFAULT_SCENES, className }: HeroScrollSceneProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
   const runway = `${scenes.length * 90}vh`

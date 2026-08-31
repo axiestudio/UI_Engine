@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/forecast-horizon.cjs.js",
   "module": "dist/forecast-horizon.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/forecast-horizon.es.js",
       "require": "./dist/forecast-horizon.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/process-steps.cjs.js",
   "module": "dist/process-steps.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/process-steps.es.js",
       "require": "./dist/process-steps.cjs.js"
     },

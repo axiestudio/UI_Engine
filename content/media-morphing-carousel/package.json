@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/media-morphing-carousel.cjs.js",
   "module": "dist/media-morphing-carousel.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/media-morphing-carousel.es.js",
       "require": "./dist/media-morphing-carousel.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/type-stagger-headline.cjs.js",
   "module": "dist/type-stagger-headline.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/type-stagger-headline.es.js",
       "require": "./dist/type-stagger-headline.cjs.js"
     },

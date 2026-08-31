@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/commerce-cart-drawer.cjs.js",
   "module": "dist/commerce-cart-drawer.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/commerce-cart-drawer.es.js",
       "require": "./dist/commerce-cart-drawer.cjs.js"
     },

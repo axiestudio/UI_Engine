@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/capabilities.cjs.js",
   "module": "dist/capabilities.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/capabilities.es.js",
       "require": "./dist/capabilities.cjs.js"
     },

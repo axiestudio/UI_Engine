@@ -154,3 +154,15 @@ Webapp surface PRIMARY (the engine wraps each in an app window with real studio-
 | inbox-snooze-center | clear a day of pings quickly | zero | right-swipe = done (counter bumps); left-swipe = snooze chips; button twins | ✅ |
 | switch-audit-trail | show who changed what | accountability | field-level old→new rows; revert RE-stamps truthfully at top | ✅ |
 
+
+## Device stage family (showcase mockups — 5 presets)
+
+| Preset | JOB | EMOTION | SIGNATURE | Status |
+|---|---|---|---|---|
+| device-desktop | show the site at full size | "that could be mine" | power-on scanline sweep + real browser chrome (tabs, address pill, monochrome lights) | ✅ |
+| device-mobile | the pocket version | intimate, alive | floating grip — pointer tilt with answering grip shadow; real island/side buttons | ✅ |
+| device-tablet | flip product screens on one canvas | curated demo table | film-strip thumbnails drive a crossfade + ordinal caption slide | ✅ |
+| device-laptop | present on the real machine | unboxing | hinge: lid swings open on in-view, screen wakes mid-swing, glass sheen settles | ✅ |
+| device-responsive | prove every viewport holds | control | draggable viewport scrubber — magnetic breakpoint snap, live ruler, reel mode, `role="slider"` keyboard | ✅ |
+
+Hardware (bezel/island/deck) is a deliberate physical constant — black like real devices in every theme; screens take `src` screenshots or live `children`.

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/async-multiselect.js",
   "module": "dist/async-multiselect.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/async-multiselect.es.js",
       "require": "./dist/async-multiselect.cjs.js"
     },

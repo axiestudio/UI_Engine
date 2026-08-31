@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/schedule.cjs.js",
   "module": "dist/schedule.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/schedule.es.js",
       "require": "./dist/schedule.cjs.js"
     },

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/services.cjs.js",
   "module": "dist/services.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/services.es.js",
       "require": "./dist/services.cjs.js"
     },

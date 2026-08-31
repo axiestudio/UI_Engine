@@ -15,7 +15,12 @@ export type StackProps = {
 
 // ── Stack ────────────────────────────────────────────────────────────────────
 
-export function Stack({ eyebrow = "Highlights", title = "Pinned, one at a time", subtitle, items, className }: StackProps) {
+const DEFAULT_ITEMS: ListItem[] = [
+  { title: "Signed inside the back panel", blurb: "The maker's initials — accountability you can point at.", rows: ["Full-scale drawing kept on file", "Joints logged in the job book"], accent: "#2f2b28" },
+  { title: "Annual check-up", blurb: "We visit, tighten, re-oil, and leave a card.", rows: ["Included for ten years", "Booked, not chased"], accent: "#5d4a38" },
+  { title: "Standard hardware", blurb: "Every fitting is a size you can still buy in 2050.", rows: ["Documented in the care kit", "No proprietary fittings"], accent: "#4a5d43" },
+]
+export function Stack({ eyebrow = "Highlights", title = "Pinned, one at a time", subtitle, items = DEFAULT_ITEMS, className }: StackProps) {
   if (!items.length) return null
   return (
     <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/sticky-header.cjs.js",
   "module": "dist/sticky-header.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/sticky-header.es.js",
       "require": "./dist/sticky-header.cjs.js"
     },

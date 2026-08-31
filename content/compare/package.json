@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/compare.cjs.js",
   "module": "dist/compare.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/compare.es.js",
       "require": "./dist/compare.cjs.js"
     },

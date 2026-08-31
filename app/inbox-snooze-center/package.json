@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/inbox-snooze-center.js",
   "module": "dist/inbox-snooze-center.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/inbox-snooze-center.es.js",
       "require": "./dist/inbox-snooze-center.cjs.js"
     },

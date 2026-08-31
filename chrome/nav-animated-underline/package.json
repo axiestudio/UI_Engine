@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/nav-animated-underline.cjs.js",
   "module": "dist/nav-animated-underline.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/nav-animated-underline.es.js",
       "require": "./dist/nav-animated-underline.cjs.js"
     },

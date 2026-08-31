@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { TextScramble } from "@/components/primitives/text-scramble"
+import { InView } from "@/components/primitives/in-view"
 import { MonoLabel } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
 
@@ -27,7 +28,7 @@ export function TypeScrambleTagline({ eyebrow = "DECODE", kicker = "SHIP FASTER"
         </InView>
         <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
           <p className="mt-4 font-mono text-base font-bold text-background/80 sm:text-lg">
-            <TextScramble trigger duration={1.4}>&gt; {tagline}</TextScramble>
+            <TextScramble trigger duration={1.4}>{`> ${tagline}`}</TextScramble>
           </p>
         </InView>
         <motion.div aria-hidden className="mt-8 h-px w-40 bg-[hsl(var(--primary))]" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} />

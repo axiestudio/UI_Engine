@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/booking-bar.cjs.js",
   "module": "dist/booking-bar.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/booking-bar.es.js",
       "require": "./dist/booking-bar.cjs.js"
     },

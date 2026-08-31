@@ -18,7 +18,15 @@ export type CommerceSavingsGraphProps = {
   className?: string
 }
 
-export function CommerceSavingsGraph({ eyebrow = "SAVE", title = "The math adds up.", bars, caption = "Monthly savings over time", className }: CommerceSavingsGraphProps) {
+const DEFAULT_BARS = [
+  { id: "b1", label: "January", value: 42 },
+  { id: "b2", label: "February", value: 58 },
+  { id: "b3", label: "March", value: 51 },
+  { id: "b4", label: "April", value: 74, highlight: true },
+  { id: "b5", label: "May", value: 69 },
+  { id: "b6", label: "June", value: 88 },
+]
+export function CommerceSavingsGraph({ eyebrow = "SAVE", title = "The math adds up.", bars = DEFAULT_BARS, caption = "Monthly savings over time", className }: CommerceSavingsGraphProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.4 })
   const max = Math.max(...bars.map((b) => b.value), 1)

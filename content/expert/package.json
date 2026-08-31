@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/expert.cjs.js",
   "module": "dist/expert.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/expert.es.js",
       "require": "./dist/expert.cjs.js"
     },

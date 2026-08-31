@@ -1,11 +1,11 @@
 {
   "name": "menu",
   "version": "0.1.0",
-  "description": "Restaurant menu board — serif-italic dishes, dotted price leaders, course ordinals, tag glyphs (shadcn/ui new-york-v4 + Motion-Primitives)",
+  "description": "Restaurant menu board \u2014 serif-italic dishes, dotted price leaders, course ordinals, tag glyphs (shadcn/ui new-york-v4 + Motion-Primitives)",
   "type": "module",
   "main": "dist/menu.cjs.js",
   "module": "dist/menu.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/menu.es.js",
       "require": "./dist/menu.cjs.js"
     },

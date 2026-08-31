@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/animated-headline.cjs.js",
   "module": "dist/animated-headline.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/animated-headline.es.js",
       "require": "./dist/animated-headline.cjs.js"
     },

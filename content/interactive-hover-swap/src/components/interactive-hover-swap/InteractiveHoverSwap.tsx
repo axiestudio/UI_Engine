@@ -16,7 +16,12 @@ export type InteractiveHoverSwapProps = {
   className?: string
 }
 
-export function InteractiveHoverSwap({ eyebrow = "INDEX", rows, className }: InteractiveHoverSwapProps) {
+const DEFAULT_ROWS = [
+  { id: "s1", title: "Morning bench", body: "Tools laid out the night before.", src: "/showcase/content/content-05-workshop.webp" },
+  { id: "s2", title: "The glue-up", body: "Clamps, cauls, and a steady clock.", src: "/showcase/gallery-03.webp" },
+  { id: "s3", title: "Sign-off", body: "Initials pencilled inside the back panel.", src: "/showcase/gallery-05.webp" },
+]
+export function InteractiveHoverSwap({ eyebrow = "INDEX", rows = DEFAULT_ROWS, className }: InteractiveHoverSwapProps) {
   const [active, setActive] = React.useState(0)
   const a = rows[active]
   return (

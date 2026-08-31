@@ -18,7 +18,12 @@ export type MediaProgressiveParallaxProps = {
   className?: string
 }
 
-export function MediaProgressiveParallax({ eyebrow = "DEPTH", title = "Layers that breathe.", layers, tone = "paper", className }: MediaProgressiveParallaxProps) {
+const DEFAULT_LAYERS = [
+  { id: "far", src: "/showcase/content/content-04-architecture.webp", alt: "Building, far layer", depth: 0.2 },
+  { id: "mid", src: "/showcase/gallery-02.webp", alt: "Interior, mid layer", depth: 0.5 },
+  { id: "near", src: "/showcase/gallery-05.webp", alt: "Bench, near layer", depth: 0.9 },
+]
+export function MediaProgressiveParallax({ eyebrow = "DEPTH", title = "Layers that breathe.", layers = DEFAULT_LAYERS, tone = "paper", className }: MediaProgressiveParallaxProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/finance-desk.cjs.js",
   "module": "dist/finance-desk.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/finance-desk.es.js",
       "require": "./dist/finance-desk.cjs.js"
     },

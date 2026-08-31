@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/media-ken-burns.cjs.js",
   "module": "dist/media-ken-burns.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/media-ken-burns.es.js",
       "require": "./dist/media-ken-burns.cjs.js"
     },

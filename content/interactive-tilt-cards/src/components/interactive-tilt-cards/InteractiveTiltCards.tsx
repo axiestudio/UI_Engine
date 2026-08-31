@@ -19,7 +19,12 @@ export type InteractiveTiltCardsProps = {
   className?: string
 }
 
-export function InteractiveTiltCards({ eyebrow = "TACTILE", title = "Cards that respond.", items, tone = "paper", className }: InteractiveTiltCardsProps) {
+const DEFAULT_ITEMS = [
+  { id: "i1", title: "Joints for decades", body: "Mortise and tenon, glued and pinned. No staples, ever." },
+  { id: "i2", title: "Finishes that age well", body: "Hardwax oil you can renew with a rag and an afternoon." },
+  { id: "i3", title: "Repairs without drama", body: "Every piece is documented; parts stay standard." },
+]
+export function InteractiveTiltCards({ eyebrow = "TACTILE", title = "Cards that respond.", items = DEFAULT_ITEMS, tone = "paper", className }: InteractiveTiltCardsProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1120} rule="bottom" className={className}>

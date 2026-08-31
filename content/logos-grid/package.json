@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/logos-grid.cjs.js",
   "module": "dist/logos-grid.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist",
@@ -15,7 +15,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/logos-grid.es.js",
       "require": "./dist/logos-grid.cjs.js"
     },

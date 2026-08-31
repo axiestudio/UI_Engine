@@ -1,11 +1,11 @@
 {
   "name": "download",
   "version": "0.1.0",
-  "description": "App download section — CSS-built phone with live mini-screen, QR stamp card, store badges (shadcn/ui new-york-v4 + Motion-Primitives)",
+  "description": "App download section \u2014 CSS-built phone with live mini-screen, QR stamp card, store badges (shadcn/ui new-york-v4 + Motion-Primitives)",
   "type": "module",
   "main": "dist/download.cjs.js",
   "module": "dist/download.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/download.es.js",
       "require": "./dist/download.cjs.js"
     },

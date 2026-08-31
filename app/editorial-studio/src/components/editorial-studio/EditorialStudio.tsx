@@ -39,7 +39,7 @@ export function EditorialStudio({ className }: EditorialStudioProps) {
     <div className={cn("relative isolate min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans", className)}>
       <Grain opacity={0.035} />
       <header className="flex flex-wrap items-center gap-4 border-b bg-card px-5 py-4">
-        <span className="flex items-center gap-2"><PenLine className="size-4 text-muted-foreground" aria-hidden />{!rendering ? <TextEffect key={title} preset="char" as="h2" className="font-display text-lg font-black tracking-tight" per="char" speed={0.3}>{title}</TextEffect> : <h2 className="font-display text-lg font-black tracking-tight">rendering…</h2>}</span>
+        <span className="flex items-center gap-2"><PenLine className="size-4 text-muted-foreground" aria-hidden />{!rendering ? <TextEffect key={title} preset="fade" as="h2" className="font-display text-lg font-black tracking-tight" per="char" speed={0.3}>{title}</TextEffect> : <h2 className="font-display text-lg font-black tracking-tight">rendering…</h2>}</span>
         <Badge variant="secondary" className="font-mono text-[9px]">draft 2201-04</Badge>
         <SegmentedControl size="sm" className="ml-auto" value={channel} onChange={setChannel} options={CHAN} />
       </header>

@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/night-audit.cjs.js",
   "module": "dist/night-audit.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/night-audit.es.js",
       "require": "./dist/night-audit.cjs.js"
     },

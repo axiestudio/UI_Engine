@@ -15,7 +15,12 @@ export type StoryPinnedPlatesProps = {
   className?: string
 }
 
-export function StoryPinnedPlates({ eyebrow = "PLATES", plates, className }: StoryPinnedPlatesProps) {
+const DEFAULT_PLATES = [
+  { id: "pl1", kicker: "PLATE I", title: "North glass", body: "One honest light for judging colour and grain.", src: "/showcase/content/content-04-architecture.webp" },
+  { id: "pl2", kicker: "PLATE II", title: "The standard wall", body: "Fourteen joints, cut once, pinned as reference.", src: "/showcase/content/content-09-materials.webp" },
+  { id: "pl3", kicker: "PLATE III", title: "Friday photos", body: "Every client watches their piece become furniture.", src: "/showcase/content/content-02-team.webp" },
+]
+export function StoryPinnedPlates({ eyebrow = "PLATES", plates = DEFAULT_PLATES, className }: StoryPinnedPlatesProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
   const runway = `${plates.length * 90}vh`

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/code-snippet-panel.js",
   "module": "dist/code-snippet-panel.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,7 +14,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/code-snippet-panel.es.js",
       "require": "./dist/code-snippet-panel.cjs.js"
     },
