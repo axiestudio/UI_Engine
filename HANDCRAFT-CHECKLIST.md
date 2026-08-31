@@ -95,3 +95,62 @@ Status: ✅ crafted · 🔧 surgical pass · ⬜ pending
 | timeline | history/progress | momentum | ⬜ | ⬜ |
 
 **Definition of done (per preset):** all framework rows consciously decided · builds green · engine demo green · dark mode flips cleanly · no hardcoded token-able colors · registry regenerated.
+
+## Webapp family (waves 3 — 50 `app`-category presets)
+
+Webapp surface PRIMARY (the engine wraps each in an app window with real studio-domain data); on websites they power the "real product" proof sections. One shared APP SYSTEM brandkit (`--ok/--warn/--err/--info`, `--app-line`, `--app-code`) makes them read as one product in light + dark. The curtain-call motion contract carries over: no pops — every animated thing ends in a state it can hold.
+
+| preset | job | emotion | the one move | craft |
+|---|---|---|---|---|
+| cmd-palette | find/act without leaving the keyboard | flow state | fuzzy grouped results + recents rail + inline `=` scratch calculator | ✅ |
+| inline-edit-cell | change one value with zero ceremony | confidence | in-place swap, optimistic spinner, rejection rings the cell red and replays your old value | ✅ |
+| tree-grid-table | browse unlimited nesting without loading the ocean | exploration | async child fetch with inline skeleton row + height spring reveal | ✅ |
+| bulk-select-bar | act on many rows from where you are | control | dock springs up with count math and hands off to undo | ✅ |
+| filter-token-builder | make query logic readable to non-authors | clarity | type field op value — it SNAPS into a coloured token; operator toggles live | ✅ |
+| sticky-group-list | scan a long grouped list | orientation | pure-CSS sticky header stack, next header pushes the old one | ✅ |
+| async-multiselect | pick N from a million | reach | paged sentinel fetch, debounced query, flying pills, Create row | ✅ |
+| mention-textarea | pull people in mid-sentence | attention | caret-anchored roster via mirror div, slash commands, ring counter on send | ✅ |
+| token-input | typed lists that clean themselves | tidiness | paste splits & dedups, dupes shake, two-stage backspace-delete guard | ✅ |
+| password-meter | coach strength without lecturing | care | criteria rungs light individually, cap-lock whisper, breach flag | ✅ |
+| stepper-form | collect structured data in steps | progress | fuse-filling rail, revisitable finished chips, invalid Continue focuses first bad field | ✅ |
+| upload-queue | move files and say what happened | receipts | per-file progress ring, retry chip with tries, bytes+eta footer | ✅ |
+| drag-number-field | fine-tune numbers fast | precision | drag/velocity scrub with Shift/Alt multipliers on a real spinbutton | ✅ |
+| copy-secret-field | read, copy, rotate a secret | safety | character-morph unmask, copy→✓ morph, rotation blur swap | ✅ |
+| segmented-control | switch the same data's view | snap | spring-measured shared thumb, roving arrows/Home/End | ✅ |
+| date-range-presets | choose ranges like an analyst | speed | one-click presets with subtext, live painting span, compare ghost | ✅ |
+| cron-preview | author schedules by feel | doubt-removal | human sentence recomputes as you type + next-five-runs strip | ✅ |
+| permission-matrix | show what roles may do | governance | tri-state cells cycle allow→ask→deny with dirty dot | ✅ |
+| sparkline-cell | put trend inside a row | oversight | path draws in on view; crosshair hover; z>2.4 anomalies pulse red | ✅ |
+| activity-heatmap | time as texture | streaks | week-column bloom + whole-column hover lift with count readout | ✅ |
+| kpi-tile-live | keep digits legible as they change | pulse | odometer wheels roll only the digits that moved; trend chip per update | ✅ |
+| funnel-stage-bars | show conversion honestly | gravity | stages expand from the previous edge with labelled drop-off wedges | ✅ |
+| storage-ring-meter | answer 'where did quota go' | accountability | stacked arc; legend hover lifts its segment and dims the rest | ✅ |
+| radial-gauge | grade one number vs its band | read | needle overshoots then rests; zones colour the arc rail | ✅ |
+| event-timeline-day | scan what happened across days | memory | day medallions; rail of staggered slide-in cards colour-keyed by kind | ✅ |
+| diff-pane-split | review text changes | decision | unified/split on the SAME data; ins/del semantics; sticky hunks | ✅ |
+| code-snippet-panel | ship code with manners | trust | lang badge auto-detect; copy morphs label to 'copied'; gutter lights | ✅ |
+| toast-stack | say 'saved' without interrupting | respect | stacking physics, swipe-dismiss with velocity throw, hover pauses timer | ✅ |
+| offline-queue-banner | tell sync truth | honesty | pending count ticks; reconnect morphs to pushing strip; vanishes empty | ✅ |
+| merge-conflict-panel | settle incoming vs current with two hands free | closure | keys 1/2/3 resolve; resolved card launches away; counter climbs | ✅ |
+| undo-history-slider | scrub versions without fear | time | ghost preview dissolve on hover; restore chip springs under the rail | ✅ |
+| keyboard-map-overlay | answer 'what are the keys here' | mastery | press ? — combos flash the matching card in the overlay | ✅ |
+| smart-skeleton | load with the truth | patience | shape-true shimmer + late 'why is this slow' chip + rise-reveal handoff | ✅ |
+| job-tray | watch background work from anywhere | calm | pills merge to one dock; rows with progress bars and tail-follow logs | ✅ |
+| product-tour-spotlight | teach inside the live app | arrival | SVG mask hole hops element-to-element on a spring | ✅ |
+| ai-prompt-composer | compose requests worth answering | intent | token ring on send, dice-cycling model chip, fanned attachments | ✅ |
+| ai-answer-toolbar | give answers an afterlife | judgement | bar rises when stream ends; thumbs morph; regenerate spins once | ✅ |
+| citation-hover-card | show receipts on generated claims | trust | sup markers; pointer-tracking source card with quoted snippet | ✅ |
+| ghost-suggest-input | finish typing without interrupting | pairing | aria-hidden ghost tail after caret; Tab absorbs; latency badge honest | ✅ |
+| ai-change-review | accept machine edits in pieces | consent | per-hunk accept folds the diff away; reject slides out with 4s undo | ✅ |
+| breadcrumb-collapse | show deep location in shallow space | geography | ResizeObserver math; middle folds into tail-first menu; home pinned | ✅ |
+| tabs-overflow-strip | work on many records at once | continuity | pinned tabs survive; overflow chevron lists the hidden; middle-click closes | ✅ |
+| detail-drawer-split | inspect without losing the list | focus | live resize handle (real slider semantics), prev/next rail walk, width persists | ✅ |
+| context-menu-stack | operate on what's under the cursor | directness | typeahead jumps, flyout flips at viewport edge, Menu-key/Shift-F10 opens | ✅ |
+| status-health-strip | answer 'is it us' at a glance | assurance | pips row + region filter + unrolling incident rows | ✅ |
+| grouped-search-results | answer with entities, not links | order | per-kind fuzzy marking + layoutId active rail | ✅ |
+| annotation-pin-layer | comment on places, not timestamps | exacting | collision fanning on a spring arc; long-press canvas adds pins | ✅ |
+| pipeline-run-graph | follow a run without four tabs | night ops | node strip + stage log drawer that tails; failed node rings | ✅ |
+| chat-thread-virtual | read live threads calmly | continuity | stick-to-bottom logic + 'new ↓N' pill; streaming caret; edit window | ✅ |
+| inbox-snooze-center | clear a day of pings quickly | zero | right-swipe = done (counter bumps); left-swipe = snooze chips; button twins | ✅ |
+| switch-audit-trail | show who changed what | accountability | field-level old→new rows; revert RE-stamps truthfully at top | ✅ |
+

@@ -33,6 +33,7 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
     return () => window.removeEventListener("keydown", onKey)
   }, [openIdx, frames.length])
   const open = openIdx !== null ? frames[openIdx] : null
+  const openIdxNum = openIdx ?? 0
   return (
     <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
@@ -54,7 +55,7 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
             onClick={() => setOpenIdx(null)}
           >
             <button type="button" className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" onClick={() => setOpenIdx(null)} aria-label="Close"><X className="h-5 w-5" /></button>
-            <button type="button" className="absolute left-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" onClick={(e) => { e.stopPropagation(); setOpenIdx((openIdx - 1 + frames.length) % frames.length) }} aria-label="Previous"><ChevronLeft className="h-5 w-5" /></button>
+            <button type="button" className="absolute left-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" onClick={(e) => { e.stopPropagation(); setOpenIdx((i) => (i === null ? i : (i - 1 + frames.length) % frames.length)) }} aria-label="Previous"><ChevronLeft className="h-5 w-5" /></button>
             <motion.img
               key={open.id}
               src={open.src}
@@ -63,8 +64,8 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
               initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.94, opacity: 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             />
-            <button type="button" className="absolute right-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" onClick={(e) => { e.stopPropagation(); setOpenIdx((openIdx + 1) % frames.length) }} aria-label="Next"><ChevronRight className="h-5 w-5" /></button>
-            <span className="pointer-events-none absolute bottom-5 font-mono text-[11px] font-bold uppercase tracking-widest text-white/60">{openIdx + 1} / {frames.length}</span>
+            <button type="button" className="absolute right-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" onClick={(e) => { e.stopPropagation(); setOpenIdx((i) => (i === null ? i : (i + 1) % frames.length)) }} aria-label="Next"><ChevronRight className="h-5 w-5" /></button>
+            <span className="pointer-events-none absolute bottom-5 font-mono text-[11px] font-bold uppercase tracking-widest text-white/60">{openIdxNum + 1} / {frames.length}</span>
           </motion.div>
         )}
       </AnimatePresence>

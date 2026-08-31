@@ -1,10 +1,7 @@
-/**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/text-shimmer-wave.tsx
- */
 'use client';
-import  from 'react';
-import type { Transition } from 'motion/react';
+import * as React from 'react';
 import { motion } from 'motion/react';
+import type { Transition } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 export type TextShimmerWaveProps = {
@@ -23,7 +20,6 @@ export type TextShimmerWaveProps = {
 
 export function TextShimmerWave({
   children,
-  as: Component = 'p',
   className,
   duration = 1,
   zDistance = 10,
@@ -34,60 +30,35 @@ export function TextShimmerWave({
   rotateYDistance = 10,
   transition,
 }: TextShimmerWaveProps) {
-  const MotionComponent = motion.create(
-    Component as keyof JSX.IntrinsicElements
-  );
-
   return (
-    <MotionComponent
+    <motion.span
       className={cn(
         'relative inline-block [perspective:500px]',
-        '[--base-color:#a1a1aa] [--base-gradient-color:#000]',
-        'dark:[--base-color:#71717a] dark:[--base-gradient-color:#ffffff]',
+        'text-transparent',
         className
       )}
-      style={{ color: 'var(--base-color)' }}
+      style={{ WebkitTextStroke: `1.5px hsl(var(--foreground) / 0.85)` }}
     >
       {children.split('').map((char, i) => {
         const delay = (i * duration * (1 / spread)) / children.length;
-
         return (
           <motion.span
             key={i}
-            className={cn(
-              'inline-block whitespace-pre [transform-style:preserve-3d]'
-            )}
-            initial={{
-              translateZ: 0,
-              scale: 1,
-              rotateY: 0,
-              color: 'var(--base-color)',
-            }}
-            animate={{
-              translateZ: [0, zDistance, 0],
-              translateX: [0, xDistance, 0],
-              translateY: [0, yDistance, 0],
-              scale: [1, scaleDistance, 1],
-              rotateY: [0, rotateYDistance, 0],
-              color: [
-                'var(--base-color)',
-                'var(--base-gradient-color)',
-                'var(--base-color)',
-              ],
-            }}
-            transition={{
-              duration: duration,
-              repeat: Infinity,
-              repeatDelay: (children.length * 0.05) / spread,
-              delay,
-              ease: 'easeInOut',
-              ...transition,
-            }}
+            className="inline-block whitespace-pre [transform-style:preserve-3d]"
+            initial={{ translateZ: 0, scale: 1, rotateY: 0, opacity: 1 }}
+            animate={{ translateZ: zDistance, scale: scaleDistance, rotateY: rotateYDistance, opacity: 0.85 }}
+            transition={{ duration, delay, repeat: Infinity, repeatType: 'mirror', ease: transition ? transition.ease : 'easeInOut' } as Transition}
           >
-            {char}
+            <motion.span
+              className="inline-block"
+              animate={{ x: xDistance, y: yDistance }}
+              transition={{ duration, delay, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' } as Transition}
+            >
+              {char}
+            </motion.span>
           </motion.span>
         );
       })}
-    </MotionComponent>
+    </motion.span>
   );
 }

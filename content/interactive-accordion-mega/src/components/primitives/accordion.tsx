@@ -5,7 +5,9 @@
 import type { Transition, Variants, Variant } from 'motion/react';
 import { motion, AnimatePresence, MotionConfig } from 'motion/react';
 import { cn } from '@/lib/utils';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import * as React from 'react';
+import { createContext, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
 
 export type AccordionContextType = {
   expandedValue: React.Key | null;
@@ -111,11 +113,10 @@ function AccordionItem({ value, children, className }: AccordionItemProps) {
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            ...child.props,
-            value,
-            expanded: isExpanded,
-          });
+          return React.cloneElement(
+            child,
+            { value, expanded: isExpanded } as Record<string, unknown>,
+          );
         }
         return child;
       })}

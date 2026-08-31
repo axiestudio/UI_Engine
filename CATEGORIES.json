@@ -24,7 +24,10 @@
     "footer-cta",
     "footer-sitemap",
     "footer-newsletter",
-    "sticky-cookie"
+    "sticky-cookie",
+    "nav-mega-panel",
+    "nav-scrollspy",
+    "nav-multilevel-menu"
   ],
   "hero": [
     "hero",
@@ -74,7 +77,21 @@
     "hero-editorial",
     "hero-panel",
     "hero-imagery",
-    "hero-split-stack"
+    "hero-split-stack",
+    "hero-scroll-scene",
+    "hero-tilt-card",
+    "hero-gradient-mesh",
+    "hero-video-scrub",
+    "hero-split-flap",
+    "hero-cursor-glow",
+    "hero-word-roll",
+    "hero-image-sequence",
+    "hero-pull-quote-cinematic",
+    "hero-mask-reveal",
+    "type-animated-outline",
+    "type-gradient-sweep",
+    "type-stagger-headline",
+    "misc-interactive-bg"
   ],
   "content": [
     "features",
@@ -160,7 +177,33 @@
     "scroll-gallery",
     "parallax-tiles",
     "photo-essay",
-    "lightbox-gallery"
+    "lightbox-gallery",
+    "media-hover-zoom-grid",
+    "media-3d-gallery",
+    "media-progressive-parallax",
+    "media-slideshow-mask",
+    "media-video-follow",
+    "media-image-marquee",
+    "media-fullscreen-lightbox",
+    "media-360-viewer",
+    "scroll-pinned-chapters",
+    "scroll-horizontal-cards",
+    "scroll-text-fade",
+    "scroll-scale-reveal",
+    "scroll-path-following",
+    "scroll-flip-tiles",
+    "scroll-stack-cards",
+    "scroll-deck-master",
+    "interactive-tabs-deep",
+    "interactive-configurator",
+    "interactive-feature-diagram",
+    "interactive-accordion-mega",
+    "interactive-hover-sections",
+    "interactive-tilt-cards",
+    "interactive-horizon-slider",
+    "interactive-timeline-scrub",
+    "type-infinity-marquee",
+    "misc-quote-rotator"
   ],
   "commerce": [
     "cta",
@@ -187,7 +230,13 @@
     "bundle-upsell",
     "promo-ribbon",
     "loyalty-cta",
-    "trial-box"
+    "trial-box",
+    "commerce-pricing-toggle",
+    "commerce-financing",
+    "commerce-product-3d",
+    "commerce-bundle-builder",
+    "commerce-savings-graph",
+    "commerce-checkout-recap"
   ],
   "engage": [
     "contact",
@@ -214,7 +263,8 @@
     "referral",
     "invite-gate",
     "waitlist-band",
-    "rsvp-form"
+    "rsvp-form",
+    "misc-flip-counter"
   ],
   "dnd": [
     "dnd-sortable-list",

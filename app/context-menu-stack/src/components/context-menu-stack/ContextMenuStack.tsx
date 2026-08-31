@@ -75,7 +75,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
                     role="menuitem"
                     aria-disabled={m.disabled}
                     onMouseEnter={() => setFocusIdx(i)}
-                    onMouseLeave={() => m.submenu && setPath((p) => p.length && p)}
+                    onMouseLeave={() => {}}
                     onClick={activate}
                     className={cn("flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-[13px] outline-none", i === focusIdx && "bg-accent text-accent-foreground", m.disabled && "pointer-events-none opacity-40", m.danger && "text-[hsl(var(--err))]")}
                   >

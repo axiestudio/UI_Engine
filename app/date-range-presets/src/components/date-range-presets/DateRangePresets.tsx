@@ -51,7 +51,7 @@ export function DateRangePresets({ value, onChange, presets = DEFAULTS, allowCom
           <div className="fixed inset-0 z-40" onClick={() => { setOpen(false); setPicking(null) }} aria-hidden />
           <motion.div role="dialog" aria-label="Date range" initial={{ opacity: 0, y: 6, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }} className="absolute left-0 top-[calc(100%+8px)] z-50 flex rounded-xl border bg-popover shadow-2xl">
             <div className="w-40 border-r p-2">
-              {presets.map((p) => <button key={p.label} onClick={() => applyPreset(p.days)} className="block w-full rounded-md px-2.5 py-2 text-left text-[12px] font-semibold hover:bg-accent">{p.label}</button>)}
+              {(presets ?? []).map((p) => <button key={p.label} onClick={() => applyPreset(p.days)} className="block w-full rounded-md px-2.5 py-2 text-left text-[12px] font-semibold hover:bg-accent">{p.label}</button>)}
               {allowCompare && (
                 <button role="switch" aria-checked={compare} onClick={() => setCompare((c) => !c)} className="mt-1 flex w-full items-center justify-between gap-2 rounded-md border border-dashed px-2.5 py-2 text-left text-[11px] font-bold text-muted-foreground hover:bg-accent">
                   Compare previous <span aria-hidden className={cn("relative h-4 w-7 rounded-full transition-colors", compare && "bg-primary")}><span className={cn("absolute top-0.5 size-3 rounded-full bg-white shadow transition-all", compare ? "left-3.5" : "left-0.5")} /></span>

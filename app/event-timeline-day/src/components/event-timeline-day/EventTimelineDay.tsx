@@ -16,8 +16,9 @@ export type EventTimelineDayProps = { events: TimelineEvent[]; groupBy?: (e: Tim
 const KIND_COLOR: Record<TimelineEvent["kind"], string> = { create: "hsl(var(--ok))", edit: "hsl(var(--info))", comment: "hsl(var(--pinned))", alert: "hsl(var(--err))", deploy: "hsl(var(--warn))" }
 
 const dayKey = (at: TimelineEvent["at"]) => { const d = new Date(at); return d.toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" }) }
+const defaultGroup = (e: TimelineEvent) => dayKey(e.at)
 
-export function EventTimelineDay({ events, groupBy = dayKey, className }: EventTimelineDayProps) {
+export function EventTimelineDay({ events, groupBy = defaultGroup, className }: EventTimelineDayProps) {
   const groups: [string, TimelineEvent[]][] = []
   for (const e of [...events].sort((a, b) => +new Date(b.at) - +new Date(a.at))) {
     const k = groupBy(e)

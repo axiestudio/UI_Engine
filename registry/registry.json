@@ -1835,6 +1835,1163 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "ghost-suggest-input",
+      "type": "registry:block",
+      "title": "Ghost Suggest Input",
+      "description": "Inline ghost autocomplete \u2014 dim continuation, Tab-to-accept flash, debounce throttle view",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ghost-suggest-input/GhostSuggestInput.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "citation-hover-card",
+      "type": "registry:block",
+      "title": "Citation Hover Card",
+      "description": "Inline [n] citations \u2014 source hover card with snippet, domain favicon slot, pin list",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/citation-hover-card/CitationHoverCard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tabs-overflow-strip",
+      "type": "registry:block",
+      "title": "Tabs Overflow Strip",
+      "description": "Tab strip \u2014 pinned tabs, middle-click close, overflow chevron menu, scroll shade",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/tabs-overflow-strip/TabsOverflowStrip.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "async-multiselect",
+      "type": "registry:block",
+      "title": "Async Multiselect",
+      "description": "Async multi-select combobox \u2014 paged results, pills, create-item, load-more sentinel",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/async-multiselect/AsyncMultiselect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "offline-queue-banner",
+      "type": "registry:block",
+      "title": "Offline Queue Banner",
+      "description": "Offline sync strip \u2014 pending diff counter, retry pulse, drop-on-resolve handoff",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/offline-queue-banner/OfflineQueueBanner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "inline-edit-cell",
+      "type": "registry:block",
+      "title": "Inline Edit Cell",
+      "description": "Optimistic inline cell editing \u2014 save states, conflict ping, Enter/Escape flow",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/inline-edit-cell/InlineEditCell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "token-input",
+      "type": "registry:block",
+      "title": "Token Input",
+      "description": "Tokenizer input \u2014 paste splitting, dedupe, edit-as-tokens, backspace-select",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/token-input/TokenInput.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "status-health-strip",
+      "type": "registry:block",
+      "title": "Status Health Strip",
+      "description": "System health strip \u2014 service dots, incident ticker, region filter, sticky detail row",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/status-health-strip/StatusHealthStrip.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grouped-search-results",
+      "type": "registry:block",
+      "title": "Grouped Search Results",
+      "description": "Search results \u2014 entity grouping, fuzzy highlight, arrow-key preview",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/grouped-search-results/GroupedSearchResults.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-range-presets",
+      "type": "registry:block",
+      "title": "Date Range Presets",
+      "description": "Range picker with smart presets, compare-shift, business-day math display",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/date-range-presets/DateRangePresets.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "activity-heatmap",
+      "type": "registry:block",
+      "title": "Activity Heatmap",
+      "description": "Contribution heatmap \u2014 month rails, level legend, tooltip density readout",
+      "dependencies": [
+        "clsx",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/activity-heatmap/ActivityHeatmap.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chat-thread-virtual",
+      "type": "registry:block",
+      "title": "Chat Thread Virtual",
+      "description": "Message thread \u2014 date dividers, streaming tail pin, reply-quote rails, reedit window",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/chat-thread-virtual/ChatThreadVirtual.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "upload-queue",
+      "type": "registry:block",
+      "title": "Upload Queue",
+      "description": "Upload queue \u2014 per-file progress arcs, retry with backoff display, remaining-time",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/upload-queue/UploadQueue.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-meter",
+      "type": "registry:block",
+      "title": "Password Meter",
+      "description": "Strength meter \u2014 animated criteria ladder, breach flag, caps-lock whisper",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/password-meter/PasswordMeter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "drag-number-field",
+      "type": "registry:block",
+      "title": "Drag Number Field",
+      "description": "Precision number field \u2014 drag to scrub, unit steps, wheel on focus, masked commas",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/drag-number-field/DragNumberField.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "undo-history-slider",
+      "type": "registry:block",
+      "title": "Undo History Slider",
+      "description": "Time-travel undo \u2014 scrub version history, ghost preview, restore commit",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/undo-history-slider/UndoHistorySlider.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "radial-gauge",
+      "type": "registry:block",
+      "title": "Radial Gauge",
+      "description": "Instrument gauge \u2014 threshold arcs, spring needle, digital hold-under",
+      "dependencies": [
+        "clsx",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/radial-gauge/RadialGauge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "code-snippet-panel",
+      "type": "registry:block",
+      "title": "Code Snippet Panel",
+      "description": "Code panel \u2014 copy morph, wrap toggle, line-gutter spotlight, lang badge",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/code-snippet-panel/CodeSnippetPanel.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "filter-token-builder",
+      "type": "registry:block",
+      "title": "Filter Token Builder",
+      "description": "Query-as-tokens builder \u2014 field/operator chips, AND/OR groups, paste to parse",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/filter-token-builder/FilterTokenBuilder.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "ai-change-review",
+      "type": "registry:block",
+      "title": "Ai Change Review",
+      "description": "Agent-proposed change review \u2014 per-hunk accept/reject cards with counts, undo window, and honest live totals",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ai-change-review/AiChangeReview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "annotation-pin-layer",
+      "type": "registry:block",
+      "title": "Annotation Pin Layer",
+      "description": "Pins on media \u2014 timed annotations, collision fanning, composer popover",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/annotation-pin-layer/AnnotationPinLayer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "mention-textarea",
+      "type": "registry:block",
+      "title": "Mention Textarea",
+      "description": "Rich textarea \u2014 @mention popover, /commands, autosize, caret ring counter",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/mention-textarea/MentionTextarea.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "diff-pane-split",
+      "type": "registry:block",
+      "title": "Diff Pane Split",
+      "description": "Word-level diff viewer \u2014 unified/split toggle, hunk actions, wrap mode",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/diff-pane-split/DiffPaneSplit.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tree-grid-table",
+      "type": "registry:block",
+      "title": "Tree Grid Table",
+      "description": "Lazy expandable tree table \u2014 async children, keyboard indent, sticky columns",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/tree-grid-table/TreeGridTable.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "keyboard-map-overlay",
+      "type": "registry:block",
+      "title": "Keyboard Map Overlay",
+      "description": "Press-? keymap overlay \u2014 region-lit shortcut cards, press-to-flash binding",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/keyboard-map-overlay/KeyboardMapOverlay.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb-collapse",
+      "type": "registry:block",
+      "title": "Breadcrumb Collapse",
+      "description": "Overflow-aware breadcrumbs \u2014 tail-first collapsing, \u2325-menu, home-pin",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb-collapse/BreadcrumbCollapse.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "toast-stack",
+      "type": "registry:block",
+      "title": "Toast Stack",
+      "description": "Swipeable toast stack \u2014 per-card actions, position memory, pause-on-hover timer",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/toast-stack/ToastStack.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "context-menu-stack",
+      "type": "registry:block",
+      "title": "Context Menu Stack",
+      "description": "Right-click menu with flyout submenus, typeahead jump, palette-safe positioning, full keyboard path",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu-stack/ContextMenuStack.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sticky-group-list",
+      "type": "registry:block",
+      "title": "Sticky Group List",
+      "description": "Dense grouped list with pinned section headers and per-header action slots",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/sticky-group-list/StickyGroupList.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sparkline-cell",
+      "type": "registry:block",
+      "title": "Sparkline Cell",
+      "description": "Table cell sparkline \u2014 hover crosshair tooltip, delta chip, anomaly dot",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/sparkline-cell/SparklineCell.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "kpi-tile-live",
+      "type": "registry:block",
+      "title": "Kpi Tile Live",
+      "description": "KPI tile \u2014 rolling odometer, trend spark, threshold alert states",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/kpi-tile-live/KpiTileLive.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "job-tray",
+      "type": "registry:block",
+      "title": "Job Tray",
+      "description": "Background job tray \u2014 live status pips, expandable log tail, cancel-with-undo",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/job-tray/JobTray.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "inbox-snooze-center",
+      "type": "registry:block",
+      "title": "Inbox Snooze Center",
+      "description": "Notification inbox \u2014 grouped, snooze chips, swipe-archive, digest composer",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/inbox-snooze-center/InboxSnoozeCenter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "event-timeline-day",
+      "type": "registry:block",
+      "title": "Event Timeline Day",
+      "description": "Activity timeline \u2014 day groups, hover detail card, presence dots",
+      "dependencies": [
+        "clsx",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/event-timeline-day/EventTimelineDay.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "smart-skeleton",
+      "type": "registry:block",
+      "title": "Smart Skeleton",
+      "description": "Content-aware skeletons \u2014 why-loading tooltip, staged reveal on data arrival",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/smart-skeleton/SmartSkeleton.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cron-preview",
+      "type": "registry:block",
+      "title": "Cron Preview",
+      "description": "Visual cron builder \u2014 human chips plus next-five-runs live preview",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/cron-preview/CronPreview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stepper-form",
+      "type": "registry:block",
+      "title": "Stepper Form",
+      "description": "Validating multi-step form \u2014 per-step summary, dirty guards, deep-link steps",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stepper-form/StepperForm.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "ai-answer-toolbar",
+      "type": "registry:block",
+      "title": "Ai Answer Toolbar",
+      "description": "Answer action bar \u2014 thumbs morph, copy, regenerate spin cycle, token source note",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ai-answer-toolbar/AiAnswerToolbar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "permission-matrix",
+      "type": "registry:block",
+      "title": "Permission Matrix",
+      "description": "Role \u00d7 permission grid \u2014 tri-state cells (allow/ask/deny) with cascade inheritance",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/permission-matrix/PermissionMatrix.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "switch-audit-trail",
+      "type": "registry:block",
+      "title": "Switch Audit Trail",
+      "description": "Entity audit trail \u2014 field-diff rows, actor avatars, revert with reason prompt",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/switch-audit-trail/SwitchAuditTrail.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bulk-select-bar",
+      "type": "registry:block",
+      "title": "Bulk Select Bar",
+      "description": "Floating bulk-action bar \u2014 counted selection, merge actions, undo snackbar",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/bulk-select-bar/BulkSelectBar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "funnel-stage-bars",
+      "type": "registry:block",
+      "title": "Funnel Stage Bars",
+      "description": "Conversion funnel \u2014 animated stage bars with drop-off callouts and segment share",
+      "dependencies": [
+        "clsx",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/funnel-stage-bars/FunnelStageBars.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cmd-palette",
+      "type": "registry:block",
+      "title": "Cmd Palette",
+      "description": "\u2318K command palette \u2014 fuzzy search, grouped commands, recents, inline calc, keyboard-first",
+      "dependencies": [
+        "clsx",
+        "cmdk",
+        "lucide-react",
+        "motion",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/cmd-palette/CmdPalette.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "merge-conflict-panel",
+      "type": "registry:block",
+      "title": "Merge Conflict Panel",
+      "description": "Conflict resolution UI \u2014 side-by-side chooser, keep-both merge, keyboard accept",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/merge-conflict-panel/MergeConflictPanel.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "copy-secret-field",
+      "type": "registry:block",
+      "title": "Copy Secret Field",
+      "description": "Secret field \u2014 masked reveal morph, copy-with-countdown, rotate action",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/copy-secret-field/CopySecretField.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "product-tour-spotlight",
+      "type": "registry:block",
+      "title": "Product Tour Spotlight",
+      "description": "Anchored spotlight tour \u2014 element cutouts, step progress, skip/forward deep links",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/product-tour-spotlight/ProductTourSpotlight.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "detail-drawer-split",
+      "type": "registry:block",
+      "title": "Detail Drawer Split",
+      "description": "Resizable right detail drawer \u2014 prev/next record nav, tabs, persisted width",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/detail-drawer-split/DetailDrawerSplit.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "ai-prompt-composer",
+      "type": "registry:block",
+      "title": "Ai Prompt Composer",
+      "description": "AI composer \u2014 token meter, variant seeds, streaming caret, model chip switch",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ai-prompt-composer/AiPromptComposer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pipeline-run-graph",
+      "type": "registry:block",
+      "title": "Pipeline Run Graph",
+      "description": "CI run strip \u2014 stage nodes with status, log drawer, rerun-failed flow",
+      "dependencies": [
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/pipeline-run-graph/PipelineRunGraph.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "storage-ring-meter",
+      "type": "registry:block",
+      "title": "Storage Ring Meter",
+      "description": "Stacked quota rings \u2014 segmented hover legend, reset-into view, over-commit flash",
+      "dependencies": [
+        "clsx",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/storage-ring-meter/StorageRingMeter.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:block",
+      "title": "Segmented Control",
+      "description": "iOS segmented control \u2014 shared spring thumb, icon+label, roving tabindex",
+      "dependencies": [
+        "clsx",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/segmented-control/SegmentedControl.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "description": "Pins on media \u2014 timed annotations, collision fanning, composer popover",
   "type": "module",
-  "main": "dist/annotation-pin-layer.cjs.js",
-  "module": "dist/annotation-pin-layer.es.js",
+  "main": "dist/annotation-pin-layer.js",
+  "module": "dist/annotation-pin-layer.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
@@ -21,8 +24,9 @@
     "*.css"
   ],
   "presetSources": {
-    "motion-primitives": [],
-    "watermelon-ui": []
+    "original-design": true,
+    "vendored": "handcraft kit (in-repo)",
+    "motion": "motion/react"
   },
   "scripts": {
     "build": "tsc -b && vite build",
@@ -30,7 +34,6 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.34.0",
     "motion": "^13.1.1",
@@ -49,5 +52,6 @@
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
     "vite-plugin-dts": "^4.5.4"
-  }
+  },
+  "license": "MIT"
 }

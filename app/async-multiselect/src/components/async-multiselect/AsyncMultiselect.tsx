@@ -31,7 +31,7 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
   const [more, setMore] = React.useState(true)
   const [loading, setLoading] = React.useState(false)
   const input = React.useRef<HTMLInputElement>(null)
-  const debounce = React.useRef<ReturnType<typeof setTimeout>>()
+  const debounce = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const selected = new Set(value.map((v) => v.id))
   const exact = items.some((i) => i.label.toLowerCase() === q.trim().toLowerCase())
 

@@ -1,0 +1,59 @@
+import * as React from "react"
+import { motion } from "motion/react"
+import { SectionShell } from "@/components/primitives/handcraft"
+import { cn } from "@/lib/utils"
+
+// ═══ JOB         Hover-sections — hovering a title swaps the media on the right.
+// ═══ EMOTION     A nimble index.
+// ═══ SIGNATURE   A list of section titles; the hovered one drives a crossfading image.
+
+export type HoverSectionRow = { id: string; title: string; body?: string; src?: string; stat?: string }
+
+export type InteractiveHoverSectionsProps = {
+  eyebrow?: string
+  rows: HoverSectionRow[]
+  tone?: "paper" | "ink"
+  className?: string
+}
+
+export function InteractiveHoverSections({ eyebrow = "INDEX", rows, tone = "paper", className }: InteractiveHoverSectionsProps) {
+  const ink = tone === "ink"
+  const [active, setActive] = React.useState(0)
+  const a = rows[active]
+  return (
+    <SectionShell tone={tone} width={1120} grain={!ink} rule="bottom" className={className}>
+      <div className={cn("flex flex-col gap-8", ink ? "text-background" : "")}>
+        <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div className="space-y-2">
+            <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
+            {rows.map((r, i) => (
+              <button key={r.id} type="button"
+                onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)}
+                className={cn("block w-full border-b py-4 text-left transition-all", i === active ? "opacity-100" : ink ? "opacity-40" : "opacity-50")}>
+                <span className="flex items-baseline gap-3">
+                  <span className="font-mono text-[10px] font-bold">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-display text-2xl font-black sm:text-3xl">{r.title}</span>
+                </span>
+                {i === active && r.body && <span className={cn("mt-2 block pl-7 text-sm font-medium", ink ? "text-background/70" : "text-muted-foreground")}>{r.body}</span>}
+              </button>
+            ))}
+          </div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border bg-muted">
+            {rows.map((r, i) => (
+              <motion.img
+                key={r.id}
+                src={r.src}
+                alt={r.title}
+                className="absolute inset-0 h-full w-full object-cover"
+                initial={false}
+                animate={{ opacity: i === active ? 1 : 0, scale: i === active ? 1 : 1.06 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              />
+            ))}
+            {a?.stat && <span className="pointer-events-none absolute right-4 top-4 rounded-full bg-black/60 px-3 py-1 font-mono text-[11px] font-bold text-white">{a.stat}</span>}
+          </div>
+        </div>
+      </div>
+    </SectionShell>
+  )
+}

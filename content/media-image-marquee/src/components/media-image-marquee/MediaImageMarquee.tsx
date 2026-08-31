@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 // ═══ EMOTION     Continuous, rhythmic.
 // ═══ SIGNATURE   An infinite CSS-keyframe marquee of framed images with mask edges.
 
-export type ImageMarqueeProps = {
+export type MediaImageMarqueeProps = {
   eyebrow?: string
   title?: React.ReactNode
   images?: { src?: string; alt?: string }[]
@@ -16,10 +16,10 @@ export type ImageMarqueeProps = {
   className?: string
 }
 
-export function ImageMarquee({ eyebrow = "RUNNER", title = "A never-ending strip.", images = [
+export function MediaImageMarquee({ eyebrow = "RUNNER", title = "A never-ending strip.", images = [
   { src: "/frames/frame_0008.webp" }, { src: "/frames/frame_0020.webp" }, { src: "/frames/frame_0032.webp" },
   { src: "/frames/frame_0044.webp" }, { src: "/frames/frame_0056.webp" }, { src: "/frames/frame_0068.webp" },
-], reverse = false, tone = "paper", className }: ImageMarqueeProps) {
+], reverse = false, tone = "paper", className }: MediaImageMarqueeProps) {
   const ink = tone === "ink"
   const anim = reverse ? "marquee-rev" : "marquee-fwd"
   const key = reverse ? "marqueeRev" : "marqueeFwd"

@@ -34,6 +34,7 @@ export function CmdPalette({ open, onOpenChange, groups, placeholder = "Type a c
     return () => window.removeEventListener("keydown", key)
   }, [open, onOpenChange])
 
+  const [, setTick] = React.useState(0)
   const run = (it: PaletteItem) => { setRecent((r) => [it, ...r.filter((x) => x.id !== it.id)].slice(0, 5)); it.run(); onOpenChange(false) }
 
   const calc = calculator && open
@@ -42,6 +43,7 @@ export function CmdPalette({ open, onOpenChange, groups, placeholder = "Type a c
         const el = (document.querySelector('[cmdk-input]') as HTMLInputElement | null)?.value ?? ""
         const m = el.match(/^=\s*([\d\s+\-*/().,%^a-z]+)$/i)
         if (!m) return null
+        ;(CmdPalette as unknown as { _q?: string })._q = el
         try {
           const expr = m[1].replace(/\^/g, "**").replace(/\b(pi)\b/gi, "Math.PI").replace(/\b(e)\b/gi, "Math.E")
           if (!/^[\d\s+\-*/().,%e*]+$/i.test(expr.replace(/Math\.\w+/g, ""))) return null
@@ -59,14 +61,14 @@ export function CmdPalette({ open, onOpenChange, groups, placeholder = "Type a c
             <Command label="Command palette" shouldFilter>
               <div className="flex items-center gap-2.5 border-b px-4">
                 <Search className="size-4 shrink-0 text-muted-foreground" />
-                <Command.Input autoFocus placeholder={placeholder} className="h-12 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
+                <Command.Input autoFocus onInput={() => setTick((t) => t + 1)} placeholder={placeholder} className="h-12 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
                 <kbd className="hidden shrink-0 items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-[9px] font-bold text-muted-foreground sm:flex">esc</kbd>
               </div>
               <Command.List className="max-h-[46vh] overflow-y-auto p-2">
                 <Command.Empty className="py-8 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{emptyHint}</Command.Empty>
                 {calc && (
                   <Command.Group heading="Calculator">
-                    <Command.Item value={`calc result ${calc}`} onSelect={() => navigator.clipboard?.writeText(String(calc))} className="flex cursor-pointer items-center justify-between gap-3 rounded-md px-2.5 py-2 text-sm data-[selected=true]:bg-accent">
+                    <Command.Item value={(CmdPalette as unknown as { _q?: string })._q + " = " + calc} onSelect={() => navigator.clipboard?.writeText(String(calc))} className="flex cursor-pointer items-center justify-between gap-3 rounded-md px-2.5 py-2 text-sm data-[selected=true]:bg-accent">
                       <span>=</span><span className="font-mono text-sm font-black text-[hsl(var(--info))]">{calc} <CopyHint/></span>
                     </Command.Item>
                   </Command.Group>

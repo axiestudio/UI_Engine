@@ -5,7 +5,8 @@
 import { cn } from '@/lib/utils';
 import type { Transition, Variants } from 'motion/react';
 import { motion } from 'motion/react';
-import React, { CSSProperties } from 'react';
+import * as React from 'react';
+import type { CSSProperties } from 'react';
 
 export type SpinningTextProps = {
   children: string;
@@ -22,7 +23,7 @@ export type SpinningTextProps = {
   };
 };
 
-const BASE_TRANSITION = {
+const BASE_TRANSITION: Transition = {
   repeat: Infinity,
   ease: 'linear',
 };
@@ -50,7 +51,7 @@ export function SpinningText({
   const letters = children.split('');
   const totalLetters = letters.length;
 
-  const finalTransition = {
+  const finalTransition: Transition = {
     ...BASE_TRANSITION,
     ...transition,
     duration: (transition as { duration?: number })?.duration ?? duration,
