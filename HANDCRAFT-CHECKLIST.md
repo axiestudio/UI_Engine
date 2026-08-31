@@ -46,6 +46,26 @@ Status: ✅ crafted · 🔧 surgical pass · ⬜ pending
 | case-study | proof | conviction | 260px serif quote mark bleeding off the corner; serif-italic quote; report tiles | ✅ |
 | empty-state | guide the next step | patience | slow-spinning dashed ring icon, numbered tips ledger | ✅ |
 | curtain-call | a closed stage before the page | held breath | verbatim engine-gate port: twin panels scrub apart, statement scales 0.96→1.12, seam fades; peel done at 85% so nothing pops at sticky release; scene unmounts fully at open — hero is all that remains | ✅ |
+| departure-board | deliver live info with authority | institutional calm | split-flap char scramble settling row by row; re-flushes on prop change | ✅ |
+| film-strip-wind | tell a history as reels | nostalgic focus | frame-by-frame scrub with dim/scale falloff + sprocket progress rail | ✅ |
+| switchboard-reveal | route people to the right human | competence-through-objects | self-drawing SVG patch cable, lamp green on connect, radio group under it | ✅ |
+| stamp-fold | make "confirmed" a moment | ceremony | wax-drop squash then paper fold-up; aria-live status | ✅ |
+| boarding-pass-gate | issue offers like tickets | ownership | scanline mutates barcode→QR, perforation notches, hard-offset shadow | ✅ |
+| applause-meter | prove rating socially | warmth | center-weighted amplitude bars lean to score; tap-to-rate radios; ovation ring | ✅ |
+| spotlight-pickup | make a list into an event | being the scanner | cursor-punched dark sheet reveals cells; tap-supported; text always present | ✅ |
+| vault-dial | gate a reveal behind intent | tactile suspense | pointer-drag dial snaps to detents, bolts retract, code is real text; slider semantics | ✅ |
+| encore-bows | introduce people as cast | warm recognition | staggered rotateX bow on enter + floor spotlight ellipse | ✅ |
+| blinds-slat | reveal transformation physically | patience | 12-14 staggered rotateX slats each carrying a registered slice; controlled 0↔1 for app privacy | ✅ |
+| elevator-floors | make tiers rideable | trust in machinery | brass button grid + cable indicator + door sweep on floor change | ✅ |
+| intermission-card | pace long pages like acts | playful ceremony | clip-path circle iris wipe + double-frame intertitle card | ✅ |
+| gallery-rails | display work as curated | hush | pendulum swing-in on wire origin + engraved plates | ✅ |
+| marquee-lights | announce premieres | electricity | bulb-ring chase/twinkle, live status speeds the chase | ✅ |
+| signal-flags | CTA that waves back | grin + competence | real semaphore code positions, replay wave on hover/click | ✅ |
+| ticket-rush | show scarcity honestly | pressure | odometer cells stagger right-to-left, LED glass texture, sold-out state | ✅ |
+| airlock-cycle | give auth a safety identity | procedural trust | outer iris + pressurize bar + inner doors that refuse early; controlled 2FA stage | ✅ |
+| house-programme | list what's on with typographic weight | institutional pride | playbill rules, act ordinals, credit columns, scissors perforated stub CTA | ✅ |
+| ink-bloom | land one quiet promise | stillness | blur14→0 soak-in via radial mask, scroll-scrubbed (site) or mount-animated (app) | ✅ |
+| typewriter-manifesto | force linear reading | being addressed | per-char typing with caret beat; console chrome variant for app logs | ✅ |
 
 ## Other agent's autonomous set
 

@@ -52,7 +52,7 @@ export function Programme({ house, season, acts, credits, stub, className }: Pro
         {credits?.length ? (
           <div className="mx-auto mt-10 grid w-full max-w-[880px] gap-x-8 gap-y-1 border-t border-[hsl(var(--playbill-ink))]/30 pt-6 text-center font-serif text-[13px] sm:grid-cols-2">
             {credits.map((c) => (
-              <p key={c.role} className="flex justify-between gap-3 py-0.5"><span className="small-caps tracking-[0.08em] opacity-70">{c.role}</span><span className="font-semibold">{c.name}</span></p>
+              <p key={c.role} className="flex justify-between gap-3 py-0.5"><span className="[font-variant:small-caps] tracking-[0.08em] opacity-70">{c.role}</span><span className="font-semibold">{c.name}</span></p>
             ))}
           </div>
         ) : null}

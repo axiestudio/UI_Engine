@@ -99,7 +99,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
             />
           ))}
           {/* rotating face */}
-          <div
+          <motion.div
             role="slider"
             aria-label="Vault dial"
             aria-valuemin={0}
@@ -112,8 +112,8 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
             onKeyDown={onKeyDown}
-            className="absolute left-1/2 top-1/2 size-[190px] cursor-grab touch-none rounded-full border-4 border-[hsl(var(--brass)/0.7)] bg-[repeating-conic-gradient(hsl(var(--steel))_0deg_10deg,hsl(var(--steel-deep))_10deg_20deg)] active:cursor-grabbing focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[hsl(var(--brass)/0.5)]"
             style={{ x: "-50%", y: "-50%", rotate: angle }}
+            className="absolute left-1/2 top-1/2 size-[190px] cursor-grab touch-none rounded-full border-4 border-[hsl(var(--brass)/0.7)] bg-[repeating-conic-gradient(hsl(var(--steel))_0deg_10deg,hsl(var(--steel-deep))_10deg_20deg)] active:cursor-grabbing focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[hsl(var(--brass)/0.5)]"
           >
             <motion.span
               aria-hidden
@@ -125,7 +125,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
               {unlocked ? null : "⟲ drag"}
             </motion.span>
             <span aria-hidden className="absolute left-1/2 top-2 h-7 w-1 -translate-x-1/2 rounded-full bg-[hsl(var(--brass))]" />
-          </div>
+          </motion.div>
           {/* fixed top indicator */}
           <span aria-hidden className="absolute left-1/2 top-[-4px] -translate-x-1/2 border-x-8 border-t-[12px] border-x-transparent border-t-[hsl(var(--brass))]" />
         </div>

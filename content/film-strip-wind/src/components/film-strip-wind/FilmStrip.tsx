@@ -1,7 +1,8 @@
 import * as React from "react"
-import { motion, useScroll, useTransform } from "motion/react"
+import { motion, useScroll, useTransform, useMotionValue } from "motion/react"
+import type { MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, CornerTicks } from "@/components/primitives/handcraft"
+import { MonoLabel } from "@/components/primitives/handcraft"
 
 // ═══ JOB      carry a story frame by frame (history, case study, tour)
 // ═══ EMOTION  the click-whirr of a projector — time you can feel
@@ -35,7 +36,12 @@ export function FilmStrip({ frames, eyebrow = "THE REEL", title, height = "320vh
   if (reduce) {
     return (
       <section className={cn("w-full px-4 py-16 sm:px-6", className)}>
-        <BoardHead eyebrow={eyebrow} title={title} total={frames.length} idx={0} />
+        <div className="mx-auto mb-8 flex w-full max-w-[1120px] items-end justify-between px-6">
+          <div>
+            <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+            {title && <h2 className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">{title}</h2>}
+          </div>
+        </div>
         <div className="flex snap-x gap-4 overflow-x-auto pb-4">
           {frames.map((f, i) => <div key={i} className="w-[min(78vw,420px)] shrink-0"><FrameInner frame={f} /></div>)}
         </div>
@@ -58,7 +64,7 @@ export function FilmStrip({ frames, eyebrow = "THE REEL", title, height = "320vh
   )
 }
 
-function HeadLine({ eyebrow, title, idx, total }: { eyebrow: string; title?: React.ReactNode; idx: ReturnType<typeof useTransform>; total: number }) {
+function HeadLine({ eyebrow, title, idx, total }: { eyebrow: string; title?: React.ReactNode; idx: MotionValue<number>; total: number }) {
   const label = useTransform(idx, (i) => String(i + 1).padStart(2, "0"))
   return (
     <div className="mx-auto flex w-full max-w-[1120px] items-end justify-between px-6">
@@ -73,7 +79,7 @@ function HeadLine({ eyebrow, title, idx, total }: { eyebrow: string; title?: Rea
   )
 }
 
-function ActiveFrame({ f, idx, frames }: { f: number; idx: ReturnType<typeof useTransform>; frames: FilmFrame[] }) {
+function ActiveFrame({ f, idx, frames }: { f: number; idx: MotionValue<number>; frames: FilmFrame[] }) {
   const scale = useTransform(idx, [f - 0.5, f, f + 0.5], [0.92, 1, 0.92])
   const y = useTransform(idx, [f - 0.5, f, f + 0.5], [10, 0, 10])
   const dim = useTransform(idx, [f - 0.6, f, f + 0.6], [0.55, 0, 0.55])
