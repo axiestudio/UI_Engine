@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/faq-minimal.es.js",
       "require": "./dist/faq-minimal.cjs.js"
     },

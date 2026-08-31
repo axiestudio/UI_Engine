@@ -31,14 +31,14 @@ export function HeroWordmarkRefraction({ eyebrow = "REFRACT", word = "NORTHING",
           <motion.span
             aria-hidden
             className="pointer-events-none absolute inset-0 font-display text-[18vw] font-black leading-[0.85] tracking-[-0.05em] opacity-40 sm:text-[13vw]"
-            style={{ color: ink ? "hsl(var(--site-accent)/0.4)" : "hsl(var(--site-accent)/0.4)" }}
+            style={{ color: ink ? "hsl(var(--primary)/0.4)" : "hsl(var(--primary)/0.4)" }}
             initial={{ x: 0 }} animate={{ x: [0, -14, 0], y: [0, 6, 0] }}
             transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
           >{word}</motion.span>
           <motion.span
             aria-hidden
             className="pointer-events-none absolute inset-0 font-display text-[18vw] font-black leading-[0.85] tracking-[-0.05em] opacity-40 sm:text-[13vw]"
-            style={{ color: ink ? "hsl(var(--site-accent-2)/0.4)" : "hsl(var(--site-accent-2)/0.4)" }}
+            style={{ color: ink ? "hsl(var(--accent)/0.4)" : "hsl(var(--accent)/0.4)" }}
             initial={{ x: 0 }} animate={{ x: [0, 12, 0], y: [0, -6, 0] }}
             transition={{ duration: 1.7, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
           >{word}</motion.span>

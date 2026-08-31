@@ -1,7 +1,8 @@
 /**
  * Vendored from motion-primitives (MIT): hooks/useClickOutside.tsx
  */
-import { type RefObject, useEffect } from 'react';
+import { useEffect } from 'react';
+import type { RefObject } from 'react';
 
 function useClickOutside<T extends HTMLElement>(
   ref: RefObject<T>,

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-lens-focus.es.js",
       "require": "./dist/scroll-lens-focus.cjs.js"
     },

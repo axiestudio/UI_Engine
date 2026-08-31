@@ -4,27 +4,14 @@
  */
 'use client';
 
-import {
-  useState,
-  useId,
-  useRef,
-  useEffect,
-  createContext,
-  useContext,
-  isValidElement,
-} from 'react';
-import {
-  AnimatePresence,
-  MotionConfig,
-  motion,
-  Transition,
-  Variants,
-} from 'motion/react';
+import { useState, useId, useRef, useEffect, createContext, useContext, isValidElement } from 'react';
+import { AnimatePresence, MotionConfig, motion } from 'motion/react';
+import type { Transition, Variants } from 'motion/react';
 import useClickOutside from '@/hooks/useClickOutside';
 import { cn } from '@/lib/utils';
 
 const TRANSITION = {
-  type: 'spring',
+  type: 'spring' as const,
   bounce: 0.1,
   duration: 0.4,
 };
@@ -183,7 +170,7 @@ function MorphingPopoverContent({
     );
 
   const ref = useRef<HTMLDivElement>(null);
-  useClickOutside(ref, context.close);
+  useClickOutside(ref as unknown as React.RefObject<HTMLElement>, context.close);
 
   useEffect(() => {
     if (!context.isOpen) return;

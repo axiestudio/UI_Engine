@@ -51,8 +51,8 @@ export function PasswordMeter({ value, onChange, breached, checking, onScore, pl
           return <li key={r.id} className={cn("flex items-center gap-1.5 transition-colors", hit ? "font-semibold text-[hsl(var(--ok))]" : "text-muted-foreground")}>{hit ? <ShieldCheck className="size-3" /> : <span aria-hidden className="size-1.5 rounded-full border border-current" />}{r.label}</li>
         })}
       </ul>
-      {checking && <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">checking known breaches…</p>}
-      {breached && <p className="mt-2 flex items-center gap-1.5 text-[12px] font-bold text-[hsl(var(--err))]"><ShieldX className="size-4" aria-hidden /> This one has appeared in a known breach — pick a different phrase.</p>}
+      {checking && <p className="mt-2 text-xs text-muted-foreground">checking known breaches…</p>}
+      {breached && <p className="mt-2 flex items-center gap-1.5 text-[13px] font-medium text-[hsl(var(--err))]"><ShieldX className="size-4" aria-hidden /> This one has appeared in a known breach — pick a different phrase.</p>}
     </div>
   )
 }

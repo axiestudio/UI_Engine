@@ -58,8 +58,7 @@ export function EmptyState({
         <span className={cn("relative mb-6 inline-flex size-16 items-center justify-center", ink ? "text-background/70" : "text-muted-foreground")}>
           <span
             aria-hidden
-            className={cn("absolute inset-0 rotate-45 border border-dashed", ink ? "border-background/30" : "border-border")}
-            style={{ animation: "spin 60s linear infinite" }}
+            className={cn("absolute inset-0 rotate-45 border border-dashed", ink ? "border-background/30" : "border-border", "motion-safe:animate-[spin_60s_linear_infinite] motion-reduce:animate-none")}
           />
           <span className={cn("relative inline-flex size-10 items-center justify-center rounded-full border", ink ? "border-background/25 bg-background/10" : "border-border bg-secondary")}>
             <Icon className="size-5" strokeWidth={2} />
@@ -78,13 +77,13 @@ export function EmptyState({
         <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
           {primaryAction &&
             (primaryAction.href ? (
-              <Button size="sm" asChild className={cn("rounded-none font-mono text-[11px] font-bold uppercase tracking-[0.16em] transition-shadow duration-300 hover:shadow-[2px_3px_0_0_currentColor]", ink && "bg-background text-foreground hover:bg-background/90")}>
+              <Button size="sm" asChild className={cn(ink && "bg-background text-foreground hover:bg-background/90")}>
                 <a href={primaryAction.href} onClick={primaryAction.onClick}>
                   {primaryAction.label}
                 </a>
               </Button>
             ) : (
-              <Button size="sm" onClick={primaryAction.onClick} className={cn("rounded-none font-mono text-[11px] font-bold uppercase tracking-[0.16em] transition-shadow duration-300 hover:shadow-[2px_3px_0_0_currentColor]", ink && "bg-background text-foreground hover:bg-background/90")}>
+              <Button size="sm" onClick={primaryAction.onClick} className={cn(ink && "bg-background text-foreground hover:bg-background/90")}>
                 {primaryAction.label}
               </Button>
             ))}
@@ -94,7 +93,7 @@ export function EmptyState({
                 size="sm"
                 variant="outline"
                 asChild
-                className={cn("rounded-none font-mono text-[11px] font-bold uppercase tracking-[0.16em]", ink && "border-background/25 bg-transparent text-background hover:bg-background/10 hover:text-background")}
+                className={cn(ink && "border-background/25 bg-transparent text-background hover:bg-background/10 hover:text-background")}
               >
                 <a href={secondaryAction.href} onClick={secondaryAction.onClick}>
                   {secondaryAction.label}
@@ -105,7 +104,7 @@ export function EmptyState({
                 size="sm"
                 variant="outline"
                 onClick={secondaryAction.onClick}
-                className={cn("rounded-none font-mono text-[11px] font-bold uppercase tracking-[0.16em]", ink && "border-background/25 bg-transparent text-background hover:bg-background/10 hover:text-background")}
+                className={cn(ink && "border-background/25 bg-transparent text-background hover:bg-background/10 hover:text-background")}
               >
                 {secondaryAction.label}
               </Button>

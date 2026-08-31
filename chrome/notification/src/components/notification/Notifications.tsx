@@ -38,9 +38,9 @@ export type NotificationsProps = {
 
 const KIND_DOT: Record<NotificationKind, string> = {
   info: "bg-muted-foreground",
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  critical: "bg-red-500",
+  success: "bg-foreground",
+  warning: "bg-muted-foreground/70",
+  critical: "bg-destructive",
 }
 
 const KIND_LABEL: Record<NotificationKind, string> = {
@@ -65,7 +65,19 @@ function Row({ n, dismissable, onRead, onDismiss, index }: { n: NotificationItem
       )}
     >
       <span aria-hidden className={cn("mt-1.5 h-2 w-2 shrink-0 rounded-full", KIND_DOT[kind], n.read && "opacity-35")} />
-      <div className="min-w-0 flex-1 cursor-pointer" onClick={() => !n.read && onRead?.(n.id)} role={n.read ? undefined : "button"} tabIndex={n.read ? undefined : 0} aria-label={n.read ? undefined : `Mark ${n.title} read`}>
+      <div
+        className="min-w-0 flex-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+        onClick={() => !n.read && onRead?.(n.id)}
+        onKeyDown={(e) => {
+          if (!n.read && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault()
+            onRead?.(n.id)
+          }
+        }}
+        role={n.read ? undefined : "button"}
+        tabIndex={n.read ? undefined : 0}
+        aria-label={n.read ? undefined : `Mark ${n.title} read`}
+      >
         <div className="flex items-center gap-2">
           <p className={cn("truncate text-sm font-bold tracking-tight", n.read && "text-muted-foreground")}>{n.title}</p>
           {!n.read && <span className="rounded-full bg-foreground px-1.5 py-px font-mono text-[8px] font-black uppercase tracking-widest text-background">new</span>}

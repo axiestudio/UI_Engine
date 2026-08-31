@@ -53,10 +53,10 @@ export function HeroGradientMesh({
 
 function Mesh({ reduced }: { reduced: boolean }) {
   const blobs = [
-    { cls: "left-[8%] top-[15%] h-[420px] w-[420px]", ac: "var(--site-accent)", dur: 20, dx: 80, dy: -40 },
-    { cls: "right-[6%] top-[20%] h-[380px] w-[380px]", ac: "var(--site-accent-2)", dur: 26, dx: -90, dy: 40 },
-    { cls: "left-[42%] bottom-[6%] h-[440px] w-[440px]", ac: "var(--site-accent)", dur: 24, dx: 60, dy: -60 },
-    { cls: "right-[28%] bottom-[10%] h-[300px] w-[300px]", ac: "var(--site-accent-2)", dur: 30, dx: -40, dy: 60 },
+    { cls: "left-[8%] top-[15%] h-[420px] w-[420px]", ac: "var(--primary)", dur: 20, dx: 80, dy: -40 },
+    { cls: "right-[6%] top-[20%] h-[380px] w-[380px]", ac: "var(--accent)", dur: 26, dx: -90, dy: 40 },
+    { cls: "left-[42%] bottom-[6%] h-[440px] w-[440px]", ac: "var(--primary)", dur: 24, dx: 60, dy: -60 },
+    { cls: "right-[28%] bottom-[10%] h-[300px] w-[300px]", ac: "var(--accent)", dur: 30, dx: -40, dy: 60 },
   ]
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">

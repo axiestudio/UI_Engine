@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/notification.es.js",
       "require": "./dist/notification.cjs.js"
     },
@@ -25,7 +24,10 @@
       "in-view"
     ],
     "watermelon-ui": [
-      "https://registry.watermelon.sh/r/notification-list.json"
+      "https://registry.watermelon.sh/r/notification-list.json",
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

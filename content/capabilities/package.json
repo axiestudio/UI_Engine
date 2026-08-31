@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/capabilities.es.js",
       "require": "./dist/capabilities.cjs.js"
     },

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-feature-diagram.es.js",
       "require": "./dist/interactive-feature-diagram.cjs.js"
     },

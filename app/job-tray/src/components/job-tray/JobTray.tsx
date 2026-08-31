@@ -25,26 +25,26 @@ export function JobTray({ jobs, onCancel, onDismiss, className }: JobTrayProps) 
     <div className={cn("fixed bottom-4 right-4 z-[105] flex w-[340px] max-w-[calc(100vw-2rem)] flex-col items-end gap-2 font-sans", className)}>
       <AnimatePresence>
         {open && (
-          <motion.ul role="log" aria-live="polite" aria-label="Background jobs" initial={{ opacity: 0, y: 8, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8 }} transition={{ type: "spring", stiffness: 320, damping: 28 }} className="max-h-[52vh] w-full overflow-y-auto rounded-xl border bg-popover p-2 shadow-2xl">
+          <motion.ul role="log" aria-live="polite" aria-label="Background jobs" initial={{ opacity: 0, y: 8, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8 }} transition={{ type: "spring", stiffness: 320, damping: 28 }} className="max-h-[52vh] w-full overflow-y-auto rounded-xl border border-border/70 bg-popover p-2 shadow-xl">
             {jobs.map((j) => (
               <li key={j.id} className="rounded-lg p-2.5 odd:bg-muted/40">
                 <div className="flex items-center gap-2.5">
                   <Pip status={j.status} />
-                  <span className="min-w-0 flex-1 truncate text-[13px] font-semibold">{j.label}</span>
-                  {j.status === "running" && onCancel && <button onClick={() => onCancel(j)} className="rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-muted-foreground hover:bg-muted hover:text-foreground">cancel</button>}
+                  <span className="min-w-0 flex-1 truncate text-sm font-medium">{j.label}</span>
+                  {j.status === "running" && onCancel && <button onClick={() => onCancel(j)} className="rounded px-2 py-0.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground">cancel</button>}
                   {(j.status === "done" || j.status === "error") && onDismiss && <button aria-label="Dismiss" onClick={() => onDismiss(j.id)} className="grid size-5 place-items-center rounded hover:bg-muted"><X className="size-3" /></button>}
                 </div>
                 {j.status === "running" && <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-muted"><motion.div animate={{ width: `${j.progress ?? 0}%` }} transition={{ ease: "linear", duration: 0.4 }} className="h-full rounded-full bg-[hsl(var(--info))]" /></div>}
-                {j.log?.length ? <details className="mt-1.5"><summary className="flex cursor-pointer items-center gap-1 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-muted-foreground"><Terminal className="size-3" /> {j.status === "running" ? "tail follows" : "log"}</summary><pre className="mt-1 max-h-28 overflow-y-auto whitespace-pre-wrap rounded bg-[hsl(var(--app-code))] p-2 font-mono text-[10px] leading-relaxed text-muted-foreground">{j.log.join("\n")}</pre></details> : null}
+                {j.log?.length ? <details className="mt-1.5"><summary className="flex cursor-pointer items-center gap-1 text-xs text-muted-foreground"><Terminal className="size-3" /> {j.status === "running" ? "tail follows" : "log"}</summary><pre className="mt-1 max-h-28 overflow-y-auto whitespace-pre-wrap rounded bg-muted/40 p-2 font-mono text-[11px] leading-relaxed text-muted-foreground">{j.log.join("\n")}</pre></details> : null}
               </li>
             ))}
           </motion.ul>
         )}
       </AnimatePresence>
-      <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex h-11 items-center gap-2.5 rounded-full border bg-background pl-3.5 pr-4 shadow-xl transition-transform hover:-translate-y-px">
+      <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex h-11 items-center gap-2.5 rounded-full border border-border/70 bg-background pl-3.5 pr-4 shadow-lg transition-transform hover:-translate-y-px">
         {running > 0 ? <Loader2 aria-hidden className="size-4 animate-spin text-[hsl(var(--info))]" /> : active ? null : <CheckCircle2 aria-hidden className="size-4 text-[hsl(var(--ok))]" />}
-        <span className="text-[12px] font-bold">{running > 0 ? `${running} job${running > 1 ? "s" : ""} running` : "Jobs finished"}</span>
-        {running > 0 && active && <span className="hidden max-w-[110px] truncate font-mono text-[10px] text-muted-foreground sm:inline">{Math.round(active.progress ?? 0)}%</span>}
+        <span className="text-sm font-medium">{running > 0 ? `${running} job${running > 1 ? "s" : ""} running` : "Jobs finished"}</span>
+        {running > 0 && active && <span className="hidden max-w-[110px] truncate font-mono text-xs text-muted-foreground sm:inline">{Math.round(active.progress ?? 0)}%</span>}
         <ChevronDown aria-hidden className={cn("size-4 text-muted-foreground transition-transform", open && "rotate-180")} />
       </button>
     </div>

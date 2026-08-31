@@ -36,7 +36,7 @@ export function GhostSuggestInput({ value, onChange, suggest, placeholder, label
   return (
     <div className={cn("relative font-sans", className)}>
       <div className="relative">
-        <input ref={ref} aria-label={label} value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={(e) => { if (e.key === "Tab" && ghost) { e.preventDefault(); accept() } if (e.key === "Escape") setGhost(null) }} placeholder={placeholder} className="h-10 w-full rounded-lg border bg-background pl-9 pr-20 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]" />
+        <input ref={ref} aria-label={label} value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={(e) => { if (e.key === "Tab" && ghost) { e.preventDefault(); accept() } if (e.key === "Escape") setGhost(null) }} placeholder={placeholder} className="h-10 w-full rounded-lg border border-border/70 bg-background pl-9 pr-20 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
         <Search aria-hidden className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/70" />
         {ghost && value && (
           <span aria-hidden className="pointer-events-none absolute left-9 top-1/2 -translate-y-1/2 whitespace-pre text-[13px] text-transparent">
@@ -45,8 +45,8 @@ export function GhostSuggestInput({ value, onChange, suggest, placeholder, label
           </span>
         )}
         <span className="absolute right-2.5 top-1/2 flex -translate-y-1/2 items-center gap-1.5">
-          {ghost && <motion.kbd initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="rounded border bg-muted px-1.5 py-0.5 font-mono text-[9px] font-black uppercase">tab ↵</motion.kbd>}
-          <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-muted-foreground/60">{latency ? `${latency}ms` : ""}</span>
+          {ghost && <motion.kbd initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="rounded-md border border-border/60 bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium">tab ↵</motion.kbd>}
+          <span className="text-[10px] text-muted-foreground/60">{latency ? `${latency}ms` : ""}</span>
         </span>
       </div>
       <p className="sr-only" aria-live="polite">{ghost ? "Suggestion available, press Tab to accept." : ""}</p>

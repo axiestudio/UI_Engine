@@ -35,7 +35,7 @@ export function TextShimmerWave({
   transition,
 }: TextShimmerWaveProps) {
   const MotionComponent = motion.create(
-    Component as keyof JSX.IntrinsicElements
+    Component as React.ElementType
   );
 
   return (

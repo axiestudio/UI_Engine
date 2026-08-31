@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-parallax-sticky-quote.es.js",
       "require": "./dist/scroll-parallax-sticky-quote.cjs.js"
     },

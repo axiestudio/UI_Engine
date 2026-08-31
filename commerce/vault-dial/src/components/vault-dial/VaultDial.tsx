@@ -94,7 +94,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
               aria-hidden
               animate={unlocked && !reduce ? { inset: "-18px" } : { inset: "-6px" }}
               transition={{ duration: 0.5, delay: 0.1 + (a / 90) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute left-1/2 top-1/2 size-5 -translate-x-1/2 -translate-y-1/2 rounded-[3px] bg-gradient-to-b from-[hsl(var(--brass))] to-[hsl(var(--brass)/0.6)] shadow-lg"
+              className="absolute left-1/2 top-1/2 size-5 -translate-x-1/2 -translate-y-1/2 rounded-[3px] bg-gradient-to-b from-[hsl(var(--brass))] to-[hsl(var(--brass)/0.6)] shadow-sm"
               style={{ transform: `rotate(${a}deg) translateY(-92px)` }}
             />
           ))}
@@ -119,7 +119,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
               aria-hidden
               initial={{ opacity: 0, y: reduce ? 0 : 6 }}
               animate={{ opacity: unlocked ? 0 : 1, y: 0 }}
-              className="absolute inset-4 grid place-items-center rounded-full border-2 border-dashed border-white/15 bg-[hsl(var(--vault-face))] font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-white/50"
+              className="absolute inset-4 grid place-items-center rounded-full border-2 border-dashed border-border bg-[hsl(var(--vault-face))] font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white/50"
               style={{ rotate: counter }}
             >
               {unlocked ? null : "⟲ drag"}
@@ -133,7 +133,7 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
         {/* panel */}
         <div className="min-w-0">
           <MonoLabel className="text-[hsl(var(--brass))]">{eyebrow}</MonoLabel>
-          {title && <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-[40px]">{title}</h2>}
+          {title && <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-[40px]">{title}</h2>}
           <ul className="mt-7 space-y-2">
             {tiers.map((t, i) => (
               <li key={t.label}>
@@ -149,24 +149,24 @@ export function VaultDial({ eyebrow = "THE VAULT", title, tiers, onUnlock, reset
                     i === 0 && "cursor-not-allowed opacity-35",
                   )}
                 >
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em]">{String(i).padStart(2, "0")} — {t.label}</span>
-                  <span className="font-mono text-[11px] font-black">{!unlocked && i > 0 ? "••" : ""}</span>
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em]">{String(i).padStart(2, "0")} — {t.label}</span>
+                  <span className="font-mono text-[11px] font-semibold">{!unlocked && i > 0 ? "••" : ""}</span>
                 </button>
               </li>
             ))}
           </ul>
           <motion.div initial={false} animate={{ height: unlocked ? "auto" : 0, opacity: unlocked ? 1 : 0, marginTop: unlocked ? 24 : 0 }} transition={{ duration: reduce ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }} className="overflow-hidden">
             <div className="rounded-lg border border-[hsl(var(--brass)/0.5)] bg-black/30 p-5">
-              <p className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[hsl(var(--brass))]">
+              <p className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-[hsl(var(--brass))]">
                 <LockKeyholeOpen className="size-4" /> bolt retracted — {tier?.label}
               </p>
               {tier?.hint && <p className="mt-2 text-sm font-medium text-white/60">{tier.hint}</p>}
               <div className="mt-3 flex items-center justify-between gap-4">
-                <code className="rounded bg-white/10 px-4 py-2 font-mono text-lg font-black tracking-[0.2em]">{tier?.code}</code>
+                <code className="rounded bg-white/10 px-4 py-2 font-mono text-lg font-semibold tracking-[0.2em]">{tier?.code}</code>
                 <button
                   type="button"
                   onClick={() => { setUnlocked(false); snapTo(0) }}
-                  className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/45 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white/45 transition-colors hover:text-white"
                 >
                   <RotateCcw className="size-3.5" /> {resetLabel}
                 </button>

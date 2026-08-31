@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/hero-bookshelf.es.js",
       "require": "./dist/hero-bookshelf.cjs.js"
     },

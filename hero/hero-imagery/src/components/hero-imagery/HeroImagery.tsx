@@ -22,9 +22,9 @@ export function HeroImagery({
   title = "Show it, then say it.",
   actions = [{ label: "See the full series", href: "#" }],
   images = [
-    { src: "/frames/frame_0008.webp", alt: "Still A" },
-    { src: "/frames/frame_0032.webp", alt: "Still B" },
-    { src: "/frames/frame_0056.webp", alt: "Still C" },
+    { src: "/showcase/gallery-01.webp", alt: "Object study — matte ceramic and metal" },
+    { src: "/showcase/gallery-03.webp", alt: "Abstract architectural detail" },
+    { src: "/showcase/gallery-05.webp", alt: "Precision design tools flat lay" },
   ],
   caption = "SELECTED STILLS — 01 / 03",
   className,

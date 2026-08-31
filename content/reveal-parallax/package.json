@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/reveal-parallax.es.js",
       "require": "./dist/reveal-parallax.cjs.js"
     },

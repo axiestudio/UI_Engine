@@ -52,22 +52,22 @@ export function Cta({
   const ghost = tone === "ghost"
 
   const primaryBtn = primary.href ? (
-    <Button asChild variant={ink ? "secondary" : "default"} className="group relative h-11 overflow-hidden rounded-none px-7 font-display text-sm font-extrabold tracking-tight transition-shadow duration-300 hover:shadow-[3px_3px_0_0_currentColor]">
+    <Button asChild variant={ink ? "secondary" : "default"} className="group relative h-11 overflow-hidden rounded-md px-7 font-display text-sm font-semibold tracking-[-0.02em] transition-shadow duration-300 hover:shadow-sm">
       <a href={primary.href} onClick={primary.onClick}>
         <span className="relative z-10 inline-flex items-center">
           {primary.label}
           <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
         </span>
-        <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.3)_50%,transparent_60%)] transition-transform duration-700 group-hover:translate-x-[110%]" />
+        <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(var(--background)/0.22)_50%,transparent_60%)] transition-transform duration-700 group-hover:translate-x-[110%]" />
       </a>
     </Button>
   ) : (
-    <Button onClick={primary.onClick} variant={ink ? "secondary" : "default"} className="group relative h-11 overflow-hidden rounded-none px-7 font-display text-sm font-extrabold tracking-tight transition-shadow duration-300 hover:shadow-[3px_3px_0_0_currentColor]">
+    <Button onClick={primary.onClick} variant={ink ? "secondary" : "default"} className="group relative h-11 overflow-hidden rounded-md px-7 font-display text-sm font-semibold tracking-[-0.02em] transition-shadow duration-300 hover:shadow-sm">
       <span className="relative z-10 inline-flex items-center">
         {primary.label}
         <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
       </span>
-      <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.3)_50%,transparent_60%)] transition-transform duration-700 group-hover:translate-x-[110%]" />
+      <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,hsl(var(--background)/0.22)_50%,transparent_60%)] transition-transform duration-700 group-hover:translate-x-[110%]" />
     </Button>
   )
 
@@ -99,16 +99,16 @@ export function Cta({
                   <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground", badge && "mt-0", !badge && "mt-0")}>{eyebrow}</MonoLabel>
                 )}
                 {badge && (
-                  <span className={cn("mt-4 inline-flex items-center rounded-none border px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em]", ink ? "border-background/25 bg-transparent text-background/80" : "border-border bg-background text-muted-foreground", eyebrow && "ml-0")}>
+                  <span className={cn("mt-4 inline-flex items-center rounded-md border px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em]", ink ? "border-background/25 bg-transparent text-background/80" : "border-border bg-background text-muted-foreground", eyebrow && "ml-0")}>
                     {badge}
                   </span>
                 )}
                 {shimmer && ink && typeof title === "string" ? (
-                  <TextShimmer as="h2" duration={2.8} spread={3} className="mt-2 font-display text-[30px] font-black leading-[1.02] tracking-[-0.03em] sm:text-[40px]">
+                  <TextShimmer as="h2" duration={2.8} spread={3} className="mt-2 font-display text-[30px] font-semibold leading-[1.02] tracking-[-0.03em] sm:text-[40px]">
                     {title}
                   </TextShimmer>
                 ) : (
-                  <h2 className="mt-2 font-display text-[30px] font-black leading-[1.02] tracking-[-0.03em] sm:text-[40px]">{title}</h2>
+                  <h2 className="mt-2 font-display text-[30px] font-semibold leading-[1.02] tracking-[-0.03em] sm:text-[40px]">{title}</h2>
                 )}
                 {description && (
                   <p className={cn("mt-3 max-w-xl text-sm font-medium leading-relaxed sm:text-[15px]", ink ? "text-background/70" : "text-muted-foreground")}>{description}</p>
@@ -124,13 +124,13 @@ export function Cta({
                 </Magnetic>
                 {secondary &&
                   (secondary.href ? (
-                    <Button asChild variant={ink ? "ghost" : "outline"} className={cn("h-11 rounded-full px-6 font-display text-sm font-bold tracking-tight", ink && "text-background hover:bg-background/10 hover:text-background")}>
+                    <Button asChild variant={ink ? "ghost" : "outline"} className={cn("h-11 rounded-full px-6 font-display text-sm font-bold tracking-[-0.02em]", ink && "text-background hover:bg-background/10 hover:text-background")}>
                       <a href={secondary.href} onClick={secondary.onClick}>
                         {secondary.label}
                       </a>
                     </Button>
                   ) : (
-                    <Button variant={ink ? "ghost" : "outline"} onClick={secondary.onClick} className={cn("h-11 rounded-full px-6 font-display text-sm font-bold tracking-tight", ink && "text-background hover:bg-background/10 hover:text-background")}>
+                    <Button variant={ink ? "ghost" : "outline"} onClick={secondary.onClick} className={cn("h-11 rounded-full px-6 font-display text-sm font-bold tracking-[-0.02em]", ink && "text-background hover:bg-background/10 hover:text-background")}>
                       {secondary.label}
                     </Button>
                   ))}

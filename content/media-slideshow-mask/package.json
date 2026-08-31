@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/media-slideshow-mask.es.js",
       "require": "./dist/media-slideshow-mask.cjs.js"
     },

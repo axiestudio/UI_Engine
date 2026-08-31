@@ -20,7 +20,7 @@ export type HeroParallaxDepthProps = {
 }
 
 export function HeroParallaxDepth({ eyebrow = "DEPTH", title = "A scene with air between the layers.", subtitle = "Scroll to let the foreground, midground and background drift at their own pace.", actions = [{ label: "Enter", href: "#" }], layers = [
-  { src: "/frames/frame_0068.webp" }, { src: "/frames/frame_0032.webp" }, { src: "/frames/frame_0008.webp" },
+  { src: "/showcase/gallery-04.webp" }, { src: "/showcase/gallery-03.webp" }, { src: "/showcase/gallery-01.webp" },
 ], tone = "paper", className }: HeroParallaxDepthProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)

@@ -30,15 +30,15 @@ export interface Pricing1Props {
 export function Pricing1({ plans, className }: Pricing1Props) {
   return (
     <div className={cn("mx-auto w-full max-w-6xl px-4 md:px-6", className)}>
-      <div className="bg-muted/40 rounded-none border p-2 shadow-sm md:p-3">
+      <div className="bg-muted/40 rounded-md border p-2 shadow-sm md:p-3">
         <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.id}
               className={cn(
-                "relative flex flex-col rounded-none p-6 transition-all sm:p-8",
+                "relative flex flex-col rounded-md p-6 transition-all sm:p-8",
                 plan.isPopular
-                  ? "bg-background border-border/50 border shadow-md"
+                  ? "bg-background border-border/50 border shadow-sm"
                   : "hover:bg-background/50 bg-transparent",
               )}
             >
@@ -46,7 +46,7 @@ export function Pricing1({ plans, className }: Pricing1Props) {
                 <div className="absolute top-6 right-6">
                   <Badge
                     variant="default"
-                    className="rounded-none px-3 py-1 text-xs font-semibold shadow-[0px_0px_4px_1px_rgba(0,0,0,0.1),inset_0_0px_4px_1px_rgba(255,255,255,0.45),inset_0_0.5px_0px_0px_rgba(255,255,255,0.35)]"
+                    className="rounded-md px-3 py-1 text-xs font-semibold shadow-[0px_0px_4px_1px_rgba(0,0,0,0.1),inset_0_0px_4px_1px_rgba(255,255,255,0.45),inset_0_0.5px_0px_0px_rgba(255,255,255,0.35)]"
                   >
                     Popular
                   </Badge>
@@ -54,7 +54,7 @@ export function Pricing1({ plans, className }: Pricing1Props) {
               )}
 
               <div className="mb-6">
-                <h3 className="text-foreground mb-3 text-2xl font-bold tracking-tight">
+                <h3 className="text-foreground mb-3 text-2xl font-bold tracking-[-0.02em]">
                   {plan.title}
                 </h3>
                 <p className="text-muted-foreground min-h-[40px] pr-8 text-sm sm:pr-12">
@@ -63,7 +63,7 @@ export function Pricing1({ plans, className }: Pricing1Props) {
               </div>
 
               <div className="mb-6 flex items-baseline gap-2">
-                <span className="text-foreground text-5xl font-extrabold tracking-tight">
+                <span className="text-foreground text-5xl font-semibold tracking-[-0.02em]">
                   {plan.price}
                 </span>
                 {plan.priceSuffix && (
@@ -90,7 +90,7 @@ export function Pricing1({ plans, className }: Pricing1Props) {
                 {plan.isPopular ? (
                   <Button
                     size="lg"
-                    className="border-primary flex h-14 w-full items-center justify-between rounded-none border px-6 font-semibold shadow-[0px_0px_4px_1px_rgba(0,0,0,0.1),inset_0_0px_4px_1px_rgba(255,255,255,0.45),inset_0_1px_0px_0px_rgba(255,255,255,0.35)]"
+                    className="border-primary flex h-14 w-full items-center justify-between rounded-md border px-6 font-semibold shadow-[0px_0px_4px_1px_rgba(0,0,0,0.1),inset_0_0px_4px_1px_rgba(255,255,255,0.45),inset_0_1px_0px_0px_rgba(255,255,255,0.35)]"
                   >
                     <span className="text-base">Get started for</span>
                     <div className="bg-primary-foreground/50 mx-4 h-[1px] flex-1" />

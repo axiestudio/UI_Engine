@@ -42,8 +42,8 @@ export function RadialGauge({ value, min = 0, max = 100, zones = [{ to: 0.7, col
         <circle cx="50" cy="50" r="2" fill="hsl(var(--background))" />
       </svg>
       <div className="absolute inset-x-0 bottom-[6%] text-center">
-        <p className={cn("font-display text-3xl font-black tabular-nums leading-none")} style={{ color: activeZone.color }}>{value.toFixed(precision)}<span className="text-[13px] font-bold">{unit}</span></p>
-        <p className="mt-1 font-mono text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground">{label ?? "Gauge"} · {activeZone.label ?? ""}</p>
+        <p className={cn("font-display text-3xl font-semibold tabular-nums leading-none tracking-tight")} style={{ color: activeZone.color }}>{value.toFixed(precision)}<span className="text-[13px] font-medium">{unit}</span></p>
+        <p className="mt-1 text-xs font-medium text-muted-foreground">{label ?? "Gauge"} · {activeZone.label ?? ""}</p>
       </div>
     </div>
   )

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-kanban.es.js",
       "require": "./dist/dnd-kanban.cjs.js"
     },

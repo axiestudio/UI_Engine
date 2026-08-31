@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/guarantee.es.js",
       "require": "./dist/guarantee.cjs.js"
     },

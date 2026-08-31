@@ -31,7 +31,7 @@ export type ReviewMomentProps = {
   className?: string
 }
 
-const MSGS = ["Ouch — tell us?", "Needed more", "Fine, not more", "Really nice", "Whistle material"]
+const MSGS = ["Needs work — tell us?", "Needed more", "Fine, not more", "Really nice", "Excellent"]
 
 export function ReviewMoment({
   eyebrow = "One quick question",
@@ -59,12 +59,12 @@ export function ReviewMoment({
     <section className={cn("w-full bg-background text-foreground", className)} aria-label={question}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[560px] px-4 py-14 sm:px-6">
-          <div className="rounded-[24px] border bg-card p-6 shadow-sm sm:p-8">
+          <div className="rounded-xl border bg-card p-6 shadow-sm sm:p-8">
             <AnimatePresence mode="wait" initial={false}>
               {rating === 0 ? (
                 <motion.div key="ask" initial={{ opacity: 0, y: reduce ? 0 : 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduce ? 0 : -10 }} transition={{ duration: 0.25 }}>
-                  <p className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-muted-foreground">{eyebrow}</p>
-                  <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight">{question}</h2>
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">{eyebrow}</p>
+                  <h2 className="mt-2 font-display text-2xl font-semibold tracking-[-0.02em]">{question}</h2>
 
                   <div className="mt-6 flex items-center gap-1" onMouseLeave={() => setHover(0)} role="radiogroup" aria-label="Rate your visit">
                     {([1, 2, 3, 4, 5] as const).map((n) => {
@@ -87,7 +87,7 @@ export function ReviewMoment({
                     })}
                   </div>
                   <div className="mt-4 flex items-center justify-between">
-                    <p className="min-h-[16px] font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{lit ? MSGS[lit - 1] : ""}</p>
+                    <p className="min-h-[16px] font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">{lit ? MSGS[lit - 1] : ""}</p>
                     <a href="#" onClick={(e) => { e.preventDefault() }} className="text-xs font-bold text-muted-foreground underline-offset-4 hover:underline">{skipLabel}</a>
                   </div>
                 </motion.div>
@@ -98,17 +98,17 @@ export function ReviewMoment({
                       <Star key={n} className={cn("h-5 w-5 transition-all duration-500", n <= rating ? "fill-foreground text-foreground" : "text-border")} style={{ transitionDelay: `${n * 60}ms` }} />
                     ))}
                   </div>
-                  <h2 className="mt-5 font-display text-xl font-extrabold tracking-tight">{rating >= 4 ? thanksHigh : thanksLow}</h2>
+                  <h2 className="mt-5 font-display text-xl font-semibold tracking-[-0.02em]">{rating >= 4 ? thanksHigh : thanksLow}</h2>
                   <div className="mt-6 flex justify-center gap-3">
                     {rating >= 4 ? (
                       publicLink && (
-                        <Button asChild className="h-11 rounded-full px-7 font-display text-sm font-extrabold tracking-tight">
+                        <Button asChild className="h-11 rounded-full px-7 font-display text-sm font-semibold tracking-[-0.02em]">
                           <a href={publicLink.href} target="_blank" rel="noopener noreferrer">{publicLink.label}</a>
                         </Button>
                       )
                     ) : (
                       privateLink && (
-                        <Button asChild variant="outline" className="h-11 rounded-full px-7 font-display text-sm font-extrabold tracking-tight">
+                        <Button asChild variant="outline" className="h-11 rounded-full px-7 font-display text-sm font-semibold tracking-[-0.02em]">
                           <a href={privateLink.href}>{privateLink.label}</a>
                         </Button>
                       )

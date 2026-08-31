@@ -27,13 +27,13 @@ export function PriceBanner({ eyebrow = "LAUNCH OFFER", title = "Everything, one
         <div className={cn("flex flex-col items-center justify-between gap-6 rounded-2xl border p-10 text-center md:flex-row md:text-left", ink ? "border-background/25 bg-background/5" : "border-foreground bg-card")}>
           <div>
             <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
-            <h2 className="mt-2 font-display text-2xl font-black tracking-[-0.02em] sm:text-3xl">{title}</h2>
-            <p className="mt-2 font-display text-5xl font-black">
+            <h2 className="mt-2 font-display text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">{title}</h2>
+            <p className="mt-2 font-display text-5xl font-semibold">
               {price}<span className="text-lg font-medium text-muted-foreground">{period}</span>
             </p>
             {note && <p className={cn("mt-1 text-sm font-medium", ink ? "text-background/60" : "text-muted-foreground")}>{note}</p>}
           </div>
-          <Button size="lg" className="h-12 rounded-full px-8 font-mono text-[11px] font-bold uppercase tracking-widest">{cta}</Button>
+          <Button size="lg" className="h-12 rounded-full px-8 font-mono text-[11px] font-bold uppercase tracking-[0.12em]">{cta}</Button>
         </div>
       </InView>
     </SectionShell>

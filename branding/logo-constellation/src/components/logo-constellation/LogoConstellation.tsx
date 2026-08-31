@@ -1,19 +1,26 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Badge } from "@/components/ui/badge"
 
 // ═══ JOB      show one mark in every context it must survive
 // ═══ EMOTION  systematic confidence — the logo is a family, not a file
-// ═══ SIGNATURE hover any cell and the whole grid dims while that variant
-//               scales up with its clearspace rails drawing in
+// ═══ SIGNATURE constellation grid: hover or focus any cell and the rest of
+//               the grid dims to a quarter, the chosen variant lifts to 1.03
+//               and its dashed clear-space rails draw in from the centre
 //   SITE      → brand/download pages, press kits
 //   APP       → asset pickers; onSelect returns the variant id
-//   A11Y      buttons with aria-pressed; clearspace rails decorative
+//   BUILD     handcraft shell + motion dim/lift choreography; shadcn Badge
+//             for variant flags
+//   A11Y      cells are real buttons with aria-pressed + focus-visible ring;
+//             focus triggers the same dim choreography as hover, so the
+//             picker is fully keyboard-operable
 
 export type LogoVariant = {
   id: string
   label: string
+  /** Rendered size in px — the SVG scales, this is what the cell proves. */
   size: number
   tone: "positive" | "negative" | "mono"
   badge?: string
@@ -22,6 +29,7 @@ export type LogoVariant = {
 export type LogoConstellationProps = {
   variants?: LogoVariant[]
   onSelect?: (v: LogoVariant) => void
+  eyebrow?: string
   className?: string
 }
 
@@ -45,40 +53,63 @@ function Mark({ size, tone }: { size: number; tone: LogoVariant["tone"] }) {
   )
 }
 
-export function LogoConstellation({ variants = DEFAULTS, onSelect, className }: LogoConstellationProps) {
+export function LogoConstellation({ variants = DEFAULTS, onSelect, eyebrow = "THE MARK · EVERY CONTEXT", className }: LogoConstellationProps) {
+  const reduced = useReducedMotion()
   const [active, setActive] = React.useState<string | null>(null)
+  const minSize = variants.length ? Math.min(...variants.map((v) => v.size)) : 0
+
   return (
     <SectionShell width={920} grain className={className}>
-      <MonoLabel className="mb-3 text-muted-foreground">THE MARK · EVERY CONTEXT</MonoLabel>
-      <h2 className="max-w-xl font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] text-foreground sm:text-[44px]">
-        One mark. <em className="font-serif italic font-medium">Every size it must survive.</em>
-      </h2>
-      <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3"
-        onMouseLeave={() => setActive(null)}>
+      <SectionHead
+        eyebrow={eyebrow}
+        title={<>One mark. <em className="font-serif italic font-medium">Every size it must survive.</em></>}
+        tone="paper"
+      />
+
+      <motion.div
+        className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3"
+        onMouseLeave={() => setActive(null)}
+        onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setActive(null) }}
+        initial={false}
+        animate={{ opacity: 1 }}
+      >
         {variants.map((v) => (
           <motion.button
             key={v.id}
             type="button"
             aria-pressed={active === v.id}
+            aria-label={`${v.label}, ${v.size} pixel, ${v.tone} tone`}
             onClick={() => { setActive(v.id); onSelect?.(v) }}
             onMouseEnter={() => setActive(v.id)}
-            animate={{ opacity: active && active !== v.id ? 0.25 : 1, scale: active === v.id ? 1.03 : 1 }}
+            onFocus={() => setActive(v.id)}
+            animate={reduced ? {} : { opacity: active && active !== v.id ? 0.25 : 1, scale: active === v.id ? 1.03 : 1 }}
+            whileTap={reduced ? undefined : { scale: 0.99 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              "group relative flex min-h-[190px] flex-col items-center justify-center gap-4 bg-background p-6",
+              "group relative flex min-h-[190px] flex-col items-center justify-center gap-4 bg-background p-6 outline-none",
+              "focus-visible:z-10 focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-ring/50",
               v.tone === "negative" && "bg-foreground"
             )}
           >
             {v.badge && (
-              <span className={cn("absolute left-3 top-3 rounded-full border px-2 py-0.5 font-mono text-[9px] font-black uppercase tracking-[0.16em]",
-                v.tone === "negative" ? "border-background/30 text-background/70" : "border-border text-muted-foreground")}>
+              <Badge
+                variant="outline"
+                className={cn(
+                  "absolute left-3 top-3 rounded-full border bg-transparent font-mono text-[9px] font-black uppercase tracking-[0.16em]",
+                  v.tone === "negative" ? "border-background/30 text-background/70" : "border-border text-muted-foreground"
+                )}
+              >
                 {v.badge}
-              </span>
+              </Badge>
             )}
-            {/* clearspace rails draw on active */}
             {active === v.id && (
-              <motion.span aria-hidden initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="pointer-events-none absolute inset-5 border border-dashed border-current opacity-20" />
+              <motion.span
+                aria-hidden
+                initial={reduced ? false : { opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="pointer-events-none absolute inset-5 border border-dashed border-current opacity-25"
+              />
             )}
             <Mark size={v.size} tone={v.tone} />
             <span className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.18em]", v.tone === "negative" ? "text-background/60" : "text-muted-foreground")}>
@@ -86,8 +117,12 @@ export function LogoConstellation({ variants = DEFAULTS, onSelect, className }: 
             </span>
           </motion.button>
         ))}
-      </div>
-      <p className="mt-4 text-right font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">min size {Math.min(...variants.map((v) => v.size))}px · clearspace = 1 glyph unit</p>
+      </motion.div>
+
+      <p className="mt-4 flex flex-wrap items-center justify-end gap-3">
+        <Badge variant="outline" className="rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">min size {minSize}px</Badge>
+        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">clearspace = 1 glyph unit</span>
+      </p>
     </SectionShell>
   )
 }

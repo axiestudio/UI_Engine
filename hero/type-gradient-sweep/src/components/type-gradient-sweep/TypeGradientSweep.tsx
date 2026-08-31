@@ -26,7 +26,7 @@ export function TypeGradientSweep({ eyebrow = "SWEEP", word = "Effortless.", sub
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
           <h1 className={cn("gradient-text mt-6 font-display text-6xl font-black tracking-tight sm:text-8xl", ink ? "bg-clip-text text-transparent" : "")}>
-            <TextShimmer as="span" duration={2.2} spread={0.6} className={cn("bg-clip-text text-transparent", ink ? "bg-gradient-to-r from-background via-[hsl(var(--site-accent))] to-background" : "bg-gradient-to-r from-foreground via-[hsl(var(--site-accent))] to-foreground")}>
+            <TextShimmer as="span" duration={2.2} spread={0.6} className={cn("bg-clip-text text-transparent", ink ? "bg-gradient-to-r from-background via-[hsl(var(--primary))] to-background" : "bg-gradient-to-r from-foreground via-[hsl(var(--primary))] to-foreground")}>
               {word}
             </TextShimmer>
           </h1>

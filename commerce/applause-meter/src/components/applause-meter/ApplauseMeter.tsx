@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
-import { Heart } from "lucide-react"
+import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 
@@ -26,7 +26,7 @@ export type ApplauseMeterProps = {
   className?: string
 }
 
-export function ApplauseMeter({ value, max = 5, count, countLabel = "verified voices", eyebrow = "THE ROOM", label, onRate, className }: ApplauseMeterProps) {
+export function ApplauseMeter({ value, max = 5, count, countLabel = "verified voices", eyebrow = "REVIEWS", label, onRate, className }: ApplauseMeterProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const ratio = Math.max(0, Math.min(1, value / max))
   const [shown, setShown] = React.useState(reduce ? value : 0)
@@ -54,12 +54,12 @@ export function ApplauseMeter({ value, max = 5, count, countLabel = "verified vo
       <div className="relative mx-auto grid w-full max-w-[980px] items-center gap-10 lg:grid-cols-[1fr_auto]">
         <div>
           <MonoLabel className="text-[hsl(var(--ovation))]">{eyebrow}</MonoLabel>
-          <p className="mt-3 font-display text-[44px] font-black leading-none tracking-tight sm:text-[56px]">
+          <p className="mt-3 font-display text-[44px] font-semibold leading-none tracking-[-0.02em] sm:text-[56px]">
             {shown.toFixed(1)}<span className="text-white/35 text-[24px]"> / {max}</span>
           </p>
           {label && <p className="mt-2 max-w-sm text-sm font-medium text-white/60">{label}</p>}
-          <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
-            {count !== undefined && <>{count.toLocaleString()} {countLabel}</>} {standing && <span className="ml-3 inline-flex items-center gap-1.5 text-[hsl(var(--ovation))]" aria-hidden><Heart className="size-3 fill-current" /> standing ovation</span>}
+          <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white/45">
+            {count !== undefined && <>{count.toLocaleString()} {countLabel}</>} {standing && <span className="ml-3 inline-flex items-center gap-1.5 text-[hsl(var(--ovation))]" aria-hidden><Star className="size-3 fill-current" /> Average rating</span>}
           </p>
           <Bars ratio={ratio / (value ? target / value : 1) || 1} live={Math.max(ratio, (target ?? 0) / max)} reduce={reduce} />
           {ratingRow(onRate, setRated, rated, max, reduce)}
@@ -98,12 +98,12 @@ function OvationMeter({ ratio, reduce }: { ratio: number; reduce: boolean }) {
   React.useEffect(() => { spring.set(ratio) }, [ratio, spring])
   const h = useTransform(spring, [0, 1], ["4%", "100%"])
   return (
-    <div aria-hidden className="relative hidden size-28 shrink-0 items-end justify-center overflow-hidden rounded-full border border-white/15 bg-white/5 lg:flex">
+    <div aria-hidden className="relative hidden size-28 shrink-0 items-end justify-center overflow-hidden rounded-full border border-border bg-white/5 lg:flex">
       <motion.span style={{ height: h }} className="w-full" >
         <span className="block h-full w-full bg-gradient-to-t from-[hsl(var(--ovation-deep))] via-[hsl(var(--ovation))] to-[hsl(var(--ovation)/0.6)] opacity-80" />
         <span className="absolute inset-x-0 bottom-0 h-px bg-white/30" />
       </motion.span>
-      <span className="absolute inset-0 grid place-items-center font-mono text-[10px] font-black tracking-[0.2em]">{Math.round(ratio * 100)}% APPLAUSE</span>
+      <span className="absolute inset-0 grid place-items-center font-mono text-[10px] font-semibold tracking-[0.2em]">{Math.round(ratio * 100)}% APPLAUSE</span>
     </div>
   )
 }
@@ -117,7 +117,7 @@ function ratingRow(onRate: ((v: number) => void) | undefined, setRated: (n: numb
         <label key={v} className="cursor-pointer">
           <input type="radio" name="ovation" value={v} className="peer sr-only" checked={rated === v} />
           <span className={cn("grid size-11 place-items-center rounded-full border transition-all", rated !== null && v <= rated ? "border-[hsl(var(--ovation))] bg-[hsl(var(--ovation))]/15" : "border-white/20", "peer-focus-visible:ring-2 peer-focus-visible:ring-[hsl(var(--ovation))]", !reduce && "hover:scale-110")}>
-            <Heart className={cn("size-5", rated !== null && v <= rated ? "fill-[hsl(var(--ovation))] text-[hsl(var(--ovation))]" : "text-white/40")} />
+            <Star className={cn("size-5", rated !== null && v <= rated ? "fill-[hsl(var(--ovation))] text-[hsl(var(--ovation))]" : "text-white/40")} />
           </span>
           <span className="sr-only">{v} of {max}</span>
         </label>

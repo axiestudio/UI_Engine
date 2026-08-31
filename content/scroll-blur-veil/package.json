@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-blur-veil.es.js",
       "require": "./dist/scroll-blur-veil.cjs.js"
     },

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/resource-list.es.js",
       "require": "./dist/resource-list.cjs.js"
     },

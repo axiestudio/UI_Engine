@@ -27,11 +27,11 @@ export function TrialBox({ eyebrow = "TRY IT", title = "14 days, everything on."
         <div className={cn("rounded-2xl border p-8 text-center", ink ? "border-background/25 bg-background/5" : "border-foreground bg-card")}>
           <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent"><Gift className="h-6 w-6" /></span>
           <p className={cn("mt-5 font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
-          <h2 className="mt-3 font-display text-2xl font-black tracking-[-0.02em] sm:text-3xl">{title}</h2>
+          <h2 className="mt-3 font-display text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">{title}</h2>
           <p className={cn("mx-auto mt-3 max-w-sm text-base font-medium leading-relaxed", ink ? "text-background/75" : "text-muted-foreground")}>{body}</p>
           <div className="mt-6 flex flex-col items-center gap-3">
-            <Button size="lg" className="h-11 rounded-full px-7 font-mono text-[11px] font-bold uppercase tracking-widest">{cta}</Button>
-            {point && <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{point}</p>}
+            <Button size="lg" className="h-11 rounded-full px-7 font-mono text-[11px] font-bold uppercase tracking-[0.12em]">{cta}</Button>
+            {point && <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">{point}</p>}
           </div>
         </div>
       </InView>

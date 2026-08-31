@@ -50,8 +50,12 @@ export function DndUploadSort({
   className,
 }: DndUploadSortProps) {
   const [internal, setInternal] = React.useState(files)
-  const list = files ?? internal
+  React.useEffect(() => { setInternal(files) }, [files])
+  const list = internal
   const [activeId, setActiveId] = React.useState<string | null>(null)
+  const [announce, setAnnounce] = React.useState("")
+  const initialRef = React.useRef(files)
+  const handleReset = () => { setInternal(files); onChange?.(files); setAnnounce("Order reset"); }
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -61,6 +65,7 @@ export function DndUploadSort({
   const onDragEnd = (e: DragEndEvent) => {
     setActiveId(null)
     const { active, over } = e
+    setAnnounce(`Moved ${String(active.id)} to ${String(over?.id ?? "end")}`)
     if (!over || active.id === over.id) return
     const oldIndex = list.findIndex((f) => f.id === active.id)
     const newIndex = list.findIndex((f) => f.id === over.id)
@@ -78,10 +83,26 @@ export function DndUploadSort({
   const active = activeId ? list.find((f) => f.id === activeId) : null
 
   return (
-    <SectionShell width={760} grain rule="bottom" className={className}>
+    <SectionShell width={760} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
+            {list.length} items
+          </span>
+          <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Drag or keyboard — Tab → Space → Arrows</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={handleReset} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+            Reset
+          </Button>
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>
+        </div>
+      </div>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
         <SortableContext items={list.map((f) => f.id)} strategy={verticalListSortingStrategy}>
           <ul className="mt-8 space-y-2">
@@ -93,7 +114,7 @@ export function DndUploadSort({
         <DragOverlay>{active ? <UploadRow file={active} onRemove={() => {}} overlay /> : null}</DragOverlay>
       </DndContext>
       <div className="mt-6">
-        <Button variant="outline" size="sm" className="rounded-full font-mono text-[11px] font-bold uppercase tracking-widest">Add files</Button>
+        <Button variant="outline" size="sm" className="rounded-full font-mono text-[11px] font-semibold uppercase tracking-widest">Add files</Button>
       </div>
     </SectionShell>
   )
@@ -119,12 +140,10 @@ function UploadRow({ file, onRemove, overlay = false }: { file: UploadFile; onRe
         <Icon className="h-4 w-4" />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="truncate font-display text-sm font-bold">{file.name}</p>
+        <p className="truncate text-sm font-semibold tracking-tight">{file.name}</p>
         {file.size && <p className="font-mono text-[10px] text-muted-foreground">{file.size}</p>}
       </div>
-      <button type="button" onClick={() => onRemove(file.id)} aria-label={`Remove ${file.name}`} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive">
-        <X className="h-4 w-4" />
-      </button>
+      <Button variant="ghost" size="icon-sm" onClick={() => onRemove(file.id)} aria-label={`Remove ${file.name}`} className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"><X className="h-4 w-4" /></Button>
     </li>
   )
 }

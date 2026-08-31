@@ -1,21 +1,33 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Separator } from "@/components/ui/separator"
 
 // ═══ JOB      show heritage without a boring table of years
 // ═══ EMOTION  depth — the brand was here before and will be after
-// ═══ SIGNATURE era cards echo outward from a central rail; the active era
-//               lifts with a hard-offset shadow and ticks the rail
+// ═══ SIGNATURE era cards echo off a shared rail: the selected era lifts on
+//               a hard-offset shadow and neighbours dim by distance; a
+//               diamond tick glides between eras on a layoutId spring, and
+//               the whole row answers arrow keys / Home / End
 //   SITE      → about pages, anniversary sections
 //   APP       → company timeline widgets
-//   A11Y      focusable buttons with aria-pressed; text is content
+//   BUILD     handcraft shell + vendored InView lift/spring; distance-echo
+//             opacity is derived state, not per-card guessing
+//   A11Y      each era is a real button with aria-pressed; roving tabindex
+//             with arrow-key navigation; reduced motion = no lift/tick travel
 
 export type BrandEra = { year: string; title: string; note: string }
 
 export type BrandTimelineEchoProps = {
   eras?: BrandEra[]
+  eyebrow?: string
+  title?: React.ReactNode
+  subtitle?: string
+  /** Index selected on mount. Defaults to the latest era. */
+  defaultActive?: number
+  onEraChange?: (era: BrandEra, index: number) => void
   className?: string
 }
 
@@ -27,50 +39,94 @@ const DEFAULT_ERAS: BrandEra[] = [
   { year: "2026", title: "Now", note: "You're reading the brand. It's still warm." },
 ]
 
-export function BrandTimelineEcho({ eras = DEFAULT_ERAS, className }: BrandTimelineEchoProps) {
-  const [active, setActive] = React.useState(eras.length - 1)
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+export function BrandTimelineEcho({
+  eras = DEFAULT_ERAS,
+  eyebrow = "HERITAGE · ECHOES",
+  title = "Twelve years, five rooms, one signature.",
+  subtitle,
+  defaultActive,
+  onEraChange,
+  className,
+}: BrandTimelineEchoProps) {
+  const reduced = useReducedMotion()
+  const lastIndex = Math.max(0, eras.length - 1)
+  const [active, setActive] = React.useState(() => Math.min(defaultActive ?? lastIndex, lastIndex))
+  const refs = React.useRef<(HTMLButtonElement | null)[]>([])
+
+  const select = (i: number) => {
+    setActive(i)
+    refs.current[i]?.focus()
+    if (eras[i]) onEraChange?.(eras[i], i)
+  }
+
+  const onKey = (e: React.KeyboardEvent, i: number) => {
+    const next =
+      e.key === "ArrowRight" || e.key === "ArrowDown" ? i + 1
+      : e.key === "ArrowLeft" || e.key === "ArrowUp" ? i - 1
+      : e.key === "Home" ? 0
+      : e.key === "End" ? lastIndex
+      : null
+    if (next == null) return
+    e.preventDefault()
+    const clamped = Math.max(0, Math.min(lastIndex, next))
+    refs.current[clamped]?.focus()
+    setActive(clamped)
+    if (eras[clamped]) onEraChange?.(eras[clamped], clamped)
+  }
 
   return (
     <SectionShell width={1120} grain className={className}>
-      <MonoLabel className="text-muted-foreground">HERITAGE · ECHOES</MonoLabel>
-      <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">
-        Twelve years, five rooms, one signature.
-      </h2>
+      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone="paper" />
 
       <div className="mt-12 flex flex-col gap-2 lg:flex-row lg:items-start">
-        {eras.map((era, i) => (
-          <InView key={era.year} once delay={i * 0.07} className="flex-1">
-            <motion.button
-              type="button"
-              aria-pressed={active === i}
-              onMouseEnter={() => setActive(i)}
-              onFocus={() => setActive(i)}
-              onClick={() => setActive(i)}
-              animate={active === i && !reduce ? { y: -10 } : { y: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className={cn(
-                "group relative w-full rounded-xl border p-5 text-left transition-colors",
-                active === i ? "border-foreground bg-foreground text-background shadow-[6px_6px_0_0_hsl(var(--border))]" : "border-border bg-background text-foreground hover:border-foreground/40"
-              )}
-            >
-              <span className={cn("font-display text-3xl font-black tabular-nums tracking-tight", active === i ? "text-background" : "text-muted-foreground/50")}>
-                {era.year}
-              </span>
-              <span className="mt-2 block font-display text-base font-bold">{era.title}</span>
-              <p className={cn("mt-2 text-[13px] leading-relaxed", active === i ? "text-background/75" : "text-muted-foreground")}>{era.note}</p>
-              {active === i && (
-                <motion.span layoutId="era-tick" aria-hidden className="absolute -bottom-[5px] left-6 size-2.5 rotate-45 bg-foreground" />
-              )}
-            </motion.button>
-          </InView>
-        ))}
+        {eras.map((era, i) => {
+          const isActive = active === i
+          const distance = Math.abs(i - active)
+          return (
+            <InView key={era.year} once delay={i * 0.07} className="flex-1">
+              <motion.button
+                ref={(el) => { refs.current[i] = el }}
+                type="button"
+                aria-pressed={isActive}
+                tabIndex={isActive ? 0 : -1}
+                onKeyDown={(e) => onKey(e, i)}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                onClick={() => select(i)}
+                animate={{ y: isActive && !reduced ? -10 : 0 }}
+                style={{ opacity: reduced || isActive ? 1 : Math.max(0.45, 1 - distance * 0.16) }}
+                transition={{ type: "spring", stiffness: 260, damping: 24 }}
+                className={cn(
+                  "group relative w-full rounded-xl border p-5 text-left outline-none transition-colors duration-200",
+                  "focus-visible:ring-[3px] focus-visible:ring-ring/50",
+                  isActive
+                    ? "border-foreground bg-foreground text-background shadow-[6px_6px_0_0_hsl(var(--border))]"
+                    : "border-border bg-background text-foreground hover:border-foreground/40"
+                )}
+              >
+                <span className={cn("font-display text-3xl font-black tabular-nums tracking-tight", isActive ? "text-background" : "text-muted-foreground/60")}>
+                  {era.year}
+                </span>
+                <span className="mt-2 block font-display text-base font-bold tracking-tight">{era.title}</span>
+                <p className={cn("mt-2 text-[13px] leading-relaxed", isActive ? "text-background/75" : "text-muted-foreground")}>{era.note}</p>
+                {isActive && (
+                  <motion.span
+                    layoutId="era-tick"
+                    aria-hidden
+                    transition={{ type: "spring", stiffness: 300, damping: 26 }}
+                    className="absolute -bottom-[5px] left-6 size-2.5 rotate-45 bg-foreground"
+                  />
+                )}
+              </motion.button>
+            </InView>
+          )
+        })}
       </div>
 
-      <div className="mt-10 flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-        <span className="h-px flex-1 bg-border" aria-hidden />
-        end of log
-        <span className="h-px flex-1 bg-border" aria-hidden />
+      <div className="mt-10 flex items-center gap-3">
+        <Separator className="flex-1" />
+        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{lastIndex + 1} eras · end of log</span>
+        <Separator className="flex-1" />
       </div>
     </SectionShell>
   )

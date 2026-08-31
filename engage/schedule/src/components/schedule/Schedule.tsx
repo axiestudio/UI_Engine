@@ -87,9 +87,9 @@ export function Schedule({
             </p>
           </header>
 
-          <div className="grid gap-4 rounded-[24px] border bg-card p-4 shadow-sm sm:p-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+          <div className="grid gap-4 rounded-2xl border bg-card p-4 shadow-sm sm:p-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
             {/* week table */}
-            <div className="rounded-[16px] border bg-background/40 p-4 sm:p-5">
+            <div className="rounded-xl border bg-background/40 p-4 sm:p-5">
               <h3 className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 <Clock3 className="h-3 w-3" /> Week
               </h3>
@@ -117,7 +117,7 @@ export function Schedule({
             </div>
 
             {/* next slots */}
-            <div className="rounded-[16px] border bg-background/40 p-4 sm:p-5">
+            <div className="rounded-xl border bg-background/40 p-4 sm:p-5">
               <h3 className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Next available</h3>
               {slots.length === 0 ? (
                 <p className="mt-3 text-sm font-medium text-muted-foreground">No published slots — use the booking link.</p>

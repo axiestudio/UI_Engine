@@ -30,8 +30,8 @@ export function ActivityHeatmap({ cells, levelOf, weeks = 26, className }: Activ
   return (
     <div className={cn("font-sans", className)}>
       <div className="mb-2 flex items-baseline justify-between">
-        <p className="text-[13px] font-bold">{total.toLocaleString()} events <span className="font-normal text-muted-foreground">/ last {cols} weeks</span></p>
-        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">best streak {streak}d</p>
+        <p className="text-sm font-medium">{total.toLocaleString()} events <span className="text-muted-foreground">/ last {cols} weeks</span></p>
+        <p className="text-xs font-medium text-muted-foreground">best streak {streak}d</p>
       </div>
       <div className="flex gap-1.5">
         <div aria-hidden className="grid grid-rows-7 gap-[3px] pt-px text-[9px] font-medium leading-[12px] text-muted-foreground">
@@ -49,7 +49,7 @@ export function ActivityHeatmap({ cells, levelOf, weeks = 26, className }: Activ
           ))}
         </div>
       </div>
-      <div className="mt-2.5 flex items-center justify-end gap-1 text-[10px] text-muted-foreground">
+      <div className="mt-2.5 flex items-center justify-end gap-1 text-xs text-muted-foreground">
         less {tones.map((t, i) => <span key={i} className="size-[11px] rounded-[2px]" style={{ background: t }} />)} more
       </div>
     </div>

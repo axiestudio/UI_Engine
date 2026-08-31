@@ -48,7 +48,7 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, author = 
                 onClick={(e) => { e.stopPropagation(); setSel(sel?.id === p.id ? null : p) }}
                 initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1, x: Math.cos(ang) * rr, y: Math.sin(ang) * rr }}
                 transition={{ type: "spring", stiffness: 360, damping: 22, delay: i * 0.04 }}
-                className={cn("absolute z-[5] -ml-3 -mt-7 grid size-7 place-items-center rounded-full rounded-bl-none text-[9px] font-black shadow-lg ring-2 ring-background", n > 1 && !fanOpen && i > 0 && "hidden", fanOpen ? "bg-foreground text-background" : i === 0 ? "bg-[hsl(var(--warn))] text-black" : "")}
+                className={cn("absolute z-[5] -ml-3 -mt-7 grid size-7 place-items-center rounded-full rounded-bl-none text-[11px] font-semibold shadow-lg ring-2 ring-background", n > 1 && !fanOpen && i > 0 && "hidden", fanOpen ? "bg-foreground text-background" : i === 0 ? "bg-[hsl(var(--warn))] text-black" : "")}
                 style={{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }}
               >
                 {i === 0 && n > 1 ? n : "▪"}
@@ -63,13 +63,13 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, author = 
                 <p className="text-[12px] leading-snug">{sel.text}</p>
                 <button aria-label="Close annotation" onClick={() => setSel(null)} className="grid size-5 shrink-0 place-items-center rounded hover:bg-muted"><X className="size-3" /></button>
               </div>
-              <p className="mt-2 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground">{sel.author}{onRemove && <button onClick={() => { onRemove(sel.id); setSel(null) }} className="font-black text-[hsl(var(--err))] hover:underline">delete</button>}</p>
+              <p className="mt-2 flex items-center justify-between text-xs text-muted-foreground">{sel.author}{onRemove && <button onClick={() => { onRemove(sel.id); setSel(null) }} className="font-medium text-[hsl(var(--err))] hover:underline">delete</button>}</p>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
       {onAddPin && (
-        <button onClick={() => setAdding((a) => !a)} aria-pressed={adding} className={cn("absolute bottom-3 right-3 z-[7] flex h-10 items-center gap-2 rounded-full px-4 text-[11px] font-black uppercase tracking-[0.14em] shadow-xl transition-colors", adding ? "bg-[hsl(var(--err))] text-white" : "bg-foreground text-background")}>
+        <button onClick={() => setAdding((a) => !a)} aria-pressed={adding} className={cn("absolute bottom-3 right-3 z-[7] flex h-10 items-center gap-2 rounded-full px-4 text-xs font-medium shadow-lg transition-colors", adding ? "bg-[hsl(var(--err))] text-white" : "bg-foreground text-background")}>
           <MessageSquarePlus className="size-4" /> {adding ? "click where · esc" : "annotate"}
         </button>
       )}

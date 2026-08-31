@@ -3,6 +3,7 @@ import {
   DndContext,
   DragOverlay,
   PointerSensor,
+  KeyboardSensor,
   pointerWithin,
   useDroppable,
   useDraggable,
@@ -10,10 +11,12 @@ import {
   useSensors,
   type DragEndEvent,
 } from "@dnd-kit/core"
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 import { motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Match a left term to its right target.
 // ═══ EMOTION     Word-bank energy — snap it to the right column.
@@ -45,8 +48,12 @@ export function DndPairing({
   className,
 }: DndPairingProps) {
   const [pairs, setPairs] = React.useState<Record<string, string>>(matches)
+  const [announce, setAnnounce] = React.useState("")
   const [activeId, setActiveId] = React.useState<string | null>(null)
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  )
 
   const matchedRightIds = React.useMemo(() => Object.values(pairs), [pairs])
 
@@ -66,10 +73,26 @@ export function DndPairing({
   const activeData = activeId ? left.find((l) => l.id === activeId) : null
 
   return (
-    <SectionShell width={920} grain rule="bottom" className={className}>
+    <SectionShell width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
+            {Object.keys(pairs).length} items
+          </span>
+          <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Advanced • Professional DnD</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => { setPairs({}); onMatch?.({}); setAnnounce("Pairs reset") }} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+            Reset
+          </Button>
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>
+        </div>
+      </div>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={pointerWithin} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
         <div className="mt-8 grid grid-cols-2 gap-6">
           <div className="space-y-3">
@@ -102,7 +125,7 @@ function PairChip({ item, disabled = false, overlay = false }: { item: PairLeft;
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: disabled ? 0.4 : 1, y: 0 }}
       whileHover={disabled ? undefined : { x: 4 }}
-      className={cn("cursor-grab touch-none rounded-xl border bg-card px-4 py-3 font-display text-sm font-bold active:cursor-grabbing", disabled && "cursor-default", isDragging && "opacity-40", overlay && "dnd-lift")}
+      className={cn("cursor-grab touch-none rounded-xl border bg-card px-4 py-3 text-sm font-semibold tracking-tight active:cursor-grabbing", disabled && "cursor-default", isDragging && "opacity-40", overlay && "dnd-lift")}
     >
       {item.label}
     </motion.div>
@@ -116,8 +139,8 @@ function PairTarget({ item, matchedBy, correct }: { item: PairRight; matchedBy?:
       ref={setNodeRef}
       className={cn("flex min-h-[52px] items-center justify-between rounded-xl border bg-muted/30 px-4 py-3 transition-colors", isOver && "dnd-over", correct && "border-emerald-500/60 bg-emerald-500/10")}
     >
-      <p className="font-display text-sm font-bold text-muted-foreground">{item.label}</p>
-      <span className={cn("font-mono text-[10px] font-bold uppercase tracking-widest", correct ? "text-emerald-600" : matchedBy ? "text-muted-foreground" : "text-inherit")}>
+      <p className="text-sm font-semibold tracking-tight text-muted-foreground">{item.label}</p>
+      <span className={cn("font-mono text-[10px] font-semibold uppercase tracking-widest", correct ? "text-emerald-600" : matchedBy ? "text-muted-foreground" : "text-inherit")}>
         {correct ? "matched" : matchedBy ? "taken" : "drop"}
       </span>
     </div>

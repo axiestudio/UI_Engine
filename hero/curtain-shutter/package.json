@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/curtain-shutter.es.js",
       "require": "./dist/curtain-shutter.cjs.js"
     },

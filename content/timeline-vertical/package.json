@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/timeline-vertical.es.js",
       "require": "./dist/timeline-vertical.cjs.js"
     },

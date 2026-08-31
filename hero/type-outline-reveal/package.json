@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/type-outline-reveal.es.js",
       "require": "./dist/type-outline-reveal.cjs.js"
     },

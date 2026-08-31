@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/glossary-morph.es.js",
       "require": "./dist/glossary-morph.cjs.js"
     },
@@ -25,7 +24,11 @@
       "morphing-popover",
       "in-view"
     ],
-    "watermelon-ui": []
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

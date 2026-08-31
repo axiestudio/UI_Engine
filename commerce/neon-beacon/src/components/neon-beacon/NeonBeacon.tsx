@@ -42,7 +42,7 @@ export function NeonBeacon({ word, under, eyebrow, status: statusProp, onToggle,
               initial={reduce ? { opacity: 0 } : { opacity: 0 }}
               animate={reduce ? { opacity: 1 } : { opacity: [0, 0, 0.9, 0.15, 0.9, 0.35, 1], filter: [`drop-shadow(0 0 0px ${col})`, `drop-shadow(0 0 0px ${col})`, `drop-shadow(0 0 14px ${col})`, `drop-shadow(0 0 2px ${col})`, `drop-shadow(0 0 14px ${col})`, `drop-shadow(0 0 4px ${col})`, `drop-shadow(0 0 18px ${col})`] }}
               transition={reduce ? { duration: 0.3, delay: i * 0.03 } : { duration: 1.1 + (i % 3) * 0.14, delay: i * 0.13, ease: "linear" }}
-              className="font-display font-black leading-none text-transparent"
+              className="font-display font-semibold leading-none text-transparent"
               style={{
                 ["--tc" as string]: col,
                 color: "transparent",
@@ -53,7 +53,7 @@ export function NeonBeacon({ word, under, eyebrow, status: statusProp, onToggle,
                 fontSize: compact ? 34 : undefined,
               }}
             >
-              <span style={{ color: col, WebkitTextFillColor: col, textShadow: `0 0 6px ${col}, 0 0 22px ${col}, 0 0 2px ${col}` }} className={cn("font-display font-black", !compact && "text-[clamp(48px,12vw,110px)]")}>
+              <span style={{ color: col, WebkitTextFillColor: col, textShadow: `0 0 6px ${col}, 0 0 22px ${col}, 0 0 2px ${col}` }} className={cn("font-display font-semibold", !compact && "text-[clamp(48px,12vw,110px)]")}>
                 {ch}
               </span>
             </motion.span>
@@ -70,9 +70,9 @@ export function NeonBeacon({ word, under, eyebrow, status: statusProp, onToggle,
             aria-checked={status === "open"}
             aria-label="Neon status"
             onClick={() => { const next = status === "open" ? "closed" : "open"; if (statusProp === undefined) setInner(next); onToggle(next) }}
-            className={cn("group mt-7 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 font-mono text-[10px] font-black uppercase tracking-[0.22em] transition-colors", status === "open" ? "border-[hsl(var(--neon)/0.5)] text-[hsl(var(--neon))]" : "border-[hsl(var(--neon-alt)/0.5)] text-[hsl(var(--neon-alt))]")}
+            className={cn("group mt-7 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors", status === "open" ? "border-[hsl(var(--neon)/0.5)] text-[hsl(var(--neon))]" : "border-[hsl(var(--neon-alt)/0.5)] text-[hsl(var(--neon-alt))]")}
           >
-            <span className={cn("size-2 rounded-full transition-all", status === "open" ? "bg-[hsl(var(--neon))] shadow-[0_0_10px_hsl(var(--neon))]" : "bg-[hsl(var(--neon-alt))] shadow-[0_0_10px_hsl(var(--neon-alt))]")} />
+            <span className={cn("size-2 rounded-full transition-all", status === "open" ? "bg-[hsl(var(--neon))] shadow-sm" : "bg-[hsl(var(--neon-alt))] shadow-[0_0_10px_hsl(var(--neon-alt))]")} />
             {status === "open" ? "switch off" : "switch on"}
             <span className="sr-only"> — currently {status}</span>
           </button>

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-hover-sections.es.js",
       "require": "./dist/interactive-hover-sections.cjs.js"
     },

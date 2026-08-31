@@ -1,22 +1,15 @@
 import * as React from "react"
-import { motion } from "motion/react"
-import { AlertTriangle, Zap, Eye } from "lucide-react"
+import { motion, AnimatePresence } from "motion/react"
+import { AlertTriangle, AlertCircle, ChevronDown, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
-import { InView } from "@/components/primitives/in-view"
-import { TextShimmer } from "@/components/primitives/text-shimmer"
-
-// ═══ JOB      surface anomalies before they become incidents
-// ═══ EMOTION  a live wire — attentive, a little electric
-// ═══ SIGNATURE alert wire: rows slide in with a red sweep flash; hovering
-//               a row expands it to show the raw signal + assign action
-//   SITE      → trust/status storytelling for infra & fintech
-//   APP       → alerting surfaces; alerts re-tick via props
-//   A11Y      aria-live=assertive on new criticals; expanders keyboard-safe
 
 export type Anomaly = { id: string; at: string; severity: "critical" | "warn"; signal: string; metric: string; value: string }
 
 export type AnomalyWireProps = {
+  eyebrow?: string
+  title?: string
+  subtitle?: string
   anomalies?: Anomaly[]
   className?: string
 }
@@ -27,68 +20,128 @@ const DEFAULTS: Anomaly[] = [
   { id: "a3", at: "08:57", severity: "warn", signal: "Signup source mix shifted: paid → organic", metric: "signup.mix", value: "-22pp paid" },
 ]
 
-const SEV = {
-  critical: { icon: AlertTriangle, cls: "text-red-600 dark:text-red-400", chip: "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-300" },
-  warn: { icon: Zap, cls: "text-amber-600 dark:text-amber-400", chip: "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300" },
+const SEV: Record<Anomaly["severity"], { label: string; icon: typeof AlertTriangle; chip: string; dot: string }> = {
+  critical: {
+    label: "Critical",
+    icon: AlertTriangle,
+    chip: "border-destructive/20 bg-destructive/10 text-destructive",
+    dot: "bg-destructive",
+  },
+  warn: {
+    label: "Warning",
+    icon: AlertCircle,
+    chip: "border-warning/20 bg-warning-muted text-warning-foreground",
+    dot: "bg-warning",
+  },
 }
 
-export function AnomalyWire({ anomalies = DEFAULTS, className }: AnomalyWireProps) {
+export function AnomalyWire({
+  eyebrow = "ANOMALY WIRE · LAST HOUR",
+  title = "Anomaly feed — last 60 minutes",
+  subtitle = "Thresholds compare to 7-day baselines. Expand any row for detector context.",
+  anomalies = DEFAULTS,
+  className,
+}: AnomalyWireProps) {
   const [open, setOpen] = React.useState<string | null>(null)
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+
   return (
     <SectionShell width={920} className={className}>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <MonoLabel className="text-muted-foreground">ANOMALY WIRE · LAST HOUR</MonoLabel>
-          <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground">The wire never sleeps.</h2>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-xl">
+          <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+          <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
+          <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
         </div>
-        <TextShimmer className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-muted-foreground" duration={2.4}>
-          ● live · detecting on 41 metrics
-        </TextShimmer>
+        <div className="inline-flex items-center gap-2 rounded-full border bg-card px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground shadow-sm">
+          <span className="relative flex size-2">
+            <span className={cn("absolute inline-flex size-2 animate-ping rounded-full opacity-40", reduce ? "hidden" : "bg-success")} />
+            <span className="relative inline-flex size-2 rounded-full bg-success" />
+          </span>
+          Live · {anomalies.length} signals · 41 metrics watched
+        </div>
       </div>
 
-      <ul aria-live="assertive" className="mt-10 space-y-3">
+      <ul className="mt-8 space-y-3" aria-label="Anomaly feed">
         {anomalies.map((a, i) => {
           const S = SEV[a.severity]
+          const Icon = S.icon
           const isOpen = open === a.id
           return (
-            <InView key={a.id} once delay={i * 0.1}>
-              <li className="relative overflow-hidden rounded-xl border bg-card">
-                {/* entry sweep */}
-                <motion.span
-                  aria-hidden
-                  initial={{ x: "-100%" }} animate={{ x: "220%" }}
-                  transition={{ duration: 1.1, delay: 0.2 + i * 0.15, ease: "easeOut" }}
-                  className={cn("pointer-events-none absolute inset-y-0 w-1/3 skew-x-12", a.severity === "critical" ? "bg-red-500/10" : "bg-amber-500/10")}
-                />
-                <button type="button" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : a.id)}
-                  className="relative flex w-full items-center gap-4 px-5 py-4 text-left">
-                  <span className={cn("grid size-9 shrink-0 place-items-center rounded-full", S.chip)}>
-                    <S.icon className="size-4" aria-hidden />
+            <motion.li
+              key={a.id}
+              initial={reduce ? undefined : { opacity: 0, y: 6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden rounded-xl border bg-card shadow-sm"
+            >
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                aria-controls={`anomaly-${a.id}`}
+                onClick={() => setOpen(isOpen ? null : a.id)}
+                className="flex w-full items-center gap-4 px-4 py-4 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-5"
+              >
+                <span className={cn("grid size-9 shrink-0 place-items-center rounded-full border", S.chip)}>
+                  <Icon className="size-4" aria-hidden />
+                </span>
+
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center gap-2">
+                    <span className={cn("size-1.5 rounded-full", S.dot)} aria-hidden />
+                    <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">{S.label}</span>
+                    <span className="hidden items-center gap-1 font-mono text-[11px] text-muted-foreground sm:inline-flex">
+                      <Clock className="size-3" aria-hidden /> {a.at}
+                    </span>
                   </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate font-display text-[15px] font-bold text-foreground">{a.signal}</span>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{a.at} · {a.metric}</span>
-                  </span>
-                  <span className="hidden shrink-0 rounded-full border px-2.5 py-1 font-mono text-[10px] font-bold tabular-nums text-foreground sm:block">{a.value}</span>
-                  <Eye className={cn("size-4 shrink-0 text-muted-foreground transition-transform", isOpen && "rotate-90")} aria-hidden />
-                </button>
+                  <span className="mt-1 block truncate text-[14px] font-semibold leading-5 text-foreground">{a.signal}</span>
+                  <span className="font-mono text-[11px] font-medium tracking-wide text-muted-foreground">{a.metric}</span>
+                </span>
+
+                <span className="hidden shrink-0 items-center gap-3 sm:flex">
+                  <span className="rounded-full border bg-muted px-2.5 py-1 font-mono text-[11px] font-semibold tabular-nums text-foreground">{a.value}</span>
+                  <ChevronDown className={cn("size-4 text-muted-foreground transition-transform", isOpen && "rotate-180 text-foreground")} aria-hidden />
+                </span>
+                <ChevronDown className={cn("size-4 shrink-0 text-muted-foreground sm:hidden", isOpen && "rotate-180 text-foreground")} aria-hidden />
+              </button>
+
+              <AnimatePresence initial={false}>
                 {isOpen && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} transition={{ duration: 0.3 }} className="overflow-hidden border-t border-dashed">
-                    <div className="flex flex-wrap items-center gap-3 px-5 py-4 font-mono text-[11px] text-muted-foreground">
-                      <span className="rounded bg-muted px-2 py-1 font-bold text-foreground">{a.metric} {a.value}</span>
-                      <span>baseline 7d · seasonal-adjusted · detector v3</span>
-                      <span className="ml-auto flex gap-2">
-                        <span className="rounded-full bg-foreground px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-background">Acknowledge</span>
-                        <span className="rounded-full border px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-foreground">Assign</span>
-                      </span>
+                  <motion.div
+                    id={`anomaly-${a.id}`}
+                    initial={reduce ? undefined : { height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={reduce ? undefined : { height: 0, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden border-t border-dashed bg-muted/20"
+                  >
+                    <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:px-5">
+                      <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
+                        <span className="rounded bg-background px-2 py-1 font-semibold text-foreground shadow-sm">{a.metric} · {a.value}</span>
+                        <span className="text-muted-foreground">7-day baseline · seasonal-adjusted · detector v3</span>
+                      </div>
+                      <div className="ml-auto flex gap-2">
+                        <button type="button" className="rounded-full bg-foreground px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-background shadow-sm transition-colors hover:bg-foreground/90">
+                          Acknowledge
+                        </button>
+                        <button type="button" className="rounded-full border bg-background px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-muted">
+                          Assign
+                        </button>
+                      </div>
                     </div>
                   </motion.div>
                 )}
-              </li>
-            </InView>
+              </AnimatePresence>
+            </motion.li>
           )
         })}
       </ul>
+
+      {/* polite live region — only announces count, not the whole list */}
+      <p aria-live="polite" aria-atomic="true" className="sr-only">
+        {anomalies.length} anomalies shown, {anomalies.filter((a) => a.severity === "critical").length} critical.
+      </p>
     </SectionShell>
   )
 }

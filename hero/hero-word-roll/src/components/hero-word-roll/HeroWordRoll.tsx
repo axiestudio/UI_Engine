@@ -46,7 +46,7 @@ export function HeroWordRoll({
           <h1 className="mt-5 font-display text-5xl font-black leading-[0.98] tracking-[-0.035em] sm:text-7xl">
             {lead}{" "}
             <span className={cn("inline-block text-transparent", ink ? "bg-clip-text" : "bg-clip-text")}
-              style={{ backgroundImage: `linear-gradient(105deg, hsl(var(--site-accent)), hsl(var(--site-accent-2)))` }}>
+              style={{ backgroundImage: `linear-gradient(105deg, hsl(var(--primary)), hsl(var(--accent)))` }}>
               <TextRoll
                 key={idx}
                 duration={0.5}

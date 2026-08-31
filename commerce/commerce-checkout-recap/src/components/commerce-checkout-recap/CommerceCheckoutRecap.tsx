@@ -28,20 +28,20 @@ export function CommerceCheckoutRecap({ eyebrow = "CHECKOUT", title = "Almost th
         <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div>
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
-            <h2 className="mt-2 font-display text-3xl font-black tracking-[-0.02em]">{title}</h2>
+            <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em]">{title}</h2>
             <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
               <div className="grid gap-3 sm:grid-cols-2">
                 <input placeholder="Card number" className="col-span-2 rounded-lg border bg-background px-3 py-2.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
                 <input placeholder="MM / YY" className="rounded-lg border bg-background px-3 py-2.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
                 <input placeholder="CVC" className="rounded-lg border bg-background px-3 py-2.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
               </div>
-              <Button type="submit" className="h-11 w-full rounded-full font-mono text-[11px] font-bold uppercase tracking-widest">{cta}</Button>
+              <Button type="submit" className="h-11 w-full rounded-full font-mono text-[11px] font-bold uppercase tracking-[0.12em]">{cta}</Button>
             </form>
           </div>
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
           <div className="sticky top-8 rounded-2xl border bg-card p-6">
-            <p className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground"><ShoppingBag className="h-4 w-4" /> Order recap</p>
+            <p className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground"><ShoppingBag className="h-4 w-4" /> Order recap</p>
             <ul className="mt-4 space-y-2">
               {lines.map((l) => <li key={l.id} className="flex justify-between text-sm font-medium"><span>{l.label}{l.qty ? ` × ${l.qty}` : ""}</span><span>{l.price}</span></li>)}
             </ul>

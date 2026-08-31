@@ -1,28 +1,37 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { useReducedMotion } from "motion/react"
 import { Check, Copy } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Badge } from "@/components/ui/badge"
 
 // ═══ JOB      turn the palette from a picture into a tool
 // ═══ EMOTION  tactile color — click, copy, done
-// ═══ SIGNATURE each swatch is a full-height column that expands on hover
-//               and prints its token + contrast ratio; one click copies
+// ═══ SIGNATURE swatch columns that stretch their flex-grow on hover/focus
+//               (CSS-eased, snappy on entry, slow on exit) and print token +
+//               live WCAG verdict; one click copies the hex and the column
+//               answers with a check and "· copied"
 //   SITE      → brand pages, design system docs
 //   APP       → theme pickers; tokens are copyable strings
-//   A11Y      buttons with aria-label incl. hex; copied state announced
+//   BUILD     hexes here are DATA (a swatch must render its own colour);
+//             contrast is computed with WCAG maths, AA verdicts earned;
+//             everything non-chromatic rides tokens
+//   A11Y      copy buttons: real labels w/ ratio + verdict, aria-live copy
+//             receipt, visible inset focus ring on any fill, reduced-motion
+//             = instant expand, no easing
 
 export type Swatch = {
   name: string
   hex: string
   token: string
-  /** foreground hex used to render text on this swatch */
+  /** Foreground used for text on this swatch; auto-derived when absent. */
   on?: string
 }
 
 export type SwatchSpectrumProps = {
   swatches?: Swatch[]
   onCopy?: (s: Swatch) => void
+  eyebrow?: string
   className?: string
 }
 
@@ -32,63 +41,103 @@ function luminance(hex: string) {
   const f = (c: number) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
   return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
 }
+
+/** WCAG contrast ratio between two hex colours. */
 export function contrast(a: string, b: string) {
   const [l1, l2] = [luminance(a), luminance(b)].sort((x, y) => y - x)
   return (l1 + 0.05) / (l2 + 0.05)
 }
 
-export function SwatchSpectrum({ swatches = [
+function readableInk(hex: string) {
+  return luminance(hex) > 0.35 ? "#121212" : "#FAFAF7"
+}
+
+const SWATCHES = [
   { name: "Ink", hex: "#121212", token: "--foreground" },
   { name: "Paper", hex: "#FAFAF7", token: "--background", on: "#121212" },
   { name: "Signal", hex: "#E8501E", token: "--brand" },
   { name: "Moss", hex: "#4A5D43", token: "--accent", on: "#FAFAF7" },
   { name: "Stone", hex: "#8E8B84", token: "--muted-foreground", on: "#121212" },
-], onCopy, className }: SwatchSpectrumProps) {
+]
+
+export function SwatchSpectrum({
+  swatches = SWATCHES,
+  onCopy,
+  eyebrow = "PALETTE · TOKENS",
+  className,
+}: SwatchSpectrumProps) {
+  const reduced = useReducedMotion()
   const [copied, setCopied] = React.useState<string | null>(null)
+  const timer = React.useRef<number | undefined>(undefined)
+  React.useEffect(() => () => window.clearTimeout(timer.current), [])
+
   const copy = async (s: Swatch) => {
-    try { await navigator.clipboard.writeText(s.hex) } catch { /* clipboard unavailable */ }
+    try {
+      await navigator.clipboard.writeText(s.hex)
+    } catch {
+      /* clipboard unavailable — verdict text still visible */
+    }
     setCopied(s.name)
     onCopy?.(s)
-    window.setTimeout(() => setCopied((c) => (c === s.name ? null : c)), 1400)
+    window.clearTimeout(timer.current)
+    timer.current = window.setTimeout(() => setCopied((c) => (c === s.name ? null : c)), 1600)
   }
 
   return (
     <SectionShell width={1120} padding="tight" className={className}>
       <div className="flex items-end justify-between gap-4">
-        <div>
-          <MonoLabel className="text-muted-foreground">PALETTE · TOKENS</MonoLabel>
-          <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground">Click a color. It's yours.</h2>
-        </div>
-        <p className="hidden font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground sm:block">AA checked · hex on copy</p>
+        <SectionHead eyebrow={eyebrow} title="Click a color. It's yours." tone="paper" />
+        <Badge variant="outline" className="mb-1 hidden rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:inline-flex">
+          contrast computed, not claimed
+        </Badge>
       </div>
 
-      <div className="mt-8 flex h-[380px] gap-1.5 overflow-hidden rounded-xl" role="list" aria-label="Brand colors">
+      <div className="mt-8 flex h-[400px] gap-1.5 rounded-xl" role="group" aria-label="Brand colors">
         {swatches.map((s) => {
-          const fg = s.on ?? (luminance(s.hex) > 0.4 ? "#121212" : "#FAFAF7")
+          const fg = s.on ?? readableInk(s.hex)
           const ratio = contrast(s.hex, fg)
+          const pass = ratio >= 4.5
           return (
-            <motion.button
+            <button
               key={s.name}
               type="button"
-              role="listitem"
-              aria-label={`Copy ${s.name} ${s.hex}`}
-              onClick={() => copy(s)}
-              whileHover={{ flexGrow: 2.4 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              aria-label={`Copy ${s.name} ${s.hex}, contrast ${ratio.toFixed(1)} to 1. ${pass ? "Passes AA." : "Large text only."}`}
+              onClick={() => void copy(s)}
               style={{ backgroundColor: s.hex, color: fg, flexGrow: 1, flexBasis: 0 }}
-              className="group relative flex min-w-14 flex-col justify-between rounded-lg p-4 text-left"
+              className={cn(
+                "group relative flex min-w-14 cursor-pointer flex-col justify-between rounded-lg p-4 text-left outline-none",
+                "hover:grow-[2.4] focus-visible:grow-[2.4] focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-current",
+                reduced ? "" : "transition-[flex-grow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              )}
             >
-              <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] opacity-80">{copied === s.name ? "COPIED ✓" : s.name}</span>
-              <span className="flex flex-col gap-1">
-                <span className="font-mono text-[11px] font-bold">{s.hex.toUpperCase()}</span>
-                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] opacity-70">{s.token} · {ratio.toFixed(1)}:1</span>
-                <span aria-live="polite" className="sr-only">{copied === s.name ? `${s.name} copied` : ""}</span>
-                {copied === s.name ? <Check className="size-4" aria-hidden /> : <Copy className="size-4 opacity-0 transition-opacity group-hover:opacity-70" aria-hidden />}
+              <span className="flex items-center justify-between font-mono text-[10px] font-black uppercase tracking-[0.2em] opacity-80">
+                {s.name}
+                {copied === s.name ? (
+                  <Check className="size-4" aria-hidden />
+                ) : (
+                  <Copy className="size-4 opacity-0 transition-opacity duration-200 group-hover:opacity-70 group-focus-visible:opacity-70" aria-hidden />
+                )}
               </span>
-            </motion.button>
+              <span className="flex flex-col gap-1">
+                <span className="text-2xl font-black leading-none tabular-nums">{s.hex.toUpperCase()}</span>
+                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] opacity-70">{s.token}</span>
+                <span className="mt-1 inline-flex w-fit items-center gap-1.5 rounded-full border border-current px-2 py-0.5 font-mono text-[8px] font-black uppercase tracking-[0.14em] opacity-[0.85]">
+                  {ratio.toFixed(1)}:1 · {pass ? "AA" : "AA·LG"}
+                  {copied === s.name ? " · copied" : ""}
+                </span>
+              </span>
+            </button>
           )
         })}
       </div>
+
+      <p aria-live="polite" className="sr-only">
+        {copied ? `${copied} copied.` : ""}
+      </p>
+      <p className="mt-4 flex flex-wrap items-center justify-end gap-3">
+        <Badge variant="outline" className="rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{swatches.length} tokens</Badge>
+        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">hex on copy · verdicts live</span>
+      </p>
     </SectionShell>
   )
 }

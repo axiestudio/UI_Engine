@@ -26,19 +26,19 @@ export function SwitchAuditTrail({ entries, onRevert, className }: SwitchAuditTr
         day = d
         return (
           <motion.li key={e.id} layout initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
-            {header && <p className="pb-1 pt-3 text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">{d}</p>}
-            <div className="group flex items-center gap-3 rounded-lg border bg-card px-3 py-2.5">
-              <span aria-hidden className="grid size-7 shrink-0 place-items-center rounded-full bg-accent text-[9px] font-black text-accent-foreground">{initials(e.actor)}</span>
-              <p className="min-w-0 flex-1 text-[12px]">
-                <strong>{e.actor}</strong> set <span className="rounded bg-[hsl(var(--app-code))] px-1 py-px font-mono text-[10px] font-bold">{e.field}</span>{" "}
+            {header && <p className="pb-1 pt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{d}</p>}
+            <div className="group flex items-center gap-3 rounded-lg border border-border/70 bg-card px-3 py-2.5">
+              <span aria-hidden className="grid size-7 shrink-0 place-items-center rounded-full bg-accent text-[10px] font-semibold text-accent-foreground">{initials(e.actor)}</span>
+              <p className="min-w-0 flex-1 text-[13px]">
+                <strong className="font-semibold">{e.actor}</strong> set <span className="rounded bg-muted/50 px-1 py-px font-mono text-[11px] font-medium">{e.field}</span>{" "}
                 <span className="inline-flex items-center gap-1.5 align-middle">
                   <del className="text-muted-foreground">{e.from}</del>
                   <motion.span aria-hidden className="text-muted-foreground/60">→</motion.span>
-                  <ins className="font-bold text-[hsl(var(--info))] no-underline">{e.to}</ins>
+                  <ins className="font-semibold text-[hsl(var(--info))] no-underline">{e.to}</ins>
                 </span>
-                <span className="ml-2 text-[10px] text-muted-foreground">{new Date(e.at).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}</span>
+                <span className="ml-2 text-xs text-muted-foreground">{new Date(e.at).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}</span>
               </p>
-              {onRevert && <button onClick={() => onRevert(e)} className="flex items-center gap-1 rounded-md border px-2 py-1 text-[9px] font-black uppercase tracking-[0.1em] text-muted-foreground opacity-0 transition-opacity hover:bg-muted focus-visible:opacity-100 group-hover:opacity-100"><Undo2 className="size-3" /> revert</button>}
+              {onRevert && <button onClick={() => onRevert(e)} className="flex items-center gap-1 rounded-md border border-border/70 px-2 py-1 text-xs font-medium text-muted-foreground opacity-0 transition-opacity hover:bg-muted focus-visible:opacity-100 group-hover:opacity-100"><Undo2 className="size-3" /> revert</button>}
             </div>
           </motion.li>
         )

@@ -22,19 +22,19 @@ export function BulkSelectBar({ selected, total, actions, onClear, className }: 
           role="toolbar" aria-label={`Bulk actions — ${selected.length} selected`}
           initial={{ y: 64, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 8, opacity: 0 }}
           transition={{ type: "spring", stiffness: 420, damping: 32 }}
-          className={cn("fixed bottom-5 left-1/2 z-[90] flex w-[min(94vw,660px)] -translate-x-1/2 items-center gap-3 rounded-2xl border bg-popover/95 px-4 py-3 shadow-2xl backdrop-blur", className)}
+          className={cn("fixed bottom-5 left-1/2 z-[90] flex w-[min(94vw,660px)] -translate-x-1/2 items-center gap-3 rounded-xl border border-border/70 bg-popover/95 px-4 py-3 shadow-lg backdrop-blur", className)}
         >
           <span className="flex items-baseline gap-1.5">
-            <motion.span key={selected.length} initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="font-display text-lg font-black tabular-nums text-primary">{selected.length}</motion.span>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">of {total}</span>
+            <motion.span key={selected.length} initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="font-display text-lg font-semibold tabular-nums text-primary">{selected.length}</motion.span>
+            <span className="text-xs font-medium text-muted-foreground">of {total}</span>
           </span>
           <span aria-hidden className="h-6 w-px bg-border" />
           <div className="flex min-w-0 flex-1 flex-wrap gap-1.5">
             {actions.map((a) => (
-              <button key={a.label} onClick={() => a.run(selected)} className={cn("h-8 rounded-lg px-3.5 text-[12px] font-bold transition-colors", a.tone === "danger" ? "border border-[hsl(var(--err)/0.5)] text-[hsl(var(--err))] hover:bg-[hsl(var(--err)/0.08)]" : "bg-primary text-primary-foreground hover:bg-primary/90")}>{a.label}</button>
+              <button key={a.label} onClick={() => a.run(selected)} className={cn("h-8 rounded-md px-3.5 text-sm font-medium transition-colors", a.tone === "danger" ? "border border-[hsl(var(--err)/0.5)] text-[hsl(var(--err))] hover:bg-[hsl(var(--err)/0.08)]" : "bg-primary text-primary-foreground hover:bg-primary/90")}>{a.label}</button>
             ))}
           </div>
-          <button aria-label="Clear selection" onClick={onClear} className="grid size-8 shrink-0 place-items-center rounded-full hover:bg-muted"><X className="size-4" /></button>
+          <button aria-label="Clear selection" onClick={onClear} className="grid size-8 shrink-0 place-items-center rounded-full text-muted-foreground hover:bg-muted"><X className="size-4" /></button>
         </motion.div>
       )}
     </AnimatePresence>

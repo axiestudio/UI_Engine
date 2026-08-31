@@ -17,6 +17,7 @@ import { GripVertical } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Move cards between columns of a kanban board.
 // ═══ EMOTION     Control — you own the pipeline.
@@ -36,7 +37,15 @@ export type DndKanbanProps = {
 
 export function DndKanban({ eyebrow = "KANBAN", title = "Move the cards.", subtitle = "Drag a card between columns, or sort within a column. Keyboard works too.", columns, onChange, className }: DndKanbanProps) {
   const [state, setState] = React.useState(columns)
+  React.useEffect(() => { setState(columns) }, [columns])
   const [activeCard, setActiveCard] = React.useState<string | null>(null)
+  const [announce, setAnnounce] = React.useState("")
+  const initialRef = React.useRef(columns)
+  const handleReset = () => {
+    setState(initialRef.current)
+    onChange?.(initialRef.current)
+    setAnnounce("Board reset")
+  }
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -102,10 +111,11 @@ export function DndKanban({ eyebrow = "KANBAN", title = "Move the cards.", subti
     : null
 
   return (
-    <SectionShell width={1280} grain rule="bottom" className={className}>
+    <SectionShell width={1280} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={closestCorners} onDragStart={onDragStart} onDragCancel={onDragCancel} onDragOver={onDragOver} onDragEnd={onDragEnd}>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {state.map((col) => (
@@ -131,7 +141,7 @@ function Column({ col }: { col: KanbanColumn }) {
     <div
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={cn("rounded-2xl border bg-muted/30 p-3", isDragging && "dnd-over")}
+      className={cn("rounded-xl border bg-muted/30 p-3", isDragging && "dnd-over")}
     >
       <div {...attributes} {...listeners} className="flex cursor-grab items-center justify-between px-2 pb-2 pt-1 active:cursor-grabbing">
         <p className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
@@ -162,7 +172,7 @@ function KanbanRow({ card }: { card: KanbanCard }) {
       className={cn("cursor-grab touch-none rounded-xl border bg-card p-4 active:cursor-grabbing", isDragging && "dnd-lift")}
     >
       <div className="flex items-start justify-between gap-2">
-        <p className="font-display text-sm font-bold">{card.title}</p>
+        <p className="text-sm font-semibold tracking-tight">{card.title}</p>
         <GripVertical className="h-4 w-4 shrink-0 text-muted-foreground" />
       </div>
       {card.tag && <p className="mt-2 inline-block rounded-full border px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{card.tag}</p>}

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/commerce-product-gallery.es.js",
       "require": "./dist/commerce-product-gallery.cjs.js"
     },

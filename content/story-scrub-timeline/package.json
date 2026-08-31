@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/story-scrub-timeline.es.js",
       "require": "./dist/story-scrub-timeline.cjs.js"
     },

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/nav-progress.es.js",
       "require": "./dist/nav-progress.cjs.js"
     },
@@ -30,6 +29,11 @@
     ],
     "motion-primitives": [
       "in-view"
+    ],
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

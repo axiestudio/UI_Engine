@@ -6,18 +6,15 @@ import { MonoLabel, SectionShell, Ordinal } from "@/components/primitives/handcr
 import { SlidingNumber } from "@/components/primitives/sliding-number"
 import { InView } from "@/components/primitives/in-view"
 
-// ═══ JOB      make the numbers argue for you
-// ═══ EMOTION  the moment the chart proves the pitch
-// ═══ SIGNATURE three KPI tiles where the sparkline draws itself on enter,
-//               the value slides digit-by-digit, and the delta chip ticks
-//   SITE      → landing proof bands, annual report openers
-//   APP       → dashboards; values re-tick on prop change (live)
-//   A11Y      aria-live polite on values; sparklines decorative + table fallback
-
 export type Kpi = { label: string; value: number; prefix?: string; suffix?: string; delta: number; points: number[] }
 
 export type KpiStoryBandProps = {
+  eyebrow?: string
+  title?: string
+  subtitle?: string
   kpis?: Kpi[]
+  href?: string
+  hrefLabel?: string
   className?: string
 }
 
@@ -27,68 +24,112 @@ const DEFAULT_KPIS: Kpi[] = [
   { label: "Support first-response", value: 3, suffix: " min", delta: -41, points: [82, 76, 70, 66, 58, 44, 30, 22, 14, 8] },
 ]
 
-function Spark({ points, up }: { points: number[]; up: boolean }) {
+function Spark({ points }: { points: number[] }) {
   const w = 160, h = 44
   const max = Math.max(...points), min = Math.min(...points)
-  const d = points.map((p, i) => {
-    const x = (i / (points.length - 1)) * w
-    const y = h - ((p - min) / (max - min || 1)) * (h - 6) - 3
-    return `${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`
-  }).join(" ")
+  const d = points
+    .map((p, i) => {
+      const x = (i / (points.length - 1)) * w
+      const y = h - ((p - min) / (max - min || 1)) * (h - 6) - 3
+      return `${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`
+    })
+    .join(" ")
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} aria-hidden className="mt-4 h-11 w-full text-current">
-      <motion.path d={d} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-        initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }} />
+    <svg viewBox={`0 0 ${w} ${h}`} aria-hidden className="mt-5 h-10 w-full text-foreground/70">
+      <motion.path
+        d={d}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      />
     </svg>
   )
 }
 
 function Tile({ kpi, index, total }: { kpi: Kpi; index: number; total: number }) {
   const up = kpi.delta >= 0
+  const isPositive = kpi.label.toLowerCase().includes("response") ? !up : up
+  // For response time, down is good
+  const good = isPositive
   return (
-    <InView once delay={index * 0.1} className="h-full">
-      <article className="flex h-full flex-col rounded-2xl border bg-card p-6">
+    <InView once delay={index * 0.06} className="h-full">
+      <article className="group flex h-full flex-col rounded-xl border bg-card p-5 shadow-sm transition-shadow hover:border-foreground/10">
         <div className="flex items-center justify-between">
           <Ordinal n={index + 1} total={total} />
-          <span className={cn("inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-[10px] font-black tabular-nums",
-            up ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300" : "bg-sky-100 text-sky-900 dark:bg-sky-950 dark:text-sky-300")}>
+          <span
+            className={cn(
+              "inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold tabular-nums",
+              good
+                ? "border-success/20 bg-success-muted text-success"
+                : "border-warning/20 bg-warning-muted text-warning-foreground",
+            )}
+          >
             {up ? <TrendingUp className="size-3" aria-hidden /> : <TrendingDown className="size-3" aria-hidden />}
-            {up ? "+" : ""}{kpi.delta}%
+            {up ? "+" : ""}
+            {kpi.delta}%
           </span>
         </div>
-        <h3 className="mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{kpi.label}</h3>
-        <p aria-live="polite" className="mt-2 font-display text-5xl font-black tabular-nums tracking-tight text-foreground">
-          {kpi.prefix}
+
+        <h3 className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">{kpi.label}</h3>
+
+        <p className="mt-2 font-display text-[34px] font-semibold tabular-nums leading-none tracking-[-0.025em] text-foreground">
+          <span className="align-baseline text-[20px] font-medium text-muted-foreground">{kpi.prefix}</span>
           <SlidingNumber value={kpi.value} />
-          <span className="text-2xl text-muted-foreground">{kpi.suffix}</span>
+          <span className="ml-1 align-baseline text-[18px] font-medium tracking-normal text-muted-foreground">{kpi.suffix}</span>
         </p>
-        <div className="mt-auto">
-          <Spark points={kpi.points} up={up} />
+
+        <div className="mt-auto pt-2">
+          <Spark points={kpi.points} />
           <span className="sr-only">{kpi.points.join(", ")}</span>
+          <p className="mt-2 font-mono text-[11px] font-medium text-muted-foreground">
+            {good ? "Trending up" : "Down"} {Math.abs(kpi.delta)}% vs prior period
+          </p>
         </div>
       </article>
     </InView>
   )
 }
 
-export function KpiStoryBand({ kpis = DEFAULT_KPIS, className }: KpiStoryBandProps) {
+export function KpiStoryBand({
+  eyebrow = "THE NUMBERS · FY26",
+  title = "Key metrics — FY26",
+  subtitle = "Three core indicators. Change is vs. prior period.",
+  kpis = DEFAULT_KPIS,
+  href,
+  hrefLabel = "Full report",
+  className,
+}: KpiStoryBandProps) {
   return (
     <SectionShell width={1120} rule="both" className={className}>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <MonoLabel className="text-muted-foreground">THE NUMBERS · FY26</MonoLabel>
-          <h2 className="mt-2 max-w-lg font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] text-foreground sm:text-[44px]">
-            Proof, not adjectives.
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-xl">
+          <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+          <h2 className="mt-3 max-w-[14ch] font-display text-[28px] font-semibold leading-[1.02] tracking-[-0.022em] text-foreground sm:text-[36px]">
+            {title}
           </h2>
+          {subtitle && <p className="mt-2 max-w-[46ch] text-[13px] leading-6 text-muted-foreground">{subtitle}</p>}
         </div>
-        <a href="#" className="group inline-flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-foreground">
-          Full report
-          <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
-        </a>
+        {href ? (
+          <a
+            href={href}
+            className="group inline-flex items-center gap-1.5 self-start rounded-full border bg-card px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground shadow-sm transition-colors hover:bg-accent sm:self-auto"
+          >
+            {hrefLabel}
+            <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+          </a>
+        ) : null}
       </div>
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {kpis.map((k, i) => <Tile key={k.label} kpi={k} index={i} total={kpis.length} />)}
+
+      <div className="mt-8 grid gap-4 sm:gap-5 md:grid-cols-3">
+        {kpis.map((k, i) => (
+          <Tile key={k.label} kpi={k} index={i} total={kpis.length} />
+        ))}
       </div>
     </SectionShell>
   )

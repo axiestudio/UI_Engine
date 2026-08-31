@@ -1,7 +1,7 @@
 {
   "name": "status",
   "version": "0.1.0",
-  "description": "Uptime status board — 45-day seismograph bars, breathing banner, incident ledger (shadcn/ui new-york-v4 + Motion-Primitives)",
+  "description": "Uptime status board \u2014 45-day seismograph bars, breathing banner, incident ledger (shadcn/ui new-york-v4 + Motion-Primitives)",
   "type": "module",
   "main": "dist/status.cjs.js",
   "module": "dist/status.es.js",
@@ -31,6 +31,11 @@
     "shadcn-ui": [
       "https://ui.shadcn.com/r/styles/new-york-v4/button.json",
       "https://ui.shadcn.com/r/styles/new-york-v4/badge.json"
+    ],
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

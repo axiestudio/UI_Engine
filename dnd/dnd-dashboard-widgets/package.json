@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-dashboard-widgets.es.js",
       "require": "./dist/dnd-dashboard-widgets.cjs.js"
     },

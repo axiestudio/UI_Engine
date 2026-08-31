@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/gallery.es.js",
       "require": "./dist/gallery.cjs.js"
     },

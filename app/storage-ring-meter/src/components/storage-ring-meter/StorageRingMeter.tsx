@@ -52,8 +52,8 @@ export function StorageRingMeter({ segments, quota, label = "STORAGE USED", rese
           })}
         </svg>
         <div className="absolute inset-0 grid place-content-center text-center">
-          <motion.p aria-hidden className="font-display text-2xl font-black tabular-nums leading-none" initial={false} animate={{}}>{Math.round(pct * 100)}<span className="text-[11px]">%</span></motion.p>
-          <p className="mt-1 font-mono text-[8px] font-black uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
+          <motion.p aria-hidden className="font-display text-2xl font-semibold tabular-nums leading-none tracking-tight" initial={false} animate={{}}>{Math.round(pct * 100)}<span className="text-[11px]">%</span></motion.p>
+          <p className="mt-1 text-[10px] font-medium text-muted-foreground">{label}</p>
         </div>
       </div>
       <ul className="min-w-0 flex-1 space-y-1">
@@ -68,7 +68,7 @@ export function StorageRingMeter({ segments, quota, label = "STORAGE USED", rese
         ))}
         <li className="flex items-center justify-between px-2 pt-1 text-[11px] text-muted-foreground">
           <span>{pct >= 1 ? "over quota" : `${human(quota - used)} free`}</span>
-          {resetNote && <span className="font-mono text-[9px] uppercase tracking-[0.14em]">{resetNote}</span>}
+          {resetNote && <span className="text-[11px] text-muted-foreground">{resetNote}</span>}
         </li>
       </ul>
       <p className="sr-only" aria-live="polite">{human(used)} of {human(quota)} used.</p>

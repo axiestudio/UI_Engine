@@ -26,11 +26,17 @@
   "presetSources": {
     "motion-primitives": [
       "spotlight",
-      "text-effect"
+      "text-effect",
+      "in-view"
     ],
     "shadcn-ui": [
       "https://ui.shadcn.com/r/styles/new-york-v4/button.json",
       "https://ui.shadcn.com/r/styles/new-york-v4/input.json"
+    ],
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

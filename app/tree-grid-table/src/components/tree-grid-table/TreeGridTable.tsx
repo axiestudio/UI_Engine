@@ -40,11 +40,11 @@ export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className
             <button aria-label={`${expanded ? "Collapse" : "Expand"} ${n.label}`} onClick={() => toggle(n)} className="grid size-6 shrink-0 place-items-center rounded-md text-muted-foreground hover:bg-accent"><motion.span animate={{ rotate: expanded ? 90 : 0 }} transition={{ duration: 0.18 }} className="block"><ChevronRight className="size-4" /></motion.span></button>
           ) : <span aria-hidden className="size-6 shrink-0" />}
           <span className="min-w-0 flex-1 truncate font-medium">{n.label}</span>
-          {n.meta && <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 md:opacity-100">{n.meta}</span>}
+          {n.meta && <span className="text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 md:opacity-100">{n.meta}</span>}
         </div>
         {expanded && (
           <ul role="group">
-            {loading.has(n.id) && <li className="flex h-8 items-center gap-2 px-4" style={{ paddingLeft: 10 + (depth + 1) * 18 + 28 }}><Loader2 className="size-3.5 animate-spin text-muted-foreground" /><span className="font-mono text-[10px] uppercase text-muted-foreground">loading…</span></li>}
+            {loading.has(n.id) && <li className="flex h-8 items-center gap-2 px-4" style={{ paddingLeft: 10 + (depth + 1) * 18 + 28 }}><Loader2 className="size-3.5 animate-spin text-muted-foreground" /><span className="text-xs text-muted-foreground">loading…</span></li>}
             <AnimatePresence initial={false}>
               {children?.map((c) => (
                 <motion.ul key={c.id} initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }} className="overflow-hidden list-none">
@@ -57,5 +57,5 @@ export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className
       </li>
     )
   }
-  return <ul role="tree" className={cn("divide-y border font-sans", className)}>{nodes.map((n) => <Row key={n.id} n={n} depth={0} />)}</ul>
+  return <ul role="tree" className={cn("divide-y divide-border/70 border border-border/70", className)}>{nodes.map((n) => <Row key={n.id} n={n} depth={0} />)}</ul>
 }

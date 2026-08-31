@@ -27,7 +27,7 @@ export function HeroSplit({
   subtitle = "A token-first collection of sections for studios, agencies and brands — designed to look intentional, not assembled.",
   actions = [{ label: "Start a project", href: "#" }, { label: "See the work", variant: "outline", href: "#" }],
   points = ["Ship sections as tokens", "Accessible by default", "One signature move each"],
-  image = { src: "/frames/poster.webp", alt: "Studio", caption: "STUDIO · EVENING LIGHT" },
+  image = { src: "/showcase/gallery-02.webp", alt: "Modern editorial workspace", caption: "ATELIER · DAYLIGHT" },
   tone = "paper",
   className,
 }: HeroSplitProps) {

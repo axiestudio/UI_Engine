@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/story-pinned-plates.es.js",
       "require": "./dist/story-pinned-plates.cjs.js"
     },

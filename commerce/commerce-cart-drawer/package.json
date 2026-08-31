@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/commerce-cart-drawer.es.js",
       "require": "./dist/commerce-cart-drawer.cjs.js"
     },

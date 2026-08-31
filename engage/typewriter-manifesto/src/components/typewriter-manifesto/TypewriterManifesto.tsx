@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 
@@ -23,37 +24,73 @@ export type TypewriterManifestoProps = {
 }
 
 export function TypewriterManifesto({ eyebrow = "TRANSMISSION", title, lines, speed = 22, screen = false, className }: TypewriterManifestoProps) {
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-  const [visible, setVisible] = React.useState(reduce ? lines.length : 0)
+  const reduceMotion = useReducedMotion()
+  const reduce = !!reduceMotion
+  const [visible, setVisible] = React.useState(0)
   const [chars, setChars] = React.useState(0)
   const text = typeof lines[visible] === "string" ? (lines[visible] as string) : null
   const done = visible >= lines.length
+
+  // Sync initial state when reduced-motion preference changes (SSR-safe)
+  React.useEffect(() => {
+    if (reduce) {
+      setVisible(lines.length)
+      setChars(0)
+    } else {
+      setVisible(0)
+      setChars(0)
+    }
+  }, [reduce, lines.length])
+
   React.useEffect(() => {
     if (reduce) return
-    if (!text) { if (!done) setVisible((v) => Math.min(lines.length, v + 1)); return }
-    if (chars < text.length) { const t = setTimeout(() => setChars((c) => c + 1), 1000 / speed); return () => clearTimeout(t) }
-    const t = setTimeout(() => { setVisible((v) => v + 1); setChars(0) }, 420)
+    if (!text) {
+      if (!done) {
+        const t = setTimeout(() => setVisible((v) => Math.min(lines.length, v + 1)), 120)
+        return () => clearTimeout(t)
+      }
+      return
+    }
+    if (chars < text.length) {
+      const t = setTimeout(() => setChars((c) => c + 1), 1000 / speed)
+      return () => clearTimeout(t)
+    }
+    const t = setTimeout(() => {
+      setVisible((v) => v + 1)
+      setChars(0)
+    }, 420)
     return () => clearTimeout(t)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chars, visible, reduce, done])
+  }, [chars, visible, reduce, done, text, speed, lines.length])
 
   const Body = (
     <div className={cn("relative mx-auto w-full max-w-[720px]", screen && "mx-0")}>
-      <ul className="space-y-2.5 font-mono text-[13px] leading-relaxed sm:text-[15px]" aria-label={title ? undefined : "Manifest"}>
+      <ul
+        className="space-y-2.5 font-mono text-[13px] leading-relaxed sm:text-[15px]"
+        aria-label={typeof title === "string" ? title : "Manifest"}
+        aria-live={reduce ? "off" : "polite"}
+        aria-busy={!done && !reduce}
+      >
         {lines.slice(0, visible).map((l, i) => (
           <li key={i} className="flex gap-3">
-            <span aria-hidden className="select-none opacity-40">{String(i + 1).padStart(2, "0")}</span>
-            <span>{typeof l === "string" ? l : l}</span>
+            <span aria-hidden className="select-none tabular-nums opacity-40">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span>{l}</span>
           </li>
         ))}
-        {text && !done && (
+        {text && !done && !reduce && (
           <li className="flex gap-3" aria-hidden>
-            <span className="select-none opacity-40">{String(visible + 1).padStart(2, "0")}</span>
-            <span>{text.slice(0, chars)}<span className={cn("ml-0.5 inline-block h-[1.05em] w-[0.6ch] translate-y-[3px] bg-current", !reduce && "animate-[blink_1s_steps(2)_infinite]")} /></span>
+            <span className="select-none tabular-nums opacity-40">{String(visible + 1).padStart(2, "0")}</span>
+            <span>
+              {text.slice(0, chars)}
+              <span className="ml-0.5 inline-block h-[1.05em] w-[0.6ch] translate-y-[3px] bg-current animate-[blink_1s_steps(2)_infinite]" aria-hidden />
+            </span>
           </li>
         )}
       </ul>
-      {reduce && <span className="sr-only" aria-live="off">{lines.join(". ")}</span>}
+      <span className="sr-only" aria-live={reduce ? "off" : "polite"}>
+        {reduce ? lines.filter((l) => typeof l === "string").join(". ") : done ? "Transmission complete." : `Line ${visible + 1} of ${lines.length}`}
+      </span>
       <style>{`@keyframes blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }`}</style>
     </div>
   )

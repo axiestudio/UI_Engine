@@ -6,8 +6,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Loader2 } from 'lucide-react';
-import { FaMap } from 'react-icons/fa6';
+import { X, Loader2, MapPin } from 'lucide-react';
 
 interface ViewOnMapProps {
   locationName?: string;
@@ -71,7 +70,7 @@ export const ViewOnMap: React.FC<ViewOnMapProps> = ({
                 />
 
                 <motion.div className="relative z-10 flex items-center space-x-3 px-4 py-4">
-                  <FaMap className="text-muted-foreground h-5 w-5 transition-colors" />
+                  <MapPin className="text-muted-foreground h-5 w-5 transition-colors" />
                   <span className="text-foreground text-[18px] font-semibold tracking-tight transition-colors">
                     View on Map
                   </span>

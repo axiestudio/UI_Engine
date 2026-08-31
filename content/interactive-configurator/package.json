@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-configurator.es.js",
       "require": "./dist/interactive-configurator.cjs.js"
     },

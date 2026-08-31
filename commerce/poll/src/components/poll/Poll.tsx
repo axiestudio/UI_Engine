@@ -68,11 +68,11 @@ export function Poll({
     <section className={cn("w-full bg-background text-foreground", className)} aria-label={question}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[560px] px-4 py-14 sm:px-6">
-          <div className="rounded-[24px] border bg-card p-6 shadow-sm">
+          <div className="rounded-xl border bg-card p-6 shadow-sm">
             <div className="flex items-start justify-between gap-3">
-              <h2 className="font-display text-xl font-extrabold leading-snug tracking-tight">{question}</h2>
+              <h2 className="font-display text-xl font-semibold leading-snug tracking-[-0.02em]">{question}</h2>
               {!voted && total > 0 && (
-                <Badge variant="outline" className="shrink-0 font-mono text-[10px] font-bold tracking-widest">
+                <Badge variant="outline" className="shrink-0 font-mono text-[10px] font-bold tracking-[0.12em]">
                   <AnimatedNumber value={total} /> {""}votes
                 </Badge>
               )}
@@ -114,22 +114,22 @@ export function Poll({
                     <span aria-hidden className={cn("relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-border bg-background transition-colors", picked && "border-foreground bg-foreground text-background")}>
                       {picked && <Check className="h-3 w-3 stroke-[3]" />}
                     </span>
-                    <span className="relative z-10 flex-1 text-sm font-bold tracking-tight">{o.label}</span>
-                    {showResults && <span className="relative z-10 font-mono text-xs font-black tabular-nums text-muted-foreground">{pct}%</span>}
+                    <span className="relative z-10 flex-1 text-sm font-bold tracking-[-0.02em]">{o.label}</span>
+                    {showResults && <span className="relative z-10 font-mono text-xs font-semibold tabular-nums text-muted-foreground">{pct}%</span>}
                   </label>
                 )
               })}
 
               {!voted && (
-                <Button type="submit" disabled={!choice || pending} className="mt-2 h-10 self-start rounded-full px-6 font-display text-sm font-extrabold tracking-tight" aria-busy={pending}>
+                <Button type="submit" disabled={!choice || pending} className="mt-2 h-10 self-start rounded-full px-6 font-display text-sm font-semibold tracking-[-0.02em]" aria-busy={pending}>
                   {pending ? "Sending…" : voted ? thanksLabel : onVote ? voteLabel : `${voteLabel} (wire onVote)`}
                 </Button>
               )}
               {errored && <p role="alert" className="text-xs font-semibold text-destructive">Vote failed — try again.</p>}
-              {voted && <p role="status" className="mt-2 text-sm font-bold text-emerald-600">{thanksLabel}</p>}
+              {voted && <p role="status" className="mt-2 text-sm font-bold text-success">{thanksLabel}</p>}
             </form>
 
-            <p className="mt-4 font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+            <p className="mt-4 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
               {total ? totalLabel(total) : "First vote"}
             </p>
           </div>

@@ -52,13 +52,15 @@ function Door({
   return (
     <button
       type="button"
+      role="radio"
+      aria-checked={chosen}
+      tabIndex={chosen ? 0 : -1}
       onClick={onSelect}
-      aria-pressed={chosen}
       className={cn(
-        "group relative flex min-h-[220px] flex-1 flex-col overflow-hidden rounded-[24px] border p-5 text-left transition-[flex-grow,border-color,background-color,box-shadow] duration-500 ease-out sm:min-h-[300px]",
+        "group relative flex min-h-[220px] flex-1 flex-col overflow-hidden rounded-2xl border p-5 text-left shadow-sm transition-[flex-grow,border-color,background-color,box-shadow,transform] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[300px]",
         chosen
-          ? "border-foreground bg-card shadow-md"
-          : "border-border bg-card/40 hover:border-foreground/40 hover:bg-card/70"
+          ? "border-foreground bg-card shadow-md ring-1 ring-foreground/10"
+          : "border-border bg-card/40 hover:border-foreground/30 hover:bg-card/60 hover:shadow-sm",
       )}
       style={grow === "yes" ? { flexGrow: 1.55 } : undefined}
     >
@@ -106,6 +108,7 @@ export function Choice({ question, options, defaultId, value, onChange, confirmL
   const controlled = value !== undefined
   const [internal, setInternal] = React.useState(defaultId ?? "")
   const picked = controlled ? value : internal
+  const groupId = React.useId()
   if (options.length < 2) return null
 
   const select = (id: string) => {
@@ -113,20 +116,45 @@ export function Choice({ question, options, defaultId, value, onChange, confirmL
     onChange?.(id)
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const idx = options.findIndex((o) => o.id === picked)
+    let next: number | null = null
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = idx < options.length - 1 ? idx + 1 : 0
+    if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = idx > 0 ? idx - 1 : options.length - 1
+    if (e.key === "Home") next = 0
+    if (e.key === "End") next = options.length - 1
+    if (next !== null) {
+      e.preventDefault()
+      select(options[next].id)
+    }
+  }
+
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={question}>
+    <section className={cn("w-full bg-background text-foreground", className)} aria-labelledby={`${groupId}-title`}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[1000px] px-4 py-16 sm:px-6 lg:py-20">
-          <h2 className="max-w-xl font-display text-[26px] font-black leading-[1.1] tracking-tight sm:text-3xl">
+          <h2 id={`${groupId}-title`} className="max-w-xl font-display text-[26px] font-black leading-[1.1] tracking-tight sm:text-3xl">
             {question}
           </h2>
-          <p className="mt-2 max-w-md text-sm font-medium text-muted-foreground">There is no wrong door — only the one you'd rather walk through today.</p>
+          <p id={`${groupId}-desc`} className="mt-2 max-w-md text-sm font-medium text-muted-foreground">
+            There is no wrong door — only the one you’d rather walk through today.
+          </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">
+          <div role="radiogroup" aria-labelledby={`${groupId}-title`} aria-describedby={`${groupId}-desc`} onKeyDown={handleKeyDown} className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">
             {options.map((o) => (
-              <Door key={o.id} o={o} chosen={picked === o.id} grow={!reduce && picked === o.id ? "yes" : undefined} onSelect={() => select(o.id)} confirmLabel={confirmLabel} />
+              <Door
+                key={o.id}
+                o={o}
+                chosen={picked === o.id}
+                grow={!reduce && picked === o.id ? "yes" : undefined}
+                onSelect={() => select(o.id)}
+                confirmLabel={confirmLabel}
+              />
             ))}
           </div>
+          <p className="sr-only" aria-live="polite">
+            Selected: {options.find((o) => o.id === picked)?.title ?? "none"}
+          </p>
         </div>
       </InView>
     </section>

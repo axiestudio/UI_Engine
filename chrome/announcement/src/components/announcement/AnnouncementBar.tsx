@@ -49,7 +49,7 @@ export function AnnouncementBar({
   cta,
   tone = "ink",
   dismissKey,
-  interval = 3,
+  interval = 6,
   className,
 }: AnnouncementBarProps) {
   const [open, setOpen] = React.useState(() => {
@@ -60,6 +60,8 @@ export function AnnouncementBar({
       return true
     }
   })
+  const [paused, setPaused] = React.useState(false)
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   if (!open) return null
   const list = normalize(messages)
@@ -92,11 +94,17 @@ export function AnnouncementBar({
         <span className="absolute bottom-2 left-2 size-2 border-b border-l border-current" />
         <span className="absolute bottom-2 right-2 size-2 border-b border-r border-current" />
       </span>
-      <div className="mx-auto flex h-10 w-full max-w-[1280px] items-center justify-center gap-4 px-12 text-center sm:px-14">
-        {list.length === 1 ? (
-          renderMessage(list[0])
+      <div
+        className="mx-auto flex h-10 w-full max-w-[1280px] items-center justify-center gap-4 px-12 text-center sm:px-14"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+      >
+        {list.length === 1 || reduce ? (
+          renderMessage(list[0]!)
         ) : (
-          <TextLoop interval={interval} className="font-mono text-[11px] font-bold uppercase tracking-widest sm:text-xs">
+          <TextLoop interval={paused ? 9999 : interval} className="font-mono text-[11px] font-semibold uppercase tracking-widest sm:text-xs">
             {list.map((m, i) => (
               <span key={i}>{renderMessage(m)}</span>
             ))}
@@ -105,7 +113,7 @@ export function AnnouncementBar({
         {cta && (
           <a
             href={cta.href}
-            className={cn("shrink-0 rounded-full px-3 py-1 font-display text-[11px] font-black uppercase tracking-tight transition-opacity hover:opacity-90", ink ? "bg-background text-foreground" : "bg-foreground text-background")}
+            className={cn("shrink-0 rounded-md px-3 py-1 font-display text-xs font-semibold uppercase tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring", ink ? "bg-background text-foreground hover:bg-background/90" : "bg-foreground text-background hover:bg-foreground/90")}
           >
             {cta.label}
           </a>

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/reveal-progressive-blur.es.js",
       "require": "./dist/reveal-progressive-blur.cjs.js"
     },

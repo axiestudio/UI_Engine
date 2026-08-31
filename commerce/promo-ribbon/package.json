@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/promo-ribbon.es.js",
       "require": "./dist/promo-ribbon.cjs.js"
     },

@@ -32,6 +32,7 @@ export function HeaderMinimal({
 }: HeaderMinimalProps) {
   const [open, setOpen] = React.useState(false)
   const [scrolled, setScrolled] = React.useState(false)
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 12))
 
@@ -46,7 +47,7 @@ export function HeaderMinimal({
           borderColor: scrolled ? "hsl(var(--border))" : "hsl(var(--border) / 0)",
           boxShadow: scrolled ? "0 8px 30px -12px hsl(0 0% 0% / 0.12)" : "0 0 0 0 hsl(0 0% 0% / 0)",
         }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
+        transition={{ duration: reduce ? 0 : 0.35, ease: "easeOut" }}
         className="border-b backdrop-blur-xl"
       >
         <div className="mx-auto flex h-14 w-full max-w-[1100px] items-center justify-between px-4 sm:px-6">

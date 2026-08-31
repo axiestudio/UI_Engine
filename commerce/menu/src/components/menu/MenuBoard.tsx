@@ -97,7 +97,7 @@ export function MenuBoard({
           {/* header */}
           <div className="pb-12 pt-2 text-center">
             {eyebrow && <MonoLabel className={cn("justify-center", ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</MonoLabel>}
-            <h2 className={cn("mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-black leading-[1.02] tracking-[-0.03em]", ink ? "text-background" : "text-foreground")}>
+            <h2 className={cn("mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-semibold leading-[1.02] tracking-[-0.03em]", ink ? "text-background" : "text-foreground")}>
               {title}
             </h2>
             {subtitle && (
@@ -119,7 +119,7 @@ export function MenuBoard({
               <section aria-label={section.name} className={cn("relative pb-12", si > 0 && "pt-2")}>
                 <div className="flex items-baseline gap-4">
                   <Ordinal n={si + 1} className={ink ? "text-background/40" : "text-muted-foreground/70"} />
-                  <h3 className={cn("font-display text-xl font-extrabold uppercase tracking-[0.08em]", ink ? "text-background" : "text-foreground")}>
+                  <h3 className={cn("font-display text-xl font-semibold uppercase tracking-[0.08em]", ink ? "text-background" : "text-foreground")}>
                     {section.name}
                   </h3>
                   <span aria-hidden className={cn("-mt-0.5 h-px flex-1", ink ? "bg-background/15" : "bg-border")} />

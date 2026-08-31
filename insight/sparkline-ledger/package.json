@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/sparkline-ledger.es.js",
       "require": "./dist/sparkline-ledger.cjs.js"
     },

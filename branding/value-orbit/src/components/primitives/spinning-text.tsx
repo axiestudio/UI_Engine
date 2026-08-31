@@ -4,8 +4,10 @@
  */
 'use client';
 import { cn } from '@/lib/utils';
-import { motion, Transition, Variants } from 'motion/react';
-import React, { CSSProperties } from 'react';
+import { motion } from 'motion/react';
+import type { Transition, Variants } from 'motion/react';
+import React from 'react';
+import type { CSSProperties } from 'react';
 
 export type SpinningTextProps = {
   children: string;
@@ -75,7 +77,7 @@ export function SpinningText({
       initial='hidden'
       animate='visible'
       variants={containerVariants}
-      transition={finalTransition}
+      transition={finalTransition as Transition}
     >
       {letters.map((letter, index) => (
         <motion.span

@@ -25,7 +25,15 @@
   ],
   "presetSources": {
     "original-design": true,
-    "vendored": "handcraft kit"
+    "vendored": "handcraft kit",
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
+    ],
+    "motion-primitives": [
+      "in-view"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

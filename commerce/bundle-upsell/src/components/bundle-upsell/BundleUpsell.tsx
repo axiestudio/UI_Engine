@@ -31,14 +31,14 @@ export function BundleUpsell({ eyebrow = "BUNDLE", title = "Add the bundle.", bu
             <p className="font-display text-lg font-bold">{bundle.name}</p>
             <ul className="mt-3 grid grid-cols-2 gap-2">
               {bundle.items.map((it) => (
-                <li key={it} className="flex items-center gap-2 text-sm font-medium"><Check className="h-3.5 w-3.5 text-emerald-500" /> {it}</li>
+                <li key={it} className="flex items-center gap-2 text-sm font-medium"><Check className="h-3.5 w-3.5 text-success" /> {it}</li>
               ))}
             </ul>
           </div>
           <div className="shrink-0 text-right">
-            {bundle.save && <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-emerald-600">{bundle.save}</p>}
-            <p className="font-display text-3xl font-black">{bundle.price}</p>
-            <Button size="sm" className="mt-3 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest">{cta}</Button>
+            {bundle.save && <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-success">{bundle.save}</p>}
+            <p className="font-display text-3xl font-semibold">{bundle.price}</p>
+            <Button size="sm" className="mt-3 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.12em]">{cta}</Button>
           </div>
         </div>
       </InView>
@@ -50,7 +50,7 @@ function SectionShellHeader({ eyebrow, title, ink }: { eyebrow: string; title: R
   return (
     <>
       <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
-      <h2 className="mt-3 font-display text-2xl font-black tracking-[-0.02em] sm:text-3xl">{title}</h2>
+      <h2 className="mt-3 font-display text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">{title}</h2>
     </>
   )
 }

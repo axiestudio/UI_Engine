@@ -1,21 +1,13 @@
 import * as React from "react"
-import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
-import { InView } from "@/components/primitives/in-view"
-
-// ═══ JOB      make retention visible as waves, not a spreadsheet
-// ═══ EMOTION  pattern recognition — the tide pulls back or holds
-// ═══ SIGNATURE cohort heatmap where hovering a cell cross-highlights its
-//               row AND column with lighthouse beams; cells pulse on entry
-//   SITE      → data-led case studies, investor pages
-//   APP       → analytics surfaces; weeks × cohorts are props
-//   A11Y      table semantics; sr-only data table; color+opacity encoding
 
 export type CohortWavesProps = {
+  eyebrow?: string
+  title?: string
+  subtitle?: string
   cohorts?: string[]
   weeks?: number
-  /** retention[c][w] = % retained; w0 = 100 */
   retention?: number[][]
   className?: string
 }
@@ -30,65 +22,119 @@ const DEFAULT_RETENTION = [
   [100, 70, 0, 0, 0, 0],
 ]
 
-export function CohortWaves({ cohorts = DEFAULT_COHORTS, weeks = 6, retention = DEFAULT_RETENTION, className }: CohortWavesProps) {
+export function CohortWaves({
+  eyebrow = "RETENTION · COHORT WAVES",
+  title = "Cohort retention",
+  subtitle = "Rows are signup months, columns are weeks since activation. Darker = higher retention.",
+  cohorts = DEFAULT_COHORTS,
+  weeks = 6,
+  retention = DEFAULT_RETENTION,
+  className,
+}: CohortWavesProps) {
   const [hover, setHover] = React.useState<{ c: number; w: number } | null>(null)
   return (
     <SectionShell width={920} className={className}>
-      <MonoLabel className="text-muted-foreground">RETENTION · COHORT WAVES</MonoLabel>
-      <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">Who stays, week by week.</h2>
-
-      <div className="mt-10 overflow-x-auto">
-        <table className="w-full min-w-[560px] border-separate border-spacing-1" onMouseLeave={() => setHover(null)}>
-          <caption className="sr-only">Retention percentage by signup month and week since signup</caption>
-          <thead>
-            <tr>
-              <th scope="col" className="pb-2 text-left font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Cohort</th>
-              {Array.from({ length: weeks }, (_, w) => (
-                <th key={w} scope="col" className={cn("pb-2 text-center font-mono text-[10px] font-bold uppercase tracking-[0.16em]", hover?.w === w ? "text-foreground" : "text-muted-foreground")}>W{w}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {cohorts.map((c, ci) => (
-              <tr key={c}>
-                <th scope="row" className={cn("pr-3 text-left font-mono text-[11px] font-bold uppercase tracking-[0.14em]", hover?.c === ci ? "text-foreground" : "text-muted-foreground")}>{c} '26</th>
-                {Array.from({ length: weeks }, (_, w) => {
-                  const v = retention[ci]?.[w] ?? 0
-                  const empty = v === 0
-                  const active = hover && (hover.c === ci || hover.w === w)
-                  const exact = hover?.c === ci && hover?.w === w
-                  return (
-                    <td key={w}>
-                      <motion.button
-                        type="button"
-                        aria-label={`${c} cohort, week ${w}: ${empty ? "no data" : `${v} percent retained`}`}
-                        onMouseEnter={() => setHover({ c: ci, w })}
-                        onFocus={() => setHover({ c: ci, w })}
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.35, delay: (ci * weeks + w) * 0.012 }}
-                        className={cn(
-                          "relative h-10 w-full min-w-14 rounded-md font-mono text-[10px] font-bold tabular-nums transition-all",
-                          empty ? "border border-dashed border-border bg-transparent text-muted-foreground/40"
-                            : active ? "text-background" : "text-foreground",
-                          exact && "ring-2 ring-foreground ring-offset-1 ring-offset-background"
-                        )}
-                        style={!empty ? { backgroundColor: `hsl(var(--foreground) / ${active ? 0.14 + (v / 100) * 0.8 : 0.08 + (v / 100) * 0.5})` } : undefined}
-                      >
-                        {empty ? "·" : `${v}%`}
-                      </motion.button>
-                    </td>
-                  )
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-xl">
+          <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+          <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
+          <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
+        </div>
+        <div className="hidden items-center gap-2 sm:flex">
+          <span className="font-mono text-[11px] font-medium text-muted-foreground">Retention</span>
+          <span className="flex items-center gap-1">
+            <span className="h-2 w-6 rounded-sm border bg-foreground/10" />
+            <span className="h-2 w-6 rounded-sm bg-foreground/35" />
+            <span className="h-2 w-6 rounded-sm bg-foreground/75" />
+          </span>
+          <span className="font-mono text-[11px] tabular-nums text-muted-foreground">0 → 100%</span>
+        </div>
       </div>
-      <p aria-live="polite" className="mt-4 h-5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-        {hover ? `${cohorts[hover.c]} cohort · week ${hover.w}` : "hover a cell to cross-highlight"}
-      </p>
+
+      <div className="mt-8 overflow-hidden rounded-xl border bg-card shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px] border-separate border-spacing-0" onMouseLeave={() => setHover(null)}>
+            <caption className="sr-only">Retention percentage by signup month and week since signup</caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="sticky left-0 z-10 bg-muted/40 px-4 py-3 text-left font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                  Cohort
+                </th>
+                {Array.from({ length: weeks }, (_, w) => (
+                  <th
+                    key={w}
+                    scope="col"
+                    className={cn(
+                      "px-2 py-3 text-center font-mono text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors",
+                      hover?.w === w ? "bg-foreground text-background" : "text-muted-foreground",
+                    )}
+                  >
+                    W{w}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/40">
+              {cohorts.map((c, ci) => (
+                <tr key={c} className={cn(hover?.c === ci && "bg-muted/30")}>
+                  <th
+                    scope="row"
+                    className={cn(
+                      "sticky left-0 z-10 whitespace-nowrap px-4 py-2 text-left font-mono text-[11px] font-semibold uppercase tracking-[0.06em] transition-colors",
+                      hover?.c === ci ? "bg-foreground text-background" : "bg-card text-muted-foreground",
+                    )}
+                  >
+                    {c} ’26
+                  </th>
+                  {Array.from({ length: weeks }, (_, w) => {
+                    const v = retention[ci]?.[w] ?? 0
+                    const empty = v === 0
+                    const isRow = hover?.c === ci
+                    const isCol = hover?.w === w
+                    const exact = hover?.c === ci && hover?.w === w
+                    return (
+                      <td key={w} className="p-1">
+                        <button
+                          type="button"
+                          aria-label={`${c} cohort, week ${w}: ${empty ? "no data" : `${v}% retained`}`}
+                          onMouseEnter={() => setHover({ c: ci, w })}
+                          onFocus={() => setHover({ c: ci, w })}
+                          className={cn(
+                            "relative flex h-9 w-full min-w-14 items-center justify-center rounded-md font-mono text-[11px] font-semibold tabular-nums ring-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                            empty
+                              ? "border border-dashed border-border bg-transparent text-muted-foreground/30"
+                              : exact
+                                ? "text-background ring-2 ring-foreground ring-offset-1"
+                                : isRow || isCol
+                                  ? "text-background"
+                                  : "text-foreground",
+                          )}
+                          style={
+                            !empty
+                              ? {
+                                  backgroundColor: `hsl(var(--foreground) / ${exact ? 0.88 : isRow || isCol ? 0.22 + (v / 100) * 0.65 : 0.06 + (v / 100) * 0.42})`,
+                                }
+                              : undefined
+                          }
+                        >
+                          {empty ? "—" : `${v}%`}
+                        </button>
+                      </td>
+                    )
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="flex items-center justify-between border-t bg-muted/20 px-4 py-2.5">
+          <p aria-live="polite" className="font-mono text-[11px] font-medium tracking-wide text-muted-foreground">
+            {hover ? `${cohorts[hover.c]} cohort · week ${hover.w} · ${retention[hover.c]?.[hover.w] ? `${retention[hover.c][hover.w]}% retained` : "no data"}` : "Hover or focus a cell to cross-highlight its cohort and week"}
+          </p>
+          <span className="hidden font-mono text-[11px] tabular-nums text-muted-foreground sm:block">{cohorts.length} × {weeks} cohorts</span>
+        </div>
+      </div>
     </SectionShell>
   )
 }

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/media-fullscreen-lightbox.es.js",
       "require": "./dist/media-fullscreen-lightbox.cjs.js"
     },

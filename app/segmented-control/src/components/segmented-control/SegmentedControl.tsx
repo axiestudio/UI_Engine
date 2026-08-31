@@ -41,7 +41,7 @@ export function SegmentedControl({ options, value, onChange, size = "md", classN
       {options.map((o) => {
         const Icon = o.icon
         return (
-          <button key={o.value} ref={(el) => { refs.current[o.value] = el }} role="radio" aria-checked={o.value === value} tabIndex={o.value === value ? 0 : -1} onClick={() => onChange(o.value)} className={cn("relative z-[1] flex items-center gap-1.5 rounded-full px-3.5 font-bold transition-colors", size === "sm" ? "h-7 text-[11px]" : "h-8 text-[12px]", o.value === value ? "text-foreground" : "text-muted-foreground hover:text-foreground")}>
+          <button key={o.value} ref={(el) => { refs.current[o.value] = el }} role="radio" aria-checked={o.value === value} tabIndex={o.value === value ? 0 : -1} onClick={() => onChange(o.value)} className={cn("relative z-[1] flex items-center gap-1.5 rounded-full px-3.5 font-medium transition-colors", size === "sm" ? "h-7 text-[11px]" : "h-8 text-[12px]", o.value === value ? "text-foreground" : "text-muted-foreground hover:text-foreground")}>
             {Icon && <Icon className="size-3.5" />} {o.label}
           </button>
         )

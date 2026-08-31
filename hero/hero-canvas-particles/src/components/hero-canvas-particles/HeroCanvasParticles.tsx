@@ -69,11 +69,11 @@ function Field({ dots, mouse }: { dots: { x: number; y: number; vx: number; vy: 
     <svg className="h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
       {p.map((d, i) => (
         <g key={i}>
-          <circle cx={d.x * 100} cy={d.y * 100} r={d.r * (0.1)} fill="hsl(var(--site-accent) / 0.8)" />
+          <circle cx={d.x * 100} cy={d.y * 100} r={d.r * (0.1)} fill="hsl(var(--primary) / 0.8)" />
           {p.slice(i + 1, i + 4).map((o, j) => {
             const dist = Math.hypot(d.x - o.x, d.y - o.y)
             if (dist > 0.1) return null
-            return <line key={j} x1={d.x * 100} y1={d.y * 100} x2={o.x * 100} y2={o.y * 100} stroke="hsl(var(--site-accent) / 0.25)" strokeWidth={0.15} />
+            return <line key={j} x1={d.x * 100} y1={d.y * 100} x2={o.x * 100} y2={o.y * 100} stroke="hsl(var(--primary) / 0.25)" strokeWidth={0.15} />
           })}
         </g>
       ))}

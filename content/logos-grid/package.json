@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/logos-grid.es.js",
       "require": "./dist/logos-grid.cjs.js"
     },

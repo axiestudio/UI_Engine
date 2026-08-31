@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 
@@ -26,7 +26,8 @@ export type SignalFlagsProps = {
 }
 
 export function SignalFlags({ word, line = "The crew on shore has already seen your message.", eyebrow = "SIGNAL STATION — ALPHA", cta, className }: SignalFlagsProps) {
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+  const _reduce = useReducedMotion()
+  const reduce = !!_reduce
   const letters = word.toUpperCase().split("").slice(0, 10)
   const [replay, setReplay] = React.useState(0)
   return (

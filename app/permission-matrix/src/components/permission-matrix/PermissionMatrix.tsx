@@ -22,17 +22,17 @@ export function PermissionMatrix({ perms, roles, value, onSet, readOnly, classNa
   const cell = (p: string, r: string): TriState => value[r]?.[p] ?? "deny"
   return (
     <div className={cn("overflow-x-auto rounded-lg border font-sans", className)}>
-      <table className="w-full border-collapse text-[12px]">
+      <table className="w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b bg-muted/50">
-            <th scope="col" className="w-52 p-3 text-left font-black uppercase tracking-[0.12em] text-[10px] text-muted-foreground">Permission</th>
-            {roles.map((r) => <th key={r} scope="col" className={cn("p-3 text-center font-black uppercase tracking-[0.12em] text-[10px] text-muted-foreground", hover === r && "bg-accent")}>{r}</th>)}
+          <tr className="border-b border-border/60 bg-muted/50">
+            <th scope="col" className="w-52 p-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Permission</th>
+            {roles.map((r) => <th key={r} scope="col" className={cn("p-3 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground", hover === r && "bg-accent")}>{r}</th>)}
           </tr>
         </thead>
         <tbody>
           {perms.map((p) => (
-            <tr key={p} className="border-b border-app-line last:border-0 odd:bg-muted/20" onMouseEnter={() => setHover(p)} onMouseLeave={() => setHover(null)}>
-              <th scope="row" className="p-3 text-left font-semibold">{p}{dirty[p] && <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} aria-hidden className="ml-2 inline-block size-1.5 rounded-full bg-[hsl(var(--warn))]" />}</th>
+            <tr key={p} className="border-b border-border/60 last:border-0 odd:bg-muted/20" onMouseEnter={() => setHover(p)} onMouseLeave={() => setHover(null)}>
+              <th scope="row" className="p-3 text-left font-medium">{p}{dirty[p] && <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} aria-hidden className="ml-2 inline-block size-1.5 rounded-full bg-[hsl(var(--warn))]" />}</th>
               {roles.map((r) => {
                 const v = cell(p, r)
                 const next = CYCLE[(CYCLE.indexOf(v) + 1) % 3]

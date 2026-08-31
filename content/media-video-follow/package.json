@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/media-video-follow.es.js",
       "require": "./dist/media-video-follow.cjs.js"
     },

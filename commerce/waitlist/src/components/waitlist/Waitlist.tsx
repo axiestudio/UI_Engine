@@ -42,7 +42,7 @@ export function Waitlist({
   eyebrow,
   title,
   titleHighlight,
-  subtitle = "Be first through the door. One email when we launch, nothing else.",
+  subtitle = "Join the waitlist — one email at launch.",
   placeholder = "you@company.com",
   buttonLabel = "Join waitlist",
   successTitle = "You're in line",
@@ -90,7 +90,7 @@ export function Waitlist({
 
       <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-24 text-center sm:px-6">
         <InView variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5 }} viewOptions={{ once: true }}>
-          <span className={cn("inline-flex items-center gap-2.5 rounded-full border px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.22em]", ink ? "border-background/25 text-background/70" : "border-border bg-card text-muted-foreground")}>
+          <span className={cn("inline-flex items-center gap-2.5 rounded-full border px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em]", ink ? "border-background/25 text-background/70" : "border-border bg-card text-muted-foreground")}>
             <span className="relative flex size-1.5">
               <span className={cn("absolute inline-flex size-full animate-ping rounded-full opacity-60", ink ? "bg-background" : "bg-foreground")} />
               <span className={cn("relative inline-flex size-1.5 rounded-full", ink ? "bg-background" : "bg-foreground")} />
@@ -101,7 +101,7 @@ export function Waitlist({
 
         <h1
           className={cn(
-            "mt-8 font-display text-[clamp(3rem,9vw,7rem)] font-black leading-[0.9] tracking-[-0.05em]",
+            "mt-8 font-display text-[clamp(3rem,9vw,7rem)] font-semibold leading-[0.9] tracking-[-0.05em]",
             ink ? "text-background" : "text-foreground",
           )}
         >
@@ -130,7 +130,7 @@ export function Waitlist({
                 <Check className="size-4" strokeWidth={3} />
               </span>
               <span className="text-left">
-                <span className={cn("block font-display text-sm font-extrabold", ink ? "text-background" : "text-foreground")}>{successTitle}</span>
+                <span className={cn("block font-display text-sm font-semibold", ink ? "text-background" : "text-foreground")}>{successTitle}</span>
                 <span className={cn("block text-xs font-medium", ink ? "text-background/55" : "text-muted-foreground")}>{successDescription}</span>
               </span>
             </div>
@@ -163,7 +163,7 @@ export function Waitlist({
                   type="submit"
                   disabled={status === "pending"}
                   className={cn(
-                    "group relative h-full min-w-40 justify-between gap-3 overflow-hidden rounded-none border px-6 font-mono text-xs font-bold uppercase tracking-[0.18em]",
+                    "group relative h-full min-w-40 justify-between gap-3 overflow-hidden rounded-md border px-6 font-mono text-xs font-bold uppercase tracking-[0.08em]",
                     ink
                       ? "border-background bg-background text-foreground hover:bg-background/90"
                       : "border-foreground bg-foreground text-background hover:bg-foreground/90",

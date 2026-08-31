@@ -24,10 +24,17 @@
     "*.css"
   ],
   "presetSources": {
-    "motion-primitives": [],
+    "motion-primitives": [
+      "in-view"
+    ],
     "shadcn-ui": [
       "https://ui.shadcn.com/r/styles/new-york-v4/button.json",
       "https://ui.shadcn.com/r/styles/new-york-v4/card.json"
+    ],
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

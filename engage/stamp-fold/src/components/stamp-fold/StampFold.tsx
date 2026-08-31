@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { Stamp as StampIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, Grain } from "@/components/primitives/handcraft"
@@ -36,7 +36,8 @@ export function StampFold({
   onSealed,
   className,
 }: StampFoldProps) {
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+  const _reduce = useReducedMotion()
+  const reduce = !!_reduce
   const [auto, setAuto] = React.useState(sealedProp === undefined)
   React.useEffect(() => {
     if (!auto) return

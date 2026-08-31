@@ -25,6 +25,17 @@ export function NavFullscreen({ brand = "STUDIO", items = [
   { id: "contact", label: "Contact", meta: "04" },
 ], cta = "Start a project", className }: NavFullscreenProps) {
   const [open, setOpen] = React.useState(false)
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+
+  React.useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [open])
+
   return (
     <div className={cn("relative z-50", className)}>
       <header className="sticky top-0 z-50 mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
@@ -39,31 +50,34 @@ export function NavFullscreen({ brand = "STUDIO", items = [
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation"
+            initial={reduce ? { opacity: 0 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: reduce ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[60] flex flex-col bg-foreground text-background"
           >
             <div className="flex items-center justify-between px-5 py-4 sm:px-8">
               <span className="font-display text-lg font-black tracking-tight">{brand}</span>
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex h-10 w-10 items-center justify-center rounded-full border border-background/20 transition-colors hover:bg-background/10">
+              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex h-10 w-10 items-center justify-center rounded-full border border-background/20 transition-colors hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background">
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <nav className="flex flex-1 flex-col justify-center gap-2 px-5 sm:px-8">
+            <nav aria-label="Fullscreen" className="flex flex-1 flex-col justify-center gap-2 px-5 sm:px-8">
               {items.map((item, i) => (
                 <motion.a
                   key={item.id}
                   href={item.href ?? "#"}
                   onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={reduce ? false : { opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.08 + i * 0.06 }}
-                  className="group flex items-baseline gap-4 border-b border-background/10 py-4"
+                  transition={{ duration: reduce ? 0 : 0.4, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.06 + i * 0.04 }}
+                  className="group flex items-baseline gap-4 border-b border-background/10 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background"
                 >
-                  <span className="font-mono text-[11px] font-bold text-background/50">{item.meta}</span>
-                  <span className="font-display text-4xl font-black tracking-[-0.02em] transition-transform group-hover:translate-x-2 sm:text-6xl">{item.label}</span>
+                  <span className="font-mono text-xs font-semibold text-background/50">{item.meta}</span>
+                  <span className="font-display text-4xl font-bold tracking-tight transition-transform group-hover:translate-x-1 sm:text-5xl">{item.label}</span>
                 </motion.a>
               ))}
             </nav>

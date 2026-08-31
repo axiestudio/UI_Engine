@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/intro-counter.es.js",
       "require": "./dist/intro-counter.cjs.js"
     },

@@ -71,7 +71,7 @@ export function Pricing3({
                 <span className="text-foreground font-medium">{badgeText}</span>
               </Badge>
             )}
-            <h2 className="text-foreground text-4xl font-bold tracking-tight md:text-5xl">
+            <h2 className="text-foreground text-4xl font-bold tracking-[-0.02em] md:text-5xl">
               {title}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed md:text-xl">
@@ -119,7 +119,7 @@ export function Pricing3({
                 >
                   {plan.name}
                 </Badge>
-                <div className="text-foreground mb-4 text-5xl font-extrabold tracking-tight md:text-6xl">
+                <div className="text-foreground mb-4 text-5xl font-semibold tracking-[-0.02em] md:text-6xl">
                   {plan.price}
                 </div>
                 <p className="text-muted-foreground mb-8 text-sm leading-relaxed md:text-base">

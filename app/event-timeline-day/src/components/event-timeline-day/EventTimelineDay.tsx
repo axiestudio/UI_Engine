@@ -30,8 +30,8 @@ export function EventTimelineDay({ events, groupBy = defaultGroup, className }: 
       {groups.map(([day, evs]) => (
         <li key={day}>
           <div className="mb-3 flex items-center gap-3">
-            <span aria-hidden className="grid size-7 shrink-0 place-items-center rounded-full border bg-background text-[10px] font-black text-muted-foreground">{evs.length}</span>
-            <p className="text-[12px] font-black uppercase tracking-[0.14em] text-muted-foreground">{day}</p>
+            <span aria-hidden className="grid size-7 shrink-0 place-items-center rounded-full border bg-background text-xs font-semibold text-muted-foreground">{evs.length}</span>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{day}</p>
             <span aria-hidden className="h-px flex-1 bg-gradient-to-r from-border via-border/40 to-transparent" />
           </div>
           <ul className="relative ml-[13px] space-y-2 border-l-2 border-dashed border-border pl-4">
@@ -40,9 +40,9 @@ export function EventTimelineDay({ events, groupBy = defaultGroup, className }: 
                 <span aria-hidden className="absolute -left-[22px] top-3.5 size-2.5 rounded-full border-2 border-background transition-transform group-hover:scale-125" style={{ background: KIND_COLOR[e.kind] }} />
                 <div className="rounded-lg border bg-card px-4 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-shadow group-hover:shadow-md">
                   <p className="text-[13px] font-medium leading-snug">
-                    {e.actor && <strong className="font-bold">{e.actor} </strong>}<span className="rounded px-1 font-mono text-[9px] font-black uppercase tracking-[0.1em]" style={{ color: KIND_COLOR[e.kind], background: `color-mix(in srgb, ${KIND_COLOR[e.kind]} 12%, transparent)` }}>{e.kind}</span> {e.text}
+                    {e.actor && <strong className="font-semibold">{e.actor} </strong>}<span className="rounded px-1 font-mono text-[10px] font-medium uppercase tracking-wide" style={{ color: KIND_COLOR[e.kind], background: `color-mix(in srgb, ${KIND_COLOR[e.kind]} 12%, transparent)` }}>{e.kind}</span> {e.text}
                   </p>
-                  <time className="mt-1 block font-mono text-[10px] text-muted-foreground" dateTime={new Date(e.at).toISOString()}>{new Date(e.at).toLocaleString(undefined, { hour: "2-digit", minute: "2-digit" })}</time>
+                  <time className="mt-1 block font-mono text-[11px] text-muted-foreground" dateTime={new Date(e.at).toISOString()}>{new Date(e.at).toLocaleString(undefined, { hour: "2-digit", minute: "2-digit" })}</time>
                 </div>
               </motion.li>
             ))}

@@ -226,7 +226,7 @@ export function Contact({
 
           <div className={cn("grid gap-6 lg:gap-8", info ? "lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]" : "")}>
             {/* form panel */}
-            <div className="rounded-[24px] border bg-card p-5 shadow-sm sm:p-8">
+            <div className="rounded-2xl border bg-card p-5 shadow-sm sm:p-8">
               <AnimatePresence mode="wait" initial={false}>
                 {status === "success" ? (
                   <motion.div key="success" initial={{ opacity: 0, y: reduce ? 0 : 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} role="status" className="flex min-h-[420px] flex-col items-start justify-center">
@@ -262,12 +262,12 @@ export function Contact({
                                 ref={(el: HTMLTextAreaElement | null) => {
                                   fieldRefs.current[f.name] = el
                                 }}
-                                className={cn("min-h-[120px] rounded-[14px] bg-background shadow-xs", err && "border-destructive focus-visible:ring-destructive/40")}
+                                className={cn("min-h-[120px] rounded-xl bg-background shadow-xs", err && "border-destructive focus-visible:ring-destructive/40")}
                               />
                             </div>
                           ) : type === "select" ? (
                             <Select value={values[f.name] || undefined} onValueChange={(v) => setValue(f.name, v)} onOpenChange={(o) => !o && onBlur(f)}>
-                              <SelectTrigger {...shared(f)} ref={(el: HTMLButtonElement | null) => { fieldRefs.current[f.name] = el }} className={cn("h-11 w-full rounded-[14px] bg-background shadow-xs", err && "border-destructive")}>
+                              <SelectTrigger {...shared(f)} ref={(el: HTMLButtonElement | null) => { fieldRefs.current[f.name] = el }} className={cn("h-11 w-full rounded-xl bg-background shadow-xs", err && "border-destructive")}>
                                 <SelectValue placeholder="Select…" />
                               </SelectTrigger>
                               <SelectContent>
@@ -290,7 +290,7 @@ export function Contact({
                               ref={(el: HTMLInputElement | null) => {
                                 fieldRefs.current[f.name] = el
                               }}
-                              className={cn("h-11 rounded-[14px] bg-background shadow-xs", err && "border-destructive focus-visible:ring-destructive/40")}
+                              className={cn("h-11 rounded-xl bg-background shadow-xs", err && "border-destructive focus-visible:ring-destructive/40")}
                             />
                           )}
                         </FieldShell>
@@ -343,7 +343,7 @@ export function Contact({
             {/* info rail */}
             {info && info.items.length > 0 && (
               <aside className="flex flex-col gap-3">
-                <div className="rounded-[24px] border bg-foreground p-6 text-background shadow-sm">
+                <div className="rounded-2xl border bg-foreground p-6 text-background shadow-sm">
                   <h3 className="font-mono text-[11px] font-bold uppercase tracking-widest text-background/60">{info.title ?? "Direct lines"}</h3>
                   <ul className="mt-4 flex flex-col gap-4">
                     {info.items.map((item) => {

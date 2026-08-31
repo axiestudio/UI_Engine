@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/trial-box.es.js",
       "require": "./dist/trial-box.cjs.js"
     },

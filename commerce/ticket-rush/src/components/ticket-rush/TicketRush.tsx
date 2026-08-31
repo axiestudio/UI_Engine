@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion } from "motion/react"
-import { Zap } from "lucide-react"
+import { Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 
@@ -25,7 +25,7 @@ export type TicketRushProps = {
   className?: string
 }
 
-export function TicketRush({ stock, sold = 0, eyebrow = "TODAY'S DROP", title, label = "left on the board", cta, onSoldOut, className }: TicketRushProps) {
+export function TicketRush({ stock, sold = 0, eyebrow = "Today's release", title, label = "remaining", cta, onSoldOut, className }: TicketRushProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const remaining = Math.max(0, stock - sold)
   const prev = React.useRef(remaining)
@@ -42,26 +42,26 @@ export function TicketRush({ stock, sold = 0, eyebrow = "TODAY'S DROP", title, l
       <div className="relative mx-auto flex w-full max-w-[980px] flex-wrap items-center justify-between gap-8">
         <div className="min-w-[240px]">
           <MonoLabel className={cn(remaining === 0 ? "text-white/40" : "text-[hsl(var(--led))]")}>{eyebrow}</MonoLabel>
-          {title && <h2 className="mt-3 max-w-xs font-display text-2xl font-black tracking-tight sm:text-[30px]">{title}</h2>}
+          {title && <h2 className="mt-3 max-w-xs font-display text-2xl font-semibold tracking-[-0.02em] sm:text-[30px]">{title}</h2>}
           <p className="mt-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">{stock} issued · {sold} gone</p>
         </div>
 
         <div className="flex items-end gap-6">
           <div aria-live="polite">
             <div className="flex items-center gap-3" aria-hidden>
-              <span className="flex gap-1.5 rounded-lg border border-white/15 bg-black/50 p-3 shadow-[inset_0_2px_12px_rgba(0,0,0,0.8)]">
+              <span className="flex gap-1.5 rounded-lg border border-border bg-black/50 p-3 shadow-[inset_0_2px_12px_rgba(0,0,0,0.8)]">
                 {digits.map((d, i) => <Cell key={`${i}-${digits.length}`} d={d} n={digits.length - i} reduce={reduce} off={remaining === 0} />)}
               </span>
-              <span className="font-display text-[42px] font-black leading-none tabular-nums text-[hsl(var(--led))]/90 sm:text-[54px]" style={{ textShadow: "0 0 26px hsl(var(--led)/0.5)" }}>{remaining === 0 ? "GONE" : ""}</span>
+              <span className="font-display text-[42px] font-semibold leading-none tabular-nums text-[hsl(var(--led))]/90 sm:text-[54px]" style={{ textShadow: "0 0 26px hsl(var(--led)/0.5)" }}>{remaining === 0 ? "GONE" : ""}</span>
             </div>
-            <p className="mt-2 text-right font-mono text-[10px] font-black uppercase tracking-[0.3em] text-white/45">{remaining === 0 ? "sold out" : `${remaining} ${label}`}</p>
+            <p className="mt-2 text-right font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-white/45">{remaining === 0 ? "sold out" : `${remaining} ${label}`}</p>
             <span className="sr-only">{remaining === 0 ? "Sold out." : `${remaining} of ${stock} remaining.`}</span>
           </div>
         </div>
 
         {cta && (
-          <a href={cta.href ?? "#"} onClick={remaining > 0 ? cta.onClick : undefined} aria-disabled={remaining === 0} className={cn("group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full px-7 font-mono text-[11px] font-black uppercase tracking-[0.2em] transition-all", remaining === 0 ? "pointer-events-none bg-white/10 text-white/30" : "bg-[hsl(var(--led))] text-black shadow-[0_0_30px_hsl(var(--led)/0.45)] hover:-translate-y-0.5")}>
-            <Zap className="size-4" strokeWidth={2.6} /> {cta.label}
+          <a href={cta.href ?? "#"} onClick={remaining > 0 ? cta.onClick : undefined} aria-disabled={remaining === 0} className={cn("group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] transition-all", remaining === 0 ? "pointer-events-none bg-white/10 text-white/30" : "bg-[hsl(var(--led))] text-black shadow-sm hover:-translate-y-0.5")}>
+            <Clock className="size-4" strokeWidth={2.6} /> {cta.label}
           </a>
         )}
       </div>
@@ -77,7 +77,7 @@ function Cell({ d, n, reduce, off }: { d: string; n: number; reduce: boolean; of
         initial={reduce ? false : { y: 26, opacity: 0.6 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, delay: n * 0.06, ease: [0.22, 1, 0.36, 1] }}
-        className={cn("absolute inset-0 grid place-items-center font-display text-[34px] font-black tabular-nums sm:text-[44px]", off ? "text-[hsl(var(--led-off))]" : "text-[hsl(var(--led))]")}
+        className={cn("absolute inset-0 grid place-items-center font-display text-[34px] font-semibold tabular-nums sm:text-[44px]", off ? "text-[hsl(var(--led-off))]" : "text-[hsl(var(--led))]")}
         style={off ? undefined : { textShadow: "0 0 18px hsl(var(--led)/0.6)" }}
       >
         {d}

@@ -1,25 +1,20 @@
 import * as React from "react"
-import { motion, useScroll, useTransform } from "motion/react"
-import { Download, ArrowUpRight } from "lucide-react"
+import { motion, AnimatePresence } from "motion/react"
+import { Download, ArrowUpRight, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
 import { SlidingNumber } from "@/components/primitives/sliding-number"
-import { InView } from "@/components/primitives/in-view"
-
-// ═══ JOB      turn the annual report from a PDF into an event
-// ═══ EMOTION  an envelope worth opening — ceremony before data
-// ═══ SIGNATURE the report cover folds open on scroll: two panels hinge
-//               apart (perspective) revealing stat tiles + download
-//   SITE      → investor relations, annual report landing
-//   APP       → quarterly business reviews; stats are props
-//   A11Y      content readable without scroll; panels aria-hidden when closed
 
 export type ReportStat = { value: number; suffix?: string; label: string }
 
 export type ReportUnfoldProps = {
+  eyebrow?: string
   year?: string
   title?: string
+  subtitle?: string
   stats?: ReportStat[]
+  hrefPdf?: string
+  hrefWeb?: string
   className?: string
 }
 
@@ -29,66 +24,119 @@ const DEFAULT_STATS: ReportStat[] = [
   { value: 97, suffix: "%", label: "Renewal rate" },
 ]
 
-export function ReportUnfold({ year = "2026", title = "The Honest Ledger", stats = DEFAULT_STATS, className }: ReportUnfoldProps) {
-  const ref = React.useRef<HTMLDivElement>(null)
+export function ReportUnfold({
+  eyebrow,
+  year = "2026",
+  title = "The Honest Ledger",
+  subtitle = "Highlights from the full 32-page report. Open the cover to see the numbers.",
+  stats = DEFAULT_STATS,
+  hrefPdf = "#",
+  hrefWeb = "#",
+  className,
+}: ReportUnfoldProps) {
+  const [open, setOpen] = React.useState(false)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "center 0.55"] })
-  const open = reduce ? 1 : useTransform(scrollYProgress, [0, 1], [0, 1])
-  const leftX = useTransform(open, [0, 1], ["0%", "-8%"])
-  const rightX = useTransform(open, [0, 1], ["0%", "8%"])
-  const lRot = useTransform(open, [0, 1], [0, -64])
-  const rRot = useTransform(open, [0, 1], [0, 64])
+  const labelEyebrow = eyebrow ?? `ANNUAL REPORT · ${year}`
 
   return (
-    <div ref={ref}>
-      <SectionShell width={920} className={className}>
-        <MonoLabel className="text-muted-foreground">ANNUAL REPORT · {year}</MonoLabel>
+    <SectionShell width={920} className={className}>
+      <div className="mx-auto max-w-2xl text-center">
+        <MonoLabel className="justify-center text-muted-foreground">{labelEyebrow}</MonoLabel>
+        <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
+        <p className="mx-auto mt-2 max-w-[46ch] text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
+      </div>
 
-        <div className="relative mx-auto mt-10 max-w-[640px]" style={{ perspective: 1200 }}>
-          {/* cover halves */}
-          <motion.div aria-hidden style={{ x: leftX, rotateY: lRot, transformOrigin: "left center" }}
-            className={cn("absolute inset-0 z-20 flex flex-col justify-between rounded-l-2xl border bg-foreground p-8 text-background [backface-visibility:hidden]",
-              reduce && "hidden")}>
-            <MonoLabel className="text-background/50">CONFIDENTIAL · V1</MonoLabel>
-            <div>
-              <span className="font-display text-6xl font-black tracking-tighter">{year}</span>
-              <span className="mt-2 block font-serif text-lg italic text-background/80">{title}</span>
-            </div>
-            <span className="font-mono text-[9px] font-black uppercase tracking-[0.24em] text-background/40">fold to open ↓</span>
-          </motion.div>
-          <motion.div aria-hidden style={{ x: rightX, rotateY: rRot, transformOrigin: "right center" }}
-            className={cn("absolute inset-0 z-10 rounded-r-2xl border bg-foreground/90 [backface-visibility:hidden]", reduce && "hidden")} />
+      <div className="relative mx-auto mt-8 max-w-[640px]">
+        {/* cover */}
+        <AnimatePresence initial={false}>
+          {!open ? (
+            <motion.div
+              key="cover"
+              initial={reduce ? undefined : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="relative overflow-hidden rounded-xl border bg-foreground p-6 text-background shadow-sm sm:p-8"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <span className="rounded-md border border-background/15 bg-background/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-background/80">
+                  Confidential · v1
+                </span>
+                <FileText className="size-4 text-background/40" aria-hidden />
+              </div>
 
-          {/* inside spread */}
-          <div className="rounded-2xl border bg-card p-8 sm:p-10">
-            <div className="flex items-baseline justify-between">
-              <span className="font-display text-2xl font-black tracking-tight text-foreground">{title} · {year}</span>
-              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">32 pages</span>
-            </div>
-            <div className="mt-8 grid gap-6 sm:grid-cols-3">
-              {stats.map((s, i) => (
-                <InView key={s.label} once delay={0.3 + i * 0.12}>
-                  <div className="border-l-2 border-foreground/70 pl-4">
-                    <span className="font-display text-4xl font-black tabular-nums tracking-tight text-foreground">
-                      <SlidingNumber value={s.value} /><span className="text-xl text-muted-foreground">{s.suffix}</span>
-                    </span>
-                    <p className="mt-1 font-mono text-[10px] font-bold uppercase leading-relaxed tracking-[0.14em] text-muted-foreground">{s.label}</p>
-                  </div>
-                </InView>
-              ))}
-            </div>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a href="#" className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 font-mono text-[10px] font-black uppercase tracking-[0.18em] text-background">
-                <Download className="size-3.5" aria-hidden /> PDF · 4.2 MB
-              </a>
-              <a href="#" className="group inline-flex items-center gap-1.5 rounded-full border px-5 py-2.5 font-mono text-[10px] font-black uppercase tracking-[0.18em] text-foreground">
-                Web version <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
-              </a>
-            </div>
+              <div className="mt-10">
+                <span className="font-display text-[56px] font-semibold leading-none tracking-[-0.04em] sm:text-[68px]">{year}</span>
+                <span className="mt-2 block font-display text-[18px] font-medium italic tracking-[-0.01em] text-background/80">{title}</span>
+                <span className="mt-1 block font-mono text-[11px] font-medium tracking-wide text-background/55">32 pages · audited</span>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setOpen(true)}
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-background px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground shadow-sm transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+              >
+                Open the report <ArrowUpRight className="size-3.5" aria-hidden />
+              </button>
+
+              <p className="mt-4 font-mono text-[11px] font-medium tracking-wide text-background/45">Tap to reveal highlights — no scroll trick, works with keyboard.</p>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+
+        {/* inside spread — always in DOM for a11y, but hidden when cover present via AnimatePresence? Keep separate */}
+        <motion.div
+          key="inside"
+          initial={false}
+          animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className={cn("rounded-xl border bg-card p-6 shadow-sm sm:p-8", !open && "pointer-events-none absolute inset-0 -z-10 opacity-0")}
+          aria-hidden={!open}
+        >
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <span className="font-display text-[18px] font-semibold tracking-[-0.015em] text-foreground">{title} · {year}</span>
+            <span className="rounded-md border bg-muted px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">32 pages</span>
           </div>
-        </div>
-        <p className="mt-6 text-center font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">scroll to unfold the cover</p>
-      </SectionShell>
-    </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={reduce ? undefined : { opacity: 0, y: 8 }}
+                animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                transition={{ duration: 0.35, delay: open ? 0.08 + i * 0.06 : 0, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-xl border bg-muted/30 p-4"
+              >
+                <span className="flex items-baseline gap-1 font-display text-[28px] font-semibold tabular-nums leading-none tracking-[-0.02em] text-foreground">
+                  <SlidingNumber value={s.value} />
+                  <span className="text-[16px] font-medium text-muted-foreground">{s.suffix}</span>
+                </span>
+                <p className="mt-2 font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href={hrefPdf} className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-background shadow-sm transition-colors hover:bg-foreground/90">
+              <Download className="size-3.5" aria-hidden /> PDF · 4.2 MB
+            </a>
+            <a href={hrefWeb} className="group inline-flex items-center gap-1.5 rounded-full border bg-background px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground shadow-sm transition-colors hover:bg-muted">
+              Web version <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+            </a>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="ml-auto rounded-full border px-4 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground hover:bg-muted"
+            >
+              Back to cover
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      {!open ? (
+        <p className="mt-4 text-center font-mono text-[11px] font-medium tracking-wide text-muted-foreground">A button — not a scroll trap. Works the same on mobile and with reduced-motion.</p>
+      ) : null}
+    </SectionShell>
   )
 }

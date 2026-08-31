@@ -27,6 +27,13 @@
     --brand: 240 5% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --success-muted: 142 70% 96%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 25 30% 15%;
+    --warning-muted: 38 92% 89%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -61,7 +68,16 @@
     --steel: 220 8% 26%;
     --steel-deep: 220 10% 14%;
     --vault-face: 220 8% 30%;
-  }
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --brass: 42 62% 55%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --success-muted: 142 70% 96%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 25 30% 15%;
+    --warning-muted: 38 92% 89%;
+}
 }
 
 @layer base {

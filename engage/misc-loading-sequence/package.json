@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/misc-loading-sequence.es.js",
       "require": "./dist/misc-loading-sequence.cjs.js"
     },

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-flip-tiles.es.js",
       "require": "./dist/scroll-flip-tiles.cjs.js"
     },

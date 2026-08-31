@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/media-3d-gallery.es.js",
       "require": "./dist/media-3d-gallery.cjs.js"
     },

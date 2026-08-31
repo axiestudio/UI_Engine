@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/gradient-text.es.js",
       "require": "./dist/gradient-text.cjs.js"
     },

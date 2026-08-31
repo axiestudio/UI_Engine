@@ -93,14 +93,14 @@ export default function CTASection({
         <div className="mb-7 flex justify-center">
           <Badge
             variant="secondary"
-            className="text-muted-foreground flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-medium tracking-widest uppercase"
+            className="text-muted-foreground flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-medium tracking-[0.12em] uppercase"
           >
             <FaCircle className="text-primary animate-pulse text-[6px]" />
             {badge}
           </Badge>
         </div>
 
-        <h2 className="text-foreground mb-5 font-serif text-4xl leading-[1.08] font-normal tracking-tight sm:text-5xl md:text-6xl">
+        <h2 className="text-foreground mb-5 font-serif text-4xl leading-[1.08] font-normal tracking-[-0.02em] sm:text-5xl md:text-6xl">
           {headingLine1}
           <br />
           Ship with{" "}
@@ -135,7 +135,7 @@ export default function CTASection({
             <Button
               size="lg"
               variant="outline"
-              className="text-muted-foreground dark:text-muted hover:text-foreground w-full rounded-md border-none bg-linear-to-b from-zinc-100 to-zinc-50 text-sm font-medium shadow-[inset_0_0.5px_0px_rgba(255,255,255,0.2),inset_0_-0.5px_0px_rgba(0,0,0,0.1),inset_0_0.5px_4px_rgba(255,255,255,0.2),inset_0_-0.5px_4px_rgba(0,0,0,0.1)] transition-all text-shadow-2xs sm:w-auto"
+              className="text-muted-foreground dark:text-muted hover:text-foreground w-full rounded-md border-none bg-linear-to-b from-muted to-card text-sm font-medium shadow-[inset_0_0.5px_0px_rgba(255,255,255,0.2),inset_0_-0.5px_0px_rgba(0,0,0,0.1),inset_0_0.5px_4px_rgba(255,255,255,0.2),inset_0_-0.5px_4px_rgba(0,0,0,0.1)] transition-all text-shadow-2xs sm:w-auto"
               onClick={secondaryCTA.onClick}
               asChild={!!secondaryCTA.href}
             >

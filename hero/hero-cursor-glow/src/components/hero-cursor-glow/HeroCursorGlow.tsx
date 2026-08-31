@@ -36,8 +36,8 @@ export function HeroCursorGlow({
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="relative h-[420px] w-[420px]">
-            <span className="absolute inset-0 rounded-full" style={{ background: `radial-gradient(circle, hsl(var(--site-accent)/0.28), transparent 60%)` }} />
-            <span className="absolute inset-16 rounded-full" style={{ background: `radial-gradient(circle, hsl(var(--site-accent-2)/0.22), transparent 62%)` }} />
+            <span className="absolute inset-0 rounded-full" style={{ background: `radial-gradient(circle, hsl(var(--primary)/0.28), transparent 60%)` }} />
+            <span className="absolute inset-16 rounded-full" style={{ background: `radial-gradient(circle, hsl(var(--accent)/0.22), transparent 62%)` }} />
           </div>
         </Cursor>
       </div>

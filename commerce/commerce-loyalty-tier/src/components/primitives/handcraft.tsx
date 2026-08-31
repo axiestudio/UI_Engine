@@ -60,7 +60,7 @@ export function CornerTicks({
   )
 }
 
-// ── Sheen — hover light sweep (only animates on group-hover) ─────────────────
+// ── Sheen — restrained hover sweep (token-based) ─────────────────────────
 export function Sheen({ dark = false, className }: { dark?: boolean; className?: string }) {
   return (
     <span
@@ -68,8 +68,8 @@ export function Sheen({ dark = false, className }: { dark?: boolean; className?:
       className={cn(
         "pointer-events-none absolute inset-0 -translate-x-[110%] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%]",
         dark
-          ? "bg-[linear-gradient(105deg,transparent_42%,rgba(0,0,0,0.06)_50%,transparent_58%)]"
-          : "bg-[linear-gradient(105deg,transparent_42%,rgba(255,255,255,0.22)_50%,transparent_58%)]",
+          ? "bg-[linear-gradient(105deg,transparent_42%,hsl(var(--foreground)/0.05)_50%,transparent_58%)]"
+          : "bg-[linear-gradient(105deg,transparent_42%,hsl(var(--background)/0.12)_50%,transparent_58%)]",
         className,
       )}
     />
@@ -88,7 +88,7 @@ export function Accent({ children, className }: { children: React.ReactNode; cla
 // ── MonoLabel — small-caps mono label with tick (index DNA) ─────────────────
 export function MonoLabel({ children, className, tick = true }: { children: React.ReactNode; className?: string; tick?: boolean }) {
   return (
-    <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", className)}>
+    <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.08em]", className)}>
       {tick && <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />}
       {children}
     </span>
@@ -178,7 +178,7 @@ export function SectionHead({
         <span
           aria-hidden
           className={cn(
-            "pointer-events-none absolute -top-10 right-0 select-none font-display text-[120px] font-black leading-none tracking-[-0.05em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] opacity-[0.07] sm:text-[160px]",
+            "pointer-events-none absolute -top-10 right-0 select-none font-display text-[120px] font-semibold leading-none tracking-[-0.05em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] opacity-[0.07] sm:text-[160px]",
             ink ? "text-background" : "text-foreground",
           )}
         >
@@ -190,7 +190,7 @@ export function SectionHead({
           {eyebrow}
         </MonoLabel>
       )}
-      <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", ink ? "text-background" : "text-foreground")}>
+      <h2 className={cn("font-display text-[34px] font-semibold leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", ink ? "text-background" : "text-foreground")}>
         {title}
       </h2>
       {subtitle && (

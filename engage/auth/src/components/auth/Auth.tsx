@@ -266,7 +266,7 @@ export function Auth({
           {heading}
         </TextEffect>
         <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{subline}</p>
-        <div className={cn(layout === "card" && "mt-8 rounded-[24px] border bg-card p-6 shadow-sm sm:p-8")}>
+        <div className={cn(layout === "card" && "mt-8 rounded-2xl border bg-card p-6 shadow-sm sm:p-8")}>
           {form}
         </div>
         {footer && (

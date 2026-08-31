@@ -61,19 +61,19 @@ function AnimatedOrbs({ reduced }: { reduced: boolean }) {
         animate={reduced ? undefined : { x: [0, 60, 0], y: [0, -40, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         className="absolute left-[8%] top-[12%] h-72 w-72 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, hsl(var(--site-accent)/0.35), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsl(var(--primary)/0.18), transparent 70%)" }}
       />
       <motion.span
         animate={reduced ? undefined : { x: [0, -70, 0], y: [0, 50, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         className="absolute right-[6%] bottom-[8%] h-80 w-80 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, hsl(var(--site-accent-2)/0.32), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsl(var(--muted-foreground)/0.12), transparent 70%)" }}
       />
       <motion.span
         animate={reduced ? undefined : { x: [0, 40, 0], y: [0, 30, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
         className="absolute left-[45%] top-[55%] h-64 w-64 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, hsl(var(--site-accent)/0.2), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsl(var(--primary)/0.10), transparent 72%)" }}
       />
     </div>
   )

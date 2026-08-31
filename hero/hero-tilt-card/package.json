@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/hero-tilt-card.es.js",
       "require": "./dist/hero-tilt-card.cjs.js"
     },

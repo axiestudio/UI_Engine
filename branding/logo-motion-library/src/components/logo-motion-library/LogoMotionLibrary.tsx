@@ -1,17 +1,24 @@
 import * as React from "react"
-import { motion } from "motion/react"
-import { Pause, Play, RotateCcw } from "lucide-react"
+import { motion, useReducedMotion } from "motion/react"
+import { Pause, Play, RotateCcw, Clapperboard } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB      document the logo's motion like a choreography score
 // ═══ EMOTION  rehearsal-room precision — every frame is intentional
-// ═══ SIGNATURE three replayable "moves" (intro / loop / exit) with a
-//               playback plate: play/pause/replay and a frame ruler
+// ═══ SIGNATURE a two-pane score sheet: the move list on the left (specs in
+//               mono), the stage on the right with a ticking frame ruler;
+//               transport row replays takes, and a speed rail scrubs
+//               0.5× / 1× / 2× through the same choreography
 //   SITE      → brand guidelines "motion" chapter
-//   APP       → lottie/animation pickers; onMove emits move id
-//   A11Y      buttons labeled; reduce-motion shows end state
+//   APP       → animation pickers; onMoveChange emits move id
+//   BUILD     shadcn Button/Badge transport + motion keyframe playback;
+//             every spec on screen is the spec actually animating
+//   A11Y      controls are real buttons with focus rings and aria-pressed;
+//             reduced motion shows the end state and a note, never a loop
 
 export type LogoMove = "intro" | "loop" | "exit"
 
@@ -21,82 +28,141 @@ export type LogoMotionLibraryProps = {
 }
 
 const MOVES: { id: LogoMove; label: string; spec: string; duration: number }[] = [
-  { id: "intro", label: "Intro — First Light", spec: "scale 0.92→1 · blur 8→0 · 600ms · easeOut", duration: 1.1 },
-  { id: "loop", label: "Loop — Idle Breathing", spec: "glow 0→0.18→0 · 3.2s · easeInOut · ∞", duration: 3.2 },
-  { id: "exit", label: "Exit — Curtain", spec: "y 0→-14 · opacity 1→0 · 420ms · easeIn", duration: 0.8 },
+  { id: "intro", label: "Intro — First Light", spec: "scale 0.92→1 · blur 8→0 · 1100ms · easeOut", duration: 1.1 },
+  { id: "loop", label: "Loop — Idle Breathing", spec: "glow 1→1.04→1 · 3200ms · easeInOut · ∞", duration: 3.2 },
+  { id: "exit", label: "Exit — Curtain", spec: "y 0→−14 · opacity 1→0 · 800ms · easeIn", duration: 0.8 },
 ]
 
+const SPEEDS = [0.5, 1, 2] as const
+
+function Stage({ move, playing, runId, speed, reduced }: { move: LogoMove; playing: boolean; runId: number; speed: number; reduced: boolean }) {
+  const current = MOVES.find((m) => m.id === move)!
+  const dur = current.duration / speed
+  const frozen = !playing || reduced
+
+  return (
+    <div className="relative grid h-56 place-items-center overflow-hidden rounded-xl border border-dashed border-border bg-background">
+      <motion.svg
+        key={`${move}-${runId}-${speed}`}
+        width="120" height="120" viewBox="0 0 48 48" fill="none" aria-hidden className="text-foreground"
+        initial={frozen ? false : move === "intro" ? { opacity: 0, scale: 0.92, filter: "blur(8px)" } : move === "exit" ? { opacity: 1, scale: 1, y: 0 } : { opacity: 1, scale: 1 }}
+        animate={
+          frozen
+            ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
+            : move === "intro"
+              ? { opacity: 1, scale: 1, filter: "blur(0px)" }
+              : move === "loop"
+                ? { scale: [1, 1.04, 1] }
+                : { opacity: 0, y: -14 }
+        }
+        transition={
+          move === "loop" && !frozen
+            ? { duration: dur, repeat: Infinity, ease: "easeInOut" }
+            : { duration: dur, ease: move === "exit" ? "easeIn" : "easeOut" }
+        }
+      >
+        <rect x="4" y="4" width="40" height="40" rx="10" stroke="currentColor" strokeWidth="2.6" />
+        <path d="M14 32 L24 14 L34 32" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+      </motion.svg>
+
+      {/* frame ruler — ticks light in sequence with the take */}
+      <div aria-hidden className="absolute inset-x-8 bottom-3 flex justify-between">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <motion.span
+            key={i}
+            initial={false}
+            animate={playing && !reduced ? { opacity: [0.2, 1, 0.2] } : { opacity: 0.25 }}
+            transition={{ duration: dur / 2, repeat: playing && !reduced ? Infinity : 0, delay: (i * 0.06) / speed }}
+            className={cn("w-px bg-foreground", i % 3 === 0 ? "h-3" : "h-1.5")}
+          />
+        ))}
+      </div>
+
+      {reduced && (
+        <span className="absolute right-3 top-3">
+          <Badge variant="secondary" className="font-mono text-[9px] font-bold uppercase tracking-[0.14em]">reduced motion · end state</Badge>
+        </span>
+      )}
+      {frozen && !reduced && (
+        <span className="absolute left-3 top-3">
+          <Badge variant="outline" className="border-dashed font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-muted-foreground">paused</Badge>
+        </span>
+      )}
+    </div>
+  )
+}
+
 export function LogoMotionLibrary({ className, onMoveChange }: LogoMotionLibraryProps) {
+  const reduced = useReducedMotion() ?? false
   const [move, setMove] = React.useState<LogoMove>("intro")
   const [playing, setPlaying] = React.useState(true)
+  const [speed, setSpeed] = React.useState<(typeof SPEEDS)[number]>(1)
   const [runId, setRunId] = React.useState(0)
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const current = MOVES.find((m) => m.id === move)!
-  const pick = (m: LogoMove) => { setMove(m); setPlaying(true); setRunId((r) => r + 1); onMoveChange?.(m) }
+
+  const pick = (m: LogoMove) => {
+    setMove(m)
+    setPlaying(!reduced)
+    setRunId((r) => r + 1)
+    onMoveChange?.(m)
+  }
 
   return (
     <SectionShell width={920} rails className={className}>
-      <MonoLabel className="text-muted-foreground">LOGO MOTION · THE SCORE</MonoLabel>
-      <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">Three moves. Nothing improvised.</h2>
+      <SectionHead eyebrow="LOGO MOTION · THE SCORE" title="Three moves. Nothing improvised." subtitle="What you see running is written down exactly as it runs." tone="paper" />
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[300px_1fr]">
-        <div role="radiogroup" aria-label="Logo moves" className="flex flex-col gap-2">
-          {MOVES.map((m) => (
-            <button key={m.id} role="radio" aria-checked={move === m.id} onClick={() => pick(m)}
-              className={cn("rounded-xl border p-4 text-left transition-colors",
-                move === m.id ? "border-foreground bg-foreground text-background" : "border-border bg-background hover:border-foreground/40")}>
-              <span className="font-display text-sm font-bold">{m.label}</span>
-              <span className={cn("mt-1 block font-mono text-[10px] leading-relaxed", move === m.id ? "text-background/70" : "text-muted-foreground")}>{m.spec}</span>
-            </button>
-          ))}
+        <div className="flex flex-col gap-2" role="group" aria-label="Logo moves">
+          {MOVES.map((m) => {
+            const isActive = move === m.id
+            return (
+              <Button
+                key={m.id}
+                type="button"
+                variant="outline"
+                aria-pressed={isActive}
+                onClick={() => pick(m.id)}
+                className={cn(
+                  "h-auto flex-col items-start gap-1 rounded-xl p-4 text-left transition-colors",
+                  isActive && "border-foreground bg-foreground text-background shadow-[4px_4px_0_0_hsl(var(--border))] hover:bg-foreground hover:text-background"
+                )}
+              >
+                <span className={cn("font-display text-sm font-bold", isActive ? "text-background" : "text-foreground")}>{m.label}</span>
+                <span className={cn("block max-w-full whitespace-normal font-mono text-[10px] leading-relaxed", isActive ? "text-background/70" : "text-muted-foreground")}>{m.spec}</span>
+              </Button>
+            )
+          })}
         </div>
 
-        <div className="rounded-2xl border bg-card p-8">
-          {/* stage */}
-          <div className="relative grid h-56 place-items-center overflow-hidden rounded-xl border border-dashed border-border bg-background">
-            <motion.svg
-              key={`${move}-${runId}`}
-              width="120" height="120" viewBox="0 0 48 48" fill="none" aria-hidden
-              initial={reduce || !playing ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" } : move === "intro" ? { opacity: 0, scale: 0.92, filter: "blur(8px)" } : move === "exit" ? { opacity: 1, scale: 1, y: 0 } : {}}
-              animate={
-                reduce || !playing
-                  ? { opacity: 1, scale: 1, y: 0 }
-                  : move === "intro"
-                    ? { opacity: 1, scale: 1, filter: "blur(0px)" }
-                    : move === "loop"
-                      ? { opacity: [1, 1, 1], scale: [1, 1.04, 1] }
-                      : { opacity: 0, y: -14 }
-              }
-              transition={move === "loop" ? { duration: current.duration, repeat: Infinity, ease: "easeInOut" } : { duration: current.duration, ease: move === "exit" ? "easeIn" : "easeOut" }}
-              className="text-foreground"
-            >
-              <rect x="4" y="4" width="40" height="40" rx="10" stroke="currentColor" strokeWidth="2.6" />
-              <path d="M14 32 L24 14 L34 32" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-            </motion.svg>
-            {/* frame ruler */}
-            <div aria-hidden className="absolute inset-x-8 bottom-3 flex justify-between">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <motion.span key={i} initial={false} animate={playing && !reduce ? { opacity: [0.2, 1, 0.2] } : { opacity: 0.25 }}
-                  transition={{ duration: current.duration / 2, repeat: playing && !reduce ? Infinity : 0, delay: i * 0.06 }}
-                  className={cn("w-px bg-foreground", i % 3 === 0 ? "h-3" : "h-1.5")} />
+        <div className="rounded-2xl border bg-card p-6 sm:p-8">
+          <Stage move={move} playing={playing} runId={runId} speed={speed} reduced={reduced} />
+
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <Button type="button" variant="outline" size="sm" aria-pressed={playing} disabled={reduced} onClick={() => setPlaying((p) => !p)} className="gap-2 rounded-full font-mono text-[10px] font-black uppercase tracking-[0.16em]">
+              {playing ? <Pause className="size-3.5" aria-hidden /> : <Play className="size-3.5" aria-hidden />} {playing ? "Pause" : "Play"}
+            </Button>
+            <Button type="button" variant="default" size="sm" onClick={() => { setRunId((r) => r + 1); setPlaying(true) }} disabled={reduced} className="gap-2 rounded-full font-mono text-[10px] font-black uppercase tracking-[0.16em]">
+              <RotateCcw className="size-3.5" aria-hidden /> Replay
+            </Button>
+
+            {/* speed rail */}
+            <div role="group" aria-label="Playback speed" className="inline-flex overflow-hidden rounded-full border">
+              {SPEEDS.map((s) => (
+                <Button key={s} type="button" size="xs" variant={speed === s ? "secondary" : "ghost"} aria-pressed={speed === s} onClick={() => setSpeed(s)} className="h-7 rounded-none font-mono text-[9px] font-black tabular-nums tracking-[0.08em]">
+                  {s}×
+                </Button>
               ))}
             </div>
-          </div>
 
-          {/* transport */}
-          <div className="mt-5 flex items-center gap-3">
-            <button type="button" onClick={() => setPlaying((p) => !p)} aria-pressed={playing}
-              className="inline-flex items-center gap-2 rounded-full border bg-background px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.16em] text-foreground hover:bg-foreground hover:text-background">
-              {playing ? <Pause className="size-3.5" aria-hidden /> : <Play className="size-3.5" aria-hidden />} {playing ? "Pause" : "Play"}
-            </button>
-            <button type="button" onClick={() => { setRunId((r) => r + 1); setPlaying(true) }}
-              className="inline-flex items-center gap-2 rounded-full border bg-background px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.16em] text-foreground hover:bg-foreground hover:text-background">
-              <RotateCcw className="size-3.5" aria-hidden /> Replay
-            </button>
-            <InView once className="ml-auto hidden sm:block">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">take {String(runId + 1).padStart(3, "0")}</span>
+            <InView once className="ml-auto hidden items-center gap-2 sm:flex">
+              <Clapperboard className="size-3.5 text-muted-foreground" aria-hidden />
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                take {String(runId + 1).padStart(3, "0")} · {current.label.split(" — ")[1]}
+              </span>
             </InView>
           </div>
+
+          <p aria-live="polite" className="sr-only">{`Move ${move}, take ${runId + 1}, ${playing ? "playing" : "paused"} at ${speed} times speed.`}</p>
         </div>
       </div>
     </SectionShell>

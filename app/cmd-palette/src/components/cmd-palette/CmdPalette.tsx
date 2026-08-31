@@ -62,14 +62,14 @@ export function CmdPalette({ open, onOpenChange, groups, placeholder = "Type a c
               <div className="flex items-center gap-2.5 border-b px-4">
                 <Search className="size-4 shrink-0 text-muted-foreground" />
                 <Command.Input autoFocus onInput={() => setTick((t) => t + 1)} placeholder={placeholder} className="h-12 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
-                <kbd className="hidden shrink-0 items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-[9px] font-bold text-muted-foreground sm:flex">esc</kbd>
+                <kbd className="hidden shrink-0 items-center gap-1 rounded border border-border/60 px-1.5 py-0.5 font-mono text-[10px] font-medium text-muted-foreground sm:flex">esc</kbd>
               </div>
               <Command.List className="max-h-[46vh] overflow-y-auto p-2">
-                <Command.Empty className="py-8 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{emptyHint}</Command.Empty>
+                <Command.Empty className="py-8 text-center text-sm text-muted-foreground">{emptyHint}</Command.Empty>
                 {calc && (
                   <Command.Group heading="Calculator">
                     <Command.Item value={(CmdPalette as unknown as { _q?: string })._q + " = " + calc} onSelect={() => navigator.clipboard?.writeText(String(calc))} className="flex cursor-pointer items-center justify-between gap-3 rounded-md px-2.5 py-2 text-sm data-[selected=true]:bg-accent">
-                      <span>=</span><span className="font-mono text-sm font-black text-[hsl(var(--info))]">{calc} <CopyHint/></span>
+                      <span>=</span><span className="font-mono text-sm font-medium text-[hsl(var(--info))]">{calc} <CopyHint/></span>
                     </Command.Item>
                   </Command.Group>
                 )}
@@ -84,7 +84,7 @@ export function CmdPalette({ open, onOpenChange, groups, placeholder = "Type a c
                   </Command.Group>
                 ))}
               </Command.List>
-              <div className="flex items-center gap-3 border-t bg-muted/40 px-4 py-2 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+              <div className="flex items-center gap-3 border-t bg-muted/40 px-4 py-2 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">↑↓ navigate</span><span className="flex items-center gap-1"><CornerDownLeft className="size-3" /> run</span><span className="ml-auto">⌘K</span>
               </div>
             </Command>
@@ -95,13 +95,13 @@ export function CmdPalette({ open, onOpenChange, groups, placeholder = "Type a c
   )
 }
 const reduceY = 12
-function CopyHint() { return <span className="text-[9px] uppercase tracking-[0.2em] opacity-50">copy</span> }
+function CopyHint() { return <span className="text-xs opacity-50">copy</span> }
 function Row({ it, onRun, icon: Icon }: { it: PaletteItem; onRun: (i: PaletteItem) => void; icon?: React.ElementType }) {
   return (
     <Command.Item value={it.label} onSelect={() => onRun(it)} className="flex cursor-pointer items-center gap-3 rounded-md px-2.5 py-2 text-sm data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground">
       {Icon ? <Icon className="size-4 text-muted-foreground" /> : <Plus className="size-4 text-muted-foreground" />}
       <span className="min-w-0 flex-1 truncate">{it.label}</span>
-      {it.hint && <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{it.hint}</span>}
+      {it.hint && <span className="text-xs text-muted-foreground">{it.hint}</span>}
     </Command.Item>
   )
 }

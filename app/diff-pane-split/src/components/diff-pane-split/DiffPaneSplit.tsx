@@ -26,12 +26,12 @@ export function DiffPaneSplit({ lines, file, defaultSplit, className }: DiffPane
     }
   }
   return (
-    <div className={cn("overflow-hidden rounded-lg border bg-[hsl(var(--app-code))] font-sans", className)}>
-      <div className="flex items-center gap-2 border-b bg-card px-3 py-2 text-[11px]">
+    <div className={cn("overflow-hidden rounded-xl border border-border/70 bg-card font-sans", className)}>
+      <div className="flex items-center gap-2 border-b border-border/60 bg-muted/30 px-3 py-2 text-sm">
         <CornerDownLeft aria-hidden className="size-3.5 rotate-90 text-muted-foreground" />
-        <span className="truncate font-mono font-bold">{file ?? "changes"}</span>
-        <span className="ml-auto font-mono text-[10px] text-muted-foreground">{lines.filter((l) => l.kind === "add").length}+ {lines.filter((l) => l.kind === "del").length}−</span>
-        <button aria-pressed={wrap} onClick={() => setWrap((w) => !w)} className={cn("flex items-center gap-1 rounded px-2 py-1 font-bold hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></button>
+        <span className="truncate font-mono font-medium">{file ?? "changes"}</span>
+        <span className="ml-auto font-mono text-[11px] text-muted-foreground">{lines.filter((l) => l.kind === "add").length}+ {lines.filter((l) => l.kind === "del").length}−</span>
+        <button aria-pressed={wrap} onClick={() => setWrap((w) => !w)} className={cn("flex items-center gap-1 rounded px-2 py-1 font-medium text-muted-foreground hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></button>
         <div className="flex rounded-md border">
           <button aria-pressed={!split} onClick={() => setSplit(false)} className={cn("grid size-7 place-items-center rounded-l-[5px]", !split && "bg-foreground text-background")}><Rows2 className="size-3.5" /></button>
           <button aria-pressed={split} onClick={() => setSplit(true)} className={cn("grid size-7 place-items-center rounded-r-[5px]", split && "bg-foreground text-background")}><Columns2 className="size-3.5" /></button>

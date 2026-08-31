@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-deck-master.es.js",
       "require": "./dist/scroll-deck-master.cjs.js"
     },

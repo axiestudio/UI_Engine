@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/signup-split.es.js",
       "require": "./dist/signup-split.cjs.js"
     },

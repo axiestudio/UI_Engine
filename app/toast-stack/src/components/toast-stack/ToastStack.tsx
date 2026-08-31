@@ -41,15 +41,15 @@ function ToastCard({ toast: t, onDismiss }: { toast: Toast; onDismiss: (id: stri
       style={{ x, opacity }} drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={0.6}
       onDragEnd={(_, i) => { if (Math.abs(i.offset.x) > 90 || Math.abs(i.velocity.x) > 500) { animate(x, i.offset.x > 0 ? 220 : -220, { duration: 0.2 }); setTimeout(dismiss, 180) } else animate(x, 0, { type: "spring", stiffness: 500, damping: 34 }) }}
       onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}
-      className="pointer-events-auto relative overflow-hidden rounded-xl border bg-popover shadow-xl"
+      className="pointer-events-auto relative overflow-hidden rounded-lg border border-border/70 bg-popover shadow-lg"
     >
       <div className="flex gap-3 p-3.5">
         <Icon aria-hidden className="size-5 shrink-0" style={{ color }} />
-        <div className="min-w-0 flex-1 -mt-0.5">
-          <p className="text-[13px] font-bold leading-snug">{t.title}</p>
-          {t.body && <p className="mt-0.5 text-[12px] leading-snug text-muted-foreground">{t.body}</p>}
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium leading-snug">{t.title}</p>
+          {t.body && <p className="mt-0.5 text-[13px] leading-snug text-muted-foreground">{t.body}</p>}
         </div>
-        {t.action && <button onClick={() => { t.action!.run(); dismiss() }} className="h-fit shrink-0 rounded-md border px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.1em] hover:bg-muted">{t.action.label}</button>}
+        {t.action && <button onClick={() => { t.action!.run(); dismiss() }} className="h-fit shrink-0 rounded-md border border-border/70 bg-background px-2.5 py-1 text-xs font-medium hover:bg-muted">{t.action.label}</button>}
         <button aria-label="Dismiss" onClick={dismiss} className="grid size-6 shrink-0 place-items-center self-start rounded-md text-muted-foreground hover:bg-muted"><X className="size-3.5" /></button>
       </div>
       <motion.div className="absolute bottom-0 left-0 h-[3px] w-full origin-left" style={{ background: color }} animate={{ scaleX: paused ? undefined : 0 }} initial={{ scaleX: 1 }} transition={{ duration: (t.duration ?? 5000) / 1000, ease: "linear" }} />

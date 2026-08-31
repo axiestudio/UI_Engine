@@ -3,16 +3,20 @@ import {
   DndContext,
   DragOverlay,
   PointerSensor,
+  KeyboardSensor,
+  closestCenter,
   useDroppable,
   useDraggable,
   useSensor,
   useSensors,
   type DragEndEvent,
 } from "@dnd-kit/core"
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 import { GripVertical, CheckCircle2 } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Route dropped items to specific regions, filtering the rest.
 // ═══ EMOTION     Clear accept/reject feedback.
@@ -41,8 +45,12 @@ export function DndDropZones({
   className,
 }: DndDropZonesProps) {
   const [assignments, setAssignments] = React.useState<Record<string, string>>({})
+  const [announce, setAnnounce] = React.useState("")
   const [activeId, setActiveId] = React.useState<string | null>(null)
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  )
 
   const assignedIds = React.useMemo(() => Object.values(assignments), [assignments])
 
@@ -66,14 +74,30 @@ export function DndDropZones({
   const activeData = activeId ? items.find((i) => i.id === activeId) : null
 
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
-      <DndContext sensors={sensors} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
+            {Object.keys(assignments).length} items
+          </span>
+          <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Advanced • Professional DnD</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => { setAssignments({}); onChange?.({}); setAnnounce("Assignments reset") }} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+            Reset
+          </Button>
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>
+        </div>
+      </div>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Palette</p>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Palette</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {items.map((item) => {
                 const placed = assignedIds.includes(item.id)
@@ -101,7 +125,7 @@ function PaletteChip({ item, overlay = false }: { item: ZoneItem; overlay?: bool
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className={cn("flex cursor-grab touch-none items-center gap-2 rounded-xl border bg-card px-3 py-2 font-display text-sm font-bold active:cursor-grabbing", isDragging && "opacity-40", overlay && "dnd-lift")}
+      className={cn("flex cursor-grab touch-none items-center gap-2 rounded-xl border bg-card px-3 py-2 text-sm font-semibold tracking-tight active:cursor-grabbing", isDragging && "opacity-40", overlay && "dnd-lift")}
     >
       <GripVertical className="h-4 w-4 text-muted-foreground" />
       {item.label}
@@ -112,14 +136,14 @@ function PaletteChip({ item, overlay = false }: { item: ZoneItem; overlay?: bool
 function ZoneBox({ zone, assigned, item }: { zone: ZoneDef; assigned?: string; item?: ZoneItem }) {
   const { setNodeRef, isOver } = useDroppable({ id: zone.id })
   return (
-    <div ref={setNodeRef} className={cn("rounded-2xl border bg-muted/20 p-3 transition-colors", isOver && "dnd-over")}>
+    <div ref={setNodeRef} className={cn("rounded-xl border bg-muted/20 p-3 transition-colors", isOver && "dnd-over")}>
       <div className="flex items-center justify-between">
-        <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{zone.title}</p>
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">{zone.title}</p>
         <span className="font-mono text-[9px] text-muted-foreground/70">{zone.kinds.join("/")}</span>
       </div>
       <div className="mt-2 min-h-[64px]">
         {item ? (
-          <div className="flex items-center gap-2 rounded-xl border bg-card px-3 py-2 font-display text-sm font-bold">
+          <div className="flex items-center gap-2 rounded-xl border bg-card shadow-sm px-3 py-2 text-sm font-semibold tracking-tight">
             <CheckCircle2 className="h-4 w-4 text-emerald-500" />
             {item.label}
           </div>

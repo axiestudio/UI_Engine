@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/stats-band.es.js",
       "require": "./dist/stats-band.cjs.js"
     },

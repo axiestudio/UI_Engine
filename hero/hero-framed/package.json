@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/hero-framed.es.js",
       "require": "./dist/hero-framed.cjs.js"
     },

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-scroll-triggered-tabs.es.js",
       "require": "./dist/interactive-scroll-triggered-tabs.cjs.js"
     },

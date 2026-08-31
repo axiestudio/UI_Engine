@@ -6,7 +6,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { HiMinus, HiPlus } from "react-icons/hi";
+import { Minus, Plus } from "lucide-react";
 
 export interface StepperProps {
   value?: number;
@@ -87,20 +87,20 @@ export function Stepper({
   };
 
   return (
-    <div className="flex w-full justify-center">
-      <div className="flex items-center gap-3 rounded-full border-2 border-[#E6E6EF] bg-transparent px-1 py-1 shadow-sm sm:gap-5 dark:border-zinc-800">
+      <div className="flex w-full justify-center">
+      <div className="flex items-center gap-3 rounded-full border bg-card px-1 py-1 shadow-sm sm:gap-5">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.92 }}
           transition={{ type: "spring", stiffness: 300, damping: 22 }}
           onClick={() => step(-1)}
           disabled={current <= min}
-          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#F0EFF6] text-[#5A5A63] disabled:opacity-50 sm:h-14 sm:w-14 dark:bg-zinc-800 dark:text-zinc-400"
+          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-muted text-muted-foreground border disabled:opacity-50 sm:h-14 sm:w-14"
         >
-          <HiMinus className="h-4 w-4 sm:h-5 sm:w-5" />
+          <Minus className="h-4 w-4 sm:h-5 sm:w-5" />
         </motion.button>
 
-        <div className="relative flex shrink-0 items-center justify-center gap-1 text-xl font-bold text-[#242426] perspective-midrange transform-3d sm:h-8 sm:text-3xl dark:text-white">
+        <div className="relative flex shrink-0 items-center justify-center gap-1 text-xl font-bold text-foreground perspective-midrange transform-3d sm:h-8 sm:text-3xl">
           {digits.map((digit, index) => (
             <div
               key={`${index}-${len}`}
@@ -139,9 +139,9 @@ export function Stepper({
           transition={{ type: "spring", stiffness: 300, damping: 22 }}
           onClick={() => step(1)}
           disabled={current >= max}
-          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#F0EFF6] text-[#5A5A63] disabled:opacity-50 sm:h-14 sm:w-14 dark:bg-zinc-800 dark:text-zinc-400"
+          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-muted text-muted-foreground border disabled:opacity-50 sm:h-14 sm:w-14"
         >
-          <HiPlus className="h-4 w-4 sm:h-5 sm:w-5" />
+          <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
         </motion.button>
       </div>
     </div>

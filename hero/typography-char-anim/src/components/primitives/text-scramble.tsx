@@ -33,7 +33,7 @@ export function TextScramble({
   ...props
 }: TextScrambleProps) {
   const MotionComponent = motion.create(
-    Component as keyof JSX.IntrinsicElements
+    Component as React.ElementType
   );
   const [scrambledText, setScrambledText] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);

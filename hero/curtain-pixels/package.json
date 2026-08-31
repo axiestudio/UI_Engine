@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/curtain-pixels.es.js",
       "require": "./dist/curtain-pixels.cjs.js"
     },

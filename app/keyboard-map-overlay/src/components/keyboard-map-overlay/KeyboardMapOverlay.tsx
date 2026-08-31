@@ -42,14 +42,14 @@ export function KeyboardMapOverlay({ bindings, title = "Keyboard map", show: sho
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={cn("fixed inset-0 z-[120] flex items-center justify-center bg-black/60 p-6 backdrop-blur-sm", className)}>
           <motion.div ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-label={title} onKeyDown={onOwn} initial={{ scale: 0.97, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.98, opacity: 0 }} className="max-h-[80vh] w-full max-w-[720px] overflow-y-auto rounded-xl border bg-background p-6 shadow-2xl outline-none">
             <div className="mb-5 flex items-center justify-between">
-              <div><h3 className="font-display text-lg font-black tracking-tight">{title}</h3><p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">try a combo — it flashes here</p></div>
+              <div><h3 className="font-display text-lg font-semibold tracking-tight">{title}</h3><p className="text-xs text-muted-foreground">try a combo — it flashes here</p></div>
               <button aria-label="Close keyboard map" onClick={() => (showProp === undefined ? setInner(false) : onToggle?.(false))} className="grid size-8 place-items-center rounded-md hover:bg-muted"><X className="size-4" /></button>
             </div>
             <ul className="grid gap-1.5 sm:grid-cols-2">
               {bindings.map((b) => (
-                <li key={b.description} className={cn("flex items-center justify-between gap-3 rounded-lg border bg-card px-3.5 py-2.5 text-[13px] transition-colors", flash === b.description && "border-[hsl(var(--app-focus))] bg-accent")}>
-                  <span className="min-w-0"><span className="block truncate font-medium">{b.description}</span>{b.where && <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{b.where}</span>}</span>
-                  <span className="flex shrink-0 gap-1">{b.keys.map((k) => <kbd key={k} className="rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-bold shadow-[inset_0_-2px_0_rgba(0,0,0,0.08)]">{k}</kbd>)}</span>
+                <li key={b.description} className={cn("flex items-center justify-between gap-3 rounded-lg border border-border/70 bg-card px-3.5 py-2.5 text-sm transition-colors", flash === b.description && "border-border bg-accent")}>
+                  <span className="min-w-0"><span className="block truncate font-medium">{b.description}</span>{b.where && <span className="text-xs text-muted-foreground">{b.where}</span>}</span>
+                  <span className="flex shrink-0 gap-1">{b.keys.map((k) => <kbd key={k} className="rounded border border-border/60 bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium shadow-[inset_0_-2px_0_rgba(0,0,0,0.06)]">{k}</kbd>)}</span>
                 </li>
               ))}
             </ul>

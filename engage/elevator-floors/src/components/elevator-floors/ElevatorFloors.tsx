@@ -1,17 +1,17 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
-import { ArrowDown, ArrowUp } from "lucide-react"
+import { motion, AnimatePresence, useReducedMotion } from "motion/react"
+import { ArrowDown, ArrowUp, Check, Minus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, CornerTicks } from "@/components/primitives/handcraft"
 
 // ═══ JOB      make plan tiers physical — you ride to the one you choose
 // ═══ EMOTION  trust in an engine that clearly holds weight
-// ═══ SIGNATURE brass floor indicator COUNTS and ticks as you switch plans;
+// ═══ SIGNATURE brass floor indicator counts and ticks as you switch plans;
 //               two-panel elevator doors part over the selected plan's details
 //   SITE     → pricing section as a lift shaft (plans = floors)
-//   APP      → billing plan switcher card (same component, app `frame`)
-//   A11Y     floors are a radiogroup (keys move); doors are decorative —
-//             details are always in the DOM for SRs; reduced = no slide
+//   APP      → billing plan switcher card (controlled `defaultFloor` / `onFloorChange`)
+//   A11Y     radiogroup with arrow-key roving, live region, reduced-motion
+//            falls back to crossfade, doors are decorative
 
 export type LiftFloor = {
   name: string
@@ -28,107 +28,235 @@ export type ElevatorFloorsProps = {
   title?: React.ReactNode
   floors: LiftFloor[]
   defaultFloor?: number
+  /** Controlled floor index — when set, component is controlled. */
+  floor?: number
+  onFloorChange?: (index: number) => void
   className?: string
 }
 
-export function ElevatorFloors({ eyebrow = "TAKE THE LIFT", title, floors, defaultFloor = 1, className }: ElevatorFloorsProps) {
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-  const [floor, setFloor] = React.useState(Math.max(0, Math.min(floors.length - 1, defaultFloor)))
-  const active = floors[floor]
+export function ElevatorFloors({
+  eyebrow = "TAKE THE LIFT",
+  title,
+  floors,
+  defaultFloor = 1,
+  floor: controlledFloor,
+  onFloorChange,
+  className,
+}: ElevatorFloorsProps) {
+  const reduceMotion = useReducedMotion()
+  const reduce = !!reduceMotion
+  const [internal, setInternal] = React.useState(() => Math.max(0, Math.min(floors.length - 1, defaultFloor)))
+  const floor = controlledFloor ?? internal
+  const active = floors[floor] ?? floors[0]
+  const groupRef = React.useRef<HTMLDivElement>(null)
+  const radioRefs = React.useRef<(HTMLButtonElement | null)[]>([])
+
+  const setFloor = React.useCallback(
+    (next: number) => {
+      const clamped = Math.max(0, Math.min(floors.length - 1, next))
+      if (controlledFloor === undefined) setInternal(clamped)
+      onFloorChange?.(clamped)
+    },
+    [controlledFloor, floors.length, onFloorChange],
+  )
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault()
+      const next = floor > 0 ? floor - 1 : floors.length - 1
+      setFloor(next)
+      radioRefs.current[next]?.focus()
+    }
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault()
+      const next = floor < floors.length - 1 ? floor + 1 : 0
+      setFloor(next)
+      radioRefs.current[next]?.focus()
+    }
+    if (e.key === "Home") {
+      e.preventDefault()
+      setFloor(0)
+      radioRefs.current[0]?.focus()
+    }
+    if (e.key === "End") {
+      e.preventDefault()
+      setFloor(floors.length - 1)
+      radioRefs.current[floors.length - 1]?.focus()
+    }
+  }
+
+  if (!floors.length) {
+    return (
+      <section className={cn("w-full bg-background px-4 py-16", className)}>
+        <p className="mx-auto max-w-[1120px] font-mono text-sm text-muted-foreground">No floors configured.</p>
+      </section>
+    )
+  }
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-background px-4 py-20 sm:px-6 lg:px-8", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background px-4 py-16 sm:px-6 sm:py-20 lg:px-8", className)} aria-labelledby={title ? "elevator-title" : undefined}>
       <div className="mx-auto w-full max-w-[1120px]">
-        <div className="mb-9 max-w-xl">
+        <div className="mb-8 max-w-xl">
           <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
-          {title && <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-[40px]">{title}</h2>}
+          {title && (
+            <h2 id="elevator-title" className="mt-3 font-display text-3xl font-black tracking-tight sm:text-[40px]">
+              {title}
+            </h2>
+          )}
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
-          {/* call buttons + indicator */}
-          <div className="flex lg:block">
-            <div role="radiogroup" aria-label="Plans" className="relative w-full overflow-hidden rounded-xl border-2 border-[hsl(var(--lift-shaft))] bg-[hsl(var(--lift-shaft))] p-5 text-[hsl(var(--lift-ink))]">
-              <CornerTicks size={10} offset={6} className="text-white/25" />
-              {/* floor indicator */}
-              <div className="mb-6 flex items-center justify-between border-b border-white/15 pb-4">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-white/50">Now serving</span>
-                <span className="font-display text-4xl font-black leading-none tabular-nums text-[hsl(var(--lift-panel))]">{floor + 1}</span>
-                <span className="flex flex-col gap-1">
-                  <button aria-label="Floor up" disabled={floor === floors.length - 1} onClick={() => setFloor((f) => Math.min(floors.length - 1, f + 1))} className="grid size-6 place-items-center rounded-full border border-white/25 disabled:opacity-25 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-[hsl(var(--lift-panel))]"><ArrowUp className="size-3.5" /></button>
-                  <button aria-label="Floor down" disabled={floor === 0} onClick={() => setFloor((f) => Math.max(0, f - 1))} className="grid size-6 place-items-center rounded-full border border-white/25 disabled:opacity-25 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-[hsl(var(--lift-panel))]"><ArrowDown className="size-3.5" /></button>
-                </span>
+        <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
+          {/* call panel + controls */}
+          <div className="relative overflow-hidden rounded-xl border-2 border-[hsl(var(--lift-shaft))] bg-[hsl(var(--lift-shaft))] p-5 text-[hsl(var(--lift-ink))] shadow-[0_16px_40px_-16px_rgba(0,0,0,0.35)]">
+            <CornerTicks size={10} offset={6} className="text-white/20" />
+            {/* floor indicator */}
+            <div className="mb-6 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
+              <div>
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/50">Now serving</p>
+                <p className="font-mono text-[11px] font-medium text-white/60">Floor {floor + 1} of {floors.length}</p>
               </div>
-              {/* brass floor buttons */}
-              <ul className="grid grid-cols-4 gap-2 lg:grid-cols-3">
-                {floors.map((f, i) => (
-                  <li key={f.name}>
-                    <button
-                      type="button"
-                      role="radio"
-                      aria-checked={i === floor}
-                      onClick={() => setFloor(i)}
-                      className={cn(
-                        "flex h-16 w-full flex-col items-center justify-center gap-1 rounded-full border-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-all",
-                        i === floor
-                          ? "border-[hsl(var(--lift-panel))] bg-[hsl(var(--lift-panel))] text-[hsl(var(--lift-shaft))] shadow-[0_0_18px_hsl(var(--lift-panel)/0.45)]"
-                          : "border-white/20 text-white/70 hover:border-white/50",
-                      )}
-                    >
-                      <span className="text-base">{i + 1}</span>
-                      <span className="px-1 leading-tight">{f.name}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              {/* shaft cable tick line */}
-              <motion.span
-                aria-hidden
-                className="absolute -right-[3px] top-10 hidden h-8 w-[6px] rounded-full bg-[hsl(var(--lift-floor-glow))] lg:block"
-                animate={{ top: `${96 + floor * 74}px` }}
-                transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 140, damping: 18 }}
-              />
+              <span className="grid place-items-center rounded-lg bg-white/5 px-3 py-1.5 font-display text-3xl font-black leading-none tabular-nums text-[hsl(var(--lift-panel))] ring-1 ring-white/10" aria-live="polite" aria-atomic>
+                {floor + 1}
+              </span>
+              <span className="flex flex-col gap-1.5">
+                <button
+                  type="button"
+                  aria-label="Floor up"
+                  disabled={floor === floors.length - 1}
+                  onClick={() => setFloor(floor + 1)}
+                  className="grid size-7 place-items-center rounded-full border border-white/20 bg-white/[0.04] text-white transition-colors hover:bg-white/10 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--lift-shaft))] disabled:cursor-not-allowed disabled:opacity-30"
+                >
+                  <ArrowUp className="size-3.5" aria-hidden />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Floor down"
+                  disabled={floor === 0}
+                  onClick={() => setFloor(floor - 1)}
+                  className="grid size-7 place-items-center rounded-full border border-white/20 bg-white/[0.04] text-white transition-colors hover:bg-white/10 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--lift-shaft))] disabled:cursor-not-allowed disabled:opacity-30"
+                >
+                  <ArrowDown className="size-3.5" aria-hidden />
+                </button>
+              </span>
             </div>
+
+            {/* brass floor buttons */}
+            <div ref={groupRef} role="radiogroup" aria-label="Pricing floors" onKeyDown={handleKeyDown} className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-3">
+              {floors.map((f, i) => {
+                const selected = i === floor
+                return (
+                  <button
+                    key={f.name}
+                    type="button"
+                    ref={(el) => {
+                      radioRefs.current[i] = el
+                    }}
+                    role="radio"
+                    aria-checked={selected}
+                    tabIndex={selected ? 0 : -1}
+                    onClick={() => setFloor(i)}
+                    className={cn(
+                      "group flex h-[72px] flex-col items-center justify-center gap-1 rounded-2xl border-2 px-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--lift-shaft))]",
+                      selected
+                        ? "border-[hsl(var(--lift-panel))] bg-[hsl(var(--lift-panel))] text-[hsl(var(--lift-shaft))] shadow-[0_6px_20px_hsl(var(--lift-panel)/0.35)]"
+                        : "border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:bg-white/[0.07] hover:text-white",
+                    )}
+                  >
+                    <span className="font-display text-lg leading-none tabular-nums">{i + 1}</span>
+                    <span className="line-clamp-1 px-1 text-center leading-tight">{f.name}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <p className="sr-only" aria-live="polite">
+              Selected floor {floor + 1}: {active.name} {active.price ? `at ${active.price} ${active.period ?? ""}` : ""}
+            </p>
+
+            {/* shaft cable tick */}
+            <motion.span
+              aria-hidden
+              className="pointer-events-none absolute -right-1 top-0 hidden h-8 w-1.5 rounded-full bg-[hsl(var(--lift-floor-glow))] shadow-[0_0_12px_hsl(var(--lift-floor-glow)/0.5)] lg:block"
+              animate={{ y: 96 + floor * 76 }}
+              transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 160, damping: 20 }}
+            />
           </div>
 
           {/* shaft doors + cabin interior */}
-          <div className="relative min-h-[420px] overflow-hidden rounded-xl border-2 border-[hsl(var(--lift-shaft))] bg-[hsl(var(--lift-panel)/0.06)]">
+          <div className="relative flex min-h-[440px] flex-col overflow-hidden rounded-xl border-2 border-[hsl(var(--lift-shaft))] bg-[hsl(var(--lift-panel)/0.06)] shadow-sm">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.name}
-                initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.985 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.99 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="flex h-full flex-col p-6 sm:p-8"
+                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
+                transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                className="flex h-full flex-1 flex-col p-6 sm:p-8"
               >
-                <div className="flex flex-wrap items-baseline justify-between gap-x-6">
-                  <h3 className="font-display text-2xl font-black tracking-tight">{active.name}{active.badge && <span className="ml-3 rounded-full bg-foreground px-2.5 py-0.5 font-mono text-[9px] font-black uppercase tracking-[0.16em] text-background align-middle">{active.badge}</span>}</h3>
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <h3 className="font-display text-2xl font-black tracking-tight sm:text-3xl">
+                    {active.name}
+                    {active.badge && (
+                      <span className="ml-3 inline-flex items-center rounded-full bg-foreground px-3 py-1 align-middle font-mono text-[9px] font-black uppercase tracking-[0.16em] text-background">
+                        {active.badge}
+                      </span>
+                    )}
+                  </h3>
                   {active.price && (
-                    <p className="font-display text-[34px] font-black tabular-nums tracking-tight">
-                      {active.price}<span className="ml-1 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{active.period}</span>
+                    <p className="font-display text-[30px] font-black leading-none tracking-tight sm:text-[36px]">
+                      {active.price}
+                      {active.period && <span className="ml-1.5 align-baseline font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{active.period}</span>}
                     </p>
                   )}
                 </div>
-                {active.blurb && <p className="mt-2 max-w-md text-sm font-medium text-muted-foreground">{active.blurb}</p>}
-                <ul className="mt-6 flex-1 divide-y divide-border/70 border-y">
-                  {active.features.map((ft) => (
-                    <li key={ft.label} className="flex items-center gap-3 py-3 text-sm font-semibold">
-                      <span aria-hidden className={cn("grid size-5 shrink-0 place-items-center rounded-full border text-[10px]", ft.included === false ? "border-border text-muted-foreground" : "border-[hsl(var(--lift-floor-glow))] bg-[hsl(var(--lift-floor-glow)/0.12)] text-[hsl(var(--lift-floor-glow))]")}>{ft.included === false ? "—" : "✓"}</span>
-                      <span className={cn(ft.included === false && "text-muted-foreground line-through decoration-border")}>{ft.label}</span>
-                    </li>
-                  ))}
+                {active.blurb && <p className="mt-3 max-w-[48ch] text-sm font-medium leading-relaxed text-muted-foreground">{active.blurb}</p>}
+
+                <ul className="mt-6 flex-1 divide-y divide-border/60 rounded-xl border bg-card/50">
+                  {active.features.map((ft) => {
+                    const included = ft.included !== false
+                    return (
+                      <li key={ft.label} className="flex items-center gap-3 px-4 py-3.5 text-sm">
+                        <span
+                          aria-hidden
+                          className={cn(
+                            "grid size-6 shrink-0 place-items-center rounded-full border text-[11px] font-black",
+                            included
+                              ? "border-[hsl(var(--lift-floor-glow))] bg-[hsl(var(--lift-floor-glow))/0.12] text-[hsl(var(--lift-floor-glow))]"
+                              : "border-border bg-muted text-muted-foreground",
+                          )}
+                        >
+                          {included ? <Check className="size-3.5" /> : <Minus className="size-3" />}
+                        </span>
+                        <span className={cn("font-medium leading-none", !included && "text-muted-foreground line-through decoration-muted-foreground/30")}>{ft.label}</span>
+                        <span className="sr-only">{included ? "Included" : "Not included"}</span>
+                      </li>
+                    )
+                  })}
                 </ul>
+
                 {active.cta && (
-                  <button type="button" onClick={active.cta.onClick} className="mt-7 inline-flex h-12 w-fit items-center gap-2 rounded-full bg-[hsl(var(--lift-shaft))] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--lift-panel))]">
-                    {active.cta.label}
-                  </button>
+                  active.cta.href ? (
+                    <a
+                      href={active.cta.href}
+                      onClick={active.cta.onClick}
+                      className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[hsl(var(--lift-shaft))] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-all hover:translate-y-[-1px] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-shaft))] focus-visible:ring-offset-2"
+                    >
+                      {active.cta.label}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={active.cta.onClick}
+                      className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[hsl(var(--lift-shaft))] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-all hover:translate-y-[-1px] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-shaft))] focus-visible:ring-offset-2"
+                    >
+                      {active.cta.label}
+                    </button>
+                  )
                 )}
               </motion.div>
             </AnimatePresence>
-            {/* the doors (decorative sweep on change) */}
-            {!reduce && (
-              <Doors key={floor} />
-            )}
+
+            {!reduce && <Doors key={floor} />}
           </div>
         </div>
       </div>
@@ -138,18 +266,19 @@ export function ElevatorFloors({ eyebrow = "TAKE THE LIFT", title, floors, defau
 
 function Doors() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 z-10 flex">
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-10 flex overflow-hidden rounded-lg">
       {[0, 1].map((side) => (
         <motion.span
           key={side}
-          initial={{ x: side ? "0%" : "0%", opacity: 1 }}
-          animate={{ x: side ? "102%" : "-102%", opacity: 1 }}
-          transition={{ duration: 0.65, ease: [0.7, 0, 0.2, 1] }}
-          className="h-full w-1/2 border-x border-black/30 bg-gradient-to-b from-[hsl(var(--lift-shaft))] via-[hsl(var(--steel,220_9%_16%))] to-[hsl(var(--lift-shaft))]"
-          style={{ [side ? "right" : "left"]: 0 } as React.CSSProperties}
+          initial={{ x: "0%" }}
+          animate={{ x: side ? "102%" : "-102%" }}
+          transition={{ duration: 0.62, ease: [0.7, 0, 0.2, 1] }}
+          className="relative h-full w-1/2 border-black/25 bg-gradient-to-b from-[hsl(var(--lift-shaft))] via-[hsl(220_9%_18%)] to-[hsl(var(--lift-shaft))]"
+          style={{ borderLeftWidth: side ? 1 : 0, borderRightWidth: side ? 0 : 1 } as React.CSSProperties}
         >
-          <span className="absolute inset-y-8 left-3 w-[2px] bg-black/40" />
-          <span className="absolute inset-y-8 right-3 w-[2px] bg-white/10" />
+          <span className="absolute inset-y-6 left-2 w-px bg-black/30" />
+          <span className="absolute inset-y-6 right-2 w-px bg-white/10" />
+          <span className="absolute left-1/2 top-1/2 h-10 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/8" />
         </motion.span>
       ))}
     </div>

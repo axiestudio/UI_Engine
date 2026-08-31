@@ -2,17 +2,11 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
-import { InView } from "@/components/primitives/in-view"
-
-// ═══ JOB      benchmark honestly against the industry
-// ═══ EMOTION  fair fight, visible win — a tug-of-war you can watch
-// ═══ SIGNATURE the bar knots in the middle with a "tension" badge that
-//               shows the gap; bars fill on enter with overshoot ease
-//   SITE      → comparison/pricing proof, sales one-pagers
-//   APP       → benchmark panels; values are props
-//   A11Y      role=meter with valuenow/max; values as text
 
 export type BenchmarkDuelProps = {
+  eyebrow?: string
+  title?: string
+  subtitle?: string
   you: { label: string; value: number }
   industry: { label: string; value: number }
   unit?: string
@@ -21,6 +15,9 @@ export type BenchmarkDuelProps = {
 }
 
 export function BenchmarkDuel({
+  eyebrow = "BENCHMARK · HEAD TO HEAD",
+  title = "Benchmark vs. median",
+  subtitle = "Same scale, same unit. The gap is the difference.",
   you = { label: "Your team", value: 94 },
   industry = { label: "Industry median", value: 58 },
   unit = "% on-time",
@@ -28,48 +25,65 @@ export function BenchmarkDuel({
   className,
 }: BenchmarkDuelProps) {
   const gap = Math.round(you.value - industry.value)
+  const ahead = gap >= 0
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+
   const Row = ({ item, tone, delay }: { item: { label: string; value: number }; tone: "you" | "ind"; delay: number }) => (
     <div role="meter" aria-valuenow={item.value} aria-valuemin={0} aria-valuemax={max} aria-label={`${item.label}: ${item.value} ${unit}`}>
-      <div className="flex items-baseline justify-between">
-        <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.16em]", tone === "you" ? "text-foreground" : "text-muted-foreground")}>{item.label}</span>
-        <span className={cn("font-display text-2xl font-black tabular-nums", tone === "you" ? "text-foreground" : "text-muted-foreground")}>{item.value}<span className="text-sm">{unit}</span></span>
+      <div className="flex items-baseline justify-between gap-4">
+        <span className={cn("font-mono text-[11px] font-semibold uppercase tracking-[0.12em]", tone === "you" ? "text-foreground" : "text-muted-foreground")}>
+          {item.label}
+        </span>
+        <span className={cn("font-display text-[22px] font-semibold tabular-nums tracking-[-0.02em]", tone === "you" ? "text-foreground" : "text-muted-foreground")}>
+          {item.value}
+          <span className="ml-1 text-[12px] font-medium tracking-normal text-muted-foreground">{unit}</span>
+        </span>
       </div>
-      <div className="mt-2 h-10 overflow-hidden rounded-lg bg-muted">
+      <div className="mt-2.5 h-2.5 overflow-hidden rounded-full bg-muted">
         <motion.div
-          initial={reduce ? {} : { width: 0 }}
-          whileInView={{ width: `${(item.value / max) * 100}%` }}
+          initial={reduce ? undefined : { width: 0 }}
+          whileInView={{ width: `${Math.min(100, (item.value / max) * 100)}%` }}
           viewport={{ once: true }}
-          transition={{ duration: 1.1, delay, ease: [0.34, 1.3, 0.5, 1] }}
-          className={cn("h-full rounded-lg", tone === "you" ? "bg-foreground" : "bg-muted-foreground/50")}
+          transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+          className={cn("h-full rounded-full", tone === "you" ? "bg-foreground" : "bg-muted-foreground/40")}
         />
       </div>
+      <span className="sr-only">{item.value} out of {max} {unit}</span>
     </div>
   )
 
   return (
     <SectionShell width={760} className={className}>
-      <MonoLabel className="text-muted-foreground">BENCHMARK · HEAD TO HEAD</MonoLabel>
-      <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">Same race. Different stride.</h2>
+      <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+      <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
+      {subtitle && <p className="mt-2 max-w-[48ch] text-[13px] leading-6 text-muted-foreground">{subtitle}</p>}
 
-      <div className="mt-10 space-y-8">
-        <Row item={you} tone="you" delay={0.1} />
-        <Row item={industry} tone="ind" delay={0.35} />
+      <div className="mt-8 space-y-6">
+        <Row item={you} tone="you" delay={0.08} />
+        <Row item={industry} tone="ind" delay={0.18} />
       </div>
 
-      <div className="mt-10 flex items-center gap-4 rounded-xl border border-dashed p-4">
-        <motion.span
-          initial={reduce ? {} : { rotate: [-4, 4, -4] }}
-          animate={reduce ? {} : { rotate: [-4, 4, -4] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          className="grid size-12 shrink-0 place-items-center rounded-lg border-2 border-foreground font-display text-xl font-black text-foreground"
+      <div className="mt-8 flex items-start gap-4 rounded-xl border bg-card p-4 shadow-sm">
+        <span
+          aria-hidden
+          className={cn(
+            "grid size-11 shrink-0 place-items-center rounded-lg border font-display text-[15px] font-semibold tabular-nums",
+            ahead ? "border-success/20 bg-success-muted text-success" : "border-border bg-muted text-muted-foreground",
+          )}
         >
-          +{gap}
-        </motion.span>
-        <p className="text-sm font-medium leading-relaxed text-muted-foreground">
-          <span className="font-bold text-foreground">{gap} points of tension</span> between you and the median. The rope is pulling your way.
-        </p>
+          {ahead ? `+${gap}` : gap}
+        </span>
+        <div className="min-w-0">
+          <p className="text-[13px] font-semibold leading-6 text-foreground">
+            {Math.abs(gap)} point{gap === 1 || gap === -1 ? "" : "s"} {ahead ? "ahead of" : "behind"} the median
+          </p>
+          <p className="text-[13px] leading-5 text-muted-foreground">
+            {ahead ? "The gap is widening — the system is pulling your way." : "Within striking distance. The next improvement closes it."}
+          </p>
+        </div>
       </div>
+
+      <p className="mt-3 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">Scale 0–{max} · Values are live props, bars animate once on enter.</p>
     </SectionShell>
   )
 }

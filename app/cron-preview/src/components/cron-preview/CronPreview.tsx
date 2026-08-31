@@ -26,8 +26,8 @@ export function CronPreview({ expr, onChange, now = () => new Date(), className 
       <div className="flex flex-wrap gap-2" role="group" aria-label="Cron expression">
         {parts.map((p, i) => (
           <label key={i} className="flex flex-col gap-1">
-            <span className="font-mono text-[9px] font-black uppercase tracking-[0.16em] text-muted-foreground">{NAMES[i]}</span>
-            <input value={p} onChange={(e) => { const n = [...parts]; n[i] = e.target.value.replace(/\s/g, ""); onChange(n.join(" ").trim()) }} aria-label={NAMES[i]} className={cn("h-9 w-16 rounded-md border bg-background px-2 text-center font-mono text-[13px] font-bold outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]", !fieldOk(p, [59, 23, 31, 12, 7][i]) && "border-[hsl(var(--err))] text-[hsl(var(--err))]")} />
+            <span className="text-xs font-medium text-muted-foreground">{NAMES[i]}</span>
+            <input value={p} onChange={(e) => { const n = [...parts]; n[i] = e.target.value.replace(/\s/g, ""); onChange(n.join(" ").trim()) }} aria-label={NAMES[i]} className={cn("h-9 w-16 rounded-lg border border-border/70 bg-background px-2 text-center font-mono text-[13px] font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring", !fieldOk(p, [59, 23, 31, 12, 7][i]) && "border-[hsl(var(--err))] text-[hsl(var(--err))]")} />
           </label>
         ))}
       </div>
@@ -40,7 +40,7 @@ export function CronPreview({ expr, onChange, now = () => new Date(), className 
       {valid && nexts.length > 0 && (
         <ol className="flex flex-wrap gap-1.5" aria-label="Next five runs">
           {nexts.map((t, i) => (
-            <motion.li key={+t} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }} className="rounded-md bg-[hsl(var(--app-code))] px-2.5 py-1.5 font-mono text-[10px] font-bold text-muted-foreground">
+            <motion.li key={+t} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }} className="rounded-md border border-border/60 bg-muted/40 px-2.5 py-1 font-mono text-xs font-medium text-muted-foreground">
               {t.toLocaleString(undefined, { weekday: "short", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}
             </motion.li>
           ))}

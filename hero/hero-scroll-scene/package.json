@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/hero-scroll-scene.es.js",
       "require": "./dist/hero-scroll-scene.cjs.js"
     },

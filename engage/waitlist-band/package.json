@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/waitlist-band.es.js",
       "require": "./dist/waitlist-band.cjs.js"
     },

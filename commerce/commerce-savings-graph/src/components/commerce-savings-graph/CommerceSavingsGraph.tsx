@@ -26,7 +26,7 @@ export function CommerceSavingsGraph({ eyebrow = "SAVE", title = "The math adds 
     <SectionShell width={920} grain rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
-        <h2 className="mt-2 font-display text-3xl font-black tracking-[-0.02em] sm:text-4xl">{title}</h2>
+        <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">{title}</h2>
       </InView>
       <div ref={ref} className="mt-10 rounded-2xl border p-6">
         <div className="flex h-56 items-end gap-3">
@@ -45,7 +45,7 @@ export function CommerceSavingsGraph({ eyebrow = "SAVE", title = "The math adds 
           {bars.map((b, i) => (
             <div key={b.id} className="flex flex-1 flex-col items-center">
               <span className="font-mono text-[11px] font-bold tabular-nums">{b.value}k</span>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{b.label}</span>
+              <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">{b.label}</span>
             </div>
           ))}
         </div>

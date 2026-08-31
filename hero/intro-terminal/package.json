@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/intro-terminal.es.js",
       "require": "./dist/intro-terminal.cjs.js"
     },

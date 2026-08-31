@@ -22,7 +22,7 @@ function TextShimmerComponent({
   spread = 2,
 }: TextShimmerProps) {
   const MotionComponent = motion.create(
-    Component as keyof JSX.IntrinsicElements
+    Component as React.ElementType
   );
 
   const dynamicSpread = useMemo(() => {

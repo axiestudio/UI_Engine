@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/testimonial-marquee.es.js",
       "require": "./dist/testimonial-marquee.cjs.js"
     },

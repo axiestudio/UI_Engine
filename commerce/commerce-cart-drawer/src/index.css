@@ -33,6 +33,13 @@
     --brand: 240 5% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --success-muted: 142 70% 96%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 25 30% 15%;
+    --warning-muted: 38 92% 89%;
+
     --site-accent: 42 72% 52%;
     --site-accent-2: 262 72% 52%;
     --site-accent-fg: 0 0% 98%;
@@ -65,7 +72,16 @@
 
     --site-accent: 42 72% 58%;
     --site-accent-2: 262 72% 62%;
-  }
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --site-accent-fg: 0 0% 98%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --success-muted: 142 70% 96%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 25 30% 15%;
+    --warning-muted: 38 92% 89%;
+}
 }
 
 @layer base {

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react"
+import { motion, useMotionValue, useMotionValueEvent, useScroll, useTransform, useReducedMotion } from "motion/react"
 import type { MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, CornerTicks } from "@/components/primitives/handcraft"
@@ -37,7 +37,8 @@ export function RedCarpetScroll({
   height = "220vh",
   className,
 }: RedCarpetScrollProps) {
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+  const _reduce = useReducedMotion()
+  const reduce = !!_reduce
   const controlled = progress !== undefined
   const wrapRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start 70%", "end 40%"] })

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/bundle-upsell.es.js",
       "require": "./dist/bundle-upsell.cjs.js"
     },

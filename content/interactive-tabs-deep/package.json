@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-tabs-deep.es.js",
       "require": "./dist/interactive-tabs-deep.cjs.js"
     },

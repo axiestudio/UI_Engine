@@ -1,21 +1,29 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { MonoLabel, SectionShell, CornerTicks } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 
 // ═══ JOB      archive the brand's eras as collectible seals
 // ═══ EMOTION  wax, paper, weight — a brand with a filing cabinet
-// ═══ SIGNATURE wax seals per era; clicking presses a fresh seal with an
-//               ink-ring ripple and rotated date stamp
+// ═══ SIGNATURE paper wax seals float on the ink band: press one and it
+//               squashes, an ink ring ripples out, and a rotated "FILED"
+//               date stamp stays behind; the header tallies impressions
 //   SITE      → heritage/archive sections, anniversary pages
 //   APP       → milestone pickers; eras are data
-//   A11Y      buttons labeled "Press seal {year}"; ripples decorative
+//   BUILD     shadcn new-york-v4 Button/Badge + handcraft shell/grain/ticks
+//   A11Y      seals are real buttons ("Press seal {year}"); press counts
+//             live in state, announced via aria-live; reduced-motion drops
+//             the ripple/squash, states still arrive
 
 export type Era = { year: string; label: string }
 
 export type ArchiveStampProps = {
   eras?: Era[]
+  /** Fired with the era's running impression count after each press. */
+  onPress?: (year: string, presses: number) => void
   className?: string
 }
 
@@ -27,53 +35,139 @@ const DEFAULT_ERAS: Era[] = [
   { year: "2026", label: "Still finishing" },
 ]
 
-function Seal({ era, index }: { era: Era; index: number }) {
-  const [pressedAt, setPressedAt] = React.useState<number | null>(null)
+// paper medallion lit from the top-left — deliberate overlay maths on tokens only
+const WAX = "bg-[radial-gradient(circle_at_32%_28%,hsl(var(--background)/0.95),hsl(var(--background))_58%,hsl(var(--background)/0.82))]"
+
+function Seal({ era, presses, onPress }: { era: Era; presses: number; onPress: (year: string) => void }) {
+  const reduced = useReducedMotion()
+  const [ripple, setRipple] = React.useState<number | null>(null)
+  const [filedOn, setFiledOn] = React.useState<string | null>(null)
+
+  const press = () => {
+    setRipple(performance.now())
+    setFiledOn(new Intl.DateTimeFormat(undefined, { year: "2-digit", month: "2-digit", day: "2-digit" }).format(new Date()))
+    onPress(era.year)
+  }
+
   return (
-    <InView once delay={index * 0.08}>
-      <div className="flex flex-col items-center gap-4 text-center">
-        <motion.button
-          type="button"
-          aria-label={`Press seal ${era.year}`}
-          whileTap={{ scale: 0.92 }}
-          onClick={() => setPressedAt(Date.now())}
-          className="relative grid size-28 place-items-center rounded-full"
+    <div className="flex flex-col items-center gap-4 text-center">
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        aria-label={`Press seal ${era.year}`}
+        onClick={press}
+        className={cn(
+          "relative size-28 rounded-full border-0 shadow-[inset_0_2px_6px_hsl(0_0%_100%/0.18),0_14px_24px_-10px_hsl(var(--foreground)/0.65)]",
+          WAX,
+          "hover:bg-transparent focus-visible:ring-background/50",
+        )}
+      >
+        <motion.span
+          aria-hidden
+          initial={false}
+          animate={{ scale: reduced ? 1 : 1 }}
+          whileTap={reduced ? undefined : { scale: 0.92 }}
+          transition={{ type: "spring", stiffness: 500, damping: 22 }}
+          className="absolute inset-0 rounded-full"
         >
-          {/* wax body */}
-          <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_32%_28%,hsl(var(--foreground)/0.92),hsl(var(--foreground))_60%,hsl(var(--foreground)/0.8))] shadow-[inset_0_2px_6px_rgba(255,255,255,0.14),0_10px_22px_-10px_rgba(0,0,0,0.55)]" aria-hidden />
-          <span className="absolute inset-2 rounded-full border border-dashed border-background/30" aria-hidden />
-          <span className="relative z-10 font-display text-xl font-black tabular-nums tracking-tight text-background">{era.year}</span>
-          {/* ink ring on press */}
-          {pressedAt && (
-            <motion.span
-              key={pressedAt}
-              aria-hidden
-              initial={{ scale: 0.6, opacity: 0.7 }}
-              animate={{ scale: 1.5, opacity: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="absolute inset-0 rounded-full border-2 border-foreground"
-            />
-          )}
-        </motion.button>
-        <span className="max-w-[160px] font-mono text-[10px] font-bold uppercase leading-relaxed tracking-[0.16em] text-muted-foreground">{era.label}</span>
-      </div>
-    </InView>
+          <span className="absolute inset-2 rounded-full border border-dashed border-foreground/25" />
+          <span className="relative z-10 grid h-full w-full place-items-center text-[22px] font-black tabular-nums leading-none text-foreground">
+            {era.year}
+          </span>
+        </motion.span>
+
+        {/* ink-ring ripple, re-keyed on every press */}
+        {ripple !== null && (
+          <motion.span
+            key={ripple}
+            aria-hidden
+            initial={{ scale: 0.65, opacity: 0.9 }}
+            animate={{ scale: 1.65, opacity: 0 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 rounded-full border-2 border-foreground/60"
+          />
+        )}
+
+        {/* the filing stamp — arrives rotated, then settles */}
+        {filedOn && (
+          <motion.span
+            key={filedOn + presses}
+            aria-hidden
+            initial={reduced ? false : { scale: 1.7, opacity: 0, rotate: -18 }}
+            animate={{ scale: 1, opacity: 1, rotate: -8 }}
+            transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.08 }}
+            className="pointer-events-none absolute -bottom-4 -right-3 rounded-[3px] border-[2.5px] border-background/85 px-1.5 py-0.5 font-mono text-[8px] font-black uppercase tracking-[0.18em] text-background/85"
+          >
+            filed {filedOn}
+          </motion.span>
+        )}
+      </Button>
+
+      <span className="max-w-[160px] font-mono text-[10px] font-bold uppercase leading-relaxed tracking-[0.16em] text-background/55">
+        {era.label}
+      </span>
+
+      <Badge
+        variant="outline"
+        className={cn(
+          "rounded-full border-background/25 bg-transparent font-mono text-[9px] font-bold uppercase tracking-[0.16em] transition-colors",
+          presses > 0 ? "border-background/50 text-background/85" : "text-background/40",
+        )}
+      >
+        {presses > 0 ? `${presses} impression${presses === 1 ? "" : "s"}` : "unpressed"}
+      </Badge>
+    </div>
   )
 }
 
-export function ArchiveStamp({ eras = DEFAULT_ERAS, className }: ArchiveStampProps) {
+export function ArchiveStamp({ eras = DEFAULT_ERAS, onPress, className }: ArchiveStampProps) {
+  const reduced = useReducedMotion()
+  const [pressedCounts, setPressedCounts] = React.useState<Record<string, number>>({})
+  const totalPresses = Object.values(pressedCounts).reduce((a, b) => a + b, 0)
+  const filed = Object.keys(pressedCounts).length
+
+  const handlePress = (year: string) => {
+    setPressedCounts((c) => {
+      const next = (c[year] ?? 0) + 1
+      onPress?.(year, next)
+      return { ...c, [year]: next }
+    })
+  }
+
   return (
     <SectionShell width={1120} tone="ink" grain className={cn("text-background", className)}>
-      <MonoLabel className="text-background/55">ARCHIVE · PRESSED SEALS</MonoLabel>
-      <h2 className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">Every era leaves a mark.</h2>
-      <div className="mt-14 grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
-        {eras.map((e, i) => (
-          <div key={e.year} className="[&_button]:text-background">
-            <Seal era={e} index={i} />
-          </div>
+      <CornerTicks className="text-background/30" />
+
+      <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
+        <div>
+          <MonoLabel className="text-background/55">ARCHIVE · PRESSED SEALS</MonoLabel>
+          <h2 className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">Every era leaves a mark.</h2>
+        </div>
+        <div className="flex items-center gap-3">
+          <Badge variant="outline" className="rounded-full border-background/25 bg-transparent font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-background/70">
+            {filed}/{eras.length} filed
+          </Badge>
+          <Badge variant="outline" className="hidden rounded-full border-background/25 bg-transparent font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-background/70 sm:inline-flex">
+            {totalPresses} impression{totalPresses === 1 ? "" : "s"}
+          </Badge>
+        </div>
+      </div>
+
+      <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 pb-4 sm:grid-cols-3 lg:grid-cols-5">
+        {eras.map((era, i) => (
+          <InView once key={era.year} delay={i * 0.08}>
+            <Seal era={era} presses={pressedCounts[era.year] ?? 0} onPress={handlePress} />
+          </InView>
         ))}
       </div>
-      <p className="mt-12 text-center font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-background/45">press a seal to re-ink it</p>
+
+      <p aria-live="polite" className="sr-only">
+        {totalPresses > 0 ? `${filed} of ${eras.length} seals pressed, ${totalPresses} impressions total.` : ""}
+      </p>
+      <p className="mt-10 text-center font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-background/45">
+        {reduced ? `${filed} of ${eras.length} seals filed` : "press a seal to re-ink it"}
+      </p>
     </SectionShell>
   )
 }

@@ -38,7 +38,7 @@ export function InlineEditCell({ value, name, onSave, mono, width, className }: 
       ) : (
         <button type="button" onClick={() => { setDraft(committed.current); setState("idle"); setEditing(true) }} className={cn("group flex h-7 w-full items-center justify-between gap-2 rounded-md px-1.5 text-left text-[13px] hover:bg-muted/50 focus-visible:bg-muted/60 focus-visible:outline-none", mono && "font-mono")}>
           <span className={cn("truncate", state === "rejected" && "text-[hsl(var(--err))]")}>{draft}</span>
-          <span aria-hidden className="w-4 text-center font-mono text-[10px] opacity-0 transition-opacity group-hover:opacity-40">✎</span>
+          <span aria-hidden className="w-4 text-center text-[13px] opacity-0 transition-opacity group-hover:opacity-40">✎</span>
         </button>
       )}
       {state === "saving" && <Loader2 data-slot="save-spinner" aria-hidden className="absolute -right-5 size-3.5 animate-spin text-[hsl(var(--info))]" />}

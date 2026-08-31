@@ -23,7 +23,7 @@ export function HeroSplitStack({
   title = "Two halves, offset.",
   subtitle = "A split hero where the column heights stagger — the media half sits a beat lower than the copy.",
   actions = [{ label: "More", href: "#" }],
-  media = { src: "/frames/poster.webp", alt: "Media" },
+  media = { src: "/showcase/gallery-02.webp", alt: "Editorial workspace" },
   tone = "paper",
   className,
 }: HeroSplitStackProps) {

@@ -34,8 +34,8 @@ export type GiftProps = {
 }
 
 export function Gift({
-  eyebrow = "Give the table",
-  title = "A gift that arrives relaxed",
+  eyebrow = "Gift a membership",
+  title = "Digital delivery — no shipping required",
   subtitle,
   brand,
   amounts,
@@ -62,13 +62,13 @@ export function Gift({
         className="h-full w-full cursor-pointer text-left"
         aria-label="Flip gift card to read the message"
       >
-        <span className="flex h-full w-full flex-col rounded-[20px] border border-background/10 bg-gradient-to-br from-[#26262b] via-[#1b1b1f] to-[#0f0f11] p-5 text-background shadow-xl">
+        <span className="flex h-full w-full flex-col rounded-xl border border-background/10 bg-gradient-to-br from-muted via-muted to-card p-5 text-background shadow-sm">
           <span className="flex items-start justify-between">
-            <span className="font-display text-[15px] font-black tracking-tight">{brand}</span>
+            <span className="font-display text-[15px] font-semibold tracking-[-0.02em]">{brand}</span>
             <span aria-hidden className="rounded-md border border-background/25 px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-[0.2em] opacity-70">gift card</span>
           </span>
-          <span className="mt-auto block font-display text-[38px] font-black leading-none tracking-tighter">{amount.toLocaleString()} kr</span>
-          <span className="mt-5 flex items-center justify-between font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-background/55">
+          <span className="mt-auto block font-display text-[38px] font-semibold leading-none tracking-[-0.02em]er">{amount.toLocaleString()} kr</span>
+          <span className="mt-5 flex items-center justify-between font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-background/55">
             <span>№ 00{String(amount).slice(-2)} · {new Date().getFullYear()}</span>
             <span>{validNote ? "open end · never expires" : ""}</span>
           </span>
@@ -79,8 +79,8 @@ export function Gift({
 
   const back = (
     <div className={cn("absolute inset-0", !reduce && "rotate-y-180 backface-hidden")}>
-      <div className="flex h-full w-full flex-col rounded-[20px] border border-border bg-secondary p-5 text-foreground shadow-xl">
-        <p className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground">Includes</p>
+      <div className="flex h-full w-full flex-col rounded-xl border border-border bg-secondary p-5 text-foreground shadow-sm">
+        <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Includes</p>
         <ul className="mt-2 space-y-1">
           {includes.map((l) => (
             <li key={l} className="flex items-baseline gap-2 text-[13px] font-semibold">
@@ -90,7 +90,7 @@ export function Gift({
         </ul>
         {message && (
           <>
-            <p className="mt-auto pt-4 font-serif text-[15px] italic leading-relaxed tracking-tight text-foreground/90">“{message}”</p>
+            <p className="mt-auto pt-4 font-serif text-[15px] italic leading-relaxed tracking-[-0.02em] text-foreground/90">“{message}”</p>
             {messageAuthor && (
               <p className="mt-2 text-right font-serif text-sm italic text-muted-foreground">— {messageAuthor}</p>
             )}
@@ -124,15 +124,15 @@ export function Gift({
                 </motion.div>
               </div>
             )}
-            <p className="mt-4 hidden text-center font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground sm:block">
+            <p className="mt-4 hidden text-center font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground sm:block">
               {flipped && !reduce ? "the message — tap to give it back" : "tap the card — the message is on the back"}
             </p>
           </div>
 
           {/* copy + configurator */}
           <div className="min-w-0">
-            {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{eyebrow}</p>}
-            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>
+            {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground">{eyebrow}</p>}
+            <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">{title}</h2>
             {subtitle && <p className="mt-3 max-w-md text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
 
             <div role="radiogroup" aria-label="Gift amount" className="mt-8 flex flex-wrap gap-2">
@@ -144,7 +144,7 @@ export function Gift({
                   aria-checked={a === amount}
                   onClick={() => setAmount(a)}
                   className={cn(
-                    "h-11 min-w-[88px] rounded-full border px-4 font-display text-sm font-extrabold tabular-nums tracking-tight transition-all",
+                    "h-11 min-w-[88px] rounded-full border px-4 font-display text-sm font-semibold tabular-nums tracking-[-0.02em] transition-all",
                     a === amount ? "border-foreground bg-foreground text-background shadow-sm" : "bg-card hover:border-foreground/40"
                   )}
                 >
@@ -157,7 +157,7 @@ export function Gift({
               <Magnetic intensity={0.18} range={60}>
                 <Button
                   onClick={() => onGift?.(amount)}
-                  className="h-11 rounded-full px-7 font-display text-sm font-extrabold tracking-tight"
+                  className="h-11 rounded-full px-7 font-display text-sm font-semibold tracking-[-0.02em]"
                 >
                   {ctaLabel} <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
                 </Button>

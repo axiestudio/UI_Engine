@@ -1,23 +1,29 @@
 {
   "name": "visit-us",
   "version": "0.1.0",
-  "description": "Professional visit-us/location preset — Google Maps embed 2:1 grid, address, hours, phone/email, directions (Watermelon UI + Motion-Primitives)",
+  "description": "Professional visit-us/location preset \u2014 Google Maps embed 2:1 grid, address, hours, phone/email, directions (Watermelon UI + Motion-Primitives)",
   "type": "module",
   "main": "dist/visit-us.cjs.js",
   "module": "dist/visit-us.es.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/visit-us.es.js",
       "require": "./dist/visit-us.cjs.js"
     },
     "./styles.css": "./dist/visit-us.css"
   },
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "presetSources": {
-    "motion-primitives": ["in-view", "tilt"],
+    "motion-primitives": [
+      "in-view",
+      "tilt"
+    ],
     "watermelon-ui": [
       "https://registry.watermelon.sh/r/view-on-map.json",
       "https://registry.watermelon.sh/r/view-on-map-base.json",

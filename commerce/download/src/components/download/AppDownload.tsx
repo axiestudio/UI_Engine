@@ -66,7 +66,7 @@ export function AppDownload({
           {eyebrow && <MonoLabel className={ink ? "text-background/55" : "text-muted-foreground"}>{eyebrow}</MonoLabel>}
           <h1
             className={cn(
-              "mt-6 max-w-[15ch] font-display text-[clamp(2.2rem,5vw,3.6rem)] font-black leading-[0.98] tracking-[-0.04em]",
+              "mt-6 max-w-[15ch] font-display text-[clamp(2.2rem,5vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.04em]",
               ink ? "text-background" : "text-foreground",
             )}
           >
@@ -126,7 +126,7 @@ export function AppDownload({
                   size="lg"
                   asChild={Boolean(s.href)}
                   className={cn(
-                    "group h-auto flex-col items-start gap-0 rounded-xl px-5 py-2.5 text-left shadow-sm transition-all hover:shadow-md",
+                    "group h-auto flex-col items-start gap-0 rounded-xl px-5 py-2.5 text-left shadow-sm transition-all hover:border-foreground/10",
                     ink
                       ? "bg-background text-foreground hover:bg-background/90"
                       : "bg-primary text-primary-foreground hover:bg-primary/90",

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-sidebar-reorder.es.js",
       "require": "./dist/dnd-sidebar-reorder.cjs.js"
     },

@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/timeline.es.js",
       "require": "./dist/timeline.cjs.js"
     },

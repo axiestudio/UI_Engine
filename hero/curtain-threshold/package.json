@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/curtain-threshold.es.js",
       "require": "./dist/curtain-threshold.cjs.js"
     },

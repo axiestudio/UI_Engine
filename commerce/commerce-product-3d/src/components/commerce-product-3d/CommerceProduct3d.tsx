@@ -20,8 +20,8 @@ export type CommerceProduct3dProps = {
 }
 
 export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Held like a thing.", price = 89, colorways = [
-  { id: "ink", label: "Ink", swatch: "#1a1a1a" },
-  { id: "cream", label: "Cream", swatch: "#e8e0d2" },
+  { id: "ink", label: "Ink", swatch: "hsl(var(--foreground))" },
+  { id: "cream", label: "Cream", swatch: "hsl(var(--muted))" },
   { id: "amber", label: "Amber", swatch: "hsl(var(--site-accent))" },
 ], className }: CommerceProduct3dProps) {
   const px = useMotionValue(0)
@@ -47,28 +47,28 @@ export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Held like a th
             onPointerLeave={() => { px.set(0); py.set(0) }}
           >
             <motion.div
-              className="h-64 w-64 rounded-[28px] shadow-2xl"
+              className="h-64 w-64 rounded-xl shadow-2xl"
               style={{ background: cw.swatch, rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
             />
-            <p className="mt-4 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">drag to tilt</p>
+            <p className="mt-4 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">drag to tilt</p>
           </div>
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
           <div>
             <div className="flex items-baseline justify-between">
-              <h3 className="font-display text-2xl font-black">{title}</h3>
-              <p className="font-display text-2xl font-black">€{price}</p>
+              <h3 className="font-display text-2xl font-semibold">{title}</h3>
+              <p className="font-display text-2xl font-semibold">€{price}</p>
             </div>
             <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">A tactile product card — move your pointer to see it in three dimensions.</p>
             <div className="mt-6">
-              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Colorway</p>
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Colorway</p>
               <div className="mt-2 flex gap-2">
                 {colorways.map((c) => (
                   <button key={c.id} type="button" onClick={() => setActive(c.id)} aria-label={c.label} className={cn("h-9 w-9 rounded-full border ring-offset-2 transition-shadow", active === c.id && "ring-2 ring-foreground")} style={{ background: c.swatch }} />
                 ))}
               </div>
             </div>
-            <Button size="lg" className="mt-6 h-11 rounded-full px-7 font-mono text-[11px] font-bold uppercase tracking-widest">Add to cart</Button>
+            <Button size="lg" className="mt-6 h-11 rounded-full px-7 font-mono text-[11px] font-bold uppercase tracking-[0.12em]">Add to cart</Button>
           </div>
         </InView>
       </div>

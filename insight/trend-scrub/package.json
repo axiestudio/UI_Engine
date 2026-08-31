@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/trend-scrub.es.js",
       "require": "./dist/trend-scrub.cjs.js"
     },

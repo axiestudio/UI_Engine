@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/upload.es.js",
       "require": "./dist/upload.cjs.js"
     },

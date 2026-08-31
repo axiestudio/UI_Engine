@@ -21,7 +21,7 @@ export function HeroFirewatchText({ eyebrow = "EMBER", word = "BURNTHROUGH", sub
   return (
     <section className={cn("relative isolate overflow-hidden py-24 sm:py-32", className)}>
       <div aria-hidden className="absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 h-[520px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, hsl(var(--site-accent)/0.35), transparent 65%)" }} />
+        <div className="absolute left-1/2 top-1/2 h-[520px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, hsl(var(--primary)/0.35), transparent 65%)" }} />
       </div>
       <div className="relative z-10 mx-auto max-w-3xl px-5 text-center sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

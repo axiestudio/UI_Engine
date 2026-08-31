@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/commerce-product-3d.es.js",
       "require": "./dist/commerce-product-3d.cjs.js"
     },

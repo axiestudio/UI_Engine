@@ -4,25 +4,9 @@
  */
 'use client';
 
-import {
-  motion,
-  MotionValue,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  type SpringOptions,
-  AnimatePresence,
-} from 'motion/react';
-import {
-  Children,
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
+import type { MotionValue, SpringOptions } from 'motion/react';
+import { Children, cloneElement, createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 const DOCK_HEIGHT = 128;
@@ -170,7 +154,7 @@ function DockItem({ children, className, onClick }: DockItemProps) {
       onClick={onClick}
     >
       {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement, { width, isHovered })
+        cloneElement(child as React.ReactElement, { width, isHovered } as never)
       )}
     </motion.div>
   );

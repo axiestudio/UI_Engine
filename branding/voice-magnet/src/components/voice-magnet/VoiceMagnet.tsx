@@ -1,24 +1,34 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { Check, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
-import { Magnetic } from "@/components/primitives/magnetic"
+import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Magnetic } from "@/components/primitives/magnetic"
+import { Badge } from "@/components/ui/badge"
 
 // ═══ JOB      define the voice: what we say, what we never say
 // ═══ EMOTION  conviction — a brand that knows its own mouth
-// ═══ SIGNATURE magnetic flip coins: one side "WE SAY", the other
-//               "WE DON'T"; they lean toward your cursor before flipping
+// ═══ SIGNATURE magnetic flip coins: the card drifts toward the cursor,
+//               and one press turns it — the front is letterpress "We say",
+//               the ink reverse is "We don't" with the line struck through.
+//               Reduced motion flips instantly. Both verdicts stay readable.
 //   SITE      → about/brand pages, culture decks
 //   APP       → tone checker tools; pairs are data
-//   A11Y      buttons with aria-pressed; text readable in both states
+//   BUILD     one accessible toggle button per coin (the old build stacked
+//             two focusable faces); destructive/primary tokens for the
+//             verdicts — no rogue emerald/red palette colours
+//   A11Y      single aria-pressed button announces the flip; reverse face
+//             is aria-hidden when hidden; focus ring rides the coin
 
 export type VoicePair = { say: string; dont: string }
 
 export type VoiceMagnetProps = {
   pairs?: VoicePair[]
+  eyebrow?: string
+  title?: React.ReactNode
   className?: string
+  onFlip?: (pair: VoicePair, showing: "say" | "dont") => void
 }
 
 const DEFAULT_PAIRS: VoicePair[] = [
@@ -28,63 +38,86 @@ const DEFAULT_PAIRS: VoicePair[] = [
   { say: "Ask us anything.", dont: "Please hold for the next agent." },
 ]
 
-function Coin({ pair, index }: { pair: VoicePair; index: number }) {
+function Coin({ pair, index, onFlip }: { pair: VoicePair; index: number; onFlip?: VoiceMagnetProps["onFlip"] }) {
+  const reduced = useReducedMotion()
   const [flipped, setFlipped] = React.useState(false)
+
+  const turn = () => {
+    setFlipped((f) => {
+      const next = !f
+      onFlip?.(pair, next ? "dont" : "say")
+      return next
+    })
+  }
+
   return (
-    <InView once delay={index * 0.08}>
-      <motion.div
-        initial={false}
-        animate={{ rotateX: flipped ? 180 : 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        style={{ transformStyle: "preserve-3d", transformPerspective: 900 }}
-        className="relative h-[190px]"
-      >
-        <Magnetic strength={0.18}>
+    <InView once delay={index * 0.08} className="h-full">
+      <Magnetic intensity={0.3} range={130}>
+        <motion.div
+          initial={false}
+          animate={{ rotateX: flipped ? 180 : 0 }}
+          transition={reduced ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformStyle: "preserve-3d", transformPerspective: 900 }}
+          className="relative h-[190px]"
+        >
           <button
             type="button"
             aria-pressed={flipped}
-            onClick={() => setFlipped((f) => !f)}
-            className="group absolute inset-0 w-full [backface-visibility:hidden]"
+            aria-label={`${pair.say} We say. Press to show what we never say.`}
+            onClick={turn}
+            className="absolute inset-0 w-full cursor-pointer rounded-xl outline-none [backface-visibility:hidden] focus-visible:ring-[3px] focus-visible:ring-ring/50"
           >
-            <span className={cn("flex h-full w-full flex-col justify-between rounded-xl border-2 border-foreground bg-background p-5 text-left",
-              "shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-[8px_8px_0_0_hsl(var(--foreground))]")}>
-              <span className="flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
-                <Check className="size-3.5" aria-hidden /> We say
+            <span className="flex h-full w-full flex-col justify-between rounded-xl border-2 border-foreground bg-background p-5 text-left shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-[transform,box-shadow] duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_hsl(var(--foreground))]">
+              <span>
+                <Badge className="gap-1.5 rounded-full bg-primary font-mono text-[9px] font-black uppercase tracking-[0.2em] text-primary-foreground">
+                  <Check className="size-3" aria-hidden /> We say
+                </Badge>
               </span>
-              <span className="font-display text-lg font-bold leading-snug text-foreground">{pair.say}</span>
-              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground">tap to flip</span>
+              <span className="font-display text-lg font-bold leading-snug tracking-tight text-foreground">{pair.say}</span>
+              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground">tap the coin</span>
             </span>
           </button>
-          <button
-            type="button"
-            aria-pressed={flipped}
-            onClick={() => setFlipped((f) => !f)}
+
+          <span
+            aria-hidden={!flipped}
             style={{ transform: "rotateX(180deg)", backfaceVisibility: "hidden" }}
-            className="absolute inset-0 w-full"
+            className="pointer-events-none absolute inset-0 flex flex-col justify-between rounded-xl border-2 border-destructive/50 bg-foreground p-5 text-left"
           >
-            <span className={cn("flex h-full w-full flex-col justify-between rounded-xl border-2 border-border bg-muted/50 p-5 text-left")}>
-              <span className="flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-red-700 dark:text-red-400">
-                <X className="size-3.5" aria-hidden /> We don't
-              </span>
-              <span className="font-display text-lg font-bold leading-snug text-muted-foreground line-through decoration-red-500/60 decoration-2">{pair.dont}</span>
-              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground">tap to flip back</span>
+            <span>
+              <Badge variant="destructive" className="gap-1.5 rounded-full font-mono text-[9px] font-black uppercase tracking-[0.2em]">
+                <X className="size-3" aria-hidden /> We don't
+              </Badge>
             </span>
-          </button>
-        </Magnetic>
-      </motion.div>
+            <span className="font-display text-lg font-bold leading-snug tracking-tight text-background/80 line-through decoration-destructive decoration-2 underline-offset-4">{pair.dont}</span>
+            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-background/45">the anti-voice · tap again</span>
+          </span>
+        </motion.div>
+      </Magnetic>
     </InView>
   )
 }
 
-export function VoiceMagnet({ pairs = DEFAULT_PAIRS, className }: VoiceMagnetProps) {
+export function VoiceMagnet({
+  pairs = DEFAULT_PAIRS,
+  eyebrow = "VOICE · SAY / DON'T",
+  title = <>The words are the brand. <em className="font-serif italic font-medium">Guard them like keys.</em></>,
+  className,
+  onFlip,
+}: VoiceMagnetProps) {
   return (
     <SectionShell width={1120} rails className={className}>
-      <MonoLabel className="text-muted-foreground">VOICE · SAY / DON'T</MonoLabel>
-      <h2 className="mt-2 max-w-2xl font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] text-foreground sm:text-[44px]">
-        The words are the brand. <em className="font-serif italic font-medium">Guard them like keys.</em>
-      </h2>
-      <div className="mt-12 grid gap-6 sm:grid-cols-2">
-        {pairs.map((p, i) => <Coin key={p.say} pair={p} index={i} />)}
+      <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+        <SectionHead eyebrow={eyebrow} title={title} subtitle="Every coin holds a promise and its opposite. Turn them." tone="paper" />
+        <p className="mb-1 hidden sm:block">
+          <Badge variant="outline" className="rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            {pairs.length} pairs · {new Set(pairs.map((p) => p.say)).size} vows
+          </Badge>
+        </p>
+      </div>
+      <div className="mt-12 grid gap-6 pt-6 sm:grid-cols-2">
+        {pairs.map((p, i) => (
+          <Coin key={p.say} pair={p} index={i} onFlip={onFlip} />
+        ))}
       </div>
     </SectionShell>
   )

@@ -65,7 +65,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.09 } }}
               transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed z-[96] w-60 origin-top-left rounded-lg border bg-popover p-1 text-popover-foreground shadow-2xl"
+              className="fixed z-[96] w-60 origin-top-left rounded-lg border border-border/70 bg-popover p-1 text-popover-foreground shadow-xl"
               style={flip(pos)}
             >
               {flat.map((m, i) =>
@@ -77,7 +77,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
                     onMouseEnter={() => setFocusIdx(i)}
                     onMouseLeave={() => {}}
                     onClick={activate}
-                    className={cn("flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-[13px] outline-none", i === focusIdx && "bg-accent text-accent-foreground", m.disabled && "pointer-events-none opacity-40", m.danger && "text-[hsl(var(--err))]")}
+                    className={cn("flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-sm outline-none", i === focusIdx && "bg-accent text-accent-foreground", m.disabled && "pointer-events-none opacity-40", m.danger && "text-[hsl(var(--err))]")}
                   >
                     <span className="flex-1 truncate">{m.label}</span>
                     {m.submenu ? <ChevronRight className="size-3.5 opacity-60" /> : m.shortcut && <kbd className="font-mono text-[10px] text-muted-foreground">{m.shortcut}</kbd>}

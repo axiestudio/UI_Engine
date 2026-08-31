@@ -1,28 +1,38 @@
 {
   "name": "footer",
   "version": "0.1.0",
-  "description": "Professional site footer — Watermelon UI + Motion-Primitives preset (brand, link columns, newsletter, socials, legal, scroll-to-top)",
+  "description": "Professional site footer \u2014 Watermelon UI + Motion-Primitives preset (brand, link columns, newsletter, socials, legal, scroll-to-top)",
   "type": "module",
   "main": "dist/footer.cjs.js",
   "module": "dist/footer.es.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/footer.es.js",
       "require": "./dist/footer.cjs.js"
     },
     "./styles.css": "./dist/footer.css"
   },
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "presetSources": {
-    "motion-primitives": ["in-view", "text-shimmer", "magnetic"],
+    "motion-primitives": [
+      "in-view",
+      "text-shimmer",
+      "magnetic"
+    ],
     "watermelon-ui": [
       "https://registry.watermelon.sh/r/footer-1.json",
       "https://registry.watermelon.sh/r/newsletter-2.json",
       "https://registry.watermelon.sh/r/button.json",
-      "https://registry.watermelon.sh/r/input.json"
+      "https://registry.watermelon.sh/r/input.json",
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

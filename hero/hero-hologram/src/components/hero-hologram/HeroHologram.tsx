@@ -25,7 +25,7 @@ export function HeroHologram({ eyebrow = "HOLO", word = "HALO", subtitle = "A gl
       {/* graticule field */}
       <div aria-hidden className="absolute inset-0 opacity-[0.14]"
         style={{
-          backgroundImage: "linear-gradient(to right, hsl(var(--site-accent)/0.5) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--site-accent)/0.5) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(to right, hsl(var(--primary)/0.5) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--primary)/0.5) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
           maskImage: "radial-gradient(ellipse at center, #000 35%, transparent 75%)",
         }} />
@@ -35,7 +35,7 @@ export function HeroHologram({ eyebrow = "HOLO", word = "HALO", subtitle = "A gl
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
           <h1 className={cn("mt-6 font-display text-7xl font-black tracking-tight sm:text-9xl", "bg-clip-text text-transparent", ink ? "bg-gradient-to-b from-background to-background/40" : "bg-gradient-to-b from-foreground to-foreground/40")}>
-            <TextShimmer as="span" duration={2.4} spread={0.65} className="bg-clip-text text-transparent bg-gradient-to-r from-foreground via-[hsl(var(--site-accent))] to-foreground">
+            <TextShimmer as="span" duration={2.4} spread={0.65} className="bg-clip-text text-transparent bg-gradient-to-r from-foreground via-[hsl(var(--primary))] to-foreground">
               {word}
             </TextShimmer>
           </h1>

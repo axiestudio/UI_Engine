@@ -35,10 +35,10 @@ export type OfferProps = {
 function Unit({ n, label, reduced }: { n: number; label: string; reduced: boolean | null }) {
   return (
     <div className="flex flex-col items-center">
-      <span className="font-mono text-3xl font-black leading-none tabular-nums tracking-tighter sm:text-4xl">
+      <span className="font-mono text-3xl font-semibold leading-none tabular-nums tracking-[-0.02em]er sm:text-4xl">
         {reduced ? String(n).padStart(2, "0") : <SlidingNumber value={n} padStart />}
       </span>
-      <span aria-hidden className="mt-1.5 font-mono text-[9px] font-black uppercase tracking-[0.18em] text-muted-foreground">
+      <span aria-hidden className="mt-1.5 font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
         {label}
       </span>
     </div>
@@ -58,7 +58,7 @@ function Countdown({ until, reduced }: { until: number; reduced: boolean | null 
   const s = Math.floor((left % 60000) / 1000)
   if (reduced) {
     return (
-      <p className="font-mono text-sm font-bold tabular-nums uppercase tracking-widest">
+      <p className="font-mono text-sm font-bold tabular-nums uppercase tracking-[0.12em]">
         closes in {d}d {h}h {m}m {s}s
       </p>
     )
@@ -76,7 +76,7 @@ function Countdown({ until, reduced }: { until: number; reduced: boolean | null 
   )
 }
 
-export function Offer({ badge = "This week only", title, description, until, price, cta, expiredLabel = "This one's gone — next offer lands with the season.", className }: OfferProps) {
+export function Offer({ badge = "Limited time", title, description, until, price, cta, expiredLabel = "Offer ended — check back for the next one.", className }: OfferProps) {
   const reduce = useReducedMotion()
   const target = React.useMemo(() => (until instanceof Date ? until.getTime() : new Date(until).getTime()), [until])
   const [gone, setGone] = React.useState(() => Date.now() >= target)
@@ -90,29 +90,29 @@ export function Offer({ badge = "This week only", title, description, until, pri
     <section className={cn("w-full bg-background text-foreground", className)} aria-label={gone ? "Offer expired" : title}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[860px] px-4 py-14 sm:px-6">
-          <div className="relative overflow-hidden rounded-[28px] border bg-foreground p-6 text-background shadow-lg sm:p-10">
+          <div className="relative overflow-hidden rounded-xl border bg-foreground p-6 text-background shadow-sm sm:p-10">
             {!gone && <Spotlight size={420} className="opacity-40" />}
             <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-md">
                 {badge && !gone && (
-                  <span className="inline-flex items-center rounded-full bg-background/15 px-2.5 py-1 font-mono text-[10px] font-black uppercase tracking-[0.2em] ring-1 ring-background/25">
+                  <span className="inline-flex items-center rounded-full bg-background/15 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] ring-1 ring-background/25">
                     {badge}
                   </span>
                 )}
-                <h2 className="mt-4 font-display text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl">{title}</h2>
+                <h2 className="mt-4 font-display text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl">{title}</h2>
                 {description && <p className="mt-2 max-w-sm text-sm font-medium leading-relaxed text-background/75">{description}</p>}
                 {price && (
                   <p className="mt-5 flex items-baseline gap-3">
                     <s className="font-mono text-sm text-background/45">{String(price.from)}</s>
-                    <span className="font-display text-3xl font-black tabular-nums">{String(price.to)}</span>
-                    {price.unit && <span className="font-mono text-[10px] font-black uppercase tracking-widest text-background/60">{price.unit}</span>}
+                    <span className="font-display text-3xl font-semibold tabular-nums">{String(price.to)}</span>
+                    {price.unit && <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-background/60">{price.unit}</span>}
                   </p>
                 )}
               </div>
 
               <div className="flex flex-col gap-6">
                 {gone ? (
-                  <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-background/70">{expiredLabel}</p>
+                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-background/70">{expiredLabel}</p>
                 ) : (
                   <div className="text-background">
                     <Countdown until={target} reduced={reduce} />
@@ -120,11 +120,11 @@ export function Offer({ badge = "This week only", title, description, until, pri
                 )}
                 <div>
                   {cta.href ? (
-                    <Button asChild disabled={gone} variant="secondary" size="lg" className="h-12 rounded-full px-8 font-display text-sm font-extrabold tracking-tight">
+                    <Button asChild disabled={gone} variant="secondary" size="lg" className="h-12 rounded-full px-8 font-display text-sm font-semibold tracking-[-0.02em]">
                       <a href={cta.href} aria-disabled={gone}>{cta.label}</a>
                     </Button>
                   ) : (
-                    <Button disabled={gone} onClick={cta.onClick} variant="secondary" size="lg" className="h-12 rounded-full px-8 font-display text-sm font-extrabold tracking-tight">
+                    <Button disabled={gone} onClick={cta.onClick} variant="secondary" size="lg" className="h-12 rounded-full px-8 font-display text-sm font-semibold tracking-[-0.02em]">
                       {cta.label}
                     </Button>
                   )}

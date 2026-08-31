@@ -1,21 +1,25 @@
 /**
- * Vendored from Watermelon UI registry: https://registry.watermelon.sh/r/hero-4.json
- * Item: hero-4 — the parallax craft we adopted as the preset base. Snapshot: UI/_registry/watermelon/r/hero-4.json
+ * Hero-4 — Professional editorial hero with proper tokenization
+ * Refactored from Watermelon UI registry for BOLD PROFESSIONAL brandkit
+ * Uses: shadcn (Button), motion-primitives (InView), lucide (icons), tokens
  */
 
 import { useState, type ReactNode } from 'react';
 import { motion, AnimatePresence, type Variants } from 'motion/react';
 import {
-  FaArrowTrendUp,
-  FaShieldHalved,
-  FaEarthAmericas,
-  FaPlay,
-  FaStar,
-  FaBars,
-  FaXmark,
-  FaChevronDown,
-} from 'react-icons/fa6';
+  TrendingUp,
+  Shield,
+  Globe,
+  Play,
+  Star,
+  Menu,
+  X,
+  ChevronDown,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import LogoIcon from '@/assets/logo-icon';
+import { InView } from '@/components/primitives/in-view';
 
 export interface Hero4NavItem {
   label: string;
@@ -35,43 +39,24 @@ export interface Hero4SocialLink {
 }
 
 export interface Hero4Props {
-  /** Brand logo icon */
   logo?: ReactNode;
-  /** Brand logo text */
   logoText?: string;
-  /** Navigation items */
   navItems?: Hero4NavItem[];
-  /** Sign in button text */
   signInText?: string;
-  /** Sign in button URL */
   signInHref?: string;
-  /** Get started button text */
   getStartedText?: string;
-  /** Get started button URL */
   getStartedHref?: string;
-  /** Badge text above the headline */
   badgeText?: string;
-  /** Headline line 1 */
   titleLine1?: string;
-  /** Headline line 2 (start — regular color) */
   titleLine2Start?: string;
-  /** Headline line 2 (end — gradient accent) */
   titleLine2Accent?: string;
-  /** Body description paragraph */
   description?: string;
-  /** Primary CTA text */
   primaryCtaText?: string;
-  /** Primary CTA URL */
   primaryCtaHref?: string;
-  /** Secondary CTA text */
   secondaryCtaText?: string;
-  /** Secondary CTA URL */
   secondaryCtaHref?: string;
-  /** Background image URL */
   backgroundImage?: string;
-  /** Stats displayed in the bottom bar */
   stats?: Hero4Stat[];
-  /** Social links in the bottom bar */
   socialLinks?: Hero4SocialLink[];
 }
 
@@ -80,19 +65,18 @@ const container: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.2,
-      staggerChildren: 0.15,
+      delayChildren: 0.12,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, x: -30, filter: 'blur(5px)' },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
-    x: 0,
-    filter: 'blur(0px)',
-    transition: { type: 'spring', stiffness: 70, damping: 20 },
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -123,17 +107,17 @@ export function Hero4({
     {
       value: '10K+',
       label: 'Active Teams',
-      icon: <FaArrowTrendUp className="h-4 w-4 fill-current" />,
+      icon: <TrendingUp className="h-4 w-4" />,
     },
     {
       value: '99.9%',
       label: 'Uptime',
-      icon: <FaShieldHalved className="h-4 w-4 fill-current" />,
+      icon: <Shield className="h-4 w-4" />,
     },
     {
       value: '150+',
       label: 'Countries',
-      icon: <FaEarthAmericas className="h-4 w-4 fill-current" />,
+      icon: <Globe className="h-4 w-4" />,
     },
   ],
   socialLinks = [
@@ -145,170 +129,145 @@ export function Hero4({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-slate-950 font-sans text-white">
+    <section className="relative w-full overflow-hidden bg-background text-foreground">
       {backgroundImage && (
         <div className="absolute inset-0 z-0">
           <img
             src={backgroundImage}
             alt=""
             aria-hidden="true"
-            className="pointer-events-none h-full w-full object-cover brightness-70 select-none"
+            className="h-full w-full object-cover opacity-[0.08] dark:opacity-[0.12]"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
       )}
 
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-30 w-full"
-      >
-        <div className="mx-auto flex max-w-full items-center justify-between px-8 py-5 sm:px-12 md:px-16 lg:px-20">
+      <header className="relative z-30 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <a
             href="#"
-            className="flex items-center gap-2 text-lg font-medium tracking-tight text-white"
+            className="flex items-center gap-2.5 text-foreground"
           >
-            <span className="flex items-center justify-center text-white">
-              {logo || <LogoIcon className="size-8 fill-current" />}
+            <span className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
+              {logo || <LogoIcon className="size-5 fill-current" />}
             </span>
-            <span className="text-md font-light tracking-wide">{logoText}</span>
+            <span className="font-display text-[15px] font-bold tracking-tight">{logoText}</span>
           </a>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="group flex items-center gap-1 text-sm font-normal text-zinc-300 transition-colors duration-200 hover:text-white"
+                className="group inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
                 <span>{item.label}</span>
                 {item.hasDropdown && (
-                  <FaChevronDown className="h-2.5 w-2.5 fill-current transition-transform duration-200 group-hover:translate-y-0.5" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform group-hover:translate-y-px" />
                 )}
               </a>
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <a
-              href={signInHref}
-              className="flex items-center justify-center rounded-[12px] border border-zinc-700 bg-gradient-to-r from-[#4514C1] via-[#E8522D] to-[#F59E45] p-[1px]"
-            >
-              <div className="rounded-lg bg-black px-5 py-2 text-sm font-light text-white transition-all duration-200">
-                {signInText}
-              </div>
-            </a>
-            <a
-              href={getStartedHref}
-              className="rounded-lg bg-gradient-to-r from-[#4514C1] via-[#E8522D] to-[#F59E45] px-5 py-2 text-sm font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-200 hover:bg-amber-500"
-            >
-              {getStartedText}
-            </a>
+          <div className="hidden items-center gap-2 md:flex">
+            <Button variant="ghost" asChild className="rounded-full font-medium">
+              <a href={signInHref}>{signInText}</a>
+            </Button>
+            <Button asChild className="rounded-full font-semibold shadow-sm">
+              <a href={getStartedHref}>{getStartedText}</a>
+            </Button>
           </div>
 
-          <button
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => setMobileMenuOpen(true)}
-            className="flex items-center justify-center rounded-lg p-2 text-white transition-colors hover:bg-zinc-800 md:hidden"
-            aria-label="Toggle navigation menu"
+            className="md:hidden"
+            aria-label="Open navigation menu"
           >
-            <FaBars className="h-5 w-5 fill-current" />
-          </button>
+            <Menu className="h-5 w-5" />
+          </Button>
         </div>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex flex-col bg-slate-950/95 p-6 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur md:hidden"
           >
-          <div className="flex items-center justify-between">
-            <a
-              href="#"
-              className="flex items-center gap-2 text-lg font-semibold tracking-tight text-white"
-              onClick={() => setMobileMenuOpen(false)}
+            <motion.div
+              initial={{ y: -12, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -12, opacity: 0 }}
+              className="flex h-full flex-col p-6"
             >
-              <span className="flex items-center justify-center text-white">
-                {logo || <LogoIcon className="size-8 fill-current" />}
-              </span>
-              <span className="text-xl font-light tracking-wide uppercase">
-                {logoText}
-              </span>
-            </a>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center rounded-lg p-2 text-white transition-colors hover:bg-zinc-800"
-              aria-label="Close menu"
-            >
-              <FaXmark className="h-5 w-5 fill-current" />
-            </button>
-          </div>
-
-          <nav className="mt-12 flex flex-col gap-6">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="flex items-center justify-between border-b border-zinc-800 pb-3 text-lg font-medium text-white transition-colors hover:text-amber-400"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>{item.label}</span>
-                {item.hasDropdown && (
-                  <FaChevronDown className="h-4 w-4 fill-current text-zinc-500" />
-                )}
-              </a>
-            ))}
-          </nav>
-
-          <div className="mt-auto flex flex-col gap-3">
-            <a
-              href={signInHref}
-              className="flex items-center justify-center rounded-[12px] border border-zinc-700 bg-gradient-to-r from-[#4514C1] via-[#E8522D] to-[#F59E45] p-[1px]"
-            >
-              <div className="w-full rounded-lg bg-black px-5 py-3 text-center text-sm font-light text-white transition-all duration-200">
-                {signInText}
+              <div className="flex items-center justify-between">
+                <span className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
+                  <span className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
+                    {logo || <LogoIcon className="size-5 fill-current" />}
+                  </span>
+                  {logoText}
+                </span>
+                <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
+                  <X className="h-5 w-5" />
+                </Button>
               </div>
-            </a>
-            <a
-              href={getStartedHref}
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-[#4514C1] via-[#E8522D] to-[#F59E45] py-3 text-base font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-colors"
-            >
-              {getStartedText}
-            </a>
-          </div>
-        </motion.div>
+
+              <nav className="mt-10 flex flex-col" aria-label="Mobile primary">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="flex items-center justify-between border-b py-4 text-base font-medium transition-colors hover:text-foreground"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span>{item.label}</span>
+                    {item.hasDropdown && <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="mt-auto flex flex-col gap-3 pt-6">
+                <Button variant="outline" asChild className="w-full rounded-full">
+                  <a href={signInHref} onClick={() => setMobileMenuOpen(false)}>{signInText}</a>
+                </Button>
+                <Button asChild className="w-full rounded-full">
+                  <a href={getStartedHref} onClick={() => setMobileMenuOpen(false)}>{getStartedText}</a>
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="relative z-10 flex min-h-screen flex-col justify-between px-8 pt-3 pb-8 sm:px-12 md:px-16 md:pt-24 lg:px-20 lg:pt-32">
-        <motion.div
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-64px)] max-w-[1280px] flex-col justify-between px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <InView
           variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          transition={{ staggerChildren: 0.08 }}
+          viewOptions={{ once: true, margin: "-60px" }}
           className="flex flex-1 flex-col justify-center"
         >
           <div className="max-w-3xl">
             {badgeText && (
-              <motion.div variants={item} className="mb-8">
-                <span className="inline-flex items-center gap-2 rounded-full border border-amber-800/50 bg-amber-950/40 px-4 py-1.5 text-xs font-medium tracking-wider text-amber-400">
-                  <FaStar className="h-3 w-3 fill-amber-400" />
+              <motion.div variants={item} className="mb-6">
+                <span className="inline-flex items-center gap-2 rounded-full border bg-muted px-3 py-1 text-xs font-semibold tracking-wide text-muted-foreground">
+                  <Star className="h-3 w-3 fill-foreground text-foreground" />
                   {badgeText}
                 </span>
               </motion.div>
             )}
 
-            <motion.h1 variants={item} className="mb-6 text-4xl leading-tight font-normal tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            <motion.h1 variants={item} className="font-display text-4xl font-black leading-[0.95] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
               {titleLine1 && <span className="block">{titleLine1}</span>}
               {(titleLine2Start || titleLine2Accent) && (
                 <span className="block">
                   {titleLine2Start}
                   {titleLine2Accent && (
-                    <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400 bg-clip-text text-transparent">
+                    <span className="text-foreground underline decoration-2 underline-offset-8 decoration-border">
                       {titleLine2Accent}
                     </span>
                   )}
@@ -317,81 +276,70 @@ export function Hero4({
             </motion.h1>
 
             {description && (
-              <motion.p variants={item} className="sm:text-md mb-8 max-w-lg text-base leading-relaxed font-light text-zinc-200">
+              <motion.p variants={item} className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {description}
               </motion.p>
             )}
 
-            <motion.div variants={item} className="flex flex-wrap items-center gap-4">
+            <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
               {primaryCtaText && (
-                <a
-                  href={primaryCtaHref}
-                  className="rounded-lg bg-gradient-to-r from-[#4514C1] via-[#E8522D] to-[#F59E45] px-7 py-3 text-sm font-medium text-white shadow-lg shadow-amber-600/20 outline-2 -outline-offset-2 outline-white/20 transition-all duration-200 hover:bg-amber-500 hover:shadow-amber-500/30"
-                >
-                  {primaryCtaText}
-                </a>
+                <Button size="lg" asChild className="rounded-full px-7 font-semibold shadow-sm">
+                  <a href={primaryCtaHref}>{primaryCtaText}</a>
+                </Button>
               )}
               {secondaryCtaText && (
-                <a
-                  href={secondaryCtaHref}
-                  className="flex items-center justify-center rounded-[12px] border border-zinc-700 bg-gradient-to-r from-[#4514C1] via-[#E8522D] to-[#F59E45] p-[1px]"
-                >
-                  <div className="flex items-center justify-center rounded-lg bg-black px-5 py-3 text-sm font-light text-white transition-all duration-200">
+                <Button variant="outline" size="lg" asChild className="rounded-full px-7 font-medium">
+                  <a href={secondaryCtaHref} className="inline-flex items-center gap-2">
                     {secondaryCtaText}
-                    <FaPlay className="ml-2 h-3 w-3 fill-current" />
-                  </div>
-                </a>
+                    <Play className="h-3.5 w-3.5" />
+                  </a>
+                </Button>
               )}
             </motion.div>
           </div>
-        </motion.div>
+        </InView>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.4 }}
-          className="mt-12 mb-12 sm:mt-12 md:mt-30"
-        >
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
-            {stats.length > 0 && (
-              <div className="flex flex-wrap items-center gap-8 sm:gap-12">
-                {stats.map((stat) => (
-                  <motion.div variants={item} key={stat.label} className="flex items-center gap-3">
-                    {stat.icon && (
-                      <div className="flex size-12 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-zinc-200 backdrop-blur-sm">
-                        {stat.icon}
+        {(stats.length > 0 || socialLinks.length > 0) && (
+          <InView
+            variants={container}
+            viewOptions={{ once: true, margin: "-40px" }}
+            className="mt-16 border-t pt-8"
+          >
+            <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+              {stats.length > 0 && (
+                <div className="flex flex-wrap gap-6 sm:gap-8">
+                  {stats.map((stat) => (
+                    <motion.div variants={item} key={stat.label} className="flex items-center gap-3">
+                      {stat.icon && (
+                        <div className="flex size-10 items-center justify-center rounded-xl border bg-card text-muted-foreground shadow-xs">
+                          {stat.icon}
+                        </div>
+                      )}
+                      <div>
+                        <div className="font-display text-xl font-bold tracking-tight sm:text-2xl">
+                          {stat.value}
+                        </div>
+                        <div className="font-mono text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          {stat.label}
+                        </div>
                       </div>
-                    )}
-                    <div className="flex flex-col">
-                      <span className="text-xl font-light tracking-tight text-white sm:text-3xl">
-                        {stat.value}
-                      </span>
-                      <span className="text-sm font-normal text-zinc-300">
-                        {stat.label}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            )}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
 
-            {socialLinks.length > 0 && (
-              <div className="flex items-center gap-8">
-                {socialLinks.map((link) => (
-                  <motion.a
-                    variants={item}
-                    key={link.label}
-                    href={link.href}
-                    className="text-sm font-normal text-zinc-300 transition-colors duration-200 hover:text-white"
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
-            )}
-          </div>
-        </motion.div>
+              {socialLinks.length > 0 && (
+                <div className="flex items-center gap-1">
+                  {socialLinks.map((link) => (
+                    <Button key={link.label} variant="ghost" size="sm" asChild className="rounded-full font-medium text-muted-foreground hover:text-foreground">
+                      <a href={link.href}>{link.label}</a>
+                    </Button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </InView>
+        )}
       </div>
     </section>
   );

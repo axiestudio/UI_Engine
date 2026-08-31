@@ -22,7 +22,7 @@ export function UploadQueue({ files, onRetry, onRemove, className }: UploadQueue
   const done = files.filter((f) => f.status === "done")
   const up = files.find((f) => f.status === "uploading")
   return (
-    <div className={cn("rounded-xl border bg-card p-3 font-sans", className)}>
+    <div className={cn("rounded-xl border border-border/70 bg-card p-3 shadow-sm", className)}>
       <ul role="list" className="space-y-1">
         <AnimatePresence initial={false}>
           {files.map((f) => {
@@ -31,15 +31,15 @@ export function UploadQueue({ files, onRetry, onRemove, className }: UploadQueue
               <motion.li layout role="listitem" key={f.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -12 }} transition={{ duration: 0.22 }} className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-muted/40">
                 <Ring state={f} />
                 <span className="min-w-0 flex-1">
-                  <span className="flex items-center gap-1.5"><Icon aria-hidden className="size-3.5 shrink-0 text-muted-foreground" /><span className="truncate text-[13px] font-semibold">{f.name}</span></span>
-                  <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+                  <span className="flex items-center gap-1.5"><Icon aria-hidden className="size-3.5 shrink-0 text-muted-foreground" /><span className="truncate text-[13px] font-medium">{f.name}</span></span>
+                  <span className="mt-0.5 block text-xs text-muted-foreground">
                     {f.status === "uploading" && <>{human(f.size)} · {Math.round(f.progress ?? 0)}%</>}
                     {f.status === "waiting" && "queued"}
                     {f.status === "done" && human(f.size) + " · uploaded"}
                     {f.status === "error" && (f.error ?? "failed")}
                   </span>
                 </span>
-                {f.status === "error" && onRetry && <button onClick={() => onRetry(f.id)} className="flex items-center gap-1 rounded-full border border-[hsl(var(--warn))] px-2.5 py-1 font-mono text-[9px] font-black uppercase tracking-[0.12em] text-[hsl(var(--warn))]"><RotateCw className="size-3" /> retry{(f.tries ?? 1) > 1 ? ` ×${f.tries}` : ""}</button>}
+                {f.status === "error" && onRetry && <button onClick={() => onRetry(f.id)} className="flex items-center gap-1 rounded-full border border-[hsl(var(--warn)/0.5)] px-2.5 py-1 font-mono text-[11px] font-medium text-[hsl(var(--warn))]"><RotateCw className="size-3" /> retry{(f.tries ?? 1) > 1 ? ` ×${f.tries}` : ""}</button>}
                 {(f.status === "done" || f.status === "error") && onRemove && <button aria-label={`Remove ${f.name}`} onClick={() => onRemove(f.id)} className="grid size-6 place-items-center rounded hover:bg-muted"><X className="size-3.5" /></button>}
               </motion.li>
             )
@@ -47,7 +47,7 @@ export function UploadQueue({ files, onRetry, onRemove, className }: UploadQueue
         </AnimatePresence>
       </ul>
       {files.length > 0 && (
-        <div aria-live="polite" className="mt-2 flex items-center gap-2 border-t px-2 pt-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+        <div aria-live="polite" className="mt-2 flex items-center gap-2 border-t border-border/60 px-2 pt-2 text-xs font-medium text-muted-foreground">
           {up && <Loader2 className="size-3 animate-spin" />}<span>{done.length}/{files.length} done</span>
           {up && <span className="ml-auto tabular-nums">{human(Math.max(0, ...[Math.round(up.size * (1 - (up.progress ?? 0) / 100))]))} remaining</span>}
         </div>
@@ -63,7 +63,7 @@ function Ring({ state }: { state: UploadFile }) {
   return (
     <span aria-hidden className="relative grid size-[30px] shrink-0 place-items-center">
       <svg viewBox="0 0 28 28" className="size-[30px] -rotate-90"><circle cx="14" cy="14" r="12" fill="none" stroke="hsl(var(--muted))" strokeWidth="3" /><motion.circle cx="14" cy="14" r="12" fill="none" stroke={col} strokeWidth="3" strokeLinecap="round" initial={false} animate={{ strokeDasharray: `${p * C} ${C}` }} transition={{ type: "spring", stiffness: 120, damping: 20 }} /></svg>
-      {state.status === "done" ? <motion.span initial={{ scale: 0 }} animate={{ scale: [0, 1.25, 1] }} transition={{ duration: 0.35 }}><Check className="absolute size-3.5 text-[hsl(var(--ok))]" /></motion.span> : state.status === "error" ? <X className="absolute size-3 text-[hsl(var(--err))]" /> : state.status === "waiting" ? <span className="absolute size-1.5 rounded-full bg-muted-foreground" /> : <span className="absolute font-mono text-[7px] font-black">{Math.round(p * 100)}</span>}
+      {state.status === "done" ? <motion.span initial={{ scale: 0 }} animate={{ scale: [0, 1.25, 1] }} transition={{ duration: 0.35 }}><Check className="absolute size-3.5 text-[hsl(var(--ok))]" /></motion.span> : state.status === "error" ? <X className="absolute size-3 text-[hsl(var(--err))]" /> : state.status === "waiting" ? <span className="absolute size-1.5 rounded-full bg-muted-foreground" /> : <span className="absolute font-mono text-[8px] font-medium">{Math.round(p * 100)}</span>}
     </span>
   )
 }

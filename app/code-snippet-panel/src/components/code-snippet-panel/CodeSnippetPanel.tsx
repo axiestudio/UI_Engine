@@ -28,13 +28,13 @@ export function CodeSnippetPanel({ code, language, title, copyText, className }:
   const lines = code.replace(/\n$/, "").split("\n")
   const copy = async () => { try { await navigator.clipboard.writeText(copyText ?? code); setCopied(true); setTimeout(() => setCopied(false), 1500) } catch {} }
   return (
-    <figure className={cn("overflow-hidden rounded-lg border bg-[hsl(var(--app-code))] font-sans", className)}>
-      <figcaption className="flex items-center gap-2 border-b bg-card/60 px-3 py-1.5">
-        {title && <span className="truncate text-[11px] font-bold">{title}</span>}
-        <span className="rounded-full bg-accent px-2 py-0.5 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-accent-foreground">{lang}</span>
+    <figure className={cn("overflow-hidden rounded-xl border border-border/70 bg-card font-sans", className)}>
+      <figcaption className="flex items-center gap-2 border-b border-border/60 bg-muted/30 px-3 py-1.5">
+        {title && <span className="truncate text-sm font-medium">{title}</span>}
+        <span className="rounded-full bg-accent px-2 py-0.5 font-mono text-[11px] font-medium text-accent-foreground">{lang}</span>
         <span className="ml-auto flex items-center gap-0.5">
-          <button aria-pressed={wrap} aria-label="Toggle line wrap" onClick={() => setWrap((w) => !w)} className={cn("grid size-7 place-items-center rounded hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></button>
-          <button onClick={copy} className="flex h-7 items-center gap-1.5 rounded px-2 text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground hover:bg-muted">
+          <button aria-pressed={wrap} aria-label="Toggle line wrap" onClick={() => setWrap((w) => !w)} className={cn("grid size-7 place-items-center rounded text-muted-foreground hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></button>
+          <button onClick={copy} className="flex h-7 items-center gap-1.5 rounded px-2 text-xs font-medium text-muted-foreground hover:bg-muted">
             <AnimatePresence mode="wait" initial={false}>
               {copied ? <motion.span key="c" initial={{ scale: 0.5 }} animate={{ scale: 1 }} exit={{ scale: 0.5 }} className="flex items-center gap-1.5 text-[hsl(var(--ok))]"><Check className="size-3.5" /> copied</motion.span> : <motion.span key="p" initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="flex items-center gap-1.5"><Copy className="size-3.5" /> copy</motion.span>}
             </AnimatePresence>
@@ -45,7 +45,7 @@ export function CodeSnippetPanel({ code, language, title, copyText, className }:
         <code className="block py-2 font-mono leading-[1.9]">
           {lines.map((l, i) => (
             <span key={i} className={cn("group flex px-3", wrap ? "whitespace-pre-wrap break-all" : "whitespace-pre")}>
-              <span aria-hidden className="mr-3 w-7 shrink-0 select-none text-right text-[10px] leading-[1.9] text-muted-foreground/50 transition-colors group-hover:text-[hsl(var(--app-focus))] group-hover:font-bold">{i + 1}</span>
+              <span aria-hidden className="mr-3 w-7 shrink-0 select-none text-right text-[11px] leading-[1.9] text-muted-foreground/50 transition-colors group-hover:text-muted-foreground group-hover:font-semibold">{i + 1}</span>
               {l || " "}
             </span>
           ))}

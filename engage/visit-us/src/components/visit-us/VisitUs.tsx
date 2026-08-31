@@ -158,9 +158,9 @@ export function VisitUs({
 
           {/* 2:1 grid — map spans 2 columns on desktop, stacks mobile-first */}
           <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
-            <div className="relative min-h-[320px] overflow-hidden rounded-[20px] border bg-muted shadow-sm ring-1 ring-border/60 lg:col-span-2 lg:min-h-0">
+            <div className="relative min-h-[320px] overflow-hidden rounded-xl border bg-muted shadow-sm ring-1 ring-border/60 lg:col-span-2 lg:min-h-0">
               <iframe
-                title="map"
+                title={`Map showing ${plainAddress || query}`}
                 src={embedUrl(query, zoom)}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -175,7 +175,7 @@ export function VisitUs({
             </div>
 
             {/* Info rail */}
-            <div className="flex flex-col gap-1 rounded-[20px] border bg-card p-5 shadow-sm">
+            <div className="flex flex-col gap-1 rounded-xl border bg-card p-5 shadow-sm">
               <InfoRow icon={MapPin} label="Address">
                 <address className="not-italic">
                   {address.map((line, i) => (

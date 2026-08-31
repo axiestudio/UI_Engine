@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion } from "motion/react"
-import { Plane } from "lucide-react"
+import { Ticket } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Grain, CornerTicks, MonoLabel } from "@/components/primitives/handcraft"
 
@@ -47,25 +47,25 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
-            {title && <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-[40px]">{title}</h2>}
+            {title && <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-[40px]">{title}</h2>}
           </div>
-          <span className="hidden font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground sm:block">{pass.seat ?? ""}</span>
+          <span className="hidden font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground sm:block">{pass.seat ?? ""}</span>
         </div>
 
         <motion.div initial={reduce ? undefined : { y: 18, opacity: 0, rotate: -0.4 }} animate={{ y: 0, opacity: 1, rotate: reduce ? 0 : -0.4 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative select-none">
-          <div className="relative flex overflow-hidden rounded-lg border-2 border-[hsl(var(--pass-ink))] bg-[hsl(var(--pass-paper))] text-[hsl(var(--pass-ink))] shadow-[10px_12px_0_-2px_hsl(var(--pass-ink))]">
+          <div className="relative flex overflow-hidden rounded-lg border-2 border-[hsl(var(--pass-ink))] bg-[hsl(var(--pass-paper))] text-[hsl(var(--pass-ink))] shadow-sm border">
             <Grain opacity={0.045} />
             {/* main stub */}
             <div className="relative min-w-0 flex-1 px-6 py-6 sm:px-8">
               <div className="flex items-center justify-between gap-4">
-                <span className="inline-flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-[0.2em]">
-                  <Plane className="size-3.5 -rotate-45" strokeWidth={2.6} /> {pass.from} → {pass.to}
+                <span className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">
+                  <Ticket className="size-3.5 -rotate-45" strokeWidth={2.6} /> {pass.from} → {pass.to}
                 </span>
                 {pass.stamp && (
-                  <span className="-rotate-[8deg] border-2 border-[hsl(var(--pass-accent))] px-2 py-0.5 font-mono text-[9px] font-black uppercase tracking-[0.18em] text-[hsl(var(--pass-accent))]">{pass.stamp}</span>
+                  <span className="-rotate-[8deg] border-2 border-[hsl(var(--pass-accent))] px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-[hsl(var(--pass-accent))]">{pass.stamp}</span>
                 )}
               </div>
-              <p className="mt-5 font-display text-[30px] font-black leading-none tracking-tight sm:text-[38px]">{pass.holder}</p>
+              <p className="mt-5 font-display text-[30px] font-semibold leading-none tracking-[-0.02em] sm:text-[38px]">{pass.holder}</p>
               <p className="mt-1 font-mono text-[10px] font-bold uppercase tracking-[0.24em] opacity-55">Passenger</p>
               <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
                 <Field label="When" value={pass.when} wide />
@@ -103,7 +103,7 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
                 <a
                   href={cta.href ?? "#"}
                   onClick={cta.onClick}
-                  className="mt-1 w-full rounded-sm bg-[hsl(var(--pass-ink))] px-3 py-2 text-center font-mono text-[10px] font-black uppercase tracking-[0.2em] text-[hsl(var(--pass-paper))] transition-transform hover:-translate-y-px active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--pass-accent))]"
+                  className="mt-1 w-full rounded-sm bg-[hsl(var(--pass-ink))] px-3 py-2 text-center font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--pass-paper))] transition-transform hover:-translate-y-px active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--pass-accent))]"
                 >
                   {cta.label}
                 </a>
@@ -120,7 +120,7 @@ export function BoardingPass({ eyebrow = "ISSUED — NOT YET CLAIMED", title, pa
 function Field({ label, value, wide }: { label: string; value: string; wide?: boolean }) {
   return (
     <div className={cn(wide && "col-span-2 sm:col-span-1")}>
-      <dt className="font-mono text-[9px] font-bold uppercase tracking-[0.22em] opacity-50">{label}</dt>
+      <dt className="font-mono text-[9px] font-bold uppercase tracking-[0.08em] opacity-50">{label}</dt>
       <dd className="mt-0.5 truncate text-[15px] font-bold">{value}</dd>
     </div>
   )

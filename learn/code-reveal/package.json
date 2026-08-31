@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/code-reveal.es.js",
       "require": "./dist/code-reveal.cjs.js"
     },
@@ -25,7 +24,11 @@
       "text-effect",
       "in-view"
     ],
-    "watermelon-ui": []
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

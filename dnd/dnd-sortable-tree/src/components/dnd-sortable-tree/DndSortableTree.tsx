@@ -16,6 +16,7 @@ import { ChevronRight, File, FileText, Folder, GripVertical } from "lucide-react
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Rearrange a collapsible, multi-level file tree.
 // ═══ EMOTION     Structure you own at any depth.
@@ -60,10 +61,14 @@ export function DndSortableTree({
   className,
 }: DndSortableTreeProps) {
   const [internal, setInternal] = React.useState(nodes)
-  const tree = nodes ?? internal
+  React.useEffect(() => { setInternal(nodes) }, [nodes])
+  const tree = internal
   const flat = React.useMemo(() => flatten(tree), [tree])
   const flatIds = flat.map((f) => f.node.id)
   const [activeId, setActiveId] = React.useState<string | null>(null)
+  const [announce, setAnnounce] = React.useState("")
+  const initialRef = React.useRef(nodes)
+  const handleReset = () => { setInternal(nodes); onChange?.(nodes); setAnnounce("Tree reset"); }
   const [collapsed, setCollapsed] = React.useState<Record<string, boolean>>({})
 
   const sensors = useSensors(
@@ -76,6 +81,7 @@ export function DndSortableTree({
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
     setActiveId(null)
+    setAnnounce(`Moved ${String(active.id)}`)
     if (!over) return
     const activeIdv = String(active.id)
     const overId = String(over.id)
@@ -94,10 +100,26 @@ export function DndSortableTree({
   const toggle = (id: string) => setCollapsed((c) => ({ ...c, [id]: !c[id] }))
 
   return (
-    <SectionShell width={760} grain rule="bottom" className={className}>
+    <SectionShell width={760} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
+            {flat.length} items
+          </span>
+          <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Drag or keyboard — Tab → Space → Arrows</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={handleReset} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+            Reset
+          </Button>
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>
+        </div>
+      </div>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={onDragStart} onDragCancel={onDragCancel} onDragEnd={onDragEnd}>
         <SortableContext items={flatIds} strategy={verticalListSortingStrategy}>
           <ul className="mt-8 space-y-1">
@@ -165,7 +187,7 @@ function TreeRow({
         </button>
         <button type="button" {...attributes} {...listeners} className="flex flex-1 cursor-grab touch-none items-center gap-2 text-left active:cursor-grabbing">
           <Icon className="h-4 w-4 shrink-0 text-muted-foreground" />
-          <span className="font-display text-sm font-bold">{node.label}</span>
+          <span className="text-sm font-semibold tracking-tight">{node.label}</span>
         </button>
         <GripVertical className="h-4 w-4 text-muted-foreground" />
       </div>

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/scroll-progress-gauges.es.js",
       "require": "./dist/scroll-progress-gauges.cjs.js"
     },

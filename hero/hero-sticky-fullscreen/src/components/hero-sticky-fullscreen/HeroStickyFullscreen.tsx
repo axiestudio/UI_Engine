@@ -25,7 +25,7 @@ export function HeroStickyFullscreen({
   title = "A hero that hands off.",
   subtitle = "The hero pins full-screen while the next section rolls over it — a handoff, not a hard cut.",
   actions = [{ label: "Continue", href: "#" }],
-  cover = { src: "/frames/poster.webp", alt: "Cover" },
+  cover = { src: "/showcase/hero-poster.webp", alt: "Showcase cover" },
   runway = "220vh",
   className,
 }: HeroStickyFullscreenProps) {

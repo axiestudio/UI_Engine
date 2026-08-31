@@ -3,8 +3,9 @@
  * Snapshot: UI/_registry/motion-primitives/components-core/text-shimmer-wave.tsx
  */
 'use client';
-import { type JSX } from 'react';
-import { motion, Transition } from 'motion/react';
+
+import { motion } from 'motion/react';
+import type { Transition } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 export type TextShimmerWaveProps = {
@@ -35,7 +36,7 @@ export function TextShimmerWave({
   transition,
 }: TextShimmerWaveProps) {
   const MotionComponent = motion.create(
-    Component as keyof JSX.IntrinsicElements
+    Component as React.ElementType
   );
 
   return (

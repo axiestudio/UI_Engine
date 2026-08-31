@@ -76,7 +76,7 @@ export function Cta1({
 
           <div className="flex max-w-sm flex-col items-center gap-6 text-center md:flex-row md:items-center md:gap-8 md:text-left">
             <div className="flex flex-col gap-2">
-              <h2 className="text-2xl font-semibold tracking-tight md:text-4xl">
+              <h2 className="text-2xl font-semibold tracking-[-0.02em] md:text-4xl">
                 {title}
               </h2>
               {description && (

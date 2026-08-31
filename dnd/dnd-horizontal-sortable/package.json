@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/dnd-horizontal-sortable.es.js",
       "require": "./dist/dnd-horizontal-sortable.cjs.js"
     },

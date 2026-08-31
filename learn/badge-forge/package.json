@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/badge-forge.es.js",
       "require": "./dist/badge-forge.cjs.js"
     },
@@ -25,7 +24,11 @@
       "in-view",
       "glow-effect"
     ],
-    "watermelon-ui": []
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

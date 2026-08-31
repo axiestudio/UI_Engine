@@ -6,17 +6,17 @@
 
 import React, { useRef, useState, useCallback } from "react";
 import {
-  FaCloudUploadAlt,
-  FaFileAlt,
-  FaFileImage,
-  FaFilePdf,
-  FaFileVideo,
-  FaFileArchive,
-  FaTrashAlt,
-  FaCheckCircle,
-  FaExclamationCircle,
-  FaFileCode,
-} from "react-icons/fa";
+  CloudUpload,
+  File,
+  FileImage,
+  FileText,
+  FileVideo,
+  FileArchive,
+  Trash2,
+  CheckCircle,
+  AlertCircle,
+  FileCode,
+} from "lucide-react";
 import {
   Card,
   CardContent,
@@ -62,15 +62,15 @@ function formatBytes(bytes: number): string {
 function FileIcon({ type, name }: { type: string; name: string }) {
   const ext = name.split(".").pop()?.toLowerCase() || "";
 
-  if (type.startsWith("image/")) return <FaFileImage className="h-5 w-5" />;
-  if (type.startsWith("video/")) return <FaFileVideo className="h-5 w-5" />;
+  if (type.startsWith("image/")) return <FileImage className="h-5 w-5" />;
+  if (type.startsWith("video/")) return <FileVideo className="h-5 w-5" />;
   if (type === "application/pdf" || ext === "pdf")
-    return <FaFilePdf className="h-5 w-5" />;
+    return <FileText className="h-5 w-5" />;
   if (["zip", "rar", "tar", "gz", "7z"].includes(ext))
-    return <FaFileArchive className="h-5 w-5" />;
+    return <FileArchive className="h-5 w-5" />;
   if (["js", "ts", "jsx", "tsx", "py", "json", "html", "css"].includes(ext))
-    return <FaFileCode className="h-5 w-5" />;
-  return <FaFileAlt className="h-5 w-5" />;
+    return <FileCode className="h-5 w-5" />;
+  return <File className="h-5 w-5" />;
 }
 
 function CircularProgress({ progress }: { progress: number }) {
@@ -165,12 +165,12 @@ export function FileUploadArea({
   return (
     <Card
       className={cn(
-        "mx-auto mt-40 w-full max-w-lg rounded-none pt-0",
+        "mx-auto w-full max-w-lg overflow-hidden rounded-xl border bg-card shadow-sm",
         className,
       )}
       {...props}
     >
-      <CardHeader className="border-border bg-muted rounded-none border-b pt-2">
+      <CardHeader className="border-b bg-muted/30 px-5 py-4">
         <CardTitle className="text-md text-foreground font-medium tracking-tight">
           {title}
         </CardTitle>
@@ -181,10 +181,10 @@ export function FileUploadArea({
       <CardContent className="space-y-5">
         <div
           className={cn(
-            "focus-visible:ring-ring relative flex cursor-pointer flex-col items-center justify-between gap-4 rounded-none border-2 border-dashed p-6 transition-all duration-300 outline-none focus-visible:ring-2 sm:flex-row",
+            "group relative flex cursor-pointer flex-col items-center justify-between gap-4 rounded-xl border-2 border-dashed p-6 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:flex-row",
             isDragging
               ? "border-primary bg-primary/5"
-              : "border-border hover:border-primary/40 bg-muted/10 hover:bg-muted/30",
+              : "border-border hover:border-primary/50 bg-muted/20 hover:bg-muted/30",
           )}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -210,13 +210,13 @@ export function FileUploadArea({
           <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
             <div
               className={cn(
-                "rounded p-4 transition-colors duration-300",
+                "flex size-12 items-center justify-center rounded-xl border bg-background shadow-xs transition-colors",
                 isDragging
-                  ? "bg-primary/20 text-primary"
-                  : "bg-background text-muted-foreground group-hover:text-primary border shadow-xs",
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "text-muted-foreground group-hover:text-primary group-hover:border-primary/20",
               )}
             >
-              <FaCloudUploadAlt className="h-6 w-6" />
+              <CloudUpload className="h-6 w-6" />
             </div>
             <div>
               <p className="text-foreground text-base font-medium">
@@ -230,7 +230,7 @@ export function FileUploadArea({
           <Button
             type="button"
             variant="default"
-            className="pointer-events-none shrink-0 shadow-[0px_0px_4px_1px_rgba(0,0,0,0.05),inset_0_0px_4px_1px_rgba(255,255,255,0.45),inset_0_1px_0px_0px_rgba(255,255,255,0.35)]"
+            className="pointer-events-none shrink-0 rounded-full shadow-sm"
           >
             Select Files
           </Button>
@@ -245,12 +245,12 @@ export function FileUploadArea({
               >
                 <div
                   className={cn(
-                    "flex h-12 w-12 shrink-0 items-center justify-center rounded-none",
+                    "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border",
                     f.state === "failed"
-                      ? "bg-destructive/10 text-destructive"
+                      ? "bg-destructive/10 text-destructive border-destructive/20"
                       : f.state === "completed"
-                        ? "bg-primary/10 text-primary"
-                        : "bg-muted text-muted-foreground",
+                        ? "bg-primary/10 text-primary border-primary/20"
+                        : "bg-muted text-muted-foreground border-border",
                   )}
                 >
                   <FileIcon type={f.file.type} name={f.file.name} />
@@ -280,10 +280,10 @@ export function FileUploadArea({
                     <CircularProgress progress={f.progress} />
                   )}
                   {f.state === "completed" && (
-                    <FaCheckCircle className="text-primary size-6" />
+                    <CheckCircle className="text-primary size-6" />
                   )}
                   {f.state === "failed" && (
-                    <FaExclamationCircle className="text-destructive h-6 w-6" />
+                    <AlertCircle className="text-destructive h-6 w-6" />
                   )}
 
                   <div className="bg-border ml-2 h-6 w-px" />
@@ -299,7 +299,7 @@ export function FileUploadArea({
                     className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
                     aria-label={`Remove ${f.file.name}`}
                   >
-                    <FaTrashAlt className="h-4 w-4" />
+                    <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>

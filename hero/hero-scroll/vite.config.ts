@@ -18,7 +18,7 @@ export default defineConfig({
       fileName: (format) => (format === "es" ? "hero-scroll.es.js" : "hero-scroll.cjs.js"),
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge"],
+      external: ["react", "react-dom", "react/jsx-runtime", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "tailwind-merge"],
       output: {
         globals: { react: "React", "react-dom": "ReactDOM" },
       },

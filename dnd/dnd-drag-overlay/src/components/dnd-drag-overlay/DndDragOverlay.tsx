@@ -3,6 +3,8 @@ import {
   DndContext,
   DragOverlay,
   PointerSensor,
+  KeyboardSensor,
+  closestCenter,
   useDraggable,
   useDroppable,
   useSensor,
@@ -10,10 +12,12 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core"
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 import { CornerDownLeft, GripVertical, Move } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Show a custom DragOverlay that follows the pointer precisely.
 // ═══ EMOTION     "this is exactly what I'm holding"
@@ -39,7 +43,11 @@ export function DndDragOverlay({
   className,
 }: DndDragOverlayProps) {
   const [activeId, setActiveId] = React.useState<string | null>(null)
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 4 } }))
+  const [announce, setAnnounce] = React.useState("")
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  )
   const { setNodeRef: dropRef, isOver } = useDroppable({ id: "overlay-target" })
 
   const onDragStart = ({ active }: DragStartEvent) => setActiveId(String(active.id))
@@ -54,23 +62,39 @@ export function DndDragOverlay({
   const active = activeId ? pieces.find((p) => p.id === activeId) : null
 
   return (
-    <SectionShell width={920} grain rule="bottom" className={className}>
+    <SectionShell width={920} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
-      <DndContext sensors={sensors} onDragStart={onDragStart} onDragCancel={onDragCancel} onDragEnd={onDragEnd}>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
+            {pieces.length} items
+          </span>
+          <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Advanced • Professional DnD</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => { setAnnounce("Overlay reset") }} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+            Reset
+          </Button>
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>
+        </div>
+      </div>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={onDragStart} onDragCancel={onDragCancel} onDragEnd={onDragEnd}>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <div>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Draggable tiles</p>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Draggable tiles</p>
             <div className="mt-3 space-y-2">
               {pieces.map((p) => (
                 <OverlayTile key={p.id} piece={p} />
               ))}
             </div>
           </div>
-          <div ref={dropRef} className={cn("flex min-h-[160px] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed bg-muted/20 p-4 text-center transition-colors", isOver && "dnd-over")}>
+          <div ref={dropRef} className={cn("flex min-h-[160px] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed bg-muted/20 p-4 text-center transition-colors", isOver && "dnd-over")}>
             <CornerDownLeft className="h-6 w-6 text-muted-foreground" />
-            <p className="font-display text-sm font-bold">Drop target</p>
+            <p className="text-sm font-semibold tracking-tight">Drop target</p>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">the overlay follows your cursor</p>
           </div>
         </div>
@@ -91,7 +115,7 @@ function OverlayTile({ piece, overlay = false }: { piece: OverlayPiece; overlay?
       {...listeners}
       style={piece.color ? { background: piece.color, color: "#fff" } : undefined}
       className={cn(
-        "flex cursor-grab touch-none items-center gap-2 rounded-xl border bg-card px-4 py-3 font-display text-sm font-bold active:cursor-grabbing",
+        "flex cursor-grab touch-none items-center gap-2 rounded-xl border bg-card px-4 py-3 text-sm font-semibold tracking-tight active:cursor-grabbing",
         overlay && "dnd-lift",
         isDragging && "opacity-40",
       )}

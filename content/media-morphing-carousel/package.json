@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/media-morphing-carousel.es.js",
       "require": "./dist/media-morphing-carousel.cjs.js"
     },

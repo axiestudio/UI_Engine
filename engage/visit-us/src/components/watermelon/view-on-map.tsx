@@ -4,8 +4,7 @@
  */
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Loader2 } from 'lucide-react';
-import { FaMap } from 'react-icons/fa6';
+import { X, Loader2, MapPin } from 'lucide-react';
 
 interface ViewOnMapProps {
   locationName?: string;
@@ -52,7 +51,7 @@ export const ViewOnMap: React.FC<ViewOnMapProps> = ({
                 key="button"
                 layoutId="map-container"
                 onClick={toggleOpen}
-                className="group relative flex cursor-pointer items-center justify-center overflow-hidden bg-[#E5E4EE] shadow-sm transition-colors duration-300 dark:bg-[#1C1C1E]"
+                className="group relative flex cursor-pointer items-center justify-center overflow-hidden bg-muted shadow-sm transition-colors duration-300 dark:bg-card"
                 style={{ width: 180, height: 52, borderRadius: 26 }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -72,8 +71,8 @@ export const ViewOnMap: React.FC<ViewOnMapProps> = ({
                 />
 
                 <motion.div className="relative z-10 flex items-center space-x-3 px-4 py-4">
-                  <FaMap className="h-5 w-5 text-[#6A6973] transition-colors dark:text-white/60" />
-                  <span className="text-[18px] font-semibold tracking-tight text-[#3D3C43] transition-colors dark:text-white">
+                  <MapPin className="h-5 w-5 text-muted-foreground transition-colors dark:text-white/60" />
+                  <span className="text-[18px] font-semibold tracking-tight text-foreground transition-colors dark:text-white">
                     View on Map
                   </span>
                 </motion.div>
@@ -83,7 +82,7 @@ export const ViewOnMap: React.FC<ViewOnMapProps> = ({
               <motion.div
                 key="map"
                 layoutId="map-container"
-                className="relative aspect-square w-[calc(100vw-64px)] overflow-hidden bg-[#DEDEDE] shadow-lg transition-colors duration-300 sm:w-[380px] dark:bg-[#141414]"
+                className="relative aspect-square w-[calc(100vw-64px)] overflow-hidden bg-muted shadow-lg transition-colors duration-300 sm:w-[380px] dark:bg-card"
                 style={{ borderRadius: 32 }}
                 transition={springConfig}
               >
@@ -111,7 +110,7 @@ export const ViewOnMap: React.FC<ViewOnMapProps> = ({
                 </motion.div>
 
                 {!isMapLoaded && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-[#E5E5E7] transition-colors dark:bg-[#1C1C1E]">
+                  <div className="absolute inset-0 flex items-center justify-center bg-muted transition-colors dark:bg-card">
                     <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
                   </div>
                 )}
@@ -121,9 +120,9 @@ export const ViewOnMap: React.FC<ViewOnMapProps> = ({
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   onClick={toggleOpen}
-                  className="absolute top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#85848B] shadow-lg transition-all hover:bg-gray-50 active:scale-90 sm:top-6 sm:right-6 sm:h-11 sm:w-11 dark:bg-[#2A2A2D] dark:text-white dark:hover:bg-[#3A3A3D]"
+                  className="absolute top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-card text-muted-foreground shadow-lg transition-colors hover:bg-accent hover:text-accent-foreground active:scale-90 sm:top-6 sm:right-6 sm:h-11 sm:w-11"
                 >
-                  <X className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={3} />
+                  <X className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.5} />
                 </motion.button>
               </motion.div>
             )}

@@ -36,7 +36,7 @@ export function DragNumberField({ label, value, onValueChange, step = 1, precisi
 
   return (
     <label className={cn("inline-flex items-center gap-0 font-sans", className)}>
-      {label && <span className="mr-2 text-[12px] font-bold">{label}</span>}
+      {label && <span className="mr-2 text-sm font-medium text-muted-foreground">{label}</span>}
       <span
         onPointerDown={beginDrag}
         onDoubleClick={() => commit(Math.round(value / step) * step)}
@@ -55,7 +55,7 @@ export function DragNumberField({ label, value, onValueChange, step = 1, precisi
           onKeyDown={(e) => { if (e.key === "ArrowUp") { e.preventDefault(); commit(value + step * (e.shiftKey ? 10 : 1)) } if (e.key === "ArrowDown") { e.preventDefault(); commit(value - step * (e.shiftKey ? 10 : 1)) } }}
           className="h-full w-24 min-w-0 bg-transparent px-1 text-right font-mono text-[13px] tabular-nums outline-none"
         />
-        {unit && <span className="px-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">{unit}</span>}
+        {unit && <span className="px-2 text-xs font-medium text-muted-foreground">{unit}</span>}
       </span>
     </label>
   )

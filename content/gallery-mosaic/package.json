@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/gallery-mosaic.es.js",
       "require": "./dist/gallery-mosaic.cjs.js"
     },

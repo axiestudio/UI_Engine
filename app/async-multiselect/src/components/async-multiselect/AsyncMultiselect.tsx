@@ -51,10 +51,10 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
 
   return (
     <div className={cn("relative font-sans", className)}>
-      <div role="combobox" aria-expanded={open} aria-haspopup="listbox" aria-label={label} onClick={() => { setOpen(true); input.current?.focus() }} className={cn("flex min-h-11 cursor-text flex-wrap items-center gap-1.5 rounded-lg border bg-background px-2.5 py-1.5 transition-shadow", open && "ring-2 ring-[hsl(var(--app-focus))]")}>
+      <div role="combobox" aria-expanded={open} aria-haspopup="listbox" aria-label={label} onClick={() => { setOpen(true); input.current?.focus() }} className={cn("flex min-h-11 cursor-text flex-wrap items-center gap-1.5 rounded-lg border border-border/70 bg-background px-2.5 py-1.5 shadow-sm transition-shadow", open && "ring-2 ring-ring")}>
         <AnimatePresence initial={false}>
           {value.map((v) => (
-            <motion.span layout key={v.id} initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.85, opacity: 0 }} transition={{ duration: 0.16 }} className="flex items-center gap-1 rounded-full bg-secondary py-0.5 pl-2.5 pr-1 text-[12px] font-semibold">
+            <motion.span layout key={v.id} initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.85, opacity: 0 }} transition={{ duration: 0.16 }} className="flex items-center gap-1 rounded-full bg-secondary py-0.5 pl-2.5 pr-1 text-[13px] font-medium">
               {v.label}
               <button aria-label={`Remove ${v.label}`} onClick={(e) => { e.stopPropagation(); onValueChange(value.filter((x) => x.id !== v.id)) }} className="grid size-4 place-items-center rounded-full hover:bg-border"><X className="size-3" /></button>
             </motion.span>
@@ -67,20 +67,20 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
         {open && (
           <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4, transition: { duration: 0.1 } }} onMouseDown={(e) => e.preventDefault()} className="absolute inset-x-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-lg border bg-popover shadow-xl">
             {onCreate && q.trim() && !exact && (
-              <button onClick={create} className="flex w-full items-center gap-2 border-b bg-accent/50 px-3 py-2.5 text-left text-[13px] font-bold hover:bg-accent"><Plus className="size-4" aria-hidden /> Create “{q.trim()}”</button>
+              <button onClick={create} className="flex w-full items-center gap-2 border-b border-border/60 bg-accent/50 px-3 py-2.5 text-left text-sm font-medium hover:bg-accent"><Plus className="size-4" aria-hidden /> Create “{q.trim()}”</button>
             )}
             <ul role="listbox" aria-multiselectable="true" className="max-h-64 overflow-y-auto py-1" onScroll={(e) => { const el = e.currentTarget; if (more && !loading && el.scrollTop + el.clientHeight > el.scrollHeight - 40) fetchPage(q, page + 1) }}>
               {items.map((it) => (
                 <li key={it.id}>
-                  <button role="option" aria-selected={selected.has(it.id)} onClick={() => toggle(it)} className={cn("flex w-full items-center gap-2.5 px-3 py-2 text-left text-[13px] hover:bg-accent", selected.has(it.id) && "bg-accent/50")}>
+                  <button role="option" aria-selected={selected.has(it.id)} onClick={() => toggle(it)} className={cn("flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm hover:bg-accent", selected.has(it.id) && "bg-accent/50")}>
                     <span className={cn("grid size-4 place-items-center rounded border", selected.has(it.id) ? "border-primary bg-primary text-primary-foreground" : "border-input")}><Check className="size-3" aria-hidden /></span>
                     <span className="min-w-0 flex-1 truncate">{it.label}</span>
-                    {it.meta && <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{it.meta}</span>}
+                    {it.meta && <span className="text-xs text-muted-foreground">{it.meta}</span>}
                   </button>
                 </li>
               ))}
-              {loading && <li className="flex items-center gap-2 px-3 py-2 text-[12px] text-muted-foreground"><Search className="size-3.5 animate-pulse" /> loading…</li>}
-              {!loading && !items.length && <li className="px-3 py-6 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">no matches</li>}
+              {loading && <li className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground"><Search className="size-3.5 animate-pulse" /> loading…</li>}
+              {!loading && !items.length && <li className="px-3 py-6 text-center text-sm text-muted-foreground">no matches</li>}
             </ul>
           </motion.div>
         )}

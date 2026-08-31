@@ -32,16 +32,16 @@ export function GroupedSearchResults({ query, items, onSelect, className }: Grou
     }} className={cn("font-sans outline-none", className)}>
       {groups.map((g) => { const Icon = KIND[g.k].icon; return (
         <li key={g.k}>
-          <p className="flex items-center gap-1.5 px-3 pb-1 pt-3 text-[10px] font-black uppercase tracking-[0.16em] text-muted-foreground"><Icon className="size-3" />{KIND[g.k].label}</p>
+          <p className="flex items-center gap-1.5 px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground"><Icon className="size-3" />{KIND[g.k].label}</p>
           <ul>
             {g.rows.map(({ h, m }) => {
               const i = flat.indexOf(h.id), sel = i === active
               return (
                 <li key={h.id} id={rowId(h.id)} role="option" aria-selected={sel}>
                   <button onClick={() => onSelect(h)} onMouseEnter={() => setActive(i)} className={cn("relative flex w-full flex-col rounded-md px-3 py-2 text-left", sel && "bg-accent")}>
-                    {sel && <motion.span layoutId="search-active" className="absolute left-0 top-1 bottom-1 w-[3px] rounded-full bg-[hsl(var(--app-focus))]" />}
-                    <span className="text-[13px] font-semibold">{h.title.split("").map((c, x) => <span key={x} className={m?.marks.has(x) ? "underline decoration-2 decoration-[hsl(var(--app-focus))] text-[hsl(var(--app-focus))]" : ""}>{c}</span>)}</span>
-                    {h.sub && <span className="truncate text-[11px] text-muted-foreground">{h.sub}</span>}
+                    {sel && <motion.span layoutId="search-active" className="absolute left-0 top-1 bottom-1 w-[3px] rounded-full bg-foreground" />}
+                    <span className="text-sm font-medium">{h.title.split("").map((c, x) => <span key={x} className={m?.marks.has(x) ? "underline decoration-2 decoration-foreground/30 text-foreground" : ""}>{c}</span>)}</span>
+                    {h.sub && <span className="truncate text-xs text-muted-foreground">{h.sub}</span>}
                   </button>
                 </li>
               )
@@ -49,7 +49,7 @@ export function GroupedSearchResults({ query, items, onSelect, className }: Grou
           </ul>
         </li>
       )})}
-      {q && !flat.length && <li className="px-3 py-6 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">no answer for “{query}” — different word?</li>}
+      {q && !flat.length && <li className="px-3 py-6 text-center text-sm text-muted-foreground">no answer for “{query}” — different word?</li>}
     </ul>
   )
 }

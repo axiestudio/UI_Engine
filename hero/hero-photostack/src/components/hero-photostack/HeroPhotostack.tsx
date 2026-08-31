@@ -19,7 +19,7 @@ export type HeroPhotostackProps = {
 }
 
 export function HeroPhotostack({ eyebrow = "STACK", title = "Work, in a handful.", subtitle = "A fanned stack — hover to spread the cards.", actions = [{ label: "Open the archive", href: "#" }], photos = [
-  { src: "/frames/frame_0008.webp" }, { src: "/frames/frame_0020.webp" }, { src: "/frames/frame_0032.webp" }, { src: "/frames/frame_0044.webp" }, { src: "/frames/frame_0056.webp" },
+  { src: "/showcase/gallery-01.webp" }, { src: "/showcase/gallery-02.webp" }, { src: "/showcase/gallery-03.webp" }, { src: "/showcase/gallery-04.webp" }, { src: "/showcase/gallery-05.webp" },
 ], className }: HeroPhotostackProps) {
   const [spread, setSpread] = React.useState(false)
   return (

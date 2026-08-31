@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 

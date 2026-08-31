@@ -74,7 +74,7 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
   const pct = Math.min(1, value.length / max)
 
   return (
-    <div className={cn("relative rounded-lg border bg-background transition-shadow focus-within:ring-2 focus-within:ring-[hsl(var(--app-focus))]", className)}>
+    <div className={cn("relative rounded-lg border border-border/70 bg-background shadow-sm transition-shadow focus-within:ring-2 focus-within:ring-ring", className)}>
       <textarea ref={ta} value={value} aria-label="Message with mentions" rows={3} placeholder={placeholder} onChange={(e) => { auto.current = true; onChange(e.target.value) }} onKeyUp={(e) => { detect(); if (e.key === "Enter" && e.metaKey) onSubmit?.() }} onClick={detect} onKeyDown={(e) => {
         if (pop && opts.length) {
           if (e.key === "ArrowDown") { e.preventDefault(); setIdx((i) => (i + 1) % opts.length) }
@@ -84,9 +84,9 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
         }
       }} className="w-full resize-none bg-transparent px-3.5 py-3 text-[14px] leading-relaxed outline-none" />
       <div className="flex items-center justify-between px-3 pb-2.5">
-        <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground"><AtSign className="mr-1 inline size-3" /> @mention · /command</span>
+        <span className="text-xs text-muted-foreground"><AtSign className="mr-1 inline size-3" /> @mention · /command</span>
         <div className="flex items-center gap-2">
-          <span className={cn("font-mono text-[10px] tabular-nums", over ? "font-bold text-[hsl(var(--err))]" : "text-muted-foreground")}>{value.length}/{max}</span>
+          <span className={cn("font-mono text-[11px] tabular-nums", over ? "font-semibold text-[hsl(var(--err))]" : "text-muted-foreground")}>{value.length}/{max}</span>
           <svg aria-hidden viewBox="0 0 20 20" className="size-4 -rotate-90"><circle cx="10" cy="10" r="8" fill="none" stroke="hsl(var(--muted-foreground)/0.3)" strokeWidth="2.5" /><circle cx="10" cy="10" r="8" fill="none" stroke={over ? "hsl(var(--err))" : "hsl(var(--app-focus))"} strokeWidth="2.5" strokeLinecap="round" strokeDasharray={`${pct * 50.2} 50.2`} className="transition-[stroke-dasharray]" /></svg>
         </div>
       </div>
@@ -95,8 +95,8 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
           <motion.ul role="listbox" aria-label={pop.kind === "at" ? "Mention" : "Commands"} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, transition: { duration: 0.08 } }} className="absolute inset-x-2 z-50 overflow-hidden rounded-lg border bg-popover shadow-xl" style={{ top: pop.top }}>
             {opts.map((o, i) => (
               <li key={o.id} role="option" aria-selected={i === idx}>
-                <button onMouseDown={(e) => e.preventDefault()} onClick={() => { pick(o.insert); pop.kind === "slash" && cmds.find((c) => c.cmd === o.main.slice(1))?.run() }} className={cn("flex w-full items-baseline gap-2 px-3 py-2 text-left text-[13px]", i === idx && "bg-accent")}>
-                  <span className="font-mono font-bold">{o.main}</span><span className="truncate text-[11px] text-muted-foreground">{o.sub}</span>
+                <button onMouseDown={(e) => e.preventDefault()} onClick={() => { pick(o.insert); pop.kind === "slash" && cmds.find((c) => c.cmd === o.main.slice(1))?.run() }} className={cn("flex w-full items-baseline gap-2 px-3 py-2 text-left text-sm", i === idx && "bg-accent")}>
+                  <span className="font-mono font-medium">{o.main}</span><span className="truncate text-xs text-muted-foreground">{o.sub}</span>
                 </button>
               </li>
             ))}

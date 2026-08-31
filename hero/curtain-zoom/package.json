@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/curtain-zoom.es.js",
       "require": "./dist/curtain-zoom.cjs.js"
     },

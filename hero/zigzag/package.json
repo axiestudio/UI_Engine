@@ -1,7 +1,7 @@
 {
   "name": "zigzag",
   "version": "0.1.0",
-  "description": "Zig-zag tunnel with water — continuous scrub, left|tunnel|right",
+  "description": "Zig-zag tunnel with water \u2014 continuous scrub, left|tunnel|right",
   "type": "module",
   "main": "dist/zigzag.cjs.js",
   "module": "dist/zigzag.es.js",
@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/zigzag.es.js",
       "require": "./dist/zigzag.cjs.js"
     },

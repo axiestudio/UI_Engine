@@ -1,22 +1,33 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
+import { CornerDownLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { SectionHead, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { TextLoop } from "@/components/primitives/text-loop"
+import { Badge } from "@/components/ui/badge"
 
 // ═══ JOB      define brand vocabulary with authority
 // ═══ EMOTION  a dictionary that reads like a manifesto
-// ═══ SIGNATURE flip-card lexicon: front = term in display type with a
-//               looping pronunciation line; back = usage in a sentence
+// ═══ SIGNATURE flip-card lexicon — one toggle button per term: the front
+//               is letterpress (ink offset shadow) with the pronunciation
+//               looping; pressing turns the card to a serif-italic usage
+//               sentence on the reverse. Reduced motion = instant flip.
 //   SITE      → brand guideline language chapter, culture pages
 //   APP       → glossary widgets; terms are data
-//   A11Y      buttons with aria-pressed; both faces are real text
+//   BUILD     handcraft shell + vendored TextLoop; single accessible toggle
+//             button per card (previous version stacked two focusable
+//             buttons and had no focus ring)
+//   A11Y      full text (term, ipa, meaning, usage) readable in both states;
+//             aria-pressed communicates the flip; focus-visible ring styled
 
 export type LexiconEntry = { term: string; ipa: string; meaning: string; usage: string }
 
 export type BrandLexiconProps = {
   entries?: LexiconEntry[]
+  eyebrow?: string
+  title?: React.ReactNode
+  subtitle?: string
   className?: string
 }
 
@@ -28,50 +39,78 @@ const DEFAULT_ENTRIES: LexiconEntry[] = [
 ]
 
 function Entry({ entry, index }: { entry: LexiconEntry; index: number }) {
+  const reduced = useReducedMotion()
   const [flipped, setFlipped] = React.useState(false)
+
   return (
-    <InView once delay={index * 0.06}>
+    <InView once delay={index * 0.06} className="h-full">
       <motion.div
         initial={false}
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={reduced ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         style={{ transformStyle: "preserve-3d", transformPerspective: 1000 }}
         className="relative h-[240px]"
       >
-        <button type="button" aria-pressed={flipped} aria-label={`Term ${entry.term}. Activate for usage.`}
+        <motion.button
+          type="button"
+          aria-pressed={flipped}
           onClick={() => setFlipped((f) => !f)}
-          className="absolute inset-0 flex w-full flex-col justify-between rounded-xl border-2 border-foreground bg-background p-5 text-left shadow-[5px_5px_0_0_hsl(var(--foreground))] [backface-visibility:hidden]">
-          <span className="flex items-baseline justify-between">
-            <span className="font-display text-3xl font-black tracking-tight text-foreground">{entry.term}</span>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+          whileTap={reduced ? undefined : { scale: 0.98 }}
+          className="group absolute inset-0 w-full cursor-pointer rounded-xl border-2 border-foreground bg-background text-left outline-none shadow-[5px_5px_0_0_hsl(var(--foreground))] [backface-visibility:hidden] focus-visible:ring-[3px] focus-visible:ring-ring/50"
+        >
+          <span className="flex h-full flex-col justify-between p-5">
+            <span className="flex items-baseline justify-between gap-3">
+              <span className="font-display text-3xl font-black tracking-tight text-foreground">{entry.term}</span>
+              <Ordinal n={index + 1} total={4} className="text-foreground/40" />
+            </span>
+            <TextLoop interval={2.4} className="font-mono text-[11px] font-bold tracking-[0.08em] text-muted-foreground">
+              <span>{entry.ipa}</span>
+              <span>tap for usage →</span>
+            </TextLoop>
+            <span className="text-[13px] leading-relaxed text-muted-foreground">{entry.meaning}</span>
           </span>
-          <TextLoop interval={2.4} className="font-mono text-[11px] font-bold tracking-[0.08em] text-muted-foreground">
-            <span>{entry.ipa}</span>
-            <span>tap for usage →</span>
-          </TextLoop>
-          <span className="text-[13px] leading-relaxed text-muted-foreground">{entry.meaning}</span>
-        </button>
-        <button type="button" aria-pressed={flipped} onClick={() => setFlipped((f) => !f)}
+        </motion.button>
+
+        {/* reverse face — real text, kept out of the a11y tree until shown */}
+        <motion.span
+          aria-hidden={!flipped}
           style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}
-          className="absolute inset-0 flex w-full flex-col justify-between rounded-xl border-2 border-border bg-muted/40 p-5 text-left">
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">in a sentence</span>
-          <span className="font-serif text-xl italic leading-snug text-foreground">{entry.usage}</span>
-          <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">← back to term</span>
-        </button>
+          className="absolute inset-0 flex w-full select-none flex-col justify-between rounded-xl border-2 border-foreground bg-foreground p-5 text-left text-background [backface-visibility:hidden]"
+        >
+          <span className="flex items-center justify-between">
+            <Badge variant="outline" className="rounded-full border-background/40 bg-transparent font-mono text-[9px] font-black uppercase tracking-[0.2em] text-background/70">
+              in a sentence
+            </Badge>
+            <span className="font-display text-sm font-black tracking-tight">{entry.term}</span>
+          </span>
+          <span className="font-serif text-xl italic leading-snug">{entry.usage}</span>
+          <span className="flex items-center gap-2 font-mono text-[9px] font-black uppercase tracking-[0.2em] text-background/70">
+            <CornerDownLeft className="size-3" aria-hidden /> back to term
+          </span>
+        </motion.span>
       </motion.div>
     </InView>
   )
 }
 
-export function BrandLexicon({ entries = DEFAULT_ENTRIES, className }: BrandLexiconProps) {
+export function BrandLexicon({
+  entries = DEFAULT_ENTRIES,
+  eyebrow = "LEXICON · HOW WE TALK",
+  title = (
+    <>
+      Words we chose <em className="font-serif text-[0.98em] font-medium italic">on purpose.</em>
+    </>
+  ),
+  subtitle = "Turn a card to read the term in the wild.",
+  className,
+}: BrandLexiconProps) {
   return (
     <SectionShell width={1120} rails className={className}>
-      <MonoLabel className="text-muted-foreground">LEXICON · HOW WE TALK</MonoLabel>
-      <h2 className="mt-2 font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] text-foreground sm:text-[44px]">
-        Words we chose <em className="font-serif italic font-medium">on purpose.</em>
-      </h2>
+      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone="paper" />
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {entries.map((e, i) => <Entry key={e.term} entry={e} index={i} />)}
+        {entries.map((e, i) => (
+          <Entry key={e.term} entry={e} index={i} />
+        ))}
       </div>
     </SectionShell>
   )

@@ -16,13 +16,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  IoPerson,
-  IoMail,
-  IoBusiness,
-  IoCalendar,
-  IoPeople,
-  IoArrowForward,
-} from "react-icons/io5";
+  User,
+  Mail,
+  Building2,
+  Calendar,
+  Users,
+  ArrowRight,
+} from "lucide-react";
 
 export interface ConsultationFormData {
   fullName: string;
@@ -39,8 +39,8 @@ export interface ProjectInquirySectionProps {
   onSubmit?: (data: ConsultationFormData) => void;
 }
 
-const defaultOnSubmit = (data: ConsultationFormData) => {
-  console.log("Inquiry submitted:", data);
+const defaultOnSubmit = (_data: ConsultationFormData) => {
+  // No-op: provide onSubmit to handle submission (e.g., send to API)
 };
 
 export default function ProjectInquirySection({
@@ -88,7 +88,7 @@ export default function ProjectInquirySection({
                     Full Name
                   </Label>
                   <div className="bg-muted relative rounded-md shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.08)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.08)]">
-                    <IoPerson className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                    <User className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                     <Input
                       id="fullName"
                       placeholder="Alex Morgan"
@@ -104,7 +104,7 @@ export default function ProjectInquirySection({
                     Email Address
                   </Label>
                   <div className="bg-muted relative rounded-md shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.08)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.08)]">
-                    <IoMail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                    <Mail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                     <Input
                       id="email"
                       type="email"
@@ -121,7 +121,7 @@ export default function ProjectInquirySection({
                     Company
                   </Label>
                   <div className="bg-muted relative rounded-md shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.08)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.08)]">
-                    <IoBusiness className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                    <Building2 className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                     <Input
                       id="company"
                       placeholder="Acme Inc."
@@ -185,7 +185,7 @@ export default function ProjectInquirySection({
                     Expected Start Date
                   </Label>
                   <div className="relative">
-                    <IoCalendar className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                    <Calendar className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                     <Input
                       id="timeline"
                       type="date"
@@ -201,7 +201,7 @@ export default function ProjectInquirySection({
                     Team Size Required
                   </Label>
                   <div className="relative">
-                    <IoPeople className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                    <Users className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                     <Select
                       value={formData.teamSize}
                       onValueChange={(value) => updateField("teamSize", value)}
@@ -245,7 +245,7 @@ export default function ProjectInquirySection({
                 className="gap-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.5),inset_0_-1px_0_0_rgba(0,0,0,0.2)]"
               >
                 Submit Inquiry
-                <IoArrowForward className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4" />
               </Button>
             </form>
           </div>

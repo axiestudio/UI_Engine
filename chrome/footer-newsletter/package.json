@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/footer-newsletter.es.js",
       "require": "./dist/footer-newsletter.cjs.js"
     },
@@ -30,6 +29,11 @@
     ],
     "motion-primitives": [
       "in-view"
+    ],
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

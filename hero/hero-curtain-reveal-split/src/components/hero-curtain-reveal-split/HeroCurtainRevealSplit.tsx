@@ -37,7 +37,7 @@ export function HeroCurtainRevealSplit({ eyebrow = "OPENING", title = "Part to r
         <motion.div style={{ clipPath: clipB }} className="absolute inset-0 z-20 bg-foreground" />
         {/* diagonal seam light */}
         <motion.div aria-hidden style={{ opacity: useTransform(scrollYProgress, [0.2, 0.5], [1, 0]) }} className="pointer-events-none absolute inset-0 z-30 overflow-hidden">
-          <div className="h-full w-full" style={{ background: "linear-gradient(120deg, transparent 49.5%, hsl(var(--site-accent)/0.7) 50%, transparent 50.5%)" }} />
+          <div className="h-full w-full" style={{ background: "linear-gradient(120deg, transparent 49.5%, hsl(var(--primary)/0.7) 50%, transparent 50.5%)" }} />
         </motion.div>
       </div>
     </section>

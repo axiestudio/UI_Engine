@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/press-strip.es.js",
       "require": "./dist/press-strip.cjs.js"
     },

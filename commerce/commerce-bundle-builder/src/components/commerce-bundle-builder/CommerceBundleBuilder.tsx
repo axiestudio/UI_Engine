@@ -28,7 +28,7 @@ export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Bundled by y
     <SectionShell width={1120} grain rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
-        <h2 className="mt-2 font-display text-3xl font-black tracking-[-0.02em] sm:text-4xl">{title}</h2>
+        <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">{title}</h2>
       </InView>
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div className="grid gap-3 sm:grid-cols-2">
@@ -39,7 +39,7 @@ export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Bundled by y
                   <h3 className="font-display text-lg font-bold">{p.label}</h3>
                   {p.desc && <p className="mt-1 text-sm font-medium text-muted-foreground">{p.desc}</p>}
                 </div>
-                <span className="font-display text-xl font-black">€{p.price}</span>
+                <span className="font-display text-xl font-semibold">€{p.price}</span>
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -47,22 +47,22 @@ export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Bundled by y
                   <span className="w-8 text-center font-mono text-sm font-bold tabular-nums">{counts[p.id] ?? 0}</span>
                   <button type="button" onClick={() => add(p.id)} className="flex h-8 w-8 items-center justify-center rounded-lg border hover:bg-accent" aria-label="Increase"><Plus className="h-4 w-4" /></button>
                 </div>
-                {(counts[p.id] ?? 0) > 0 && <Check className="h-4 w-4 text-emerald-500" />}
+                {(counts[p.id] ?? 0) > 0 && <Check className="h-4 w-4 text-success" />}
               </div>
             </div>
           ))}
         </div>
         <div className="h-fit rounded-2xl border bg-card p-6">
-          <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Your bundle</p>
+          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Your bundle</p>
           <ul className="mt-4 space-y-2">
             {ordered.length === 0 && <li className="text-sm font-medium text-muted-foreground">Nothing selected yet.</li>}
             {ordered.map((p) => <li key={p.id} className="flex justify-between text-sm font-medium"><span>{p.label} × {counts[p.id]}</span><span>€{counts[p.id] * p.price}</span></li>)}
           </ul>
           <div className="mt-6 flex items-center justify-between border-t pt-4">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Total</span>
-            <span className="font-display text-3xl font-black tabular-nums">€{total}</span>
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Total</span>
+            <span className="font-display text-3xl font-semibold tabular-nums">€{total}</span>
           </div>
-          <Button size="lg" className="mt-6 h-11 w-full rounded-full font-mono text-[11px] font-bold uppercase tracking-widest">Checkout</Button>
+          <Button size="lg" className="mt-6 h-11 w-full rounded-full font-mono text-[11px] font-bold uppercase tracking-[0.12em]">Checkout</Button>
         </div>
       </div>
     </SectionShell>

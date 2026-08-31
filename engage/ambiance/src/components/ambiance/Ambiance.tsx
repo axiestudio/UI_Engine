@@ -93,7 +93,7 @@ export function Ambiance({ kicker = "stepping inside", line, shots, drift = 42, 
           {/* diorama: desktop layered, mobile calm stack */}
           <div className="relative">
             {/* portrait anchor */}
-            <div className="relative h-[420px] overflow-hidden rounded-[20px] sm:h-[520px] lg:h-[560px] lg:rounded-[24px]">
+            <div className="relative h-[420px] overflow-hidden rounded-xl sm:h-[520px] lg:h-[560px] lg:rounded-2xl">
               <img src={a.src} alt={a.alt} className="absolute inset-0 h-full w-full object-cover" />
               {a.caption && <p className="sr-only">{a.caption}</p>}
               {/* grain */}
@@ -109,7 +109,7 @@ export function Ambiance({ kicker = "stepping inside", line, shots, drift = 42, 
 
             {/* two floating side tiles (lg) — parallax at two depths */}
             {b && (
-              <div className="pointer-events-none absolute left-4 top-24 hidden h-[220px] w-[46%] overflow-hidden rounded-[20px] shadow-xl lg:top-16 lg:block lg:h-[300px]">
+              <div className="pointer-events-none absolute left-4 top-24 hidden h-[220px] w-[46%] overflow-hidden rounded-xl shadow-xl lg:top-16 lg:block lg:h-[300px]">
                 <DriftImage
                   shot={b}
                   range={reduce ? undefined : [0, 1]}
@@ -120,7 +120,7 @@ export function Ambiance({ kicker = "stepping inside", line, shots, drift = 42, 
               </div>
             )}
             {c && (
-              <div className="pointer-events-none absolute right-4 bottom-10 hidden h-[220px] w-[42%] overflow-hidden rounded-[20px] shadow-xl lg:block lg:h-[280px]">
+              <div className="pointer-events-none absolute right-4 bottom-10 hidden h-[220px] w-[42%] overflow-hidden rounded-xl shadow-xl lg:block lg:h-[280px]">
                 <DriftImage
                   shot={c}
                   range={reduce ? undefined : [0, 1]}
@@ -134,7 +134,7 @@ export function Ambiance({ kicker = "stepping inside", line, shots, drift = 42, 
             {/* mobile: calm horizontal strip instead of motion */}
             <div className="-mx-4 mt-3 flex gap-3 overflow-x-auto px-4 pb-1 lg:hidden" data-resting-strip>
               {[b, c].filter(Boolean).map((s, i) => (
-                <figure key={i} className="relative h-[170px] w-[240px] shrink-0 overflow-hidden rounded-[16px]">
+                <figure key={i} className="relative h-[170px] w-[240px] shrink-0 overflow-hidden rounded-xl">
                   <img src={s!.src} alt={s!.alt} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
                 </figure>
               ))}

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/type-scramble-tagline.es.js",
       "require": "./dist/type-scramble-tagline.cjs.js"
     },

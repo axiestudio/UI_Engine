@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/announcement.es.js",
       "require": "./dist/announcement.cjs.js"
     },
@@ -24,12 +23,17 @@
     "motion-primitives": [
       "magnetic",
       "text-roll",
-      "border-trail"
+      "border-trail",
+      "in-view",
+      "text-loop"
     ],
     "watermelon-ui": [
       "https://registry.watermelon.sh/r/announcement-1.json",
       "https://registry.watermelon.sh/r/announcement-2.json",
-      "https://registry.watermelon.sh/r/badge.json"
+      "https://registry.watermelon.sh/r/badge.json",
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

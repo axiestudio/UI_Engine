@@ -2,10 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence, MotionConfig } from 'motion/react';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { Cancel01Icon } from '@hugeicons/core-free-icons';
-import { FaAngleDown } from 'react-icons/fa6';
-import { BsCalendar3 } from 'react-icons/bs';
+import { X, ChevronDown, Calendar } from 'lucide-react';
 
 export const ScheduleButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,13 +12,13 @@ export const ScheduleButton = () => {
       <div className="relative flex flex-col items-center">
         <motion.div
           layout
-          className="relative z-10 w-80 border bg-white dark:border-neutral-800 dark:bg-neutral-900 shadow-sm"
-          style={{ borderRadius: 25 }}
+          className="relative z-10 w-80 border bg-card shadow-sm"
+          style={{ borderRadius: "var(--radius)" }}
         >
           <div className="p-2">
             <textarea
               placeholder="What's up?"
-              className="w-full resize-none bg-transparent p-2 text-neutral-800 outline-none dark:text-neutral-100 selection:bg-black/20 dark:selection:bg-white/20 font-sans"
+              className="w-full resize-none bg-transparent p-2 text-foreground outline-none selection:bg-primary/20 font-sans placeholder:text-muted-foreground"
             />
           </div>
 
@@ -34,18 +31,18 @@ export const ScheduleButton = () => {
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, y: 40, filter: 'blur(4px)' }}
                 >
-                  <div className="relative flex h-10 items-center justify-between overflow-hidden rounded-full border bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
-                    <div className="flex flex-1 items-center justify-between overflow-hidden rounded-full bg-white dark:bg-neutral-900">
-                      <div className="flex h-10 w-full items-center justify-between border-r p-2 px-3 text-sm text-neutral-600 dark:border-neutral-700 dark:text-neutral-300">
+                  <div className="relative flex h-10 items-center justify-between overflow-hidden rounded-full border bg-muted">
+                    <div className="flex flex-1 items-center justify-between overflow-hidden rounded-full bg-card">
+                      <div className="flex h-10 w-full items-center justify-between border-r p-2 px-3 text-sm text-muted-foreground border-border">
                         <span className="truncate">25, Dec 2024</span>
-                        <FaAngleDown
+                        <ChevronDown
                           size={12}
                           className="shrink-0 text-neutral-400"
                         />
                       </div>
-                      <div className="flex h-10 w-full items-center justify-between p-2 px-3 text-sm text-neutral-600 dark:text-neutral-300">
+                      <div className="flex h-10 w-full items-center justify-between p-2 px-3 text-sm text-muted-foreground">
                         <span className="truncate">9:30 AM</span>
-                        <FaAngleDown
+                        <ChevronDown
                           size={12}
                           className="shrink-0 text-neutral-400"
                         />
@@ -56,11 +53,7 @@ export const ScheduleButton = () => {
                       className="flex h-10 w-10 shrink-0 items-center justify-center text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200"
                       onClick={() => setIsOpen(false)}
                     >
-                      <HugeiconsIcon
-                        icon={Cancel01Icon}
-                        size={18}
-                        strokeWidth={2}
-                      />
+                      <X size={18} strokeWidth={2} />
                     </button>
                   </div>
                 </motion.div>
@@ -70,9 +63,9 @@ export const ScheduleButton = () => {
             <div className="relative flex items-center justify-end gap-2 p-2 px-3">
               <motion.button
                 layoutId="container"
-                className="flex size-10 items-center justify-center border bg-neutral-100 text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800"
+                className="flex size-10 items-center justify-center border bg-muted text-muted-foreground"
                 style={{
-                  borderRadius: 25,
+                  borderRadius: "var(--radius)",
                   opacity: isOpen ? 0 : 1,
                 }}
                 onClick={() => setIsOpen(true)}
@@ -95,13 +88,13 @@ export const ScheduleButton = () => {
                     duration: 0.4,
                   }}
                 >
-                  <BsCalendar3 size={18} />
+                  <Calendar size={18} />
                 </motion.span>
               </motion.button>
 
               <motion.button
-                className="origin-right bg-neutral-900 px-8 py-2 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold"
-                style={{ borderRadius: 25 }}
+                className="origin-right bg-primary px-8 py-2 text-primary-foreground font-semibold"
+                style={{ borderRadius: "var(--radius)" }}
                 animate={{
                   scale: isOpen ? 0.9 : 1,
                   transition: {
@@ -120,8 +113,8 @@ export const ScheduleButton = () => {
                   <div className="absolute inset-0 z-20 flex size-full items-center justify-center p-2 px-3">
                     <motion.button
                       layoutId="container"
-                      className="h-10 w-full bg-neutral-900 px-8 py-2 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold"
-                      style={{ borderRadius: 25 }}
+                      className="h-10 w-full bg-primary px-8 py-2 text-primary-foreground font-semibold"
+                      style={{ borderRadius: "var(--radius)" }}
                     >
                       <motion.span
                         layout="size"
@@ -164,7 +157,7 @@ export const ScheduleButton = () => {
                 duration: 0.5,
                 delay: 0.1,
               }}
-              className="relative z-0 mt-[-25px] flex w-80 items-center justify-center rounded-b-[25px] border border-t-0 bg-neutral-100 p-3 pt-8 pb-3 dark:border-neutral-700 dark:bg-neutral-800"
+              className="relative z-0 mt-[-25px] flex w-80 items-center justify-center rounded-b-[var(--radius)] border border-t-0 bg-muted p-3 pt-8 pb-3"
             >
               <p className="text-[11px] font-medium text-neutral-500 text-center">
                 Will be posted on 25 Dec 2024 at 9:30 AM

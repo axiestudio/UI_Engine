@@ -36,8 +36,8 @@ export type RecapProps = {
 }
 
 export function Recap({
-  eyebrow = "Before you go",
-  title = "Your next 48 hours",
+  eyebrow = "Before checkout",
+  title = "What happens next",
   signedBy,
   items,
   celebrate = true,
@@ -61,10 +61,10 @@ export function Recap({
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[720px] px-4 py-16 sm:px-6 lg:py-20">
           <header className="mb-8">
-            {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{eyebrow}</p>}
-            <h2 className="mt-1 flex items-center justify-between gap-4 font-display text-3xl font-extrabold tracking-tight">
+            {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground">{eyebrow}</p>}
+            <h2 className="mt-1 flex items-center justify-between gap-4 font-display text-3xl font-semibold tracking-[-0.02em]">
               {title}
-              {signedBy && <span className="font-mono text-[10px] font-black uppercase tracking-widest text-muted-foreground">— {signedBy}</span>}
+              {signedBy && <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">— {signedBy}</span>}
             </h2>
           </header>
 
@@ -80,10 +80,10 @@ export function Recap({
                     aria-pressed={isDone}
                     className="group grid w-full grid-cols-[56px_1fr_auto] items-start gap-3 py-4 text-left sm:grid-cols-[84px_1fr_auto]"
                   >
-                    <span className="pt-0.5 font-mono text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">{when}</span>
+                    <span className="pt-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">{when}</span>
                     <span className="min-w-0">
                       <span className="relative inline-flex items-center">
-                        <span className={cn("font-display text-[15px] font-bold leading-snug tracking-tight transition-all duration-300", isDone && "text-muted-foreground/60")}>{it.todo}</span>
+                        <span className={cn("font-display text-[15px] font-bold leading-snug tracking-[-0.02em] transition-all duration-300", isDone && "text-muted-foreground/60")}>{it.todo}</span>
                         <span
                           aria-hidden
                           className={cn("pointer-events-none absolute -inset-x-1 top-1/2 h-[2px] origin-left rounded-full bg-foreground", isDone ? "scale-x-100" : "scale-x-0")}
@@ -111,7 +111,7 @@ export function Recap({
               initial={false}
               animate={{ opacity: allDone ? 1 : 0, y: allDone ? 0 : 6, scale: allDone ? 1 : 0.98 }}
               transition={{ type: "spring", bounce: 0.45, duration: 0.55 }}
-              className={cn("mt-6 flex items-center gap-2 text-sm font-black tracking-tight", allDone ? "" : "pointer-events-none sr-only")}
+              className={cn("mt-6 flex items-center gap-2 text-sm font-semibold tracking-[-0.02em]", allDone ? "" : "pointer-events-none sr-only")}
               aria-live="polite"
             >
               <Stamp className="h-4 w-4 -rotate-6" /> {doneLabel}

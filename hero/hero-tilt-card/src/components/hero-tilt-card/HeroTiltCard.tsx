@@ -26,7 +26,7 @@ export function HeroTiltCard({
   title = "A hero you can touch.",
   subtitle = "The product card tilts toward your cursor — a preview that feels like a physical object.",
   cta = { label: "Open the preview", href: "#" },
-  card = { label: "SECTIONS", value: "100+" },
+  card = { label: "SECTIONS", value: "100+", src: "/showcase/gallery-vertical.webp" },
   tone = "paper",
   className,
 }: HeroTiltCardProps) {

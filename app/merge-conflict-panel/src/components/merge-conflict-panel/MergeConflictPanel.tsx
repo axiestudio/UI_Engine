@@ -31,28 +31,28 @@ export function MergeConflictPanel({ conflicts, onResolve, className }: MergeCon
   const current = pending[0]
   return (
     <div className={cn("font-sans", className)}>
-      <div className="mb-3 flex items-center gap-2 text-[12px] font-bold">
+      <div className="mb-3 flex items-center gap-2 text-sm font-medium">
         <GitMerge aria-hidden className="size-4" />
         <span>{conflicts.length - pending.length}/{conflicts.length} conflicts resolved</span>
         <div className="ml-auto h-1 w-24 overflow-hidden rounded-full bg-muted"><motion.div animate={{ width: `${((conflicts.length - pending.length) / conflicts.length) * 100}%` }} className="h-full rounded-full bg-[hsl(var(--ok))]" /></div>
       </div>
       {current && (
-        <motion.div layout key={current.id} className="overflow-hidden rounded-xl border bg-card shadow-lg">
-          <p className="border-b bg-[hsl(var(--app-code))] px-4 py-2 font-mono text-[11px] font-bold">{current.file}</p>
+        <motion.div layout key={current.id} className="overflow-hidden rounded-xl border border-border/70 bg-card shadow-lg">
+          <p className="border-b border-border/60 bg-muted/40 px-4 py-2 font-mono text-[12px] font-medium">{current.file}</p>
           <div role="radiogroup" aria-label={`Resolution for ${current.file}`} className="grid gap-px bg-border sm:grid-cols-2">
             {([["current", "Current — 1"], ["incoming", "Incoming — 2"]] as const).map(([v, l]) => (
-              <button key={v} role="radio" aria-checked={pick[current.id] === v} onClick={() => choose(current, v)} className={cn("group flex flex-col p-4 text-left text-[13px] transition-colors", pick[current.id] === v ? "bg-accent" : "bg-card hover:bg-muted/40", v === "incoming" && "border-l")}>
-                <span className="mb-2 flex items-center justify-between font-mono text-[9px] font-black uppercase tracking-[0.14em] text-muted-foreground">{l}{pick[current.id] === v && <Check className="size-3.5 text-[hsl(var(--ok))]" />}</span>
+              <button key={v} role="radio" aria-checked={pick[current.id] === v} onClick={() => choose(current, v)} className={cn("group flex flex-col p-4 text-left text-sm transition-colors", pick[current.id] === v ? "bg-accent" : "bg-card hover:bg-muted/40", v === "incoming" && "border-l")}>
+                <span className="mb-2 flex items-center justify-between text-xs font-medium text-muted-foreground">{l}{pick[current.id] === v && <Check className="size-3.5 text-[hsl(var(--ok))]" />}</span>
                 <pre className={cn("whitespace-pre-wrap font-mono text-[12px]", v === "current" && "text-[hsl(var(--err))]", v === "incoming" && "text-[hsl(var(--info))]")}>{current[v]}</pre>
               </button>
             ))}
           </div>
-          <div className="flex border-t">
-            <button onClick={() => choose(current, "both")} className="flex-1 py-2.5 text-[12px] font-bold hover:bg-muted/40">Keep both — 3</button>
+          <div className="flex border-t border-border/60">
+            <button onClick={() => choose(current, "both")} className="flex-1 py-2.5 text-sm font-medium hover:bg-muted/40">Keep both — 3</button>
           </div>
         </motion.div>
       )}
-      {!current && <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-2 rounded-lg border border-[hsl(var(--ok)/0.4)] bg-[hsl(var(--ok)/0.08)] px-4 py-3 text-[13px] font-bold text-[hsl(var(--ok))]"><Check className="size-4" /> Branch is clean. Ship it.</motion.p>}
+      {!current && <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-2 rounded-lg border border-[hsl(var(--ok)/0.4)] bg-[hsl(var(--ok)/0.08)] px-4 py-3 text-sm font-medium text-[hsl(var(--ok))]"><Check className="size-4" /> Branch is clean. Ship it.</motion.p>}
     </div>
   )
 }

@@ -53,7 +53,7 @@ export function TokenInput({ value, onChange, placeholder = "Type, paste, or pre
             else { setArmed(true); setTimeout(() => setArmed(false), 1400) }
           } else setArmed(false)
         }} onPaste={(e) => { const data = e.clipboardData.getData("text"); if (/[,\n;]/.test(data)) { e.preventDefault(); add(data + text) } }} placeholder={value.length && !text ? "" : placeholder} className="h-7 min-w-[12ch] flex-1 bg-transparent text-sm outline-none" />
-        {armed && <span aria-hidden className="rounded-sm bg-[hsl(var(--err))]/10 px-1.5 font-mono text-[9px] font-black uppercase tracking-[0.12em] text-[hsl(var(--err))]">again to delete “{value[value.length - 1]}”</span>}
+        {armed && <span aria-hidden className="rounded-sm bg-[hsl(var(--err))]/10 px-1.5 text-[11px] font-medium text-[hsl(var(--err))]">again to delete “{value[value.length - 1]}”</span>}
       </div>
       <p aria-live="polite" className="sr-only">{msg} {value.length} token{value.length === 1 ? "" : "s"} total</p>
     </div>

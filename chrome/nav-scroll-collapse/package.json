@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/nav-scroll-collapse.es.js",
       "require": "./dist/nav-scroll-collapse.cjs.js"
     },
@@ -30,6 +29,11 @@
     ],
     "motion-primitives": [
       "in-view"
+    ],
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
     ]
   },
   "scripts": {

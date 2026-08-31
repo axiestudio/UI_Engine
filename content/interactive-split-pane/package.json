@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/interactive-split-pane.es.js",
       "require": "./dist/interactive-split-pane.cjs.js"
     },

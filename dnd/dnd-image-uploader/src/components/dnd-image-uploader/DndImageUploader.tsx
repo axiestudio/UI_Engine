@@ -16,6 +16,7 @@ import { ImagePlus, UploadCloud, X } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Accept images (drop or browse) and reorder them.
 // ═══ EMOTION     A tidy gallery, in the order you want.
@@ -49,8 +50,10 @@ export function DndImageUploader({
   className,
 }: DndImageUploaderProps) {
   const [internal, setInternal] = React.useState(images)
-  const list = images ?? internal
+  React.useEffect(() => { setInternal(images) }, [images])
+  const list = internal
   const [activeId, setActiveId] = React.useState<string | null>(null)
+  const [announce, setAnnounce] = React.useState("")
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -84,11 +87,27 @@ export function DndImageUploader({
   const active = activeId ? list.find((i) => i.id === activeId) : null
 
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
+            {list.length} items
+          </span>
+          <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Drag or keyboard — Tab → Space → Arrows</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => { setInternal([]); onChange?.([]); setAnnounce("Gallery cleared") }} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+            Reset
+          </Button>
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>
+        </div>
+      </div>
       <DropZone onFiles={handleAdd} />
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
         {list.length > 0 && (
           <SortableContext items={list.map((i) => i.id)} strategy={rectSortingStrategy}>
@@ -119,10 +138,10 @@ function DropZone({ onFiles }: { onFiles: (files: File[]) => void }) {
         const files = Array.from(e.dataTransfer.files ?? [])
         if (files.length) onFiles(files)
       }}
-      className={cn("mt-8 flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed bg-muted/20 px-6 py-12 text-center transition-colors", (isOver || dragActive) && "dnd-over")}
+      className={cn("mt-8 flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed bg-muted/20 px-6 py-12 text-center transition-colors", (isOver || dragActive) && "dnd-over")}
     >
       <input type="file" multiple accept="image/*" className="sr-only" onChange={(e) => { const fs = Array.from(e.target.files ?? []); if (fs.length) onFiles(fs); e.currentTarget.value = "" }} />
-      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent">
+      <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent">
         <UploadCloud className="h-6 w-6" />
       </span>
       <p className="font-display text-base font-bold">Drop images here, or click to browse</p>

@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/hero-image-sequence.es.js",
       "require": "./dist/hero-image-sequence.cjs.js"
     },

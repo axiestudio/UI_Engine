@@ -34,9 +34,9 @@ export function SparklineCell({ values, labels, format = (v) => String(Math.roun
         {pts.map((p, i) => anomalous[i] > 2.4 && <circle key={i} cx={p.x} cy={p.y} r={2.4} fill="hsl(var(--err))"><animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite" /></circle>)}
         {hp && <g><line x1={hp.x} x2={hp.x} y1={0} y2={height} stroke="hsl(var(--muted-foreground))" strokeDasharray="2 3" opacity={0.5} /><circle cx={hp.x} cy={hp.y} r={2.6} fill="hsl(var(--foreground))" /></g>}
       </svg>
-      <span className={cn("ml-2 inline-block w-14 text-right font-mono text-[11px] font-black tabular-nums", up ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>{up ? "▲" : "▼"} {Math.abs(delta).toFixed(1)}%</span>
+      <span className={cn("ml-2 inline-block w-14 text-right font-mono text-[11px] font-medium tabular-nums", up ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>{up ? "▲" : "▼"} {Math.abs(delta).toFixed(1)}%</span>
       {hp && (
-        <span role="tooltip" className="pointer-events-none absolute -top-8 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md border bg-popover px-2 py-1 font-mono text-[10px] font-bold shadow-lg">
+        <span role="tooltip" className="pointer-events-none absolute -top-8 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md border border-border/70 bg-popover px-2 py-1 font-mono text-[11px] font-medium shadow-lg">
           {labels?.[hp.i] ? labels[hp.i] + " · " : ""}{format(hp.v)}
         </span>
       )}

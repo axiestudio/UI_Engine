@@ -1,7 +1,7 @@
 {
   "name": "header",
   "version": "0.1.0",
-  "description": "Professional header — shadcn/base + Radix UI (NavigationMenu, Sheet bottom, Command search)",
+  "description": "Professional header \u2014 shadcn/base + Radix UI (NavigationMenu, Sheet bottom, Command search)",
   "type": "module",
   "main": "dist/header.cjs.js",
   "module": "dist/header.es.js",
@@ -11,7 +11,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/header.es.js",
       "require": "./dist/header.cjs.js"
     },
@@ -54,5 +53,15 @@
   },
   "dependencies": {
     "motion": "^13.1.1"
+  },
+  "presetSources": {
+    "watermelon-ui": [
+      "button",
+      "card",
+      "badge"
+    ],
+    "motion-primitives": [
+      "in-view"
+    ]
   }
 }

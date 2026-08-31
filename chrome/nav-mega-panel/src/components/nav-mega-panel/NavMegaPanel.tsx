@@ -1,12 +1,7 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { ChevronDown } from "lucide-react"
-import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
-
-// ═══ JOB         Mega panel — a header with an animated mega-menu dropdown.
-// ═══ EMOTION     Navigation with room.
-// ═══ SIGNATURE   Hover a trigger to open a full-width panel with columns.
 
 export type MegaPanelColumn = { title: string; links?: string[] }
 
@@ -21,42 +16,76 @@ export type NavMegaPanelProps = {
 
 export function NavMegaPanel({ brand = "STUDIO", items, cta = "Start", className }: NavMegaPanelProps) {
   const [open, setOpen] = React.useState<string | null>(null)
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const activeItem = items.find((i) => i.id === open)
+
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(null)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [])
+
   return (
     <div className={cn("relative z-40", className)}>
-      <header className="relative border-b bg-background/80 backdrop-blur">
+      <header className="relative border-b bg-background">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
-          <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.6 }}>
-            <span className="font-display text-lg font-black tracking-tight">{brand}</span>
-          </InView>
-          <nav className="flex items-center gap-6">
-            {items.map((i) => (
-              <button key={i.id} type="button"
-                onMouseEnter={() => setOpen(i.id)}
-                onClick={() => setOpen(i.id === open ? null : i.id)}
-                className={cn("flex items-center gap-1 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", open === i.id ? "text-foreground" : "text-muted-foreground hover:text-foreground")}>
-                {i.label} {i.columns && <ChevronDown className="h-3.5 w-3.5" />}
-              </button>
-            ))}
+          <a href="#" className="font-display text-lg font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            {brand}
+          </a>
+          <nav aria-label="Primary" className="flex items-center gap-1">
+            {items.map((i) => {
+              const isOpen = open === i.id
+              return (
+                <button
+                  key={i.id}
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-haspopup="menu"
+                  aria-controls={i.columns ? `panel-${i.id}` : undefined}
+                  onMouseEnter={() => i.columns && setOpen(i.id)}
+                  onFocus={() => i.columns && setOpen(i.id)}
+                  onClick={() => setOpen(isOpen ? null : i.id)}
+                  className={cn(
+                    "inline-flex items-center gap-1 rounded-md px-3 py-2 font-mono text-xs font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    isOpen ? "bg-accent text-foreground" : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                  )}
+                >
+                  {i.label} {i.columns && <ChevronDown className="h-3.5 w-3.5" aria-hidden />}
+                </button>
+              )
+            })}
           </nav>
-          <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.6 }}>
-            <span className="rounded-full bg-foreground px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-background">{cta}</span>
-          </InView>
+          <a href="#" className="rounded-md bg-primary px-4 py-2 font-mono text-xs font-medium text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            {cta}
+          </a>
         </div>
         <AnimatePresence>
           {activeItem?.columns && (
             <motion.div
-              initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              onMouseEnter={() => setOpen(activeItem.id)} onMouseLeave={() => setOpen(null)}
-              className="absolute inset-x-0 top-full border-b bg-card/95 shadow-xl backdrop-blur"
+              id={`panel-${activeItem.id}`}
+              role="region"
+              aria-label={activeItem.label}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: reduce ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+              onMouseLeave={() => setOpen(null)}
+              className="absolute inset-x-0 top-full border-b bg-card shadow-lg"
             >
               <div className="mx-auto grid max-w-[1280px] grid-cols-3 gap-8 px-5 py-8 sm:px-8">
                 {activeItem.columns.map((c) => (
                   <div key={c.title}>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{c.title}</p>
-                    <ul className="mt-3 space-y-2">
-                      {c.links?.map((l) => <li key={l}><a href="#" className="text-sm font-medium hover:underline">{l}</a></li>)}
+                    <h3 className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground">{c.title}</h3>
+                    <ul className="mt-3 space-y-1.5">
+                      {c.links?.map((l) => (
+                        <li key={l}>
+                          <a href="#" className="rounded-sm text-sm font-medium text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                            {l}
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 ))}

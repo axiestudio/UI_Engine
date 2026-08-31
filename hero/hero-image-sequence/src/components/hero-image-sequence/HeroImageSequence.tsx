@@ -18,8 +18,15 @@ export type HeroImageSequenceProps = {
 export function HeroImageSequence({
   eyebrow = "SEQUENCE",
   title = "A hero that plays as you scroll.",
-  srcs = ["/frames/frame_0008.webp", "/frames/frame_0020.webp", "/frames/frame_0032.webp", "/frames/frame_0044.webp", "/frames/frame_0056.webp"],
-  runway = "240vh",
+  srcs = [
+    "/showcase/gallery-01.webp",
+    "/showcase/gallery-02.webp",
+    "/showcase/gallery-03.webp",
+    "/showcase/gallery-04.webp",
+    "/showcase/gallery-05.webp",
+    "/showcase/gallery-06.webp",
+  ],
+  runway = "260vh",
   className,
 }: HeroImageSequenceProps) {
   const ref = React.useRef<HTMLDivElement>(null)

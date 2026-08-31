@@ -1,64 +1,137 @@
 import * as React from "react"
-import { motion } from "motion/react"
 import { Award } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { SectionHead, SectionShell, Sheen, Dots } from "@/components/primitives/handcraft"
 import { Tilt } from "@/components/primitives/tilt"
 import { InView } from "@/components/primitives/in-view"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
 // ═══ JOB      display credentials as objects with weight
 // ═══ EMOTION  earned shine — these were not bought
-// ═══ SIGNATURE 3D-tilt metal badges with a sheen that sweeps on tilt;
-//               issuer + year stamped in a ledger footer per badge
+// ═══ SIGNATURE monochrome struck-medallion cards that tilt under the cursor
+//               while an engraved sheen sweeps over the metal; grade is
+//               carried by ring engraving (gold = double bezel, bronze =
+//               engine-turned edge), never cartoon gold gradients
 //   SITE      → awards walls, trust sections
 //   APP       → cert/profile displays; badges are data
-//   A11Y      badge content readable; tilt decorative
+//   BUILD     shadcn new-york-v4 Card/Badge/Separator + vendored Tilt
+//             + handcraft SectionHead/Sheen/Dots
+//   A11Y      badge content is real text; tilt/sheen are aria-hidden;
+//             href-wrapped cards keep a visible focus ring
 
-export type Badge = { title: string; issuer: string; year: string; metal: "gold" | "silver" | "bronze" }
+export type BadgeMetal = "gold" | "silver" | "bronze"
+
+export type CredentialBadge = {
+  title: string
+  issuer: string
+  year: string
+  metal: BadgeMetal
+  /** Certificate / serial number engraved in the ledger footer. */
+  serial?: string
+  href?: string
+}
 
 export type BrandBadgeWallProps = {
-  badges?: Badge[]
+  badges?: CredentialBadge[]
+  eyebrow?: string
+  title?: React.ReactNode
+  subtitle?: string
   className?: string
 }
 
-const METAL: Record<Badge["metal"], string> = {
-  gold: "from-amber-200 via-amber-400 to-amber-600 text-amber-950",
-  silver: "from-zinc-200 via-zinc-400 to-zinc-600 text-zinc-950",
-  bronze: "from-orange-200 via-orange-400 to-orange-700 text-orange-950",
+// metal is engraved, not coloured — every grade stays in the monochrome kit
+const METAL_ENGRAVING: Record<BadgeMetal, string> = {
+  gold: "[box-shadow:inset_0_0_0_1.5px_hsl(var(--background)/0.55),inset_0_0_0_4.5px_hsl(var(--background)/0.14),inset_0_0_0_6px_hsl(var(--background)/0.45)]",
+  silver: "[box-shadow:inset_0_0_0_1.5px_hsl(var(--background)/0.5),inset_0_0_0_10px_hsl(var(--background)/0.07)]",
+  bronze: "[box-shadow:inset_0_0_0_1px_hsl(var(--background)/0.45)] [background-image:repeating-conic-gradient(from_20deg,hsl(var(--background)/0.16)_0deg_6deg,transparent_6deg_12deg)]",
 }
 
-const DEFAULT_BADGES: Badge[] = [
-  { title: "Design System of the Year", issuer: "Pixel Guild", year: "2025", metal: "gold" },
-  { title: "ISO 27001 Certified", issuer: "Audit Bureau", year: "2024", metal: "silver" },
-  { title: "Craft Supplier — Grade A", issuer: "Makers Union", year: "2026", metal: "bronze" },
+const METAL_LABEL: Record<BadgeMetal, string> = { gold: "Gold", silver: "Silver", bronze: "Bronze" }
+
+const DEFAULT_BADGES: CredentialBadge[] = [
+  { title: "Design System of the Year", issuer: "Pixel Guild", year: "2025", metal: "gold", serial: "PG-25-0114" },
+  { title: "ISO 27001 Certified", issuer: "Audit Bureau", year: "2024", metal: "silver", serial: "AB-24-8802" },
+  { title: "Craft Supplier — Grade A", issuer: "Makers Union", year: "2026", metal: "bronze", serial: "MU-26-341" },
 ]
 
-export function BrandBadgeWall({ badges = DEFAULT_BADGES, className }: BrandBadgeWallProps) {
+function CredentialCard({ badge, index }: { badge: CredentialBadge; index: number }) {
+  const card = (
+    <Card className="group relative h-full overflow-hidden gap-5 py-6">
+      <Dots size={22} className="opacity-[0.06]" />
+      <Sheen />
+      <CardContent className="flex flex-col items-center gap-5 text-center">
+        <span
+          aria-hidden
+          className={cn(
+            "relative grid size-20 place-items-center rounded-full bg-foreground text-background shadow-[0_14px_26px_-14px_hsl(var(--foreground)/0.9)] ring-4 ring-background",
+            METAL_ENGRAVING[badge.metal],
+          )}
+        >
+          <Award className="size-9" strokeWidth={1.75} />
+        </span>
+        <div className="flex flex-col gap-3">
+          <h3 className="font-display text-lg font-black leading-tight tracking-tight text-foreground">{badge.title}</h3>
+          <span>
+            <Badge variant="outline" className="rounded-full border-primary/30 bg-transparent font-mono text-[9px] font-black uppercase tracking-[0.18em] text-muted-foreground">
+              {METAL_LABEL[badge.metal]} grade
+            </Badge>
+          </span>
+        </div>
+        <Separator className="w-2/3 border-dashed opacity-70" />
+        <p className="font-mono text-[10px] font-bold uppercase leading-relaxed tracking-[0.16em] text-muted-foreground">
+          {badge.issuer} · {badge.year}
+          {badge.serial ? <span className="text-foreground/40"> · {badge.serial}</span> : null}
+        </p>
+      </CardContent>
+      {badge.href && (
+        <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-muted-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+          verify ↗
+        </span>
+      )}
+    </Card>
+  )
+
+  const wrapped = badge.href ? (
+    <a
+      href={badge.href}
+      aria-label={`${badge.title} — ${badge.issuer}, ${badge.year}. View credential.`}
+      className="block h-full rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+    >
+      {card}
+    </a>
+  ) : (
+    card
+  )
+
+  return (
+    <InView once delay={index * 0.08} className="h-full">
+      <Tilt rotationFactor={8} className="h-full">
+        {wrapped}
+      </Tilt>
+    </InView>
+  )
+}
+
+export function BrandBadgeWall({
+  badges = DEFAULT_BADGES,
+  eyebrow = "CREDENTIALS · EARNED",
+  title = "Stamped, sealed, verified.",
+  subtitle = "Every mark on this wall was audited, struck, and dated — tilt one to catch the light.",
+  className,
+}: BrandBadgeWallProps) {
   return (
     <SectionShell width={920} className={className}>
-      <MonoLabel className="text-muted-foreground">CREDENTIALS · EARNED</MonoLabel>
-      <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">Stamped, sealed, verified.</h2>
-
-      <div className="mt-12 grid gap-8 sm:grid-cols-3">
+      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone="paper" />
+      <div className="mt-12 grid place-items-start gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {badges.map((b, i) => (
-          <InView key={b.title} once delay={i * 0.08}>
-            <Tilt rotationFactor={10} className="h-full">
-              <figure className="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border bg-card p-6 text-center">
-                <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.35)_50%,transparent_60%)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%]" />
-                <span className={cn("grid size-20 place-items-center rounded-full bg-gradient-to-br shadow-inner ring-4 ring-background", METAL[b.metal])}>
-                  <Award className="size-9" strokeWidth={2.2} aria-hidden />
-                </span>
-                <figcaption className="mt-5">
-                  <span className="block font-display text-lg font-black leading-tight tracking-tight text-foreground">{b.title}</span>
-                  <span className="mt-3 block border-t border-dashed border-border pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                    {b.issuer} · {b.year}
-                  </span>
-                </figcaption>
-              </figure>
-            </Tilt>
-          </InView>
+          <CredentialCard key={`${b.title}-${b.year}`} badge={b} index={i} />
         ))}
       </div>
+      <p className="mt-10 border-t border-dashed pt-4 text-right font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+        {badges.length} credential{badges.length === 1 ? "" : "s"} on record · registry verified quarterly
+      </p>
     </SectionShell>
   )
 }

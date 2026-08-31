@@ -40,10 +40,10 @@ export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps
   const hidden = items.filter((i) => !shown.includes(i))
 
   const CrumbEl = ({ c, last }: { c: Crumb; last?: boolean }) =>
-    c.href && !last ? <a href={c.href} className="max-w-[16ch] truncate rounded px-1 text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]">{c.label}</a> : <span aria-current={last ? "page" : undefined} className={cn("max-w-[22ch] truncate", last && "font-semibold text-foreground")}>{c.label}</span>
+    c.href && !last ? <a href={c.href} className="max-w-[16ch] truncate rounded px-1 text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring">{c.label}</a> : <span aria-current={last ? "page" : undefined} className={cn("max-w-[22ch] truncate", last && "font-medium text-foreground")}>{c.label}</span>
 
   return (
-    <div ref={host} className={cn("relative flex w-full min-w-0 items-center gap-1 font-sans text-[13px]", className)} aria-label="Breadcrumb">
+    <div ref={host} className={cn("relative flex w-full min-w-0 items-center gap-1 font-sans text-sm", className)} aria-label="Breadcrumb">
       <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1">
         <ol className="flex min-w-0 items-center gap-1 list-none m-0 p-0">
           {shown.map((c, i) => {
@@ -52,7 +52,7 @@ export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps
               <React.Fragment key={c.label + i}>
                 {i === 1 && hidden.length > 0 && (
                   <li className="flex items-center">
-                    <button type="button" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)} className="rounded px-1.5 py-1 text-muted-foreground hover:bg-muted focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]">…</button>
+                    <button type="button" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)} className="rounded px-1.5 py-1 text-muted-foreground hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring">…</button>
                   </li>
                 )}
                 <li className={cn("flex min-w-0 items-center gap-1", afterGap && "")}>
@@ -70,7 +70,7 @@ export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps
           <ul role="menu" className="absolute left-7 top-7 z-30 w-64 rounded-lg border bg-popover p-1 shadow-xl">
             {hidden.map((h) => (
               <li key={h.label} role="none">
-                {h.href ? <a role="menuitem" href={h.href} onClick={() => setMenu(false)} className="block truncate rounded-md px-2.5 py-1.5 text-[13px] hover:bg-accent">{h.label}</a> : <span role="menuitem" className="block truncate rounded-md px-2.5 py-1.5 text-[13px] opacity-70">{h.label}</span>}
+                {h.href ? <a role="menuitem" href={h.href} onClick={() => setMenu(false)} className="block truncate rounded-md px-2.5 py-1.5 text-sm hover:bg-accent">{h.label}</a> : <span role="menuitem" className="block truncate rounded-md px-2.5 py-1.5 text-sm opacity-70">{h.label}</span>}
               </li>
             ))}
           </ul>

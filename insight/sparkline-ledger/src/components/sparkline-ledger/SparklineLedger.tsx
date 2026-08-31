@@ -2,19 +2,13 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
-import { InView } from "@/components/primitives/in-view"
-
-// ═══ JOB      make a table of metrics readable as pulses
-// ═══ EMOTION  ledger calm — numbers with heartbeats
-// ═══ SIGNATURE rows draw their sparkline on hover (path draws left→right
-//               in 400ms) and the delta cell flips color on crossing zero
-//   SITE      → proof/ops pages, investor updates
-//   APP       → table widgets; rows are props; live values re-render
-//   A11Y      real table semantics; sr numbers; focusable rows
 
 export type LedgerRow = { name: string; unit?: string; current: number; delta: number; points: number[] }
 
 export type SparklineLedgerProps = {
+  eyebrow?: string
+  title?: string
+  subtitle?: string
   rows?: LedgerRow[]
   className?: string
 }
@@ -30,60 +24,118 @@ const DEFAULT_ROWS: LedgerRow[] = [
 function MiniSpark({ points, active }: { points: number[]; active: boolean }) {
   const w = 120, h = 28
   const max = Math.max(...points), min = Math.min(...points)
-  const d = points.map((p, i) => `${i === 0 ? "M" : "L"}${((i / (points.length - 1)) * w).toFixed(1)} ${(h - ((p - min) / (max - min || 1)) * (h - 4) - 2).toFixed(1)}`).join(" ")
+  const range = max - min || 1
+  const d = points
+    .map((p, i) => `${i === 0 ? "M" : "L"}${((i / (points.length - 1)) * w).toFixed(1)} ${(h - ((p - min) / range) * (h - 6) - 3).toFixed(1)}`)
+    .join(" ")
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} aria-hidden className="h-7 w-[120px]">
-      <motion.path d={d} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: active ? 1 : 0.999 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+    <svg viewBox={`0 0 ${w} ${h}`} aria-hidden className="h-7 w-[120px] text-foreground/70">
+      <motion.path
+        d={d}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0.0, opacity: 0.4 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: active ? 0.5 : 0.35, ease: "easeOut" }}
       />
     </svg>
   )
 }
 
-export function SparklineLedger({ rows = DEFAULT_ROWS, className }: SparklineLedgerProps) {
+export function SparklineLedger({
+  eyebrow = "LEDGER · PULSE PER ROW",
+  title = "Key metrics — latest week",
+  subtitle = "Seven-point sparkline and week-over-week change. Hover to emphasize the trend.",
+  rows = DEFAULT_ROWS,
+  className,
+}: SparklineLedgerProps) {
   const [hover, setHover] = React.useState<number | null>(null)
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+
   return (
     <SectionShell width={760} className={className}>
-      <MonoLabel className="text-muted-foreground">LEDGER · PULSE PER ROW</MonoLabel>
-      <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">The numbers, breathing.</h2>
+      <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+      <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
+      {subtitle && <p className="mt-2 max-w-[52ch] text-[13px] leading-6 text-muted-foreground">{subtitle}</p>}
 
-      <div className="mt-10 overflow-x-auto">
-        <table className="w-full min-w-[520px] text-left">
-          <caption className="sr-only">Key metrics with trend and delta</caption>
-          <thead>
-            <tr className="border-b border-border">
-              <th scope="col" className="pb-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Metric</th>
-              <th scope="col" className="pb-3 text-right font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Now</th>
-              <th scope="col" className="hidden pb-3 text-center font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground sm:table-cell">7 pt trend</th>
-              <th scope="col" className="pb-3 text-right font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Δ</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {rows.map((r, i) => {
-              const up = r.delta >= 0
-              return (
-                <tr key={r.name} tabIndex={0} aria-label={`${r.name}: ${r.current}${r.unit ?? ""}, ${up ? "up" : "down"} ${Math.abs(r.delta)}`}
-                  onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} onFocus={() => setHover(i)} onBlur={() => setHover(null)}
-                  className={cn("transition-colors", hover === i ? "bg-muted/40" : "hover:bg-muted/20")}>
-                  <th scope="row" className="py-3.5 font-display text-[15px] font-bold text-foreground">{r.name}</th>
-                  <td className="py-3.5 text-right font-display text-lg font-black tabular-nums text-foreground">
-                    {r.current.toLocaleString()}<span className="text-xs text-muted-foreground">{r.unit}</span>
-                  </td>
-                  <td className="hidden py-3.5 text-center sm:table-cell">
-                    <span className="inline-block text-foreground/80"><MiniSpark points={r.points} active={hover === i} /></span>
-                  </td>
-                  <td className={cn("py-3.5 text-right font-mono text-[12px] font-black tabular-nums", up ? "text-emerald-700 dark:text-emerald-400" : "text-sky-700 dark:text-sky-400")}>
-                    {up ? "▲" : "▼"} {Math.abs(r.delta)}
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+      <div className="mt-8 overflow-hidden rounded-xl border bg-card shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[520px] text-left">
+            <caption className="sr-only">Key metrics with trend and delta</caption>
+            <thead>
+              <tr className="border-b bg-muted/40">
+                <th scope="col" className="px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                  Metric
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                  Now
+                </th>
+                <th scope="col" className="hidden px-4 py-3 text-center font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground sm:table-cell">
+                  7-pt trend
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                  WoW
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/60">
+              {rows.map((r, i) => {
+                const up = r.delta >= 0
+                const isChurn = r.name.toLowerCase().includes("churn")
+                const good = isChurn ? !up : up
+                const active = hover === i
+                return (
+                  <tr
+                    key={r.name}
+                    tabIndex={0}
+                    aria-label={`${r.name}: ${r.current}${r.unit ?? ""}, ${good ? "up" : "down"} ${Math.abs(r.delta)}`}
+                    onMouseEnter={() => setHover(i)}
+                    onMouseLeave={() => setHover(null)}
+                    onFocus={() => setHover(i)}
+                    onBlur={() => setHover(null)}
+                    className={cn(
+                      "transition-colors focus-within:bg-muted/40 focus:outline-none",
+                      active ? "bg-muted/50" : "hover:bg-muted/30",
+                    )}
+                  >
+                    <th scope="row" className="px-4 py-3.5 font-display text-[14px] font-semibold text-foreground">
+                      {r.name}
+                    </th>
+                    <td className="px-4 py-3.5 text-right font-display text-[15px] font-semibold tabular-nums text-foreground">
+                      {r.current.toLocaleString()}
+                      <span className="ml-1 text-[12px] font-medium text-muted-foreground">{r.unit}</span>
+                    </td>
+                    <td className="hidden px-4 py-3.5 text-center sm:table-cell">
+                      <span className="inline-block">
+                        <MiniSpark points={r.points} active={!reduce && active} />
+                      </span>
+                    </td>
+                    <td className="px-4 py-3.5 text-right">
+                      <span
+                        className={cn(
+                          "inline-flex items-center justify-end gap-1 rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold tabular-nums",
+                          good
+                            ? "border-success/20 bg-success-muted text-success"
+                            : "border-warning/20 bg-warning-muted text-warning-foreground",
+                        )}
+                      >
+                        <span aria-hidden>{good ? "↑" : "↓"}</span> {Math.abs(r.delta)}
+                        {r.unit === "%" || r.unit === "$k" ? "" : "%"}
+                      </span>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="border-t bg-muted/20 px-4 py-2.5 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">
+          Hover or focus a row to highlight its sparkline · Values are live props
+        </div>
       </div>
-      <p className="mt-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">hover a row · the line draws itself</p>
     </SectionShell>
   )
 }

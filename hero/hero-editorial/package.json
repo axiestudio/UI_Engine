@@ -15,7 +15,6 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/hero-editorial.es.js",
       "require": "./dist/hero-editorial.cjs.js"
     },
