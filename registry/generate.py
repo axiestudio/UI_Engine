@@ -12,9 +12,57 @@ import json, pathlib
 
 UI = pathlib.Path(__file__).resolve().parent.parent
 PACKAGES = [
-    "steps", "auth", "consent", "changelog", "error", "marquee", "newsletter",
-    "showcase", "search", "hero", "video-demo", "compare", "roadmap", "careers",
-    "events", "waitlist", "help-center", "case-study", "empty-state",
+    "steps",
+    "auth",
+    "consent",
+    "changelog",
+    "error",
+    "marquee",
+    "newsletter",
+    "showcase",
+    "search",
+    "hero",
+    "video-demo",
+    "compare",
+    "roadmap",
+    "careers",
+    "events",
+    "waitlist",
+    "help-center",
+    "case-study",
+    "empty-state",
+    "curtain-call",
+    "departure-board",
+    "film-strip-wind",
+    "switchboard-reveal",
+    "stamp-fold",
+    "boarding-pass-gate",
+    "applause-meter",
+    "spotlight-pickup",
+    "vault-dial",
+    "encore-bows",
+    "blinds-slat",
+    "elevator-floors",
+    "intermission-card",
+    "gallery-rails",
+    "marquee-lights",
+    "signal-flags",
+    "ticket-rush",
+    "airlock-cycle",
+    "house-programme",
+    "ink-bloom",
+    "typewriter-manifesto",
+    "stage-lights-up",
+    "projection-burn",
+    "aperture-hero",
+    "countdown-flare",
+    "red-carpet-scroll",
+    "neon-beacon",
+    "zip-reveal",
+    "vinyl-spin",
+    "page-turn",
+    "finale-confetti",
+
 ]
 # infra peers the consumer's project must have (react/react-dom assumed present)
 EXCLUDED_PEER = {"react", "react-dom"}
@@ -28,7 +76,11 @@ def section_name(pkg):
     return pkg.replace("-", " ").title()
 
 for pkg in PACKAGES:
-    base = UI / pkg
+    cands = sorted(UI.glob(f"*/{pkg}"))
+    if not cands:
+        print("skip (not found):", pkg)
+        continue
+    base = cands[0]
     manifest = json.loads((base / "package.json").read_text())
     files = []
 

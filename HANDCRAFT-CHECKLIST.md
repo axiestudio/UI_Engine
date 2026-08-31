@@ -66,6 +66,16 @@ Status: ✅ crafted · 🔧 surgical pass · ⬜ pending
 | house-programme | list what's on with typographic weight | institutional pride | playbill rules, act ordinals, credit columns, scissors perforated stub CTA | ✅ |
 | ink-bloom | land one quiet promise | stillness | blur14→0 soak-in via radial mask, scroll-scrubbed (site) or mount-animated (app) | ✅ |
 | typewriter-manifesto | force linear reading | being addressed | per-char typing with caret beat; console chrome variant for app logs | ✅ |
+| stage-lights-up | open a page like a show | held breath | three beam cones sweep in, converge, snap off; pool-of-light settles up | ✅ |
+| projection-burn | tell a page through a projector | borrowed evening | lamp-flicker opacity beats on the screen + drifting dust motes in the beam cone | ✅ |
+| aperture-hero | look through a camera, not at a hero | control through glass | 8 wedge blades rotate/scale open on scrub; click moves the focus reticle | ✅ |
+| countdown-flare | make launch time the protagonist | T-minus air | LED flip cells burn down; at zero the horizon lifts with an exhaust flash, slot fills | ✅ |
+| red-carpet-scroll | welcome someone important | being expected | velvet unrolls on scrub/controlled progress; brass stanchions spring in, rope catenaries sag | ✅ |
+| neon-beacon | announce availability like a storefront | rain outside, tubes on | letter-by-letter ignition stutter with glow drop-shadows; OPEN⇄CLOSED relight, real switch role | ✅ |
+| zip-reveal | make a reveal physical | parcel anticipation | draggable pull (role=slider) clips the kraft flap; magnets snap sealed/fully open | ✅ |
+| vinyl-spin | give a quote a ritual object | analog weight | disc slides from sleeve with groove rings and CSS spin; quote appears while playing | ✅ |
+| page-turn | pace chapters like a book | bound authority | 3D leaf flips over the spine (rotateY, preserve-3d) with paper shadow; stack-edge depth counts pages | ✅ |
+| finale-confetti | finish success with a moment | the room goes off | seeded physics confetti from two rakes, banner unfurl, self-harvest + Esc; reduced = banner only | ✅ |
 
 ## Other agent's autonomous set
 

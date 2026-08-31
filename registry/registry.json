@@ -1177,6 +1177,664 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "curtain-call",
+      "type": "registry:block",
+      "title": "Curtain Call",
+      "description": "Theatre-curtain welcome reveal \u2014 scroll-panned twin panels peel apart over a hero (curtain-call), unmounting fully at open. Verbatim port of the engine gate, stage + overlay modes",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/curtain-call/CurtainCall.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "departure-board",
+      "type": "registry:block",
+      "title": "Departure Board",
+      "description": "Split-flap departure-board headlines that scramble and settle \u2014 program/live-data masthead (site section + webapp status header)",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/departure-board/DepartureBoard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "film-strip-wind",
+      "type": "registry:block",
+      "title": "Film Strip Wind",
+      "description": "Projector film-strip scrub \u2014 case studies and tours advance frame by frame with the scroll",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/film-strip-wind/FilmStrip.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "switchboard-reveal",
+      "type": "registry:block",
+      "title": "Switchboard Reveal",
+      "description": "Patch-cable contact routing \u2014 lights follow each jack until the line connects",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/switchboard-reveal/Switchboard.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stamp-fold",
+      "type": "registry:block",
+      "title": "Stamp Fold",
+      "description": "Wax-stamp letter that seals and folds in place \u2014 the confirmation moment",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stamp-fold/StampFold.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "boarding-pass-gate",
+      "type": "registry:block",
+      "title": "Boarding Pass Gate",
+      "description": "Perforated boarding-pass offer with scanline-to-code reveal",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/boarding-pass-gate/BoardingPass.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "applause-meter",
+      "type": "registry:block",
+      "title": "Applause Meter",
+      "description": "Rating as applause \u2014 amplitude meter, count-up, standing-ovation bar",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/applause-meter/ApplauseMeter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "spotlight-pickup",
+      "type": "registry:block",
+      "title": "Spotlight Pickup",
+      "description": "Dark-stage grid lit by a cursor torch \u2014 menu/collection reveal",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/spotlight-pickup/SpotlightGrid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "vault-dial",
+      "type": "registry:block",
+      "title": "Vault Dial",
+      "description": "Drag-to-rotate safe dial with magnetic detents to unlock tiers",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vault-dial/VaultDial.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "encore-bows",
+      "type": "registry:block",
+      "title": "Encore Bows",
+      "description": "Lineup reveal \u2014 performer cards take individual staggered bows",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/encore-bows/EncoreBows.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blinds-slat",
+      "type": "registry:block",
+      "title": "Blinds Slat",
+      "description": "Venetian slat wipe between before/after states on scrub",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/blinds-slat/BlindsSlat.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elevator-floors",
+      "type": "registry:block",
+      "title": "Elevator Floors",
+      "description": "Pricing as floors \u2014 floor indicator counts up, doors part per plan",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/elevator-floors/ElevatorFloors.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "intermission-card",
+      "type": "registry:block",
+      "title": "Intermission Card",
+      "description": "Silent-film intermission break between chapters \u2014 spoked shutter wipe",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/intermission-card/IntermissionCard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gallery-rails",
+      "type": "registry:block",
+      "title": "Gallery Rails",
+      "description": "Museum wall hang \u2014 art swings in on wire under a single label plate",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gallery-rails/GalleryRails.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "marquee-lights",
+      "type": "registry:block",
+      "title": "Marquee Lights",
+      "description": "Premiere bulb-frame masthead \u2014 chase lights orbit the big date",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/marquee-lights/MarqueeLights.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "signal-flags",
+      "type": "registry:block",
+      "title": "Signal Flags",
+      "description": "Maritime semaphore flags spell the call \u2014 hover replays the wave",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/signal-flags/SignalFlags.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "ticket-rush",
+      "type": "registry:block",
+      "title": "Ticket Rush",
+      "description": "Drop scarcity \u2014 LED odometer counting stock away after the scramble",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ticket-rush/TicketRush.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "airlock-cycle",
+      "type": "registry:block",
+      "title": "Airlock Cycle",
+      "description": "Two-door airlock auth cycle \u2014 inner door opens only after outer seals",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/airlock-cycle/Airlock.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "house-programme",
+      "type": "registry:block",
+      "title": "House Programme",
+      "description": "Playbill masthead \u2014 credits columns, act numbers, ticket-stub CTA",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/house-programme/Programme.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "ink-bloom",
+      "type": "registry:block",
+      "title": "Ink Bloom",
+      "description": "Headline soaks in like ink on paper \u2014 blur-to-sharp mask bloom",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ink-bloom/InkBloom.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "typewriter-manifesto",
+      "type": "registry:block",
+      "title": "Typewriter Manifesto",
+      "description": "Values typed at 220wpm with caret beat \u2014 mono manifesto",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/typewriter-manifesto/TypewriterManifesto.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stage-lights-up",
+      "type": "registry:block",
+      "title": "Stage Lights Up",
+      "description": "House-lights ramp hero: three spot cones converge on the headline, then snap off and the band settles into a reveal",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/stage-lights-up/StageLightsUp.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "projection-burn",
+      "type": "registry:block",
+      "title": "Projection Burn",
+      "description": "Projector-boot hero: a cone of light and grain flicker burn the headline in while dust motes drift",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/projection-burn/ProjectionBurn.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "aperture-hero",
+      "type": "registry:block",
+      "title": "Aperture Hero",
+      "description": "Camera-lens hero: click-a-focus reticle, then eight rotating iris blades open on scroll scrub",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/aperture-hero/ApertureHero.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "countdown-flare",
+      "type": "registry:block",
+      "title": "Countdown Flare",
+      "description": "Launch clock with ignition: LED digits burn down to T-0, the horizon lifts with an exhaust flash",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/countdown-flare/CountdownFlare.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "red-carpet-scroll",
+      "type": "registry:block",
+      "title": "Red Carpet Scroll",
+      "description": "Scroll lays a velvet carpet from CTA upward and stanchions snap in along its edge",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/red-carpet-scroll/RedCarpetScroll.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "neon-beacon",
+      "type": "registry:block",
+      "title": "Neon Beacon",
+      "description": "Neon tube sign: letters ignite with flicker buzz-in; OPEN/CLOSED status swap",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/neon-beacon/NeonBeacon.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "zip-reveal",
+      "type": "registry:block",
+      "title": "Zip Reveal",
+      "description": "Drag-zip package: a real zipper track opens on drag/scrub to release the drop contents",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/zip-reveal/ZipReveal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "vinyl-spin",
+      "type": "registry:block",
+      "title": "Vinyl Spin",
+      "description": "Sleeve to record: the jacket slides out and the disc spins while a quote plays",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vinyl-spin/VinylSpin.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "page-turn",
+      "type": "registry:block",
+      "title": "Page Turn",
+      "description": "Hardcover flip: chapters or quotes turn on a 3D page rotate with paper shadow",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/page-turn/PageTurn.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "finale-confetti",
+      "type": "registry:block",
+      "title": "Finale Confetti",
+      "description": "Celebration overlay: confetti bursts from a banner line; trigger- or auto-fired, self-clearing",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/finale-confetti/FinaleConfetti.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

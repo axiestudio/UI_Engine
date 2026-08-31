@@ -1,0 +1,91 @@
+import * as React from "react"
+import { motion, AnimatePresence } from "motion/react"
+import { Check, ChevronLeft, ChevronRight, CircleAlert } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+// ═══ APP-PRIMARY — multi-step flows that can't be linear-only.
+// JOB      collect structured data over steps without stranding the user
+// SIGNATURE the rail fills like a progress fuse; completed chips become
+//           check-marked and REVISITABLE (deep-link back keeps data); invalid
+//           "Continue" shakes and focuses the first bad field instead of lying.
+// API      steps [{title, fields:[{key,label,type?,required?,validate?}]}],
+//          onSubmit(data) ; state lives in the component with controlled option.
+// A11Y     fieldset/legend per step, aria-invalid + describedby error text,
+//          aria-current on the rail.
+
+export type Field = { key: string; label: string; type?: string; required?: boolean; placeholder?: string; validate?: (v: string, d: Record<string, string>) => string | null }
+export type Step = { title: string; fields: Field[] }
+export type StepperFormProps = { steps: Step[]; onSubmit: (data: Record<string, string>) => void; submitLabel?: string; className?: string }
+
+export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className }: StepperFormProps) {
+  const [i, setI] = React.useState(0)
+  const [data, setData] = React.useState<Record<string, string>>({})
+  const [errors, setErrors] = React.useState<Record<string, string>>({})
+  const step = steps[i]
+  const refs = React.useRef<Record<string, HTMLInputElement>>({})
+
+  const validateStep = () => {
+    const e: Record<string, string> = {}
+    for (const f of step.fields) {
+      const v = (data[f.key] ?? "").trim()
+      if (f.required && !v) e[f.key] = "Required"
+      else if (f.validate && v) { const m = f.validate(v, data); if (m) e[f.key] = m }
+    }
+    setErrors(e)
+    if (Object.keys(e)[0]) refs.current[e && Object.keys(e)[0]]?.focus()
+    return Object.keys(e).length === 0
+  }
+  const next = () => { if (validateStep()) { if (i === steps.length - 1) onSubmit(data); else setI(i + 1) } }
+  const doneThrough = (s: number) => s < i
+
+  return (
+    <div className={cn("font-sans", className)}>
+      <ol className="mb-6 flex items-center gap-0" aria-label="Form steps">
+        {steps.map((s, x) => (
+          <li key={s.title} className="flex flex-1 items-center last:flex-none">
+            <button
+              type="button"
+              onClick={() => { if (doneThrough(x) || x === i) { setErrors({}); setI(x) } }}
+              aria-current={x === i ? "step" : undefined}
+              disabled={!doneThrough(x) && x !== i}
+              className={cn("flex items-center gap-2 rounded-full py-1 pl-1 pr-2.5 text-[11px] font-bold transition-colors", x === i && "bg-accent text-accent-foreground", doneThrough(x) ? "text-[hsl(var(--ok))]" : "text-muted-foreground", !doneThrough(x) && x !== i && "opacity-50")}
+            >
+              <motion.span layout className={cn("grid size-6 place-items-center rounded-full border-2 text-[10px] tabular-nums", x === i ? "border-[hsl(var(--app-focus))]" : doneThrough(x) ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-white" : "border-current")}>{doneThrough(x) ? <Check className="size-3.5" /> : x + 1}</motion.span>
+              <span className="hidden sm:inline">{s.title}</span>
+            </button>
+            {x < steps.length - 1 && <span className="relative mx-2 h-[2px] flex-1 overflow-hidden rounded bg-muted"><motion.span initial={false} animate={{ width: doneThrough(x) ? "100%" : "0%" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} className="block h-full bg-[hsl(var(--ok))]" /></span>}
+          </li>
+        ))}
+      </ol>
+      <AnimatePresence mode="wait">
+        <motion.fieldset key={step.title} initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -18 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }} className="space-y-4 border-0 p-0 m-0">
+          <legend className="font-display text-lg font-black tracking-tight">{step.title}</legend>
+          {step.fields.map((f) => (
+            <div key={f.key}>
+              <label htmlFor={`f-${f.key}`} className="mb-1 flex items-center gap-1 text-[12px] font-bold">{f.label}{f.required ? <span aria-hidden className="text-[hsl(var(--err))]">*</span> : <span className="font-mono text-[9px] font-medium uppercase tracking-[0.14em] text-muted-foreground">optional</span>}</label>
+              <input
+                id={`f-${f.key}`}
+                ref={(el) => { if (el) refs.current[f.key] = el }}
+                type={f.type ?? "text"}
+                value={data[f.key] ?? ""}
+                onChange={(e) => setData((d) => ({ ...d, [f.key]: e.target.value }))}
+                placeholder={f.placeholder}
+                aria-invalid={!!errors[f.key]}
+                aria-describedby={errors[f.key] ? `e-${f.key}` : undefined}
+                className={cn("h-10 w-full rounded-md border bg-background px-3 text-[14px] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]", errors[f.key] && "border-[hsl(var(--err))]")}
+              />
+              {errors[f.key] && <p id={`e-${f.key}`} className="mt-1 flex items-center gap-1.5 text-[11px] font-bold text-[hsl(var(--err))]"><CircleAlert className="size-3.5" /> {errors[f.key]}</p>}
+            </div>
+          ))}
+        </motion.fieldset>
+      </AnimatePresence>
+      <div className="mt-7 flex items-center gap-2">
+        {i > 0 && <button type="button" onClick={() => setI(i - 1)} className="flex h-10 items-center gap-1 rounded-md border px-3 text-[12px] font-bold hover:bg-muted"><ChevronLeft className="size-4" /> Back</button>}
+        <motion.button whileTap={{ scale: 0.97 }} type="button" onClick={next} className="flex h-10 items-center gap-1 rounded-md bg-primary px-5 text-[12px] font-bold uppercase tracking-[0.1em] text-primary-foreground focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]">
+          {i === steps.length - 1 ? submitLabel : "Continue"} <ChevronRight className="size-4" />
+        </motion.button>
+        <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">step {i + 1}/{steps.length}</span>
+      </div>
+    </div>
+  )
+}
