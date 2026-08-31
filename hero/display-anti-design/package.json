@@ -1,0 +1,56 @@
+{
+  "name": "display-anti-design",
+  "version": "0.1.0",
+  "description": "Anti-design fashion-drop hero \u2014 oversized Archivo Black 900 display type, cream / electric-yellow / hot-pink colour clash, square ink rules and a pink pill accent (design direction: Display / Anti-design)",
+  "type": "module",
+  "main": "dist/display-anti-design.cjs.js",
+  "module": "dist/display-anti-design.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/display-anti-design.es.js",
+      "require": "./dist/display-anti-design.cjs.js"
+    },
+    "./styles.css": "./dist/display-anti-design.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "design-reference": "https://unslop.site/reference/display-anti-design"
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.34.0",
+    "motion": "^13.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "license": "MIT"
+}

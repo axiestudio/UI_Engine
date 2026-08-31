@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── DISPLAY / ANTI-DESIGN Brandkit ────────────────────────────────────
+   Visual direction: unslop.site "Display / Anti-design".
+   Fashion-drop anti-design hero: warm cream #fff5e1, electric yellow
+   #ffea4d, hot pink #ff3b6f, near-black ink. Oversized Archivo Black 900
+   display type, square ink borders (2px), one pink pill accent, cropped
+   out-of-frame type, punched colour clash. Uppercase micro-labels.
+─────────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --background: 40 100% 94%;            /* #fff5e1 — cream */
+    --foreground: 0 0% 5%;                /* near-black ink */
+    --card: 0 0% 100%;                    /* white */
+    --card-foreground: 0 0% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 53 100% 65%;               /* #ffea4d — electric yellow */
+    --primary-foreground: 0 0% 5%;
+    --secondary: 40 100% 90%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 40 100% 88%;
+    --muted-foreground: 0 0% 28%;
+    --accent: 344 100% 62%;               /* #ff3b6f — hot pink */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 344 100% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 5%;                    /* ink rules */
+    --input: 0 0% 100%;
+    --ring: 0 0% 5%;
+    --radius: 0rem;                       /* square corners */
+
+    --brand: 344 100% 62%;                /* pink */
+    --brand-foreground: 0 0% 100%;
+    --anti-yellow: 53 100% 65%;           /* display type fill */
+    --anti-cream: 40 100% 96%;
+
+    --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
+    --font-display: "Archivo Black", "Archivo", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 40 100% 94%;
+    --card: 0 0% 8%;
+    --card-foreground: 40 100% 94%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 100% 94%;
+    --primary: 53 100% 65%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 100% 94%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 60% 78%;
+    --accent: 344 100% 62%;
+    --accent-foreground: 0 0% 4%;
+    --border: 40 100% 94%;
+    --input: 0 0% 12%;
+    --ring: 40 100% 94%;
+    --brand: 344 100% 62%;
+    --brand-foreground: 0 0% 4%;
+    --anti-yellow: 53 100% 65%;
+    --anti-cream: 40 100% 94%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    border-radius: 0;
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.82;
+  }
+}
+
+::selection {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

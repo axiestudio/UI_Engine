@@ -1,0 +1,55 @@
+{
+  "name": "applause-meter",
+  "version": "0.1.0",
+  "description": "Rating as applause \u2014 amplitude meter, count-up, standing-ovation bar",
+  "type": "module",
+  "main": "dist/applause-meter.cjs.js",
+  "module": "dist/applause-meter.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/applause-meter.es.js",
+      "require": "./dist/applause-meter.cjs.js"
+    },
+    "./styles.css": "./dist/applause-meter.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "original-design": true,
+    "vendored": "in-repo primitives: \u2014 + handcraft kit",
+    "motion": "motion/react"
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "clsx": "^2.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "license": "MIT"
+}

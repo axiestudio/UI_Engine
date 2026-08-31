@@ -45,6 +45,7 @@ Status: ✅ crafted · 🔧 surgical pass · ⬜ pending
 | help-center | orientation | reassurance | signing-line search as hero, masked dots, ticked index cards | ✅ |
 | case-study | proof | conviction | 260px serif quote mark bleeding off the corner; serif-italic quote; report tiles | ✅ |
 | empty-state | guide the next step | patience | slow-spinning dashed ring icon, numbered tips ledger | ✅ |
+| curtain-call | a closed stage before the page | held breath | verbatim engine-gate port: twin panels scrub apart, statement scales 0.96→1.12, seam fades; peel done at 85% so nothing pops at sticky release; scene unmounts fully at open — hero is all that remains | ✅ |
 
 ## Other agent's autonomous set
 

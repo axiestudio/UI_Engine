@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── LIME / SPORT Brandkit ────────────────────────────────────────────
+   Visual direction: unslop.site "Lime / Sport".
+   Training-club landing for runners: near-black green #0a0f00 + electric
+   lime #d4f000. Archivo Black 900 display, Inter Tight UI, uppercase
+   micro-labels, 2px square rules, low-radius cards, live-stat widgets and
+   a lime marquee ticker. ▸▸ kept sharp and fast.
+─────────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --background: 80 100% 3%;              /* #0a0f00 — near-black */
+    --foreground: 67 100% 88%;             /* light lime text */
+    --card: 80 100% 5%;
+    --card-foreground: 67 100% 88%;
+    --popover: 80 100% 5%;
+    --popover-foreground: 67 100% 88%;
+    --primary: 67 100% 47%;                /* #d4f000 — lime */
+    --primary-foreground: 80 100% 3%;
+    --secondary: 80 60% 10%;
+    --secondary-foreground: 67 100% 88%;
+    --muted: 80 50% 8%;
+    --muted-foreground: 67 70% 62%;
+    --accent: 67 100% 47%;                 /* lime */
+    --accent-foreground: 80 100% 3%;
+    --destructive: 70 100% 47%;
+    --destructive-foreground: 80 100% 3%;
+    --border: 67 100% 47%;                 /* lime rules */
+    --input: 80 100% 8%;
+    --ring: 67 100% 47%;
+    --radius: 0.125rem;                    /* barely-rounded corners */
+
+    --brand: 67 100% 47%;                  /* lime */
+    --brand-foreground: 80 100% 3%;
+    --lime: 67 100% 47%;                   /* alias */
+    --sport-ink: 80 100% 3%;
+
+    --font-sans: "Inter Tight", system-ui, -apple-system, sans-serif;
+    --font-display: "Archivo Black", "Archivo", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  .dark {
+    --background: 80 100% 3%;
+    --foreground: 67 100% 88%;
+    --card: 80 100% 5%;
+    --card-foreground: 67 100% 88%;
+    --popover: 80 100% 5%;
+    --popover-foreground: 67 100% 88%;
+    --primary: 67 100% 47%;
+    --primary-foreground: 80 100% 3%;
+    --secondary: 80 60% 10%;
+    --secondary-foreground: 67 100% 88%;
+    --muted: 80 50% 8%;
+    --muted-foreground: 67 70% 62%;
+    --accent: 67 100% 47%;
+    --accent-foreground: 80 100% 3%;
+    --border: 67 100% 47%;
+    --input: 80 100% 8%;
+    --ring: 67 100% 47%;
+    --brand: 67 100% 47%;
+    --brand-foreground: 80 100% 3%;
+    --lime: 67 100% 47%;
+    --sport-ink: 80 100% 3%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    border-radius: 0;
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+}
+
+::selection {
+  background: hsl(var(--lime));
+  color: hsl(var(--sport-ink));
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

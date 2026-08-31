@@ -21,11 +21,23 @@
     "hero",
     "hero-scroll",
     "hero-cards",
+    "curtain-call",
     "hero-ink",
     "hero-manifesto",
     "hero-product",
     "hero-ticker",
-    "zigzag"
+    "zigzag",
+    "display-anti-design",
+    "lime-sport",
+    "curtain-call",
+    "curtain-iris",
+    "curtain-shutter",
+    "curtain-clip-path",
+    "curtain-pixels",
+    "curtain-zoom",
+    "curtain-threshold",
+    "intro-counter",
+    "intro-terminal"
   ],
   "content": [
     "features",
@@ -59,7 +71,11 @@
     "showcase",
     "video-demo",
     "audio",
-    "district-map-forward"
+    "district-map-forward",
+    "reveal-progressive-blur",
+    "reveal-parallax",
+    "reveal-image-mask",
+    "reveal-in-view-wipe"
   ],
   "commerce": [
     "cta",
@@ -87,5 +103,31 @@
     "place",
     "ambiance",
     "promise"
+  ],
+  "dnd": [
+    "dnd-sortable-list",
+    "dnd-kanban",
+    "dnd-sortable-grid",
+    "dnd-drop-zone",
+    "dnd-pairing",
+    "dnd-horizontal-sortable",
+    "dnd-task-board",
+    "dnd-upload-sort",
+    "dnd-snap-grid",
+    "dnd-reorder-cards",
+    "dnd-sortable-tree",
+    "dnd-drag-containers",
+    "dnd-table-rows",
+    "dnd-table-cols",
+    "dnd-tab-reorder",
+    "dnd-form-builder",
+    "dnd-menu-builder",
+    "dnd-dashboard-widgets",
+    "dnd-page-builder",
+    "dnd-image-uploader",
+    "dnd-drag-overlay",
+    "dnd-drop-zones",
+    "dnd-file-dropzone",
+    "dnd-sidebar-reorder"
   ]
 }

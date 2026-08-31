@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 5% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 5% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 5% 9%;
+    --primary: 240 5% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 5% 9%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 5% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 240 5% 9%;
+    --radius: 0.625rem;
+    --brand: 240 5% 9%;
+    --brand-foreground: 0 0% 98%;
+
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-display: "Space Grotesk", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* preset design tokens */
+    --letter-paper: 42 33% 96%;
+    --letter-edge: 42 20% 82%;
+    --letter-ink: 220 15% 12%;
+    --letter-soft: 220 10% 36%;
+    --wax: 0 68% 43%;
+    --wax-deep: 0 70% 30%;
+  }
+
+  .dark {
+    --background: 240 6% 7%;
+    --foreground: 0 0% 96%;
+    --card: 240 6% 9%;
+    --card-foreground: 0 0% 96%;
+    --popover: 240 6% 9%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 0 0% 96%;
+    --primary-foreground: 240 6% 7%;
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 5% 15%;
+    --accent-foreground: 0 0% 96%;
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 0 0% 83%;
+    --brand: 0 0% 96%;
+    --brand-foreground: 240 6% 7%;
+
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+}
