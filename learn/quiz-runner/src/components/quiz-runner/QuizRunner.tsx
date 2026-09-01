@@ -58,7 +58,7 @@ const DEFAULT_VERDICTS = [
 export function QuizRunner({
   eyebrow = "LEARN · QUIZ",
   title = "The studio quiz.",
-  subtitle = "Three questions from the Quiet Times board — how well do you read the floor? Pick an answer and it locks; the explanation follows.",
+  subtitle = "Three questions. How well do you read the floor?",
   heading = "Quiet Times Studio · chair test",
   questions = DEFAULT_QUESTIONS,
   verdicts = DEFAULT_VERDICTS,

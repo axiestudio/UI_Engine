@@ -25,10 +25,20 @@
   ],
   "presetSources": {
     "original-design": true,
-    "vendored": "handcraft kit (in-repo)",
     "motion": "motion/react",
     "watermelon-ui": [
-      "https://registry.watermelon.sh/r/button.json"
+      "https://registry.watermelon.sh/r/button.json",
+      "https://ui.shadcn.com/r/styles/new-york-v4/command.json",
+      "https://registry.watermelon.sh/r/dropdown-menu.json",
+      "https://registry.watermelon.sh/r/hover-card.json",
+      "https://ui.shadcn.com/r/styles/new-york-v4/input-group.json",
+      "https://registry.watermelon.sh/r/select.json",
+      "https://registry.watermelon.sh/r/dialog.json",
+      "https://registry.watermelon.sh/r/input.json",
+      "https://registry.watermelon.sh/r/textarea.json"
+    ],
+    "ai-elements": [
+      "https://registry.ai-sdk.dev/prompt-input.json"
     ]
   },
   "scripts": {
@@ -37,9 +47,16 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@radix-ui/react-select": "^2.3.7",
+    "@radix-ui/react-slot": "^1.3.3",
+    "ai": "^7.0.87",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "lucide-react": "^1.34.0",
     "motion": "^13.1.1",
+    "nanoid": "^3.3.18",
+    "radix-ui": "^1.6.7",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
     "tailwind-merge": "^3.6.0"

@@ -1,0 +1,64 @@
+{
+  "name": "ai-elements",
+  "title": "AI Elements (shadcn chat primitives)",
+  "homepage": "https://ai-sdk.dev/elements",
+  "kind": "registry",
+  "tier": "foundation",
+  "responsibility": "The official shadcn/ui registry for AI-native UI: conversation scroller, message bubbles + actions/branches, reasoning (thinking), prompt-input composer, sources/citations, tasks/tools, plan/queue/checkpoint, code-block. ALL chat/AI-related presets must compose on these primitives — never hand-roll bubbles, stick-to-bottom, streaming indicators, or composer plumbing.",
+  "snapshotDate": "2026-09-01",
+  "upstream": "https://registry.ai-sdk.dev/<name>.json",
+  "install": "npx shadcn@latest add @ai-elements/<name>",
+  "consume": "python3 scripts/vendor-into.py PRESET --ae message,conversation",
+  "packages": {
+    "ai": "type-only in vendored code (UIMessage, FileUIPart) — devDep at root, externalized",
+    "streamdown": "^2.6.0",
+    "use-stick-to-bottom": "^1.1.6",
+    "@radix-ui/react-use-controllable-state": "^1.2.6",
+    "radix-ui": "^1.6.7",
+    "shiki": "code-block only — devDep at root, externalized"
+  },
+  "items": {
+    "message": "Message/MessageContent/MessageResponse (Streamdown)/MessageActions/MessageAction (tooltip)/MessageBranch*/MessageToolbar/MessageAttachment(s)",
+    "conversation": "Conversation sticky-bottom scroller + ConversationContent/Empty/ScrollButton",
+    "reasoning": "thinking/open reasoning with shimmer while streaming",
+    "prompt-input": "composer: attachments, suggestions, context providers, model/mode controls (needs command/dropdown-menu/hover-card/input-group/select)",
+    "sources": "collapsible list of cited sources",
+    "inline-citation": "[n] chips + hover-card snippet (needs hover-card/carousel/badge)",
+    "task": "todo-style collapsible task rows",
+    "tool": "tool call/result card with code-block",
+    "suggestion": "follow-up suggestion pills rail",
+    "loader": "streaming dots",
+    "shimmer": "motion text shimmer (loading/streaming label)",
+    "chain-of-thought": "step-by-step reasoning trace with badge status",
+    "context": "token budget hover meter",
+    "plan": "collapsible plan card w/ shimmer",
+    "checkpoint": "restore-point button w/ tooltip",
+    "confirmation": "allow/deny approval alert card",
+    "queue": "queued messages rail (collapsible + scroll-area)",
+    "artifact": "side artifact viewer w/ fullscreen + actions",
+    "code-block": "shiki-highlighted block w/ copy",
+    "web-preview": "inline browser mock w/ address bar",
+    "model-selector": "command dialog to pick model"
+  },
+  "reachFor": [
+    "Any chat transcript, assistant answer, composer, reasoning/thinking surface, citation strip, streaming status",
+    "Message action bars (copy/reload/branch/thumbs) — use MessageActions + MessageAction, do not hand-roll icon-button bars",
+    "Auto-scrolling conversation tails — use Conversation, do not hand-roll scroll anchoring"
+  ],
+  "avoid": [
+    "Non-chat app chrome (desks, rosters, ops boards) — shadcn base kit + tokens is enough",
+    "Radix overlays already vendored in preset (tooltip/hover-card) — items reuse them, don't double-vendor",
+    "Hardcoding assistant styling — tokens from the preset carry the brand"
+  ],
+  "pitfalls": [
+    "Tailwind v3 presets: AI Elements targets v4; vendored items may use size-*/ring-*/aria-* v4-era classes (all compile in v3.4). Group-variant classes like group-[.is-user] work in v3.4.",
+    "message/reasoning import streamdown (runtime); prompt-input/tool/confirmation/context import `ai` (types only where marked). Keep `ai`/`shiki` out of bundled output via vite externals.",
+    "plan/reasoning import ./shimmer — always vendor shimmer alongside.",
+    "conversation depends on use-stick-to-bottom — the scroller behavior is theirs, keep it."
+  ],
+  "peers": ["ai", "lucide-react", "motion", "radix-ui", "@radix-ui/react-collapsible", "@radix-ui/react-use-controllable-state", "shiki", "streamdown", "use-stick-to-bottom", "cmdk", "nanoid"],
+  "docs": {
+    "components": "https://ai-sdk.dev/elements/components",
+    "setup": "https://ai-sdk.dev/elements/docs/setup"
+  }
+}

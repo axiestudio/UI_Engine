@@ -44,8 +44,8 @@ export function SkillTreeRail({ nodes = DEFAULT_NODES, className, onUnlock }: Sk
   const doneCount = local.filter((n) => n.state === "done").length
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-14 sm:py-16")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>

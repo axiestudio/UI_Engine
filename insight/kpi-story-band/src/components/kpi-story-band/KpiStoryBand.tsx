@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 
 import { SlidingNumber } from "@/components/primitives/sliding-number"
 import { InView } from "@/components/primitives/in-view"
+import { Badge } from "@/components/ui/badge"
 
 export type Kpi = { label: string; value: number; prefix?: string; suffix?: string; delta: number; points: number[] }
 
@@ -99,14 +100,14 @@ function Tile({ kpi, index, total }: { kpi: Kpi; index: number; total: number })
 export function KpiStoryBand({
   eyebrow = "THE NUMBERS · FY26",
   title = "Key metrics — FY26",
-  subtitle = "Three core indicators. Change is vs. prior period.",
+  subtitle = "Three core indicators. Change vs. prior period.",
   kpis = DEFAULT_KPIS,
   href,
   hrefLabel = "Full report",
   className,
 }: KpiStoryBandProps) {
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute top-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-t border-dashed", false ? "border-background/10" : "border-border")} />
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>

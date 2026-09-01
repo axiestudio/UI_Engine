@@ -99,7 +99,7 @@ function Term({ entry }: { entry: GlossaryEntry }) {
 export function FloatingGlossary({
   eyebrow = "FLOATING UI · GLOSSARY",
   title = "Salon speak, defined in place.",
-  subtitle = "Four words the house uses without thinking. Rest on a dotted term — or tap it — and the definition floats above the line, flipping at the edge before it ever clips.",
+  subtitle = "Four words the house uses daily. Hover a dotted term.",
   entries = DEFAULT_ENTRIES,
   caption = "HOVER OR TAP A DOTTED TERM · DISMISS OUTSIDE",
   tone = "paper",

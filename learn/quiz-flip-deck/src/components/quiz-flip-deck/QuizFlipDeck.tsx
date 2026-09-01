@@ -51,7 +51,7 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
   }
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
 
       <div className="flex flex-wrap items-center justify-between gap-3">

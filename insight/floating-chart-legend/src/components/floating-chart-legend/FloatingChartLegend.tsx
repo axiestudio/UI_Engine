@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion } from "motion/react"
-import { TrendingDown, TrendingUp } from "lucide-react"
+import { TrendingDown, TrendingUp, ArrowUp, ArrowDown } from "lucide-react"
 import {
   FloatingPortal,
   useFloating,
@@ -47,7 +47,7 @@ const SERIES: SeriesDef[] = [
     points: "30,86 70,78 110,82 150,66 190,60 230,50 270,42 310,28",
     last: { x: 310, y: 28 },
     value: "46",
-    delta: "▲ 12%",
+    delta: "+12%",
     up: true,
   },
   {
@@ -56,7 +56,7 @@ const SERIES: SeriesDef[] = [
     points: "30,96 70,92 110,94 150,88 190,80 230,84 270,76 310,72",
     last: { x: 310, y: 72 },
     value: "18",
-    delta: "▼ 4%",
+    delta: "-4%",
     up: false,
   },
 ]
@@ -168,7 +168,7 @@ export type FloatingChartLegendProps = {
 export function FloatingChartLegend({
   eyebrow = "Insight · Bookings",
   title = "This week, at a glance",
-  subtitle = "Bookings hold steady while walk-ins taper off — click a chip to isolate a series, hover it for the latest numbers.",
+  subtitle = "Bookings hold, walk-ins taper. Click a chip to isolate.",
   caption = "Quiet Times Studio — floor counts, weeks 24–31",
   tone = "paper",
   className,

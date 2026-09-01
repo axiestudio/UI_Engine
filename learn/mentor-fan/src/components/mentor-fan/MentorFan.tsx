@@ -26,7 +26,7 @@ export function MentorFan({ mentors = DEFAULT_MENTORS, className, onPick }: Ment
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <div className="mx-auto max-w-2xl text-center">

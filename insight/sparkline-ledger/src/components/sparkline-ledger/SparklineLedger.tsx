@@ -1,6 +1,8 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
+import { ArrowDown, ArrowUp } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 
 export type LedgerRow = { name: string; unit?: string; current: number; delta: number; points: number[] }
@@ -48,7 +50,7 @@ function MiniSpark({ points, active }: { points: number[]; active: boolean }) {
 export function SparklineLedger({
   eyebrow = "LEDGER · PULSE PER ROW",
   title = "Key metrics — latest week",
-  subtitle = "Seven-point sparkline and week-over-week change. Hover to emphasize the trend.",
+  subtitle = "Seven points. Week-over-week change. Hover the trend.",
   rows = DEFAULT_ROWS,
   className,
 }: SparklineLedgerProps) {
@@ -56,7 +58,7 @@ export function SparklineLedger({
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
 
       <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
@@ -124,7 +126,7 @@ export function SparklineLedger({
                             : "border-warning/20 bg-warning-muted text-warning-foreground",
                         )}
                       >
-                        <span aria-hidden>{good ? "↑" : "↓"}</span> {Math.abs(r.delta)}
+                        {good ? <ArrowUp className="size-3" aria-hidden /> : <ArrowDown className="size-3" aria-hidden />}{Math.abs(r.delta)}
                         {r.unit === "%" || r.unit === "$k" ? "" : "%"}
                       </span>
                     </td>

@@ -29,7 +29,7 @@ export function ReportUnfold({
   eyebrow,
   year = "2026",
   title = "The Honest Ledger",
-  subtitle = "Highlights from the full 32-page report. Open the cover to see the numbers.",
+  subtitle = "32 pages. Open the cover for the numbers.",
   stats = DEFAULT_STATS,
   hrefPdf = "#",
   hrefWeb = "#",
@@ -40,7 +40,7 @@ export function ReportUnfold({
   const labelEyebrow = eyebrow ?? `ANNUAL REPORT · ${year}`
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <div className="mx-auto max-w-2xl text-center">

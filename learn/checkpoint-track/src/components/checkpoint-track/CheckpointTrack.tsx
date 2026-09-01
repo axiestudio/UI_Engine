@@ -31,8 +31,8 @@ export function CheckpointTrack({ steps = DEFAULT_STEPS, current = 2, onStepClic
   const pct = steps.length > 1 ? (current / (steps.length - 1)) * 100 : 0
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-14 sm:py-16")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <div className="flex flex-wrap items-end justify-between gap-4">
         <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />TRACK · CHECKPOINTS</span>

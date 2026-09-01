@@ -17,7 +17,7 @@ export type BenchmarkDuelProps = {
 export function BenchmarkDuel({
   eyebrow = "BENCHMARK · HEAD TO HEAD",
   title = "Benchmark vs. median",
-  subtitle = "Same scale, same unit. The gap is the difference.",
+  subtitle = "Same scale, same unit.",
   you = { label: "Your team", value: 94 },
   industry = { label: "Industry median", value: 58 },
   unit = "% on-time",
@@ -53,7 +53,7 @@ export function BenchmarkDuel({
   )
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
 
       <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>

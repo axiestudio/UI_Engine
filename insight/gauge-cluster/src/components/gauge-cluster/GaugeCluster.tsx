@@ -115,12 +115,12 @@ function GaugeDial({ g, index }: { g: Gauge; index: number }) {
 export function GaugeCluster({
   eyebrow = "VITALS · COCKPIT",
   title = "System resources",
-  subtitle = "Current utilization against warning and critical thresholds.",
+  subtitle = "Utilization against warning and critical thresholds.",
   gauges = DEFAULT_GAUGES,
   className,
 }: GaugeClusterProps) {
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <div className="max-w-xl">

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion } from "motion/react"
-import { RefreshCw } from "lucide-react"
+import { RefreshCw, Star, ArrowUp, ArrowDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { InView } from "@/components/primitives/in-view"
@@ -22,7 +22,7 @@ const DEFAULT_METRICS: HeadlineMetric[] = [
   { id: "visits", label: "Visits", value: 1284, grouped: true, delta: 12, deltaKind: "percent", range: [900, 1600] },
   { id: "colour", label: "Colour mixed", value: 62.5, decimals: 1, unit: "L", delta: 3.1, range: [48, 76] },
   { id: "noshows", label: "No-shows", value: 11, delta: -6, range: [3, 18] },
-  { id: "rating", label: "Google rating", value: 4.9, decimals: 1, unit: "★", delta: 0.2, range: [4.5, 5] },
+  { id: "rating", label: "Google rating", value: 4.9, decimals: 1, unit: "", delta: 0.2, range: [4.5, 5] },
 ]
 
 const DIGITS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -78,7 +78,7 @@ function DeltaChip({ metric }: { metric: HeadlineMetric }) {
         up ? "text-primary" : "text-muted-foreground"
       )}
     >
-      <span aria-hidden>{up ? "▲" : "▼"}</span>
+      {up ? <ArrowUp className="size-3" aria-hidden /> : <ArrowDown className="size-3" aria-hidden />}
       {percent ? `${Math.abs(metric.delta)}%` : `${up ? "+" : "−"}${Math.abs(metric.delta).toFixed(metric.decimals ?? 0)}`}
     </span>
   )
@@ -97,7 +97,7 @@ export type MetricsHeadlineProps = {
 export function MetricsHeadline({
   eyebrow = "Quiet Times Studio · Metrics",
   title = "October, at a glance.",
-  subtitle = "Four numbers the whole studio runs on. The odometers roll on load — press simulate and watch them spin again.",
+  subtitle = "Four numbers the studio runs on. The odometers roll on load.",
   caption = "KPI BAND · ODOMETER ROLL",
   metrics = DEFAULT_METRICS,
   tone = "paper",
@@ -171,6 +171,7 @@ export function MetricsHeadline({
                 <div key={m.id} className="p-6 lg:p-7">
                   <div className="flex font-display text-[36px] font-bold leading-none sm:text-[42px] lg:text-[46px]">
                     <Odometer text={formatMetric(m)} unit={m.unit} reduce={reduce} />
+                    {m.id === "rating" && <Star aria-hidden className="ml-1 size-4 text-warning" />}
                   </div>
                   <div className="mt-4 flex items-center justify-between gap-2">
                     <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">

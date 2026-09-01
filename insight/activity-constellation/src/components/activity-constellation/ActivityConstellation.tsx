@@ -53,7 +53,7 @@ function ContinentDots() {
 export function ActivityConstellation({
   eyebrow = "ACTIVITY · GLOBAL",
   title = "Global active sessions",
-  subtitle = "Presence sampled hourly. Dots are cities; values are weekly sessions.",
+  subtitle = "Dots are cities. Hourly samples, weekly totals.",
   nodes = DEFAULT_NODES,
   className,
 }: ActivityConstellationProps) {
@@ -62,7 +62,7 @@ export function ActivityConstellation({
   const total = React.useMemo(() => nodes.reduce((s, n) => s + n.count, 0), [nodes])
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", true && "bg-foreground", cn("text-background", className))}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-foreground text-background", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

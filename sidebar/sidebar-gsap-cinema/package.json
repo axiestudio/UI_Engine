@@ -1,0 +1,68 @@
+{
+  "name": "sidebar-gsap-cinema",
+  "version": "0.1.0",
+  "description": "Cinema rail \u2014 react-bits SplitText char-entrance headline on a GSAP-timeline nav, reduced-motion aware",
+  "type": "module",
+  "main": "dist/sidebar-gsap-cinema.cjs.js",
+  "module": "dist/sidebar-gsap-cinema.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/sidebar-gsap-cinema.es.js",
+      "require": "./dist/sidebar-gsap-cinema.cjs.js"
+    },
+    "./styles.css": "./dist/sidebar-gsap-cinema.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "motion-primitives": [],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json",
+      "https://registry.watermelon.sh/r/badge.json",
+      "https://registry.watermelon.sh/r/separator.json"
+    ],
+    "bklit-ui": [],
+    "registry-items": [
+      "react-bits:SplitText"
+    ],
+    "engine-libraries": [
+      "gsap"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.34.0",
+    "motion": "^13.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwind-merge": "^3.6.0",
+    "gsap": "^3.15.0",
+    "@gsap/react": "^2.1.2",
+    "@radix-ui/react-separator": "^1.1.15",
+    "@radix-ui/react-slot": "^1.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

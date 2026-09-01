@@ -34,7 +34,7 @@ export type GsapScrollRingProps = {
 export function GsapScrollRing({
   eyebrow = "GSAP · SCROLL RING",
   title = "One ring, 72 percent.",
-  subtitle = "Scroll and the ring fills to this quarter's chair utilisation while the counter keeps pace — the ledger rows surface as their thresholds pass.",
+  subtitle = "Scroll — the ring fills with the quarter's utilisation.",
   caption = "RING · SCRUB 0→72% · 80VH",
   className,
 }: GsapScrollRingProps) {
@@ -81,7 +81,7 @@ export function GsapScrollRing({
   }, [reduce])
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 

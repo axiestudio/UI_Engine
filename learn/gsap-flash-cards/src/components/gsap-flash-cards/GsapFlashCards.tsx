@@ -46,7 +46,7 @@ export type GsapFlashCardsProps = {
 export function GsapFlashCards({
   eyebrow = "GSAP · FLASH CARDS",
   title = "Five cards the floor memorises.",
-  subtitle = "Click the card — or press Enter — to flip it. The deck cycles with Prev and Next: it flips back first, then the new card fades in.",
+  subtitle = "Click or press Enter to flip. Prev / Next cycles the deck.",
   caption = "ROTATEY FLIP · DECK OF 05 · PERSPECTIVE 1200",
   className,
 }: GsapFlashCardsProps) {
@@ -138,7 +138,7 @@ export function GsapFlashCards({
   const card = CARDS[index]
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 

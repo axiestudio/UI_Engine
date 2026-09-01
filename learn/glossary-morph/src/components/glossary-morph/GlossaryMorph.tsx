@@ -40,7 +40,7 @@ function TermChip({ t, index }: { t: Term; index: number }) {
 export function GlossaryMorph({ body = DEFAULT_BODY, className }: GlossaryMorphProps) {
   const terms = body.filter((b): b is Term => typeof b !== "string")
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
 
       <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />GLOSSARY · IN CONTEXT</span>

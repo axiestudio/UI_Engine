@@ -40,7 +40,7 @@ export type StackCourseProps = {
 export function StackCourse({
   eyebrow = "STACK · COURSE",
   title = "The syllabus, dealt open.",
-  subtitle = "Course band, meta strip, module rows and enroll base are separate components — modules repeat like fillings with done / active / locked states.",
+  subtitle = "Course, meta strip, modules — each its own component.",
   head = { title: "Booking Boards That Don't Lie", instructor: "Klara Lindqvist", level: "Beginner friendly" },
   meta = { modules: "6 modules", lessons: "24 lessons", duration: "4 h 20 m" },
   modules = [

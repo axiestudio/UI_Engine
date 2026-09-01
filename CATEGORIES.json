@@ -529,6 +529,13 @@
     "status-page",
     "metrics-headline"
   ],
+  "sidebar": [
+    "sidebar-quiet-rail",
+    "sidebar-gsap-cinema",
+    "sidebar-gooey-flow",
+    "sidebar-float-rail",
+    "sidebar-anime-glass"
+  ],
   "branding": [
     "archive-stamp",
     "brand-badge-wall",

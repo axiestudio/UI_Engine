@@ -62,7 +62,7 @@ const DEFAULT_SECTIONS: DocSection[] = [
 export function DocOutlineReader({
   eyebrow = "Field guide · No. 04",
   title = "Running the salon board.",
-  subtitle = "How Quiet Times Studio keeps six chairs honest with one board, a ten-minute huddle, and a Friday ledger.",
+  subtitle = "Six chairs, one board, one Friday ledger.",
   caption = "Quiet Times Studio · Jönköping",
   tone = "paper",
   sections = DEFAULT_SECTIONS,

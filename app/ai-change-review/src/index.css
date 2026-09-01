@@ -33,6 +33,15 @@
     --brand: 0 0% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --app-line: 0 0% 90%;
+    --app-code: 0 0% 97%;
+    --app-focus: 0 0% 9%;
+    --ok: 152 62% 32%;
+    --warn: 38 92% 46%;
+    --err: 0 72% 48%;
+    --info: 212 88% 44%;
+    --pinned: 262 68% 52%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -58,6 +67,15 @@
     --ring: 0 0% 83%;
     --brand: 0 0% 98%;
     --brand-foreground: 0 0% 9%;
+
+    --app-line: 0 0% 18%;
+    --app-code: 0 0% 12%;
+    --app-focus: 0 0% 83%;
+    --ok: 152 55% 46%;
+    --warn: 38 92% 55%;
+    --err: 0 78% 62%;
+    --info: 212 90% 64%;
+    --pinned: 262 75% 70%;
   }
 }
 

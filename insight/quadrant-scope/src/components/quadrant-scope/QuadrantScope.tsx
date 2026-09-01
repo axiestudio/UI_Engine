@@ -33,7 +33,7 @@ const DEFAULT_ITEMS: ScopeItem[] = [
 export function QuadrantScope({
   eyebrow = "POSITIONING · THE SCOPE",
   title = "Market positioning",
-  subtitle = "Two axes: craft vs. reach. Hover a quadrant to isolate its players.",
+  subtitle = "Craft vs. reach. Hover a quadrant to isolate.",
   axes = { x: ["Craft", "Reach"], y: ["Low", "High"] },
   items = DEFAULT_ITEMS,
   className,
@@ -42,7 +42,7 @@ export function QuadrantScope({
   const quadrantOf = (it: ScopeItem) => (it.x >= 50 && it.y >= 50 ? 0 : it.x < 50 && it.y >= 50 ? 1 : it.x < 50 && it.y < 50 ? 2 : 3)
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <div className="max-w-xl">

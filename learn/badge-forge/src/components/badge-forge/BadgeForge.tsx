@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { ExternalLink, Share2 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 import { Button } from "@/components/ui/button"
@@ -47,9 +46,11 @@ export function BadgeForge({
   }
 
   return (
-    <SectionShell width={760} padding="grand" className={cn("bg-background", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn("bg-background", className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-24 sm:py-32 lg:py-36")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
+
       <div className="mx-auto flex max-w-[480px] flex-col items-center">
-        <MonoLabel className="text-muted-foreground">CREDENTIAL · VERIFIED</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />CREDENTIAL · VERIFIED</span>
 
         <InView
           once
@@ -110,6 +111,8 @@ export function BadgeForge({
           This credential is shareable and verifiable. Private details stay with you.
         </p>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

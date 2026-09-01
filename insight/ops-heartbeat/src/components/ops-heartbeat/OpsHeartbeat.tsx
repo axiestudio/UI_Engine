@@ -66,7 +66,7 @@ export function OpsHeartbeat({
   }, [services])
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

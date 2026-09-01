@@ -78,7 +78,7 @@ const LEDGER: Record<string, DayBooking[]> = {
 export function EmblaDayTimeline({
   eyebrow = "EMBLA · DAY TIMELINE",
   title = "The week, as it actually looks.",
-  subtitle = "Seven days on a draggable rail, one chair ledger underneath. If a day shows three bookings, that's all there is — we don't double-book.",
+  subtitle = "Drag the week. The ledger below keeps honest times.",
   days = WEEK,
   bookings = LEDGER,
   caption = "DRAG THE WEEK · CLICK A DAY · CHAIR LEDGER BELOW",

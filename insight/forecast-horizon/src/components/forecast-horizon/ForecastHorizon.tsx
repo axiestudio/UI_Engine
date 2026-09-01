@@ -16,7 +16,7 @@ export type ForecastHorizonProps = {
 export function ForecastHorizon({
   eyebrow = "FORECAST · DRAG THE HORIZON",
   title = "Forecast horizon",
-  subtitle = "Solid is history, dashed is assumption. Move the slider to extend the forecast.",
+  subtitle = "Solid is history. Dashed is assumption. Drag to extend.",
   history = [18, 22, 26, 25, 31, 38, 44],
   growth = 14,
   unit = "k MRR",
@@ -57,7 +57,7 @@ export function ForecastHorizon({
   const finalValue = all[all.length - 1]
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">

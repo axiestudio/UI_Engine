@@ -1,7 +1,7 @@
 {
-  "$comment": "Index of UI/_registry \u2014 the library stack. 23 sources = the libraries of UI/PRINCIPLE_READ_ME.md; sections are composed per preset from tokens (the former handcraft kit is RETIRED: handcraft/library.json). Tiers follow UI/DESIGN_PRICIPLE.md. Workspace rule: libraries own functionality, WE own design (composition, layout, typography, hierarchy, brand). Reuse first. Compose second. Customize third. Rebuild last.",
+  "$comment": "Index of UI/_registry \u2014 the library stack. 25 sources (23 libraries + AI Elements + shadcn fallback snapshot) = the libraries of UI/PRINCIPLE_READ_ME.md; sections are composed per preset from tokens (the former handcraft kit is RETIRED: handcraft/library.json). Tiers follow UI/DESIGN_PRICIPLE.md. Workspace rule: libraries own functionality, WE own design (composition, layout, typography, hierarchy, brand). Reuse first. Compose second. Customize third. Rebuild last.",
   "version": 2,
-  "count": 23,
+  "count": 25,
   "sources": [
     {
       "name": "shadcn/ui",
@@ -21,6 +21,28 @@
       "homepage": "https://watermelontools.com",
       "upstream": "https://registry.watermelon.sh/r/<name>.json",
       "consume": "create-preset.py --wm item[,kit]"
+    },
+    {
+      "name": "AI Elements",
+      "dir": "ai-elements",
+      "kind": "registry",
+      "tier": "foundation",
+      "manifest": "ai-elements/library.json",
+      "homepage": "https://ai-sdk.dev/elements",
+      "upstream": "https://registry.ai-sdk.dev/r/<name>.json",
+      "consume": "vendor-into.py PRESET --ae message,conversation",
+      "note": "The shadcn chat UI primitives: message bubbles + actions/branches, conversation (sticky bottom), reasoning/thinking, prompt-input composer, sources & inline-citation, tasks/tools, plan/queue/checkpoint, code-block. ALL chat/AI-related presets compose on these."
+    },
+    {
+      "name": "shadcn/ui (fallback snapshot)",
+      "dir": "shadcn",
+      "kind": "registry",
+      "tier": "foundation",
+      "manifest": "shadcn/library.json",
+      "homepage": "https://ui.shadcn.com",
+      "upstream": "https://ui.shadcn.com/r/styles/new-york-v4/<name>.json",
+      "consume": "base-kit fallback: watermelon/r first, then shadcn/r (scroll-area, command, carousel, input-group, button-group)",
+      "note": "Direct items watermelon does not serve."
     },
     {
       "name": "React Bits",

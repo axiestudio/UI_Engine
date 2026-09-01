@@ -14,6 +14,7 @@
 | `branding/` (23) | Brand & identity surfaces: logo systems, palette tools, tone/voice strips |
 | `insight/` (14) | Analytics & observation decks |
 | `learn/` (13) | Educational & course surfaces |
+| `sidebar/` (5) | Sidebar systems: quiet rail, cinema nav, gooey switcher, float rail, glass launcher — each a full `rail + content` showcase surface; built-in mobile (off-canvas below `md`, float-rail clamps to its 72px strip), `mobile={false}` pins the desktop rail so hosts can mount it in their own sheet |
 
 Authoritative map: [`CATEGORIES.json`](./CATEGORIES.json) (read by the engine sidebar grouping and `scripts/create-preset.py --cat`).
 

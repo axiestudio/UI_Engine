@@ -49,7 +49,7 @@ const DEFAULT_TABS = [
 export function CodeReveal({
   eyebrow = "Learning · Code reveal",
   title = "Lesson 03 — ship something small.",
-  subtitle = "Terminal, then code. The window above is a real terminal; the block below is real code.",
+  subtitle = "Terminal. Then code. Copy from the block, run it.",
   command = "npm run lesson -- 03",
   steps = DEFAULT_STEPS,
   tabs = DEFAULT_TABS,
