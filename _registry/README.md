@@ -9,8 +9,7 @@ We never rebuild carousel mechanics, positioning logic, chart UI, or animation
 engines. We vendor/snapshot the library, compose it, and spend our effort on
 design. Not a workspace package (no package.json).
 
-**24 sources = the 23 libraries of [`UI/PRINCIPLE_READ_ME.md`](../PRINCIPLE_READ_ME.md) + the
-handcraft design system.** Machine-readable index + decision router:
+**23 sources = the libraries of [`UI/PRINCIPLE_READ_ME.md`](../PRINCIPLE_READ_ME.md)** Machine-readable index + decision router:
 [`LIBRARIES.json`](./LIBRARIES.json).
 
 ---
@@ -105,11 +104,13 @@ animation assets that play.
   (`three ^0.185.1` + `@react-three/fiber ^9.7.0`); Rive peer
   `@rive-app/react-canvas ^4.33.0`; Lottie peer `lottie-react ^3.1.1`.
 
-### Design system — Handcraft (`handcraft/`)
-`kind: in-repo` — authored primitives (grain, ticks, sheen, SectionShell/Head,
-MonoLabel, Ordinal). The composition layer the libraries can't provide.
-Governed by [`UI/HANDCRAFT-CHECKLIST.md`](../HANDCRAFT-CHECKLIST.md).
-
+### Design system — Handcraft (`handcraft/`) — RETIRED
+The shared shell/texture kit (SectionShell/Grain/Sheen/…) was retired by design
+decision: a unifying kit makes presets uniform. Sections are now composed
+**per preset** directly from tokens — own container width, own vertical rhythm,
+own heading voice. Buttons come from the shadcn/watermelon registry; motion from
+the motion-primitives registry. The `handcraft/` folder remains on disk marked
+`retired` — do not import it in new work.
 ---
 
 ## Convention for new presets (see UI/footer, UI/visit-us, …)
@@ -128,6 +129,6 @@ Governed by [`UI/HANDCRAFT-CHECKLIST.md`](../HANDCRAFT-CHECKLIST.md).
 ## Decision order (before writing ANY component)
 
 1. shadcn? 2. watermelon? 3. React Bits / Cult UI / Animata? 4. a specialized
-library above? 5. compose, don't copy → only then handcraft.
+library above? 5. compose, don't copy → only then write bespoke design markup with tokens (no shared kit).
 
 > **Reuse first. Compose second. Customize third. Rebuild last.**

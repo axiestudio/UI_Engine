@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
-import { CornerTicks, Grain, MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { BorderTrail } from "@/components/primitives/border-trail"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
@@ -53,8 +53,16 @@ export function Events({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} rails padding="roomy" className={className}>
-      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} index="04" tone={tone} />
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[var(--shell-w)] -translate-x-1/2 border-x lg:block", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
+        <header className={cn("relative")}>
+  <span aria-hidden className={cn("pointer-events-none absolute -top-10 right-0 select-none font-display text-[120px] font-black leading-none tracking-[-0.05em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] opacity-[0.07] sm:text-[160px]", tone === 'ink' ? "text-background" : "text-foreground")}>04</span>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
 
       <div className={cn("mt-12 grid gap-5 sm:gap-6", columns === 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2")}>
         {events.map((event, i) => (
@@ -73,7 +81,12 @@ export function Events({
               )}
             >
               {event.featured && <BorderTrail size={36} className={cn(ink ? "bg-background" : "bg-foreground")} />}
-              {!ink && <CornerTicks size={10} offset={7} className="text-foreground/20" />}
+              {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/20'))}>
+    <span className="absolute border-current top-[7px] left-[7px] border-t border-l" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current top-[7px] right-[7px] border-t border-r" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current bottom-[7px] left-[7px] border-b border-l" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current bottom-[7px] right-[7px] border-b border-r" style={{ width: 10, height: 10 }} />
+  </span>}
 
               <div
                 className={cn(
@@ -142,9 +155,11 @@ export function Events({
 
       <div className={cn("mt-14 flex items-center gap-4", ink ? "text-background/40" : "text-muted-foreground/60")}>
         <span className="h-px flex-1 border-t border-dashed border-current opacity-50" />
-        <MonoLabel className={cn("opacity-80", ink ? "text-background/55" : "text-muted-foreground")}>recordings sent to registrants</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn("opacity-80", ink ? "text-background/55" : "text-muted-foreground"))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />recordings sent to registrants</span>
         <span className="h-px flex-1 border-t border-dashed border-current opacity-50" />
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

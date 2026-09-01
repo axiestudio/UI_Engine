@@ -1,8 +1,8 @@
 import * as React from "react"
 import { useReducedMotion } from "motion/react"
 import { Check, Copy } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { Badge } from "@/components/ui/badge"
 
 // ═══ JOB      turn the palette from a picture into a tool
@@ -84,9 +84,13 @@ export function SwatchSpectrum({
   }
 
   return (
-    <SectionShell width={1120} padding="tight" className={className}>
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
       <div className="flex items-end justify-between gap-4">
-        <SectionHead eyebrow={eyebrow} title="Click a color. It's yours." tone="paper" />
+                <header className="">
+          {eyebrow != null && (            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>          )}
+          <h2 className="mt-2 tracking-tight text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">Click a color. It's yours.</h2>
+        </header>
         <Badge variant="outline" className="mb-1 hidden rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:inline-flex">
           contrast computed, not claimed
         </Badge>
@@ -98,7 +102,7 @@ export function SwatchSpectrum({
           const ratio = contrast(s.hex, fg)
           const pass = ratio >= 4.5
           return (
-            <button
+            <Button type="button" variant="ghost"
               key={s.name}
               type="button"
               aria-label={`Copy ${s.name} ${s.hex}, contrast ${ratio.toFixed(1)} to 1. ${pass ? "Passes AA." : "Large text only."}`}
@@ -109,7 +113,7 @@ export function SwatchSpectrum({
                 "hover:grow-[2.4] focus-visible:grow-[2.4] focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-current",
                 reduced ? "" : "transition-[flex-grow] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
               )}
-            >
+            > h-auto>
               <span className="flex items-center justify-between font-mono text-[10px] font-black uppercase tracking-[0.2em] opacity-80">
                 {s.name}
                 {copied === s.name ? (
@@ -126,7 +130,7 @@ export function SwatchSpectrum({
                   {copied === s.name ? " · copied" : ""}
                 </span>
               </span>
-            </button>
+            </Button>
           )
         })}
       </div>
@@ -138,6 +142,7 @@ export function SwatchSpectrum({
         <Badge variant="outline" className="rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{swatches.length} tokens</Badge>
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">hex on copy · verdicts live</span>
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

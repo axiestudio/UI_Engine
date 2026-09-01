@@ -130,9 +130,6 @@ export function PricingLab({
     return () => Object.values(timers).forEach(clearTimeout)
   }, [])
 
-  const set = (k: keyof LeverState) => (v: number) =>
-    setLevers((s) => ({ ...s, [k]: v }))
-
   const reject = (id: string) => {
     setRejected((r) => [...r, id])
     undoTimers.current[id] = setTimeout(() => {
@@ -244,11 +241,11 @@ export function PricingLab({
           </header>
           <div className="space-y-5 px-5 py-4">
             <div className="grid items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
-              <DragNumberField label="Base price" value={levers.base} onValueChange={set("base")} step={0.5} precision={2} min={9} max={99} unit="usd" />
+              <DragNumberField label="Base price" value={eff.base} onValueChange={set("base")} step={0.5} precision={2} min={9} max={99} unit="$" />
               <RadialGauge orientation="linear" size={200} notches={28} showCenterValue={false} label="net / seat" value={net} min={0} max={110} precision={2} unit="" zones={[{ to: 0.36, color: "hsl(var(--err))", label: "under water" }, { to: 0.64, color: "hsl(var(--warn))", label: "thin" }, { to: 1, color: "hsl(var(--ok))", label: "priced" }]} />
             </div>
             <div className="grid items-center gap-3 border-t border-border/50 pt-5 sm:grid-cols-[minmax(0,1fr)_auto]">
-              <DragNumberField label="Launch discount" value={levers.discount} onValueChange={set("discount")} step={1} precision={0} min={0} max={60} unit="%" />
+              <DragNumberField label="Launch discount" value={eff.discount} onValueChange={set("discount")} step={1} precision={0} min={0} max={60} unit="%" />
               <RadialGauge orientation="linear" size={200} notches={28} showCenterValue={false} label="headroom" value={100 - eff.discount} min={0} max={100} precision={0} unit="" zones={[{ to: 0.4, color: "hsl(var(--err))", label: "giving it away" }, { to: 0.7, color: "hsl(var(--warn))", label: "deep" }, { to: 1, color: "hsl(var(--ok))", label: "room" }]} />
             </div>
             <div className="grid items-center gap-3 border-t border-border/50 pt-5 sm:grid-cols-[minmax(0,1fr)_auto]">

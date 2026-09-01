@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Send } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -36,7 +36,10 @@ export function ContactSplit({
   const [form, setForm] = React.useState({ name: "", email: "", message: "" })
   const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }))
   return (
-    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <InView once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <form
@@ -63,7 +66,9 @@ export function ContactSplit({
           </dl>
         </InView>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }
 

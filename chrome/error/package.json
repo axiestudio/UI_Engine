@@ -37,6 +37,9 @@
       "button",
       "card",
       "badge"
+    ],
+    "react-bits": [
+      "Noise-TS-TW"
     ]
   },
   "scripts": {
@@ -51,8 +54,8 @@
     "motion": "^13.1.1",
     "radix-ui": "^1.4.2",
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "tailwind-merge": "^3.6.0"
+    "tailwind-merge": "^3.6.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",

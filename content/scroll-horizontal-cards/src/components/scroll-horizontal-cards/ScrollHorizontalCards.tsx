@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Horizontal-cards — a vertically-scrolled section that pans sideways.
@@ -35,7 +35,11 @@ export function ScrollHorizontalCards({ eyebrow = "PAN", title = "A section that
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
         <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8">
           <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-            <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
+              <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
           </InView>
         </div>
         <motion.div style={{ x }} className="mt-10 flex flex-nowrap gap-4 px-5">

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
-import { CornerTicks, Grain, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -76,7 +76,12 @@ function StepCard({
             ink && "transition-colors duration-500 group-hover:bg-background/5",
           )}
         >
-          {!ink && <CornerTicks size={11} offset={8} className="text-foreground/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />}
+          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100'))}>
+    <span className="absolute border-current top-[8px] left-[8px] border-t border-l" style={{ width: 11, height: 11 }} />
+    <span className="absolute border-current top-[8px] right-[8px] border-t border-r" style={{ width: 11, height: 11 }} />
+    <span className="absolute border-current bottom-[8px] left-[8px] border-b border-l" style={{ width: 11, height: 11 }} />
+    <span className="absolute border-current bottom-[8px] right-[8px] border-b border-r" style={{ width: 11, height: 11 }} />
+  </span>}
           {numbered && (
             <span
               aria-hidden
@@ -89,7 +94,7 @@ function StepCard({
             </span>
           )}
           <div className={cn("relative", numbered && "mt-14 sm:mt-16")}>
-            <Ordinal n={index + 1} total={total} className={cn(ink ? "text-background/70" : "text-foreground/70")} />
+            <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", cn(ink ? "text-background/70" : "text-foreground/70"))}>index + 1<span className="opacity-50"> / total</span></span>
             {Icon && (
               <span
                 className={cn(
@@ -138,15 +143,18 @@ export function Steps({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} rails rule="bottom" padding="roomy" className={className} id="how">
+    <section id="how" className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[var(--shell-w)] -translate-x-1/2 border-x lg:block", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <SectionHead
-          eyebrow={eyebrow}
-          title={title}
-          subtitle={subtitle}
-          index="01"
-          tone={tone}
-        />
+          <header className={cn("relative")}>
+  <span aria-hidden className={cn("pointer-events-none absolute -top-10 right-0 select-none font-display text-[120px] font-black leading-none tracking-[-0.05em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] opacity-[0.07] sm:text-[160px]", tone === 'ink' ? "text-background" : "text-foreground")}>01</span>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
         <span aria-hidden className={cn("hidden pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] sm:block", ink ? "text-background/40" : "text-muted-foreground/70")}>
           {items.length} steps · no detours
         </span>
@@ -194,6 +202,8 @@ export function Steps({
         </span>
         <span className="h-px flex-1 border-t border-dashed border-current opacity-40" />
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Info, Sparkles, TrendingUp, Wrench, Zap, type LucideIcon } from "lucide-react"
-import { Grain, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { TextShimmer } from "@/components/primitives/text-shimmer"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
@@ -101,7 +101,7 @@ function ReleaseEntry({ release, index, total, tone, latest }: { release: Releas
                 ● Latest
               </TextShimmer>
             )}
-            <Ordinal n={total - index} className={cn("ml-auto", ink ? "text-background/35" : "text-muted-foreground/60")} />
+            <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", cn("ml-auto", ink ? "text-background/35" : "text-muted-foreground/60"))}>total - index<span aria-hidden> /</span></span>
           </div>
 
           <ul className={cn("mt-5 flex flex-col border-t", ink ? "border-background/10" : "border-border")}>
@@ -169,9 +169,17 @@ export function Changelog({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={920} rails padding="roomy" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[var(--shell-w)] -translate-x-1/2 border-x lg:block", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} index="03" tone={tone} />
+          <header className={cn("relative")}>
+  <span aria-hidden className={cn("pointer-events-none absolute -top-10 right-0 select-none font-display text-[120px] font-black leading-none tracking-[-0.05em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] opacity-[0.07] sm:text-[160px]", tone === 'ink' ? "text-background" : "text-foreground")}>03</span>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
         {subscribe && (
           <Button
             asChild
@@ -205,6 +213,8 @@ export function Changelog({
         end of log
         <span className="h-px flex-1 border-t border-dashed border-current opacity-50" />
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

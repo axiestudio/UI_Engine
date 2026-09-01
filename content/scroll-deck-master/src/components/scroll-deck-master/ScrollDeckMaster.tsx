@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Deck master — a fully scroll-controlled horizontal story with a HUD.

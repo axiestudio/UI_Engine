@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Activity } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, Dots } from "@/components/primitives/handcraft"
 import { AnimatedNumber } from "@/components/primitives/animated-number"
 import { InView } from "@/components/primitives/in-view"
 import { Badge } from "@/components/ui/badge"
@@ -65,8 +64,8 @@ export function BrandHeartbeat({
   const liveValue = stat.value + (reduced ? 0 : beat * perBeat)
 
   return (
-    <SectionShell width={1120} tone="ink" padding="tight" className={cn("text-background", className)}>
-      <Dots size={30} className="opacity-[0.05]" />
+    <section className={cn("bg-foreground text-background", cn("text-background", className))}>
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
       <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-8">
         <div className="flex items-center gap-6">
           {/* the mark tile: one thump per beat */}
@@ -81,7 +80,7 @@ export function BrandHeartbeat({
           </motion.span>
 
           <div>
-            <MonoLabel className="flex items-center gap-2 text-background/55">
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] flex items-center gap-2 text-background/55">
               {clampedBpm} BPM · BRAND PULSE
               <Badge variant="outline" className="h-5 gap-1.5 rounded-full border-background/30 bg-transparent px-2 font-mono text-[8px] font-black uppercase tracking-[0.14em] text-background/75">
                 <motion.span
@@ -92,7 +91,7 @@ export function BrandHeartbeat({
                 />
                 Live
               </Badge>
-            </MonoLabel>
+            </span>
             <p className="mt-1 font-display text-xl font-black tracking-tight text-background">Alive and watched, every minute.</p>
           </div>
         </div>
@@ -130,6 +129,7 @@ export function BrandHeartbeat({
       </div>
 
       <p className="sr-only" aria-live="polite">{reduced ? "Pulse paused for reduced motion." : ""}</p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

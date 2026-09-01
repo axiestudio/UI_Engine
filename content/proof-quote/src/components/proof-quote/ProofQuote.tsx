@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Star } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Proof quote — one strong testimonial anchored with stars.
@@ -27,7 +27,10 @@ export function ProofQuote({
 }: ProofQuoteProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <figure className="text-center">
           <div className="flex justify-center gap-1 text-amber-400">{Array.from({ length: rating }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
@@ -42,6 +45,8 @@ export function ProofQuote({
           </figcaption>
         </figure>
       </InView>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

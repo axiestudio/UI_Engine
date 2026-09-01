@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Ban, Check, Undo2 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -17,7 +16,7 @@ import { Separator } from "@/components/ui/separator"
 //               rotated; the why-line stays as the dry moral
 //   SITE      → brand guideline do/don't chapters
 //   APP       → checklist rails; rules are data
-//   BUILD     shadcn new-york-v4 Card/Badge/Button + handcraft SectionShell
+//   BUILD     shadcn new-york-v4 Card/Badge/Button  token-driven section markup
 //   A11Y      toggle is a labelled button with aria-pressed; both verdicts
 //             are visible text; stamp is aria-hidden
 
@@ -75,7 +74,7 @@ function RuleCard({ rule, index, total }: { rule: BrandRule; index: number; tota
           <Separator className="opacity-70" />
           <footer className="flex items-center justify-between gap-4 px-6 py-3">
             <span className="flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              <Ordinal n={index + 1} total={total} className="text-foreground/40" />
+              <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground text-foreground/40">{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
               <span aria-hidden className="h-3 w-px bg-border" />why: {rule.why}
             </span>
             <Button
@@ -108,13 +107,19 @@ export function BrandFieldGuide({
   className,
 }: BrandFieldGuideProps) {
   return (
-    <SectionShell width={920} className={className}>
-      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone="paper" />
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+            <header className="">
+        {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}
+        <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{title}</h2>
+        {subtitle != null && (          <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>        )}
+      </header>
       <div className="mt-12 space-y-6">
         {rules.map((r, i) => (
           <RuleCard key={r.do} rule={r} index={i} total={rules.length} />
         ))}
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

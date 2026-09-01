@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { ChevronDown, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Accent, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 
 export type SpecRow = { term: string; value: string; hint?: string }
@@ -63,7 +63,7 @@ export function SpecSheet({
   eyebrow = "Spec sheet · mk II",
   title = (
     <>
-      The Reading Lamp, <Accent>mk II.</Accent>
+      The Reading Lamp, <em className={cn("font-serif italic font-medium tracking-normal")} style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>mk II.</em>
     </>
   ),
   subtitle = "Four groups, one reading corner. The second revision: warmer light, less weight, USB-C. Hover the info marks for units.",
@@ -78,9 +78,16 @@ export function SpecSheet({
   const toggleGroup = (id: string) => setOpen((prev) => ({ ...prev, [id]: !prev[id] }))
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={cn(className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", cn(className))}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <InView>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
+          <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", false ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
       </InView>
 
       <InView once className="mt-10">
@@ -97,7 +104,7 @@ export function SpecSheet({
                     onClick={() => toggleGroup(g.id)}
                     className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
                   >
-                    <Ordinal n={gi + 1} className="text-muted-foreground" />
+                    <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60"('lit', ', text-muted-foreground'))}>gi + 1<span aria-hidden> /</span></span>
                     <span className="min-w-0 flex-1 truncate font-display text-lg font-bold tracking-tight text-foreground">{g.label}</span>
                     <span className={cn("hidden font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-opacity duration-200 sm:inline", isOpen && "opacity-0")}>
                       {g.summary}
@@ -144,6 +151,8 @@ export function SpecSheet({
         <span>{caption}</span>
         <span aria-hidden>●</span>
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

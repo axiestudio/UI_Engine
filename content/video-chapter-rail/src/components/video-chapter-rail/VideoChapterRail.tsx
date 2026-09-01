@@ -3,7 +3,7 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { Pause, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 
 export type VideoChapter = { at: number; title: string; note?: string }
@@ -68,9 +68,16 @@ export function VideoChapterRail({
   }
 
   return (
-    <SectionShell tone={tone} width={1120} rule="bottom" className={cn(className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", cn(className))}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <InView>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
+          <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", false ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
       </InView>
 
       <InView once className="mt-10">
@@ -109,7 +116,7 @@ export function VideoChapterRail({
 
       <div className="mt-6">
         <div className="flex items-center justify-between">
-          <MonoLabel className="text-muted-foreground">Chapters</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />Chapters</span>
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Drag or click</span>
         </div>
         <div ref={emblaRef} className="mt-4 cursor-grab overflow-hidden active:cursor-grabbing">
@@ -135,7 +142,7 @@ export function VideoChapterRail({
                         <span aria-hidden className="size-1 rounded-full bg-background" /> Now
                       </span>
                     ) : (
-                      <Ordinal n={i + 1} total={chapters.length} className="text-muted-foreground" />
+                      <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60"('lit', ', text-muted-foreground'))}>i + 1<span className="opacity-50"> / chapters.length</span></span>
                     )}
                   </div>
                   <p className={cn("mt-3 font-display text-base font-bold tracking-tight", active ? "text-foreground" : "text-foreground/70")}>{c.title}</p>
@@ -151,6 +158,8 @@ export function VideoChapterRail({
         <span>{caption}</span>
         <span aria-hidden>●</span>
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

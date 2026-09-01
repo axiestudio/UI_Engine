@@ -1,5 +1,4 @@
 import "./index.css"
 export { LogoMotionLibrary, type LogoMove, type LogoMotionLibraryProps } from "./components/logo-motion-library/LogoMotionLibrary"
-export { Grain, Dots, CornerTicks, Sheen, MonoLabel, SectionShell } from "./components/primitives/handcraft"
 export { Badge, badgeVariants } from "./components/ui/badge"
 export { Button, buttonVariants } from "./components/ui/button"

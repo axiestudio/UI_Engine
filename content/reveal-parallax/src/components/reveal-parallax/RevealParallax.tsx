@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { InView } from "@/components/primitives/in-view"
-import { Grain, SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         A masked content band that parallaxes as you scroll it in.
@@ -46,7 +46,10 @@ export function RevealParallax({
   const maskReveal = useTransform(scrollYProgress, [0, 0.5], ["inset(0 0 100% 0)", "inset(0 0 0% 0)"])
 
   return (
-    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div ref={ref} className="relative">
         <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
           <div className={cn("grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center", ink && "text-background")}>
@@ -83,8 +86,10 @@ export function RevealParallax({
             </motion.div>
           </div>
         </InView>
-        {!ink && <Grain opacity={0.04} className="z-[1]" />}
+        {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", z-[1])}><Noise patternAlpha={Math.round((0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>}
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion, useMotionValue, useTransform, useSpring, animate } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Drag-to-spin 360 viewer — spin a product through a frame strip.
@@ -39,9 +39,16 @@ export function Media360Viewer({ eyebrow = "360°", title = "Give it a spin.", f
   const reset = () => animate(dragX, 0, { duration: 0.6, ease: [0.16, 1, 0.3, 1] })
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} tone={tone} />
+          <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.97 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
         <div
@@ -70,6 +77,8 @@ export function Media360Viewer({ eyebrow = "360°", title = "Give it a spin.", f
           <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/50 px-2 py-1 font-mono text-[10px] font-bold text-white">{frame + 1}/{frames.length}</span>
         </div>
       </InView>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

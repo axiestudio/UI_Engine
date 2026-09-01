@@ -1,11 +1,12 @@
 {
   "name": "handcraft",
-  "title": "Handcraft Kit",
+  "title": "Handcraft Kit (RETIRED)",
   "homepage": null,
   "kind": "in-repo",
   "tier": "design-system",
-  "responsibility": "In-repo crafted primitives (grain, dots, corner ticks, sheen, editorial type, SectionShell/SectionHead, ordinals). Carries the design DNA so presets feel made by hand, not generated.",
-  "snapshotDate": "2026-08-30",
+  "retired": true,
+  "retiredReason": "Unifying shared shell/texture kit removed per design decision: presets compose sections directly from tokens with per-preset spacing and rhythm (unique + professional). Buttons = shadcn/watermelon registry, motion = motion-primitives registry. Existing preset copies remain on disk but must not be imported by new work.",
+  "snapshotDate": "2026-09-01",
   "upstream": {
     "notice": "Not vendored — authored here. handcraft/handcraft.tsx is the canonical copy; presets sync byte-identical copies into src/components/primitives/handcraft.tsx."
   },

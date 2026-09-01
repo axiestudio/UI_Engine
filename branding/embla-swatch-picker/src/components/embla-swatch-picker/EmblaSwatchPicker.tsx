@@ -3,8 +3,8 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "motion/react"
 import { Check, Copy } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Pick a palette colour without leaving the loop.
@@ -76,9 +76,14 @@ export function EmblaSwatchPicker({
   }, [hex])
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+                <header className="">
+          {eyebrow != null && (            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>          )}
+          <h2 className="mt-2 tracking-tight text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+          {subtitle != null && (            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>          )}
+        </header>
       </InView>
 
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}>
@@ -112,14 +117,15 @@ export function EmblaSwatchPicker({
 
           <div className="mt-6 flex items-center justify-center gap-3">
             <p className="font-mono text-2xl font-bold tabular-nums tracking-tight">{hex}</p>
-            <button
+            <Button
               type="button"
+              variant="ghost"
               onClick={copy}
               aria-label={copied ? "Copied" : `Copy ${hex}`}
               className="flex size-9 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copied ? <Check className="size-4 text-primary" strokeWidth={2.5} /> : <Copy className="size-4" />}
-            </button>
+            </Button>
           </div>
 
           <p
@@ -133,6 +139,7 @@ export function EmblaSwatchPicker({
           </p>
         </div>
       </InView>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

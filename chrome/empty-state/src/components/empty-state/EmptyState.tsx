@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Button } from "@/components/ui/button"
-import { Grain, Ordinal } from "@/components/primitives/handcraft"
+import Noise from "@/components/primitives/noise"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -53,7 +53,7 @@ export function EmptyState({
       )}
       role="status"
     >
-      {bordered && <Grain opacity={ink ? 0.06 : 0.035} />}
+      {bordered && <Noise patternAlpha={ink ? 12 : 5} patternSize={240} patternRefreshInterval={3} />}
       {Icon && (
         <span className={cn("relative mb-6 inline-flex size-16 items-center justify-center", ink ? "text-background/70" : "text-muted-foreground")}>
           <span
@@ -115,7 +115,10 @@ export function EmptyState({
         <ul className={cn("mt-8 w-full max-w-xs border-t pt-4 text-left", ink ? "border-background/10" : "border-border")}>
           {tips.map((tip, i) => (
             <li key={i} className={cn("flex items-center gap-3 border-b py-2 text-xs font-medium last:border-b-0", ink ? "border-background/10 text-background/65" : "border-border/70 text-muted-foreground")}>
-              <Ordinal n={i + 1} className={cn("shrink-0", ink ? "text-background/40" : "text-muted-foreground/60")} />
+              <span className={cn("shrink-0 font-mono text-[11px] font-bold uppercase tracking-[0.2em]", "opacity-60", ink ? "text-background/40" : "text-muted-foreground/60")}>
+                {String(i + 1).padStart(2, "0")}
+                <span aria-hidden className="opacity-50"> /</span>
+              </span>
               {tip}
             </li>
           ))}

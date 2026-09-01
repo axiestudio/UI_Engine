@@ -234,11 +234,12 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
                   const on = channel === c.id
                   return (
                     <li key={c.id}>
-                      <button
+                      <Button
+                        variant="ghost"
+                        className={cn("flex h-auto w-full items-center gap-3 rounded-none px-5 py-2 text-left font-normal", on && "bg-muted/40")}
                         role="option"
                         aria-selected={on}
                         onClick={() => setChannel(c.id)}
-                        className="flex w-full items-center gap-3 px-5 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring hover:bg-muted/40"
                       >
                         <span aria-hidden className={cn("flex h-4 w-7 items-center rounded-full border p-0.5 transition-colors", on ? "border-primary bg-primary/15" : "bg-muted")}>
                           <motion.span layout className={cn("block size-2.5 rounded-full", on ? "ml-auto bg-primary" : "bg-muted-foreground/60")} />
@@ -246,7 +247,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
                         <span className={cn("text-[13px]", on ? "font-semibold" : "font-medium")}>{c.label}</span>
                         {c.dirty && <span className="rounded-full bg-[hsl(var(--warn)/0.15)] px-1.5 py-0.5 text-[10px] font-bold text-[hsl(var(--warn))]">sync</span>}
                         <span className="ml-auto font-mono text-[11px] tabular-nums text-muted-foreground">{count} arr</span>
-                      </button>
+                      </Button>
                     </li>
                   )
                 })}

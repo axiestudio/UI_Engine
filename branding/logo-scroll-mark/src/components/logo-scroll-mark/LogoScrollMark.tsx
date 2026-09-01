@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
 import { ScrollProgress } from "@/components/primitives/scroll-progress"
 import { Badge } from "@/components/ui/badge"
 
@@ -63,7 +62,8 @@ export function LogoScrollMark({
 
   return (
     <div ref={ref} className={cn("relative", className)}>
-      <SectionShell width={760} rails>
+      <section className="bg-background text-foreground">
+        <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         {/* side progress rail, synced to the same spring as the strokes */}
         <span aria-hidden className="pointer-events-none absolute inset-y-16 right-6 hidden w-px bg-border sm:block">
           {reduced || controlled ? (
@@ -75,7 +75,7 @@ export function LogoScrollMark({
 
         <div className="flex flex-col items-center py-8 text-center">
           <div className="flex items-center gap-3">
-            <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
             <DrawBadge complete={isComplete} />
           </div>
 
@@ -117,7 +117,8 @@ export function LogoScrollMark({
             <ScrollProgress className="mt-8 w-40" />
           )}
         </div>
-      </SectionShell>
+      </div>
+      </section>
     </div>
   )
 }

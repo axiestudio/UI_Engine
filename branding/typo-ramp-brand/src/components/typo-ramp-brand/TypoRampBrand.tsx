@@ -1,6 +1,5 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -57,9 +56,14 @@ export function TypoRampBrand({
   }
 
   return (
-    <SectionShell width={1120} rails className={className}>
+    <section className="bg-background text-foreground">
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <SectionHead eyebrow={eyebrow} title={title} subtitle="Hover or use arrow keys. The scale is the skeleton." tone="paper" />
+                <header className="">
+          {eyebrow != null && (            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>          )}
+          <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{title}</h2>
+          <p className="mt-2.5 text-sm leading-6 text-muted-foreground">Hover or use arrow keys. The scale is the skeleton.</p>
+        </header>
         {current && (
           <Badge variant="outline" className="mb-1 hidden rounded-full font-mono text-[10px] font-black uppercase tracking-[0.16em] text-foreground md:inline-flex">
             {String(current.size).padStart(2, "0")}px · {current.label} · {current.tracking === "0" ? "no track" : current.tracking}
@@ -97,7 +101,7 @@ export function TypoRampBrand({
                     {sample}
                   </span>
                   <span className="ml-auto shrink-0 font-mono text-[10px] font-bold tracking-[0.1em] text-muted-foreground">
-                    <Ordinal n={i + 1} /> {r.size}px · use: {r.use}
+                    <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground">{String(i + 1).padStart(2, "0")}</span> {r.size}px · use: {r.use}
                   </span>
                 </>
               </Button>
@@ -129,6 +133,7 @@ export function TypoRampBrand({
       <p className="mt-6 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
         var(--font-display) · optical sizes locked · {rungs.length} rungs
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

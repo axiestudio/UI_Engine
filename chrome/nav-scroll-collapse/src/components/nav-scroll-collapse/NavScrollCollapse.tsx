@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useScroll, useMotionValueEvent } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -14,11 +15,8 @@ export type NavScrollCollapseProps = {
 
 export function NavScrollCollapse({ brand = "STUDIO", links = [{ id: "a", label: "Work" }, { id: "b", label: "Studio" }, { id: "c", label: "Journal" }], className }: NavScrollCollapseProps) {
   const [collapsed, setCollapsed] = React.useState(false)
-  React.useEffect(() => {
-    const onS = () => setCollapsed(window.scrollY > 60)
-    onS()
-    window.addEventListener("scroll", onS, { passive: true })
-    return () => window.removeEventListener("scroll", onS)
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y) => setCollapsed(y > 60))
   }, [])
   return (
     <div className={cn("relative", className)}>

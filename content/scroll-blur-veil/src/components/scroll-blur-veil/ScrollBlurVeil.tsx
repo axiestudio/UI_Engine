@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 
 // ═══ JOB         Blur veil — a section whose content sharpens as it crosses the center.
 // ═══ EMOTION     A curtain of focus.
@@ -20,7 +20,10 @@ export function ScrollBlurVeil({ eyebrow = "VEIL", title = "It sharpens when it 
   const filter = useTransform(blur, (b) => `blur(${b}px)`)
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5])
   return (
-    <SectionShell width={920} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       <div ref={ref} className="mt-10">
         <motion.div style={{ filter, opacity }} className="rounded-[28px] border bg-card p-10 text-center shadow-2xl">
@@ -28,6 +31,8 @@ export function ScrollBlurVeil({ eyebrow = "VEIL", title = "It sharpens when it 
           <p className="mx-auto mt-4 max-w-md text-base font-medium leading-relaxed text-muted-foreground">{body}</p>
         </motion.div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

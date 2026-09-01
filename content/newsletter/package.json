@@ -34,6 +34,9 @@
       "https://ui.shadcn.com/r/styles/new-york-v4/card.json",
       "https://ui.shadcn.com/r/styles/new-york-v4/input.json",
       "https://ui.shadcn.com/r/styles/new-york-v4/label.json"
+    ],
+    "react-bits": [
+      "Noise-TS-TW"
     ]
   },
   "scripts": {

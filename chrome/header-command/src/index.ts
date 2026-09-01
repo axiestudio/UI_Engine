@@ -10,4 +10,3 @@ export {
 export {
   Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger,
 } from "./components/ui/dialog"
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"

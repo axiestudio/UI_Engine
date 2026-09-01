@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion, useMotionValue, useMotionValueEvent, useScroll, useTransform, animate } from "motion/react"
 import type { MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
+
 
 // ═══ JOB      make a reveal physical — you unzip it yourself
 // ═══ EMOTION  the two seconds before opening a parcel
@@ -65,7 +65,7 @@ export function ZipReveal({ eyebrow = "UNSEALED ON ARRIVAL", label = "drop-01.zi
     <div ref={trackRef} className="relative w-full overflow-hidden rounded-lg border shadow-[0_30px_70px_-30px_rgba(0,0,0,0.5)]">
       {/* under-layer: real content, always in DOM */}
       <div className="relative min-h-[300px] bg-[hsl(var(--parcel))] px-6 py-8 text-[hsl(var(--parcel-ink))] sm:min-h-[340px]">
-        <MonoLabel className="opacity-60">{eyebrow}</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', opacity-60'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
         {children ?? (
           <>
             <h3 className="mt-3 max-w-sm font-display text-2xl font-bold tracking-tight sm:text-[30px]">{title}</h3>
@@ -85,7 +85,7 @@ export function ZipReveal({ eyebrow = "UNSEALED ON ARRIVAL", label = "drop-01.zi
         <div className="absolute inset-0" style={{ background: "linear-gradient(115deg, hsl(var(--parcel-deep)) 0%, hsl(var(--parcel)) 32%, hsl(var(--parcel-deep)) 100%)" }} />
         <span className="absolute left-8 top-8 -rotate-3 border border-dashed border-[hsl(var(--parcel-ink))/0.5] bg-white/70 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--parcel-ink))]">{label}</span>
         <span className="absolute inset-y-0 left-1/2 w-10 -translate-x-1/2 -rotate-2 bg-white/25 mix-blend-multiply" />
-        <Grain opacity={0.1} />
+        <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((0.1) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
         {/* flap's cut edge rides with the clip */}
         <motion.span style={{ opacity: 1 }} className="absolute inset-y-0 right-0 w-1 bg-[hsl(var(--zip-tape))]/70 -translate-x-1/2" />
       </motion.div>

@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Award } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Sheen, Dots } from "@/components/primitives/handcraft"
 import { Tilt } from "@/components/primitives/tilt"
 import { InView } from "@/components/primitives/in-view"
 import { Badge } from "@/components/ui/badge"
@@ -17,7 +16,7 @@ import { Separator } from "@/components/ui/separator"
 //   SITE      → awards walls, trust sections
 //   APP       → cert/profile displays; badges are data
 //   BUILD     shadcn new-york-v4 Card/Badge/Separator + vendored Tilt
-//             + handcraft SectionHead/Sheen/Dots
+//              token markup SectionHead/Sheen/Dots
 //   A11Y      badge content is real text; tilt/sheen are aria-hidden;
 //             href-wrapped cards keep a visible focus ring
 
@@ -59,8 +58,6 @@ const DEFAULT_BADGES: CredentialBadge[] = [
 function CredentialCard({ badge, index }: { badge: CredentialBadge; index: number }) {
   const card = (
     <Card className="group relative h-full overflow-hidden gap-5 py-6">
-      <Dots size={22} className="opacity-[0.06]" />
-      <Sheen />
       <CardContent className="flex flex-col items-center gap-5 text-center">
         <span
           aria-hidden
@@ -122,8 +119,13 @@ export function BrandBadgeWall({
   className,
 }: BrandBadgeWallProps) {
   return (
-    <SectionShell width={920} className={className}>
-      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone="paper" />
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+            <header className="">
+        {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}
+        <h2 className="mt-2 tracking-tight text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+        {subtitle != null && (          <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>        )}
+      </header>
       <div className="mt-12 grid place-items-start gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {badges.map((b, i) => (
           <CredentialCard key={`${b.title}-${b.year}`} badge={b} index={i} />
@@ -132,6 +134,7 @@ export function BrandBadgeWall({
       <p className="mt-10 border-t border-dashed pt-4 text-right font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
         {badges.length} credential{badges.length === 1 ? "" : "s"} on record · registry verified quarterly
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

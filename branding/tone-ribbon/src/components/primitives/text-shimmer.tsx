@@ -1,12 +1,6 @@
 /**
- * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
- * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/text-shimmer.tsx
- *
- * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
- * the upstream zinc hexes (#a1a1aa / #71717a / #000 / #ffffff) are replaced with the
- * shadcn token set (--muted-foreground / --foreground), so the shimmer follows the
- * host brandkit and dark mode flips automatically. The #0000 stops below are
- * transparent mask maths, deliberately left as-is.
+ * Vendored from motion-primitives by ibelick (MIT): components/core/text-shimmer.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/text-shimmer.tsx (local tokenized variant)
  */
 'use client';
 import React, { useMemo, type JSX } from 'react';

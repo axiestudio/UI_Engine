@@ -1,6 +1,5 @@
 import "./index.css"
 export { WordmarkLab, type WordmarkLabProps } from "./components/wordmark-lab/WordmarkLab"
-export { Grain, Dots, CornerTicks, Sheen, MonoLabel, SectionShell } from "./components/primitives/handcraft"
 export { Badge, badgeVariants } from "./components/ui/badge"
 export { Button, buttonVariants } from "./components/ui/button"
 export { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent } from "./components/ui/card"

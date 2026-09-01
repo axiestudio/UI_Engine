@@ -1,6 +1,6 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/scroll-progress.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/scroll-progress.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/scroll-progress.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/scroll-progress.tsx (local tokenized variant)
  */
 'use client';
 

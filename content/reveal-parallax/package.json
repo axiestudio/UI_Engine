@@ -31,6 +31,9 @@
     ],
     "shadcn-ui": [
       "https://ui.shadcn.com/r/styles/new-york-v4/button.json"
+    ],
+    "react-bits": [
+      "Noise-TS-TW"
     ]
   },
   "scripts": {

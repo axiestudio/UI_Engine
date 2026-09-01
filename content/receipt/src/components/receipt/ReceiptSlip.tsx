@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Check, Download } from "lucide-react"
-import { CornerTicks, Grain } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -72,7 +72,7 @@ export function ReceiptSlip({
       className={cn(ink && "bg-foreground", "relative isolate flex w-full items-center justify-center overflow-hidden", className)}
       aria-label={title}
     >
-      <Grain opacity={ink ? 0.06 : 0.045} />
+      <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.06 : 0.045) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
 
       <div className="relative mx-auto w-full max-w-[820px] px-4 py-20 sm:px-6 sm:py-24">
         <InView
@@ -95,7 +95,12 @@ export function ReceiptSlip({
             </span>
 
             <div className="px-7 pb-7 pt-8">
-              <CornerTicks size={10} offset={-5} className={cn("w-fit text-foreground/20", ink && "text-foreground/30")} />
+              <span aria-hidden className={cn("pointer-events-none absolute inset-0", cn("w-fit text-foreground/20", ink && "text-foreground/30"))}>
+    <span className="absolute border-current top-[-5px] left-[-5px] border-t border-l" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current top-[-5px] right-[-5px] border-t border-r" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current bottom-[-5px] left-[-5px] border-b border-l" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current bottom-[-5px] right-[-5px] border-b border-r" style={{ width: 10, height: 10 }} />
+  </span>
 
               {/* header */}
               <div className="flex items-start justify-between gap-4">

@@ -2,7 +2,7 @@ import * as React from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -103,9 +103,16 @@ export function GsapScrollSwap({
   }, [active, reduce])
 
   return (
-    <SectionShell width={1120} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
+          <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", false ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
       </InView>
 
       <div ref={rootRef} className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
@@ -122,9 +129,9 @@ export function GsapScrollSwap({
                 className="pointer-events-none col-start-1 row-start-1"
                 style={{ opacity: i === 0 ? 1 : 0 }}
               >
-                <MonoLabel>
+                <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
                   Chapter {chapter.numeral} — {chapter.kicker}
-                </MonoLabel>
+                </span>
                 <p aria-hidden className="mt-4 select-none font-display text-7xl font-bold leading-[0.9] tracking-tight text-foreground sm:text-8xl">
                   {chapter.numeral}
                 </p>
@@ -151,7 +158,7 @@ export function GsapScrollSwap({
               className="flex min-h-[60vh] flex-col justify-center border-t border-border/60 py-12"
             >
               <div className="flex items-center justify-between">
-                <Ordinal n={i + 1} total={CHAPTERS.length} />
+                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>i + 1<span className="opacity-50"> / CHAPTERS.length</span></span>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{chapter.kicker}</span>
               </div>
               <p className="mt-6 max-w-md text-[15px] leading-7 text-muted-foreground">{chapter.body}</p>
@@ -165,6 +172,8 @@ export function GsapScrollSwap({
         <span>{caption}</span>
         <span aria-hidden>●</span>
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

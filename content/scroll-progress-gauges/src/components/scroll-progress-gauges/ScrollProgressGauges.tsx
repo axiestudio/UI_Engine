@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform, useSpring, type MotionValue } from "motion/react"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Progress gauges — circular progress dials that fill as you scroll a track.
@@ -26,12 +26,17 @@ export function ScrollProgressGauges({ eyebrow = "GAUGES", gauges = DEFAULT_GAUG
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
   const sp = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
   return (
-    <SectionShell width={1120} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       <div ref={ref} className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
         {gauges.map((g, i) => <GaugeDial key={g.id} gauge={g} progress={sp} index={i} />)}
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }
 

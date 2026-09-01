@@ -3,7 +3,7 @@
  * Item: button (type registry:ui). Fetched 2026-08-29. Do not edit unless intentionally adopting upstream changes.
  */
 import * as React from "react"
-import { SlotPrimitive.Root as SlotPrimitive } from "radix-ui"
+import { Slot as SlotPrimitive } from "radix-ui"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"

@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useScroll, useMotionValueEvent } from "motion/react"
 import { ArrowUp, Check, Loader2, Lock } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { TextShimmer } from "@/components/primitives/text-shimmer"
@@ -163,12 +164,8 @@ function NewsletterForm({ config }: { config: Required<Pick<FooterNewsletter, "t
 
 function ScrollTop() {
   const [show, setShow] = React.useState(false)
-  React.useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 480)
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y) => setShow(y > 480))
   if (!show) return null
   return (
     <Magnetic intensity={0.4} range={60}>

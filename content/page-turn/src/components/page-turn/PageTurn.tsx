@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
+
 
 // ═══ JOB      pace a set of chapters/quotes so each gets its own page
 // ═══ EMOTION  reading something bound properly
@@ -42,7 +42,7 @@ export function PageTurn({ brand = "HOUSE PRESS", pages, index: indexProp, onInd
     >
       <div className="mx-auto w-full max-w-[1040px]">
         <div className="mb-6 flex items-end justify-between gap-4 text-[hsl(var(--page))]">
-          <MonoLabel className="opacity-60">{brand} · LEAF {String(i + 1).padStart(2, "0")} / {String(pages.length).padStart(2, "0")}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', opacity-60'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{brand} · LEAF {String(i + 1).padStart(2, "0")} / {String(pages.length).padStart(2, "0")}</span>
           <div className="flex gap-2">
             <button type="button" aria-label="Previous page" onClick={() => go(i - 1)} disabled={i === 0} className="grid size-10 place-items-center rounded-full border border-white/25 disabled:opacity-30 hover:bg-white/10">
               <ChevronLeft className="size-5" />

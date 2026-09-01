@@ -1,7 +1,6 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Separator } from "@/components/ui/separator"
 
@@ -75,8 +74,13 @@ export function BrandTimelineEcho({
   }
 
   return (
-    <SectionShell width={1120} grain className={className}>
-      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone="paper" />
+    <section className="bg-background text-foreground">
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+            <header className="">
+        {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}
+        <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{title}</h2>
+        {subtitle != null && (          <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>        )}
+      </header>
 
       <div className="mt-12 flex flex-col gap-2 lg:flex-row lg:items-start">
         {eras.map((era, i) => {
@@ -128,6 +132,7 @@ export function BrandTimelineEcho({
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{lastIndex + 1} eras · end of log</span>
         <Separator className="flex-1" />
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

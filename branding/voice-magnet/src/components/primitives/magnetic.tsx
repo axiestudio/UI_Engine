@@ -1,6 +1,6 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/magnetic.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/magnetic.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/magnetic.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/magnetic.tsx (local tokenized variant)
  */
 'use client';
 

@@ -1,6 +1,6 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/tilt.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/tilt.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/tilt.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/tilt.tsx (local tokenized variant)
  */
 'use client';
 

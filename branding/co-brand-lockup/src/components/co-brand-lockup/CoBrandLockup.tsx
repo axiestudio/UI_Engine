@@ -1,7 +1,6 @@
 import * as React from "react"
 import { LayoutGroup, motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Dots } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Magnetic } from "@/components/primitives/magnetic"
 import { Button } from "@/components/ui/button"
@@ -80,19 +79,18 @@ export function CoBrandLockup({
   }
 
   return (
-    <SectionShell width={920} className={className}>
-      <SectionHead
-        eyebrow="CO-BRAND · LOCKUP RULES"
-        title="Two marks, one handshake."
-        subtitle="Switch the rule — the lockup rearranges itself and the separator does the walking."
-        align="center"
-      />
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+            <header className="mx-auto max-w-2xl text-center">
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">CO-BRAND · LOCKUP RULES</span>
+        <h2 className="mt-2 tracking-tight text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">Two marks, one handshake.</h2>
+        <p className="mt-2.5 text-sm leading-6 text-muted-foreground">Switch the rule — the lockup rearranges itself and the separator does the walking.</p>
+      </header>
 
       {/* stage */}
       <InView once className="mt-10">
         <LayoutGroup>
           <div className="relative grid min-h-[240px] place-items-center overflow-hidden rounded-2xl border border-dashed border-border bg-muted/20 p-8 sm:p-12">
-            <Dots size={28} className="opacity-[0.05]" />
             <motion.div
               layout={!reduced}
               transition={{ type: "spring", stiffness: 240, damping: 26 }}
@@ -129,6 +127,7 @@ export function CoBrandLockup({
       <p className="mt-6 text-center font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
         min gap = 1 glyph unit · never recolor a partner mark
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

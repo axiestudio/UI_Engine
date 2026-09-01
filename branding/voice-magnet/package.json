@@ -28,7 +28,9 @@
       "in-view",
       "magnetic"
     ],
-    "watermelon-ui": [],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json"
+    ],
     "shadcn-ui": [
       "https://ui.shadcn.com/r/styles/new-york-v4/badge.json"
     ]

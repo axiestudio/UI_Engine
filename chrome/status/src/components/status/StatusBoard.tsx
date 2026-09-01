@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Activity, CircleCheck, RefreshCw, TriangleAlert, Wrench } from "lucide-react"
-import { Grain, MonoLabel } from "@/components/primitives/handcraft"
+import Noise from "@/components/primitives/noise"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -86,12 +86,15 @@ export function StatusBoard({
       className={cn(ink && "bg-foreground", "relative isolate w-full overflow-hidden", className)}
       aria-label={headline ?? defaultHeadline}
     >
-      <Grain opacity={ink ? 0.06 : 0.04} />
+      <Noise patternAlpha={ink ? 12 : 6} patternSize={240} patternRefreshInterval={3} />
 
       <div className="relative mx-auto w-full max-w-[920px] px-4 py-20 sm:px-6 sm:py-24">
         {(eyebrow || refreshLabel) && (
           <div className="flex items-center justify-between gap-4">
-            <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</MonoLabel>
+            <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", ink ? "text-background/55" : "text-muted-foreground")}>
+              <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
+              {eyebrow}
+            </span>
             <span className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.18em]", ink ? "text-background/40" : "text-muted-foreground/70")}>
               {refreshLabel}
             </span>

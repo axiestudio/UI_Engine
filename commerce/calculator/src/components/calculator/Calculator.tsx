@@ -1,6 +1,7 @@
 import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
+import { Slider } from "@/components/ui/slider"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Calculator — a purpose-built small calculator widget.

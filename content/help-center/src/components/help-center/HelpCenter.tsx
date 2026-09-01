@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ArrowUpRight, BookOpen, CreditCard, LifeBuoy, Search, Settings, Users } from "lucide-react"
-import { CornerTicks, Dots, Grain, MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -54,17 +54,16 @@ export function HelpCenter({
   if (!categories.length) return null
 
   return (
-    <SectionShell tone={tone} width={1120} padding="roomy" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <header className="relative mx-auto max-w-2xl text-center">
         {/* masked dots behind the header only */}
-        <Dots
-          size={24}
-          className={cn(
+        <span aria-hidden className={cn("pointer-events-none absolute inset-0 opacity-[0.13] [background-image:radial-gradient(circle_at_1px_1px,currentColor_1px,transparent_0)]", cn(
             "-top-8 [mask-image:radial-gradient(ellipse_60%_70%_at_50%_30%,black_20%,transparent_75%)]",
             ink ? "text-background" : "text-foreground",
-          )}
-        />
-        <MonoLabel className={cn("justify-center", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</MonoLabel>
+          ))} style={{ backgroundSize: `${24}px ${24}px` }} />
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn("justify-center", ink ? "text-background/50" : "text-muted-foreground"))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
         <h2 className={cn("mt-4 font-display text-[clamp(1.9rem,4.5vw,2.75rem)] font-bold leading-[1.02] tracking-[-0.035em]", ink ? "text-background" : "text-foreground")}>
           {title}
         </h2>
@@ -111,7 +110,12 @@ export function HelpCenter({
                   ink ? "border-background/15 hover:border-background/35 hover:bg-background/5" : "border-border bg-card hover:border-foreground/30 hover:shadow-[3px_4px_0_0_currentColor]",
                 )}
               >
-                <CornerTicks size={9} offset={6} className={cn("opacity-0 transition-opacity duration-300 group-hover:opacity-100", ink ? "text-background/40" : "text-foreground/30")} />
+                <span aria-hidden className={cn("pointer-events-none absolute inset-0", cn("opacity-0 transition-opacity duration-300 group-hover:opacity-100", ink ? "text-background/40" : "text-foreground/30"))}>
+    <span className="absolute border-current top-[6px] left-[6px] border-t border-l" style={{ width: 9, height: 9 }} />
+    <span className="absolute border-current top-[6px] right-[6px] border-t border-r" style={{ width: 9, height: 9 }} />
+    <span className="absolute border-current bottom-[6px] left-[6px] border-b border-l" style={{ width: 9, height: 9 }} />
+    <span className="absolute border-current bottom-[6px] right-[6px] border-b border-r" style={{ width: 9, height: 9 }} />
+  </span>
                 <span className={cn("inline-flex size-10 items-center justify-center border transition-transform duration-300 group-hover:-rotate-6", ink ? "border-background/20 bg-background/10 text-background" : "border-border bg-secondary text-foreground")}>
                   <Icon className="size-5" strokeWidth={2.25} />
                 </span>
@@ -147,6 +151,8 @@ export function HelpCenter({
           </a>
         </p>
       )}
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

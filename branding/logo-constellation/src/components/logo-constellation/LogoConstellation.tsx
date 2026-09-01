@@ -1,7 +1,6 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { Badge } from "@/components/ui/badge"
 
 // ═══ JOB      show one mark in every context it must survive
@@ -59,12 +58,12 @@ export function LogoConstellation({ variants = DEFAULTS, onSelect, eyebrow = "TH
   const minSize = variants.length ? Math.min(...variants.map((v) => v.size)) : 0
 
   return (
-    <SectionShell width={920} grain className={className}>
-      <SectionHead
-        eyebrow={eyebrow}
-        title={<>One mark. <em className="font-serif italic font-medium">Every size it must survive.</em></>}
-        tone="paper"
-      />
+    <section className="bg-background text-foreground">
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
+            <header className="">
+        {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}
+        <h2 className="mt-2 tracking-tight text-4xl font-bold tracking-tight sm:text-5xl text-foreground">{<>One mark. <em className="font-serif italic font-medium">Every size it must survive.</em></>}</h2>
+      </header>
 
       <motion.div
         className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3"
@@ -123,6 +122,7 @@ export function LogoConstellation({ variants = DEFAULTS, onSelect, eyebrow = "TH
         <Badge variant="outline" className="rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">min size {minSize}px</Badge>
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">clearspace = 1 glyph unit</span>
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

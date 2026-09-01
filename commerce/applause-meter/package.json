@@ -25,7 +25,10 @@
   ],
   "presetSources": {
     "original-design": true,
-    "vendored": "in-repo primitives: \u2014 + handcraft kit",
+    "vendored": "in-repo primitives: handcraft kit",
+    "registry-items": [
+      "react-bits:CountUp-TS-TW"
+    ],
     "motion": "motion/react"
   },
   "scripts": {
@@ -35,6 +38,7 @@
   },
   "peerDependencies": {
     "clsx": "^2.1.1",
+    "motion": "^13.1.1",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
     "tailwind-merge": "^3.6.0"

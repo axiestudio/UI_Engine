@@ -1,7 +1,6 @@
 import * as React from "react"
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 
@@ -53,7 +52,7 @@ function EtchedLine({ line, i, total, fill, reduced }: { line: string; i: number
           <span className="sr-only">{line}</span>
         </span>
         <span className="flex shrink-0 items-center gap-3 pt-2">
-          <Ordinal n={i + 1} total={total} className={cn("transition-opacity duration-500", filled ? "opacity-100 text-foreground" : "opacity-40")} />
+          <span className={cn("font-mono text-[11px] font-semibold tabular-nums text-muted-foreground", cn("transition-opacity duration-500", filled ? "opacity-100 text-foreground" : "opacity-40"))}>{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
           <span
             aria-hidden
             className={cn("inline-block size-[7px] rotate-45 border border-foreground transition-colors duration-500", filled && "bg-foreground")}
@@ -76,9 +75,13 @@ export function MissionEtch({
 
   return (
     <div ref={ref}>
-      <SectionShell width={920} rails className={className}>
+      <section className="bg-background text-foreground">
+        <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
         <div className="flex items-end justify-between gap-x-8 gap-y-4">
-          <SectionHead eyebrow={eyebrow} title={title} tone="paper" />
+                    <header className="">
+            {eyebrow != null && (              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>            )}
+            <h2 className="mt-2 tracking-tight text-4xl font-bold tracking-tight sm:text-5xl text-foreground">{title}</h2>
+          </header>
           <Badge variant="outline" className="mb-1 hidden rounded-full font-mono text-[9px] font-black uppercase tracking-[0.18em] text-muted-foreground sm:inline-flex">
             {reduced ? "all cut" : "scrub to engrave"}
           </Badge>
@@ -95,7 +98,8 @@ export function MissionEtch({
             signed in ink · the partners · {lines.length} clauses
           </span>
         </div>
-      </SectionShell>
+      </div>
+      </section>
     </div>
   )
 }

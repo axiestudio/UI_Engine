@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { Tilt } from "@/components/primitives/tilt"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -67,9 +66,13 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
   const active = moods.find((m) => m.id === open) ?? null
 
   return (
-    <SectionShell width={1120} className={className}>
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
-        <SectionHead eyebrow={eyebrow} title={<>Four objects. <em className="font-serif italic font-medium">One temperature.</em></>} tone="paper" />
+                <header className="">
+          {eyebrow != null && (            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>          )}
+          <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{<>Four objects. <em className="font-serif italic font-medium">One temperature.</em></>}</h2>
+        </header>
         <Badge variant="outline" className="mb-1 hidden font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground sm:inline-flex">open a petal</Badge>
       </div>
 
@@ -130,6 +133,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
           )
         })}
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

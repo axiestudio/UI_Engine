@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Hover swap — hovering a row swaps a full-width media backdrop.
@@ -25,7 +25,10 @@ export function InteractiveHoverSwap({ eyebrow = "INDEX", rows = DEFAULT_ROWS, c
   const [active, setActive] = React.useState(0)
   const a = rows[active]
   return (
-    <SectionShell width={1280} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1280), ["--shell-w" as string]: `${(1280)}px` }}>
+
       <div className="relative overflow-hidden rounded-xl border">
         {/* backdrop swaps */}
         {rows.map((r, i) => (
@@ -52,6 +55,8 @@ export function InteractiveHoverSwap({ eyebrow = "INDEX", rows = DEFAULT_ROWS, c
           </div>
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

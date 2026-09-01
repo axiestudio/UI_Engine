@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useScroll, useMotionValueEvent } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -24,13 +25,8 @@ export function NavTranslucent({
 }: NavTranslucentProps) {
   const [scrolled, setScrolled] = React.useState(false)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-
-  React.useEffect(() => {
-    const onS = () => setScrolled(window.scrollY > 12)
-    onS()
-    window.addEventListener("scroll", onS, { passive: true })
-    return () => window.removeEventListener("scroll", onS)
-  }, [])
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 12))
 
   return (
     <div className={cn("relative", className)}>

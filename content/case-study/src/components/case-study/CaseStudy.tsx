@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
-import { CornerTicks, Grain, MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { Button } from "@/components/ui/button"
@@ -48,7 +48,9 @@ export function CaseStudy({
   const ink = tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} padding="roomy" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <InView
         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -60,7 +62,12 @@ export function CaseStudy({
             ink ? "border-background/15 bg-background/[0.03]" : "border-border bg-card shadow-sm",
           )}
         >
-          {!ink && <CornerTicks size={13} offset={9} className="text-foreground/25" />}
+          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/25'))}>
+    <span className="absolute border-current top-[9px] left-[9px] border-t border-l" style={{ width: 13, height: 13 }} />
+    <span className="absolute border-current top-[9px] right-[9px] border-t border-r" style={{ width: 13, height: 13 }} />
+    <span className="absolute border-current bottom-[9px] left-[9px] border-b border-l" style={{ width: 13, height: 13 }} />
+    <span className="absolute border-current bottom-[9px] right-[9px] border-b border-r" style={{ width: 13, height: 13 }} />
+  </span>}
           {!ink && <Spotlight size={440} className="bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05),transparent_72%)] blur-2xl" />}
 
           {/* the bleeding quote mark */}
@@ -77,7 +84,7 @@ export function CaseStudy({
 
           <div className="relative flex flex-col">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</MonoLabel>
+              <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn(ink ? "text-background/55" : "text-muted-foreground"))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
               <span className={cn("border px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em]", ink ? "border-background/30 text-background/70" : "border-foreground/25 text-foreground/70")}>
                 {brand}
               </span>
@@ -154,7 +161,12 @@ export function CaseStudy({
           <div className="relative flex flex-col gap-7">
             {image && (
               <div className={cn("relative rotate-1 border transition-transform duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:rotate-0", ink ? "border-background/15" : "border-border")}>
-                <CornerTicks size={11} offset={-8} className={cn(ink ? "text-background/40" : "text-foreground/30")} corners={["tl", "br"]} />
+                <span aria-hidden className={cn("pointer-events-none absolute inset-0", cn(ink ? "text-background/40" : "text-foreground/30"))}>
+    <span className="absolute border-current top-[-8px] left-[-8px] border-t border-l" style={{ width: 11, height: 11 }} />
+    <span className="absolute border-current top-[-8px] right-[-8px] border-t border-r" style={{ width: 11, height: 11 }} />
+    <span className="absolute border-current bottom-[-8px] left-[-8px] border-b border-l" style={{ width: 11, height: 11 }} />
+    <span className="absolute border-current bottom-[-8px] right-[-8px] border-b border-r" style={{ width: 11, height: 11 }} />
+  </span>
                 <img src={image.src} alt={image.alt ?? ""} className="aspect-[4/3] w-full object-cover" loading="lazy" />
               </div>
             )}
@@ -182,6 +194,8 @@ export function CaseStudy({
           </div>
         </figure>
       </InView>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

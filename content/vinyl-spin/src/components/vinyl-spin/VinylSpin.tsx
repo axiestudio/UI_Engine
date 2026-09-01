@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Pause, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
+
 
 // ═══ JOB      give a quote/track a ritual object instead of a card
 // ═══ EMOTION  handling something analog and expensive
@@ -64,7 +64,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
             <span className="absolute inset-x-6 top-6 block h-[42%] rounded-sm" style={{ background: "linear-gradient(140deg, hsl(var(--sleeve-art)) 0%, hsl(var(--label)) 60%, hsl(var(--sleeve-art)) 100%)", opacity: 0.9 }} />
             <span className="absolute bottom-6 left-6 right-6 block font-mono text-[9px] font-bold uppercase leading-[1.6] tracking-[0.12em]" style={{ color: "hsl(var(--vinyl-ink))", opacity: 0.8 }}>{String(title).slice(0, 28)}</span>
             <span className="absolute inset-y-0 left-0 w-[10px] bg-black/45" />
-            <Grain opacity={0.12} />
+            <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((0.12) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
             {/* sleeve opening where the disc exits */}
             <span className="absolute right-0 top-[12%] bottom-[12%] w-[3px] bg-black/60" />
           </div>
@@ -72,7 +72,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
 
         {/* copy + play control */}
         <div className={cn("min-w-0 flex-1", compact ? "text-center sm:text-left" : "")}>
-          <MonoLabel className="text-muted-foreground">{artist}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{artist}</span>
           <h2 className={cn("mt-3 font-display font-bold tracking-tight", compact ? "text-2xl" : "text-[32px] sm:text-[40px]")}>{title}</h2>
           <AnimatePresence mode="wait">
             {out && (

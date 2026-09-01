@@ -4,7 +4,7 @@
  */
 'use client';
 import * as React from "react"
-import { SlotPrimitive.Root as SlotPrimitive } from "radix-ui"
+import { Slot as SlotPrimitive } from "radix-ui"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"

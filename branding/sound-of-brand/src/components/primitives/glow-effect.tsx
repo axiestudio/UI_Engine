@@ -1,10 +1,6 @@
 /**
- * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
- * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/glow-effect.tsx
- *
- * Local craft (HANDCRAFT-CHECKLIST): the upstream demo-palette default
- * (['#FF5733', '#33FF57', '#3357FF', '#F1C40F']) becomes the host brandkit's
- * chart-free token set, so the glow themes + flips in dark mode out of the box.
+ * Vendored from motion-primitives by ibelick (MIT): components/core/glow-effect.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/glow-effect.tsx (local tokenized variant)
  */
 'use client';
 import { cn } from '@/lib/utils';

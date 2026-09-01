@@ -1,7 +1,6 @@
 import * as React from "react"
 import { useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
 import { InfiniteSlider } from "@/components/primitives/infinite-slider"
 import { TextShimmer } from "@/components/primitives/text-shimmer"
 
@@ -52,9 +51,9 @@ export function ToneRibbon({ sayings = DEFAULTS, label = "TONE · RUNNING RIBBON
 
   return (
     <section className={cn("relative isolate w-full overflow-hidden border-y bg-background py-6", className)}>
-      <MonoLabel tick={false} className="absolute left-1/2 top-2 z-10 -translate-x-1/2 rounded-full bg-background px-3 text-muted-foreground">
+      <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] absolute left-1/2 top-2 z-10 -translate-x-1/2 rounded-full bg-background px-3 text-muted-foreground">
         {label}
-      </MonoLabel>
+      </span>
       {reduced ? (
         <div className="mx-auto flex max-w-[1120px] flex-wrap justify-center px-6">{row(sayings, "s")}</div>
       ) : (

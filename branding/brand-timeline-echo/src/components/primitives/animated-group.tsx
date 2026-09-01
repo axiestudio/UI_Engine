@@ -1,6 +1,6 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/animated-group.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/animated-group.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/animated-group.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/animated-group.tsx (local tokenized variant)
  */
 'use client';
 import type { ReactNode } from 'react';

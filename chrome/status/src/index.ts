@@ -9,5 +9,5 @@ export type {
 } from "./components/status/StatusBoard"
 
 export { Button, buttonVariants } from "./components/ui/button"
+export { default as Noise } from "./components/primitives/noise"
 export { InView } from "./components/primitives/in-view"
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"

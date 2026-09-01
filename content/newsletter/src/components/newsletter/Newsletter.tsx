@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ArrowRight, Check } from "lucide-react"
-import { CornerTicks, Grain, MonoLabel } from "@/components/primitives/handcraft"
+
 import { Magnetic } from "@/components/primitives/magnetic"
 import { BorderTrail } from "@/components/primitives/border-trail"
 import { TextEffect } from "@/components/primitives/text-effect"
@@ -62,7 +62,7 @@ export function Newsletter({
 
   return (
     <section className={cn(ink ? "bg-foreground" : "bg-background", "relative isolate w-full overflow-hidden", className)} aria-label="Newsletter">
-      <Grain opacity={ink ? 0.07 : 0.04} />
+      <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.07 : 0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
       <div className="mx-auto w-full max-w-[880px] px-4 py-20 sm:px-6 sm:py-28">
         <div
           className={cn(
@@ -70,7 +70,12 @@ export function Newsletter({
             ink ? "border-background/15 bg-background/[0.03]" : "border-border bg-card shadow-sm",
           )}
         >
-          {!ink && <CornerTicks size={12} offset={8} className="text-foreground/20" />}
+          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/20'))}>
+    <span className="absolute border-current top-[8px] left-[8px] border-t border-l" style={{ width: 12, height: 12 }} />
+    <span className="absolute border-current top-[8px] right-[8px] border-t border-r" style={{ width: 12, height: 12 }} />
+    <span className="absolute border-current bottom-[8px] left-[8px] border-b border-l" style={{ width: 12, height: 12 }} />
+    <span className="absolute border-current bottom-[8px] right-[8px] border-b border-r" style={{ width: 12, height: 12 }} />
+  </span>}
           {status === "idle" && <BorderTrail size={36} className={cn(ink ? "bg-background/70" : "bg-foreground/70")} />}
 
           {/* rotated mono stamp — the hand-placed seal */}
@@ -85,7 +90,7 @@ export function Newsletter({
           </span>
 
           <div className="relative">
-            <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</MonoLabel>
+            <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn(ink ? "text-background/55" : "text-muted-foreground"))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
             <TextEffect
               as="h2"
               preset="slide"

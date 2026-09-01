@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, useInView, useMotionValue, useSpring } from "motion/react"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Reveal an image through a widening slit.
@@ -47,7 +47,10 @@ export function RevealImageMask({
   }, [openSpring])
 
   return (
-    <SectionShell tone={tone} width={1120} rule="top" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute top-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-t border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div className={cn("grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center", ink && "text-background")}>
         <div>
           <p className="font-mono text-[11px] font-bold tracking-[0.25em] text-muted-foreground">{eyebrow}</p>
@@ -67,6 +70,8 @@ export function RevealImageMask({
           {caption && <figcaption className="mt-3 font-mono text-[11px] font-bold tracking-widest text-muted-foreground">{caption}</figcaption>}
         </figure>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

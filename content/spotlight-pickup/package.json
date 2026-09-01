@@ -26,7 +26,10 @@
   "presetSources": {
     "original-design": true,
     "vendored": "in-repo primitives: \u2014 + handcraft kit",
-    "motion": "motion/react"
+    "motion": "motion/react",
+    "react-bits": [
+      "Noise-TS-TW"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

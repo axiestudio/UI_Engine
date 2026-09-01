@@ -4,4 +4,3 @@ export { InteractiveConfiguratorMulti } from "./components/interactive-configura
 export type { InteractiveConfiguratorMultiProps } from "./components/interactive-configurator-multi/InteractiveConfiguratorMulti"
 export { Button, buttonVariants } from "./components/ui/button"
 export { InView } from "./components/primitives/in-view"
-export { Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, SectionShell, SectionHead, Ordinal } from "./components/primitives/handcraft"

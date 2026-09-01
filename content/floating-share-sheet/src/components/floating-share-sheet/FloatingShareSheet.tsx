@@ -14,7 +14,7 @@ import {
 } from "@floating-ui/react"
 import { Check, Copy, Link2, Mail, MessageCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Give every published page its exit doors.
@@ -79,7 +79,7 @@ export function FloatingShareSheet({
     <div className={cn("w-full", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
         <div className="flex flex-wrap items-center gap-4">
-          <MonoLabel>{title}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{title}</span>
 
           <span className="relative inline-flex" ref={tipRefs.setReference} {...getTipRefProps({ onMouseEnter: () => setTipOpen(true), onMouseLeave: () => setTipOpen(false), onFocus: () => setTipOpen(true), onBlur: () => setTipOpen(false) })}>
             <button

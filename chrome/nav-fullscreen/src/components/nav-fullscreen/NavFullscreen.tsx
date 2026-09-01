@@ -2,7 +2,6 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Menu, X } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Fullscreen menu — a full-viewport animated nav overlay.
@@ -82,7 +81,10 @@ export function NavFullscreen({ brand = "STUDIO", items = [
               ))}
             </nav>
             <div className="px-5 pb-8 sm:px-8">
-              <MonoLabel className="text-background/50">{cta}</MonoLabel>
+              <span className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-background/50">
+                <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
+                {cta}
+              </span>
             </div>
           </motion.div>
         )}

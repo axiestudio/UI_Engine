@@ -24,7 +24,12 @@
     "motion-primitives": [
       "in-view"
     ],
-    "watermelon-ui": []
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json"
+    ],
+    "engine-libraries": [
+      "embla"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

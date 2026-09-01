@@ -4,7 +4,6 @@ export { Changelog } from "./components/changelog/Changelog"
 export type { ChangelogProps, Release, ChangeEntry, ChangeType } from "./components/changelog/Changelog"
 
 // Vendored upstream registry sources (provenance kept for direct use):
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { InView } from "./components/primitives/in-view"
 export { BorderTrail } from "./components/primitives/border-trail"
 export { ScrollProgress } from "./components/primitives/scroll-progress"

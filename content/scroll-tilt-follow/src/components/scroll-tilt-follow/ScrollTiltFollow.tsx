@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { Tilt } from "@/components/primitives/tilt"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 
 // ═══ JOB         Tilt follow — a card that tilts with scroll AND cursor.
 // ═══ EMOTION     Two kinds of motion, one card.
@@ -20,7 +20,10 @@ export function ScrollTiltFollow({ eyebrow = "FOLLOW", title = "It tilts two way
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
   const rotY = useTransform(scrollYProgress, [0, 1], [-10, 10])
   return (
-    <SectionShell width={920} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       <div ref={ref} className="mt-10 grid place-items-center [perspective:1200px]">
         <motion.div style={{ rotateY: rotY }} className="w-full max-w-md">
@@ -37,6 +40,8 @@ export function ScrollTiltFollow({ eyebrow = "FOLLOW", title = "It tilts two way
           </Tilt>
         </motion.div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

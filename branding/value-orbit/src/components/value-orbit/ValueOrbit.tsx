@@ -1,7 +1,6 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { SpinningText } from "@/components/primitives/spinning-text"
 import { Badge } from "@/components/ui/badge"
@@ -54,7 +53,8 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
   const orbitFrozen = pinned != null || reduced
 
   return (
-    <SectionShell width={1120} className={className}>
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="grid items-center gap-14 lg:grid-cols-[420px_1fr]">
         {/* orbit */}
         <div className="relative mx-auto aspect-square w-full max-w-[420px]" role="group" aria-label="Core values orbit">
@@ -104,11 +104,10 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
 
         {/* ledger */}
         <div>
-          <SectionHead
-            eyebrow={eyebrow}
-            title={<>Five words we <em className="font-serif italic font-medium">actually</em> pay for.</>}
-            tone="paper"
-          />
+                    <header className="">
+            {eyebrow != null && (              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>            )}
+            <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{<>Five words we <em className="font-serif italic font-medium">actually</em> pay for.</>}</h2>
+          </header>
           <ul className="mt-10 space-y-3">
             {values.map((v, i) => {
               const isActive = pinned === i
@@ -127,7 +126,7 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
                     )}
                   >
                     <span className="flex items-baseline gap-3">
-                      <Ordinal n={i + 1} total={values.length} className={isActive ? "opacity-90" : "opacity-50"} />
+                      <span className={cn("font-mono text-[11px] font-semibold tabular-nums text-muted-foreground", isActive ? "opacity-90" : "opacity-50")>{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(values.length).padStart(2, "0")}</span></span>
                       <span className="font-display text-sm font-black uppercase tracking-[0.12em] text-foreground">{v.word}</span>
                     </span>
                     <p className={cn("max-w-md text-[14px] leading-relaxed transition-opacity duration-300", isActive ? "opacity-100 text-foreground" : "text-muted-foreground")}>{v.note}</p>
@@ -146,6 +145,7 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
       <InView once as="p" className="mt-12 text-center font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
         click a chip or a row — the well holds what you pin
       </InView>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

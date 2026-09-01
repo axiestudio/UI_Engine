@@ -1,6 +1,6 @@
 import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Photo essay — an editorial narrative interleaving text + imagery.
@@ -30,7 +30,10 @@ export function PhotoEssay({ eyebrow = "ESSAY", title = "A room, in four blocks.
 ], tone = "paper", className }: PhotoEssayProps) {
   const ink = tone === "ink"
   return (
-    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <div className="max-w-2xl">
           <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
@@ -55,6 +58,8 @@ export function PhotoEssay({ eyebrow = "ESSAY", title = "A room, in four blocks.
           </InView>
         ))}
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

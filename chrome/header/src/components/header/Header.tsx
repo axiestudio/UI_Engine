@@ -30,7 +30,7 @@ import {
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command"
 import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
+import { motion, useScroll, useMotionValueEvent } from "motion/react"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -153,21 +153,19 @@ export function Header(props: HeaderProps = {}) {
   const searchOpen = props.searchOpen ?? innerSearchOpen
   const setSearchOpen = props.setSearchOpen ?? setInnerSearchOpen
 
-  React.useEffect(() => {
-    if (props.scrolled !== undefined && props.hidden !== undefined) return
-    const onScroll = () => {
-      const y = window.scrollY
-      const diff = y - lastY.current
-      // hide on scroll down past 80px, show on scroll up
-      if (y > 80 && diff > 6 && !mobileOpen && !searchOpen) setInnerHidden(true)
-      else if (diff < -6 || y < 80) setInnerHidden(false)
-      setInnerScrolled(y > 8)
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const diff = y - lastY.current
+    if (props.scrolled !== undefined && props.hidden !== undefined) {
       lastY.current = y
+      return
     }
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [mobileOpen, searchOpen, props.scrolled, props.hidden])
+    // hide on scroll down past 80px, show on scroll up
+    if (y > 80 && diff > 6 && !mobileOpen && !searchOpen) setInnerHidden(true)
+    else if (diff < -6 || y < 80) setInnerHidden(false)
+    setInnerScrolled(y > 8)
+    lastY.current = y
+  })
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

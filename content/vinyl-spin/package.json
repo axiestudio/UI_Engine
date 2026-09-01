@@ -25,7 +25,10 @@
   ],
   "presetSources": {
     "original-design": true,
-    "vendored": "handcraft kit"
+    "vendored": "handcraft kit",
+    "react-bits": [
+      "Noise-TS-TW"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

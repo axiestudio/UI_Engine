@@ -1,7 +1,6 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, CornerTicks } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -13,7 +12,7 @@ import { Badge } from "@/components/ui/badge"
 //               date stamp stays behind; the header tallies impressions
 //   SITE      → heritage/archive sections, anniversary pages
 //   APP       → milestone pickers; eras are data
-//   BUILD     shadcn new-york-v4 Button/Badge + handcraft shell/grain/ticks
+//   BUILD     shadcn new-york-v4 Button/Badge + token-driven section markup
 //   A11Y      seals are real buttons ("Press seal {year}"); press counts
 //             live in state, announced via aria-live; reduced-motion drops
 //             the ripple/squash, states still arrive
@@ -136,12 +135,12 @@ export function ArchiveStamp({ eras = DEFAULT_ERAS, onPress, className }: Archiv
   }
 
   return (
-    <SectionShell width={1120} tone="ink" grain className={cn("text-background", className)}>
-      <CornerTicks className="text-background/30" />
+    <section className="bg-foreground text-background">
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
 
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
         <div>
-          <MonoLabel className="text-background/55">ARCHIVE · PRESSED SEALS</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-background/55">ARCHIVE · PRESSED SEALS</span>
           <h2 className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">Every era leaves a mark.</h2>
         </div>
         <div className="flex items-center gap-3">
@@ -168,6 +167,7 @@ export function ArchiveStamp({ eras = DEFAULT_ERAS, onPress, className }: Archiv
       <p className="mt-10 text-center font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-background/45">
         {reduced ? `${filed} of ${eras.length} seals filed` : "press a seal to re-ink it"}
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

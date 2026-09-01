@@ -2,7 +2,6 @@ import * as React from "react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { RefreshCw } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -15,7 +14,7 @@ import { Button } from "@/components/ui/button"
 //               the wall between 3 / 6 / 9 tiles per row
 //   SITE      → packaging/merch walls, brand guidelines
 //   APP       → background/pattern pickers; onSeed emits the seed
-//   BUILD     shadcn new-york-v4 Button/Badge + handcraft shell; tiles are
+//   BUILD     shadcn new-york-v4 Button/Badge  token-driven section markup
 //             seed-pure SVG (currentColor only — no palette leaks)
 //   A11Y      controls are real buttons with visible focus; tiles are
 //             aria-hidden and the seed is text
@@ -73,9 +72,13 @@ export function BrandPatternLab({ className, seed: controlledSeed, onSeedChange 
   }
 
   return (
-    <SectionShell width={1120} className={className}>
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
-        <SectionHead eyebrow="PATTERN SYSTEM · ONE GEOMETRY" title="The logo, multiplied." tone="paper" />
+                <header className="">
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">PATTERN SYSTEM · ONE GEOMETRY</span>
+          <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">The logo, multiplied.</h2>
+        </header>
         <div className="flex flex-wrap items-center gap-3">
           <div role="group" aria-label="Pattern density" className="inline-flex overflow-hidden rounded-full border">
             {([3, 6, 9] as Density[]).map((d) => (
@@ -142,6 +145,7 @@ export function BrandPatternLab({ className, seed: controlledSeed, onSeedChange 
           seed <span className="text-foreground tabular-nums">#{seed}</span>
         </span>
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

@@ -232,7 +232,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
               </div>
             </div>
             <div role="img" aria-label={`Hourly impressions across run P2-1188, last hour ${actual.toLocaleString("sv-SE")} sheets of ${target.toLocaleString("sv-SE")} target — varnish stage ${varnish.status}`} className="px-2 pb-1 pt-1">
-              <AreaChart data={throughput} margin={{ top: 8, right: 12, bottom: 22, left: 40 }} style={{ height: 168 }}>
+              <AreaChart data={throughput} xDataKey="hour" margin={{ top: 8, right: 12, bottom: 22, left: 40 }} style={{ height: 168 }}>
                 <Grid horizontal numTicksRows={3} vertical={false} />
                 <Area dataKey="imp" fillOpacity={0.3} gradientToOpacity={0} />
                 <XAxis numTicks={5} />

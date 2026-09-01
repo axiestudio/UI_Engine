@@ -11,6 +11,7 @@
     "notice": "MIT (c) 2024 ibelick. components/core snapshotted from main into components-core/; hooks into hooks/. repo-tree.json = GitHub API tree for locating docs examples (app/docs/). Their live registry (https://motion-primitives.com/r/<name>.json) sits behind a Vercel bot check for scripts — use this GitHub snapshot.",
     "refresh": "fetch from raw.githubusercontent.com/ibelick/motion-primitives/main/components/core/<name>.tsx"
   },
+  "localChanges": "Snapshot carries our deliberate local craft variants (same policy as handcraft tokenization): type-only imports (verbatimModuleSyntax), React.ElementType instead of JSX.IntrinsicElements, hardcoded hex replaced by hsl(var(--token)) (text-shimmer, glow-effect), InView extended with delay/className props and a prefers-reduced-motion gate. Presets vendoring these files keep a provenance header naming this snapshot as the source of truth — never re-vendor raw upstream over them.",
   "reachFor": [
     "Reusable entrance/in-view animations, text effects, hover/pointer effects",
     "Morphing dialogs/popovers, docks, spotlights — polished primitives",

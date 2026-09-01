@@ -1,6 +1,6 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/cursor.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/cursor.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/cursor.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/cursor.tsx (local tokenized variant)
  */
 'use client';
 import React, { useEffect, useState, useRef } from 'react';

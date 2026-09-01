@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Check, Copy } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -92,7 +91,7 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
       <Card className="group relative h-full overflow-hidden gap-4">
         <CardContent className="flex h-full flex-col">
           <div className="flex items-center justify-between">
-            <Ordinal n={index + 1} total={total} />
+            <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
             <Badge variant="outline" className="rounded-full font-mono text-[9px] font-black uppercase tracking-[0.16em] text-muted-foreground">
               {recipe.use}
             </Badge>
@@ -128,7 +127,7 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
 
           <Separator className="my-4" />
 
-          <button type="button" onClick={() => void copy()} aria-label={`Copy ${recipe.name} yield ${result}`} className="mt-auto flex w-full items-center gap-3 rounded-xl border border-dashed p-3 text-left outline-none transition-colors hover:bg-muted/40 focus-visible:ring-[3px] focus-visible:ring-ring/50">
+          <Button type="button" variant="ghost" type="button" onClick={() => void copy()} aria-label={`Copy ${recipe.name} yield ${result}`} className="mt-auto flex w-full items-center gap-3 rounded-xl border border-dashed p-3 text-left outline-none transition-colors hover:bg-muted/40 focus-visible:ring-[3px] focus-visible:ring-ring/50"> h-auto>
             <motion.span
               aria-hidden
               initial={reduced ? false : { scale: 0.8, opacity: 0 }}
@@ -144,7 +143,7 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
             <span className="flex shrink-0 items-center gap-1.5 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-muted-foreground">
               {copied ? <><Check className="size-3.5 text-foreground" aria-hidden /> copied</> : <><Copy className="size-3.5" aria-hidden /> copy</>}
             </span>
-          </button>
+          </Button>
         </CardContent>
       </Card>
     </InView>
@@ -153,20 +152,21 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
 
 export function PaletteRecipes({ recipes = DEFAULT_RECIPES, eyebrow = "PALETTE · RECIPES", className, onPick }: PaletteRecipeProps) {
   return (
-    <SectionShell width={1120} className={className}>
-      <SectionHead
-        eyebrow={eyebrow}
-        title={<>Colors are cooked, <em className="font-serif italic font-medium">not picked.</em></>}
-        subtitle="Measured parts, a real mix, and one click to copy the token."
-        tone="paper"
-      />
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+            <header className="">
+        {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}
+        <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{<>Colors are cooked, <em className="font-serif italic font-medium">not picked.</em></>}</h2>
+        <p className="mt-2.5 text-sm leading-6 text-muted-foreground">Measured parts, a real mix, and one click to copy the token.</p>
+      </header>
       <div className="mt-12 grid gap-6 lg:grid-cols-3">
         {recipes.map((r, i) => (
           <RecipeCard key={r.id} recipe={r} index={i} total={recipes.length} onPick={onPick} />
         ))}
       </div>
       <p aria-live="polite" className="sr-only">{/* copied announcements ride the button label */}</p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }
 

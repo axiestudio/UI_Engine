@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
+import CountUp from "@/components/reactbits/CountUp"
 
 // ═══ JOB      make a rating feel earned — proof with a pulse
 // ═══ EMOTION  the room warming up
@@ -29,20 +30,7 @@ export type ApplauseMeterProps = {
 export function ApplauseMeter({ value, max = 5, count, countLabel = "verified voices", eyebrow = "REVIEWS", label, onRate, className }: ApplauseMeterProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const ratio = Math.max(0, Math.min(1, value / max))
-  const [shown, setShown] = React.useState(reduce ? value : 0)
   const [rated, setRated] = React.useState<number | null>(null)
-  React.useEffect(() => {
-    if (reduce || shown !== 0) return
-    let raf = 0
-    const t0 = performance.now()
-    const step = (t: number) => {
-      const p = Math.min(1, (t - t0) / 1200)
-      setShown(value * (1 - (1 - p) ** 3))
-      if (p < 1) raf = requestAnimationFrame(step)
-    }
-    raf = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(raf)
-  }, [value, reduce, shown])
 
   const standing = value / max >= 0.94
   const target = rated ?? value
@@ -55,7 +43,7 @@ export function ApplauseMeter({ value, max = 5, count, countLabel = "verified vo
         <div>
           <MonoLabel className="text-ovation">{eyebrow}</MonoLabel>
           <p className="mt-3 font-display text-[44px] font-semibold leading-none tracking-[-0.02em] sm:text-[56px]">
-            {shown.toFixed(1)}<span className="text-white/35 text-[24px]"> / {max}</span>
+            {reduce ? value.toFixed(1) : <CountUp to={value} duration={1.2} />}<span className="text-white/35 text-[24px]"> / {max}</span>
           </p>
           {label && <p className="mt-2 max-w-sm text-sm font-medium text-white/60">{label}</p>}
           <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white/45">

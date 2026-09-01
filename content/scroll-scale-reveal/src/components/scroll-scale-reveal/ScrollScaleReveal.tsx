@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Scale-reveal — a stack of sections that scale down as the next one arrives.

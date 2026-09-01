@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Search } from "lucide-react"
-import { Dots, Grain, MonoLabel } from "@/components/primitives/handcraft"
+import Noise from "@/components/primitives/noise"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { TextEffect } from "@/components/primitives/text-effect"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -62,8 +62,15 @@ export function ErrorState({
       className={cn(ink && "bg-foreground", fullPage ? "min-h-svh" : "w-full", "relative isolate flex w-full items-center justify-center overflow-hidden", className)}
       aria-label={`Error ${code}`}
     >
-      <Grain opacity={ink ? 0.08 : 0.045} />
-      <Dots size={22} className={cn("[mask-image:radial-gradient(ellipse_55%_45%_at_50%_60%,black_10%,transparent_75%)]", ink ? "text-background" : "text-foreground")} />
+      <Noise patternAlpha={ink ? 14 : 7} patternSize={240} patternRefreshInterval={3} />
+      <span
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-0 opacity-[0.13] [background-image:radial-gradient(circle_at_1px_1px,currentColor_1px,transparent_0)] [mask-image:radial-gradient(ellipse_55%_45%_at_50%_60%,black_10%,transparent_75%)]",
+          ink ? "text-background" : "text-foreground",
+        )}
+        style={{ backgroundSize: "22px 22px" }}
+      />
       {!ink && <Spotlight size={520} className="bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.055),transparent_74%)] blur-2xl" />}
 
       <div className={cn("relative mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-20 text-center sm:px-6", fullPage && "justify-center")}>
@@ -175,7 +182,10 @@ export function ErrorState({
 
         {links && links.length > 0 && (
           <nav aria-label="Helpful links" className="mt-12 w-full">
-            <MonoLabel className={cn("justify-center", ink ? "text-background/40" : "text-muted-foreground/70")}>Popular pages</MonoLabel>
+            <span className={cn("inline-flex items-center justify-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", ink ? "text-background/40" : "text-muted-foreground/70")}>
+              <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
+              Popular pages
+            </span>
             <ul className={cn("mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-bold", ink ? "text-background/75" : "text-foreground/80")}>
               {links.map((link, i) => (
                 <li key={link.label} className="flex items-center gap-6">

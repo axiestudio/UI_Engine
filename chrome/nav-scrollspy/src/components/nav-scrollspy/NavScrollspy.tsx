@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useScroll, useMotionValueEvent } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -23,20 +24,16 @@ const DEFAULT_SECTIONS = [
 ]
 export function NavScrollspy({ brand = "STUDIO", sections = DEFAULT_SECTIONS, className }: NavScrollspyProps) {
   const [active, setActive] = React.useState(sections[0]?.id ?? "")
-  React.useEffect(() => {
-    const onScroll = () => {
-      const mid = window.innerHeight * 0.4
-      let cur = sections[0]?.id ?? ""
-      for (const s of sections) {
-        const el = document.getElementById(s.id)
-        if (el && el.getBoundingClientRect().top < mid) cur = s.id
-      }
-      setActive(cur)
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", () => {
+    const mid = window.innerHeight * 0.4
+    let cur = sections[0]?.id ?? ""
+    for (const s of sections) {
+      const el = document.getElementById(s.id)
+      if (el && el.getBoundingClientRect().top < mid) cur = s.id
     }
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [sections])
+    setActive(cur)
+  })
   return (
     <div className={cn("relative", className)}>
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">

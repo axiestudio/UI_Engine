@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ArrowUpRight, MapPin } from "lucide-react"
-import { Grain, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -58,8 +58,16 @@ export function Careers({
     : [["All roles", jobs] as [string, Job[]]]
 
   return (
-    <SectionShell tone={tone} width={920} rails padding="roomy" className={className}>
-      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} index="02" tone={tone} />
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[var(--shell-w)] -translate-x-1/2 border-x lg:block", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
+        <header className={cn("relative")}>
+  <span aria-hidden className={cn("pointer-events-none absolute -top-10 right-0 select-none font-display text-[120px] font-black leading-none tracking-[-0.05em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] opacity-[0.07] sm:text-[160px]", tone === 'ink' ? "text-background" : "text-foreground")}>02</span>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
 
       <div className="mt-12 flex flex-col gap-12">
         {groups.map(([department, items]) => (
@@ -85,7 +93,7 @@ export function Careers({
                       ink ? "border-background/10 hover:bg-background/5" : "border-border hover:bg-secondary/60",
                     )}
                   >
-                    <Ordinal n={i + 1} className={cn("hidden shrink-0 sm:block", ink ? "text-background/50" : "text-muted-foreground/70")} />
+                    <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", cn("hidden shrink-0 sm:block", ink ? "text-background/50" : "text-muted-foreground/70"))}>i + 1<span aria-hidden> /</span></span>
                     <div className="min-w-0 flex-1">
                       <h3 className={cn("truncate font-display text-lg font-bold tracking-[-0.02em] sm:text-xl", ink ? "text-background" : "text-foreground")}>
                         {job.title}
@@ -122,6 +130,8 @@ export function Careers({
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em]">no role fits? write us anyway</span>
         <span className="h-px flex-1 border-t border-dashed border-current opacity-50" />
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

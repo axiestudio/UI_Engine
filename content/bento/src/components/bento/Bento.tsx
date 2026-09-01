@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { InView } from "@/components/primitives/in-view"
+import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -50,7 +51,7 @@ function Cell({ c, glow }: { c: BentoCell; glow: boolean }) {
   ) : (
     <div className={cn("flex h-full min-h-[170px] flex-col rounded-[inherit] p-6", ink ? "bg-foreground text-background" : "bg-card")}>
       <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl border", ink ? "border-background/20 bg-background/10" : "bg-background shadow-xs")}>
-        {Icon && <Icon className="h-5 w-5 stroke-[2]" />}
+        {Icon && <Icon aria-hidden className="h-5 w-5 stroke-[2]" />}
       </span>
       {c.title && <h3 className="mt-4 font-display text-[17px] font-bold leading-snug tracking-tight">{c.title}</h3>}
       {c.description && <p className={cn("mt-1.5 text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{c.description}</p>}

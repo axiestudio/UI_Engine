@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { CornerDownLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { TextLoop } from "@/components/primitives/text-loop"
 import { Badge } from "@/components/ui/badge"
@@ -61,7 +60,7 @@ function Entry({ entry, index }: { entry: LexiconEntry; index: number }) {
           <span className="flex h-full flex-col justify-between p-5">
             <span className="flex items-baseline justify-between gap-3">
               <span className="font-display text-3xl font-black tracking-tight text-foreground">{entry.term}</span>
-              <Ordinal n={index + 1} total={4} className="text-foreground/40" />
+              <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground text-foreground/40">{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(4).padStart(2, "0")}</span></span>
             </span>
             <TextLoop interval={2.4} className="font-mono text-[11px] font-bold tracking-[0.08em] text-muted-foreground">
               <span>{entry.ipa}</span>
@@ -105,13 +104,19 @@ export function BrandLexicon({
   className,
 }: BrandLexiconProps) {
   return (
-    <SectionShell width={1120} rails className={className}>
-      <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone="paper" />
+    <section className="bg-background text-foreground">
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+            <header className="">
+        {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}
+        <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{title}</h2>
+        {subtitle != null && (          <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>        )}
+      </header>
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {entries.map((e, i) => (
           <Entry key={e.term} entry={e} index={i} />
         ))}
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

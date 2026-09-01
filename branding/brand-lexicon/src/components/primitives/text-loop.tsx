@@ -1,6 +1,6 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/text-loop.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/text-loop.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/text-loop.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/text-loop.tsx (local tokenized variant)
  */
 'use client';
 import { cn } from '@/lib/utils';

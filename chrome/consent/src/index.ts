@@ -4,7 +4,6 @@ export { Consent } from "./components/consent/Consent"
 export type { ConsentProps, ConsentCategory, ConsentResult } from "./components/consent/Consent"
 
 // Vendored upstream registry sources (provenance kept for direct use):
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { Button, buttonVariants } from "./components/ui/button"
 export { Switch } from "./components/ui/switch"
 export { Separator } from "./components/ui/separator"

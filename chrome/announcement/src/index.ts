@@ -4,7 +4,6 @@ export { AnnouncementBar } from "./components/announcement/AnnouncementBar"
 export type { AnnouncementBarProps, AnnouncementMessage } from "./components/announcement/AnnouncementBar"
 
 // Vendored upstream registry sources (provenance kept for direct use):
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { default as Announcement1 } from "./components/watermelon/announcement-1"
 export { default as Announcement2 } from "./components/watermelon/announcement-2"
 export { TextRoll } from "./components/primitives/text-roll"

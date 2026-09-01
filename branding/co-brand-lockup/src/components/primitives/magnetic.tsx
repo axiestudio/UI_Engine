@@ -1,3 +1,7 @@
+/**
+ * Vendored from motion-primitives by ibelick (MIT): components/core/magnetic.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/magnetic.tsx (local tokenized variant)
+ */
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';

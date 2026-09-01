@@ -2,7 +2,6 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Check, Frown, Heart, Meh, MessageSquare, X, type LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionHead } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Catch the feeling while it's still in the chair.
@@ -67,7 +66,18 @@ export function FeedbackWidget({
     <div className={cn("relative isolate w-full bg-background py-16 text-foreground", ink && "bg-foreground text-background", className)}>
       <div className="mx-auto w-full max-w-[720px] px-4 sm:px-6">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: EASE }}>
-          <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+          <header className="relative max-w-3xl">
+            {eyebrow && (
+              <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", ink ? "text-background/55" : "text-muted-foreground")}>
+                <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
+                {eyebrow}
+              </span>
+            )}
+            <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", ink ? "text-background" : "text-foreground")}>{title}</h2>
+            {subtitle && (
+              <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", ink ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>
+            )}
+          </header>
         </InView>
 
         <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE, delay: reduce ? 0 : 0.1 }}>
@@ -116,7 +126,10 @@ export function FeedbackWidget({
                     ) : (
                       <form onSubmit={submit}>
                         <div className="flex items-center justify-between">
-                          <MonoLabel>Quiet Times Studio</MonoLabel>
+                          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
+                            <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
+                            Quiet Times Studio
+                          </span>
                           <button
                             type="button"
                             onClick={() => setOpen(false)}

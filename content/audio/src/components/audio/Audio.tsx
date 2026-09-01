@@ -34,24 +34,16 @@ export function Audio({
   className,
 }: AudioProps) {
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title ?? trackTitle}>
+    <SectionShell width={760} padding="roomy" rule="bottom" className={className}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
-        <div className="mx-auto w-full max-w-[680px] px-4 py-16 sm:px-6">
-          {(eyebrow || title) && (
-            <header className="mb-6">
-              {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              {title && <h2 className="mt-1 font-display text-2xl font-bold tracking-tight sm:text-3xl">{title}</h2>}
-              {subtitle && <p className="mt-2 max-w-prose text-sm font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
-            </header>
+        {(eyebrow || title || subtitle) && <SectionHead eyebrow={eyebrow} title={title ?? trackTitle} subtitle={subtitle} />}
+        <figure className="mt-6 rounded-[24px] border bg-card p-4 shadow-sm sm:p-5">
+          <AudioPlayer source={src} title={trackTitle} artist={artist} coverImage={cover} />
+          {caption && (
+            <figcaption className="mt-2 px-1 font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">{caption}</figcaption>
           )}
-          <figure className="rounded-[24px] border bg-card p-4 shadow-sm sm:p-5">
-            <AudioPlayer source={src} title={trackTitle} artist={artist} coverImage={cover} />
-            {caption && (
-              <figcaption className="mt-2 px-1 font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">{caption}</figcaption>
-            )}
-          </figure>
-        </div>
+        </figure>
       </InView>
-    </section>
+    </SectionShell>
   )
 }

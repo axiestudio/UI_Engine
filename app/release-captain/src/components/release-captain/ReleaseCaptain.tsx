@@ -85,7 +85,7 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
   const reduce = useReducedMotion()
 
   // ── state ────────────────────────────────────────────────────────────────
-  const [runNo, setRunNo] = React.useState(4187)
+  const RUN_NO = 4187
   const [reruns, setReruns] = React.useState(0)
   const [stages, setStages] = React.useState<Stage[]>(SEEDED_STAGES)
   const [applied, setApplied] = React.useState(false)
@@ -111,7 +111,7 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
     setReruns(next)
     addTimer(() => {
       // fresh seed per attempt — 80% of seeds pass, so retries can succeed
-      const roll = mulberry32(hashSeed(`rerun-${runNo}-${next}`))()
+      const roll = mulberry32(hashSeed(`rerun-${RUN_NO}-${next}`))()
       const ok = roll < 0.8
       const dur = ok ? `${1 + Math.floor(roll * 20)}s` : "2m 41s"
       const log = ok
@@ -144,12 +144,14 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
     setShipping(true)
     setStages((st) => st.map((s) => ({ ...s, status: "running", log: [`shipping ${tag} — ${s.id}…`] })))
     addTimer(() => {
-      setStages(SEEDED_STAGES.map((s) => ({
-        ...s,
-        status: s.id === "deploy" ? "pass" : "pass",
-        duration: s.id === "deploy" ? "4m 12s" : s.duration,
-        log: s.id === "deploy" ? [`canary 5% → 25% → 100%`, `${tag} live in all regions`, "✓ health strip nominal"] : s.log,
-      })) as Stage[])
+      // ship run replays every stage deterministically green
+      setStages([
+        { id: "build", label: "build", status: "pass", duration: "41s", log: [`$ turbo build — ${tag}`, "→ 532 modules transformed", "✓ built in 22.4s"] },
+        { id: "unit", label: "unit tests", status: "pass", duration: "1m 58s", log: ["vitest run …", "✓ 420 passed (420)", "coverage 91.4%"] },
+        { id: "integration", label: "integration", status: "pass", duration: "2m 47s", log: ["✓ promo tier discount −10%", "✓ canary smoke suite", `✓ green — ${tag} cleared`] },
+        { id: "package", label: "package", status: "pass", duration: "12s", log: ["tarball + sbom built", "✓ signed keyless"] },
+        { id: "deploy", label: "deploy", status: "pass", duration: "4m 12s", log: ["canary 5% → 25% → 100%", `${tag} live in all regions`, "✓ health strip nominal"] },
+      ])
     }, reduce ? 400 : 1400)
     addTimer(() => {
       setShipping(false)
@@ -224,10 +226,10 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
             <header className="mb-3 flex items-baseline justify-between px-1">
               <h3 className="font-display text-lg font-semibold">Run graph</h3>
               <p className="font-mono text-[11px] font-medium text-muted-foreground">
-                #{runNo} · attempt {reruns + 1} · {shipped ? "ship run ✓" : running ? "rolling" : allPass ? "green" : "red"}
+                #{RUN_NO} · attempt {reruns + 1} · {shipped ? "ship run ✓" : running ? "rolling" : allPass ? "green" : "red"}
               </p>
             </header>
-            <PipelineRunGraph run={`#${runNo}`} stages={stages} onRerunFailed={rerunFailed} />
+            <PipelineRunGraph run={`#${RUN_NO}`} stages={stages} onRerunFailed={rerunFailed} />
           </div>
         </section>
 

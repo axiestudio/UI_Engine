@@ -13,9 +13,9 @@ import {
   offset,
   autoUpdate,
 } from "@floating-ui/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell, SectionHead, MonoLabel, Ordinal } from "@/components/primitives/handcraft"
 
 // content data: brand palette
 const BASE_SWATCHES = [
@@ -122,7 +122,7 @@ function ShadeSwatch({
 
   return (
     <div className="flex flex-col items-center gap-1.5">
-      <button
+      <Button type="button" variant="ghost"
         type="button"
         ref={refs.setReference}
         {...getReferenceProps()}
@@ -135,8 +135,8 @@ function ShadeSwatch({
           open && "ring-2 ring-primary ring-offset-2 ring-offset-background",
         )}
         style={{ backgroundColor: hex }}
-      />
-      <Ordinal n={index + 1} total={total} />
+       h-auto />
+      <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
       <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {name}
       </span>
@@ -152,17 +152,17 @@ function ShadeSwatch({
             className="z-50 w-56 rounded-xl border bg-card p-2 shadow-xl"
           >
             <div className="flex items-center justify-between px-1.5 pb-2 pt-1">
-              <MonoLabel className="text-[10px]">{name}</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px]">{name}</span>
               <span className="font-mono text-[10px] font-bold text-muted-foreground">{hex}</span>
             </div>
             <div className="space-y-0.5">
               {scale.map((value) => (
-                <button
+                <Button type="button" variant="ghost"
                   key={value}
                   type="button"
                   onClick={() => copyHex(value)}
                   className="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
+                >>
                   <span
                     aria-hidden
                     className="h-5 flex-1 rounded-md border border-border"
@@ -176,7 +176,7 @@ function ShadeSwatch({
                   ) : (
                     <span className="font-mono text-[10px] font-semibold text-muted-foreground">{value}</span>
                   )}
-                </button>
+                </Button>
               ))}
             </div>
             <p aria-live="polite" className="sr-only">
@@ -209,9 +209,14 @@ export function FloatingShadePicker({
   const [openHex, setOpenHex] = React.useState<string | null>(null)
 
   return (
-    <SectionShell width={920} tone={tone} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <InView once variants={REVEAL} transition={{ duration: 0.8, ease: EASE }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
+                <header className="">
+          {eyebrow != null && (            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>          )}
+          <h2 className="mt-2 tracking-tight text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+          {subtitle != null && (            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>          )}
+        </header>
       </InView>
       <div className="mt-10 flex flex-wrap gap-x-4 gap-y-8">
         {BASE_SWATCHES.map((swatch, i) => (
@@ -230,6 +235,7 @@ export function FloatingShadePicker({
         <span>{caption}</span>
         <span aria-hidden>●</span>
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

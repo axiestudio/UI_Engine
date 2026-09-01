@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
   build: {
     lib: { entry: path.resolve(__dirname, "src/index.ts"), name: "StickyHeader", formats: ["es","cjs"], fileName: (f) => (f==="es"?"sticky-header.es.js":"sticky-header.cjs.js") },
-    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "radix-ui", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

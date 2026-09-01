@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Check, Copy, PenLine } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, CornerTicks } from "@/components/primitives/handcraft"
 import { TextEffect } from "@/components/primitives/text-effect"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
@@ -18,7 +17,7 @@ import { Separator } from "@/components/ui/separator"
 //   SITE      → manifesto/about chapters, campaign pages
 //   APP       → values onboarding splash
 //   BUILD     shadcn new-york-v4 Button/Badge/Separator + motion (reduced-motion:
-//             static text, instant stamp) + handcraft shell/ticks/grain
+//             static text, instant stamp)  token-driven section markup
 //   A11Y      full text present for AT; seal is a real button w/ aria-pressed;
 //             status announced via aria-live; focus rings on the ink band
 
@@ -72,11 +71,11 @@ export function InkTrust({
   }
 
   return (
-    <SectionShell width={760} tone="ink" grain padding="grand" className={cn("text-background", className)}>
-      <CornerTicks corners={["tl", "br"]} className="text-background/30" />
+    <section className="bg-foreground text-background">
+      <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
 
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <MonoLabel className="text-background/55">{chapterLabel}</MonoLabel>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-background/55">{chapterLabel}</span>
         <Badge
           variant="outline"
           className={cn(
@@ -159,6 +158,7 @@ export function InkTrust({
           </motion.div>
         )}
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

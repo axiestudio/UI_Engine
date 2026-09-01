@@ -1,9 +1,9 @@
 import * as React from "react"
-import { motion } from "motion/react"
 import { Camera, Headset, MessageSquare, ReceiptText, Smartphone } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Accent, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Switch } from "@/components/ui/switch"
 
 export type PricingAddon = { id: string; label: string; price: number }
 
@@ -36,28 +36,6 @@ const ADDON_ICONS: Record<string, React.ElementType> = {
   "priority-support": Headset,
 }
 
-function Switch({ checked, onToggle, label, reduce }: { checked: boolean; onToggle: () => void; label: string; reduce: boolean }) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      aria-label={label}
-      onClick={onToggle}
-      className={cn(
-        "relative inline-flex h-6 w-10 shrink-0 items-center rounded-full border transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
-        checked ? "border-transparent bg-primary" : "border-border bg-muted",
-      )}
-    >
-      <motion.span
-        className={cn("ml-[3px] block size-[18px] rounded-full shadow-sm transition-colors duration-200", checked ? "bg-background" : "bg-foreground")}
-        animate={{ x: checked ? 16 : 0 }}
-        transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 520, damping: 36 }}
-      />
-    </button>
-  )
-}
-
 export function PricingAddons({
   eyebrow = "Quiet Times Studio · Plans",
   title = (
@@ -75,7 +53,6 @@ export function PricingAddons({
   className,
 }: PricingAddonsProps) {
   const [on, setOn] = React.useState<Record<string, boolean>>({})
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   const chosen = addons.filter((a) => on[a.id])
   const total = basePrice + chosen.reduce((sum, a) => sum + a.price, 0)
@@ -111,7 +88,7 @@ export function PricingAddons({
                   </span>
                   <p className="min-w-0 flex-1 truncate text-sm font-semibold text-foreground">{a.label}</p>
                   <span className="font-mono text-xs font-bold tabular-nums text-muted-foreground">+{a.price} kr</span>
-                  <Switch checked={checked} onToggle={() => toggle(a.id)} label={`Include ${a.label}`} reduce={reduce} />
+                  <Switch checked={checked} onCheckedChange={() => toggle(a.id)} aria-label={`Include ${a.label}`} />
                 </li>
               )
             })}

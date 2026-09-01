@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useScroll, useMotionValueEvent } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -16,11 +17,8 @@ export type StickyHeaderProps = {
 
 export function StickyHeader({ brand = "STUDIO", items = [{ id: "a", label: "Work" }, { id: "b", label: "Services" }, { id: "c", label: "About" }], cta = "Start", className }: StickyHeaderProps) {
   const [condensed, setCondensed] = React.useState(false)
-  React.useEffect(() => {
-    const onScroll = () => setCondensed(window.scrollY > 24)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y) => setCondensed(y > 24))
   return (
     <div className={cn("relative", className)}>
       <header className={cn("sticky top-0 z-40 border-b transition-all duration-300", condensed ? "bg-background/80 py-2 backdrop-blur" : "bg-background py-4")}>

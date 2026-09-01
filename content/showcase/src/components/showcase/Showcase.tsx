@@ -1,5 +1,5 @@
 import * as React from "react"
-import { CornerTicks, Grain, MonoLabel } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { Badge } from "@/components/ui/badge"
@@ -83,8 +83,13 @@ export function Showcase({
                 ink ? "border-background/20 bg-background/5" : "border-border bg-card",
               )}
             >
-              <CornerTicks size={14} offset={-8} className={cn(ink ? "text-background/40" : "text-foreground/25")} />
-              <Grain opacity={ink ? 0.06 : 0.035} />
+              <span aria-hidden className={cn("pointer-events-none absolute inset-0", cn(ink ? "text-background/40" : "text-foreground/25"))}>
+    <span className="absolute border-current top-[-8px] left-[-8px] border-t border-l" style={{ width: 14, height: 14 }} />
+    <span className="absolute border-current top-[-8px] right-[-8px] border-t border-r" style={{ width: 14, height: 14 }} />
+    <span className="absolute border-current bottom-[-8px] left-[-8px] border-b border-l" style={{ width: 14, height: 14 }} />
+    <span className="absolute border-current bottom-[-8px] right-[-8px] border-b border-r" style={{ width: 14, height: 14 }} />
+  </span>
+              <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.06 : 0.035) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
               <Spotlight size={460} className={cn("blur-2xl", ink ? "bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12),transparent_75%)]" : "bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05),transparent_75%)]")} />
               <div className={cn("relative flex items-center gap-3 border-b px-4 py-3", ink ? "border-background/10 bg-background/5" : "border-border bg-muted/50")}>
                 <span className="flex gap-1.5" aria-hidden>

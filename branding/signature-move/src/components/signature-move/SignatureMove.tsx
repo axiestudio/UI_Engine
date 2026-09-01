@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Fingerprint, MousePointer2 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell, Dots } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Cursor } from "@/components/primitives/cursor"
 import { Badge } from "@/components/ui/badge"
@@ -53,13 +52,13 @@ export function SignatureMove({ className }: SignatureMoveProps) {
   }
 
   return (
-    <SectionShell width={1120} className={className}>
-      <SectionHead
-        eyebrow="SIGNATURE MOVE · THE GESTURE"
-        title={<>One move people <em className="font-serif italic font-medium">steal.</em></>}
-        subtitle="Press inside the stage — the marker blooms where you touch and springs back. Below is the exact score it plays."
-        tone="paper"
-      />
+    <section className={cn("bg-background text-foreground", className)>
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+            <header className="">
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">SIGNATURE MOVE · THE GESTURE</span>
+        <h2 className="mt-2 tracking-tight text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{<>One move people <em className="font-serif italic font-medium">steal.</em></>}</h2>
+        <p className="mt-2.5 text-sm leading-6 text-muted-foreground">Press inside the stage — the marker blooms where you touch and springs back. Below is the exact score it plays.</p>
+      </header>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_320px]">
         {/* sandbox stage */}
@@ -72,7 +71,6 @@ export function SignatureMove({ className }: SignatureMoveProps) {
           onPointerLeave={() => setDown(false)}
           className="relative grid min-h-[340px] touch-none select-none place-items-center overflow-hidden rounded-2xl border border-dashed border-border bg-muted/20"
         >
-          <Dots size={26} className="opacity-[0.05]" />
           <Fingerprint aria-hidden className="size-16 text-foreground/10" strokeWidth={1.2} />
 
           <motion.span
@@ -122,6 +120,7 @@ export function SignatureMove({ className }: SignatureMoveProps) {
           </CardContent>
         </Card>
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

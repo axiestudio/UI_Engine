@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Smart sections — a sticky index that highlights whichever section you read.
@@ -37,7 +37,10 @@ export function ScrollSmartSections({ eyebrow = "INDEX", sections = DEFAULT_SECT
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
   return (
-    <SectionShell width={1120} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
       <div ref={wrap} className="mt-10 grid gap-10 lg:grid-cols-[220px_1fr]">
         <div className="sticky top-24 h-fit">
@@ -63,6 +66,8 @@ export function ScrollSmartSections({ eyebrow = "INDEX", sections = DEFAULT_SECT
           ))}
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ProgressiveBlur } from "@/components/primitives/progressive-blur"
 import { InView } from "@/components/primitives/in-view"
-import { MonoLabel } from "@/components/primitives/handcraft"
+
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
@@ -50,9 +50,9 @@ export function Marquee({
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             viewOptions={{ once: true }}
           >
-            <MonoLabel tick={false} className={cn("z-10 ml-4 shrink-0 sm:ml-6", ink ? "text-background/70" : "text-muted-foreground")}>
+            <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn("z-10 ml-4 shrink-0 sm:ml-6", ink ? "text-background/70" : "text-muted-foreground"))}>
               {label}
-            </MonoLabel>
+            </span>
           </InView>
         )}
         <div

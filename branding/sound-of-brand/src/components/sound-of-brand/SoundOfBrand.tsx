@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Music2, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, CornerTicks } from "@/components/primitives/handcraft"
 import { TextShimmerWave } from "@/components/primitives/text-shimmer-wave"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -119,10 +118,10 @@ export function SoundOfBrand({
   }
 
   return (
-    <SectionShell width={920} tone="ink" grain className={cn("text-background", className)}>
-      <CornerTicks className="text-background/40" />
+    <section className="bg-foreground text-background">
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="text-center">
-        <MonoLabel className="justify-center text-background/55">{eyebrow}</MonoLabel>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] justify-center text-background/55">{eyebrow}</span>
         <TextShimmerWave duration={1.6} className="mt-4 font-display text-3xl font-black tracking-tight sm:text-4xl">
           {tagline}
         </TextShimmerWave>
@@ -175,6 +174,7 @@ export function SoundOfBrand({
       <p aria-live="polite" className="sr-only">
         {lastHeard ? `Heard ${lastHeard}.` : ""}
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

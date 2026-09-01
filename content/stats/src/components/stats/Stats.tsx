@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion, useInView, useMotionValue, useSpring, useTransform, useReducedMotion } from "motion/react"
 import { BorderTrail } from "@/components/primitives/border-trail"
-import { Grain, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -68,7 +68,7 @@ function StatTile({ item, tone, separators, index }: { item: StatItem; tone: "pa
       )}
     >
       {separators && <BorderTrail size={40} className="absolute inset-x-0 top-0 h-px" style={{ background: "transparent", backgroundColor: "transparent" }} />}
-      <Ordinal n={index + 1} total={undefined} className={cn("absolute right-4 top-4", ink ? "text-background/35" : "text-muted-foreground/50")} />
+      <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", cn("absolute right-4 top-4", ink ? "text-background/35" : "text-muted-foreground/50"))}>index + 1<span className="opacity-50"> / undefined</span></span>
       <p className={cn("font-display text-[40px] font-bold leading-none tracking-[-0.04em] tabular-nums sm:text-[52px]", ink ? "text-background" : "text-foreground")}>
         {item.prefix}
         {typeof item.value === "number" ? <CountUp value={item.value} decimals={item.decimals ?? 0} /> : item.value}
@@ -100,17 +100,18 @@ export function Stats({
   const sep = separators ?? tone === "ink"
 
   return (
-    <SectionShell tone={tone} width={1120} rails padding="roomy" className={className} id={undefined}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[var(--shell-w)] -translate-x-1/2 border-x lg:block", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       {(eyebrow || title || subtitle) && (
         <InView variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
-          <SectionHead
-            eyebrow={eyebrow}
-            title={title ?? ""}
-            subtitle={subtitle}
-            index="06"
-            tone={tone}
-            className="mb-10"
-          />
+            <header className={cn("relative")}>
+  <span aria-hidden className={cn("pointer-events-none absolute -top-10 right-0 select-none font-display text-[120px] font-black leading-none tracking-[-0.05em] [-webkit-text-stroke:1.5px_currentColor] [color:transparent] opacity-[0.07] sm:text-[160px]", tone === 'ink' ? "text-background" : "text-foreground")}>06</span>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
         </InView>
       )}
 
@@ -129,6 +130,8 @@ export function Stats({
               ))}
           </div>
         </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

@@ -25,8 +25,9 @@
     "*.css"
   ],
   "presetSources": {
-    "shadcn-ui": [
-      "https://ui.shadcn.com/r/styles/new-york-v4/button.json"
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json",
+      "https://registry.watermelon.sh/r/dialog.json"
     ],
     "motion-primitives": [
       "in-view"

@@ -1,11 +1,6 @@
 /**
- * Vendored from motion-primitives (https://motion-primitives.com) by ibelick (MIT).
- * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/text-shimmer-wave.tsx
- *
- * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
- * the upstream zinc hexes (#a1a1aa / #71717a / #000 / #ffffff) are replaced with the
- * shadcn token set (--muted-foreground / --foreground), so the wave themes with the
- * host brandkit and dark mode flips automatically.
+ * Vendored from motion-primitives by ibelick (MIT): components/core/text-shimmer-wave.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/text-shimmer-wave.tsx (local tokenized variant)
  */
 'use client';
 

@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Pause, Play, RotateCcw, Clapperboard } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -108,8 +107,13 @@ export function LogoMotionLibrary({ className, onMoveChange }: LogoMotionLibrary
   }
 
   return (
-    <SectionShell width={920} rails className={className}>
-      <SectionHead eyebrow="LOGO MOTION · THE SCORE" title="Three moves. Nothing improvised." subtitle="What you see running is written down exactly as it runs." tone="paper" />
+    <section className="bg-background text-foreground">
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+            <header className="">
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">LOGO MOTION · THE SCORE</span>
+        <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">Three moves. Nothing improvised.</h2>
+        <p className="mt-2.5 text-sm leading-6 text-muted-foreground">What you see running is written down exactly as it runs.</p>
+      </header>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[300px_1fr]">
         <div className="flex flex-col gap-2" role="group" aria-label="Logo moves">
@@ -165,6 +169,7 @@ export function LogoMotionLibrary({ className, onMoveChange }: LogoMotionLibrary
           <p aria-live="polite" className="sr-only">{`Move ${move}, take ${runId + 1}, ${playing ? "playing" : "paused"} at ${speed} times speed.`}</p>
         </div>
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

@@ -1,15 +1,17 @@
 import * as React from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
+import TiltedCard from "@/components/reactbits/TiltedCard"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Product 3D — a draggable product face that tilts in 3D.
 // ═══ EMOTION     Tangible product.
-// ═══ SIGNATURE   A pointer-tracking 3D face with selectable colorways + price.
+// ═══ SIGNATURE   A pointer-tracked 3D tilt with selectable colorways + price —
+//                 the tilt choreography is React Bits' TiltedCard (vendored),
+//                 the product story is ours.
 
-export type Colorway = { id: string; label: string; swatch: string }
+export type Colorway = { id: string; label: string; swatch: string; src: string; alt?: string }
 
 export type CommerceProduct3dProps = {
   eyebrow?: string
@@ -20,14 +22,10 @@ export type CommerceProduct3dProps = {
 }
 
 export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Interactive preview", price = 89, colorways = [
-  { id: "ink", label: "Ink", swatch: "hsl(var(--foreground))" },
-  { id: "cream", label: "Cream", swatch: "hsl(var(--muted))" },
-  { id: "amber", label: "Amber", swatch: "hsl(var(--site-accent))" },
+  { id: "ink", label: "Ink", swatch: "hsl(var(--foreground))", src: "/frames/frame_0002.webp", alt: "Ink colorway" },
+  { id: "cream", label: "Cream", swatch: "hsl(var(--muted))", src: "/frames/frame_0005.webp", alt: "Cream colorway" },
+  { id: "amber", label: "Amber", swatch: "hsl(var(--site-accent))", src: "/frames/frame_0009.webp", alt: "Amber colorway" },
 ], className }: CommerceProduct3dProps) {
-  const px = useMotionValue(0)
-  const py = useMotionValue(0)
-  const rx = useSpring(useTransform(py, [-0.5, 0.5], [-18, 18]), { stiffness: 120, damping: 16 })
-  const ry = useSpring(useTransform(px, [-0.5, 0.5], [18, -18]), { stiffness: 120, damping: 16 })
   const [active, setActive] = React.useState(colorways[0].id)
   const cw = colorways.find((c) => c.id === active) ?? colorways[0]
   return (
@@ -37,20 +35,20 @@ export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Interactive pr
       </InView>
       <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-center">
         <InView once variants={{ hidden: { opacity: 0, scale: 0.96 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-          <div
-            className="grid cursor-grab place-items-center [perspective:900px] active:cursor-grabbing"
-            onPointerMove={(e) => {
-              const r = e.currentTarget.getBoundingClientRect()
-              px.set((e.clientX - r.left) / r.width - 0.5)
-              py.set((e.clientY - r.top) / r.height - 0.5)
-            }}
-            onPointerLeave={() => { px.set(0); py.set(0) }}
-          >
-            <motion.div
-              className="h-64 w-64 rounded-xl shadow-2xl"
-              style={{ background: cw.swatch, rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
+          <div>
+            <TiltedCard
+              imageSrc={cw.src}
+              altText={`${cw.label} — ${String(title)}`}
+              captionText={cw.label}
+              containerHeight="288px"
+              imageHeight="288px"
+              imageWidth="288px"
+              scaleOnHover={1.06}
+              rotateAmplitude={16}
+              showMobileWarning={false}
+              showTooltip
             />
-            <p className="mt-4 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">drag to tilt</p>
+            <p className="mt-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">move your pointer to tilt</p>
           </div>
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
@@ -59,12 +57,12 @@ export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Interactive pr
               <h3 className="font-display text-2xl font-semibold">{title}</h3>
               <p className="font-display text-2xl font-semibold">€{price}</p>
             </div>
-            <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">A tactile product card — move your pointer to see it in three dimensions.</p>
+            <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">A tactile product card — spring-physics tilt that follows the pointer, settled by <span className="font-mono">TiltedCard</span> from React Bits.</p>
             <div className="mt-6">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Colorway</p>
               <div className="mt-2 flex gap-2">
                 {colorways.map((c) => (
-                  <button key={c.id} type="button" onClick={() => setActive(c.id)} aria-label={c.label} className={cn("h-9 w-9 rounded-full border ring-offset-2 transition-shadow", active === c.id && "ring-2 ring-foreground")} style={{ background: c.swatch }} />
+                  <button key={c.id} type="button" onClick={() => setActive(c.id)} aria-label={c.label} aria-pressed={active === c.id} className={cn("h-9 w-9 rounded-full border ring-offset-2 transition-shadow", active === c.id && "ring-2 ring-foreground")} style={{ background: c.swatch }} />
                 ))}
               </div>
             </div>

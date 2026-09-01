@@ -4,7 +4,6 @@ export { Team } from "./components/team/Team"
 export type { TeamProps, TeamMember } from "./components/team/Team"
 
 // Vendored upstream registry sources (provenance kept for direct use):
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"
 export { default as Team1 } from "./components/watermelon/team-1"
 export { default as Team2 } from "./components/watermelon/team-2"
 export { InView } from "./components/primitives/in-view"

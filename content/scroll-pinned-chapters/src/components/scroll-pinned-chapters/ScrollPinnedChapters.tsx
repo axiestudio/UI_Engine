@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Pinned chapters — a sticky stage where chapters crossfade as you scroll.
@@ -39,7 +39,7 @@ export function ScrollPinnedChapters({ eyebrow = "CHAPTERS", chapters = DEFAULT_
     <section ref={ref} className={cn("relative w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <motion.div style={{ scale }} className="mx-auto max-w-2xl px-5 text-center sm:px-8">
-          <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground", "justify-center")}>{eyebrow}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn(ink ? "text-background/55" : "text-muted-foreground", "justify-center"))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <div className="relative mt-6 min-h-[220px]">
             {chapters.map((c, i) => (
               <motion.div

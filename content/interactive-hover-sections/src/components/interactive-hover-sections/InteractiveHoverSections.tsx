@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion } from "motion/react"
-import { SectionShell } from "@/components/primitives/handcraft"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Hover-sections — hovering a title swaps the media on the right.
@@ -26,7 +26,10 @@ export function InteractiveHoverSections({ eyebrow = "INDEX", rows = DEFAULT_ROW
   const [active, setActive] = React.useState(0)
   const a = rows[active]
   return (
-    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div className={cn("flex flex-col gap-8", ink ? "text-background" : "")}>
         <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div className="space-y-2">
@@ -59,6 +62,8 @@ export function InteractiveHoverSections({ eyebrow = "INDEX", rows = DEFAULT_ROW
           </div>
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

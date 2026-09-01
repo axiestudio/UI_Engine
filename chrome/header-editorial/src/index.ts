@@ -5,4 +5,3 @@ export type { HeaderEditorialProps, HeaderLink } from "./components/header-edito
 
 export { Button, buttonVariants } from "./components/ui/button"
 export { Separator } from "./components/ui/separator"
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"

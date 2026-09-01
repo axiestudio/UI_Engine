@@ -36,7 +36,9 @@ interface UseChartInteractionParams {
   canInteract: boolean;
 }
 
-interface ChartInteractionResult {
+// Adapted: ChartInteractionResult exported so use-scatter-chart-interaction's
+// return type is nameable in declaration emit.
+export interface ChartInteractionResult {
   tooltipData: TooltipData | null;
   setTooltipData: React.Dispatch<React.SetStateAction<TooltipData | null>>;
   selection: ChartSelection | null;

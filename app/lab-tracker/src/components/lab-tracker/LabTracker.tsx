@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import { ChevronRight, FileCheck2, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { CronPreview } from "cron-preview"
@@ -94,6 +94,7 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
   const [selectedAnalyte, setSelectedAnalyte] = useState<string | null>(null)
 
   const stampTime = stampAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+  const reduceMotion = useReducedMotion()
 
   // instrument health drives the live trace — standby/down freezes the waveform
   const instrument = services.find((s) => s.name === "LC-MS/MS-01")
@@ -181,8 +182,8 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
           <div className="flex items-center gap-2.5">
             <motion.span
               aria-hidden
-              animate={benchIssues > 0 ? { opacity: [1, 0.35, 1] } : { opacity: 1 }}
-              transition={benchIssues > 0 ? { repeat: Infinity, duration: 1.6 } : undefined}
+              animate={!reduceMotion && benchIssues > 0 ? { opacity: [1, 0.35, 1] } : { opacity: 1 }}
+              transition={!reduceMotion && benchIssues > 0 ? { repeat: Infinity, duration: 1.6 } : undefined}
               className="size-2.5 rounded-full"
               style={{ background: benchTone }}
             />

@@ -18,4 +18,3 @@ export {
 export { ImageComparison, ImageComparisonImage, ImageComparisonSlider } from "./components/primitives/image-comparison"
 export { InView } from "./components/primitives/in-view"
 
-export { SectionShell, SectionHead, Grain, Dots, CornerTicks, Sheen, Accent, MonoLabel, Ordinal } from "./components/primitives/handcraft"

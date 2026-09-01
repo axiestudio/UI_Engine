@@ -2,7 +2,6 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Check, Copy, RotateCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, Ordinal } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
@@ -82,11 +81,12 @@ export function WordmarkLab({
   }
 
   return (
-    <SectionShell width={1120} rails rule="both" grain className={className}>
+    <section className="bg-background text-foreground">
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div className="grid gap-12 lg:grid-cols-[1fr_320px]">
         <div className="relative min-h-[280px]">
           <div className="mb-8 flex items-center justify-between gap-4">
-            <MonoLabel className="text-muted-foreground">WORDMARK · LIVE SPECIMEN</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">WORDMARK · LIVE SPECIMEN</span>
             {copied && (
               <Badge className="font-mono text-[9px] uppercase tracking-[0.14em]">CSS copied</Badge>
             )}
@@ -125,7 +125,7 @@ export function WordmarkLab({
         <Card>
           <CardContent className="flex flex-col gap-6">
             <div className="flex items-center justify-between">
-              <Ordinal n={1} total={3} />
+              <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground">{String(1).padStart(2, "0")}<span className="opacity-50"> / {String(3).padStart(2, "0")}</span></span>
               <Button type="button" variant="ghost" size="xs" onClick={reset} className="gap-1.5 font-mono text-[9px] font-black uppercase tracking-[0.16em] text-muted-foreground">
                 <RotateCcw className="size-3" aria-hidden /> Reset
               </Button>
@@ -186,7 +186,8 @@ export function WordmarkLab({
           </CardContent>
         </Card>
       </div>
-    </SectionShell>
+    </div>
+    </section>
   )
 }
 

@@ -1,7 +1,6 @@
 import * as React from "react"
-import { motion, useScroll, useSpring } from "motion/react"
+import { motion, useScroll, useSpring, useMotionValueEvent } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -19,14 +18,10 @@ export type NavProgressProps = {
 }
 
 export function NavProgress({ brand = "STUDIO", items = [{ id: "a", label: "Work" }, { id: "b", label: "Services" }, { id: "c", label: "Journal" }], cta = "Start", className }: NavProgressProps) {
-  const { scrollYProgress } = useScroll()
+  const { scrollY, scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
   const [scrolled, setScrolled] = React.useState(false)
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 16))
 
   return (
     <div className={cn("relative z-40", className)}>
@@ -46,7 +41,10 @@ export function NavProgress({ brand = "STUDIO", items = [{ id: "a", label: "Work
       </header>
       {/* spacer content so the progress bar has somewhere to travel */}
       <div className="space-y-6 px-5 py-16 sm:px-8">
-        <MonoLabel>SCROLL TO DRIVE THE BAR</MonoLabel>
+        <span className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
+          <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
+          SCROLL TO DRIVE THE BAR
+        </span>
         {Array.from({ length: 5 }).map((_, i) => (
           <p key={i} className="mx-auto max-w-2xl text-base font-medium leading-relaxed text-muted-foreground">
             The progress rail at the top tracks how far you've scrolled through the page — a quiet orienting signal as you read.
