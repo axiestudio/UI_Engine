@@ -3,17 +3,25 @@ import { motion, AnimatePresence } from "motion/react"
 import { CalendarClock, MessageSquareReply, Pause, Play, SendHorizonal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { CronPreview } from "cron-preview"
 import { MentionTextarea } from "mention-textarea"
 import { ActivityHeatmap } from "activity-heatmap"
 import { InboxSnoozeCenter, type InboxItem } from "inbox-snooze-center"
+import { BarChart, Bar, Grid, BarXAxis, BarYAxis, ChartTooltip } from "@/components/bklit"
 
 // COMPOSITE SCREEN · SOCIAL SCHEDULER
 // composed of: cron-preview (posting cadence + next runs), mention-textarea
 // (composer with @mentions), activity-heatmap (reach heat), inbox-snooze-center
-// (reply inbox) + purpose-built network segments and the week queue table.
+// (reply inbox) + a vendored Bklit stacked BarChart for per-network quota
+// (used + queued vs quota, hover tooltip) and the week queue table.
+//
+// Layout is domain-shaped, not a template: the composer is the primary act
+// (5/12), cadence is a dashed config surface (3/12), the quota chart earns a
+// display heading (4/12); the wide reach heat (8/12) sits against the narrow
+// reply rail (4/12); the dense week queue runs full width.
 
 export type QueuePost = {
   id: string
@@ -66,6 +74,10 @@ const NETWORK_META: Record<QueuePost["network"], { label: string; color: string 
   newsletter: { label: "Newsletter", color: "hsl(var(--ok))" },
 }
 
+// Quota series colors — published is calm, queued is pending-warm.
+const USED_COLOR = "var(--chart-2)"
+const QUEUED_COLOR = "var(--chart-4)"
+
 // 14 weeks of daily reach, mid-week lunch peaks
 const REACH: number[] = Array.from({ length: 98 }, (_, i) => {
   const day = i % 7
@@ -112,6 +124,23 @@ export function SocialScheduler({
     window.setTimeout(() => setFlash(null), 2400)
   }
 
+  // Drives the stacked quota chart — queueing a post bumps `queued` above and
+  // the amber segment grows on the next render.
+  const quotaData = React.useMemo(
+    () =>
+      segs.map((s) => ({
+        network: NETWORK_META[s.network].label,
+        used: s.used,
+        queued: s.queued,
+        quota: s.quota,
+      })),
+    [segs],
+  )
+  const totals = quotaData.reduce(
+    (acc, d) => ({ used: acc.used + d.used, queued: acc.queued + d.queued, quota: acc.quota + d.quota }),
+    { used: 0, queued: 0, quota: 0 },
+  )
+
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
@@ -123,186 +152,218 @@ export function SocialScheduler({
         </span>
       </header>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-auto p-4 lg:grid-cols-[300px_minmax(0,1fr)_290px]">
-        {/* cadence + segments */}
-        <aside className="flex flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center gap-2 border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              <CalendarClock className="size-3.5" /> Cadence
-            </header>
-            <div className="p-3">
-              <CronPreview expr={expr} onChange={setExpr} />
+      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-auto p-4 lg:grid-cols-12">
+        {/* composer — the primary act of the desk */}
+        <section className="flex flex-col overflow-hidden rounded-lg border bg-card lg:col-span-5">
+          <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
+            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Composer</span>
+            <AnimatePresence>
+              {flash && (
+                <motion.span initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="font-mono text-[10px] font-bold uppercase tracking-wide text-[hsl(var(--ok))]">
+                  {flash}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </header>
+          <div className="grid flex-1 content-start gap-2 p-3">
+            <MentionTextarea
+              value={text}
+              onChange={setText}
+              max={500}
+              placeholder="Draft the post… @mention teammates, /commands for slots"
+              mentions={[
+                { id: "m1", label: "marit", sub: "design lead" },
+                { id: "m2", label: "jonas", sub: "growth" },
+                { id: "m3", label: "norrsken.studio", sub: "brand account" },
+              ]}
+              commands={[
+                { cmd: "/peak", describe: "queue at next peak slot", run: () => setFlash("slot locked — Tue 09:30 peak") },
+                { cmd: "/thread", describe: "split into a thread draft", run: () => setFlash("thread draft created") },
+              ]}
+              onSubmit={queueIt}
+            />
+            <div className="flex items-end justify-between gap-3">
+              <p className="text-[11px] leading-relaxed text-muted-foreground">
+                Links get a per-channel UTM · images are cropped per segment on publish
+              </p>
+              <Button size="sm" onClick={queueIt} disabled={!text.trim()} className="shrink-0 gap-1.5 uppercase tracking-[0.08em]">
+                <SendHorizonal className="size-3.5" /> Queue post
+              </Button>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              Network segments
-              <span className="font-mono text-[10px] normal-case tracking-normal">week quota</span>
-            </header>
-            <ul className="grid gap-3 p-3">
-              {segs.map((s) => {
-                const meta = NETWORK_META[s.network]
-                const pct = Math.min(100, Math.round(((s.used + s.queued) / s.quota) * 100))
-                return (
-                  <li key={s.network}>
-                    <div className="mb-1 flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-[12px] font-bold">
-                        <span className="size-2 rounded-[2px]" style={{ background: meta.color }} aria-hidden />
-                        {meta.label}
-                      </span>
-                      <button
-                        onClick={() => setSeg(s.network, { paused: !s.paused })}
-                        className="flex h-6 items-center gap-1 rounded border bg-background px-1.5 text-[10px] font-bold uppercase text-muted-foreground hover:bg-muted"
-                        aria-label={s.paused ? `Resume ${meta.label}` : `Pause ${meta.label}`}
-                      >
-                        {s.paused ? <Play className="size-3" /> : <Pause className="size-3" />}
-                        {s.paused ? "resume" : "pause"}
-                      </button>
-                    </div>
-                    <div className="flex h-2 overflow-hidden rounded-full bg-muted" role="img" aria-label={`${s.used} published, ${s.queued} queued of ${s.quota}`}>
-                      <motion.span className="h-full" style={{ background: meta.color, opacity: 0.45 }} animate={{ width: `${(s.used / s.quota) * 100}%` }} />
-                      <motion.span className={cn("h-full", s.paused && "opacity-40")} style={{ background: meta.color }} animate={{ width: `${(s.queued / s.quota) * 100}%` }} />
-                    </div>
-                    <p className="mt-1 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
-                      {s.used} pub · {s.queued} queued / {s.quota} {s.paused && <span className="font-bold text-[hsl(var(--warn))]">· paused</span>}
-                    </p>
-                  </li>
-                )
-              })}
-            </ul>
-          </section>
-        </aside>
+        {/* cadence — dashed config surface, deliberately lighter than the cards */}
+        <section className="flex flex-col rounded-lg border border-dashed bg-background/60 p-3 lg:col-span-3">
+          <div className="mb-2 flex items-center gap-2">
+            <CalendarClock className="size-3.5 text-muted-foreground" aria-hidden />
+            <h3 className="font-display text-[13px] font-bold">Posting cadence</h3>
+          </div>
+          <div className="min-h-0 flex-1">
+            <CronPreview expr={expr} onChange={setExpr} />
+          </div>
+          <p className="mt-2 border-t pt-2 text-[11px] leading-relaxed text-muted-foreground">
+            Weekday mornings — queues drain before the 09:30 peak the heatmap shows.
+          </p>
+        </section>
 
-        {/* composer + queue + heat */}
-        <div className="flex min-w-0 flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Composer</span>
-              <AnimatePresence>
-                {flash && (
-                  <motion.span initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="font-mono text-[10px] font-bold uppercase tracking-wide text-[hsl(var(--ok))]">
-                    {flash}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </header>
-            <div className="grid gap-2 p-3">
-              <MentionTextarea
-                value={text}
-                onChange={setText}
-                max={500}
-                placeholder="Draft the post… @mention teammates, /commands for slots"
-                mentions={[
-                  { id: "m1", label: "marit", sub: "design lead" },
-                  { id: "m2", label: "jonas", sub: "growth" },
-                  { id: "m3", label: "norrsken.studio", sub: "brand account" },
+        {/* quota — real stacked chart with hover tooltip, no header strip */}
+        <section className="flex flex-col overflow-hidden rounded-lg border bg-card lg:col-span-4">
+          <div className="flex items-baseline justify-between px-3 pt-3">
+            <h3 className="font-display text-[13px] font-bold">Weekly quota</h3>
+            <span className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">used + queued / cap</span>
+          </div>
+          <div className="px-3 pt-1" role="img" aria-label={`Per-network quota: ${totals.used} published and ${totals.queued} queued of ${totals.quota} weekly slots`}>
+            <BarChart
+              data={quotaData}
+              xDataKey="network"
+              stacked
+              barGap={0.3}
+              aspectRatio="16 / 9"
+              animationDuration={900}
+              margin={{ top: 10, right: 6, bottom: 24, left: 28 }}
+            >
+              <Grid horizontal numTicksRows={4} vertical={false} />
+              <Bar dataKey="used" fill={USED_COLOR} lineCap={2} yAxisId="left" />
+              <Bar dataKey="queued" fill={QUEUED_COLOR} lineCap={2} yAxisId="left" />
+              <BarYAxis />
+              <BarXAxis maxLabels={8} />
+              <ChartTooltip
+                rows={(p) => [
+                  { color: USED_COLOR, label: "published", value: Number(p.used ?? 0) },
+                  { color: QUEUED_COLOR, label: "queued", value: Number(p.queued ?? 0) },
+                  {
+                    color: "hsl(var(--muted-foreground))",
+                    label: "quota left",
+                    value: Math.max(0, Number(p.quota ?? 0) - Number(p.used ?? 0) - Number(p.queued ?? 0)),
+                  },
                 ]}
-                commands={[
-                  { cmd: "/peak", describe: "queue at next peak slot", run: () => setFlash("slot locked — Tue 09:30 peak") },
-                  { cmd: "/thread", describe: "split into a thread draft", run: () => setFlash("thread draft created") },
-                ]}
-                onSubmit={queueIt}
               />
-              <div className="flex items-center justify-between">
-                <p className="text-[11px] text-muted-foreground">Links get a per-channel UTM · images are cropped per segment on publish</p>
-                <button onClick={queueIt} disabled={!text.trim()} className="flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--info))] px-3 text-[11px] font-bold uppercase tracking-[0.08em] text-white hover:bg-[hsl(var(--info)/0.9)] disabled:opacity-40">
-                  <SendHorizonal className="size-3.5" /> Queue post
-                </button>
-              </div>
-            </div>
-          </section>
+            </BarChart>
+          </div>
+          <div className="mt-auto flex flex-wrap items-center gap-1.5 border-t px-3 py-2">
+            {segs.map((s) => {
+              const meta = NETWORK_META[s.network]
+              return (
+                <Button
+                  key={s.network}
+                  variant={s.paused ? "secondary" : "outline"}
+                  size="xs"
+                  onClick={() => setSeg(s.network, { paused: !s.paused })}
+                  aria-label={s.paused ? `Resume ${meta.label}` : `Pause ${meta.label}`}
+                  className="gap-1.5 font-mono text-[10px] uppercase tracking-wide"
+                >
+                  <span className="size-1.5 rounded-[2px]" style={{ background: meta.color }} aria-hidden />
+                  {meta.label}
+                  {s.paused ? <Play className="size-3" aria-hidden /> : <Pause className="size-3" aria-hidden />}
+                </Button>
+              )
+            })}
+            <span className="ml-auto font-mono text-[10px] tabular-nums text-muted-foreground">
+              {totals.used} pub · {totals.queued} q / {totals.quota}
+            </span>
+          </div>
+        </section>
 
-          <section className="min-w-0 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Week queue</span>
-              <button
-                disabled={!picked.length}
-                onClick={() => {
-                  setQueue((qs) => qs.filter((q) => !picked.includes(q.id)))
-                  setPicked([])
-                }}
-                className="text-[11px] font-bold text-muted-foreground hover:text-foreground disabled:opacity-40"
-              >
-                pull {picked.length || ""} from queue
-              </button>
-            </header>
-            <Table>
-              <TableHeader>
-                <TableRow className="hover:bg-transparent">
-                  <TableHead className="h-8 w-9 px-3" />
-                  <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">When</TableHead>
-                  <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Draft</TableHead>
-                  <TableHead className="h-8 px-3 text-right text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">State</TableHead>
+        {/* reach heat — wide analysis band */}
+        <section className="overflow-hidden rounded-lg border bg-card lg:col-span-8">
+          <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
+            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Reach heat · past 14 weeks</span>
+            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">mid-week lunches win</MonoLabel>
+          </header>
+          <div className="p-3">
+            <ActivityHeatmap
+              cells={REACH.map((c) => ({ count: c }))}
+              weeks={14}
+              levelOf={(c) => (c === 0 ? 0 : c < 60 ? 1 : c < 130 ? 2 : c < 210 ? 3 : 4)}
+              showTooltip
+              showLegend={false}
+              weekStartDay={1}
+            />
+          </div>
+        </section>
+
+        {/* reply inbox — narrow rail */}
+        <section className="flex flex-col overflow-hidden rounded-lg border bg-card lg:col-span-4">
+          <header className="flex h-9 items-center gap-2 border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+            <MessageSquareReply className="size-3.5" /> Reply inbox
+            {handled > 0 && <span className="ml-auto font-mono text-[10px] normal-case tracking-normal">{handled} handled</span>}
+          </header>
+          <div className="p-3">
+            <InboxSnoozeCenter
+              items={inbox}
+              completed={handled}
+              onComplete={(id) => {
+                setInbox((xs) => xs.filter((x) => x.id !== id))
+                setHandled((h) => h + 1)
+              }}
+              onSnooze={(id, span) => setInbox((xs) => xs.map((x) => (x.id === id ? { ...x, at: `snoozed ${span}` } : x)))}
+            />
+          </div>
+        </section>
+
+        {/* week queue — dense full-width ledger */}
+        <section className="overflow-hidden rounded-lg border bg-card lg:col-span-12">
+          <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
+            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Week queue</span>
+            <Button
+              variant="ghost"
+              size="xs"
+              disabled={!picked.length}
+              onClick={() => {
+                setQueue((qs) => qs.filter((q) => !picked.includes(q.id)))
+                setPicked([])
+              }}
+              className="text-[11px] uppercase tracking-wide"
+            >
+              pull {picked.length || ""} from queue
+            </Button>
+          </header>
+          <Table>
+            <TableHeader>
+              <TableRow className="hover:bg-transparent">
+                <TableHead className="h-8 w-9 px-3" />
+                <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">When</TableHead>
+                <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Draft</TableHead>
+                <TableHead className="h-8 px-3 text-right text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">State</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {queue.map((q) => (
+                <TableRow key={q.id} className={cn(q.state !== "queued" && "opacity-50")}>
+                  <TableCell className="px-3 py-1">
+                    <Checkbox
+                      checked={picked.includes(q.id)}
+                      disabled={q.state !== "queued"}
+                      onCheckedChange={(c) => setPicked((p) => (c ? [...p, q.id] : p.filter((x) => x !== q.id)))}
+                      aria-label={`Select ${q.preview}`}
+                    />
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap px-2 py-1.5 font-mono text-[12px] tabular-nums">{q.when}</TableCell>
+                  <TableCell className="px-2 py-1.5 text-[12px]">
+                    <span className="mr-2 inline-flex items-center gap-1 font-mono text-[10px] uppercase text-muted-foreground">
+                      <span className="size-1.5 rounded-full" style={{ background: NETWORK_META[q.network].color }} aria-hidden />
+                      {q.network}
+                    </span>
+                    {q.preview}
+                  </TableCell>
+                  <TableCell className="px-3 py-1.5 text-right">
+                    <span
+                      className={cn(
+                        "rounded border px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide",
+                        q.state === "queued" && "border-[hsl(var(--info)/0.4)] text-[hsl(var(--info))]",
+                        q.state === "published" && "border-[hsl(var(--ok)/0.4)] text-[hsl(var(--ok))]",
+                        q.state === "held" && "border-[hsl(var(--warn)/0.5)] text-[hsl(var(--warn))]",
+                      )}
+                    >
+                      {q.state}
+                    </span>
+                  </TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {queue.map((q) => (
-                  <TableRow key={q.id} className={cn(q.state !== "queued" && "opacity-50")}>
-                    <TableCell className="px-3 py-1">
-                      <Checkbox
-                        checked={picked.includes(q.id)}
-                        disabled={q.state !== "queued"}
-                        onCheckedChange={(c) => setPicked((p) => (c ? [...p, q.id] : p.filter((x) => x !== q.id)))}
-                        aria-label={`Select ${q.preview}`}
-                      />
-                    </TableCell>
-                    <TableCell className="whitespace-nowrap px-2 py-1.5 font-mono text-[12px] tabular-nums">{q.when}</TableCell>
-                    <TableCell className="px-2 py-1.5 text-[12px]">
-                      <span className="mr-2 inline-flex items-center gap-1 font-mono text-[10px] uppercase text-muted-foreground">
-                        <span className="size-1.5 rounded-full" style={{ background: NETWORK_META[q.network].color }} aria-hidden />
-                        {q.network}
-                      </span>
-                      {q.preview}
-                    </TableCell>
-                    <TableCell className="px-3 py-1.5 text-right">
-                      <span
-                        className={cn(
-                          "rounded border px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide",
-                          q.state === "queued" && "border-[hsl(var(--info)/0.4)] text-[hsl(var(--info))]",
-                          q.state === "published" && "border-[hsl(var(--ok)/0.4)] text-[hsl(var(--ok))]",
-                          q.state === "held" && "border-[hsl(var(--warn)/0.5)] text-[hsl(var(--warn))]",
-                        )}
-                      >
-                        {q.state}
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </section>
-
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Reach heat · past 14 weeks</span>
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">mid-week lunches win</MonoLabel>
-            </header>
-            <div className="p-3">
-              <ActivityHeatmap cells={REACH.map((c) => ({ count: c }))} weeks={14} levelOf={(c) => (c === 0 ? 0 : c < 60 ? 1 : c < 130 ? 2 : c < 210 ? 3 : 4)} />
-            </div>
-          </section>
-        </div>
-
-        {/* reply inbox */}
-        <aside className="flex flex-col gap-4">
-          <section className="flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center gap-2 border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              <MessageSquareReply className="size-3.5" /> Reply inbox
-            </header>
-            <div className="p-3">
-              <InboxSnoozeCenter
-                items={inbox}
-                completed={handled}
-                onComplete={(id) => {
-                  setInbox((xs) => xs.filter((x) => x.id !== id))
-                  setHandled((h) => h + 1)
-                }}
-                onSnooze={(id, span) => setInbox((xs) => xs.map((x) => (x.id === id ? { ...x, at: `snoozed ${span}` } : x)))}
-              />
-            </div>
-          </section>
-        </aside>
+              ))}
+            </TableBody>
+          </Table>
+        </section>
       </div>
     </div>
   )

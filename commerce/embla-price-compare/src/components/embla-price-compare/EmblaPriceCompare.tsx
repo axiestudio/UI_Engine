@@ -1,4 +1,5 @@
 import * as React from "react"
+// embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "motion/react"
 import { Check } from "lucide-react"

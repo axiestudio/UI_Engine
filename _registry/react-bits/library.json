@@ -1,0 +1,44 @@
+{
+  "name": "react-bits",
+  "title": "React Bits",
+  "homepage": "https://reactbits.dev",
+  "kind": "registry",
+  "tier": "website-design",
+  "responsibility": "High-visual-identity website components — animated text, backgrounds, effects, landing-page components. One of the strongest sources for the actual visual design of a website.",
+  "snapshotDate": "2026-09-01",
+  "upstream": {
+    "index": "https://reactbits.dev/r/registry.json",
+    "item": "https://reactbits.dev/r/<name>.json",
+    "notice": "Full index (684 items) mirrored; snapshot carries ONLY the TS-TW variant (TypeScript + Tailwind, 171 items) — the variant our workspace builds on. Refresh any item: curl -sL https://reactbits.dev/r/<name>-TS-TW.json -o react-bits/r/<name>-TS-TW.json"
+  },
+  "itemShape": "shadcn registry-item: { name, title, description, type, dependencies[], files[{ path, content }] }. Item names carry the variant suffix — always <Component>-TS-TW.",
+  "packages": {
+    "gsap": "^3.13.0",
+    "@gsap/react": "^2.1.2",
+    "motion": "^12.23.12",
+    "three": "^0.180.0",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/drei": "^10.7.4",
+    "@react-three/postprocessing": "^3.0.4",
+    "ogl": "^1.0.11",
+    "lenis": "^1.3.26",
+    "@use-gesture/react": "^10.3.1"
+  },
+  "packagesNotice": "Per-item deps are heavier here than other registries (ogl 47×, gsap 36×, three 23×). Principle §3: check the cost before pulling a WebGL-backed component for a subtle effect. Exotic one-offs (face-api.js, matter-js, vgpu, react-router-dom) stay unpinned — resolve ad hoc if a specific item needs them.",
+  "resolution": {
+    "react-bits items": "local snapshot: react-bits/r/<name>-TS-TW.json",
+    "shadcn-kit deps": "resolve from watermelon/r/<name>.json"
+  },
+  "reachFor": [
+    "Hero sections, animated text, animated backgrounds",
+    "Hover effects, visual effects, decorative components",
+    "Landing-page sections where the visual IS the point"
+  ],
+  "avoid": [
+    "Standard UI (buttons/cards/forms) — foundation tier's job",
+    "Loading three.js-backed components for a subtle effect — check `packages` cost first (principle §3: no large dependency for a few nice components)"
+  ],
+  "importance": "HIGH",
+  "inRepo": "new snapshot 2026-09-01; consumes gsap/r3f engine contracts already in this registry",
+  "docs": { "components": "https://reactbits.dev/text-animations/split-text" }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "bklit-ui",
+  "title": "Bklit UI",
+  "homepage": "https://bklit.com",
+  "kind": "registry",
+  "tier": "visualization",
+  "responsibility": "Design-engineered chart components — polished, animated data visualization without building chart UI from scratch.",
+  "snapshotDate": "2026-09-01",
+  "upstream": {
+    "index": "https://ui.bklit.com/r/registry.json",
+    "item": "https://ui.bklit.com/r/<name>.json",
+    "namespace": "@bklit",
+    "shadcnTrust": true
+  },
+  "upstreamNotice": "Full snapshot: registry.json (56 items) + r/<item>.json with complete file contents. Refresh: curl -sL https://ui.bklit.com/r/<name>.json -o r/<name>.json",
+  "itemShape": "shadcn registry-item: { name, type, title, description, dependencies[], registryDependencies[], files[{ path, target, content }] }. files[].content is raw TSX; targets land under src/.",
+  "resolution": {
+    "@bklit/*": "local snapshot: bklit/r/<name>.json (vendored recursively by create-preset.py --bk)",
+    "plain names (card, badge, …)": "shadcn base kit — resolve from watermelon/r/<name>.json"
+  },
+  "packages": {
+    "@visx/shape": "^4.0.1-alpha.0",
+    "@visx/scale": "^4.0.1-alpha.0",
+    "@visx/event": "^4.0.1-alpha.0",
+    "@visx/responsive": "^4.0.1-alpha.0",
+    "@visx/grid": "^4.0.1-alpha.0",
+    "@visx/group": "^4.0.1-alpha.0",
+    "@visx/curve": "^4.0.1-alpha.0",
+    "@visx/gradient": "^4.0.1-alpha.0",
+    "@visx/pattern": "^4.0.1-alpha.0",
+    "@visx/geo": "^4.0.1-alpha.0",
+    "@visx/heatmap": "^4.0.1-alpha.0",
+    "@visx/sankey": "^4.0.1-alpha.0",
+    "@visx/zoom": "^4.0.1-alpha.0",
+    "d3-array": "^3.2.4",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
+    "d3-geo": "^3.1.1",
+    "d3-sankey": "^0.12.3",
+    "topojson-client": "^3.1.0",
+    "@number-flow/react": "^0.5.8",
+    "react-use-measure": "^2.1.7",
+    "@base-ui/react": "^1.0.0-beta.2"
+  },
+  "reachFor": [
+    "Landing-page-grade charts where visual polish matters (area, line, bar, radial, funnel, heatmap)",
+    "Stat cards and insight blocks that embed live charts",
+    "Animated, token-styled visualization that matches the shadcn design language"
+  ],
+  "avoid": [
+    "Huge/high-frequency datasets — Apache ECharts territory",
+    "Plain utility charting with zero design needs — Recharts is lighter",
+    "Pretending it is a dependency: it is source you vendor and own (shadcn model)"
+  ],
+  "inRepo": "new snapshot 2026-09-01; first consumers expected under insight/ and app/ (see kpi-tile-live for the Recharts alternative)",
+  "docs": {
+    "components": "https://bklit.com/docs/components",
+    "installation": "https://bklit.com/docs/installation"
+  }
+}

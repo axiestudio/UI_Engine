@@ -1,8 +1,10 @@
 import * as React from "react"
+// embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+
 
 // ═══ JOB         Pick a booking time the way your thumb expects.
 // ═══ EMOTION     Muscle memory — the iPhone wheel, on the web.

@@ -18,7 +18,13 @@ export type CommerceCartDrawerProps = {
   className?: string
 }
 
-export function CommerceCartDrawer({ eyebrow = "CART", title = "Your bag.", lines: initialLines, className }: CommerceCartDrawerProps) {
+const DEFAULT_LINES: CartLine[] = [
+  { id: "line-1", name: "Linen apron", price: 640, qty: 1 },
+  { id: "line-2", name: "Birch cutting board", price: 890, qty: 1 },
+  { id: "line-3", name: "Stoneware mug", price: 240, qty: 2 },
+]
+
+export function CommerceCartDrawer({ eyebrow = "CART", title = "Your bag.", lines: initialLines = DEFAULT_LINES, className }: CommerceCartDrawerProps) {
   const [open, setOpen] = React.useState(false)
   const [lines, setLines] = React.useState(initialLines)
   const total = lines.reduce((t, l) => t + l.price * l.qty, 0)

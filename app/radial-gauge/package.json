@@ -1,7 +1,7 @@
 {
   "name": "radial-gauge",
   "version": "0.1.0",
-  "description": "Instrument gauge \u2014 threshold arcs, spring needle, digital hold-under",
+  "description": "Notch gauge — Bklit arc/linear notch tracks, zone-colored fills, count-up center readout",
   "type": "module",
   "main": "dist/radial-gauge.js",
   "module": "dist/radial-gauge.js",
@@ -25,6 +25,14 @@
   ],
   "presetSources": {
     "original-design": true,
+    "bklit-ui": [
+      "src/components/bklit/gauge.tsx",
+      "src/components/bklit/notch-gauge-shared.ts",
+      "src/components/bklit/chart-stat-flow.tsx",
+      "src/components/bklit/chart-center-typography.ts",
+      "src/components/bklit/gauge-label-layout.tsx",
+      "src/components/primitives/sliding-number.tsx"
+    ],
     "vendored": "handcraft kit (in-repo)",
     "motion": "motion/react"
   },
@@ -38,6 +46,7 @@
     "motion": "^13.1.1",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
+    "react-use-measure": "^2.0.4",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

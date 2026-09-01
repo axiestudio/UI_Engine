@@ -1,0 +1,27 @@
+{
+  "name": "react-three-fiber",
+  "title": "React Three Fiber",
+  "homepage": "https://r3f.docs.pmnd.rs",
+  "kind": "engine",
+  "tier": "3d",
+  "responsibility": "Three.js as React components — declarative scenes, hooks, ecosystem (drei). The ONLY sanctioned way to use 3D inside React presets.",
+  "snapshotDate": "2026-09-01",
+  "packages": {
+    "@react-three/fiber": "^9.7.0",
+    "three": "^0.185.1",
+    "@types/three": "^0.185.0"
+  },
+  "externals": ["@react-three/fiber", "three", "@react-three/drei"],
+  "reachFor": [
+    "3D scenes inside React website sections",
+    "Interactive 3D objects and hero experiences",
+    "WebGL experiences that would otherwise fight React's render model"
+  ],
+  "avoid": [
+    "3D for its own sake — principle §9: use it when it creates a MEANINGFUL visual experience (product visualization, storytelling), not because it is possible",
+    "Full-page game-like scenes in a landing-page workspace"
+  ],
+  "reactWiring": "<Canvas> as the root; drei for controls/loaders; keep dpr clamped; frameloop='demand' for static scenes",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://r3f.docs.pmnd.rs/getting-started/introduction" }
+}

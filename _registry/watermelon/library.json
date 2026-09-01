@@ -1,0 +1,28 @@
+{
+  "name": "watermelon-ui",
+  "title": "Watermelon UI",
+  "homepage": "https://watermelontools.com",
+  "kind": "registry",
+  "tier": "foundation",
+  "responsibility": "shadcn-compatible registry — the base UI kit (button, card, dialog, …) plus website-section blocks (hero, footer, pricing, bento, …). Expands the shadcn foundation.",
+  "snapshotDate": "2026-08-30",
+  "upstream": {
+    "index": "https://registry.watermelon.sh/r/registry.json",
+    "item": "https://registry.watermelon.sh/r/<name>.json",
+    "notice": "Full index (1073 items) in registry.json; individually fetched item snapshots in r/. Refresh any item: curl -s https://registry.watermelon.sh/r/<name>.json -o r/<name>.json"
+  },
+  "itemShape": "shadcn registry-item: { name, type, dependencies[], registryDependencies[], files[{ path, content }] }. files[].content is raw upstream source; extract with python3 -c \"import json;print(json.load(open('<item>.json'))['files'][0]['content'])\"",
+  "resolution": {
+    "@/components/ui/* and kit names (button, card, …)": "shadcn base kit items — vendored to src/components/ui/",
+    "everything else": "website-section blocks — vendored to src/components/watermelon/"
+  },
+  "reachFor": [
+    "The shadcn base kit for all standard UI (foundation tier)",
+    "Ready website sections when a block fits the design direction"
+  ],
+  "avoid": [
+    "Letting section blocks drive the design (principle 13: design first, library second)"
+  ],
+  "inRepo": "consumed by create-preset.py --wm; vendored files keep provenance headers",
+  "docs": {}
+}

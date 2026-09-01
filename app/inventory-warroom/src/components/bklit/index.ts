@@ -1,0 +1,11 @@
+// Barrel for the vendored Bklit UI chart primitives (MIT) — see per-file headers.
+export { BarChart } from "./bar-chart"
+export { Bar } from "./bar"
+export { Grid } from "./grid"
+export { BarXAxis } from "./bar-x-axis"
+export { BarYAxis } from "./bar-y-axis"
+export { ScatterChart, Scatter } from "./scatter-chart"
+export { XAxis } from "./x-axis"
+export { YAxis } from "./y-axis"
+export { ChartTooltip } from "./tooltip/chart-tooltip"
+export { TooltipContent, type TooltipRow } from "./tooltip/tooltip-content"

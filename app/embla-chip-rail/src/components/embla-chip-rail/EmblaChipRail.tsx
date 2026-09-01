@@ -1,8 +1,10 @@
 import * as React from "react"
+// embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+
 
 // ═══ JOB         Long filter lists that never wrap into soup.
 // ═══ EMOTION     A rail of tags you can flick through like a card index.

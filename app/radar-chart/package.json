@@ -1,0 +1,70 @@
+{
+  "name": "radar-chart",
+  "version": "0.1.0",
+  "description": "Radar/spider chart for multi-axis diagnostics — card-framed with kicker header, series legend hover lift",
+  "type": "module",
+  "main": "dist/radar-chart.js",
+  "module": "dist/radar-chart.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/radar-chart.es.js",
+      "require": "./dist/radar-chart.cjs.js"
+    },
+    "./styles.css": "./dist/radar-chart.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "presetSources": {
+    "bklit-ui": [
+      "packages/ui/src/charts/radar-chart.tsx",
+      "packages/ui/src/charts/radar-area.tsx",
+      "packages/ui/src/charts/radar-axis.tsx",
+      "packages/ui/src/charts/radar-context.tsx",
+      "packages/ui/src/charts/radar-grid.tsx",
+      "packages/ui/src/charts/radar-labels.tsx",
+      "packages/ui/src/charts/animation.ts",
+      "packages/ui/src/charts/motion-utils.ts",
+      "packages/ui/src/charts/use-enter-complete.ts",
+      "packages/ui/src/charts/use-mount-progress.ts",
+      "packages/ui/src/components/shimmering-text.tsx"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@visx/group": "^4.0.1-alpha.0",
+    "@visx/responsive": "^4.0.1-alpha.0",
+    "@visx/scale": "^4.0.1-alpha.0",
+    "@visx/shape": "^4.0.1-alpha.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "motion": "^13.1.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "license": "MIT"
+}

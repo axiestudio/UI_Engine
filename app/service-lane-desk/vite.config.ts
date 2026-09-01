@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "service-lane-desk.es.js" : "service-lane-desk.cjs.js"),
     },
-    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "radix-ui", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

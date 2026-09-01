@@ -1,0 +1,50 @@
+{
+  "name": "animejs",
+  "title": "Anime.js v4",
+  "homepage": "https://animejs.com",
+  "kind": "engine",
+  "tier": "animation",
+  "responsibility": "Lightweight, ergonomic animation engine — timers/animations/timelines, Draggable, ScrollObserver, SVG drawing/morphing, text splitting, stagger utilities. The middle ground: more reach than Motion Primitives, less ceremony than GSAP.",
+  "snapshotDate": "2026-09-01",
+  "packages": {
+    "animejs": "^4.5.0"
+  },
+  "externals": ["animejs"],
+  "moduleMap": {
+    "animejs": "everything (animate, createTimeline, createTimer, createDraggable, createScope, onScroll, stagger, utils, svg, text)",
+    "animejs/timer": "Timer — delay/duration/loop/loopDelay/alternate/reversed/autoplay/frameRate/playbackRate + callbacks",
+    "animejs/animation": "animate() — targets, tween values, keyframes, function-based params",
+    "animejs/timeline": "createTimeline() — sequenced animations, labels, position params, defaults",
+    "animejs/draggable": "createDraggable() — axes/snap/modifier, release spring physics, callbacks",
+    "animejs/layout": "Layout transitions — record/animate/update with enterFrom/leaveTo/swapAt, layout ids",
+    "animejs/scope": "createScope() — root-scoped animations, React-safe revert, media queries",
+    "animejs/events": "onScroll() ScrollObserver — thresholds, sync modes, enter/leave/update callbacks",
+    "animejs/svg": "morphTo(), createDrawable(), createMotionPath()",
+    "animejs/text": "splitText() + scrambleText (v4.5) — chars/words/lines, accessible splitting",
+    "animejs/utils": "stagger(), $, set, random, snap, clamp, wrap, mapRange, lerp, damp, shuffle…",
+    "animejs/easings": "spring, cubic-bezier, steps, irregular, linear + built-in eases",
+    "animejs/waapi": "WAAPI-backed animate with anime defaults (hardware-accelerated)",
+    "animejs/engine": "engine params — timeUnit, speed, fps, precision, pauseOnDocumentHidden",
+    "animejs/adapters": "Three.js adapter — object properties, transforms, materials/uniforms"
+  },
+  "reachFor": [
+    "Staggered entrances and text reveals with minimal code (animate + stagger)",
+    "SVG path drawing/morphing and motion paths",
+    "Draggable with spring release physics (no plugin matrix like GSAP)",
+    "Scrub-less scroll interactions via ScrollObserver (onScroll)",
+    "When GSAP feels too heavy but Motion Primitives doesn't reach far enough"
+  ],
+  "avoid": [
+    "Scrubbed long-form scroll storytelling with pinning — GSAP ScrollTrigger is the deeper tool",
+    "Simple in-view entrances — Motion Primitives stays first (principle: simple stays simple)",
+    "Physics-based React state transitions — React Spring fits better"
+  ],
+  "recipes": [
+    { "file": "recipes/use-anime-scope.ts", "dest": "hooks/use-anime-scope.ts", "label": "createScope React wiring: root-scoped, reduced-motion-aware, revert-safe" }
+  ],
+  "inRepo": "no consumers yet — canonical wiring provided; first-class npm peer installed at root",
+  "docs": {
+    "docs": "https://animejs.com/documentation",
+    "v4Guide": "https://animejs.com/documentation/getting-started/using-with-react"
+  }
+}

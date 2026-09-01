@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Dock, DockIcon, DockLabel } from "@/components/primitives/dock"
+import { Dock, DockIcon, DockItem, DockLabel } from "@/components/primitives/dock"
 import { Home, Compass, Bookmark, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -12,7 +12,7 @@ export type NavContextDockProps = {
   className?: string
 }
 
-export function NavContextDock({ brand = "STUDIO", className }: NavContextDockProps) {
+export function NavContextDock({ brand = "Quiet Times Studio", className }: NavContextDockProps) {
   const items = [
     { icon: Home, label: "Home" },
     { icon: Compass, label: "Explore" },
@@ -32,12 +32,13 @@ export function NavContextDock({ brand = "STUDIO", className }: NavContextDockPr
         <div className="pointer-events-auto">
           <Dock className="items-end gap-3 rounded-2xl border bg-card/90 p-3 shadow-2xl backdrop-blur">
             {items.map((it) => (
-              <button key={it.label} type="button" className="group flex flex-col items-center" aria-label={it.label}>
+              <DockItem key={it.label} className="group flex flex-col items-center">
                 <DockIcon className="flex h-11 w-11 items-center justify-center rounded-xl border bg-background transition-colors group-hover:bg-accent">
                   <it.icon className="h-5 w-5" />
+                  <span className="sr-only">{it.label}</span>
                 </DockIcon>
                 <DockLabel className="mt-1 font-mono text-[9px] font-bold uppercase tracking-widest text-muted-foreground">{it.label}</DockLabel>
-              </button>
+              </DockItem>
             ))}
           </Dock>
         </div>

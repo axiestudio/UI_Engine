@@ -1,0 +1,24 @@
+{
+  "name": "react-spring",
+  "title": "React Spring",
+  "homepage": "https://react-spring.dev",
+  "kind": "engine",
+  "tier": "animation",
+  "responsibility": "Physics-based animation for React — springs driven by React state, interrupts, gestures. Interactive transitions where the animation must FOLLOW state, not run alongside it.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "@react-spring/web": "^10.1.2" },
+  "externals": ["@react-spring/web", "@react-spring/core", "@react-spring/shared", "@react-spring/animated"],
+  "reachFor": [
+    "Interactive components whose motion must track live React state (drag, toggles, sliders)",
+    "Interruptible transitions (user can re-trigger mid-flight)",
+    "Natural spring feel where duration-based easing looks mechanical"
+  ],
+  "avoid": [
+    "Sequenced/entrance choreography — Motion Primitives, anime.js or GSAP timelines are better",
+    "Scroll-driven scenes — ScrollTrigger / onScroll territory",
+    "One-off hover effects — CSS/motion transitions are lighter"
+  ],
+  "reactWiring": "useSpring/useTrail/useTransition + animated.div; springs derive from state changes, cleanup automatic",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://www.react-spring.dev/docs" }
+}

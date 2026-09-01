@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "finance-desk.es.js" : "finance-desk.cjs.js"),
     },
-    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-use-measure", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["@radix-ui/react-slot", "@visx/event", "@visx/grid", "@visx/responsive", "@visx/scale", "class-variance-authority", "clsx", "d3-array", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-use-measure", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

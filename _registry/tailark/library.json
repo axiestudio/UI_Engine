@@ -1,0 +1,24 @@
+{
+  "name": "tailark",
+  "title": "Tailark",
+  "homepage": "https://tailark.com",
+  "kind": "inspiration",
+  "tier": "website-design",
+  "responsibility": "Hero/landing-page design inspiration — NOT a component source. Freemium with limited availability; treat strictly as a reference for composition and visual direction.",
+  "snapshotDate": "2026-09-01",
+  "upstream": {
+    "notice": "Intentionally NOT snapshotted (principle §6: not every resource becomes a dependency). Browse https://tailark.com for hero/marketing/SaaS layout direction."
+  },
+  "reachFor": [
+    "Hero section composition ideas",
+    "Landing-page layout and visual direction",
+    "Feature/pricing/CTA section arrangement patterns"
+  ],
+  "avoid": [
+    "Copying sections wholesale — freemium licensing; extract the compositional idea, rebuild with our tiers",
+    "Referencing Tailark in presetSources — it never appears in package metadata"
+  ],
+  "importance": "inspiration-only",
+  "inRepo": "no snapshot by design",
+  "docs": { "browse": "https://tailark.com" }
+}

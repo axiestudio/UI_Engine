@@ -33,7 +33,11 @@
     "nav-context-dock",
     "nav-mega-cascade",
     "nav-scroll-collapse",
-    "nav-translucent"
+    "nav-translucent",
+    "floating-nav-preview",
+    "gsap-underline-nav",
+    "feedback-widget",
+    "story-progress-bar"
   ],
   "hero": [
     "hero",
@@ -47,7 +51,6 @@
     "zigzag",
     "display-anti-design",
     "lime-sport",
-    "curtain-call",
     "curtain-iris",
     "curtain-shutter",
     "curtain-clip-path",
@@ -108,7 +111,10 @@
     "hero-wordmark-refraction",
     "type-barcode",
     "type-outline-reveal",
-    "type-scramble-tagline"
+    "type-scramble-tagline",
+    "embla-masthead-hero",
+    "gsap-parallax-strata",
+    "gsap-scene-tint"
   ],
   "content": [
     "features",
@@ -259,7 +265,16 @@
     "gsap-assembly-line",
     "gsap-kinetic-marquee",
     "gsap-flip-grid",
-    "gsap-split-band"
+    "gsap-split-band",
+    "embla-logo-wall",
+    "embla-gallery-thumbs",
+    "floating-avatar-cards",
+    "gsap-scroll-swap",
+    "gsap-counter-strip",
+    "gsap-scroll-draw",
+    "video-chapter-rail",
+    "spec-sheet",
+    "team-roster"
   ],
   "commerce": [
     "cta",
@@ -303,7 +318,15 @@
     "stack-pricing",
     "stack-receipt",
     "stack-fund",
-    "embla-lookbook"
+    "embla-lookbook",
+    "embla-rates-rail",
+    "embla-week-specials",
+    "embla-price-compare",
+    "review-wall",
+    "pricing-addons",
+    "wishlist-drawer",
+    "compare-tray",
+    "plan-builder"
   ],
   "engage": [
     "contact",
@@ -335,7 +358,12 @@
     "misc-loading-sequence",
     "misc-soundbar-cta",
     "stack-listing",
-    "embla-time-picker"
+    "embla-time-picker",
+    "embla-quick-reply",
+    "floating-slot-popover",
+    "floating-form-help",
+    "availability-month",
+    "rsvp-card"
   ],
   "dnd": [
     "dnd-sortable-list",
@@ -439,6 +467,7 @@
     "pricing-lab",
     "print-desk",
     "product-tour-spotlight",
+    "radar-chart",
     "radial-gauge",
     "release-captain",
     "research-bench",
@@ -466,7 +495,18 @@
     "tree-grid-table",
     "undo-history-slider",
     "upload-queue",
-    "warehouse-scan"
+    "warehouse-scan",
+    "waveform",
+    "embla-steps-wizard",
+    "floating-row-actions",
+    "floating-notif-dock",
+    "floating-status-pills",
+    "gsap-drag-deck",
+    "gsap-morph-tabs",
+    "invoice-builder",
+    "split-check",
+    "habit-strip",
+    "quick-actions-fab"
   ],
   "insight": [
     "activity-constellation",
@@ -482,7 +522,12 @@
     "report-unfold",
     "sparkline-ledger",
     "stat-quote-fusion",
-    "trend-scrub"
+    "trend-scrub",
+    "embla-day-timeline",
+    "floating-chart-legend",
+    "gsap-scroll-ring",
+    "status-page",
+    "metrics-headline"
   ],
   "branding": [
     "archive-stamp",
@@ -507,7 +552,9 @@
     "typo-ramp-brand",
     "value-orbit",
     "voice-magnet",
-    "wordmark-lab"
+    "wordmark-lab",
+    "embla-swatch-picker",
+    "floating-shade-picker"
   ],
   "learn": [
     "badge-forge",
@@ -523,6 +570,10 @@
     "quiz-flip-deck",
     "skill-tree-rail",
     "streak-strip",
-    "stack-course"
+    "stack-course",
+    "floating-glossary",
+    "gsap-flash-cards",
+    "doc-outline-reader",
+    "quiz-runner"
   ]
 }

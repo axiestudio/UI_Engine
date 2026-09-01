@@ -81,7 +81,7 @@ export function Careers({
                   <a
                     href={job.href}
                     className={cn(
-                      "group flex items-center gap-5 border-b px-2 py-5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-1.5 sm:gap-7 sm:px-4",
+                      "group flex items-center gap-5 border-b px-2 py-5 transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:translate-x-1.5 sm:gap-7 sm:px-4",
                       ink ? "border-background/10 hover:bg-background/5" : "border-border hover:bg-secondary/60",
                     )}
                   >

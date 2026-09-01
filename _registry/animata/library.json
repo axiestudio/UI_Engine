@@ -1,0 +1,31 @@
+{
+  "name": "animata",
+  "title": "Animata",
+  "homepage": "https://animata.design",
+  "kind": "source-snapshot",
+  "tier": "website-design",
+  "responsibility": "Animated website components — cards, hover effects, background/text effects, interactive sections. Strong decorative-animation source, especially strong on playful micro-interactions.",
+  "snapshotDate": "2026-09-01",
+  "upstream": {
+    "github": "https://github.com/codse/animata",
+    "notice": "MIT (c) codse. Snapshot = the repo's `animata/` component directory (414 TSX incl. *.stories.tsx). No registry API exists; fetch items from the snapshot or raw.githubusercontent.com/codse/animata/main/animata/<category>/<name>.tsx."
+  },
+  "itemShape": "plain TSX per component: animata/<category>/<name>.tsx + optional <name>.stories.tsx. Imports are relative within the folder; copy the component and any siblings it references.",
+  "packages": {
+    "motion": "^13.1.1",
+    "framer-motion": "^12.0.0",
+    "react-icons": "^5.5.0"
+  },
+  "reachFor": [
+    "Animated cards and hover effects",
+    "Background and text effects",
+    "Interactive sections and decorative animations for landing pages"
+  ],
+  "avoid": [
+    "Standard UI (buttons/cards/forms) — foundation tier's job",
+    "Stories files are dev-only — never vendor *.stories.tsx into presets"
+  ],
+  "importance": "HIGH",
+  "inRepo": "new snapshot 2026-09-01",
+  "docs": { "docs": "https://animata.design/docs" }
+}

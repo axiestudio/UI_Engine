@@ -1,0 +1,36 @@
+{
+  "name": "floating-ui",
+  "title": "Floating UI",
+  "homepage": "https://floating-ui.com",
+  "kind": "engine",
+  "tier": "interaction",
+  "responsibility": "Positioning + interaction mechanics for floating elements — anchoring, collision-aware placement, hover/focus/click/dismiss behavior. Pure infrastructure.",
+  "snapshotDate": "2026-09-01",
+  "packages": {
+    "@floating-ui/react": "^0.27.20"
+  },
+  "externals": ["@floating-ui/react", "@floating-ui/dom", "@floating-ui/react-dom", "@floating-ui/utils"],
+  "reachFor": [
+    "Tooltips, popovers, dropdowns, context menus, floating toolbars",
+    "Anchored panels that must track a moving/resting reference (autoUpdate)",
+    "Anything that must never clip off-viewport (flip/shift middleware)"
+  ],
+  "avoid": [
+    "Radix-covered primitives — shadcn Dialog/Tooltip/Popover already wrap Radix; reach for Floating UI when building *custom* floating patterns",
+    "Static positioned badges/chips — CSS `absolute` is enough, no engine needed",
+    "Dragging floating elements — that is GSAP Draggable territory"
+  ],
+  "middlewareOrder": "offset → flip/autoPlacement → shift → size → arrow → hide",
+  "canonicalStacks": {
+    "popover": "[offset(6), flip(), shift({ padding: 8 })] + useClick + useDismiss + useRole('dialog'|'menu') + whileElementsMounted: autoUpdate",
+    "hoverToolbar": "[offset(10), shift({ padding: 8 })] + useHover({ move: false }) (+ useFocus) + useRole('toolbar'|'tooltip') + whileElementsMounted: autoUpdate"
+  },
+  "recipes": [
+    { "file": "recipes/use-hover-panel.tsx", "dest": "hooks/use-hover-panel.tsx", "label": "hover/focus-reveal anchored panel (tooltip/toolbar pattern)" }
+  ],
+  "inRepo": "13 presets already build on it (floating-row-actions, floating-notif-dock, floating-chart-legend, floating-glossary, …)",
+  "docs": {
+    "react": "https://floating-ui.com/docs/react",
+    "middleware": "https://floating-ui.com/docs/middleware"
+  }
+}

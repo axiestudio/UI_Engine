@@ -1,0 +1,81 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "legend",
+  "type": "registry:component",
+  "title": "Chart Legend",
+  "description": "Composable legend components for charts",
+  "dependencies": [
+    "@base-ui/react",
+    "@number-flow/react"
+  ],
+  "registryDependencies": [
+    "@bklit/utils",
+    "@bklit/chart-utils"
+  ],
+  "files": [
+    {
+      "path": "src/charts/legend/legend.tsx",
+      "content": "\"use client\";\n\nimport {\n  cloneElement,\n  isValidElement,\n  type ReactElement,\n  useState,\n} from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport {\n  type LegendItemData,\n  LegendItemProvider,\n  LegendProvider,\n} from \"./legend-context\";\n\nexport interface LegendProps {\n  /** Legend items data */\n  items: LegendItemData[];\n  /** Controlled hover state */\n  hoveredIndex?: number | null;\n  /** Hover state change callback */\n  onHoverChange?: (index: number | null) => void;\n  /** Title shown above the legend */\n  title?: string;\n  /** Title class name */\n  titleClassName?: string;\n  /** Container class name */\n  className?: string;\n  /** Children - should contain a single LegendItem that will be mapped for each item */\n  children: ReactElement;\n}\n\nexport function Legend({\n  items,\n  hoveredIndex: controlledHoveredIndex,\n  onHoverChange,\n  title,\n  titleClassName = \"text-sm font-semibold\",\n  className = \"\",\n  children,\n}: LegendProps) {\n  const [internalHoveredIndex, setInternalHoveredIndex] = useState<\n    number | null\n  >(null);\n\n  // Controlled or uncontrolled hover state\n  const isControlled = controlledHoveredIndex !== undefined;\n  const hoveredIndex = isControlled\n    ? controlledHoveredIndex\n    : internalHoveredIndex;\n  const setHoveredIndex = (index: number | null) => {\n    if (isControlled) {\n      onHoverChange?.(index);\n    } else {\n      setInternalHoveredIndex(index);\n    }\n  };\n\n  const contextValue = {\n    items,\n    hoveredIndex,\n    setHoveredIndex,\n  };\n\n  return (\n    <LegendProvider value={contextValue}>\n      <div className={cn(\"legend-container flex flex-col gap-2\", className)}>\n        {title && (\n          <h3 className={cn(\"mb-1 text-legend-foreground\", titleClassName)}>\n            {title}\n          </h3>\n        )}\n        {items.map((item, index) => {\n          const isHovered = hoveredIndex === index;\n          const isFaded = hoveredIndex !== null && hoveredIndex !== index;\n          const percentage = item.maxValue\n            ? (item.value / item.maxValue) * 100\n            : 0;\n\n          const itemContext = {\n            item,\n            index,\n            isHovered,\n            isFaded,\n            percentage,\n          };\n\n          // Clone the child element for each item\n          if (isValidElement(children)) {\n            return (\n              <LegendItemProvider key={item.label} value={itemContext}>\n                {cloneElement(children)}\n              </LegendItemProvider>\n            );\n          }\n\n          return null;\n        })}\n      </div>\n    </LegendProvider>\n  );\n}\n\nLegend.displayName = \"Legend\";\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/legend.tsx"
+    },
+    {
+      "path": "src/charts/legend/legend-context.tsx",
+      "content": "\"use client\";\n\nimport { createContext, useContext } from \"react\";\n\n// CSS variable references for legend theming\nexport const legendCssVars = {\n  background: \"var(--legend)\",\n  foreground: \"var(--legend-foreground)\",\n  muted: \"var(--legend-muted)\",\n  mutedForeground: \"var(--legend-muted-foreground)\",\n  track: \"var(--legend-track)\",\n};\n\nexport interface LegendItemData {\n  /** Display label */\n  label: string;\n  /** Current value */\n  value: number;\n  /** Maximum value (for progress/percentage calculation) */\n  maxValue?: number;\n  /** Item color */\n  color: string;\n}\n\nexport interface LegendContextValue {\n  /** All legend items */\n  items: LegendItemData[];\n  /** Currently hovered index */\n  hoveredIndex: number | null;\n  /** Set hovered index */\n  setHoveredIndex: (index: number | null) => void;\n}\n\nexport interface LegendItemContextValue {\n  /** The current item data */\n  item: LegendItemData;\n  /** Index of this item */\n  index: number;\n  /** Whether this item is hovered */\n  isHovered: boolean;\n  /** Whether this item is faded (another item is hovered) */\n  isFaded: boolean;\n  /** Percentage value (value / maxValue * 100) */\n  percentage: number;\n}\n\nconst LegendContext = createContext<LegendContextValue | null>(null);\nconst LegendItemContext = createContext<LegendItemContextValue | null>(null);\n\nexport function LegendProvider({\n  children,\n  value,\n}: {\n  children: React.ReactNode;\n  value: LegendContextValue;\n}) {\n  return (\n    <LegendContext.Provider value={value}>{children}</LegendContext.Provider>\n  );\n}\n\nexport function LegendItemProvider({\n  children,\n  value,\n}: {\n  children: React.ReactNode;\n  value: LegendItemContextValue;\n}) {\n  return (\n    <LegendItemContext.Provider value={value}>\n      {children}\n    </LegendItemContext.Provider>\n  );\n}\n\nexport function useLegend(): LegendContextValue {\n  const context = useContext(LegendContext);\n  if (!context) {\n    throw new Error(\"useLegend must be used within a <Legend> component.\");\n  }\n  return context;\n}\n\nexport function useLegendItem(): LegendItemContextValue {\n  const context = useContext(LegendItemContext);\n  if (!context) {\n    throw new Error(\n      \"useLegendItem must be used within a <LegendItem> component.\"\n    );\n  }\n  return context;\n}\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/legend-context.tsx"
+    },
+    {
+      "path": "src/charts/legend/legend-item.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { useLegend, useLegendItem } from \"./legend-context\";\n\nexport interface LegendItemProps {\n  /** Container class name */\n  className?: string;\n  /** Children components (LegendMarker, LegendLabel, LegendValue, LegendProgress) */\n  children: ReactNode;\n}\n\nexport function LegendItem({ className = \"\", children }: LegendItemProps) {\n  const { setHoveredIndex } = useLegend();\n  const { index, isHovered } = useLegendItem();\n\n  return (\n    // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Legend item hover interaction\n    // biome-ignore lint/a11y/noStaticElementInteractions: Legend item hover interaction\n    <div\n      className={cn(\n        \"cursor-pointer rounded-lg px-2 py-1.5 transition-all duration-150 ease-out\",\n        isHovered && \"bg-legend-muted\",\n        className\n      )}\n      data-hovered={isHovered ? \"\" : undefined}\n      onMouseEnter={() => setHoveredIndex(index)}\n      onMouseLeave={() => setHoveredIndex(null)}\n    >\n      {children}\n    </div>\n  );\n}\n\nLegendItem.displayName = \"LegendItem\";\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/legend-item.tsx"
+    },
+    {
+      "path": "src/charts/legend/legend-label.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { useLegendItem } from \"./legend-context\";\n\nexport interface LegendLabelProps {\n  /** Label class name. Default: \"text-sm font-medium\" */\n  className?: string;\n}\n\nexport function LegendLabel({\n  className = \"text-sm font-medium\",\n}: LegendLabelProps) {\n  const { item } = useLegendItem();\n\n  return (\n    <span className={cn(\"text-legend-foreground\", className)}>\n      {item.label}\n    </span>\n  );\n}\n\nLegendLabel.displayName = \"LegendLabel\";\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/legend-label.tsx"
+    },
+    {
+      "path": "src/charts/legend/legend-marker.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { useLegendItem } from \"./legend-context\";\n\nexport interface LegendMarkerProps {\n  /** Marker size class. Default: \"h-2.5 w-2.5\" */\n  className?: string;\n}\n\nexport function LegendMarker({ className = \"h-2.5 w-2.5\" }: LegendMarkerProps) {\n  const { item } = useLegendItem();\n\n  // Note: backgroundColor must remain inline style as item.color is dynamic data\n  return (\n    <div\n      className={cn(\"shrink-0 rounded-full\", className)}\n      style={{ backgroundColor: item.color }}\n    />\n  );\n}\n\nLegendMarker.displayName = \"LegendMarker\";\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/legend-marker.tsx"
+    },
+    {
+      "path": "src/charts/legend/legend-progress.tsx",
+      "content": "\"use client\";\n\nimport { Progress } from \"@base-ui/react/progress\";\nimport { cn } from \"@/lib/utils\";\nimport { useLegendItem } from \"./legend-context\";\n\nexport interface LegendProgressProps {\n  /** Track class name */\n  trackClassName?: string;\n  /** Indicator class name */\n  indicatorClassName?: string;\n  /** Track height. Default: \"h-1.5\" */\n  height?: string;\n}\n\nexport function LegendProgress({\n  trackClassName = \"\",\n  indicatorClassName = \"\",\n  height = \"h-1.5\",\n}: LegendProgressProps) {\n  const { item } = useLegendItem();\n\n  if (!item.maxValue) {\n    return null;\n  }\n\n  // Note: item.color must remain inline style as it's dynamic data\n  return (\n    <Progress.Root max={item.maxValue} value={item.value}>\n      <Progress.Track\n        className={cn(\n          \"w-full overflow-hidden rounded-full bg-legend-track\",\n          height,\n          trackClassName\n        )}\n      >\n        <Progress.Indicator\n          className={cn(\n            \"h-full rounded-full transition-all duration-500\",\n            indicatorClassName\n          )}\n          style={{ backgroundColor: item.color }}\n        />\n      </Progress.Track>\n    </Progress.Root>\n  );\n}\n\nLegendProgress.displayName = \"LegendProgress\";\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/legend-progress.tsx"
+    },
+    {
+      "path": "src/charts/legend/legend-value.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { intFmt } from \"../chart-formatters\";\nimport { useLegendItem } from \"./legend-context\";\n\nexport interface LegendValueProps {\n  /** Value class name. Default: \"text-sm tabular-nums\" */\n  className?: string;\n  /** Show percentage alongside value. Default: false */\n  showPercentage?: boolean;\n  /** Percentage class name. Default: \"text-xs tabular-nums\" */\n  percentageClassName?: string;\n  /** Format function for the value. Default: toLocaleString() */\n  formatValue?: (value: number) => string;\n  /** Format function for percentage. Default: (p) => `${p.toFixed(0)}%` */\n  formatPercentage?: (percentage: number) => string;\n}\n\nexport function LegendValue({\n  className = \"text-sm tabular-nums\",\n  showPercentage = false,\n  percentageClassName = \"text-xs tabular-nums\",\n  formatValue = intFmt,\n  formatPercentage = (p) => `${p.toFixed(0)}%`,\n}: LegendValueProps) {\n  const { item, percentage } = useLegendItem();\n\n  return (\n    <span\n      className={cn(\n        \"flex items-center gap-2 text-legend-muted-foreground\",\n        className\n      )}\n    >\n      <span>{formatValue(item.value)}</span>\n      {showPercentage && item.maxValue && (\n        <span className={percentageClassName}>\n          {formatPercentage(percentage)}\n        </span>\n      )}\n    </span>\n  );\n}\n\nLegendValue.displayName = \"LegendValue\";\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/legend-value.tsx"
+    },
+    {
+      "path": "src/charts/legend/index.ts",
+      "content": "// Legend context and hooks\n\n// Legend components\nexport { Legend, type LegendProps } from \"./legend\";\nexport {\n  type LegendContextValue,\n  type LegendItemContextValue,\n  type LegendItemData,\n  legendCssVars,\n  useLegend,\n  useLegendItem,\n} from \"./legend-context\";\nexport { LegendItem, type LegendItemProps } from \"./legend-item\";\nexport { LegendLabel, type LegendLabelProps } from \"./legend-label\";\nexport { LegendMarker, type LegendMarkerProps } from \"./legend-marker\";\nexport { LegendProgress, type LegendProgressProps } from \"./legend-progress\";\nexport { LegendValue, type LegendValueProps } from \"./legend-value\";\n",
+      "type": "registry:component",
+      "target": "components/charts/legend/index.ts"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "--legend": "oklch(1 0 0)",
+      "--legend-foreground": "oklch(0.141 0.005 285.823)",
+      "--legend-muted": "oklch(0.967 0.001 286.375)",
+      "--legend-muted-foreground": "oklch(0.552 0.016 285.938)",
+      "--legend-track": "oklch(0.92 0.004 286.32)"
+    },
+    "dark": {
+      "--legend": "oklch(0.21 0.006 285.885)",
+      "--legend-foreground": "oklch(0.985 0 0)",
+      "--legend-muted": "oklch(0.274 0.006 286.033)",
+      "--legend-muted-foreground": "oklch(0.705 0.015 286.067)",
+      "--legend-track": "oklch(0.274 0.006 286.033)"
+    }
+  }
+}

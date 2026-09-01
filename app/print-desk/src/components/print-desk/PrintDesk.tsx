@@ -1,23 +1,28 @@
-import { useState } from "react"
-import { Layers, RotateCcw, Timer } from "lucide-react"
+import * as React from "react"
+import { motion } from "motion/react"
+import { Layers, RotateCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
+import { Button } from "@/components/ui/button"
 import { SegmentedControl } from "segmented-control"
 import { PipelineRunGraph, type Stage } from "pipeline-run-graph"
 import { DragNumberField } from "drag-number-field"
 import { DiffPaneSplit, type DiffLine } from "diff-pane-split"
+import { AreaChart, Area } from "@/components/bklit/area-chart"
+import { Grid } from "@/components/bklit/grid"
+import { XAxis } from "@/components/bklit/x-axis"
+import { YAxis } from "@/components/bklit/y-axis"
+import { ChartTooltip } from "@/components/bklit/tooltip/chart-tooltip"
 
-// COMPOSITE SCREEN · PRINT SHOP FLOOR
-// composed of: pipeline-run-graph (press stage graph), drag-number-field
-// (throughput odometer), diff-pane-split (copy proofs by revision),
-// segmented-control (stock selector) + watermelon table for the artwork queue
-// and a purpose-built shift counter.
-//
-// DESIGN BAR: header strip ≤48px · label 11px semibold uppercase 12% tracking
-// · body 13px · numerics 12px tabular right-aligned · panels rounded-lg
-// bordered with a 36px header strip · functional copy only · motion marks
-// state changes, never decorates.
+// COMPOSITE SCREEN · PRINT SHOP FLOOR — ledger-and-band build
+// Structure: frameless full-bleed shell (no floating card roster). A press
+// band runs the full width under the header (stage graph inline, chrome
+// stripped). The artwork queue is a dense ruled ledger, proofs are one wide
+// overlay panel with a floating revision switcher, throughput is a vendored
+// Bklit area chart driven by run state + the drag target, and the stock
+// selector docks as a full-width strip along the bottom edge.
+//composed of: pipeline-run-graph · drag-number-field · diff-pane-split ·
+// segmented-control · vendored bklit AreaChart · shadcn Button · handcraft kit.
 
 export type ArtworkJob = {
   id: string
@@ -71,146 +76,235 @@ const REV_A: DiffLine[] = [
   { kind: "ctx", text: "  printed by Press 2 · 170g silk" },
 ]
 
+const STOCK_NOTES: Record<string, string> = {
+  "300g board": "Board needs a longer drying gap — varnish slot adds 40 min.",
+  "130g silk": "Light silk runs 4 % faster but jams below 12 k sheets/h.",
+  "170g silk": "House stock · PMS 485 cover ink holds ±2 ΔE on this grade.",
+}
+
+const RUN_HOURS = ["06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17"]
+
+/** Deterministic per-hour jitter in [-1, 1] seeded by the run signature. */
+function hourNoise(i: number, seed: number) {
+  const s = Math.sin(i * 127.1 + seed * 311.7) * 43758.5453
+  return (s - Math.floor(s)) * 2 - 1
+}
+
+/**
+ * Impressions per hour across the press run — derived from run state:
+ * makeready ramp for the first two hours, steady jittered output near target,
+ * a crash while varnish has failed, and a recovery tail once it is requeued.
+ */
+function buildThroughput(target: number, varnish: Stage, seed: number) {
+  const failed = varnish.status === "fail"
+  const requeued = varnish.status === "queued"
+  const recoverAt = requeued ? RUN_HOURS.length - 1 : -1
+  return RUN_HOURS.map((h, i) => {
+    const jitter = 0.9 + hourNoise(i, seed) * 0.07
+    let rate: number
+    if (i < 2) rate = target * (0.24 + i * 0.17)
+    else rate = target * jitter
+    if (failed && i >= RUN_HOURS.length - 2) rate = i === RUN_HOURS.length - 1 ? target * 0.16 : target * 0.38
+    if (requeued && i >= RUN_HOURS.length - 1) rate = target * 0.82
+    if (recoverAt >= 0 && i === recoverAt - 1) rate = target * 0.52
+    return { hour: `${h}:00`, imp: Math.round(rate), target }
+  })
+}
+
+const STATE_DOT: Record<ArtworkJob["state"], string> = {
+  approved: "bg-[hsl(var(--ok))]",
+  proofing: "bg-[hsl(var(--info))]",
+  waiting: "bg-border",
+}
+
 export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B", queue = DEFAULT_QUEUE, className }: PrintDeskProps) {
-  const [stock, setStock] = useState("170g silk")
-  const [target, setTarget] = useState(14200)
-  const [rev, setRev] = useState<"a" | "b">("b")
-  const [varnish, setVarnish] = useState<Stage>(PRESS_STAGES[4])
+  const [stock, setStock] = React.useState("170g silk")
+  const [target, setTarget] = React.useState(14200)
+  const [rev, setRev] = React.useState<"a" | "b">("b")
+  const [varnish, setVarnish] = React.useState<Stage>(PRESS_STAGES[4])
 
   const actual = 13240
   const attainment = Math.round((actual / target) * 100)
   const stages: Stage[] = PRESS_STAGES.map((s: Stage) => (s.id === "s5" ? varnish : s))
   const proofs = rev === "b" ? REV_B : REV_A
+  // seed shifts when the run state changes so the trace visibly re-shapes
+  const throughput = React.useMemo(
+    () => buildThroughput(target, varnish, varnish.status === "fail" ? 3 : varnish.status === "queued" ? 7 : 11),
+    [target, varnish],
+  )
+  const peak = throughput.reduce((a, p) => (p.imp > a.imp ? p : a), throughput[0])
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      {/* screen header */}
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
-        <h2 className="text-[13px] font-bold">Print desk</h2>
-        <span className="text-[12px] text-muted-foreground">{press}</span>
-        <span className="text-[12px] text-muted-foreground">· shift {shift}</span>
-        <span className="ml-auto font-mono text-[12px] tabular-nums text-muted-foreground">sheets today 38 412</span>
+    <div className={cn("flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
+      {/* header — mono eyebrow + odometer numeral, no 48px strip */}
+      <header className="flex items-end justify-between gap-6 border-b px-6 pb-3 pt-4">
+        <div className="min-w-0">
+          <MonoLabel className="text-[10px] text-muted-foreground">Print desk · shift {shift}</MonoLabel>
+          <h2 className="mt-1 truncate font-display text-[22px] font-bold leading-tight tracking-[-0.02em]">{press}</h2>
+        </div>
+        <div className="shrink-0 text-right">
+          <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">sheets today</span>
+          <motion.span
+            key="sheets"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="block font-mono text-[30px] font-bold leading-none tabular-nums"
+          >
+            38 412
+          </motion.span>
+        </div>
       </header>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 xl:grid-cols-[320px_minmax(0,1fr)_340px]">
-        {/* artwork queue + stock */}
-        <div className="flex min-w-0 flex-col gap-4">
-          <section className="min-w-0 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Artwork queue</span>
-              <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{queue.length} jobs</span>
-            </header>
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-muted/20 hover:bg-muted/20">
-                  <TableHead className="h-8 px-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Job</TableHead>
-                  <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Pages</TableHead>
-                  <TableHead className="h-8 px-3 text-right text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Due</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {queue.map((a: ArtworkJob) => (
-                  <TableRow key={a.id} className="text-[12px]">
-                    <TableCell className="px-3">
-                      <span className="block font-medium">{a.job}</span>
-                      <span className="block text-[11px] text-muted-foreground">{a.client} · {a.stock}</span>
-                    </TableCell>
-                    <TableCell className="px-2 font-mono tabular-nums">{a.pages}</TableCell>
-                    <TableCell className="px-3 text-right">
-                      <span className="block font-mono tabular-nums text-muted-foreground">{a.due}</span>
-                      <span className={cn("block text-[10px] font-bold uppercase", a.state === "approved" && "text-[hsl(var(--ok))]", a.state === "proofing" && "text-[hsl(var(--info))]", a.state === "waiting" && "text-muted-foreground")}>
-                        {a.state}
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </section>
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center gap-2 border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              <Layers className="size-3.5" /> Stock selector
-            </header>
-            <div className="space-y-2 p-3">
-              <SegmentedControl
-                size="sm"
-                className="w-full justify-between"
-                value={stock}
-                onChange={(v: string) => setStock(v)}
-                options={[
-                  { value: "130g silk", label: "130g silk" },
-                  { value: "170g silk", label: "170g silk" },
-                  { value: "300g board", label: "300g board" },
-                ]}
-              />
-              <p className="text-[11px] text-muted-foreground">
-                {stock === "300g board" ? "Board needs a longer drying gap — varnish slot adds 40 min." : stock === "130g silk" ? "Light silk runs 4 % faster but jams below 12 k sheets/h." : "House stock · PMS 485 cover ink holds ±2 ΔE on this grade."}
-              </p>
-            </div>
-          </section>
-        </div>
-
-        {/* press stage graph + odometer */}
-        <div className="flex min-w-0 flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Press stage graph · run P2-1188</span>
-              <span className="font-mono text-[11px] tabular-nums text-muted-foreground">annual report · 12 000 sheets</span>
-            </header>
-            <div className="p-3">
-              <PipelineRunGraph run="P2-1188" stages={stages} onRerunFailed={() => setVarnish((v: Stage) => ({ ...v, status: "queued", log: ["requeued by operator", "roller re-gauged at 2.4 bar"] }))} />
-            </div>
-          </section>
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Throughput odometer</span>
-              <Timer className="size-3.5 text-muted-foreground" />
-            </header>
-            <div className="space-y-3 p-3">
-              <DragNumberField label="Target sheets / h" value={target} onValueChange={(v: number) => setTarget(v)} min={8000} max={18000} step={100} precision={0} unit="sh/h" />
-              <div className="flex items-baseline justify-between border-t pt-2">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">Last hour</span>
-                <span className="font-mono text-[20px] font-bold tabular-nums">{actual.toLocaleString("sv-SE")}</span>
-              </div>
-              <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                <div className={cn("h-full rounded-full", attainment >= 95 ? "bg-[hsl(var(--ok))]" : attainment >= 80 ? "bg-[hsl(var(--warn))]" : "bg-[hsl(var(--err))]")} style={{ width: `${Math.min(100, attainment)}%` }} />
-              </div>
-              <p className="text-[11px] text-muted-foreground">{attainment}% of target · waste 1.8 % · makeready 2 spool-ups</p>
-            </div>
-          </section>
-        </div>
-
-        {/* proofs by revision */}
-        <aside className="flex min-w-0 flex-col gap-4">
-          <section className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Copy proofs</span>
-              <div className="flex gap-1">
-                {(["a", "b"] as const).map((r: "a" | "b") => (
-                  <button
-                    key={r}
-                    onClick={() => setRev(r)}
-                    className={cn("rounded px-1.5 py-0.5 font-mono text-[11px] font-bold", rev === r ? "bg-foreground text-background" : "border bg-background text-muted-foreground hover:bg-muted")}
-                  >
-                    rev {r.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-            </header>
-            <div className="p-3">
-              <DiffPaneSplit lines={proofs} file={`brochure-copy · rev ${rev === "b" ? "A → B" : "orig → A"}`} />
-            </div>
-          </section>
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center gap-2 border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              <RotateCcw className="size-3.5" /> Proof policy
-            </header>
-            <p className="p-3 text-[11px] text-muted-foreground">
-              Each revision is diffed against the previous ink-jet proof. The client sign-off locks the copy; later text changes restart the queue at prepress.
-            </p>
-          </section>
-        </aside>
+      {/* press band — the stage graph runs full-bleed across the shop floor */}
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b bg-muted/30 px-6 py-3">
+        <PipelineRunGraph
+          run="P2-1188"
+          stages={stages}
+          className="min-w-0 flex-1 rounded-none border-0 bg-transparent p-0 shadow-none"
+          onRerunFailed={() => setVarnish((v: Stage) => ({ ...v, status: "queued", log: ["requeued by operator", "roller re-gauged at 2.4 bar"] }))}
+        />
+        <dl className="flex shrink-0 items-baseline gap-5 font-mono text-[11px] tabular-nums text-muted-foreground">
+          <div>
+            <dt className="sr-only">Annual report run size</dt>
+            <dd>annual report · 12 000 sheets</dd>
+          </div>
+          <div>
+            <dt className="sr-only">Waste</dt>
+            <dd>waste 1.8 %</dd>
+          </div>
+          <div>
+            <dt className="sr-only">Makeready spool-ups</dt>
+            <dd>2 spool-ups</dd>
+          </div>
+        </dl>
       </div>
+
+      {/* main — asymmetric ledger / instrument split */}
+      <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12">
+        {/* artwork ledger — bare ruled rows, no card chrome */}
+        <section aria-label="Artwork queue" className="min-w-0 border-b lg:col-span-5 lg:border-b-0 lg:border-r">
+          <div className="flex items-baseline justify-between border-b px-4 py-2">
+            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Artwork queue</MonoLabel>
+            <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{queue.length} jobs</span>
+          </div>
+          <ul className="divide-y">
+            {queue.map((a: ArtworkJob) => (
+              <li key={a.id} className="grid grid-cols-[76px_minmax(0,1fr)_44px_74px] items-baseline gap-2 px-4 py-2 text-[12px] odd:bg-muted/20">
+                <span className="truncate font-mono text-[11px] font-bold tabular-nums">{a.job.split(" · ")[0]}</span>
+                <span className="min-w-0">
+                  <span className="block truncate font-medium leading-tight">{a.job.split(" · ")[1]}</span>
+                  <span className="block truncate text-[11px] text-muted-foreground">{a.client} · {a.stock}</span>
+                </span>
+                <span className="text-right font-mono tabular-nums">{a.pages}p</span>
+                <span className="flex items-baseline justify-end gap-1.5">
+                  <span className="font-mono tabular-nums text-muted-foreground">{a.due}</span>
+                  <span aria-hidden className={cn("size-1.5 shrink-0 rounded-[2px]", STATE_DOT[a.state])} />
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="border-t px-4 py-2 text-[11px] leading-relaxed text-muted-foreground">
+            Sign-off locks the copy — later text changes restart the queue at prepress.
+          </p>
+        </section>
+
+        {/* instruments — throughput trace + proof overlay */}
+        <div className="flex min-w-0 flex-col lg:col-span-7">
+          {/* throughput — vendored Bklit area chart, driven by run state + target */}
+          <section aria-label="Throughput" className="border-b">
+            <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2">
+              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Throughput · impressions per hour</MonoLabel>
+              <div className="flex items-center gap-3">
+                <DragNumberField
+                  label="Target sheets / h"
+                  value={target}
+                  onValueChange={(v: number) => setTarget(v)}
+                  min={8000}
+                  max={18000}
+                  step={100}
+                  precision={0}
+                  unit="sh/h"
+                  className="text-[11px]"
+                />
+                <span className={cn("font-mono text-[12px] font-bold tabular-nums", attainment >= 95 ? "text-[hsl(var(--ok))]" : attainment >= 80 ? "text-[hsl(var(--warn))]" : "text-[hsl(var(--err))]")}>
+                  {attainment}%
+                </span>
+              </div>
+            </div>
+            <div role="img" aria-label={`Hourly impressions across run P2-1188, last hour ${actual.toLocaleString("sv-SE")} sheets of ${target.toLocaleString("sv-SE")} target — varnish stage ${varnish.status}`} className="px-2 pb-1 pt-1">
+              <AreaChart data={throughput} margin={{ top: 8, right: 12, bottom: 22, left: 40 }} style={{ height: 168 }}>
+                <Grid horizontal numTicksRows={3} vertical={false} />
+                <Area dataKey="imp" fillOpacity={0.3} gradientToOpacity={0} />
+                <XAxis numTicks={5} />
+                <YAxis numTicks={3} />
+                <ChartTooltip
+                  rows={(p) => [
+                    { color: "var(--chart-line-primary)", label: "impressions", value: `${Number(p.imp).toLocaleString("sv-SE")} sh/h` },
+                    { color: "hsl(var(--muted-foreground))", label: "vs target", value: `${Math.round((Number(p.imp) / Number(p.target)) * 100)} %` },
+                  ]}
+                />
+              </AreaChart>
+            </div>
+            <dl className="flex gap-4 border-t px-4 py-2 font-mono text-[11px] tabular-nums text-muted-foreground">
+              <div className="min-w-0">
+                <dt className="sr-only">Last hour</dt>
+                <dd><span className="font-bold text-foreground">{actual.toLocaleString("sv-SE")}</span> last hour</dd>
+              </div>
+              <div className="min-w-0">
+                <dt className="sr-only">Peak hour</dt>
+                <dd>peak {peak.imp.toLocaleString("sv-SE")} · {peak.hour}</dd>
+              </div>
+              <div className="ml-auto min-w-0">
+                <dt className="sr-only">Varnish state</dt>
+                <dd>varnish {varnish.status}</dd>
+              </div>
+            </dl>
+          </section>
+
+          {/* proofs — wide overlay panel, revision switcher floats over the diff */}
+          <section aria-label="Copy proofs" className="relative min-h-0 flex-1">
+            <div className="flex items-baseline justify-between border-b px-4 py-2 pr-36">
+              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Copy proofs</MonoLabel>
+              <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{proofs.filter((l) => l.kind === "add").length}+ {proofs.filter((l) => l.kind === "del").length}− vs previous ink-jet proof</span>
+            </div>
+            <div className="absolute right-3 top-1.5 z-10 flex gap-0.5 rounded-md border bg-background/90 p-0.5 shadow-sm backdrop-blur-sm">
+              {(["a", "b"] as const).map((r: "a" | "b") => (
+                <Button
+                  key={r}
+                  size="xs"
+                  variant={rev === r ? "secondary" : "ghost"}
+                  aria-pressed={rev === r}
+                  onClick={() => setRev(r)}
+                  className="font-mono text-[11px] font-bold"
+                >
+                  rev {r.toUpperCase()}
+                  {r === "a" && <RotateCcw className="size-3" aria-hidden />}
+                </Button>
+              ))}
+            </div>
+            <div className="px-3 py-2">
+              <DiffPaneSplit lines={proofs} file={`brochure-copy · rev ${rev === "b" ? "A → B" : "orig → A"}`} className="rounded-none border-0 shadow-none" />
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* stock dock — full-width strip pinned to the bottom edge */}
+      <footer className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t bg-muted/20 px-4 py-2.5">
+        <Layers className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
+        <MonoLabel tick={false} className="shrink-0 text-[10px] text-muted-foreground">Stock</MonoLabel>
+        <SegmentedControl
+          size="sm"
+          value={stock}
+          onChange={(v: string) => setStock(v)}
+          options={[
+            { value: "130g silk", label: "130g silk" },
+            { value: "170g silk", label: "170g silk" },
+            { value: "300g board", label: "300g board" },
+          ]}
+        />
+        <p className="min-w-0 flex-1 truncate text-[11px] text-muted-foreground">{STOCK_NOTES[stock]}</p>
+      </footer>
     </div>
   )
 }

@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "storage-ring-meter.es.js" : "storage-ring-meter.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["@visx/group", "@visx/responsive", "@visx/shape", "clsx", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "react-use-measure", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

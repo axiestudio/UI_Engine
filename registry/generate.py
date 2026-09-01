@@ -132,6 +132,9 @@ PACKAGES = [
 
     # embla · floating-ui · gsap composites
     "embla-lookbook", "embla-time-picker", "embla-chip-rail",
+
+    # wave: 50 mixed-library composites (subagent batch)
+    "embla-masthead-hero", "embla-logo-wall", "embla-rates-rail", "embla-day-timeline", "embla-swatch-picker", "embla-week-specials", "embla-steps-wizard", "embla-price-compare", "embla-gallery-thumbs", "embla-quick-reply", "floating-row-actions", "floating-slot-popover", "floating-glossary", "floating-avatar-cards", "floating-notif-dock", "floating-shade-picker", "floating-form-help", "floating-nav-preview", "floating-chart-legend", "floating-status-pills", "gsap-scroll-swap", "gsap-counter-strip", "gsap-underline-nav", "gsap-parallax-strata", "gsap-drag-deck", "gsap-morph-tabs", "gsap-scroll-draw", "gsap-flash-cards", "gsap-scroll-ring", "gsap-scene-tint", "invoice-builder", "status-page", "review-wall", "availability-month", "feedback-widget", "pricing-addons", "doc-outline-reader", "video-chapter-rail", "spec-sheet", "story-progress-bar", "wishlist-drawer", "compare-tray", "quiz-runner", "split-check", "habit-strip", "rsvp-card", "plan-builder", "team-roster", "metrics-headline", "quick-actions-fab",
     "floating-filter-toolbar", "floating-pin-notes", "floating-share-sheet",
     "gsap-assembly-line", "gsap-kinetic-marquee", "gsap-flip-grid", "gsap-split-band",
 ]

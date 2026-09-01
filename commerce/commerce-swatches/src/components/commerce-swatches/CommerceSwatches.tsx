@@ -19,7 +19,15 @@ export type CommerceSwatchesProps = {
   className?: string
 }
 
-export function CommerceSwatches({ eyebrow = "FINISH", name = "Color options", basePrice = 240, swatches, className }: CommerceSwatchesProps) {
+const DEFAULT_SWATCHES: SwatchOption[] = [
+  { id: "finish-oat", label: "Oat", color: "#e6ddcb" },
+  { id: "finish-clay", label: "Clay", color: "#b0876a", price: 120 },
+  { id: "finish-sage", label: "Sage", color: "#9aa88f", price: 120 },
+  { id: "finish-slate", label: "Slate", color: "#6f7780" },
+  { id: "finish-ink", label: "Ink", color: "#2f2e2b" },
+]
+
+export function CommerceSwatches({ eyebrow = "FINISH", name = "Color options", basePrice = 240, swatches = DEFAULT_SWATCHES, className }: CommerceSwatchesProps) {
   const [sel, setSel] = React.useState(0)
   const s = swatches[sel]
   const price = basePrice + (s?.price ?? 0)

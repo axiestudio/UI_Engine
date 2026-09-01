@@ -18,7 +18,14 @@ export type CommerceQuickviewProps = {
   className?: string
 }
 
-export function CommerceQuickview({ eyebrow = "SHOP", items, className }: CommerceQuickviewProps) {
+const DEFAULT_ITEMS: QuickItem[] = [
+  { id: "qv-1", name: "Oak desk lamp", price: "1 240 kr", desc: "Turned oak, brass fitting, warm 2700K. Wired by hand in the workshop." },
+  { id: "qv-2", name: "Wool throw", price: "890 kr", desc: "Undyed Swedish wool, woven in Jönköping. 130 × 180 cm." },
+  { id: "qv-3", name: "Stoneware vase", price: "640 kr", desc: "Thrown on the wheel, glazed in oat. Each one slightly different." },
+  { id: "qv-4", name: "Linen runner", price: "420 kr", desc: "Washed linen in natural. 45 × 140 cm, mitered corners." },
+]
+
+export function CommerceQuickview({ eyebrow = "SHOP", items = DEFAULT_ITEMS, className }: CommerceQuickviewProps) {
   const [open, setOpen] = React.useState<QuickItem | null>(null)
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(null) }

@@ -1,0 +1,24 @@
+{
+  "name": "lottie",
+  "title": "Lottie",
+  "homepage": "https://lottiefiles.com",
+  "kind": "engine",
+  "tier": "3d",
+  "responsibility": "Reusable animation assets — designer-authored JSON animations played as part of the design. Animation as an ASSET, not code.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "lottie-react": "^3.1.1" },
+  "externals": ["lottie-react", "lottie-web"],
+  "reachFor": [
+    "Illustrated/loading animations authored by designers",
+    "Small decorative animations and icons",
+    "Marketing animations that play as assets (no interaction needed)"
+  ],
+  "avoid": [
+    "Animations needing interaction/state — Rive state machines (see rive/)",
+    "Everything achievable in CSS/SVG — a runtime JSON player is heavier than keyframes",
+    "Shipping multiple huge JSONs per preset — keep assets tiny"
+  ],
+  "reactWiring": "useLottie({ animationData }) or <Lottie autoplay loop path>; assets under src/assets, lazy-loaded",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://lottiereact.com/" }
+}

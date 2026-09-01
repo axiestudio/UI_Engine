@@ -1,0 +1,40 @@
+{
+  "name": "eldora-ui",
+  "title": "Eldora UI",
+  "homepage": "https://www.eldoraui.site",
+  "kind": "registry",
+  "tier": "presentation",
+  "responsibility": "Device and browser mockups — iPad/iPhone/MacBook/Safari frames for realistic product presentation. Hero and showcase sections present a website/app inside a real device frame instead of a flat screenshot.",
+  "snapshotDate": "2026-09-01",
+  "upstream": {
+    "index": "https://www.eldoraui.site/r/registry.json",
+    "item": "https://www.eldoraui.site/r/<name>.json",
+    "notice": "Full index (115 items incl. index) mirrored with contents. Refresh: curl -sL https://www.eldoraui.site/r/<name>.json -o eldora-ui/r/<name>.json"
+  },
+  "itemShape": "shadcn registry-item: { name, dependencies[], files[{ path, content }] }. Key items: ipad, iphone-17-pro, macbook-pro, safari-browser.",
+  "packages": {
+    "motion": "^12.23.12",
+    "next-themes": "^0.4.6",
+    "three": "^0.180.0",
+    "@react-three/fiber": "^9.3.0",
+    "ogl": "^1.0.11",
+    "react-icons": "^5.5.0",
+    "cobe": "^0.6.5"
+  },
+  "resolution": {
+    "eldora items": "local snapshot: eldora-ui/r/<name>.json",
+    "shadcn-kit deps": "resolve from watermelon/r/<name>.json"
+  },
+  "reachFor": [
+    "Product/website/app/dashboard presentation inside device frames",
+    "Hero sections and product showcases (HIGH importance per principle docs)",
+    "SaaS and mobile-app presentations"
+  ],
+  "avoid": [
+    "Redundant frames when the in-repo device stage family already fits (UI/content/device-*) — check it first",
+    "Mockups in purely editorial/data sections"
+  ],
+  "importance": "HIGH",
+  "inRepo": "complements the handcrafted device-stage presets; registry route preferred when a specific frame (iPhone 17 Pro, Safari) is needed",
+  "docs": { "components": "https://www.eldoraui.site/docs/components/macbook-pro" }
+}

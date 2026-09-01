@@ -66,7 +66,7 @@ export function Events({
           >
             <article
               className={cn(
-                "group relative flex h-full rotate-[-0.5deg] border transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:rotate-0 hover:-translate-y-1",
+                "group relative flex h-full rotate-[-0.5deg] border transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:rotate-0 hover:-translate-y-1",
                 ink
                   ? "border-background/15 bg-transparent hover:border-background/30"
                   : "border-border bg-card hover:shadow-[4px_5px_0_0_currentColor]",

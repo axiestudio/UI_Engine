@@ -1,19 +1,27 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { RefreshCw, X } from "lucide-react"
+import { RefreshCw, ScatterChart as ScatterChartIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Checkbox } from "@/components/watermelon/checkbox"
+import { Button } from "@/components/ui/button"
 import { TreeGridTable, type TreeNode } from "tree-grid-table"
 import { SparklineCell } from "sparkline-cell"
 import { FilterTokenBuilder, type FilterToken } from "filter-token-builder"
 import { JobTray, type Job } from "job-tray"
 import { StatusHealthStrip, type Service } from "status-health-strip"
+import { ScatterChart, Scatter, Grid, XAxis, YAxis, ChartTooltip } from "@/components/bklit"
 
 // COMPOSITE SCREEN · STOCK CONTROL WAR ROOM
 // composed of: tree-grid-table (lazy category tree), sparkline-cell (per-row
-// movement), filter-token-builder (stock queries), job-tray (receive docs +
-// cycle counts), status-health-strip (sync strip) + purpose-built SKU grid
-// with bulk cycle-count.
+// movement with crosshair tooltips), filter-token-builder (stock queries that
+// scope BOTH the table and the new scatter), job-tray (receive docs + cycle
+// counts), status-health-strip (sync strip) + a vendored Bklit ScatterChart —
+// days-of-stock (x) vs pick velocity (y), one point per SKU, colored by
+// stock-status band.
+//
+// Layout is domain-shaped: a full-width sync band and query band set context;
+// the aisle rail (3/12) carries the lazy tree plus count rules; the ledger
+// (5/12) is the primary surface; the scatter (4/12) is the aerial view.
 
 export type SkuRow = {
   id: string
@@ -75,6 +83,65 @@ const SERVICES: Service[] = [
   { name: "Carrier feed", state: "operational", region: "wh-2", note: "postnord ok" },
 ]
 
+// ── stock vs velocity model ──────────────────────────────────────────────
+// velocity = mean daily picks over the 7-day trail (units/day);
+// days-of-stock = available (on hand − reserved) ÷ velocity.
+
+type Band = "critical" | "low" | "healthy" | "surplus"
+
+const velocityOf = (s: SkuRow) => {
+  const total = s.trail.reduce((a, b) => a + b, 0)
+  return Math.max(0.1, Number((total / s.trail.length).toFixed(1)))
+}
+const daysOfStock = (s: SkuRow) =>
+  Math.max(0, Number(((s.onHand - s.reserved) / velocityOf(s)).toFixed(1)))
+const bandOf = (dos: number): Band =>
+  dos < 4 ? "critical" : dos < 10 ? "low" : dos < 24 ? "healthy" : "surplus"
+
+const BAND_META: Record<Band, { token: string; label: string }> = {
+  critical: { token: "var(--chart-5)", label: "critical < 4 d" },
+  low: { token: "var(--chart-4)", label: "low < 10 d" },
+  healthy: { token: "var(--chart-3)", label: "healthy < 24 d" },
+  surplus: { token: "var(--chart-1)", label: "surplus ≥ 24 d" },
+}
+
+type ScatterPoint = {
+  dos: number
+  vel: number
+  band: Band
+  name: string
+  sku: string
+  zone: SkuRow["zone"]
+  onHand: number
+  reserved: number
+  date: Date
+  vCritical?: number
+  vLow?: number
+  vHealthy?: number
+  vSurplus?: number
+}
+
+const toScatterPoint = (s: SkuRow): ScatterPoint => {
+  const vel = velocityOf(s)
+  const dos = daysOfStock(s)
+  const band = bandOf(dos)
+  return {
+    dos,
+    vel,
+    band,
+    name: s.name,
+    sku: s.sku,
+    zone: s.zone,
+    onHand: s.onHand,
+    reserved: s.reserved,
+    date: new Date(dos * 86_400_000),
+    vCritical: band === "critical" ? vel : undefined,
+    vLow: band === "low" ? vel : undefined,
+    vHealthy: band === "healthy" ? vel : undefined,
+    vSurplus: band === "surplus" ? vel : undefined,
+  }
+}
+
 export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_SKUS, onQueued, className }: InventoryWarroomProps) {
   const [tokens, setTokens] = useState<FilterToken[]>([
     { field: "zone", op: "=", value: "cold" },
@@ -101,6 +168,15 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
   }
 
   const visible = skus.filter(matches)
+
+  // One shared filtered model drives BOTH the table and the scatter — that is
+  // the functional win of the token band living above both surfaces.
+  // Sorted by days-of-stock so the chart's date bisector hovers the nearest SKU.
+  const scatterPoints = useMemo(
+    () => visible.map(toScatterPoint).sort((a, b) => a.dos - b.dos),
+    [visible],
+  )
+  const criticalCount = scatterPoints.filter((p) => p.band === "critical").length
 
   const toggleSel = (id: string, on: boolean) =>
     setSelected((prev) => {
@@ -141,34 +217,32 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
         <h2 className="text-[13px] font-bold">Stock control</h2>
         <span className="text-[12px] text-muted-foreground">{warehouse}</span>
         <span className="text-[12px] text-muted-foreground">· {visible.length} of {skus.length} SKU shown</span>
-        <button onClick={resync} disabled={syncing} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
+        {criticalCount > 0 && (
+          <span className="rounded border border-[hsl(var(--err)/0.4)] px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wide text-[hsl(var(--err))]">
+            {criticalCount} critical
+          </span>
+        )}
+        <Button variant="outline" size="sm" onClick={resync} disabled={syncing} className="ml-auto gap-1.5">
           <RefreshCw className={cn("size-3.5", syncing && "animate-spin")} /> {syncing ? "Resyncing…" : "Resync ERP"}
-        </button>
+        </Button>
       </header>
 
+      {/* sync strip band */}
       <div className="px-4 pt-4">
         <section className="overflow-hidden rounded-lg border bg-card">
           <StatusHealthStrip services={services} region="wh-2" />
         </section>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[250px_minmax(0,1fr)_300px]">
-        {/* category tree */}
-        <aside className="flex min-h-0 flex-col gap-4">
-          <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Category tree</span>
-              <span className="font-mono text-[10px] uppercase text-muted-foreground">lazy</span>
-            </header>
-            <div className="min-h-0 flex-1 overflow-auto p-2">
-              <TreeGridTable nodes={tree} loadChildren={loadChildren} defaultOpen={["aisle-a"]} />
-            </div>
-            <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Bins load on expand · counts reconcile nightly at 02:00.</div>
-          </section>
-        </aside>
-
-        {/* sku grid */}
-        <section className="flex min-w-0 flex-col gap-3 overflow-hidden rounded-lg border bg-card p-3">
+      {/* query band — tokens scope the ledger AND the scatter */}
+      <div className="px-4 pt-3">
+        <section className="rounded-lg border bg-card px-3 py-2.5">
+          <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+            <h3 className="font-display text-[13px] font-bold">Stock query</h3>
+            <span className="text-[11px] text-muted-foreground">
+              scopes the aisle ledger and the stock-vs-velocity scatter · {scatterPoints.length} plotted
+            </span>
+          </div>
           <FilterTokenBuilder
             tokens={tokens}
             onChange={setTokens}
@@ -177,6 +251,35 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
             fields={["zone", "state", "name"]}
             placeholder="filter stock — zone cold · state low · name foam"
           />
+        </section>
+      </div>
+
+      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-12">
+        {/* aisle rail — lazy tree + bare count rules */}
+        <aside className="flex min-h-0 flex-col gap-4 lg:col-span-3">
+          <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border bg-card">
+            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
+              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Aisles</span>
+              <span className="font-mono text-[10px] uppercase text-muted-foreground">lazy</span>
+            </header>
+            <div className="min-h-0 flex-1 overflow-auto p-2">
+              <TreeGridTable nodes={tree} loadChildren={loadChildren} defaultOpen={["aisle-a"]} />
+            </div>
+            <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Bins load on expand · counts reconcile nightly at 02:00.</div>
+          </section>
+          <section className="rounded-lg border border-dashed bg-background/60 p-3">
+            <h3 className="mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Cycle count rules</h3>
+            <div className="space-y-1.5 text-[12px]">
+              <div className="flex justify-between"><span className="text-muted-foreground">Cold zone</span><span className="font-mono tabular-nums">weekly</span></div>
+              <div className="flex justify-between"><span className="text-muted-foreground">Dry zone</span><span className="font-mono tabular-nums">monthly</span></div>
+              <div className="flex justify-between"><span className="text-muted-foreground">Bonded</span><span className="font-mono tabular-nums">per movement</span></div>
+            </div>
+            <p className="pt-2 text-[11px] leading-relaxed text-muted-foreground">Counts post variances directly to ERP — no separate journal.</p>
+          </section>
+        </aside>
+
+        {/* aisle ledger — primary surface */}
+        <section className="flex min-h-0 min-w-0 flex-col gap-3 overflow-hidden rounded-lg border bg-card p-3 lg:col-span-5">
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-[12px]">
               <thead>
@@ -217,17 +320,89 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
           </div>
           <AnimatePresence>
             {selected.size > 0 && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} className="flex items-center gap-2 rounded-md border bg-accent/50 px-3 py-2">
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} className="mt-auto flex items-center gap-2 rounded-md border bg-accent/50 px-3 py-2">
                 <span className="text-[12px] font-semibold">{selected.size} selected for cycle count</span>
-                <button onClick={queueCount} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">Queue count</button>
-                <button onClick={() => setSelected(new Set())} aria-label="Clear selection" className="flex h-8 items-center gap-1 rounded-md border bg-background px-2 text-[11px] font-semibold text-muted-foreground hover:text-foreground"><X className="size-3.5" /></button>
+                <Button size="sm" onClick={queueCount} className="ml-auto">Queue count</Button>
+                <Button size="icon-sm" variant="ghost" onClick={() => setSelected(new Set())} aria-label="Clear selection">
+                  <X className="size-3.5" />
+                </Button>
               </motion.div>
             )}
           </AnimatePresence>
         </section>
 
-        {/* receive queue */}
-        <aside className="flex flex-col gap-4">
+        {/* stock vs velocity — aerial view, colored by status band */}
+        <aside className="flex min-h-0 flex-col gap-4 lg:col-span-4">
+          <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border bg-card">
+            <header className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b bg-muted/30 px-3 py-2">
+              <h3 className="flex items-center gap-1.5 font-display text-[13px] font-bold">
+                <ScatterChartIcon className="size-3.5 text-muted-foreground" aria-hidden /> Stock vs velocity
+              </h3>
+              <div className="ml-auto flex flex-wrap gap-x-3 gap-y-1">
+                {(Object.keys(BAND_META) as Band[]).map((b) => (
+                  <span key={b} className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                    <span className="size-2 rounded-full" style={{ background: BAND_META[b].token }} aria-hidden />
+                    {BAND_META[b].label}
+                  </span>
+                ))}
+              </div>
+            </header>
+            <div className="min-h-0 flex-1 p-3" role="img" aria-label="Scatter of days of stock versus pick velocity, one point per SKU, colored by stock status band">
+              {scatterPoints.length > 0 ? (
+                <ScatterChart
+                  data={scatterPoints}
+                  xDataKey="date"
+                  aspectRatio="4 / 3"
+                  animationDuration={900}
+                  margin={{ top: 14, right: 14, bottom: 28, left: 40 }}
+                  xLabelFmt={(d) => `${d.dos}d`}
+                >
+                  <Grid horizontal numTicksRows={4} vertical numTicksColumns={5} fadeHorizontal={false} fadeVertical={false} />
+                  <Scatter dataKey="vCritical" fill={BAND_META.critical.token} radius={5.5} />
+                  <Scatter dataKey="vLow" fill={BAND_META.low.token} radius={5.5} />
+                  <Scatter dataKey="vHealthy" fill={BAND_META.healthy.token} radius={5.5} />
+                  <Scatter dataKey="vSurplus" fill={BAND_META.surplus.token} radius={5.5} />
+                  <XAxis numTicks={4} />
+                  <YAxis numTicks={4} formatValue={(v) => `${v}u/d`} />
+                  <ChartTooltip
+                    showDots={false}
+                    showDatePill={false}
+                    content={({ point }) => (
+                      <div className="min-w-[176px] px-3 py-2.5">
+                        <div className="text-xs font-medium text-chart-tooltip-foreground">{String(point.name)}</div>
+                        <div className="font-mono text-[10px] uppercase tracking-wide text-chart-tooltip-muted">
+                          {String(point.sku)} · {String(point.zone)}
+                        </div>
+                        <dl className="mt-2 space-y-1 text-xs">
+                          <div className="flex justify-between gap-4">
+                            <dt className="text-chart-tooltip-muted">days of stock</dt>
+                            <dd className="font-medium tabular-nums text-chart-tooltip-foreground">{String(point.dos)}d</dd>
+                          </div>
+                          <div className="flex justify-between gap-4">
+                            <dt className="text-chart-tooltip-muted">velocity</dt>
+                            <dd className="font-medium tabular-nums text-chart-tooltip-foreground">{String(point.vel)} u/d</dd>
+                          </div>
+                          <div className="flex justify-between gap-4">
+                            <dt className="text-chart-tooltip-muted">on hand · reserved</dt>
+                            <dd className="font-medium tabular-nums text-chart-tooltip-foreground">{String(point.onHand)} · {String(point.reserved)}</dd>
+                          </div>
+                        </dl>
+                      </div>
+                    )}
+                  />
+                </ScatterChart>
+              ) : (
+                <div className="grid h-full min-h-[160px] place-items-center text-[12px] text-muted-foreground">
+                  Adjust the query — nothing to plot.
+                </div>
+              )}
+            </div>
+            <p className="border-t px-3 py-2 text-[11px] text-muted-foreground">
+              x = days of stock left · y = mean picks/day. Left-bottom = reorder now; top-left = fast movers about to run dry.
+            </p>
+          </section>
+
+          {/* receive docs — tray floats, strip anchor stays */}
           <section className="overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Receive docs</span>
@@ -235,15 +410,6 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
             </header>
             <div className="p-3">
               <JobTray jobs={jobs} onCancel={(j: Job) => setJobs((js) => js.filter((x) => x.id !== j.id))} onDismiss={(id: string) => setJobs((js) => js.filter((x) => x.id !== id))} />
-            </div>
-          </section>
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Cycle count rules</header>
-            <div className="space-y-1.5 p-3 text-[12px]">
-              <div className="flex justify-between"><span className="text-muted-foreground">Cold zone</span><span className="font-mono tabular-nums">weekly</span></div>
-              <div className="flex justify-between"><span className="text-muted-foreground">Dry zone</span><span className="font-mono tabular-nums">monthly</span></div>
-              <div className="flex justify-between"><span className="text-muted-foreground">Bonded</span><span className="font-mono tabular-nums">per movement</span></div>
-              <p className="pt-1 text-[11px] text-muted-foreground">Counts post variances directly to ERP — no separate journal.</p>
             </div>
           </section>
         </aside>

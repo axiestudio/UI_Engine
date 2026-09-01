@@ -1,0 +1,20 @@
+{
+  "name": "handcraft",
+  "title": "Handcraft Kit",
+  "homepage": null,
+  "kind": "in-repo",
+  "tier": "design-system",
+  "responsibility": "In-repo crafted primitives (grain, dots, corner ticks, sheen, editorial type, SectionShell/SectionHead, ordinals). Carries the design DNA so presets feel made by hand, not generated.",
+  "snapshotDate": "2026-08-30",
+  "upstream": {
+    "notice": "Not vendored — authored here. handcraft/handcraft.tsx is the canonical copy; presets sync byte-identical copies into src/components/primitives/handcraft.tsx."
+  },
+  "reachFor": [
+    "Every preset: SectionShell/SectionHead composition, MonoLabel, Ordinal",
+    "Texture DNA: Grain, Dots, CornerTicks, Sheen"
+  ],
+  "avoid": [
+    "Generic utility shells — keep constants opinionated (this is the design layer, not infrastructure)"
+  ],
+  "inRepo": "consumed by create-preset.py (always copies handcraft.tsx); governed by HANDCRAFT-CHECKLIST.md — tokens over hardcoded hex"
+}

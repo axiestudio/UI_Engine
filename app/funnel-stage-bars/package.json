@@ -1,7 +1,7 @@
 {
   "name": "funnel-stage-bars",
   "version": "0.1.0",
-  "description": "Conversion funnel \u2014 animated stage bars with drop-off callouts and segment share",
+  "description": "Conversion funnel — Bklit-style layered funnel chart with drop-off callouts, halo rings and controlled hover",
   "type": "module",
   "main": "dist/funnel-stage-bars.js",
   "module": "dist/funnel-stage-bars.js",
@@ -24,8 +24,13 @@
     "*.css"
   ],
   "presetSources": {
-    "original-design": true,
-    "vendored": "handcraft kit (in-repo)",
+    "bklit-ui": [
+      "src/components/bklit/funnel-chart.tsx",
+      "src/components/bklit/use-enter-complete.ts",
+      "src/components/bklit/use-mount-progress.ts",
+      "src/components/bklit/animation.ts",
+      "src/components/bklit/chart-formatters.ts"
+    ],
     "motion": "motion/react"
   },
   "scripts": {

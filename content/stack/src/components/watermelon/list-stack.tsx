@@ -12,12 +12,13 @@ import { LuTent } from "react-icons/lu";
 import { type IconType } from "react-icons";
 
 // Local extension: exported for preset props (shape unchanged).
+// icon is optional — items may render without one (guarded below).
 export interface ListItem {
   id: string;
   title: string;
   location: string;
   date: string;
-  icon: IconType;
+  icon?: IconType;
 }
 
 interface ListStackProps {
@@ -89,7 +90,13 @@ export const ListStack: FC<ListStackProps> = ({ items = ITEMS }) => {
                     className="flex w-full items-center gap-x-2 text-neutral-900"
                   >
                     <div className="flex size-10 items-center justify-center rounded-md bg-black text-zinc-100 dark:bg-white dark:text-zinc-700">
-                      <item.icon size={24} />
+                      {item.icon ? (
+                        <item.icon size={24} />
+                      ) : (
+                        <span aria-hidden className="text-sm font-bold">
+                          {item.title.charAt(0)}
+                        </span>
+                      )}
                     </div>
                     <div className="leading-tighter flex-1">
                       <h3 className="text-sm text-zinc-900 dark:text-zinc-100">

@@ -1,0 +1,23 @@
+{
+  "name": "motion-primitives",
+  "title": "Motion Primitives",
+  "homepage": "https://motion-primitives.com",
+  "kind": "source-snapshot",
+  "tier": "animation",
+  "responsibility": "Ready-made React animation primitives (text effects, in-view, cursor, dock, morphing, …) built on motion. The default animation source — simple stays simple.",
+  "snapshotDate": "2026-08-30",
+  "upstream": {
+    "github": "https://github.com/ibelick/motion-primitives",
+    "notice": "MIT (c) 2024 ibelick. components/core snapshotted from main into components-core/; hooks into hooks/. repo-tree.json = GitHub API tree for locating docs examples (app/docs/). Their live registry (https://motion-primitives.com/r/<name>.json) sits behind a Vercel bot check for scripts — use this GitHub snapshot.",
+    "refresh": "fetch from raw.githubusercontent.com/ibelick/motion-primitives/main/components/core/<name>.tsx"
+  },
+  "reachFor": [
+    "Reusable entrance/in-view animations, text effects, hover/pointer effects",
+    "Morphing dialogs/popovers, docks, spotlights — polished primitives",
+    "The FIRST stop before reaching for GSAP (principle: simple animation stays simple)"
+  ],
+  "avoid": [
+    "Complex scrubbed timelines / physics — hand off to GSAP / React Spring"
+  ],
+  "inRepo": "consumed by create-preset.py --mp/--hooks; vendored copies live in every preset under src/components/primitives/ with provenance headers"
+}

@@ -166,7 +166,7 @@ export function AppDownload({
             {/* phone — CSS-built, zero assets */}
             <div
               className={cn(
-                "relative w-[218px] rotate-[4deg] rounded-[2.2rem] border p-2.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[1deg] motion-reduce:transition-none",
+                "relative w-[218px] rotate-[4deg] rounded-[2.2rem] border p-2.5 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[1deg] motion-reduce:transition-none",
                 ink ? "border-background/25 bg-background/[0.04]" : "border-border bg-card shadow-[0_48px_80px_-40px_hsl(0_0%_0%/0.35)]",
               )}
             >

@@ -1,0 +1,32 @@
+{
+  "name": "embla-carousel",
+  "title": "Embla Carousel",
+  "homepage": "https://www.embla-carousel.com",
+  "kind": "engine",
+  "tier": "interaction",
+  "responsibility": "Carousel and horizontal-scroll mechanics — dragging, snapping, momentum. Nothing visual.",
+  "snapshotDate": "2026-09-01",
+  "packages": {
+    "embla-carousel-react": "^8.6.0"
+  },
+  "externals": ["embla-carousel-react", "embla-carousel", "embla-carousel-reactive-utils"],
+  "reachFor": [
+    "Image galleries, product showcases, testimonial rails",
+    "Hero carousels and horizontal content strips",
+    "Draggable chip/filter rails with snap (dragFree)"
+  ],
+  "avoid": [
+    "Vertical page-scroll effects (that is Lenis/GSAP ScrollTrigger territory)",
+    "Marquees — an infinite CSS/motion loop is lighter than a carousel",
+    "Custom visual chrome — Embla ships zero DOM styling; the design is ours"
+  ],
+  "recipes": [
+    { "file": "recipes/use-embla-selected.tsx", "dest": "hooks/use-embla-selected.tsx", "label": "selected-snap + prev/next state wiring" }
+  ],
+  "inRepo": "16 presets already build on it (embla-chip-rail, embla-masthead-hero, embla-logo-wall, …)",
+  "docs": {
+    "api": "https://www.embla-carousel.com/api/",
+    "options": "https://www.embla-carousel.com/docs/api/options",
+    "react": "https://www.embla-carousel.com/docs/quick-starts/react"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "threejs",
+  "title": "Three.js",
+  "homepage": "https://threejs.org",
+  "kind": "engine",
+  "tier": "3d",
+  "responsibility": "3D and WebGL on the web — scenes, materials, lighting, shaders. The raw 3D technology under React Three Fiber.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "three": "^0.185.1" },
+  "externals": ["three"],
+  "reachFor": [
+    "3D product presentations and interactive objects",
+    "3D backgrounds and hero experiences",
+    "WebGL effects that flat animation cannot express"
+  ],
+  "avoid": [
+    "Using raw Three.js inside React presets — go through React Three Fiber (see react-three-fiber/)",
+    "3D for its own sake — principle §9: 3D supports the design, it does not become the design"
+  ],
+  "reactWiring": "inside React presets use @react-three/fiber; raw Three only for imperative canvases",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://threejs.org/docs/" }
+}

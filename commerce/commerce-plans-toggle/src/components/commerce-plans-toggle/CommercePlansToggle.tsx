@@ -19,7 +19,13 @@ export type CommercePlansToggleProps = {
   className?: string
 }
 
-export function CommercePlansToggle({ eyebrow = "PLANS", title = "Choose your billing cycle", plans, className }: CommercePlansToggleProps) {
+const DEFAULT_PLANS: Plan[] = [
+  { id: "plan-starter", name: "Starter", monthly: 490, annual: 390, note: "billed annually", perks: ["1 project", "Core components", "Email support"] },
+  { id: "plan-studio", name: "Studio", monthly: 990, annual: 790, note: "billed annually", perks: ["5 projects", "Full component library", "Priority support"], highlight: true },
+  { id: "plan-atelier", name: "Atelier", monthly: 1990, annual: 1590, note: "billed annually", perks: ["Unlimited projects", "Custom tokens", "Dedicated contact"] },
+]
+
+export function CommercePlansToggle({ eyebrow = "PLANS", title = "Choose your billing cycle", plans = DEFAULT_PLANS, className }: CommercePlansToggleProps) {
   const [annual, setAnnual] = React.useState(true)
   return (
     <SectionShell width={1120} grain rule="bottom" className={className}>

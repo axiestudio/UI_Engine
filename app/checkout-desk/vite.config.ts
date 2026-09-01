@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "checkout-desk.es.js" : "checkout-desk.cjs.js"),
     },
-    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-slot", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-slot", "radix-ui", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

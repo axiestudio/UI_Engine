@@ -224,12 +224,12 @@ export function Hero({
         {layout === "split" && visual && (
           <div className="group relative lg:-mt-2">
             {/* pinned-print settle */}
-            <div className="relative -rotate-1 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-0">
+            <div className="relative -rotate-1 transition-transform duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-0">
               <CornerTicks size={16} offset={-9} className={cn(ink ? "text-background/40" : "text-foreground/30")} />
               {visual}
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_42%,rgba(255,255,255,0.18)_50%,transparent_58%)] transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%]"
+                className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_42%,rgba(255,255,255,0.18)_50%,transparent_58%)] transition-transform [transition-duration:900ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%]"
               />
             </div>
             {/* offset caption chip — the hand-placed detail */}

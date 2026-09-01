@@ -86,7 +86,7 @@ function Slat({ i, slats, mv, controlled, before, reduce }: { i: number; slats: 
   )
   return (
     <div className="absolute inset-x-0" style={{ top: `${(i * 100) / slats}%`, height: `${100 / slats}%`, perspective: 480 }}>
-      <motion.div style={rot ? { rotateX: rot, transformOrigin: "top center" } : { transformOrigin: "top center" }} className={cn("h-full w-full will-change-transform", controlled && !reduce && "transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]")}>
+      <motion.div style={rot ? { rotateX: rot, transformOrigin: "top center" } : { transformOrigin: "top center" }} className={cn("h-full w-full will-change-transform", controlled && !reduce && "transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]")}>
         {face}
       </motion.div>
     </div>

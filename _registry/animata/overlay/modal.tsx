@@ -1,0 +1,88 @@
+"use client";
+
+import { CircleAlert } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+
+export default function Modal({ modalSize = "lg" }: { modalSize?: "sm" | "lg" }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="rounded bg-indigo-800 p-2 font-medium text-white transition-opacity hover:opacity-90"
+      >
+        Open Modal
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-scroll p-8">
+            <button
+              type="button"
+              aria-label="Close modal"
+              className="absolute inset-0 cursor-pointer border-0 bg-slate-900/20 backdrop-blur"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
+              initial={{ scale: 0.95, opacity: 0, rotate: "180deg" }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                rotate: "0deg",
+                transition: {
+                  type: "spring",
+                  bounce: 0.25,
+                },
+              }}
+              exit={{ scale: 0.95, opacity: 0, rotate: "180deg" }}
+              className={cn(
+                "relative z-10 w-full max-w-lg cursor-default overflow-hidden rounded-xl bg-linear-to-r from-indigo-500 via-purple-500 to-indigo-500 p-6 text-white shadow-2xl",
+                {
+                  "max-w-sm": modalSize === "sm",
+                },
+              )}
+            >
+              <div className="flex flex-col gap-3">
+                <CircleAlert className="mx-auto text-white" size={48} />
+                <h3
+                  id="modal-title"
+                  className={cn("text-center text-3xl font-bold", {
+                    "text-2xl": modalSize === "sm",
+                  })}
+                >
+                  Welcome to the modal!
+                </h3>
+                <p className="mb-1 text-center">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna.
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full rounded bg-transparent py-2 font-semibold text-white transition-colors hover:bg-white/30"
+                  >
+                    Close!
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full rounded bg-white py-2 font-semibold text-indigo-600 transition-opacity hover:opacity-80"
+                  >
+                    Understood!
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

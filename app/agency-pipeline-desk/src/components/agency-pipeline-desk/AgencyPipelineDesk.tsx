@@ -1,21 +1,19 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { CalendarClock, ClipboardCheck, Download, RefreshCcw, Sparkles, UserPlus } from "lucide-react"
+import { ClipboardCheck, Download, RefreshCcw, Sparkles, UserPlus } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain, CornerTicks, Accent, Ordinal } from "@/components/primitives/handcraft"
+import { MonoLabel, CornerTicks, Accent } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { FunnelStageBars } from "funnel-stage-bars"
 import { PipelineRunGraph, type Stage } from "pipeline-run-graph"
 import { JobTray, type Job } from "job-tray"
 import { Checkbox } from "@/components/watermelon/checkbox"
 
 // COMPOSITE SCREEN · STUDIO OPERATIONS
-// composed of: funnel-stage-bars (pitch funnel), pipeline-run-graph (production
-// runs), job-tray (render farm) + purpose-built crew roster, welcome pass and
-// throughput figures.
-//
-// DESIGN BAR: header strip ≤48px · labels 11px semibold uppercase 12% tracking
-// · body 13px · numerics 12px mono tabular right · panels rounded-lg with 36px
-// header strips · functional copy only · motion marks state changes only.
+// Frameless studio board with the pitch funnel as a TALL VERTICAL SPINE on the
+// left (2-layer, drop-off chips, hover readout below). The production run runs
+// as a band across the centre with crew assignment beneath it; welcome passes
+// and the render job tray round out the right rail as bare rails + cards.
 
 export type AgencyPipelineDeskProps = {
   studio?: string
@@ -66,10 +64,12 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
   const [stages, setStages] = React.useState(DEFAULT_STAGES)
   const [jobs, setJobs] = React.useState(DEFAULT_JOBS)
   const [crew, setCrew] = React.useState(DEFAULT_CREW)
-  const [picked, setPicked] = React.useState<string[]>(["c3"])
+  const [stageHover, setStageHover] = React.useState<number | null>(null)
 
   const booked = crew.filter((c) => c.booked).length
   const utilAvg = Math.round(crew.reduce((a, c) => a + c.util, 0) / crew.length)
+  const running = stages.filter((s) => s.status === "running").length
+  const queuedStages = stages.filter((s) => s.status === "queued" || s.status === "idle")
 
   const toggleCrew = (id: string, on: boolean) =>
     setCrew((cs) => cs.map((c) => (c.id === id ? { ...c, booked: on, booking: on ? c.booking === "unassigned" ? "SKY-104 · w34" : c.booking : "unassigned" } : c)))
@@ -81,84 +81,89 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
   const cancelJob = (j: Job) =>
     setJobs((js) => js.map((x) => (x.id === j.id ? { ...x, status: "error", log: ["cancelled by operator"] } : x)))
 
-  return (
-    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <Grain opacity={0.03} />
+  const hovered = stageHover !== null ? PITCHES[stageHover] : null
+  const holdFromPrev = stageHover !== null && stageHover > 0 ? Math.round((PITCHES[stageHover].value / PITCHES[stageHover - 1].value) * 100) : null
 
-      {/* screen header */}
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
-        <h2 className="text-[13px] font-bold">Studio operations</h2>
-        <span className="text-[12px] text-muted-foreground">{studio}</span>
-        <span className="text-[12px] text-muted-foreground">· {week}</span>
-        <span className="ml-2 hidden items-center gap-1.5 rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground md:inline-flex">render farm · 11 nodes online</span>
-        <button className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Download className="size-3.5" /> Weekly PDF</button>
-        <button className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><RefreshCcw className="size-3.5" /> Sync farm</button>
+  return (
+    <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+      {/* header — display masthead: the studio name carries the desk */}
+      <header className="flex flex-wrap items-end gap-x-4 gap-y-2 border-b px-5 py-3">
+        <div>
+          <MonoLabel className="text-muted-foreground">Studio operations · {week}</MonoLabel>
+          <h2 className="font-display text-[24px] font-black leading-none tracking-[-0.03em]">{studio}</h2>
+        </div>
+        <span className="mb-0.5 hidden items-center gap-1.5 rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground md:inline-flex">render farm · 11 nodes online</span>
+        <div className="ml-auto mb-0.5 flex gap-2">
+          <Button variant="outline" size="sm"><Download className="size-3.5" /> Weekly PDF</Button>
+          <Button size="sm"><RefreshCcw className="size-3.5" /> Sync farm</Button>
+        </div>
       </header>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[260px_minmax(0,1fr)_320px]">
-        {/* left rail — pitch funnel + welcome passes */}
-        <aside className="flex min-w-0 flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Pitch funnel</span>
-              <Ordinal n={34} className="text-muted-foreground" />
-            </header>
-            <div className="p-3">
-              <FunnelStageBars stages={PITCHES} eyebrow="q3 new business" className="text-[12px]" />
-              <p className="mt-2 border-t pt-2 text-[11px] text-muted-foreground">Two optioned treatments go to board on Friday. Treatments past 30 days need a chase.</p>
-            </div>
-          </section>
-
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Client welcome passes</span>
-              <CalendarClock className="size-3.5 text-muted-foreground" />
-            </header>
-            <div className="grid gap-2 p-3">
-              {PASSES.map((p, i) => (
-                <div key={p.id} className="group relative overflow-hidden rounded-md border bg-background p-3">
-                  <CornerTicks offset={6} size={9} className="text-border" />
-                  <Ordinal n={i + 1} total={PASSES.length} className="text-muted-foreground" />
-                  <p className="mt-1 font-display text-[15px] font-black leading-tight tracking-tight">
-                    Welcome, <Accent>{p.client}</Accent>
-                  </p>
-                  <p className="text-[12px] text-muted-foreground">{p.job}</p>
-                  <div className="mt-2 flex items-center justify-between border-t border-dashed pt-2 text-[11px]">
-                    <span className="font-mono tabular-nums">{p.door}</span>
-                    <span className="text-muted-foreground">{p.floor}</span>
-                  </div>
-                </div>
-              ))}
-              <button className="flex h-8 items-center justify-center gap-1.5 rounded-md border bg-background text-[11px] font-semibold hover:bg-muted"><UserPlus className="size-3.5" /> Issue pass</button>
-            </div>
-          </section>
+      <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12">
+        {/* FUNNEL SPINE — tall vertical rail, the desk's left bone */}
+        <aside className="flex min-w-0 flex-col border-b p-5 lg:col-span-3 lg:border-b-0 lg:border-r" aria-label="Pitch funnel">
+          <div className="flex items-baseline justify-between">
+            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Pitch funnel</MonoLabel>
+            <span className="font-mono text-[10px] tabular-nums text-muted-foreground">q3 · 24 in</span>
+          </div>
+          <div className="mt-3 min-h-0 flex-1">
+            <FunnelStageBars
+              stages={PITCHES}
+              orientation="vertical"
+              layers={2}
+              edges="curved"
+              showDropOff
+              hoveredIndex={stageHover}
+              onHoverChange={setStageHover}
+              className="text-[12px]"
+            />
+          </div>
+          {/* live readout for the hovered stage */}
+          <div className="mt-3 border-t pt-2" aria-live="polite">
+            {hovered ? (
+              <motion.p key={stageHover} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="text-[12px]">
+                <span className="font-bold">{hovered.label}</span>
+                <span className="font-mono tabular-nums text-muted-foreground"> · {hovered.value}</span>
+                {holdFromPrev !== null && <span className="text-muted-foreground"> · {holdFromPrev}% hold from previous</span>}
+              </motion.p>
+            ) : (
+              <p className="text-[12px] text-muted-foreground">Hover a stage for its count and hold rate.</p>
+            )}
+            <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+              Two optioned treatments go to board on Friday. Treatments past 30 days need a chase.
+            </p>
+          </div>
         </aside>
 
-        {/* centre — production run graph + crew assignment */}
-        <section className="flex min-w-0 flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Production run · SKY-104 master</span>
-              <span className="font-mono text-[11px] tabular-nums text-muted-foreground">2 running · 1 queued</span>
-            </header>
-            <div className="p-3">
+        {/* centre — production run band + crew assignment */}
+        <section className="flex min-w-0 flex-col gap-5 p-5 lg:col-span-5">
+          <section aria-label="Production run" className="overflow-hidden rounded-lg border bg-card shadow-sm">
+            <div className="flex items-baseline justify-between px-3 py-2">
+              <h3 className="font-display text-[13px] font-bold">Production run · SKY-104 master</h3>
+              <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{running} running · {queuedStages.length} waiting</span>
+            </div>
+            <div className="px-3 pb-3">
               <PipelineRunGraph run="SKY-104 · conform → playout" stages={stages} onRerunFailed={onRerunFailed} className="text-[12px]" />
-              <div className="mt-2 flex gap-1.5 border-t pt-2">
-                {stages.filter((s) => s.status === "queued" || s.status === "idle").map((s) => (
-                  <button key={s.id} onClick={() => advance(s.id)} className="flex h-7 items-center gap-1 rounded border bg-background px-2 text-[11px] font-semibold hover:bg-muted"><ClipboardCheck className="size-3" /> release {s.label.toLowerCase()}</button>
-                ))}
-              </div>
+              {queuedStages.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-1.5 border-t pt-2">
+                  {queuedStages.map((s) => (
+                    <Button key={s.id} variant="outline" size="xs" onClick={() => advance(s.id)} aria-label={`Release ${s.label} into the run`}>
+                      <ClipboardCheck className="size-3" /> release {s.label.toLowerCase()}
+                    </Button>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
 
-          <section className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Crew assignment · {booked} booked</span>
+          <section aria-label="Crew assignment" className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card shadow-sm">
+            <div className="flex items-baseline justify-between px-3 py-2">
+              <h3 className="font-display text-[13px] font-bold">Crew assignment <span className="font-mono text-[11px] font-normal tabular-nums text-muted-foreground">· {booked} booked</span></h3>
               <span className="font-mono text-[12px] tabular-nums text-muted-foreground">avg util {utilAvg}%</span>
-            </header>
+            </div>
             <table className="w-full border-collapse text-[12px]">
               <thead>
-                <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+                <tr className="border-y bg-muted/40 text-left text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
                   <th className="w-8 px-3 py-1.5" />
                   <th className="px-2 py-1.5 font-semibold">Name</th>
                   <th className="px-2 py-1.5 font-semibold">Craft</th>
@@ -184,36 +189,61 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
           </section>
         </section>
 
-        {/* right rail — render job tray */}
-        <aside className="flex min-w-0 flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Render job tray</span>
+        {/* right rail — welcome passes + render tray + bare throughput stats */}
+        <aside className="flex min-w-0 flex-col gap-5 border-t p-5 lg:col-span-4 lg:border-l lg:border-t-0">
+          <section aria-label="Client welcome passes">
+            <div className="flex items-baseline justify-between border-b pb-1.5">
+              <h3 className="font-display text-[13px] font-bold">Client welcome passes</h3>
+              <span className="font-mono text-[10px] uppercase text-muted-foreground">visiting this week</span>
+            </div>
+            <div className="grid gap-2 pt-2.5">
+              {PASSES.map((p, i) => (
+                <div key={p.id} className="group relative overflow-hidden rounded-md border bg-muted/20 p-3">
+                  <CornerTicks offset={6} size={9} className="text-border" />
+                  <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-muted-foreground">{String(i + 1).padStart(2, "0")} /</span>
+                  <p className="mt-1 font-display text-[15px] font-black leading-tight tracking-tight">
+                    Welcome, <Accent>{p.client}</Accent>
+                  </p>
+                  <p className="text-[12px] text-muted-foreground">{p.job}</p>
+                  <div className="mt-2 flex items-center justify-between border-t border-dashed pt-2 text-[11px]">
+                    <span className="font-mono tabular-nums">{p.door}</span>
+                    <span className="text-muted-foreground">{p.floor}</span>
+                  </div>
+                </div>
+              ))}
+              <Button variant="outline" size="sm" className="w-full"><UserPlus className="size-3.5" /> Issue pass</Button>
+            </div>
+          </section>
+
+          <section aria-label="Render job tray" className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card shadow-sm">
+            <div className="flex items-baseline justify-between px-3 py-2">
+              <h3 className="font-display text-[13px] font-bold">Render job tray</h3>
               <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{jobs.filter((j) => j.status === "running" || j.status === "queued").length} live</span>
-            </header>
-            <div className="p-3">
+            </div>
+            <div className="px-3 pb-3">
               <JobTray jobs={jobs} onCancel={cancelJob} onDismiss={dismissJob} />
             </div>
           </section>
 
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Farm throughput</header>
-            <div className="grid grid-cols-2 gap-px bg-border p-px">
+          {/* farm throughput — bare mono rail, rules only */}
+          <section aria-label="Farm throughput">
+            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Farm throughput</MonoLabel>
+            <dl className="mt-1 grid grid-cols-2 divide-x border-y text-[12px] [&>div:nth-child(odd)]:border-r">
               {[
                 ["frames / h", "41,208"],
                 ["queue wait", "4 min"],
                 ["fail rate", "0.8%"],
                 ["nodes online", "11 / 12"],
               ].map(([k, v]) => (
-                <div key={k} className="bg-card p-3">
-                  <MonoLabel tick={false} className="block text-[10px] text-muted-foreground">{k}</MonoLabel>
-                  <motion.span key={v} initial={{ opacity: 0.4 }} animate={{ opacity: 1 }} className="mt-0.5 block text-right font-mono text-[15px] font-bold tabular-nums">{v}</motion.span>
+                <div key={k} className="flex items-baseline justify-between gap-2 px-3 py-2">
+                  <dt className="text-muted-foreground">{k}</dt>
+                  <motion.dd key={v} initial={{ opacity: 0.4 }} animate={{ opacity: 1 }} className="font-mono text-[13px] font-bold tabular-nums">{v}</motion.dd>
                 </div>
               ))}
-            </div>
+            </dl>
             <AnimatePresence>
               {jobs.some((j) => j.status === "error") && (
-                <motion.p initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex items-center gap-1.5 border-t bg-[hsl(var(--err)/0.06)] px-3 py-2 text-[11px] font-semibold text-[hsl(var(--err))]">
+                <motion.p initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex items-center gap-1.5 pt-2 text-[11px] font-semibold text-[hsl(var(--err))]">
                   <Sparkles className="size-3.5" /> A failed job is holding two queued dependants
                 </motion.p>
               )}

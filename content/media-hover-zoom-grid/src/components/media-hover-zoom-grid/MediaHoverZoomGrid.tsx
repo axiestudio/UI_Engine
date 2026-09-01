@@ -36,7 +36,7 @@ export function MediaHoverZoomGrid({ eyebrow = "HOVER", title = "Get closer.", t
         {tiles.map((t, i) => (
           <InView key={t.id} once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.04 }}>
             <figure className="group [perspective:1000px]">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-xl border bg-muted transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:rotate-[0.4deg]">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl border bg-muted transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:rotate-[0.4deg]">
                 {t.src ? <img src={t.src} alt={t.alt ?? ""} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 {t.title && <figcaption className="absolute bottom-3 left-3 translate-y-2 font-display text-sm font-bold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">{t.title}</figcaption>}

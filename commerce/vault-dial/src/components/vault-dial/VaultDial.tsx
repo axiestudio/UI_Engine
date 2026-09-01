@@ -17,6 +17,13 @@ import { MonoLabel } from "@/components/primitives/handcraft"
 
 export type VaultTier = { label: string; code: string; hint?: string }
 
+const DEFAULT_TIERS: VaultTier[] = [
+  { label: "Member", code: "QUIET-05", hint: "5% off any visit" },
+  { label: "Regular", code: "SOUTH-10", hint: "10% off, book the skylight" },
+  { label: "Keyholder", code: "HOUSE-15", hint: "15% off, and a key to the press room" },
+]
+export type VaultTier = { label: string; code: string; hint?: string }
+
 export type VaultDialProps = {
   eyebrow?: string
   title?: React.ReactNode
@@ -26,7 +33,7 @@ export type VaultDialProps = {
   className?: string
 }
 
-export function VaultDial({ eyebrow = "Secure vault", title, tiers, onUnlock, resetLabel = "Spin again", className }: VaultDialProps) {
+export function VaultDial({ eyebrow = "Secure vault", title, tiers = DEFAULT_TIERS, onUnlock, resetLabel = "Spin again", className }: VaultDialProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const n = Math.max(2, tiers.length)
   const stepDeg = 360 / n

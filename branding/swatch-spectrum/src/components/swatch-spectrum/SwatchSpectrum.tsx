@@ -107,7 +107,7 @@ export function SwatchSpectrum({
               className={cn(
                 "group relative flex min-w-14 cursor-pointer flex-col justify-between rounded-lg p-4 text-left outline-none",
                 "hover:grow-[2.4] focus-visible:grow-[2.4] focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-current",
-                reduced ? "" : "transition-[flex-grow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                reduced ? "" : "transition-[flex-grow] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
               )}
             >
               <span className="flex items-center justify-between font-mono text-[10px] font-black uppercase tracking-[0.2em] opacity-80">

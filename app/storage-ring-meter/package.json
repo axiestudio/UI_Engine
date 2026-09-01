@@ -1,7 +1,7 @@
 {
   "name": "storage-ring-meter",
   "version": "0.1.0",
-  "description": "Stacked quota rings \u2014 segmented hover legend, reset-into view, over-commit flash",
+  "description": "Stacked quota rings \u2014 Bklit progress-ring stack, hover-lift legend, count-up center, over-commit wash",
   "type": "module",
   "main": "dist/storage-ring-meter.js",
   "module": "dist/storage-ring-meter.js",
@@ -25,6 +25,18 @@
   ],
   "presetSources": {
     "original-design": true,
+    "bklit-ui": [
+      "src/components/bklit/ring-chart.tsx",
+      "src/components/bklit/ring.tsx",
+      "src/components/bklit/ring-context.tsx",
+      "src/components/bklit/ring-center.tsx",
+      "src/components/bklit/use-enter-complete.ts",
+      "src/components/bklit/use-mount-progress.ts",
+      "src/components/bklit/animation.ts",
+      "src/components/bklit/chart-stat-flow.tsx",
+      "src/components/bklit/chart-center-typography.ts",
+      "src/components/primitives/sliding-number.tsx"
+    ],
     "vendored": "handcraft kit (in-repo)",
     "motion": "motion/react"
   },
@@ -34,10 +46,14 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@visx/group": "^4.0.1-alpha.0",
+    "@visx/responsive": "^4.0.1-alpha.0",
+    "@visx/shape": "^4.0.1-alpha.0",
     "clsx": "^2.1.1",
     "motion": "^13.1.1",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
+    "react-use-measure": "^2.0.4",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

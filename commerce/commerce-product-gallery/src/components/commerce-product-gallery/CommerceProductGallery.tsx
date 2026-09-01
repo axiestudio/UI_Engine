@@ -11,6 +11,14 @@ import { cn } from "@/lib/utils"
 
 export type GalleryFrame = { id: string; src?: string; alt?: string }
 
+const DEFAULT_FRAMES: GalleryFrame[] = [
+  { id: "front", src: "/frames/frame_0002.webp", alt: "Oak desk lamp — front" },
+  { id: "side", src: "/frames/frame_0005.webp", alt: "Oak desk lamp — side profile" },
+  { id: "detail", src: "/frames/frame_0009.webp", alt: "Oak desk lamp — brass joint detail" },
+  { id: "room", src: "/frames/frame_0011.webp", alt: "Oak desk lamp — in the skylight room" },
+]
+export type GalleryFrame = { id: string; src?: string; alt?: string }
+
 export type CommerceProductGalleryProps = {
   eyebrow?: string
   name?: string
@@ -19,7 +27,7 @@ export type CommerceProductGalleryProps = {
   className?: string
 }
 
-export function CommerceProductGallery({ eyebrow = "PRODUCT", name = "Product gallery", price = "€890", frames, className }: CommerceProductGalleryProps) {
+export function CommerceProductGallery({ eyebrow = "PRODUCT", name = "Product gallery", price = "€890", frames = DEFAULT_FRAMES, className }: CommerceProductGalleryProps) {
   const [sel, setSel] = React.useState(0)
   const cur = frames[sel]
   return (

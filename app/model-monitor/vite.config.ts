@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "model-monitor.es.js" : "model-monitor.cjs.js"),
     },
-    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-slot", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["@radix-ui/react-slot", "@visx/curve", "@visx/event", "@visx/grid", "@visx/responsive", "@visx/scale", "@visx/shape", "class-variance-authority", "clsx", "d3-array", "d3-shape", "lucide-react", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

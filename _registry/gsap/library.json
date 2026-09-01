@@ -1,0 +1,39 @@
+{
+  "name": "gsap",
+  "title": "GSAP",
+  "homepage": "https://gsap.com",
+  "kind": "engine",
+  "tier": "animation",
+  "responsibility": "Advanced animation engine — timelines, scrubbed scroll scenes, Flip layout transitions, drag physics, SVG drawing. The heavy artillery; Motion stays the default.",
+  "snapshotDate": "2026-09-01",
+  "packages": {
+    "gsap": "^3.15.0"
+  },
+  "externals": ["gsap"],
+  "reachFor": [
+    "Complex sequenced timelines and scrubbed scroll experiences (ScrollTrigger)",
+    "Hero scenes with layered parallax / staged entrances",
+    "SVG path drawing and morphing, FLIP layout transitions (Flip)",
+    "Drag physics (Draggable + InertiaPlugin)"
+  ],
+  "avoid": [
+    "Simple entrances/hover effects — InView + motion covers those (principle: simple stays simple)",
+    "Physics-based React state transitions — React Spring fits better",
+    "Loading decorative loops — handcraft/motion is enough"
+  ],
+  "plugins": {
+    "gsap/ScrollTrigger": "scroll-scrubbed scenes (core, free)",
+    "gsap/Flip": "layout state transitions (core, free)",
+    "gsap/Draggable": "drag mechanics (core, free)",
+    "gsap/SplitText": "per-character/line text animation (free since 3.13)",
+    "gsap/InertiaPlugin": "momentum after drag (free since 3.13)"
+  },
+  "recipes": [
+    { "file": "recipes/with-gsap.ts", "dest": "hooks/with-gsap.ts", "label": "scoped, reduced-motion-aware gsap.context hook" }
+  ],
+  "inRepo": "14 presets already build on it (gsap-scroll-draw, gsap-parallax-strata, gsap-flip-grid, gsap-kinetic-marquee, …)",
+  "docs": {
+    "docs": "https://gsap.com/resources/",
+    "scrollTrigger": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/"
+  }
+}

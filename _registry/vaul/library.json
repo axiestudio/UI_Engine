@@ -1,0 +1,24 @@
+{
+  "name": "vaul",
+  "title": "Vaul",
+  "homepage": "https://vaul.emilkowal.ski",
+  "kind": "engine",
+  "tier": "interaction",
+  "responsibility": "Drawer component — draggable bottom sheets and side drawers on Radix Dialog semantics. Mobile-first panels that can be dragged closed.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "vaul": "^1.1.2" },
+  "externals": ["vaul", "@radix-ui/react-dialog"],
+  "reachFor": [
+    "Bottom sheets and mobile menus",
+    "Filter/action panels that users dismiss by dragging",
+    "Drawer-style navigation on constrained shells"
+  ],
+  "avoid": [
+    "Centered modals/dialogs — shadcn Dialog already covers that",
+    "Tooltips/popovers — Floating UI or shadcn",
+    "Non-modal slide-ins without drag semantics — plain motion panels suffice"
+  ],
+  "reactWiring": "Drawer.Root/Trigger/Portal/Content/Footer — Radix-compatible API; snap points via snap={[…]}; repositionInputs for mobile keyboards",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://vaul.emilkowal.ski/getting-started" }
+}

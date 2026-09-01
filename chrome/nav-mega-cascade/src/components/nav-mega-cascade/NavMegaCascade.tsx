@@ -11,11 +11,39 @@ export type NavCascadeItem = { id: string; label: string; groups?: CascadeGroup[
 
 export type NavMegaCascadeProps = {
   brand?: string
-  items: NavCascadeItem[]
+  items?: NavCascadeItem[]
   className?: string
 }
 
-export function NavMegaCascade({ brand = "STUDIO", items, className }: NavMegaCascadeProps) {
+const DEFAULT_ITEMS: NavCascadeItem[] = [
+  {
+    id: "studio",
+    label: "Studio",
+    groups: [
+      { title: "The floor", links: ["Cut & finish — 640 kr", "Colour bar — 1 480 kr", "Beard trim — 320 kr"] },
+      { title: "The school", links: ["Apprentice chair", "Friday demos", "Chair-side classes"] },
+      { title: "The board", links: ["Today's chairs", "Walk-in window", "The ledger, explained"] },
+    ],
+  },
+  {
+    id: "journal",
+    label: "Journal",
+    groups: [
+      { title: "Notes", links: ["From the board", "Cuts, care & calm", "Written between clients"] },
+      { title: "Studio life", links: ["The morning huddle", "Kettle diaries", "Six chairs, one standard"] },
+    ],
+  },
+  {
+    id: "visit",
+    label: "Visit",
+    groups: [
+      { title: "Find us", links: ["Östergatan 12, Jönköping", "Tue–Sat · 09–18", "Two walk-in hours daily"] },
+      { title: "Book", links: ["Book a chair", "Gift cards — from 300 kr", "Say hej first"] },
+    ],
+  },
+]
+
+export function NavMegaCascade({ brand = "Quiet Times Studio", items = DEFAULT_ITEMS, className }: NavMegaCascadeProps) {
   const [open, setOpen] = React.useState<string | null>(null)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const active = items.find((i) => i.id === open)

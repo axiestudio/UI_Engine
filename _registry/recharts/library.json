@@ -1,0 +1,24 @@
+{
+  "name": "recharts",
+  "title": "Recharts",
+  "homepage": "https://recharts.org",
+  "kind": "engine",
+  "tier": "visualization",
+  "responsibility": "React chart library — composable chart primitives (Line/Area/Bar/Pie). The lightweight default when the chart itself is not the design statement.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "recharts": "^3.10.1" },
+  "externals": ["recharts"],
+  "reachFor": [
+    "Simple React-based charts inside app/data surfaces (Line/Area/Bar/Pie)",
+    "Dashboards where data clarity beats visual flourish",
+    "Quick chart needs without pulling a full visualization engine"
+  ],
+  "avoid": [
+    "Design-forward marketing charts — Bklit is the polish layer (principle: simplest visualization that achieves the result)",
+    "Huge datasets / advanced interactions — Apache ECharts",
+    "Reinventing the axis/tooltip styling from scratch — theme it via tokens instead"
+  ],
+  "reactWiring": "ResponsiveContainer + composed chart elements; style via CSS vars/tokens, not hardcoded hex (HANDCRAFT-CHECKLIST)",
+  "inRepo": "already in use: app/kpi-tile-live",
+  "docs": { "docs": "https://recharts.org/en-US/api" }
+}

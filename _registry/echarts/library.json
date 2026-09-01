@@ -1,0 +1,24 @@
+{
+  "name": "echarts",
+  "title": "Apache ECharts",
+  "homepage": "https://echarts.apache.org",
+  "kind": "engine",
+  "tier": "visualization",
+  "responsibility": "Advanced data visualization — complex, highly configurable charts at scale (canvas-rendered). The heavyweight for datasets the React-tier charting cannot carry.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "echarts": "^6.1.0" },
+  "externals": ["echarts"],
+  "reachFor": [
+    "Complex charts and large datasets",
+    "Highly interactive/advanced visualizations (glraph/graph, treemap, 3D-ish surfaces)",
+    "Config-driven rendering where React re-render cost matters"
+  ],
+  "avoid": [
+    "Marketing-grade polished charts — Bklit",
+    "Simple app charts — Recharts",
+    "Loading the full bundle — import only needed charts/components from echarts/core"
+  ],
+  "reactWiring": "echarts.init(el) in an effect; setOption on data changes; dispose() on unmount; resize via ResizeObserver",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://echarts.apache.org/en/option.html" }
+}

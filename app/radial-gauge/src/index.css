@@ -41,6 +41,24 @@
     --info: 212 88% 48%;
     --pinned: 262 68% 56%;
 
+    /* chart tokens — FULL hsl() values (Bklit chart vocabulary) */
+    --chart-1: hsl(222 47% 36%);
+    --chart-2: hsl(212 88% 48%);
+    --chart-3: hsl(152 62% 36%);
+    --chart-4: hsl(38 92% 50%);
+    --chart-5: hsl(0 72% 51%);
+    --chart-grid: hsl(218 18% 88%);
+    --chart-line-primary: hsl(222 47% 36%);
+    --chart-line-secondary: hsl(212 88% 48%);
+    --chart-crosshair: hsl(220 9% 46%);
+    --chart-scale-01: hsl(216 25% 95%);
+    --chart-scale-02: hsl(213 55% 82%);
+    --chart-scale-03: hsl(212 72% 66%);
+    --chart-scale-04: hsl(213 80% 52%);
+    --chart-scale-05: hsl(222 47% 36%);
+    --chart-tooltip-bg: hsl(0 0% 100%);
+    --chart-tooltip-fg: hsl(222 15% 14%);
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -75,6 +93,24 @@
     --err: 0 78% 62%;
     --info: 212 90% 64%;
     --pinned: 262 75% 70%;
+
+    /* chart tokens — dark */
+    --chart-1: hsl(213 90% 64%);
+    --chart-2: hsl(212 90% 64%);
+    --chart-3: hsl(152 55% 46%);
+    --chart-4: hsl(38 92% 55%);
+    --chart-5: hsl(0 78% 62%);
+    --chart-grid: hsl(220 14% 20%);
+    --chart-line-primary: hsl(213 90% 64%);
+    --chart-line-secondary: hsl(212 90% 64%);
+    --chart-crosshair: hsl(219 12% 65%);
+    --chart-scale-01: hsl(220 15% 16%);
+    --chart-scale-02: hsl(212 30% 28%);
+    --chart-scale-03: hsl(212 45% 42%);
+    --chart-scale-04: hsl(213 70% 55%);
+    --chart-scale-05: hsl(213 90% 68%);
+    --chart-tooltip-bg: hsl(222 18% 10.5%);
+    --chart-tooltip-fg: hsl(216 25% 94%);
   }
 }
 

@@ -1,0 +1,23 @@
+{
+  "name": "sonner",
+  "title": "Sonner",
+  "homepage": "https://sonner.emilkowal.ski",
+  "kind": "engine",
+  "tier": "interaction",
+  "responsibility": "Toast notifications — success/error/confirmation feedback with promise-based lifecycles. The polish layer for user feedback.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "sonner": "^2.0.8" },
+  "externals": ["sonner"],
+  "reachFor": [
+    "Success/error/confirmation feedback",
+    "Promise-lifecycle toasts (loading → success/error)",
+    "Temporary user feedback that must not block layout"
+  ],
+  "avoid": [
+    "Persistent in-layout status surfaces — use app-system status components",
+    "Actionable multi-step notifications — build a real surface, not a toast"
+  ],
+  "reactWiring": "<Toaster /> mounted once at the shell root; toast()/toast.promise() anywhere; richColors, position, theme tokens",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://sonner.emilkowal.ski/toaster" }
+}

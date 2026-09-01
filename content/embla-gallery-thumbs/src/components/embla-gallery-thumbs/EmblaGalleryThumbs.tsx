@@ -1,4 +1,5 @@
 import * as React from "react"
+// embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
 import { AnimatePresence, motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"

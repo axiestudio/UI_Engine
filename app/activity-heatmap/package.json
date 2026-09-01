@@ -1,7 +1,7 @@
 {
   "name": "activity-heatmap",
   "version": "0.1.0",
-  "description": "Contribution heatmap \u2014 month rails, level legend, tooltip density readout",
+  "description": "GitHub-style activity heatmap \u2014 Bklit HeatmapChart pattern: fluid week columns, level scale tokens, bloom entrance, tooltip + legend",
   "type": "module",
   "main": "dist/activity-heatmap.js",
   "module": "dist/activity-heatmap.js",
@@ -26,7 +26,37 @@
   "presetSources": {
     "original-design": true,
     "vendored": "handcraft kit (in-repo)",
-    "motion": "motion/react"
+    "motion": "motion/react",
+    "bklit-ui": [
+      "src/components/bklit/animation.ts",
+      "src/components/bklit/chart-child-passthrough.ts",
+      "src/components/bklit/chart-config-context.tsx",
+      "src/components/bklit/chart-context.tsx",
+      "src/components/bklit/chart-loading-label.tsx",
+      "src/components/bklit/chart-phase.ts",
+      "src/components/bklit/chart-scale.ts",
+      "src/components/bklit/line-loading-timing.ts",
+      "src/components/bklit/motion-utils.ts",
+      "src/components/bklit/pattern-preset.tsx",
+      "src/components/bklit/visx-pattern.tsx",
+      "src/components/bklit/tooltip/tooltip-box.tsx",
+      "src/components/bklit/heatmap/heatmap-animation.ts",
+      "src/components/bklit/heatmap/heatmap-cells.tsx",
+      "src/components/bklit/heatmap/heatmap-chart.tsx",
+      "src/components/bklit/heatmap/heatmap-colors.ts",
+      "src/components/bklit/heatmap/heatmap-context.tsx",
+      "src/components/bklit/heatmap/heatmap-legend-gradient.tsx",
+      "src/components/bklit/heatmap/heatmap-legend-swatch.tsx",
+      "src/components/bklit/heatmap/heatmap-legend.tsx",
+      "src/components/bklit/heatmap/heatmap-pattern-defs.tsx",
+      "src/components/bklit/heatmap/heatmap-resolve-separator.ts",
+      "src/components/bklit/heatmap/heatmap-separator.tsx",
+      "src/components/bklit/heatmap/heatmap-tooltip.tsx",
+      "src/components/bklit/heatmap/heatmap-utils.ts",
+      "src/components/bklit/heatmap/heatmap-y-axis.tsx",
+      "src/components/bklit/heatmap/use-delayed-tooltip-data.ts",
+      "src/components/primitives/shimmering-text.tsx"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",
@@ -34,6 +64,11 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@visx/group": "^4.0.1-alpha.0",
+    "@visx/heatmap": "^4.0.1-alpha.0",
+    "@visx/pattern": "^4.0.1-alpha.0",
+    "@visx/responsive": "^4.0.1-alpha.0",
+    "@visx/scale": "^4.0.1-alpha.0",
     "clsx": "^2.1.1",
     "motion": "^13.1.1",
     "react": "^18.0.0 || ^19.0.0",

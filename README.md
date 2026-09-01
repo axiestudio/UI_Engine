@@ -1,6 +1,6 @@
 # UI workspace
 
-506 presets, organized by role in the page — `UI/<category>/<preset>/` (package names unchanged; import by name).
+555 presets, organized by role in the page — `UI/<category>/<preset>/` (package names unchanged; import by name).
 
 | Category | Role / "when do I use it" |
 |---|---|

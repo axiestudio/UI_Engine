@@ -1,0 +1,24 @@
+{
+  "name": "lenis",
+  "title": "Lenis",
+  "homepage": "https://lenis.darkroom.engineering",
+  "kind": "engine",
+  "tier": "animation",
+  "responsibility": "Smooth scrolling — the scroll backbone for premium landing pages and scroll-driven experiences. Pairs naturally with GSAP ScrollTrigger.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "lenis": "^1.3.26" },
+  "externals": ["lenis"],
+  "reachFor": [
+    "Premium landing-page scroll feel (wheel smoothing)",
+    "Scroll-driven website experiences shared with GSAP/anime onScroll",
+    "Anchor navigation with easing (lenis.scrollTo)"
+  ],
+  "avoid": [
+    "App-like surfaces and data tables — native scroll is correct there",
+    "Carousels/sliders — that is Embla's job, not page scroll",
+    "More than ONE Lenis instance per page (fixed chrome presets must not create their own)"
+  ],
+  "reactWiring": "new Lenis({ autoRaf: true }) in a single page-level effect; raf loop or autoRaf; destroy() on unmount; lenis.on('scroll', …) for hooks",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://lenis.darkroom.engineering/" }
+}

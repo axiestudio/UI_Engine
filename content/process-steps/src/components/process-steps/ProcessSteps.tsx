@@ -24,7 +24,7 @@ const DEFAULT_STEPS = [
   { id: "p3", title: "The build", body: "One maker, start to finish. You get photos on Fridays." },
   { id: "p4", title: "Delivery", body: "We carry it in, place it, and show you how to care for it." },
 ]
-export function ProcessSteps({ eyebrow = "PROCESS", title = "How it works.", subtitle = "Three steps = DEFAULT_STEPS, in order, with no detours.", steps, tone = "paper", className }: ProcessStepsProps) {
+export function ProcessSteps({ eyebrow = "PROCESS", title = "How it works.", subtitle = "Four steps, in order, with no detours.", steps = DEFAULT_STEPS, tone = "paper", className }: ProcessStepsProps) {
   const ink = tone === "ink"
   return (
     <SectionShell tone={tone} width={1120} rule="bottom" className={className}>

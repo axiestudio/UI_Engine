@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "front-desk-hotel.es.js" : "front-desk-hotel.cjs.js"),
     },
-    rollupOptions: { external: ["@radix-ui/react-checkbox", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-slot", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["@radix-ui/react-checkbox", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-slot", "radix-ui", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

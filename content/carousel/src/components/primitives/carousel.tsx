@@ -345,6 +345,7 @@ function CarouselItem({ children, className }: CarouselItemProps) {
 
 export {
   Carousel,
+  CarouselProvider,
   CarouselContent,
   CarouselNavigation,
   CarouselIndicator,

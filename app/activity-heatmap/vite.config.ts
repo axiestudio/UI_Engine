@@ -13,7 +13,22 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "activity-heatmap.es.js" : "activity-heatmap.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: {
+      external: [
+        "@visx/group",
+        "@visx/heatmap",
+        "@visx/pattern",
+        "@visx/responsive",
+        "@visx/scale",
+        "clsx",
+        "motion",
+        "motion/react",
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "tailwind-merge",
+      ],
+    },
     cssCodeSplit: false,
   },
 })

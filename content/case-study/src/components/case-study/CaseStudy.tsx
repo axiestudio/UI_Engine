@@ -153,7 +153,7 @@ export function CaseStudy({
 
           <div className="relative flex flex-col gap-7">
             {image && (
-              <div className={cn("relative rotate-1 border transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:rotate-0", ink ? "border-background/15" : "border-border")}>
+              <div className={cn("relative rotate-1 border transition-transform duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:rotate-0", ink ? "border-background/15" : "border-border")}>
                 <CornerTicks size={11} offset={-8} className={cn(ink ? "text-background/40" : "text-foreground/30")} corners={["tl", "br"]} />
                 <img src={image.src} alt={image.alt ?? ""} className="aspect-[4/3] w-full object-cover" loading="lazy" />
               </div>

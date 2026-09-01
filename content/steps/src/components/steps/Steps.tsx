@@ -58,7 +58,7 @@ function StepCard({
       <div
         id={item.id}
         className={cn(
-          "group relative h-full overflow-visible transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5",
+          "group relative h-full overflow-visible transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5",
         )}
       >
         <div

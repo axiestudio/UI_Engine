@@ -2169,8 +2169,13 @@
       "name": "activity-heatmap",
       "type": "registry:block",
       "title": "Activity Heatmap",
-      "description": "Contribution heatmap \u2014 month rails, level legend, tooltip density readout",
+      "description": "GitHub-style activity heatmap \u2014 Bklit HeatmapChart pattern: fluid week columns, level scale tokens, bloom entrance, tooltip + legend",
       "dependencies": [
+        "@visx/group",
+        "@visx/heatmap",
+        "@visx/pattern",
+        "@visx/responsive",
+        "@visx/scale",
         "clsx",
         "motion",
         "tailwind-merge"
@@ -2182,7 +2187,75 @@
           "type": "registry:component"
         },
         {
+          "path": "components/bklit/chart-config-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/chart-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/chart-loading-label.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-cells.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-chart.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-legend-gradient.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-legend-swatch.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-legend.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-pattern-defs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-separator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-tooltip.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/heatmap/heatmap-y-axis.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/pattern-preset.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/tooltip/tooltip-box.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/visx-pattern.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/shimmering-text.tsx",
           "type": "registry:component"
         }
       ]
@@ -2304,16 +2377,33 @@
       "name": "radial-gauge",
       "type": "registry:block",
       "title": "Radial Gauge",
-      "description": "Instrument gauge \u2014 threshold arcs, spring needle, digital hold-under",
+      "description": "Notch gauge \u2014 Bklit arc/linear notch tracks, zone-colored fills, count-up center readout",
       "dependencies": [
         "clsx",
         "motion",
+        "react-use-measure",
         "tailwind-merge"
       ],
       "registryDependencies": [],
       "files": [
         {
+          "path": "components/bklit/chart-stat-flow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/gauge-label-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/gauge.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/sliding-number.tsx",
           "type": "registry:component"
         },
         {
@@ -2602,10 +2692,29 @@
       "description": "Table cell sparkline \u2014 hover crosshair tooltip, delta chip, anomaly dot",
       "dependencies": [
         "clsx",
+        "d3-scale",
+        "d3-shape",
+        "motion",
         "tailwind-merge"
       ],
       "registryDependencies": [],
       "files": [
+        {
+          "path": "components/bklit/tooltip/tooltip-box.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/tooltip/tooltip-content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/tooltip/tooltip-dot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/tooltip/tooltip-indicator.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "components/primitives/handcraft.tsx",
           "type": "registry:component"
@@ -2625,6 +2734,7 @@
         "clsx",
         "lucide-react",
         "motion",
+        "recharts",
         "tailwind-merge"
       ],
       "registryDependencies": [],
@@ -2635,6 +2745,10 @@
         },
         {
           "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ui/chart.tsx",
           "type": "registry:component"
         }
       ]
@@ -2872,7 +2986,7 @@
       "name": "funnel-stage-bars",
       "type": "registry:block",
       "title": "Funnel Stage Bars",
-      "description": "Conversion funnel \u2014 animated stage bars with drop-off callouts and segment share",
+      "description": "Conversion funnel \u2014 Bklit-style layered funnel chart with drop-off callouts, halo rings and controlled hover",
       "dependencies": [
         "clsx",
         "motion",
@@ -2880,6 +2994,10 @@
       ],
       "registryDependencies": [],
       "files": [
+        {
+          "path": "components/bklit/funnel-chart.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "components/funnel-stage-bars/FunnelStageBars.tsx",
           "type": "registry:component"
@@ -3053,16 +3171,44 @@
       "name": "storage-ring-meter",
       "type": "registry:block",
       "title": "Storage Ring Meter",
-      "description": "Stacked quota rings \u2014 segmented hover legend, reset-into view, over-commit flash",
+      "description": "Stacked quota rings \u2014 Bklit progress-ring stack, hover-lift legend, count-up center, over-commit wash",
       "dependencies": [
+        "@visx/group",
+        "@visx/responsive",
+        "@visx/shape",
         "clsx",
         "motion",
+        "react-use-measure",
         "tailwind-merge"
       ],
       "registryDependencies": [],
       "files": [
         {
+          "path": "components/bklit/chart-stat-flow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/ring-center.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/ring-chart.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/ring-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/bklit/ring.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/sliding-number.tsx",
           "type": "registry:component"
         },
         {
@@ -4756,6 +4902,1438 @@
         },
         {
           "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-masthead-hero",
+      "type": "registry:block",
+      "title": "Embla Masthead Hero",
+      "description": "Hero carousel with autoplay fade slides and a progress bar",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-masthead-hero/EmblaMastheadHero.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-logo-wall",
+      "type": "registry:block",
+      "title": "Embla Logo Wall",
+      "description": "Infinite logo loop marquee, grayscale to color on hover",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-logo-wall/EmblaLogoWall.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-rates-rail",
+      "type": "registry:block",
+      "title": "Embla Rates Rail",
+      "description": "Room rate cards snap rail with arrows and per-night pricing",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-rates-rail/EmblaRatesRail.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-day-timeline",
+      "type": "registry:block",
+      "title": "Embla Day Timeline",
+      "description": "Horizontal day-by-day timeline with detail panel below",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-day-timeline/EmblaDayTimeline.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-swatch-picker",
+      "type": "registry:block",
+      "title": "Embla Swatch Picker",
+      "description": "Loop swatch picker that reads the focused hex aloud",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-swatch-picker/EmblaSwatchPicker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-week-specials",
+      "type": "registry:block",
+      "title": "Embla Week Specials",
+      "description": "Weekday specials carousel with dot navigation",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-week-specials/EmblaWeekSpecials.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-steps-wizard",
+      "type": "registry:block",
+      "title": "Embla Steps Wizard",
+      "description": "Draggable step wizard with dots and prev-next",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-steps-wizard/EmblaStepsWizard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-price-compare",
+      "type": "registry:block",
+      "title": "Embla Price Compare",
+      "description": "Competitor price cards with scale-focus center",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-price-compare/EmblaPriceCompare.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-gallery-thumbs",
+      "type": "registry:block",
+      "title": "Embla Gallery Thumbs",
+      "description": "Image gallery with synced grid thumbnails",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-gallery-thumbs/EmblaGalleryThumbs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "embla-quick-reply",
+      "type": "registry:block",
+      "title": "Embla Quick Reply",
+      "description": "Quick-reply chip rail for support conversations",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/embla-quick-reply/EmblaQuickReply.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-row-actions",
+      "type": "registry:block",
+      "title": "Floating Row Actions",
+      "description": "Row hover reveals a floating action menu",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-row-actions/FloatingRowActions.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-slot-popover",
+      "type": "registry:block",
+      "title": "Floating Slot Popover",
+      "description": "Schedule slots open an availability popover on hover",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-slot-popover/FloatingSlotPopover.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-glossary",
+      "type": "registry:block",
+      "title": "Floating Glossary",
+      "description": "Reading passage with dotted terms opening definition popovers",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-glossary/FloatingGlossary.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-avatar-cards",
+      "type": "registry:block",
+      "title": "Floating Avatar Cards",
+      "description": "Avatar cluster where hover opens member cards",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-avatar-cards/FloatingAvatarCards.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-notif-dock",
+      "type": "registry:block",
+      "title": "Floating Notif Dock",
+      "description": "Bell with grouped notifications popover and mark-as-read",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-notif-dock/FloatingNotifDock.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-shade-picker",
+      "type": "registry:block",
+      "title": "Floating Shade Picker",
+      "description": "Swatch grid opening a shade-scale popover with copy",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-shade-picker/FloatingShadePicker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-form-help",
+      "type": "registry:block",
+      "title": "Floating Form Help",
+      "description": "Form fields with arrowed help bubbles",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-form-help/FloatingFormHelp.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-nav-preview",
+      "type": "registry:block",
+      "title": "Floating Nav Preview",
+      "description": "Nav links open page-preview mini cards",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-nav-preview/FloatingNavPreview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-chart-legend",
+      "type": "registry:block",
+      "title": "Floating Chart Legend",
+      "description": "Chart legend chips toggling series with value tooltips",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-chart-legend/FloatingChartLegend.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floating-status-pills",
+      "type": "registry:block",
+      "title": "Floating Status Pills",
+      "description": "Status pill cluster with latency detail popovers",
+      "dependencies": [
+        "@floating-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/floating-status-pills/FloatingStatusPills.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-scroll-swap",
+      "type": "registry:block",
+      "title": "Gsap Scroll Swap",
+      "description": "Pinned left heading swaps as the right column scrolls",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-scroll-swap/GsapScrollSwap.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-counter-strip",
+      "type": "registry:block",
+      "title": "Gsap Counter Strip",
+      "description": "Big count-up numbers with stagger and rule draws",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-counter-strip/GsapCounterStrip.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-underline-nav",
+      "type": "registry:block",
+      "title": "Gsap Underline Nav",
+      "description": "Nav whose underline morphs between items",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-underline-nav/GsapUnderlineNav.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-parallax-strata",
+      "type": "registry:block",
+      "title": "Gsap Parallax Strata",
+      "description": "Hero with layered strata bands at differing scrub speeds",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-parallax-strata/GsapParallaxStrata.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-drag-deck",
+      "type": "registry:block",
+      "title": "Gsap Drag Deck",
+      "description": "Flingable card deck with Draggable and Inertia",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-drag-deck/GsapDragDeck.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-morph-tabs",
+      "type": "registry:block",
+      "title": "Gsap Morph Tabs",
+      "description": "Tab panels that morph container height smoothly",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-morph-tabs/GsapMorphTabs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-scroll-draw",
+      "type": "registry:block",
+      "title": "Gsap Scroll Draw",
+      "description": "SVG route path drawing itself on scroll scrub",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-scroll-draw/GsapScrollDraw.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-flash-cards",
+      "type": "registry:block",
+      "title": "Gsap Flash Cards",
+      "description": "3D flip flash cards with staggered deck intro",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-flash-cards/GsapFlashCards.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-scroll-ring",
+      "type": "registry:block",
+      "title": "Gsap Scroll Ring",
+      "description": "KPI ring gauge scrubbed by scroll",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-scroll-ring/GsapScrollRing.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gsap-scene-tint",
+      "type": "registry:block",
+      "title": "Gsap Scene Tint",
+      "description": "Pinned scene where background tint and copy swap per chapter",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "gsap",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/gsap-scene-tint/GsapSceneTint.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "invoice-builder",
+      "type": "registry:block",
+      "title": "Invoice Builder",
+      "description": "Line-item editor with live totals and drag-free rows",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/invoice-builder/InvoiceBuilder.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "status-page",
+      "type": "registry:block",
+      "title": "Status Page",
+      "description": "Uptime bars for 90 days plus incident list",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/status-page/StatusPage.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "review-wall",
+      "type": "registry:block",
+      "title": "Review Wall",
+      "description": "Rating breakdown bars, review list and write-review dialog",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/review-wall/ReviewWall.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "availability-month",
+      "type": "registry:block",
+      "title": "Availability Month",
+      "description": "Month grid with availability dots and day detail popover",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/availability-month/AvailabilityMonth.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feedback-widget",
+      "type": "registry:block",
+      "title": "Feedback Widget",
+      "description": "Floating feedback tab opening a mini form popover",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/feedback-widget/FeedbackWidget.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-addons",
+      "type": "registry:block",
+      "title": "Pricing Addons",
+      "description": "Base plan with add-on toggles recalculating the live total",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/pricing-addons/PricingAddons.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "doc-outline-reader",
+      "type": "registry:block",
+      "title": "Doc Outline Reader",
+      "description": "Article reader with sticky TOC scrollspy and reading progress",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/doc-outline-reader/DocOutlineReader.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "video-chapter-rail",
+      "type": "registry:block",
+      "title": "Video Chapter Rail",
+      "description": "Video with chapter markers and an embla chapter strip",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/video-chapter-rail/VideoChapterRail.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "spec-sheet",
+      "type": "registry:block",
+      "title": "Spec Sheet",
+      "description": "Product spec table with expandable groups and unit tooltips",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/spec-sheet/SpecSheet.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "story-progress-bar",
+      "type": "registry:block",
+      "title": "Story Progress Bar",
+      "description": "Story-style auto-advance slides with segment progress chrome",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/story-progress-bar/StoryProgressBar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "wishlist-drawer",
+      "type": "registry:block",
+      "title": "Wishlist Drawer",
+      "description": "Heart grid feeding a draggable bottom wishlist drawer",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/wishlist-drawer/WishlistDrawer.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "compare-tray",
+      "type": "registry:block",
+      "title": "Compare Tray",
+      "description": "Products added to a bottom compare tray with spec columns",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/compare-tray/CompareTray.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "quiz-runner",
+      "type": "registry:block",
+      "title": "Quiz Runner",
+      "description": "Quiz flow with progress, per-question feedback and result dial",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/quiz-runner/QuizRunner.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "split-check",
+      "type": "registry:block",
+      "title": "Split Check",
+      "description": "Bill splitter with people chips, item assignment and per-person totals",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/split-check/SplitCheck.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "habit-strip",
+      "type": "registry:block",
+      "title": "Habit Strip",
+      "description": "Weekly habit strip with streak counter and check row",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/habit-strip/HabitStrip.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "rsvp-card",
+      "type": "registry:block",
+      "title": "Rsvp Card",
+      "description": "RSVP card with plus-one stepper and meal radios",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/rsvp-card/RsvpCard.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "plan-builder",
+      "type": "registry:block",
+      "title": "Plan Builder",
+      "description": "Base plan plus cadence and extras building a bundle summary",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/plan-builder/PlanBuilder.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "team-roster",
+      "type": "registry:block",
+      "title": "Team Roster",
+      "description": "Roster grid with filter chips and hover member cards",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/team-roster/TeamRoster.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "metrics-headline",
+      "type": "registry:block",
+      "title": "Metrics Headline",
+      "description": "KPI headline tiles with rolling number updates",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/metrics-headline/MetricsHeadline.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "quick-actions-fab",
+      "type": "registry:block",
+      "title": "Quick Actions Fab",
+      "description": "Floating action button expanding radial quick actions",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/primitives/handcraft.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/primitives/in-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/quick-actions-fab/QuickActionsFab.tsx",
           "type": "registry:component"
         }
       ]

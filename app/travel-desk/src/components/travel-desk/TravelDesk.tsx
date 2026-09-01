@@ -1,18 +1,20 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
-import { Plane, PlaneTakeoff, RadioTower, TicketCheck } from "lucide-react"
+import { Plane, RadioTower, TicketCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, CornerTicks } from "@/components/primitives/handcraft"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
+import { MonoLabel } from "@/components/primitives/handcraft"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { OfflineQueueBanner } from "offline-queue-banner"
 import { EventTimelineDay, type TimelineEvent } from "event-timeline-day"
 import { ToastStack, type Toast } from "toast-stack"
 
 // COMPOSITE SCREEN · TRAVEL ITINERARY OPS
-// composed of: offline-queue-banner (traveller sync resilience),
-// event-timeline-day (trip events), toast-stack (ping centre) + purpose-built
-// leg rail, booking windows and boarding passes issued as bookings land.
+// Frameless itinerary board: the vertical leg rail IS the desk — a full-height
+// spine down the left with each leg's bookings and boarding-pass stubs dealt
+// in beneath it as they are issued. Right column is a docked booking-windows
+// panel (dashed), trip events as a bare rail, and the ping centre.
+// Offline sync runs as a full-width band under the header.
 
 export type Leg = {
   id: string
@@ -55,11 +57,11 @@ const DEFAULT_BOOKINGS: Booking[] = [
 ]
 
 const DEFAULT_EVENTS: TimelineEvent[] = [
-  { id: "ev1", at: "07:25", actor: "system", kind: "create", text: "ARN→OSL flown · booking closed" },
-  { id: "ev2", at: "09:40", actor: "M. Ahlberg", kind: "comment", text: "Traveller note: need aisle seat on the long leg" },
-  { id: "ev3", at: "10:05", actor: "ops", kind: "edit", text: "Seat 14A assigned on OSL→AMS" },
-  { id: "ev4", at: "10:52", actor: "system", kind: "alert", text: "Gate change KL 1003: D8 → D14" },
-  { id: "ev5", at: "11:30", actor: "ops", kind: "deploy", text: "E-ticket re-issued after fare upgrade to flex" },
+  { id: "ev1", at: "2026-09-01T07:25:00", actor: "system", kind: "create", text: "ARN→OSL flown · booking closed" },
+  { id: "ev2", at: "2026-09-01T09:40:00", actor: "M. Ahlberg", kind: "comment", text: "Traveller note: need aisle seat on the long leg" },
+  { id: "ev3", at: "2026-09-01T10:05:00", actor: "ops", kind: "edit", text: "Seat 14A assigned on OSL→AMS" },
+  { id: "ev4", at: "2026-09-01T10:52:00", actor: "system", kind: "alert", text: "Gate change KL 1003: D8 → D14" },
+  { id: "ev5", at: "2026-09-01T11:30:00", actor: "ops", kind: "deploy", text: "E-ticket re-issued after fare upgrade to flex" },
 ]
 
 const WINDOWS: { id: string; label: string; detail: string; state: "open" | "opens" | "closed" }[] = [
@@ -69,7 +71,7 @@ const WINDOWS: { id: string; label: string; detail: string; state: "open" | "ope
   { id: "wn4", label: "Upgrade bids · OSL→AMS", detail: "closed at T-24 h", state: "closed" },
 ]
 
-const LEG_MAP = (legs: Leg[]) => Object.fromEntries(legs.map((l) => [l.id, l]))
+const SEATS: Record<string, string> = { bk1: "09C", bk2: "09C", bk3: "14A" }
 
 export function TravelDesk({
   pnr = "QK7TRD",
@@ -80,7 +82,7 @@ export function TravelDesk({
   onPassIssued,
   className,
 }: TravelDeskProps) {
-  const legOf = React.useMemo(() => LEG_MAP(legs), [legs])
+  const legOf = React.useMemo(() => Object.fromEntries(legs.map((l) => [l.id, l])), [legs])
   const [rows, setRows] = React.useState(bookings)
   const [online, setOnline] = React.useState(true)
   const [queued, setQueued] = React.useState(2)
@@ -107,72 +109,157 @@ export function TravelDesk({
     }, 1400)
   }
 
+  const issuedCount = rows.filter((r) => r.passIssued).length
+
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
-        <h2 className="text-[13px] font-bold">Itinerary ops</h2>
-        <span className="font-mono text-[12px] text-muted-foreground">PNR {pnr}</span>
-        <span className="text-[12px] text-muted-foreground">· {traveller} · ARN→JFK via OSL/AMS</span>
-        <div className="ml-auto flex items-center gap-2">
-          <button
+    <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+      {/* header — mono masthead: the PNR is the identity */}
+      <header className="flex flex-wrap items-end gap-x-5 gap-y-2 px-5 py-3">
+        <div>
+          <MonoLabel className="text-muted-foreground">Itinerary ops</MonoLabel>
+          <p className="font-mono text-[26px] font-bold leading-none tracking-tight">{pnr}</p>
+        </div>
+        <p className="pb-0.5 text-[13px] font-semibold">
+          {traveller} <span className="font-normal text-muted-foreground">· ARN→JFK via OSL/AMS</span>
+        </p>
+        <span className="mb-0.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold tabular-nums" aria-label={`${issuedCount} of ${rows.length} passes issued`}>
+          <TicketCheck className="size-3.5 text-[hsl(var(--ok))]" /> {issuedCount}/{rows.length} passes
+        </span>
+        <div className="ml-auto flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => { setOnline(false); setQueued((q) => q + 3); push({ title: "traveller device dropped offline", tone: "warn" }) }}
-            className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"
           >
             <RadioTower className="size-3.5" /> Simulate drop
-          </button>
-          <button
-            onClick={() => push({ title: `pinged ${traveller} — push + SMS`, tone: "info" })}
-            className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"
-          >
+          </Button>
+          <Button size="sm" onClick={() => push({ title: `pinged ${traveller} — push + SMS`, tone: "info" })}>
             Ping traveller
-          </button>
+          </Button>
         </div>
       </header>
 
-      <div className="border-b bg-background px-4 py-2.5">
+      {/* offline sync — full-width band */}
+      <div className="border-y bg-background px-5 py-2">
         <OfflineQueueBanner online={online} queued={queued} flushing={flushing} onRetryNow={retryNow} />
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-auto p-4 lg:grid-cols-[270px_minmax(0,1fr)_300px]">
-        {/* leg rail + windows */}
-        <aside className="flex flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center gap-2 border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              <PlaneTakeoff className="size-3.5" /> Leg rail
-            </header>
-            <ol className="p-3">
-              {legs.map((l, i) => (
-                <li key={l.id} className="relative flex gap-3 pb-4 last:pb-0">
-                  {i < legs.length - 1 && <span aria-hidden className="absolute left-[7px] top-5 h-full w-px bg-border" />}
+      <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12">
+        {/* THE SPINE — leg rail with bookings + pass stubs dealt in per leg */}
+        <section className="min-w-0 border-b px-5 py-4 lg:col-span-7 lg:border-b-0 lg:border-r" aria-label="Itinerary spine">
+          <ol>
+            {legs.map((l, i) => {
+              const legBookings = rows.filter((r) => r.legId === l.id)
+              return (
+                <li key={l.id} className="relative flex gap-4 pb-6 last:pb-0">
+                  {i < legs.length - 1 && <span aria-hidden className="absolute left-[7px] top-6 h-full w-px bg-border" />}
                   <span
                     className={cn(
-                      "relative z-10 mt-1 grid size-[15px] shrink-0 place-items-center rounded-full border-2 bg-background",
+                      "relative z-10 mt-1.5 grid size-[15px] shrink-0 place-items-center rounded-full border-2 bg-background",
                       l.state === "landed" && "border-[hsl(var(--muted-foreground))]",
                       l.state === "boarding" && "border-[hsl(var(--ok))] animate-pulse",
                       l.state === "scheduled" && "border-border",
                     )}
                   />
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline justify-between gap-2">
-                      <span className="font-mono text-[12px] font-bold">{l.from} → {l.to}</span>
+                    <div className="flex flex-wrap items-baseline justify-between gap-2">
+                      <p className="font-mono text-[14px] font-bold">
+                        {l.from} → {l.to}
+                        <span className="ml-2 text-[11px] font-normal text-muted-foreground">{l.flight} · {l.dep}–{l.arr}</span>
+                      </p>
                       <span className={cn("text-[10px] font-bold uppercase tracking-wide", l.state === "boarding" && "text-[hsl(var(--ok))]")}>{l.state}</span>
                     </div>
-                    <p className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
-                      {l.flight} · {l.dep}–{l.arr}
-                    </p>
+
+                    {/* bookings riding this leg */}
+                    <ul className="mt-2 grid gap-1.5">
+                      {legBookings.map((b) => (
+                        <li key={b.id} className="min-w-0">
+                          <div className={cn("flex flex-wrap items-center gap-2 rounded-md border bg-muted/30 px-2.5 py-1.5", b.status === "waitlist" && "border-dashed")}>
+                            <span className="text-[12px] font-semibold">{b.pax}</span>
+                            <Badge variant="secondary" className="text-[10px] uppercase">{b.fare}</Badge>
+                            <span className={cn("text-[11px] font-bold uppercase tracking-wide", b.status === "confirmed" ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--warn))]")}>
+                              {b.status}
+                            </span>
+                            {b.passIssued ? (
+                              <span className="ml-auto inline-flex items-center gap-1 text-[11px] font-bold text-[hsl(var(--ok))]">
+                                <TicketCheck className="size-3.5" /> issued
+                              </span>
+                            ) : (
+                              <Button
+                                variant="outline"
+                                size="xs"
+                                className="ml-auto"
+                                disabled={b.status !== "confirmed"}
+                                onClick={() => issue(b)}
+                                aria-label={`Issue boarding pass for ${b.pax} on ${l.from}→${l.to}`}
+                              >
+                                Issue pass
+                              </Button>
+                            )}
+                          </div>
+
+                          {/* pass stub — dealt in as the booking lands */}
+                          <AnimatePresence initial={false}>
+                            {b.passIssued && (
+                              <motion.article
+                                key="stub"
+                                initial={{ opacity: 0, y: 14, rotate: -1.5 }}
+                                animate={{ opacity: 1, y: 0, rotate: 0 }}
+                                exit={{ opacity: 0, scale: 0.96 }}
+                                transition={{ type: "spring", stiffness: 320, damping: 26 }}
+                                className="relative mt-1.5 overflow-hidden rounded-lg border bg-card"
+                              >
+                                <div className="flex items-baseline gap-2 px-3 pb-1.5 pt-2.5">
+                                  <span className="text-[19px] font-black tracking-tight">{l.from}</span>
+                                  <Plane className="size-3.5 text-muted-foreground" />
+                                  <span className="text-[19px] font-black tracking-tight">{l.to}</span>
+                                  <MonoLabel tick={false} className="ml-auto text-[9px] text-muted-foreground">{b.fare} · {pnr}</MonoLabel>
+                                </div>
+                                <p className="px-3 text-[11px] text-muted-foreground">
+                                  {b.pax} · dep {l.dep} · gate <span className="font-mono font-bold text-foreground">{l.state === "boarding" ? "D14" : "—"}</span>
+                                </p>
+                                <div className="relative my-2 border-t border-dashed">
+                                  <span aria-hidden className="absolute -left-[5px] -top-[5px] size-2.5 rounded-full border bg-background" />
+                                  <span aria-hidden className="absolute -right-[5px] -top-[5px] size-2.5 rounded-full border bg-background" />
+                                </div>
+                                <div className="flex items-end justify-between px-3 pb-2.5">
+                                  <div className="flex gap-4 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
+                                    <span>seat<br /><b className="text-[13px] text-foreground">{SEATS[b.id] ?? "—"}</b></span>
+                                    <span>board<br /><b className="text-[13px] text-foreground">grp 2</b></span>
+                                  </div>
+                                  <div className="flex h-6 items-end gap-[2px]" aria-hidden>
+                                    {Array.from({ length: 20 }, (_, k) => (
+                                      <span key={k} className="w-[2px] bg-foreground/70" style={{ height: `${((k * 5) % 11) + 5}px` }} />
+                                    ))}
+                                  </div>
+                                </div>
+                              </motion.article>
+                            )}
+                          </AnimatePresence>
+                        </li>
+                      ))}
+                      {legBookings.length === 0 && (
+                        <li className="rounded-md border border-dashed px-2.5 py-1.5 text-[11px] text-muted-foreground">No bookings on this leg.</li>
+                      )}
+                    </ul>
                   </div>
                 </li>
-              ))}
-            </ol>
-          </section>
+              )
+            })}
+          </ol>
+          <p className="mt-1 border-t pt-2 text-[11px] text-muted-foreground">Waitlisted companions get a pass automatically when the seat clears.</p>
+        </section>
 
-          <section className="flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              Booking windows
-            </header>
-            <ul className="grid gap-2 p-3">
+        {/* right column — docked windows, bare event rail, ping centre */}
+        <aside className="flex flex-col gap-5 p-5 lg:col-span-5">
+          <section aria-label="Booking windows" className="rounded-lg border border-dashed bg-background p-3">
+            <div className="mb-2 flex items-baseline justify-between">
+              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Booking windows</MonoLabel>
+              <span className="font-mono text-[10px] uppercase text-muted-foreground">docked</span>
+            </div>
+            <ul className="grid gap-1.5">
               {WINDOWS.map((w) => (
-                <li key={w.id} className="flex items-center justify-between gap-2 rounded-md border bg-background px-2.5 py-2">
+                <li key={w.id} className="flex items-center justify-between gap-2 rounded-md border bg-muted/30 px-2.5 py-1.5">
                   <div className="min-w-0">
                     <p className="truncate text-[12px] font-bold">{w.label}</p>
                     <p className="text-[11px] text-muted-foreground">{w.detail}</p>
@@ -191,151 +278,29 @@ export function TravelDesk({
               ))}
             </ul>
           </section>
-        </aside>
 
-        {/* bookings + timeline */}
-        <div className="flex min-w-0 flex-col gap-4">
-          <section className="min-w-0 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Bookings · {rows.length}</span>
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">passes queue to device when issued</MonoLabel>
-            </header>
-            <Table>
-              <TableHeader>
-                <TableRow className="hover:bg-transparent">
-                  <TableHead className="h-8 px-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Leg</TableHead>
-                  <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Passenger</TableHead>
-                  <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Fare</TableHead>
-                  <TableHead className="h-8 px-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Status</TableHead>
-                  <TableHead className="h-8 px-3 text-right text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Pass</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows.map((b) => {
-                  const leg = legOf[b.legId]
-                  return (
-                    <TableRow key={b.id}>
-                      <TableCell className="px-3 py-1.5 font-mono text-[12px] font-bold">{leg.from}→{leg.to}</TableCell>
-                      <TableCell className="px-2 py-1.5 text-[12px] font-medium">{b.pax}</TableCell>
-                      <TableCell className="px-2 py-1.5"><Badge variant="secondary" className="text-[10px] uppercase">{b.fare}</Badge></TableCell>
-                      <TableCell className="px-2 py-1.5">
-                        <span className={cn("text-[11px] font-bold uppercase tracking-wide", b.status === "confirmed" ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--warn))]")}>
-                          {b.status}
-                        </span>
-                      </TableCell>
-                      <TableCell className="px-3 py-1.5 text-right">
-                        {b.passIssued ? (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[hsl(var(--ok))]">
-                            <TicketCheck className="size-3.5" /> issued
-                          </span>
-                        ) : (
-                          <button
-                            disabled={b.status !== "confirmed"}
-                            onClick={() => issue(b)}
-                            className="rounded-md border bg-background px-2 py-1 text-[11px] font-semibold hover:bg-muted disabled:opacity-40"
-                          >
-                            Issue pass
-                          </button>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  )
-                })}
-              </TableBody>
-            </Table>
-            <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Waitlisted companions get a pass automatically when the seat clears</div>
-          </section>
-
-          <section className="flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              Trip events · today
-            </header>
-            <div className="p-3">
+          <section aria-label="Trip events" className="min-h-0">
+            <div className="flex items-baseline justify-between border-b pb-1.5">
+              <h3 className="font-display text-[13px] font-bold">Trip events · today</h3>
+              <span className="font-mono text-[10px] tabular-nums text-muted-foreground">{events.length} entries</span>
+            </div>
+            <div className="pt-2">
               <EventTimelineDay events={events} groupBy={(e) => (e.kind === "alert" ? "disruptions" : "operations")} />
             </div>
           </section>
-        </div>
 
-        {/* boarding passes */}
-        <aside className="flex flex-col gap-4">
-          <section className="flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              Boarding passes
-              <span className="font-mono text-[10px] normal-case tracking-normal">{rows.filter((r) => r.passIssued).length} issued</span>
-            </header>
-            <div className="grid gap-3 p-3">
-              <AnimatePresence initial={false}>
-                {rows
-                  .filter((r) => r.passIssued)
-                  .map((b) => {
-                    const leg = legOf[b.legId]
-                    return (
-                      <motion.article
-                        key={b.id}
-                        layout
-                        initial={{ opacity: 0, y: 14, rotate: -1.5 }}
-                        animate={{ opacity: 1, y: 0, rotate: 0 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ type: "spring", stiffness: 320, damping: 26 }}
-                        className="group relative overflow-hidden rounded-lg border bg-background"
-                      >
-                        <CornerTicks className="text-muted-foreground/40" />
-                        <div className="flex items-center justify-between px-3 pb-2 pt-3">
-                          <MonoLabel tick={false} className="text-[9px] text-muted-foreground">Boarding pass · {b.fare}</MonoLabel>
-                          <span className="font-mono text-[10px] uppercase text-muted-foreground">{pnr}</span>
-                        </div>
-                        <div className="flex items-baseline gap-2 px-3">
-                          <span className="text-[22px] font-black tracking-tight">{leg.from}</span>
-                          <Plane className="size-4 text-muted-foreground" />
-                          <span className="text-[22px] font-black tracking-tight">{leg.to}</span>
-                          <span className="ml-auto font-mono text-[11px] text-muted-foreground">{leg.flight}</span>
-                        </div>
-                        <p className="px-3 text-[11px] text-muted-foreground">
-                          {b.pax} · dep {leg.dep} · gate <span className="font-mono font-bold text-foreground">{leg.state === "boarding" ? "D14" : "—"}</span>
-                        </p>
-                        <div className="relative my-2.5 border-t border-dashed">
-                          <span aria-hidden className="absolute -left-[5px] -top-[5px] size-2.5 rounded-full border bg-muted/20" />
-                          <span aria-hidden className="absolute -right-[5px] -top-[5px] size-2.5 rounded-full border bg-muted/20" />
-                        </div>
-                        <div className="flex items-end justify-between px-3 pb-3">
-                          <div className="flex gap-4 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
-                            <span>seat<br /><b className="text-[13px] text-foreground">{b.id === "bk3" ? "14A" : "09C"}</b></span>
-                            <span>board<br /><b className="text-[13px] text-foreground">grp 2</b></span>
-                          </div>
-                          <div className="flex h-6 items-end gap-[2px]" aria-hidden>
-                            {Array.from({ length: 20 }, (_, i) => (
-                              <span key={i} className="w-[2px] bg-foreground/70" style={{ height: `${((i * 5) % 11) + 5}px` }} />
-                            ))}
-                          </div>
-                        </div>
-                      </motion.article>
-                    )
-                  })}
-              </AnimatePresence>
-              {!rows.some((r) => r.passIssued) && (
-                <p className="p-3 text-center text-[11px] text-muted-foreground">No passes yet — issue one from the bookings table.</p>
-              )}
-            </div>
-          </section>
-
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center gap-2 border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-              <RadioTower className="size-3.5" /> Ping centre
-            </header>
-            <div className="grid grid-cols-2 gap-2 p-3">
+          <section aria-label="Ping centre">
+            <h3 className="border-b pb-1.5 font-display text-[13px] font-bold">Ping centre</h3>
+            <div className="grid grid-cols-2 gap-1.5 pt-2">
               {[
                 { label: "Gate change", tone: "warn" as const },
                 { label: "Delay +25 min", tone: "warn" as const },
                 { label: "Docs ready", tone: "ok" as const },
                 { label: "Car booked", tone: "ok" as const },
               ].map((p) => (
-                <button
-                  key={p.label}
-                  onClick={() => push({ title: `ping sent — ${p.label.toLowerCase()}`, tone: p.tone })}
-                  className="h-8 rounded-md border bg-background text-[11px] font-semibold hover:bg-muted"
-                >
+                <Button key={p.label} variant="outline" size="xs" onClick={() => push({ title: `ping sent — ${p.label.toLowerCase()}`, tone: p.tone })} aria-label={`Send ${p.label.toLowerCase()} ping to ${traveller}`}>
                   {p.label}
-                </button>
+                </Button>
               ))}
             </div>
           </section>

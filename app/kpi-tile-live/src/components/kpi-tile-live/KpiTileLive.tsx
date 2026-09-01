@@ -1,21 +1,28 @@
 import * as React from "react"
 import { motion, animate, useMotionValue } from "motion/react"
 import { ArrowDownRight, ArrowUpRight } from "lucide-react"
+import { Area, AreaChart, YAxis } from "recharts"
 import { cn } from "@/lib/utils"
+import { ChartContainer, type ChartConfig } from "@/components/ui/chart"
 
 // ═══ APP-PRIMARY — dashboards that roll digits instead of snapping.
 // JOB      make a headline number legible AS it updates
 // SIGNATURE odometer columns: each digit is its own vertical strip that slides
 //           (sliding-number DNA) so 1,412→1,420 only moves two wheels; trend
 //           chip recomputes vs previous; threshold breach tints the tile.
+//           Backdrop spark is a real recharts Area chart (shadcn chart
+//           convention, fitted y-domain so the line never reads flat).
 // API      value (live prop; re-animate on change), label, format, warn/over.
+//          sparkColor (default --chart-line-primary), sparkHeight (default 24).
 // A11Y     final value is plain text for SR (aria-live polite on the sr span
-//          only when it stabilises), visual wheels are aria-hidden.
+//          only when it stabilises), visual wheels are aria-hidden; the spark
+//          chart is aria-hidden with an sr-only descriptive label.
 
-export type KpiTileLiveProps = { label: string; value: number; prev?: number; format?: (v: number) => string; unit?: string; danger?: boolean; spark?: number[]; className?: string }
+export type KpiTileLiveProps = { label: string; value: number; prev?: number; format?: (v: number) => string; unit?: string; danger?: boolean; spark?: number[]; sparkColor?: string; sparkHeight?: number; className?: string }
 
-export function KpiTileLive({ label, value, prev, format, unit, danger, spark, className }: KpiTileLiveProps) {
+export function KpiTileLive({ label, value, prev, format, unit, danger, spark, sparkColor, sparkHeight = 24, className }: KpiTileLiveProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+  const gradientId = `kpi-spark-${React.useId().replace(/[^a-zA-Z0-9_-]/g, "")}`
   const text = format ? format(value) : Math.round(value).toLocaleString()
   const prevText = prev === undefined ? undefined : format ? format(prev) : Math.round(prev).toLocaleString()
   const delta = prev === undefined ? 0 : value - prev
@@ -45,11 +52,33 @@ export function KpiTileLive({ label, value, prev, format, unit, danger, spark, c
         )}
       </div>
       <p className="sr-only" aria-live="polite">{label}: {text}{unit ? " " + unit : ""}</p>
-      {spark && spark.length > 1 && (
-        <svg aria-hidden viewBox="0 0 100 22" className="absolute bottom-0 left-0 h-6 w-full opacity-[0.16]">
-          <path d={spark.map((v, i) => { const mn = Math.min(...spark), mx = Math.max(...spark), r = mx - mn || 1; return `${i ? "L" : "M"}${(i / (spark.length - 1)) * 100} ${22 - ((v - mn) / r) * 20}` }).join(" ")} fill="none" stroke="currentColor" strokeWidth={2} />
-        </svg>
-      )}
+      {spark && spark.length > 1 && (() => {
+        const data = spark.map((v, i) => ({ i, v }))
+        const sFirst = spark[0], sLast = spark[spark.length - 1]
+        const sDelta = sFirst === 0 ? 0 : ((sLast - sFirst) / Math.abs(sFirst)) * 100
+        const chartConfig = {
+          spark: { label, color: sparkColor ?? "var(--chart-line-primary)" },
+        } satisfies ChartConfig
+        return (
+          <>
+            <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 w-full opacity-[0.16]" style={{ height: sparkHeight }}>
+              <ChartContainer config={chartConfig} className="aspect-auto h-full w-full" initialDimension={{ width: 160, height: sparkHeight }}>
+                <AreaChart data={data} margin={{ top: 2, right: 0, bottom: 0, left: 0 }}>
+                  <defs>
+                    <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="var(--color-spark)" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="var(--color-spark)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
+                  <Area dataKey="v" type="monotone" stroke="var(--color-spark)" strokeWidth={2} fill={`url(#${gradientId})`} isAnimationActive={false} />
+                </AreaChart>
+              </ChartContainer>
+            </div>
+            <p className="sr-only">{label} trend spark: {spark.length} samples, {sDelta >= 0 ? "up" : "down"} {Math.abs(sDelta).toFixed(1)}%</p>
+          </>
+        )
+      })()}
     </div>
   )
 }

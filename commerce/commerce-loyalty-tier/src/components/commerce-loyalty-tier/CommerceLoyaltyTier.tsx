@@ -10,6 +10,13 @@ import { cn } from "@/lib/utils"
 
 export type LoyaltyTierDef = { id: string; name: string; spend: string; perks?: string[]; current?: boolean }
 
+const DEFAULT_TIERS: LoyaltyTierDef[] = [
+  { id: "member", name: "Member", spend: "0 kr — join free", perks: ["Birthday cut", "Board row with your name"] },
+  { id: "patron", name: "Patron", spend: "3 000 kr / year", perks: ["Priority skylight seats", "Colour bar credits", "Programme printing"], current: true },
+  { id: "atelier", name: "Atelier", spend: "9 000 kr / year", perks: ["A room on your name", "Press room access", "School nights included"] },
+]
+export type LoyaltyTierDef = { id: string; name: string; spend: string; perks?: string[]; current?: boolean }
+
 export type CommerceLoyaltyTierProps = {
   eyebrow?: string
   title?: React.ReactNode
@@ -17,7 +24,7 @@ export type CommerceLoyaltyTierProps = {
   className?: string
 }
 
-export function CommerceLoyaltyTier({ eyebrow = "MEMBERSHIP", title = "Loyalty tiers", tiers, className }: CommerceLoyaltyTierProps) {
+export function CommerceLoyaltyTier({ eyebrow = "MEMBERSHIP", title = "Loyalty tiers", tiers = DEFAULT_TIERS, className }: CommerceLoyaltyTierProps) {
   return (
     <SectionShell width={1120} grain rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

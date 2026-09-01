@@ -1,5 +1,6 @@
 import * as React from "react"
-import { useEmblaCarousel } from "embla-carousel-react"
+// embla-carousel-react v8 documents the default import — portable across builds
+import useEmblaCarousel from "embla-carousel-react"
 import { Pause, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"

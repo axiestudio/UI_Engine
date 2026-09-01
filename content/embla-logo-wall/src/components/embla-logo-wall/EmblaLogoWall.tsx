@@ -1,5 +1,6 @@
 import * as React from "react"
-import { useEmblaCarousel } from "embla-carousel-react"
+// embla-carousel-react v8 documents the default import — portable across builds
+import useEmblaCarousel from "embla-carousel-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"

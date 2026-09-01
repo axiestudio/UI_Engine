@@ -1,0 +1,23 @@
+{
+  "name": "rive",
+  "title": "Rive",
+  "homepage": "https://rive.app",
+  "kind": "engine",
+  "tier": "3d",
+  "responsibility": "Interactive runtime animations — state-machine-driven graphics that respond to user interaction or app state. Animation that LISTENS.",
+  "snapshotDate": "2026-09-01",
+  "packages": { "@rive-app/react-canvas": "^4.33.0" },
+  "externals": ["@rive-app/react-canvas", "@rive-app/canvas"],
+  "reachFor": [
+    "Animations that respond to user interaction (hover, click, drag) or state",
+    "Interactive icons and hero animations",
+    "State-based product animations authored in the Rive editor"
+  ],
+  "avoid": [
+    "One-shot decorative loops — that is Lottie's job (see lottie/)",
+    "Animations achievable with CSS/motion — no runtime needed then"
+  ],
+  "reactWiring": "useRive({ src }) + useStateMachineInput for state machines; rive.play()/pause()/fire(); cleanup automatic",
+  "inRepo": "no consumers yet",
+  "docs": { "docs": "https://rive.app/docs/rive-react" }
+}

@@ -17,7 +17,16 @@ export type TypeMarqueeCollageProps = {
   className?: string
 }
 
-export function TypeMarqueeCollage({ eyebrow = "COLLAGE", title = "Images and words, on a loop.", items, reverse = false, className }: TypeMarqueeCollageProps) {
+const DEFAULT_ITEMS: MarqueeCollageItem[] = [
+  { kind: "image", src: "/frames/frame_0002.webp" },
+  { kind: "word", text: "Quiet Times" },
+  { kind: "image", src: "/frames/frame_0005.webp" },
+  { kind: "word", text: "Studio" },
+  { kind: "image", src: "/frames/frame_0009.webp" },
+  { kind: "word", text: "Jönköping" },
+]
+
+export function TypeMarqueeCollage({ eyebrow = "COLLAGE", title = "Images and words, on a loop.", items = DEFAULT_ITEMS, reverse = false, className }: TypeMarqueeCollageProps) {
   const key = reverse ? "collage-rev" : "collage-fwd"
   return (
     <SectionShell width={1280} rule="bottom" className={className}>

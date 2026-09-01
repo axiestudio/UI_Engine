@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import {
-  Carousel,
+  CarouselProvider,
   CarouselContent,
   CarouselItem,
   CarouselNavigation,
@@ -39,6 +39,44 @@ export type ContentCarouselProps = {
 
 // ── ContentCarousel ──────────────────────────────────────────────────────────
 
+const DEFAULT_SLIDES: Slide[] = [
+  {
+    id: "s1",
+    image: "/frames/frame_0001.webp",
+    imageAlt: "Morning light across the studio floor",
+    eyebrow: "The studio",
+    title: "A calm floor in Jönköping",
+    body: "Six chairs, one board and a kettle that never rests. Östergatan 12, Tuesday to Saturday.",
+    action: { label: "Book a chair", href: "#book" },
+  },
+  {
+    id: "s2",
+    image: "/frames/frame_0003.webp",
+    imageAlt: "The colour bar mid-mix",
+    eyebrow: "Services",
+    title: "Cut & finish — 640 kr",
+    body: "One chair, one stylist, all afternoon. The price on the board is the price on the receipt.",
+  },
+  {
+    id: "s3",
+    image: "/frames/frame_0005.webp",
+    imageAlt: "Prints drying in the back room",
+    eyebrow: "The journal",
+    title: "Notes from the floor",
+    body: "Cuts, care and calm — written between clients, never instead of them.",
+    action: { label: "Read the journal", href: "#journal" },
+  },
+  {
+    id: "s4",
+    image: "/frames/frame_0007.webp",
+    imageAlt: "The front desk and the ledger",
+    eyebrow: "Visit us",
+    title: "Walk-ins before lunch",
+    body: "Two chair hours held back every weekday, 11:30–12:30. First come, first seated.",
+    action: { label: "Find us", href: "#visit" },
+  },
+]
+
 function SlideCard({ slide, perView }: { slide: Slide; perView: number }) {
   if (slide.content) return <>{slide.content}</>
   return (
@@ -63,9 +101,9 @@ function SlideCard({ slide, perView }: { slide: Slide; perView: number }) {
 }
 
 export function ContentCarousel({
-  eyebrow,
-  title,
-  slides,
+  eyebrow = "Quiet Times Studio",
+  title = "Frames from the floor.",
+  slides = DEFAULT_SLIDES,
   showArrows = true,
   showIndicator = true,
   perViewLg = 1,
@@ -84,47 +122,51 @@ export function ContentCarousel({
   if (!slides.length) return null
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-roledescription="carousel" aria-label={title ?? "Highlights"}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8">
-        {(eyebrow || title) && (
-          <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
-            <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
-              <div className="max-w-2xl">
-                {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-                {title && <h2 className="mt-1 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
-              </div>
-              {showArrows && (
-                <div className="flex gap-2">
-                  <CarouselNavigation className="!static !w-auto translate-y-0" alwaysShow />
+    <CarouselProvider key={seed}>
+      <section className={cn("w-full bg-background text-foreground", className)} aria-roledescription="carousel" aria-label={title ?? "Highlights"}>
+        <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8">
+          {(eyebrow || title) && (
+            <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
+              <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                <div className="max-w-2xl">
+                  {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
+                  {title && <h2 className="mt-1 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
                 </div>
-              )}
-            </header>
-          </InView>
-        )}
-        <div className="relative">
-          <Carousel key={seed} className="overflow-hidden">
-            <CarouselContent className={cn(perViewLg === 2 && "lg:hidden", perViewLg === 3 && "lg:hidden")}>
-              {slides.map((s, i) => (
-                <CarouselItem key={s.id ?? i} className="pb-4">
-                  <SlideCard slide={s} perView={1} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {perViewLg === 1 && showArrows && <CarouselNavigation alwaysShow />}
-            {perViewLg === 1 && showIndicator && <CarouselIndicator />}
-          </Carousel>
-
-          {perViewLg > 1 && (
-            <div className="hidden lg:grid" style={{ gridTemplateColumns: `repeat(${perViewLg}, minmax(0,1fr))`, gap: 16 }}>
-              {slides.map((s, i) => (
-                <div key={s.id ?? i}>
-                  <SlideCard slide={s} perView={perViewLg} />
-                </div>
-              ))}
-            </div>
+                {showArrows && (
+                  <div className="flex gap-2">
+                    <CarouselNavigation className="!static !w-auto translate-y-0" alwaysShow />
+                  </div>
+                )}
+              </header>
+            </InView>
           )}
+          <div className="relative">
+            <div className="group/hover relative overflow-hidden">
+              <div className="overflow-hidden">
+                <CarouselContent className={cn(perViewLg === 2 && "lg:hidden", perViewLg === 3 && "lg:hidden")}>
+                  {slides.map((s, i) => (
+                    <CarouselItem key={s.id ?? i} className="pb-4">
+                      <SlideCard slide={s} perView={1} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                {perViewLg === 1 && showArrows && <CarouselNavigation alwaysShow />}
+                {perViewLg === 1 && showIndicator && <CarouselIndicator />}
+              </div>
+            </div>
+
+            {perViewLg > 1 && (
+              <div className="hidden lg:grid" style={{ gridTemplateColumns: `repeat(${perViewLg}, minmax(0,1fr))`, gap: 16 }}>
+                {slides.map((s, i) => (
+                  <div key={s.id ?? i}>
+                    <SlideCard slide={s} perView={perViewLg} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </CarouselProvider>
   )
 }

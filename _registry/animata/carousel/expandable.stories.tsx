@@ -1,0 +1,22 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import Expandable from "@/animata/carousel/expandable";
+
+const meta = {
+  title: "Carousel/Expandable",
+  component: Expandable,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  argTypes: {},
+} satisfies Meta<typeof Expandable>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+  args: {
+    autoPlay: true,
+    className: "w-full min-w-72 storybook-fix",
+  },
+};

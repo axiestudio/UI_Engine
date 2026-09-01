@@ -1,9 +1,11 @@
 import * as React from "react"
+// embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+
 
 // ═══ JOB         Sell the collection as a film, not a grid.
 // ═══ EMOTION     Flipping through a lookbook at the studio table.

@@ -2,23 +2,22 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { BadgeCheck, Flag, HardDriveDownload, RefreshCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
+import { MonoLabel } from "@/components/primitives/handcraft"
 import { SegmentedControl } from "segmented-control"
 import { InlineEditCell } from "inline-edit-cell"
 import { DateRangePresets, type Range } from "date-range-presets"
 import { BulkSelectBar, type BulkAction } from "bulk-select-bar"
 import { OfflineQueueBanner } from "offline-queue-banner"
+import { ActivityHeatmap } from "activity-heatmap"
+import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/watermelon/checkbox"
 
 // COMPOSITE SCREEN · TIME & ATTENDANCE
-// composed of: segmented-control (shift view), date-range-presets (pay period),
-// inline-edit-cell (punch edits), bulk-select-bar (supervisor bulk edits),
-// offline-queue-banner (kiosk sync) + watermelon checkbox + purpose-built
-// range totals and kiosk fleet panel.
-//
-// DESIGN BAR: header strip ≤48px · labels 11px semibold uppercase 12% tracking
-// · body 13px · numerics 12px mono tabular right · panels rounded-lg with 36px
-// header strips · motion marks state changes only.
+// Split-band shell: controls dock into a horizontal band (shift + pay period),
+// the punch sheet runs as a real LEDGER — full-width ruled rows grouped per
+// employee, no card nesting — and a tinted canvas carries the weekly heat band
+// plus a bare rail of range totals beside the kiosk fleet.
+// Range presets and the shift segment recompute ledger + totals together.
 
 export type AttendanceRow = {
   id: string
@@ -65,6 +64,29 @@ const span = (row: AttendanceRow): number => Math.max(0, toMin(row.punchOut) - t
 
 const fmtH = (min: number): string => `${Math.floor(min / 60)}h ${String(min % 60).padStart(2, "0")}`
 
+// "Mon 24" → a real date in the Aug 2026 pay period, so range presets filter.
+const DAY_OF_WEEK: Record<string, number> = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 0 }
+const rowDate = (day: string): Date => {
+  const m = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+(\d{1,2})$/.exec(day.trim())
+  return m ? new Date(2026, 7, Number(m[2])) : new Date(2026, 7, 1)
+}
+const rowWeekday = (day: string): number => {
+  const m = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)/.exec(day.trim())
+  return m ? DAY_OF_WEEK[m[1]] ?? 0 : 0
+}
+
+// Seeded weekly attendance history (hours on the floor per weekday), weeks oldest-first.
+const WEEKS = 8
+const HISTORY: number[] = [26, 34, 31, 29, 33, 18, 9]
+const heatCells = (shown: AttendanceRow[]) => {
+  const cells = Array.from({ length: WEEKS * 7 }, (_, i) => {
+    const week = Math.floor(i / 7)
+    return { count: Math.round(HISTORY[i % 7] * (0.85 + ((week * 7 + (i % 7)) % 5) * 0.07)) }
+  })
+  for (const r of shown) cells[(WEEKS - 1) * 7 + rowWeekday(r.day)].count += Math.round(span(r) / 60)
+  return cells
+}
+
 export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: AttendanceDeskProps) {
   const [data, setData] = React.useState(rows)
   const [shift, setShift] = React.useState("all")
@@ -74,9 +96,23 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
   const [flushing, setFlushing] = React.useState(false)
   const [pending, setPending] = React.useState(15)
 
-  const shown = data.filter((r) => shift === "all" || r.shift === shift)
+  const ranged = React.useMemo(() => {
+    if (!period) return data
+    const from = new Date(period.from.getFullYear(), period.from.getMonth(), period.from.getDate()).getTime()
+    const to = new Date(period.to.getFullYear(), period.to.getMonth(), period.to.getDate(), 23, 59).getTime()
+    return data.filter((r) => {
+      const d = rowDate(r.day).getTime()
+      return d >= from && d <= to
+    })
+  }, [data, period])
+
+  const shown = ranged.filter((r) => shift === "all" || r.shift === shift)
   const worked = shown.filter((r) => !r.flagged).reduce((a, r) => a + span(r), 0)
   const overtime = shown.filter((r) => span(r) > 480).reduce((a, r) => a + span(r) - 480, 0)
+  const cells = React.useMemo(() => heatCells(shown), [shown])
+
+  // ledger order — grouped per employee, days ascending
+  const ledger = [...shown].sort((a, b) => (a.emp === b.emp ? a.day.localeCompare(b.day) : a.emp.localeCompare(b.emp)))
 
   const editPunch = (id: string, key: "punchIn" | "punchOut") => async (v: string) => {
     if (!/^\d{1,2}:\d{2}$/.test(v.trim()) || toMin(v.trim()) === 0) throw new Error("bad punch")
@@ -105,120 +141,167 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
     }, 1400)
   }
 
-  return (
-    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <Grain opacity={0.03} />
+  let lastEmp = ""
 
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
+  return (
+    <div className={cn("flex min-h-dvh flex-col bg-muted/30 font-sans text-foreground", className)}>
+      {/* header — plain label voice, sits on the canvas */}
+      <header className="flex flex-wrap items-center gap-x-3 gap-y-2 px-5 py-3">
         <h2 className="text-[13px] font-bold">Time & attendance</h2>
-        <span className="text-[12px] text-muted-foreground">site · Vällingby 04</span>
+        <span className="font-mono text-[12px] text-muted-foreground">site · Vällingby 04</span>
         <span className="text-[12px] text-muted-foreground">· supervisor desk</span>
-        <button onClick={() => setOnline((o) => !o)} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
-          <HardDriveDownload className="size-3.5" /> {online ? "Simulate kiosk drop" : "Kiosks offline"}
-        </button>
-        <button className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><RefreshCcw className="size-3.5" /> Refresh punches</button>
+        <div className="ml-auto flex gap-2">
+          <Button variant="outline" size="sm" onClick={() => setOnline((o) => !o)}>
+            <HardDriveDownload className="size-3.5" /> {online ? "Simulate kiosk drop" : "Kiosks offline"}
+          </Button>
+          <Button variant="outline" size="sm">
+            <RefreshCcw className="size-3.5" /> Refresh punches
+          </Button>
+        </div>
       </header>
 
-      <OfflineQueueBanner online={online} queued={pending} flushing={flushing} onRetryNow={retrySync} className="shrink-0 rounded-none border-x-0 border-t-0" />
+      {/* split band — shift + pay period docked into one control strip */}
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-y bg-background px-5 py-2.5" role="toolbar" aria-label="Ledger controls">
+        <div className="flex items-center gap-2.5">
+          <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Shift</MonoLabel>
+          <SegmentedControl size="sm" value={shift} onChange={setShift} options={[{ value: "all", label: "All" }, { value: "early", label: "Early" }, { value: "day", label: "Day" }, { value: "eve", label: "Eve" }]} />
+        </div>
+        <div className="flex min-w-0 items-center gap-2.5">
+          <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Pay period</MonoLabel>
+          <DateRangePresets value={period} onChange={setPeriod} presets={[{ label: "Last 7 days", days: 7 }, { label: "Last 14 days", days: 14 }, { label: "Month to date", days: 26 }]} />
+        </div>
+        {period && (
+          <span className="ml-auto font-mono text-[11px] tabular-nums text-muted-foreground">
+            {period.from.toLocaleDateString()} → {period.to.toLocaleDateString()} · feeds payroll lock on the 25th
+          </span>
+        )}
+      </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[270px_minmax(0,1fr)_260px]">
-        {/* left rail — period + shift + totals */}
-        <aside className="flex min-w-0 flex-col gap-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Pay period</header>
-            <div className="p-3">
-              <DateRangePresets value={period} onChange={setPeriod} presets={[{ label: "This week", days: 7 }, { label: "Last week", days: 7 }, { label: "Month to date", days: 26 }]} />
-            </div>
-          </section>
+      <OfflineQueueBanner online={online} queued={pending} flushing={flushing} onRetryNow={retrySync} className="rounded-none border-x-0" />
 
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Shift view</header>
-            <div className="p-3">
-              <SegmentedControl size="sm" className="w-full justify-between" value={shift} onChange={setShift} options={[{ value: "all", label: "All" }, { value: "early", label: "Early" }, { value: "day", label: "Day" }, { value: "eve", label: "Eve" }]} />
-            </div>
-          </section>
-
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Range totals</header>
-            <div className="space-y-1.5 p-3 text-[12px]">
-              <TotalRow l="Punches shown" v={String(shown.length)} />
-              <TotalRow l="Worked" v={fmtH(worked)} />
-              <TotalRow l="Overtime > 8h" v={fmtH(overtime)} accent={overtime > 0} />
-              <TotalRow l="Flagged rows" v={String(shown.filter((r) => r.flagged).length)} accent={shown.some((r) => r.flagged)} />
-              {period && <p className="border-t pt-2 text-[11px] text-muted-foreground">Period {period.from.toLocaleDateString()} → {period.to.toLocaleDateString()} feeds payroll lock on the 25th.</p>}
-            </div>
-          </section>
-        </aside>
-
-        {/* centre — punch sheet */}
-        <section className="min-h-0 overflow-hidden rounded-lg border bg-card">
-          <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Punch sheet · {shown.length} rows</span>
-            <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{data.filter((r) => r.kiosk).length} awaiting kiosk sync</span>
-          </header>
-          <AnimatePresence>
-            {selected.length > 0 && (
-              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
-                <BulkSelectBar selected={selected} total={shown.length} actions={actions} onClear={() => setSelected([])} className="rounded-none border-x-0 border-t-0" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <table className="w-full border-collapse text-[12px]">
-            <thead>
-              <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
-                <th className="w-8 px-3 py-1.5">
-                  <Checkbox
-                    checked={shown.length > 0 && shown.every((r) => selected.includes(r.id))}
-                    onCheckedChange={(v: boolean) => setSelected(v ? shown.map((r) => r.id) : [])}
-                    aria-label="select all rows"
-                  />
-                </th>
-                <th className="px-2 py-1.5 font-semibold">Employee</th>
-                <th className="px-2 py-1.5 font-semibold">Day</th>
-                <th className="w-20 px-2 py-1.5 font-semibold">In</th>
-                <th className="w-20 px-2 py-1.5 font-semibold">Out</th>
-                <th className="w-20 px-2 py-1.5 text-right font-semibold">Span</th>
-                <th className="w-16 px-3 py-1.5 text-right font-semibold">State</th>
+      {/* the punch ledger — one paper sheet, ruled rows, no nested cards */}
+      <section className="mx-5 mt-5 overflow-hidden rounded-lg border bg-background shadow-sm" aria-label="Punch ledger">
+        <div className="flex items-baseline justify-between px-4 py-2.5">
+          <h3 className="font-display text-[13px] font-bold">Punch ledger <span className="font-mono text-[11px] font-normal tabular-nums text-muted-foreground">· {shown.length} rows</span></h3>
+          <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{data.filter((r) => r.kiosk).length} awaiting kiosk sync</span>
+        </div>
+        <AnimatePresence>
+          {selected.length > 0 && (
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
+              <BulkSelectBar selected={selected} total={shown.length} actions={actions} onClear={() => setSelected([])} className="rounded-none border-x-0" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <table className="w-full border-collapse text-[12px]">
+          <thead>
+            <tr className="border-y bg-muted/40 text-left text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+              <th className="w-8 px-4 py-1.5">
+                <Checkbox
+                  checked={shown.length > 0 && shown.every((r) => selected.includes(r.id))}
+                  onCheckedChange={(v: boolean) => setSelected(v ? shown.map((r) => r.id) : [])}
+                  aria-label="select all ledger rows"
+                />
+              </th>
+              <th className="px-2 py-1.5 font-semibold">Employee</th>
+              <th className="px-2 py-1.5 font-semibold">Day · shift</th>
+              <th className="w-20 px-2 py-1.5 font-semibold">In</th>
+              <th className="w-20 px-2 py-1.5 font-semibold">Out</th>
+              <th className="w-20 px-2 py-1.5 text-right font-semibold">Span</th>
+              <th className="w-16 px-4 py-1.5 text-right font-semibold">State</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ledger.map((r, i) => {
+              const groupStart = r.emp !== lastEmp
+              lastEmp = r.emp
+              return (
+                <React.Fragment key={r.id}>
+                  {groupStart && (
+                    <tr className="border-b bg-muted/20">
+                      <td colSpan={7} className="px-4 py-1">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
+                          {r.emp} · {r.dept}
+                        </span>
+                      </td>
+                    </tr>
+                  )}
+                  <tr className={cn("border-b border-app-line/60 last:border-0 odd:bg-muted/20", selected.includes(r.id) && "bg-accent/40", r.flagged && "bg-[hsl(var(--warn)/0.07)]")}>
+                    <td className="px-4 py-1.5">
+                      <Checkbox
+                        checked={selected.includes(r.id)}
+                        onCheckedChange={(v: boolean) => setSelected((s) => (v ? [...s, r.id] : s.filter((x) => x !== r.id)))}
+                        aria-label={`select ${r.emp} ${r.day}`}
+                      />
+                    </td>
+                    <td className="px-2 py-1.5 font-medium">
+                      {r.emp}
+                      {r.kiosk && <span className="ml-1.5 rounded bg-muted px-1 py-px font-mono text-[9px] font-bold uppercase text-muted-foreground">kiosk</span>}
+                    </td>
+                    <td className="px-2 py-1.5 text-muted-foreground">{r.day} · {r.shift}</td>
+                    <td className="px-2 py-1.5"><InlineEditCell value={r.punchIn} name={`punch in ${r.emp} ${r.day}`} mono width={44} onSave={editPunch(r.id, "punchIn")} /></td>
+                    <td className="px-2 py-1.5"><InlineEditCell value={r.punchOut} name={`punch out ${r.emp} ${r.day}`} mono width={44} onSave={editPunch(r.id, "punchOut")} /></td>
+                    <td className="px-2 py-1.5 text-right font-mono tabular-nums">{fmtH(span(r))}</td>
+                    <td className="px-4 py-1.5 text-right">
+                      {r.approved ? <BadgeCheck className="ml-auto size-3.5 text-[hsl(var(--ok))]" /> : r.flagged ? <Flag className="ml-auto size-3.5 text-[hsl(var(--warn))]" /> : <span className="text-[10px] uppercase text-muted-foreground">open</span>}
+                    </td>
+                  </tr>
+                </React.Fragment>
+              )
+            })}
+            {ledger.length === 0 && (
+              <tr>
+                <td colSpan={7} className="px-4 py-6 text-center text-[12px] text-muted-foreground">
+                  No punches in range — widen the pay period or clear the shift filter.
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {shown.map((r) => (
-                <tr key={r.id} className={cn("border-b border-app-line/60 last:border-0", selected.includes(r.id) && "bg-accent/40", r.flagged && "bg-[hsl(var(--warn)/0.07)]")}>
-                  <td className="px-3 py-1.5">
-                    <Checkbox
-                      checked={selected.includes(r.id)}
-                      onCheckedChange={(v: boolean) => setSelected((s) => (v ? [...s, r.id] : s.filter((x) => x !== r.id)))}
-                      aria-label={`select ${r.emp} ${r.day}`}
-                    />
-                  </td>
-                  <td className="px-2 py-1.5 font-medium">
-                    {r.emp}
-                    {r.kiosk && <span className="ml-1.5 rounded bg-muted px-1 py-px text-[9px] font-bold uppercase text-muted-foreground">kiosk</span>}
-                  </td>
-                  <td className="px-2 py-1.5 text-muted-foreground">{r.day} · {r.shift}</td>
-                  <td className="px-2 py-1.5"><InlineEditCell value={r.punchIn} name={`punch in ${r.emp} ${r.day}`} mono width={44} onSave={editPunch(r.id, "punchIn")} /></td>
-                  <td className="px-2 py-1.5"><InlineEditCell value={r.punchOut} name={`punch out ${r.emp} ${r.day}`} mono width={44} onSave={editPunch(r.id, "punchOut")} /></td>
-                  <td className="px-2 py-1.5 text-right font-mono tabular-nums">{fmtH(span(r))}</td>
-                  <td className="px-3 py-1.5 text-right">
-                    {r.approved ? <BadgeCheck className="ml-auto size-3.5 text-[hsl(var(--ok))]" /> : r.flagged ? <Flag className="ml-auto size-3.5 text-[hsl(var(--warn))]" /> : <span className="text-[10px] uppercase text-muted-foreground">open</span>}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Tap a punch time to correct it · edits stamp the audit trail with your supervisor ID</div>
+            )}
+          </tbody>
+        </table>
+        <div className="border-t px-4 py-2 text-[11px] text-muted-foreground">Tap a punch time to correct it · edits stamp the audit trail with your supervisor ID</div>
+      </section>
+
+      {/* canvas floor — weekly heat band + bare totals rail + kiosk fleet */}
+      <div className="grid grid-cols-1 gap-4 px-5 py-5 lg:grid-cols-12">
+        <section className="rounded-lg border bg-background p-4 lg:col-span-8" aria-label="Weekly attendance heat">
+          <div className="flex items-baseline justify-between">
+            <h3 className="font-display text-[13px] font-bold">Weekly attendance heat</h3>
+            <span className="font-mono text-[10px] uppercase text-muted-foreground">hours on floor · {shift === "all" ? "all shifts" : `${shift} shift`}</span>
+          </div>
+          <div className="mt-3">
+            <ActivityHeatmap cells={cells} weekStartDay={1} showTooltip showLegend />
+          </div>
+          <p className="mt-2 border-t pt-2 text-[11px] leading-relaxed text-muted-foreground">
+            The current week is live — correcting a punch moves hours between weekday cells.
+          </p>
         </section>
 
-        {/* right rail — kiosk fleet */}
-        <aside className="flex min-w-0 flex-col gap-4">
-          <section className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Kiosk fleet</span>
+        <div className="flex flex-col gap-4 lg:col-span-4">
+          {/* range totals — bare rail, rules only */}
+          <section aria-label="Range totals" className="px-1">
+            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Range totals</MonoLabel>
+            <dl className="mt-1 divide-y border-y text-[12px]">
+              {([
+                ["Punches shown", String(shown.length), false],
+                ["Worked", fmtH(worked), false],
+                ["Overtime > 8h", fmtH(overtime), overtime > 0],
+                ["Flagged rows", String(shown.filter((r) => r.flagged).length), shown.some((r) => r.flagged)],
+              ] as [string, string, boolean][]).map(([l, v, accent]) => (
+                <div key={l} className="flex items-baseline justify-between py-1.5">
+                  <dt className="text-muted-foreground">{l}</dt>
+                  <dd className={cn("font-mono text-[13px] font-bold tabular-nums", accent && "text-[hsl(var(--warn))]")}>{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <section aria-label="Kiosk fleet" className="flex-1 rounded-lg border bg-background p-3 shadow-sm">
+            <div className="flex items-baseline justify-between">
+              <h3 className="font-display text-[13px] font-bold">Kiosk fleet</h3>
               <span className={cn("font-mono text-[11px] tabular-nums", online ? "text-muted-foreground" : "text-[hsl(var(--err))]")}>{online ? "link up" : "link down"}</span>
-            </header>
-            <div className="grid gap-2 p-3">
+            </div>
+            <div className="grid gap-2 pt-2">
               {KIOSKS.map((k) => (
-                <div key={k.id} className="flex items-center justify-between rounded-md border bg-background px-2.5 py-2">
+                <div key={k.id} className="flex items-center justify-between rounded-md border bg-muted/20 px-2.5 py-1.5">
                   <div>
                     <p className="text-[12px] font-semibold">{k.site}</p>
                     <p className="text-[11px] text-muted-foreground">last sync {k.lastSync}</p>
@@ -227,28 +310,22 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
                 </div>
               ))}
             </div>
+            <dl className="mt-2 divide-y border-t text-[12px]">
+              {([
+                ["Punches queued", String(pending), pending > 0],
+                ["Synced today", "128", false],
+                ["Conflicts", "0", false],
+              ] as [string, string, boolean][]).map(([l, v, accent]) => (
+                <div key={l} className="flex items-baseline justify-between py-1.5">
+                  <dt className="text-muted-foreground">{l}</dt>
+                  <dd className={cn("font-mono tabular-nums", accent && "font-bold text-[hsl(var(--warn))]")}>{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="pt-1.5 text-[10px] text-muted-foreground">kiosk punches win unless a supervisor edits first</p>
           </section>
-
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Sync ledger</header>
-            <div className="space-y-1.5 p-3 text-[12px]">
-              <TotalRow l="Punches queued" v={String(pending)} accent={pending > 0} />
-              <TotalRow l="Synced today" v="128" />
-              <TotalRow l="Conflicts" v="0" />
-              <MonoLabel tick={false} className="block pt-1 text-[10px] text-muted-foreground">kiosk punches win unless a supervisor edits first</MonoLabel>
-            </div>
-          </section>
-        </aside>
+        </div>
       </div>
-    </div>
-  )
-}
-
-function TotalRow({ l, v, accent }: { l: string; v: string; accent?: boolean }) {
-  return (
-    <div className="flex justify-between">
-      <span className="text-muted-foreground">{l}</span>
-      <span className={cn("font-mono tabular-nums", accent && "text-[hsl(var(--warn))]")}>{v}</span>
     </div>
   )
 }
