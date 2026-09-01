@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { PenLine, Send } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { GhostSuggestInput } from "ghost-suggest-input"
 import { CitationHoverCard, type Source } from "citation-hover-card"
@@ -92,14 +93,15 @@ export function LegalClauseDesk({ matter = "2024-0117 · MSA renewal", counterpa
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Clause review</h2>
         <span className="text-[12px] text-muted-foreground">{matter}</span>
         <span className="text-[12px] text-muted-foreground">· vs {counterparty}</span>
         <span className={cn("text-[12px] font-semibold", pending === 0 ? "text-[hsl(var(--ok))]" : "text-muted-foreground")}>{HUNKS.length - pending}/{HUNKS.length} redlines resolved</span>
-        <button onClick={send} disabled={pending > 0 || !!sent} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
+        <Button type="button" variant="ghost" onClick={send} disabled={pending > 0 || !!sent} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
           <Send className="size-3.5" /> {sent ? `Sent · ${sent.at}` : "Send to counterparty"}
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[minmax(0,1fr)_340px]">
@@ -124,7 +126,8 @@ export function LegalClauseDesk({ matter = "2024-0117 · MSA renewal", counterpa
             <div className="rounded-lg border border-dashed bg-background p-3">
               <div className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
                 <PenLine className="size-3.5" /> §11 drafting — ghost continuations on
-              </div>
+          </MotionConfig>
+    </div>
               <GhostSuggestInput
                 value={draft}
                 onChange={setDraft}

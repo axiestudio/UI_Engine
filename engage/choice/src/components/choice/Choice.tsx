@@ -2,6 +2,7 @@ import * as React from "react"
 import { useReducedMotion } from "motion/react"
 import { Check } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { cn } from "@/lib/utils"
 
 // ── Design language ──────────────────────────────────────────────────────────
@@ -50,11 +51,8 @@ function Door({
 }) {
   const Icon = chosen ? Check : undefined
   return (
-    <button
-      type="button"
-      role="radio"
-      aria-checked={chosen}
-      tabIndex={chosen ? 0 : -1}
+    <RadioGroupItem
+      value={o.id}
       onClick={onSelect}
       className={cn(
         "group relative flex min-h-[220px] flex-1 flex-col overflow-hidden rounded-2xl border p-5 text-left shadow-sm transition-[flex-grow,border-color,background-color,box-shadow,transform] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[300px]",
@@ -99,7 +97,7 @@ function Door({
         {o.description && <span className={cn("mt-1 block max-w-[34ch] text-[13px] font-medium leading-relaxed", chosen ? "text-white/80" : "text-muted-foreground")}>{o.description}</span>}
         {chosen && confirmLabel && <span className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] font-black uppercase tracking-[0.2em]">{confirmLabel}<span aria-hidden>→</span></span>}
       </span>
-    </button>
+    </RadioGroupItem>
   )
 }
 
@@ -116,19 +114,6 @@ export function Choice({ question, options, defaultId, value, onChange, confirmL
     onChange?.(id)
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const idx = options.findIndex((o) => o.id === picked)
-    let next: number | null = null
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = idx < options.length - 1 ? idx + 1 : 0
-    if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = idx > 0 ? idx - 1 : options.length - 1
-    if (e.key === "Home") next = 0
-    if (e.key === "End") next = options.length - 1
-    if (next !== null) {
-      e.preventDefault()
-      select(options[next].id)
-    }
-  }
-
   return (
     <section className={cn("w-full bg-background text-foreground", className)} aria-labelledby={`${groupId}-title`}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
@@ -140,7 +125,13 @@ export function Choice({ question, options, defaultId, value, onChange, confirmL
             There is no wrong door — only the one you’d rather walk through today.
           </p>
 
-          <div role="radiogroup" aria-labelledby={`${groupId}-title`} aria-describedby={`${groupId}-desc`} onKeyDown={handleKeyDown} className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">
+          <RadioGroup
+            value={picked}
+            onValueChange={(v) => select(v)}
+            aria-labelledby={`${groupId}-title`}
+            aria-describedby={`${groupId}-desc`}
+            className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5 [&_[data-slot=radio-group-indicator]]:hidden"
+          >
             {options.map((o) => (
               <Door
                 key={o.id}
@@ -151,7 +142,7 @@ export function Choice({ question, options, defaultId, value, onChange, confirmL
                 confirmLabel={confirmLabel}
               />
             ))}
-          </div>
+          </RadioGroup>
           <p className="sr-only" aria-live="polite">
             Selected: {options.find((o) => o.id === picked)?.title ?? "none"}
           </p>

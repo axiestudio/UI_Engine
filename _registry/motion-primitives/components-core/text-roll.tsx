@@ -1,11 +1,6 @@
 'use client';
-import {
-  motion,
-  VariantLabels,
-  Target,
-  TargetAndTransition,
-  Transition,
-} from 'motion/react';
+import { motion, VariantLabels, Target } from 'motion/react';
+import type { TargetAndTransition, Transition } from 'motion/react';
 
 export type TextRollProps = {
   children: string;

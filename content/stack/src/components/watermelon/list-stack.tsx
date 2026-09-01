@@ -5,11 +5,11 @@
 "use client";
 
 import { useState, type FC } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
-import { FaFireFlameCurved, FaSailboat } from "react-icons/fa6";
-import { LuTent } from "react-icons/lu";
-import { type IconType } from "react-icons";
+import { Flame, Sailboat, Tent } from "lucide-react"
+
+import type { LucideIcon } from "lucide-react"
 
 // Local extension: exported for preset props (shape unchanged).
 // icon is optional — items may render without one (guarded below).
@@ -18,7 +18,7 @@ export interface ListItem {
   title: string;
   location: string;
   date: string;
-  icon?: IconType;
+  icon?: LucideIcon;
 }
 
 interface ListStackProps {
@@ -31,21 +31,21 @@ const ITEMS: ListItem[] = [
     title: "Camping",
     location: "Yosemite Park",
     date: "5 August",
-    icon: LuTent,
+    icon: Tent,
   },
   {
     id: "2",
     title: "Boating",
     location: "Lake Tahoe Park",
     date: "2 August",
-    icon: FaSailboat,
+    icon: Sailboat,
   },
   {
     id: "3",
     title: "Barbecue",
     location: "Greenfield Shores",
     date: "28 July",
-    icon: FaFireFlameCurved,
+    icon: Flame,
   },
 ];
 const CARD_HEIGHT = 60;

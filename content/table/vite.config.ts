@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "table.es.js" : "table.cjs.js"),
     },
-    rollupOptions: { external: ["@radix-ui/react-select", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "clsx", "lucide-react", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

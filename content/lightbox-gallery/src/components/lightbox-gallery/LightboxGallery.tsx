@@ -3,6 +3,8 @@ import { InView } from "@/components/primitives/in-view"
 import { Spotlight } from "@/components/primitives/spotlight"
 
 import { cn } from "@/lib/utils"
+import { Check, Plus } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Lightbox gallery — a tile grid; hover reveals a spotlight, click enlarges.
 // ═══ EMOTION     Attentive, hotel-light.
@@ -39,17 +41,16 @@ export function LightboxGallery({ eyebrow = "LIGHTBOX", title = "Look closer.", 
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {frames.map((f) => (
-            <button key={f.id} type="button" onClick={() => setActiveId(f.id)} className="relative overflow-hidden rounded-xl border bg-muted focus-visible:ring-2 focus-visible:ring-ring" aria-label={f.alt}>
+            <Button type="button" key={f.id} onClick={() => setActiveId(f.id)} aria label={f.alt} variant="default" className={relative overflow-hidden rounded-xl border bg-muted focus-visible:ring-2 focus-visible:ring-ring}>
               <Spotlight className="z-10" size={160} />
               {f.src ? <img src={f.src} alt={f.alt ?? ""} className={cn("aspect-square w-full object-cover transition-opacity", f.id === activeId ? "opacity-100" : "opacity-80")} loading="lazy" /> : <div className="aspect-square w-full bg-gradient-to-br from-secondary to-muted" />}
-              <span className="pointer-events-none absolute right-2 top-2 z-20 rounded-full bg-black/50 px-2 py-0.5 font-mono text-[9px] font-bold text-white">{f.id === activeId ? "✓" : "+"}</span>
-            </button>
+              <span className="pointer-events-none absolute right-2 top-2 z-20 rounded-full bg-black/50 px-2 py-0.5 font-mono text-[9px] font-bold text-white">{f.id === activeId ? <Check className="size-2.5" aria-hidden /> : <Plus className="size-2.5" aria-hidden />}</span>
+            
           ))}
         </div>
         <div className="mt-4 overflow-hidden rounded-xl border bg-muted">

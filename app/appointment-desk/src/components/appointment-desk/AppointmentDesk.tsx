@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarCheck } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { DateRangePresets, type Range } from "date-range-presets"
 import { BoardingPass } from "boarding-pass-gate"
@@ -51,10 +52,13 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border border-border/70 bg-muted/20", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b border-border/60 bg-background px-4">
         <h2 className="text-sm font-semibold">Appointments</h2>
         <span className="text-[13px] text-muted-foreground">South House · walk-ins land on the board</span>
-        <div className="ml-auto"><DateRangePresets value={range} onChange={(r) => { setRange(r); push(r ? "Window applied to availability" : "Showing all open days") }} /></div>
+        <div className="ml-auto"><DateRangePresets value={range} onChange={(r) => { setRange(r); push(r ? "Window applied to availability" : "Showing all open days") }} />      
+          </MotionConfig>
+    </div>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 xl:grid-cols-[minmax(0,1fr)_300px]">
@@ -77,7 +81,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
                       const isSel = sel?.d === d && sel?.t === t && sel?.c === c
                       const isBooked = booked?.d === d && booked?.t === t && booked?.c === c
                       return (
-                        <button
+                        <Button type="button" variant="ghost"
                           key={`${d}-${t}-${c}`}
                           disabled={off || !!booked && !isBooked}
                           aria-label={`${DAYS[d]} ${tm} ${CHAIRS[c]}${off ? " unavailable" : isBooked ? " your hold" : " available"}`}
@@ -91,7 +95,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
                           )}
                         >
                           {!off && (isBooked ? "held" : isSel ? "selected" : c === 3 ? "walk-in" : "open")}
-                        </button>
+                        </Button>
                       )
                     })
                   )}
@@ -116,7 +120,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
                       Note for the chair (plain text — saved with the booking)
                       <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} maxLength={160} placeholder="e.g. north mirror, no phone calls" className="mt-1 w-full resize-none rounded-md border border-border/70 bg-background px-2.5 py-2 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-ring" />
                     </label>
-                    <button onClick={confirm} className="flex h-9 w-full items-center justify-center gap-2 rounded-md bg-primary text-sm font-medium text-primary-foreground shadow-sm"><CalendarCheck className="size-4" /> Hold for 24 hours</button>
+                    <Button type="button" variant="ghost" onClick={confirm} className="flex h-9 w-full items-center justify-center gap-2 rounded-md bg-primary text-sm font-medium text-primary-foreground shadow-sm"><CalendarCheck className="size-4" /> Hold for 24 hours</Button>
                   </motion.div>
                 ) : booked ? null : (
                   <p className="py-2 text-[13px] text-muted-foreground">Pick an open cell in the grid. Holds are soft — no card yet.</p>
@@ -125,7 +129,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
               {booked && (
                 <div className="space-y-2">
                   <p className="text-[13px] font-medium text-[hsl(var(--ok))]">Held · {DAYS[booked.d]} {TIMES[booked.t]} {CHAIRS[booked.c]}</p>
-                  <button onClick={release} className="h-8 w-full rounded-md border border-border/70 text-xs font-medium text-muted-foreground hover:bg-muted">Release hold</button>
+                  <Button type="button" variant="ghost" onClick={release} className="h-8 w-full rounded-md border border-border/70 text-xs font-medium text-muted-foreground hover:bg-muted">Release hold</Button>
                 </div>
               )}
             </div>

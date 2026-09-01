@@ -4,6 +4,8 @@ import { InView } from "@/components/primitives/in-view"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type ShowcaseShot = {
@@ -133,13 +135,7 @@ export function Showcase({
         {shots.length > 1 && (
           <div className="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2.5" role="tablist" aria-label="Screenshots">
             {shots.map((s, i) => (
-              <button
-                key={s.src}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                onClick={() => setActive(i)}
-                className={cn(
+              <Button type="button" key={s.src} role="tab" aria selected={i === active} onClick={() => setActive(i)} variant="default" className={cn(cn(
                   "rounded-full border px-4 py-2 text-xs font-bold tracking-tight transition-all",
                   i === active
                     ? ink
@@ -148,10 +144,9 @@ export function Showcase({
                     : ink
                       ? "border-background/20 bg-transparent text-background/70 hover:border-background/40 hover:text-background"
                       : "border-border bg-transparent text-muted-foreground hover:border-foreground/30 hover:text-foreground",
-                )}
-              >
+                ))}>
                 {s.label ?? `View ${i + 1}`}
-              </button>
+              
             ))}
           </div>
         )}

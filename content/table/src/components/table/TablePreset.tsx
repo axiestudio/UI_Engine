@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUp } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type TableColumn = {
@@ -100,12 +101,12 @@ export function TablePreset({
                         className={cn("font-mono text-[10px] font-bold uppercase tracking-widest", col.align === "right" && "text-right", col.align === "center" && "text-center", col.className)}
                       >
                         {sortable ? (
-                          <button type="button" onClick={() => toggle(col.key)} className={cn("group inline-flex items-center gap-1 uppercase tracking-widest", col.align === "right" && "flex-row-reverse")}>
+                          <Button type="button" onClick={() => toggle(col.key)} variant="default" className={cn(cn("group inline-flex items-center gap-1 uppercase tracking-widest", col.align === "right" && "flex-row-reverse"))}>
                             {col.label}
                             <span className={cn("transition-opacity", isSorted ? "opacity-100" : "opacity-0 group-hover:opacity-40")}>
                               {isSorted && sort!.dir === "desc" ? <ArrowDown className="h-3 w-3" /> : <ArrowUp className="h-3 w-3" />}
                             </span>
-                          </button>
+                          
                         ) : (
                           col.label
                         )}

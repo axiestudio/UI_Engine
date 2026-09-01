@@ -3,8 +3,8 @@ import gsap from "gsap"
 import { Draggable } from "gsap/Draggable"
 import { InertiaPlugin } from "gsap/InertiaPlugin"
 import { Clock, RotateCcw } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 gsap.registerPlugin(Draggable, InertiaPlugin)
@@ -140,7 +140,7 @@ export function GsapDragDeck({
     <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
       <div className="mx-auto w-full max-w-[720px] px-4 py-12 sm:px-6 sm:py-14">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-          <MonoLabel>{eyebrow}</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">{eyebrow}</span>
           <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{title}</h2>
           <p className="mt-2.5 max-w-xl text-sm leading-6 text-muted-foreground">{subtitle}</p>
         </InView>
@@ -163,7 +163,7 @@ export function GsapDragDeck({
                   style={{ zIndex: CLIENTS.length - pos }}
                 >
                   <div className="flex items-center justify-between">
-                    <MonoLabel tick={false}>Client {String(i + 1).padStart(2, "0")}</MonoLabel>
+                    <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Client {String(i + 1).padStart(2, "0")}</span>
                     <span className="font-mono text-[11px] font-bold tabular-nums text-muted-foreground">{client.price}</span>
                   </div>
                   <h3 className="mt-5 font-display text-xl font-bold tracking-tight text-foreground">{client.name}</h3>
@@ -193,8 +193,9 @@ export function GsapDragDeck({
             <span className="text-primary">{String(Math.min(dealt, CLIENTS.length)).padStart(2, "0")}</span> /{" "}
             {String(CLIENTS.length).padStart(2, "0")} dealt
           </span>
-          <button
+          <Button
             type="button"
+            variant="ghost"
             onClick={resetDeck}
             disabled={reduce || dealt === 0}
             className={cn(
@@ -205,7 +206,7 @@ export function GsapDragDeck({
           >
             <RotateCcw className="size-3.5" aria-hidden />
             Reset
-          </button>
+          </Button>
         </div>
 
         <p className="mx-auto mt-8 flex w-[280px] items-center justify-between border-t pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">

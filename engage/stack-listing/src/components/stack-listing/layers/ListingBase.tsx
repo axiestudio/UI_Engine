@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── LISTING BASE — the bottom bun. Book a viewing. ──────────────────────────
@@ -13,16 +14,17 @@ export type ListingBaseProps = {
 export function ListingBase({ cta = "Book a viewing", onBook, secondary = "Save", className }: ListingBaseProps) {
   return (
     <div className={cn("flex items-center gap-3 rounded-b-[16px] border-t border-border/60 bg-muted/40 px-5 py-4", className)}>
-      <button
+      <Button
         type="button"
         onClick={onBook}
-        className="h-10 flex-1 rounded-full bg-foreground text-[11px] font-black uppercase tracking-[0.14em] text-background transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="h-10 flex-1 rounded-full font-black uppercase tracking-[0.14em] transition-transform hover:-translate-y-0.5"
       >
         {cta}
       </button>
-      <button
+      <Button
         type="button"
-        className="h-10 shrink-0 rounded-full border border-border px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        variant="outline"
+        className="h-10 shrink-0 rounded-full px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground"
       >
         {secondary}
       </button>

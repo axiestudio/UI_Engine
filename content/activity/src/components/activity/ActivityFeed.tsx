@@ -10,9 +10,7 @@ import {
   User,
   Zap,
 } from "lucide-react"
-
 import { InView } from "@/components/primitives/in-view"
-
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -90,7 +88,6 @@ export function ActivityFeed({
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           {/* copy */}
           <div>

@@ -4,7 +4,6 @@ export { Newsletter } from "./components/newsletter/Newsletter"
 export type { NewsletterProps } from "./components/newsletter/Newsletter"
 
 // Vendored upstream registry sources (provenance kept for direct use):
-export { default as Noise } from "./components/primitives/noise"
 export { BorderTrail } from "./components/primitives/border-trail"
 export { Spotlight } from "./components/primitives/spotlight"
 export { TextEffect } from "./components/primitives/text-effect"

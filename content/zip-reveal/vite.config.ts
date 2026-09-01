@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "zip-reveal.es.js" : "zip-reveal.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

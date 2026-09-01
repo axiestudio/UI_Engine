@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "blinds-slat.es.js" : "blinds-slat.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

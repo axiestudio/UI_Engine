@@ -3,6 +3,7 @@ import { Check, Loader2, AlertCircle } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { cn } from "@/lib/utils"
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -147,27 +148,21 @@ export function RsvpForm({
                 <p id={groupId} className="mb-2 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                   Attendance
                 </p>
-                <div role="radiogroup" aria-labelledby={groupId} className="flex flex-wrap gap-2">
-                  {options.map((o) => {
-                    const active = choice === o
-                    return (
-                      <button
-                        key={o}
-                        type="button"
-                        role="radio"
-                        aria-checked={active}
-                        onClick={() => setChoice(o)}
-                        className={cn(
-                          "rounded-full border px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                          active ? "border-foreground bg-foreground text-background shadow-sm" : "border-border bg-background hover:bg-accent hover:text-accent-foreground",
-                          ink && !active && "border-background/20 bg-transparent hover:bg-background/10",
-                        )}
-                      >
-                        {o}
-                      </button>
-                    )
-                  })}
-                </div>
+                <RadioGroup value={choice} onValueChange={(v) => setChoice(v as (typeof options)[number])} aria-labelledby={groupId} className="flex flex-wrap gap-2">
+                  {options.map((o) => (
+                    <RadioGroupItem
+                      key={o}
+                      value={o}
+                      className={cn(
+                        "h-9 rounded-full border px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest shadow-none transition-colors [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background",
+                        !ink && "border-border bg-background hover:bg-accent hover:text-accent-foreground data-[state=unchecked]:text-foreground",
+                        ink && "border-background/20 bg-transparent data-[state=unchecked]:text-background hover:bg-background/10",
+                      )}
+                    >
+                      {o}
+                    </RadioGroupItem>
+                  ))}
+                </RadioGroup>
               </div>
 
               {formError && (

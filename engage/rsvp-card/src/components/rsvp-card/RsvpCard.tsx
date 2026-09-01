@@ -1,6 +1,7 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { CalendarDays, Check, MapPin, Minus, Plus } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
@@ -208,17 +209,15 @@ export function RsvpCard({
               <p aria-live="polite" className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
                 {attending === "yes" ? `${1 + plusOne} attending · ${meal}` : "Regrets sent"}
               </p>
-              <button
+              <Button
                 type="button"
                 onClick={() => setConfirmed(true)}
                 disabled={confirmed}
+                variant={confirmed ? "outline" : "default"}
                 className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-display text-[12px] font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  confirmed
-                    ? ink
-                      ? "border border-background/30 bg-transparent text-background"
-                      : "border border-primary bg-transparent text-primary"
-                    : "bg-primary text-primary-foreground hover:bg-primary/90"
+                  "gap-1.5 rounded-full px-5 py-2.5 font-display text-[12px] font-bold",
+                  confirmed && ink && "border-background/30 bg-transparent text-background",
+                  confirmed && !ink && "border-primary bg-transparent text-primary",
                 )}
               >
                 {confirmed && <Check className="size-3.5" strokeWidth={3} aria-hidden />}

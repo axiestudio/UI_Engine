@@ -3,7 +3,7 @@
  * Item: avatar (base kit). Snapshot: UI/_registry/watermelon/r/avatar.json
  */
 import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import { Avatar as AvatarPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 

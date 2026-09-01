@@ -4,7 +4,6 @@ import type { MotionValue } from "motion/react"
 import { Eye } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-
 // ═══ JOB      a before/after you feel yourself opening, not a slider drag
 // ═══ EMOTION  the slow reveal of blinds letting light in
 // ═══ SIGNATURE N horizontal slats rotateX 0→88° on staggered scrub bands;
@@ -59,7 +58,7 @@ export function BlindsSlat({ before, after, slats = 12, height = "230vh", value,
             ))}
           </div>
           <figcaption className="relative flex items-center justify-between gap-4 border-t bg-card shadow-sm px-5 py-3.5">
-            <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+            <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
             {caption && <p className="truncate text-[12px] font-semibold text-muted-foreground">{caption}</p>}
             <span className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground"><Eye className="size-3.5" /> after</span>
           </figcaption>

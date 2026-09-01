@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Check, Copy, Eye, EyeOff, RotateCw } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — API keys deserve ceremony.
@@ -37,13 +38,13 @@ export function CopySecretField({ value, onRotate, rotating, label = "Secret", m
           <span className="w-1" />
         </div>
         <div className="absolute inset-y-0 right-0 flex items-center gap-0.5 border-l bg-card px-1.5">
-          <button type="button" aria-pressed={show} aria-label={show ? "Hide value" : "Reveal value"} onClick={() => setShow((s) => !s)} className="grid size-7 place-items-center rounded hover:bg-muted">{show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}</button>
-          <button type="button" onClick={copy} aria-label="Copy to clipboard" className="grid size-7 place-items-center rounded hover:bg-muted">
+          <Button type="button" variant="ghost" aria-pressed={show} aria-label={show ? "Hide value" : "Reveal value"} onClick={() => setShow((s) => !s)} className="grid size-7 place-items-center rounded hover:bg-muted">{show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}</Button>
+          <Button type="button" variant="ghost" onClick={copy} aria-label="Copy to clipboard" className="grid size-7 place-items-center rounded hover:bg-muted">
             <AnimatePresence mode="wait" initial={false}>
               {copied ? <motion.span key="ok" initial={{ scale: 0.5 }} animate={{ scale: 1 }} exit={{ scale: 0.5 }}><Check className="size-4 text-[hsl(var(--ok))]" /></motion.span> : <motion.span key="cp" initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }}><Copy className="size-4" /></motion.span>}
             </AnimatePresence>
-          </button>
-          {onRotate && <button type="button" onClick={onRotate} aria-label="Rotate secret" disabled={rotating} className="grid size-7 place-items-center rounded hover:bg-muted disabled:opacity-60"><motion.span animate={rotating ? { rotate: 360 } : { rotate: 0 }} transition={rotating ? { repeat: Infinity, duration: 0.9, ease: "linear" } : { duration: 0.3 }}><RotateCw className="size-4" /></motion.span></button>}
+          </Button>
+          {onRotate && <Button type="button" variant="ghost" onClick={onRotate} aria-label="Rotate secret" disabled={rotating} className="grid size-7 place-items-center rounded hover:bg-muted disabled:opacity-60"><motion.span animate={rotating ? { rotate: 360 } : { rotate: 0 }} transition={rotating ? { repeat: Infinity, duration: 0.9, ease: "linear" } : { duration: 0.3 }}><RotateCw className="size-4" /></motion.span></Button>}
         </div>
       </div>
       <p aria-live="polite" className="sr-only">{copied ? "Copied to clipboard." : ""}</p>

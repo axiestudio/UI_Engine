@@ -15,8 +15,8 @@ import {
   autoUpdate,
 } from "@floating-ui/react"
 import { ArrowDownUp, Check, ChevronDown, Columns3, Filter, Search } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Give a data table an honest toolbar — no dead buttons.
@@ -54,7 +54,7 @@ function ToolbarButton({
   const { open, setOpen, refs, floatingStyles, getReferenceProps, getFloatingProps } = usePopover()
   return (
     <>
-      <button
+      <Button type="button" variant="ghost"
         ref={refs.setReference}
         {...getReferenceProps()}
         aria-expanded={open}
@@ -66,7 +66,7 @@ function ToolbarButton({
         <Icon className="size-3.5" aria-hidden />
         {label}
         <ChevronDown className={cn("size-3 transition-transform", open && "rotate-180")} aria-hidden />
-      </button>
+      </Button>
       {open && (
         <FloatingPortal>
           <div ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()} className="z-50 w-60 rounded-xl border border-border bg-card p-1.5 shadow-[0_16px_40px_-16px_hsl(var(--foreground)/0.4)]">
@@ -80,8 +80,9 @@ function ToolbarButton({
 
 function MenuItem({ checked, label, onClick }: { checked?: boolean; label: string; onClick?: () => void }) {
   return (
-    <button
+    <Button
       type="button"
+      variant="ghost"
       role={checked === undefined ? "menuitem" : "menuitemcheckbox"}
       aria-checked={checked}
       onClick={onClick}
@@ -91,7 +92,7 @@ function MenuItem({ checked, label, onClick }: { checked?: boolean; label: strin
         {checked && <Check className="size-3" strokeWidth={3} />}
       </span>
       {label}
-    </button>
+    </Button>
   )
 }
 
@@ -156,7 +157,7 @@ export function FloatingFilterToolbar({ title = "The plant bench — demo grid",
   return (
     <div className={cn("w-full", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
-        <MonoLabel>{title}</MonoLabel>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">{title}</span>
 
         {/* toolbar */}
         <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -197,13 +198,14 @@ export function FloatingFilterToolbar({ title = "The plant bench — demo grid",
           </ToolbarButton>
 
           <Tooltip label={sortAsc ? "Sorted A → Z" : "Sorted Z → A"}>
-            <button
+            <Button
               type="button"
+              variant="ghost"
               onClick={() => setSortAsc((s) => !s)}
               className="flex size-9 items-center justify-center rounded-md border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <ArrowDownUp className="size-3.5" aria-hidden />
-            </button>
+            </Button>
           </Tooltip>
 
           <span aria-live="polite" className="ml-auto font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">

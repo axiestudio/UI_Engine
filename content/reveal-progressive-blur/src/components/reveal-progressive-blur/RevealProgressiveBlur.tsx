@@ -4,6 +4,7 @@ import { InView } from "@/components/primitives/in-view"
 import { ProgressiveBlur } from "@/components/primitives/progressive-blur"
 
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
 
 // ═══ JOB         Reveal a content band optically as it enters view.
 // ═══ EMOTION     A soft, gradual emergence — no hard wipe.
@@ -37,8 +38,8 @@ export function RevealProgressiveBlur({
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
-  {((ink ? "top" : "none") === "top" || (ink ? "top" : "none") === "both") && <span aria-hidden className={cn("pointer-events-none absolute top-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-t border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />}
-  {((ink ? "top" : "none") === "bottom" || (ink ? "top" : "none") === "both") && <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />}
+  {((ink ? "top" : "none") === "top" || (ink ? "top" : "none") as string === "both") && <span aria-hidden className={cn("pointer-events-none absolute top-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-t border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />}
+  {((ink ? "top" : "none") as string === "bottom" || (ink ? "top" : "none") as string === "both") && <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />}
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
@@ -68,7 +69,7 @@ export function RevealProgressiveBlur({
             </div>
             <ProgressiveBlur direction={blurDirection} blurIntensity={0.3} className="absolute inset-x-0 bottom-0 h-24" />
           </div>
-          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", z-[1])}><Noise patternAlpha={Math.round((0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>}
+          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", "z-[1]")}><Noise patternAlpha={Math.round((0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>}
         </div>
       </InView>
     

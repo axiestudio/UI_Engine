@@ -1,8 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { BadgeCheck, Flag, HardDriveDownload, RefreshCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { SegmentedControl } from "segmented-control"
 import { InlineEditCell } from "inline-edit-cell"
 import { DateRangePresets, type Range } from "date-range-presets"
@@ -145,6 +144,7 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
 
   return (
     <div className={cn("flex min-h-dvh flex-col bg-muted/30 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — plain label voice, sits on the canvas */}
       <header className="flex flex-wrap items-center gap-x-3 gap-y-2 px-5 py-3">
         <h2 className="text-[13px] font-bold">Time & attendance</h2>
@@ -157,17 +157,18 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
           <Button variant="outline" size="sm">
             <RefreshCcw className="size-3.5" /> Refresh punches
           </Button>
-        </div>
+          </MotionConfig>
+    </div>
       </header>
 
       {/* split band — shift + pay period docked into one control strip */}
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-y bg-background px-5 py-2.5" role="toolbar" aria-label="Ledger controls">
         <div className="flex items-center gap-2.5">
-          <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Shift</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Shift</span>
           <SegmentedControl size="sm" value={shift} onChange={setShift} options={[{ value: "all", label: "All" }, { value: "early", label: "Early" }, { value: "day", label: "Day" }, { value: "eve", label: "Eve" }]} />
         </div>
         <div className="flex min-w-0 items-center gap-2.5">
-          <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Pay period</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Pay period</span>
           <DateRangePresets value={period} onChange={setPeriod} presets={[{ label: "Last 7 days", days: 7 }, { label: "Last 14 days", days: 14 }, { label: "Month to date", days: 26 }]} />
         </div>
         {period && (
@@ -278,7 +279,7 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
         <div className="flex flex-col gap-4 lg:col-span-4">
           {/* range totals — bare rail, rules only */}
           <section aria-label="Range totals" className="px-1">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Range totals</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Range totals</span>
             <dl className="mt-1 divide-y border-y text-[12px]">
               {([
                 ["Punches shown", String(shown.length), false],

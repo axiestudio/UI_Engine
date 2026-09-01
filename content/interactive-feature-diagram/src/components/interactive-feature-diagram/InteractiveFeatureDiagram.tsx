@@ -3,6 +3,7 @@ import { Spotlight } from "@/components/primitives/spotlight"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Feature diagram — an annotated product shot with hot-spot pins.
 // ═══ EMOTION     Explain with a map.
@@ -37,7 +38,6 @@ export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at w
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.98 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
@@ -48,17 +48,10 @@ export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at w
               <Spotlight className="h-full w-full" size={280} />
             </div>
             {pins.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                onClick={() => setActive(p.id)}
-                className="group absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ left: `${p.x}%`, top: `${p.y}%` }}
-                aria-label={p.label}
-              >
+              <Button type="button" key={p.id} onClick={() => setActive(p.id)} style={{ left: `${p.x}%`, top: `${p.y}%` }} aria label={p.label} variant="default" className={group absolute -translate-x-1/2 -translate-y-1/2}>
                 <span className={cn("block h-4 w-4 rounded-full border-2 border-white/80", active === p.id ? "scale-125 bg-background" : "bg-black/40")} />
                 <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-white/30" />
-              </button>
+              
             ))}
           </div>
           <div className="absolute bottom-0 inset-x-0 bg-background/90 p-6 backdrop-blur">

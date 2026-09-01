@@ -5,7 +5,7 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-import { FaBookmark } from 'react-icons/fa6';
+import { Bookmark } from "lucide-react"
 
 interface BlogAuthor {
   name: string;
@@ -104,7 +104,7 @@ export default function Blog2({
                       {post.meta}
                     </span>
                     <div className="text-foreground/50 hover:text-foreground/90 transition-colors">
-                      <FaBookmark className="size-5" strokeWidth={1.5} />
+                      <Bookmark className="size-5" strokeWidth={1.5} />
                     </div>
                   </div>
 

@@ -50,7 +50,7 @@ export function EmblaLookbook({
   const onSelect = React.useCallback(() => {
     if (!embla) return
     setActive(embla.selectedScrollSnap())
-    emblaThumbs?.scrollTo(embla.selectedScrollSnap(), undefined, true)
+    emblaThumbs?.scrollTo(embla.selectedScrollSnap(), true)
   }, [embla, emblaThumbs])
 
   React.useEffect(() => {

@@ -60,13 +60,12 @@ function Coin({ pair, index, onFlip }: { pair: VoicePair; index: number; onFlip?
           style={{ transformStyle: "preserve-3d", transformPerspective: 900 }}
           className="relative h-[190px]"
         >
-          <Button type="button" variant="ghost"
-            type="button"
+          <Button variant="ghost"
             aria-pressed={flipped}
             aria-label={`${pair.say} We say. Press to show what we never say.`}
             onClick={turn}
             className="absolute inset-0 w-full cursor-pointer rounded-xl outline-none [backface-visibility:hidden] focus-visible:ring-[3px] focus-visible:ring-ring/50"
-          >>
+          >
             <span className="flex h-full w-full flex-col justify-between rounded-xl border-2 border-foreground bg-background p-5 text-left shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-[transform,box-shadow] duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_hsl(var(--foreground))]">
               <span>
                 <Badge className="gap-1.5 rounded-full bg-primary font-mono text-[9px] font-black uppercase tracking-[0.2em] text-primary-foreground">

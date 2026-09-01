@@ -1,7 +1,6 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
 
 // The layer components — head, task rows (repeat like fillings), progress rail, base.
@@ -58,13 +57,22 @@ export function StackOnboard({
     setDone((cur) => cur.map((v, x) => (x === i ? !v : v)))
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView
         once
         variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <InView
@@ -129,6 +137,7 @@ export function StackOnboard({
           )}
         </figure>
       </InView>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

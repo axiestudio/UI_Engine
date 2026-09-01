@@ -1,5 +1,6 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 
@@ -56,7 +57,7 @@ export function SignalFlags({ word, line = "The crew on shore has already seen y
         {line && <p className="mt-8 max-w-md text-[15px] font-semibold leading-relaxed opacity-80">{line}</p>}
         <div className="mt-7 flex items-center gap-4">
           {cta && <a href={cta.href ?? "#"} onClick={cta.onClick} className="rounded-full bg-[hsl(var(--flag-navy))] px-6 py-3 font-mono text-[11px] font-black uppercase tracking-[0.2em] text-[hsl(var(--flag-gold))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--flag-navy))]">{cta.label}</a>}
-          <button type="button" onClick={() => setReplay((r) => r + 1)} className="font-mono text-[10px] font-black uppercase tracking-[0.2em] opacity-60 underline-offset-4 hover:underline">replay signal</button>
+          <Button variant="link" onClick={() => setReplay((r) => r + 1)} className="h-auto p-0 font-mono text-[10px] font-black uppercase tracking-[0.2em] opacity-60 hover:opacity-100">replay signal</Button>
         </div>
       </div>
     </section>

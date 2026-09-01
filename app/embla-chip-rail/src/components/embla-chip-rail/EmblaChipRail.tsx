@@ -1,8 +1,8 @@
 import * as React from "react"
 // embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 
@@ -53,7 +53,7 @@ export function EmblaChipRail({
     <div className={cn("w-full", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
         <div className="flex items-center justify-between gap-4">
-          <MonoLabel>{label}</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">{label}</span>
           {readout && (
             <span aria-live="polite" className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
               {selected.length ? selected.join(" · ") : "everything"}
@@ -66,7 +66,7 @@ export function EmblaChipRail({
               {chips.map((chip) => {
                 const on = selected.includes(chip)
                 return (
-                  <button
+                  <Button
                     key={chip}
                     type="button"
                     data-chip={chip}
@@ -81,7 +81,7 @@ export function EmblaChipRail({
                     )}
                   >
                     {chip}
-                  </button>
+                  </Button>
                 )
               })}
             </div>

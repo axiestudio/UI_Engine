@@ -1,6 +1,5 @@
 import * as React from "react"
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react"
-
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Lens focus — a mask that pushes focus through a line of text as you scroll.

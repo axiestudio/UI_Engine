@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { RefreshCw, ScatterChart as ScatterChartIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Checkbox } from "@/components/watermelon/checkbox"
@@ -213,6 +213,7 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Stock control</h2>
         <span className="text-[12px] text-muted-foreground">{warehouse}</span>
@@ -223,7 +224,7 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
           </span>
         )}
         <Button variant="outline" size="sm" onClick={resync} disabled={syncing} className="ml-auto gap-1.5">
-          <RefreshCw className={cn("size-3.5", syncing && "animate-spin")} /> {syncing ? "Resyncing…" : "Resync ERP"}
+          <RefreshCw className={cn("size-3.5", syncing && "motion-safe:motion-safe:animate-spin")} /> {syncing ? "Resyncing…" : "Resync ERP"}
         </Button>
       </header>
 
@@ -232,7 +233,8 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
         <section className="overflow-hidden rounded-lg border bg-card">
           <StatusHealthStrip services={services} region="wh-2" />
         </section>
-      </div>
+          </MotionConfig>
+    </div>
 
       {/* query band — tokens scope the ledger AND the scatter */}
       <div className="px-4 pt-3">

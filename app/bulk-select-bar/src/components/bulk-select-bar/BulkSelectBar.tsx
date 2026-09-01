@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — the bar that makes 400-row edits survivable.
@@ -31,10 +32,10 @@ export function BulkSelectBar({ selected, total, actions, onClear, className }: 
           <span aria-hidden className="h-6 w-px bg-border" />
           <div className="flex min-w-0 flex-1 flex-wrap gap-1.5">
             {actions.map((a) => (
-              <button key={a.label} onClick={() => a.run(selected)} className={cn("h-8 rounded-md px-3.5 text-sm font-medium transition-colors", a.tone === "danger" ? "border border-[hsl(var(--err)/0.5)] text-[hsl(var(--err))] hover:bg-[hsl(var(--err)/0.08)]" : "bg-primary text-primary-foreground hover:bg-primary/90")}>{a.label}</button>
+              <Button type="button" variant="ghost" key={a.label} onClick={() => a.run(selected)} className={cn("h-8 rounded-md px-3.5 text-sm font-medium transition-colors", a.tone === "danger" ? "border border-[hsl(var(--err)/0.5)] text-[hsl(var(--err))] hover:bg-[hsl(var(--err)/0.08)]" : "bg-primary text-primary-foreground hover:bg-primary/90")}>{a.label}</Button>
             ))}
           </div>
-          <button aria-label="Clear selection" onClick={onClear} className="grid size-8 shrink-0 place-items-center rounded-full text-muted-foreground hover:bg-muted"><X className="size-4" /></button>
+          <Button type="button" variant="ghost" aria-label="Clear selection" onClick={onClear} className="grid size-8 shrink-0 place-items-center rounded-full text-muted-foreground hover:bg-muted"><X className="size-4" /></Button>
         </motion.div>
       )}
     </AnimatePresence>

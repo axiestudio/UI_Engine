@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Resource list — a filterable list of downloadable resources.
 // ═══ EMOTION     Useful, browsable.
@@ -32,13 +33,12 @@ export function ResourceList({ eyebrow = "RESOURCES", title = "Downloads & docs.
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.06 }}>
         <div className="mt-6 flex flex-wrap gap-2">
           {types.map((t) => (
-            <button key={t} type="button" onClick={() => setActive(t)} className={cn("rounded-full px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest transition-colors", t === active ? "bg-foreground text-background" : ink ? "text-background/60 hover:bg-background/10" : "text-muted-foreground hover:bg-accent")}>{t}</button>
+            <Button type="button" key={t} onClick={() => setActive(t)} variant="default" className={cn(cn("rounded-full px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest transition-colors", t === active ? "bg-foreground text-background" : ink ? "text-background/60 hover:bg-background/10" : "text-muted-foreground hover:bg-accent"))}>{t}
           ))}
         </div>
         <div className={cn("mt-6 divide-y", ink ? "divide-background/15" : "divide-border")}>

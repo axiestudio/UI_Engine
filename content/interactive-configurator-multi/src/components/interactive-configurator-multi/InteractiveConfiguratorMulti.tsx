@@ -58,7 +58,6 @@ export function InteractiveConfiguratorMulti({ eyebrow = "COMPOSE", title = "Two
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", false ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <div className="mt-10 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -85,11 +84,10 @@ export function InteractiveConfiguratorMulti({ eyebrow = "COMPOSE", title = "Two
                 <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{g.label}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {g.options.map((o) => (
-                    <button key={o.id} type="button" onClick={() => toggle(g.id, o.id)}
-                      className={cn("flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", sel[g.id] === o.id ? "border-foreground bg-foreground text-background" : "hover:bg-accent")}>
+                    <Button type="button" key={o.id} onClick={() => toggle(g.id, o.id)} variant="default" className={cn(cn("flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", sel[g.id] === o.id ? "border-foreground bg-foreground text-background" : "hover:bg-accent"))}>
                       {o.swatch && <span className="h-3.5 w-3.5 rounded-full border border-black/10" style={{ background: o.swatch }} />}
                       {o.label}{o.price ? ` +€${o.price}` : ""}
-                    </button>
+                    
                   ))}
                 </div>
               </div>

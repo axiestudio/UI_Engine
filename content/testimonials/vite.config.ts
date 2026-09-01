@@ -16,9 +16,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "testimonials.es.js" : "testimonials.cjs.js"),
     },
-    rollupOptions: { external: ["react",
-        "embla-carousel-react", "react-dom", "react/jsx-runtime", "class-variance-authority", "clsx",
-        "react-use-measure", "lucide-react", "motion", "motion/react", "tailwind-merge", "@radix-ui/react-avatar", "@radix-ui/react-slot", "@radix-ui/react-label", "@radix-ui/react-select", "@radix-ui/react-accordion"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "embla-carousel-react", "react-use-measure"] },
     cssCodeSplit: false,
   },
 })

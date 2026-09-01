@@ -3,7 +3,7 @@
  * Item: avatar (type registry:ui). Fetched 2026-08-29. Do not edit unless intentionally adopting upstream changes.
  */
 import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import { Avatar as AvatarPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 

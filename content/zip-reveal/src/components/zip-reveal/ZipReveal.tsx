@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, useMotionValue, useMotionValueEvent, useScroll, useTransform, animate } from "motion/react"
 import type { MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
 
 
 // ═══ JOB      make a reveal physical — you unzip it yourself
@@ -65,7 +66,7 @@ export function ZipReveal({ eyebrow = "UNSEALED ON ARRIVAL", label = "drop-01.zi
     <div ref={trackRef} className="relative w-full overflow-hidden rounded-lg border shadow-[0_30px_70px_-30px_rgba(0,0,0,0.5)]">
       {/* under-layer: real content, always in DOM */}
       <div className="relative min-h-[300px] bg-[hsl(var(--parcel))] px-6 py-8 text-[hsl(var(--parcel-ink))] sm:min-h-[340px]">
-        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', opacity-60'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "opacity-60")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
         {children ?? (
           <>
             <h3 className="mt-3 max-w-sm font-display text-2xl font-bold tracking-tight sm:text-[30px]">{title}</h3>

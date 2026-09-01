@@ -64,8 +64,8 @@ export function PricingAddons({
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
 
-      <InView once className="mt-10">
-        <div className="mx-auto w-full max-w-[500px] overflow-hidden rounded-xl border bg-card shadow-sm">
+      <InView once>
+        <div className="mx-auto mt-10 w-full max-w-[500px] overflow-hidden rounded-xl border bg-card shadow-sm">
           <div className="flex items-end justify-between bg-foreground px-5 py-4 text-background">
             <div>
               <p className="font-display text-lg font-bold leading-tight tracking-tight">{plan}</p>

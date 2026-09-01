@@ -2,7 +2,6 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { BellRing, BookOpen, CalendarPlus, Plus, UserPlus, type LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 
 export type QuickAction = {
   label: string
@@ -51,7 +50,7 @@ export function QuickActionsFab({ eyebrow = "Board · October", actions = DEFAUL
   return (
     <div ref={stageRef} className={cn("relative h-[420px] overflow-hidden rounded-xl border border-dashed bg-muted/20", className)}>
       <div className="flex items-center justify-between border-b border-border bg-background/70 px-4 py-3">
-        <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Quiet Times Studio · 18:42</span>
       </div>
 

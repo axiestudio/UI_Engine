@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronsRight, ChevronLeft, ChevronRight, GripVertical, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — inspect without losing context.
@@ -37,12 +38,12 @@ export function DetailDrawerSplit({ open, onClose, title, index, count, onPrev, 
               <span className="min-w-0 flex-1 truncate text-sm font-semibold">{title ?? "Details"}</span>
               {count !== undefined && index !== undefined && (
                 <span className="flex items-center gap-0.5 font-mono text-[11px] text-muted-foreground">
-                  <button aria-label="Previous record" disabled={index <= 0} onClick={onPrev} className="grid size-6 place-items-center rounded hover:bg-muted disabled:opacity-30"><ChevronLeft className="size-4" /></button>
+                  <Button type="button" variant="ghost" aria-label="Previous record" disabled={index <= 0} onClick={onPrev} className="grid size-6 place-items-center rounded hover:bg-muted disabled:opacity-30"><ChevronLeft className="size-4" /></Button>
                   <span className="tabular-nums">{index + 1}/{count}</span>
-                  <button aria-label="Next record" disabled={index >= count - 1} onClick={onNext} className="grid size-6 place-items-center rounded hover:bg-muted disabled:opacity-30"><ChevronRight className="size-4" /></button>
+                  <Button type="button" variant="ghost" aria-label="Next record" disabled={index >= count - 1} onClick={onNext} className="grid size-6 place-items-center rounded hover:bg-muted disabled:opacity-30"><ChevronRight className="size-4" /></Button>
                 </span>
               )}
-              <button aria-label="Close details" onClick={onClose} className="grid size-7 place-items-center rounded-md hover:bg-muted"><X className="size-4" /></button>
+              <Button type="button" variant="ghost" aria-label="Close details" onClick={onClose} className="grid size-7 place-items-center rounded-md hover:bg-muted"><X className="size-4" /></Button>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto p-4">{children}</div>
           </div>

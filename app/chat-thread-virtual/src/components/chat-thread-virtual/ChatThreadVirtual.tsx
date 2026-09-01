@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ArrowDown, CheckCheck } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — support channels & team chat that don't yank you around.
@@ -38,6 +39,7 @@ export function ChatThreadVirtual({ messages, canEdit, onEdit, className }: Chat
   let lastDay = ""
   return (
     <div className={cn("relative flex flex-col rounded-xl border border-border/70 bg-card shadow-sm", className)}>
+      <MotionConfig reducedMotion="user">
       <div ref={box} role="log" aria-live="polite" onScroll={onScroll} className="h-[420px] overflow-y-auto px-4 py-3">
         {messages.map((m) => {
           const divider = dayOf(m.at) !== lastDay
@@ -50,8 +52,9 @@ export function ChatThreadVirtual({ messages, canEdit, onEdit, className }: Chat
                   {editing?.id === m.id ? (
                     <div className="flex items-center gap-2">
                       <input autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { onEdit?.(m.id, draft); setEditing(null) } if (e.key === "Escape") setEditing(null) }} className="w-56 bg-transparent font-mono text-[12px] outline-none" />
-                      <button onClick={() => { onEdit?.(m.id, draft); setEditing(null) }} className="text-xs font-medium text-muted-foreground hover:text-foreground">save</button>
-                    </div>
+                      <Button type="button" variant="ghost" onClick={() => { onEdit?.(m.id, draft); setEditing(null) }} className="text-xs font-medium text-muted-foreground hover:text-foreground">save</Button>
+          </MotionConfig>
+    </div>
                   ) : (
                     <p className="text-[13px] leading-relaxed">
                       {m.streaming ? <>{m.text}<motion.span aria-hidden animate={{ opacity: [1, 0.2] }} transition={{ duration: 0.5, repeat: Infinity }} className="ml-0.5 inline-block h-3.5 w-[0.55em] translate-y-[2px] bg-current" /></> : m.text}
@@ -62,7 +65,7 @@ export function ChatThreadVirtual({ messages, canEdit, onEdit, className }: Chat
                     {m.me && <CheckCheck className="size-3 opacity-70" />}
                     {m.reactions?.length ? <span className="ml-1 rounded-full bg-black/10 px-1.5 py-px text-[10px] font-medium normal-case">{m.reactions.join(" ")}</span> : null}
                   </span>
-                  {m.me && canEdit?.(m) && <button aria-label="Edit message" onClick={() => { setEditing(m); setDraft(m.text) }} className="absolute -left-12 top-1 hidden rounded border border-border/60 bg-background px-2 py-0.5 text-xs font-medium group-hover:block">edit</button>}
+                  {m.me && canEdit?.(m) && <Button type="button" variant="ghost" aria-label="Edit message" onClick={() => { setEditing(m); setDraft(m.text) }} className="absolute -left-12 top-1 hidden rounded border border-border/60 bg-background px-2 py-0.5 text-xs font-medium group-hover:block">edit</Button>}
                 </div>
               </motion.div>
             </React.Fragment>

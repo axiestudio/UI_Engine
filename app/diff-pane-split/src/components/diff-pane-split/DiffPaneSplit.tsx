@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { CornerDownLeft, WrapText, Columns2, Rows2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — review anything text-shaped.
@@ -27,15 +28,17 @@ export function DiffPaneSplit({ lines, file, defaultSplit, className }: DiffPane
   }
   return (
     <div className={cn("overflow-hidden rounded-xl border border-border/70 bg-card font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <div className="flex items-center gap-2 border-b border-border/60 bg-muted/30 px-3 py-2 text-sm">
         <CornerDownLeft aria-hidden className="size-3.5 rotate-90 text-muted-foreground" />
         <span className="truncate font-mono font-medium">{file ?? "changes"}</span>
         <span className="ml-auto font-mono text-[11px] text-muted-foreground">{lines.filter((l) => l.kind === "add").length}+ {lines.filter((l) => l.kind === "del").length}−</span>
-        <button aria-pressed={wrap} onClick={() => setWrap((w) => !w)} className={cn("flex items-center gap-1 rounded px-2 py-1 font-medium text-muted-foreground hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></button>
+        <Button type="button" variant="ghost" aria-pressed={wrap} onClick={() => setWrap((w) => !w)} className={cn("flex items-center gap-1 rounded px-2 py-1 font-medium text-muted-foreground hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></Button>
         <div className="flex rounded-md border">
-          <button aria-pressed={!split} onClick={() => setSplit(false)} className={cn("grid size-7 place-items-center rounded-l-[5px]", !split && "bg-foreground text-background")}><Rows2 className="size-3.5" /></button>
-          <button aria-pressed={split} onClick={() => setSplit(true)} className={cn("grid size-7 place-items-center rounded-r-[5px]", split && "bg-foreground text-background")}><Columns2 className="size-3.5" /></button>
-        </div>
+          <Button type="button" variant="ghost" aria-pressed={!split} onClick={() => setSplit(false)} className={cn("grid size-7 place-items-center rounded-l-[5px]", !split && "bg-foreground text-background")}><Rows2 className="size-3.5" /></Button>
+          <Button type="button" variant="ghost" aria-pressed={split} onClick={() => setSplit(true)} className={cn("grid size-7 place-items-center rounded-r-[5px]", split && "bg-foreground text-background")}><Columns2 className="size-3.5" /></Button>
+          </MotionConfig>
+    </div>
       </div>
       <motion.div key={split ? "s" : "u"} initial={{ opacity: 0 }} animate={{ opacity: 1}} className="overflow-x-auto py-1 font-mono text-[12px] leading-[1.7]">
         {!split ? (

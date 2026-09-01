@@ -3,6 +3,7 @@ import { motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         3D gallery — a perspective carousel of images you drag through.
 // ═══ EMOTION     Depth, immersive.
@@ -41,7 +42,6 @@ export function Media3dGallery({ eyebrow = "DEPTH", title = "A deep carousel.", 
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
@@ -67,9 +67,9 @@ export function Media3dGallery({ eyebrow = "DEPTH", title = "A deep carousel.", 
             })}
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <button type="button" onClick={() => cycle(-1)} className="flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent" aria-label="Previous">←</button>
+            <Button type="button" onClick={() => cycle(-1)} aria label="Previous" variant="default" size="icon" className={flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent}>←
             <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{active + 1} / {n}</span>
-            <button type="button" onClick={() => cycle(1)} className="flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent" aria-label="Next">→</button>
+            <Button type="button" onClick={() => cycle(1)} aria label="Next" variant="default" size="icon" className={flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent}>→
           </div>
         </div>
       </InView>

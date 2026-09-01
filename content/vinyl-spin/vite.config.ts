@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "vinyl-spin.es.js" : "vinyl-spin.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

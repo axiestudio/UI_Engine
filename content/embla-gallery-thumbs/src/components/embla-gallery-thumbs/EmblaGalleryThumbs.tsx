@@ -3,8 +3,8 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { AnimatePresence, motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Let the room do the talking — six frames, zero text.
 // ═══ EMOTION     Contact sheet under a loupe: pick the thumbnail, keep the
@@ -124,19 +124,12 @@ export function EmblaGalleryThumbs({
           {/* static thumbnail grid — not an embla */}
           <div className="mt-4 grid grid-cols-6 gap-2">
             {frames.map((frame, i) => (
-              <button
-                key={frame.id}
-                type="button"
-                aria-label={`View image ${i + 1}: ${frame.alt}`}
-                aria-current={i === selected ? "true" : undefined}
-                onClick={() => embla?.scrollTo(i)}
-                className={cn(
+              <Button type="button" key={frame.id} aria label={`View image ${i + 1}: ${frame.alt}`} current={i === selected ? "true" : undefined} onClick={() => embla?.scrollTo(i)} variant="default" className={cn(cn(
                   "relative aspect-square overflow-hidden rounded-lg border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   i === selected ? "border-transparent opacity-100 ring-2 ring-primary" : "border-border opacity-70 hover:opacity-100",
-                )}
-              >
+                ))}>
                 <img src={frame.src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" draggable={false} />
-              </button>
+              
             ))}
           </div>
 

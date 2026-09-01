@@ -2,6 +2,7 @@ import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Image showcase — a large featured image with a film-strip of thumbnails.
 // ═══ EMOTION     Curated, gallery-like.
@@ -51,15 +52,9 @@ export function ImageShowcase({
           {caption && <p className={cn("mt-3 text-right font-mono text-[10px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/55" : "text-muted-foreground")}>{caption}</p>}
           <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-6">
             {frames.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setActiveId(f.id)}
-                className={cn("img-hover-wash aspect-[4/3] overflow-hidden rounded-lg border bg-muted transition-all", f.id === activeId ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100")}
-                aria-label={f.alt}
-              >
+              <Button type="button" key={f.id} onClick={() => setActiveId(f.id)} aria label={f.alt} variant="default" className={cn(cn("img-hover-wash aspect-[4/3] overflow-hidden rounded-lg border bg-muted transition-all", f.id === activeId ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100"))}>
                 {f.src ? <img src={f.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
-              </button>
+              
             ))}
           </div>
         </div>

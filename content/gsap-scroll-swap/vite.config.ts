@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "gsap-scroll-swap.es.js" : "gsap-scroll-swap.cjs.js"),
     },
-    rollupOptions: { external: (id) => ["react","react-dom","react/jsx-runtime","motion","motion/react","class-variance-authority","clsx","lucide-react","tailwind-merge","gsap"].includes(id) || id.startsWith("gsap/") },
+    rollupOptions: { external: (id) => ["react-dom", "react/jsx-runtime", "motion/react", "class-variance-authority", "lucide-react", "gsap"].includes(id) || id.startsWith("gsap/") || id.startsWith("gsap/") },
     cssCodeSplit: false,
   },
 })

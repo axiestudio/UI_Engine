@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react"
 import { useReducedMotion } from "motion/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { RadarArea } from "@/components/bklit/radar-area"
 import { RadarAxis } from "@/components/bklit/radar-axis"
@@ -130,7 +131,7 @@ export function RadarChart({
           const swatch = s.color ?? defaultRadarColors[i % defaultRadarColors.length]
           const dimmed = hoveredIndex !== null && hoveredIndex !== i
           return (
-            <button
+            <Button
               key={s.key}
               type="button"
               onMouseEnter={() => setHoveredIndex(i)}
@@ -154,7 +155,7 @@ export function RadarChart({
                 }}
               />
               <span className="font-medium text-foreground">{s.label}</span>
-            </button>
+            </Button>
           )
         })}
       </div>

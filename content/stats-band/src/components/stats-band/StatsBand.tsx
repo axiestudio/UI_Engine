@@ -3,6 +3,7 @@ import { useInView } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { AnimatedNumber } from "@/components/primitives/animated-number"
 
 // ═══ JOB         Stats band — a row of figures that count up on view.
 // ═══ EMOTION     Proof, quantified.
@@ -38,7 +39,7 @@ export function StatsBand({ eyebrow = "NUMBERS", title = "Proof, counted.", subt
           {stats.map((s) => (
             <div key={s.id} className={cn("rounded-xl border p-6 text-center", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
               <dd className="font-display text-4xl font-bold tabular-nums sm:text-5xl">
-                <Counter value={s.value} decimals={s.decimals} />
+                <AnimatedNumber value={s.value} />
                 <span className="text-2xl">{s.suffix}</span>
               </dd>
               <dt className={cn("mt-2 font-mono text-[11px] font-bold uppercase tracking-widest", ink ? "text-background/55" : "text-muted-foreground")}>{s.label}</dt>
@@ -52,23 +53,3 @@ export function StatsBand({ eyebrow = "NUMBERS", title = "Proof, counted.", subt
   )
 }
 
-function Counter({ value, decimals = 0 }: { value: number; decimals?: number }) {
-  const ref = React.useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.5 })
-  const [shown, setShown] = React.useState(0)
-  React.useEffect(() => {
-    if (!inView) return
-    let raf = 0
-    const start = performance.now()
-    const dur = 1200
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - start) / dur)
-      const eased = 1 - Math.pow(1 - p, 3)
-      setShown(value * eased)
-      if (p < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [inView, value])
-  return <span ref={ref}>{shown.toFixed(decimals)}</span>
-}

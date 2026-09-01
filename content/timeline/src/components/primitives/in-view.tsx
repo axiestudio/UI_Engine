@@ -1,10 +1,12 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/in-view.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/in-view.tsx
+ * Vendored verbatim from motion-primitives (https://motion-primitives.com) by ibelick.
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/in-view.tsx
+ * Fetched 2026-08-29 from main branch. Do not edit unless intentionally adopting upstream changes.
  */
 'use client';
-import { type ReactNode, useRef, useState } from 'react';
-import { motion, useInView, type Variant, type Transition, type UseInViewOptions } from 'motion/react';
+// Local patch for workspace tsconfig (verbatimModuleSyntax): type-only imports only, no behavior change.
+import { useRef, useState, type ReactNode } from 'react';
+import { motion, useInView, type Variant, type Transition, type UseInViewOptions,  } from 'motion/react';
 
 export type InViewProps = {
   children: ReactNode;
@@ -13,11 +15,10 @@ export type InViewProps = {
     visible: Variant;
   };
   transition?: Transition;
-/** Local extension: class passthrough for layout wrappers. */
-  className?: string;
   viewOptions?: UseInViewOptions;
   as?: React.ElementType;
   once?: boolean
+  className?: string;
 };
 
 const defaultVariants = {
@@ -31,8 +32,7 @@ export function InView({
   transition,
   viewOptions,
   as = 'div',
-  once,
-  className
+  once
 }: InViewProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, viewOptions);
@@ -52,7 +52,6 @@ export function InView({
 
       variants={variants}
       transition={transition}
-      className={className}
     >
       {children}
     </MotionComponent>

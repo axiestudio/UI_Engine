@@ -1,8 +1,8 @@
 import { Fragment, useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Camera, Printer, Scale, Sprout } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Ordinal } from "@/components/primitives/handcraft"
 import { FunnelStageBars, type FunnelStage } from "funnel-stage-bars"
 import { InlineEditCell } from "inline-edit-cell"
 import { DragNumberField } from "drag-number-field"
@@ -88,13 +88,14 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Farm stand</h2>
         <span className="text-[12px] text-muted-foreground">Stallbacka market · {marketDay}</span>
         <span className="flex items-center gap-1.5 text-[12px] text-muted-foreground"><Sprout className="size-3.5" /> harvest logged by 3 growers</span>
-        <button onClick={() => { push("pick list sent to the barn printer"); onPickList?.() }} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
+        <Button type="button" variant="ghost" onClick={() => { push("pick list sent to the barn printer"); onPickList?.() }} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
           <Printer className="size-3.5" /> Print pick list
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[270px_minmax(0,1fr)_260px]">
@@ -174,7 +175,9 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
               ))}
             </tbody>
           </table>
-          <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Reserved counts CSA boxes already promised for tomorrow's drop</div>
+          <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Reserved counts CSA boxes already promised for tomorrow's drop      
+          </MotionConfig>
+    </div>
         </section>
 
         {/* weights */}
@@ -186,15 +189,15 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
             <div className="space-y-3 p-3">
               <div className="flex gap-1.5">
                 {(["kg", "lb"] as const).map((u) => (
-                  <button key={u} onClick={() => setUnit(u)} className={cn("h-7 flex-1 rounded-md border text-[11px] font-semibold", unit === u ? "border-primary bg-accent text-accent-foreground" : "text-muted-foreground hover:bg-muted/50")}>
+                  <Button type="button" variant="ghost" key={u} onClick={() => setUnit(u)} className={cn("h-7 flex-1 rounded-md border text-[11px] font-semibold", unit === u ? "border-primary bg-accent text-accent-foreground" : "text-muted-foreground hover:bg-muted/50")}>
                     {u}
-                  </button>
+                  </Button>
                 ))}
               </div>
               <DragNumberField label="Gross" value={Number(shown(gross).toFixed(2))} onValueChange={(v: number) => setGross(Math.max(0, stash(v)))} step={0.05} precision={2} min={0} unit={unit} />
               <DragNumberField label="Tare (crate)" value={Number(shown(tare).toFixed(2))} onValueChange={(v: number) => setTare(Math.max(0, stash(v)))} step={0.05} precision={2} min={0} unit={unit} />
               <div className="flex items-baseline justify-between rounded-md border bg-muted/30 px-3 py-2">
-                <MonoLabel className="text-[10px] text-muted-foreground">Net</MonoLabel>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Net</span>
                 <motion.span key={fmt(netKg)} initial={{ opacity: 0.4 }} animate={{ opacity: 1 }} className="font-mono text-[18px] font-bold tabular-nums">
                   {fmt(netKg)}
                 </motion.span>
@@ -203,10 +206,10 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
             </div>
           </section>
           <section className="rounded-lg border bg-card p-3">
-            <MonoLabel className="text-muted-foreground">Stall notes</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Stall notes</span>
             <ol className="mt-2 space-y-1.5 text-[11px] leading-[1.5] text-muted-foreground">
               {["chard moves first — front the crate", "hold 2 baskets strawberries for Lågpris", "honey price matches online shop"].map((n, i) => (
-                <li key={n} className="flex gap-2"><Ordinal n={i + 1} className="shrink-0 opacity-70" /> {n}</li>
+                <li key={n} className="flex gap-2"><span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground shrink-0 opacity-70">{String(i + 1).padStart(2, "0")}</span> {n}</li>
               ))}
             </ol>
           </section>

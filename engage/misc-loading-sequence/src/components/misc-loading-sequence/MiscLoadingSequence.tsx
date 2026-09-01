@@ -1,11 +1,13 @@
 import * as React from "react"
-import { motion, useInView, useReducedMotion } from "motion/react"
+import { animate, motion, useInView, useMotionValue, useMotionValueEvent, useReducedMotion, useTransform } from "motion/react"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Loading sequence — a staged pre-loader with a progress bar and status line.
 // ═══ EMOTION     A confident boot.
-// ═══ SIGNATURE   A percent counter + staged status lines that resolve as the bar fills.
+// ═══ SIGNATURE   A percent counter + staged status lines that resolve as the bar fills —
+//                 the tween is the motion engine's (animate + MotionValue), never a
+//                 hand-rolled rAF loop; React only re-renders when the whole percent flips.
 
 export type MiscLoadingSequenceProps = {
   eyebrow?: string
@@ -18,24 +20,21 @@ export function MiscLoadingSequence({ eyebrow = "BOOT", steps = ["Resolving toke
   const reduce = !!reduceMotion
   const ref = React.useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.4 })
+  const progress = useMotionValue(reduce ? 100 : 0)
+  const width = useTransform(progress, (v) => `${v}%`)
   const [pct, setPct] = React.useState(reduce ? 100 : 0)
+  useMotionValueEvent(progress, "change", (v) => setPct(Math.round(v)))
+
   React.useEffect(() => {
     if (reduce) {
-      setPct(100)
+      progress.set(100)
       return
     }
     if (!inView) return
-    let raf = 0
-    const start = performance.now()
-    const dur = 2200
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - start) / dur)
-      setPct(Math.round(p * 100))
-      if (p < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [inView, reduce])
+    const controls = animate(progress, 100, { duration: 2.2, ease: [0.16, 1, 0.3, 1] })
+    return () => controls.stop()
+  }, [inView, reduce, progress])
+
   const stepIdx = Math.min(steps.length - 1, Math.floor((pct / 100) * steps.length))
   return (
     <SectionShell width={760} grain rule="bottom" className={className}>
@@ -53,7 +52,7 @@ export function MiscLoadingSequence({ eyebrow = "BOOT", steps = ["Resolving toke
             </p>
           </div>
           <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-muted" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Loading progress">
-            <motion.div className="h-full rounded-full bg-foreground" style={{ width: `${pct}%` }} transition={reduce ? { duration: 0 } : undefined} />
+            <motion.div className="h-full rounded-full bg-foreground" style={{ width }} />
           </div>
           <ul className="mt-6 space-y-1.5">
             {steps.map((s, i) => (

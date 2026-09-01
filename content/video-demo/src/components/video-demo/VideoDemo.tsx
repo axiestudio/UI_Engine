@@ -73,15 +73,10 @@ export function VideoDemo({
           viewOptions={{ once: true, margin: "-80px" }}
         >
           <figure className="group relative mx-auto max-w-4xl">
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              aria-label={playLabel}
-              className={cn(
+            <Button type="button" onClick={() => setOpen(true)} aria label={playLabel} variant="default" className={cn(cn(
                 "relative block w-full overflow-hidden rounded-[20px] border text-left shadow-2xl transition-transform duration-300 group-hover:scale-[1.01]",
                 ink ? "border-background/20 bg-background/5" : "border-border bg-card",
-              )}
-            >
+              ))}>
               <div className={cn("flex items-center gap-3 border-b px-4 py-3", ink ? "border-background/10 bg-background/5" : "border-border bg-muted/50")}>
                 <span className="flex gap-1.5" aria-hidden>
                   <i className={cn("size-2.5 rounded-full", ink ? "bg-background/30" : "bg-muted-foreground/30")} />
@@ -105,7 +100,7 @@ export function VideoDemo({
                   </span>
                 </span>
               </div>
-            </button>
+            
             {caption && (
               <figcaption className={cn("mt-4 text-center text-sm font-medium", ink ? "text-background/60" : "text-muted-foreground")}>
                 {caption}

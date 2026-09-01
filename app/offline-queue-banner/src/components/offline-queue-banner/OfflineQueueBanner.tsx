@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { CloudOff, RefreshCw, Wifi } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — the connection lie-detector.
@@ -26,9 +27,9 @@ export function OfflineQueueBanner({ online, queued, flushing, onRetryNow, class
           <div className={cn("flex items-center gap-2.5 px-4 py-2 text-sm font-medium", !online ? "bg-[hsl(var(--warn)/0.15)] text-[hsl(var(--warn))]" : flushing ? "bg-[hsl(var(--info)/0.12)] text-[hsl(var(--info))]" : "bg-[hsl(var(--ok)/0.12)] text-[hsl(var(--ok))]")}>
             {online ? <Wifi aria-hidden className="size-4" /> : <CloudOff aria-hidden className="size-4" />}
             {!online ? <>You’re offline — <motion.span key={queued} initial={{ scale: 1.35, color: "inherit" }} animate={{ scale: 1 }} className="font-mono font-semibold tabular-nums">{queued}</motion.span> change{queued === 1 ? "" : "s"} will sync when you’re back</> : flushing ? <>Pushing {queued} pending change{queued === 1 ? "" : "s"}…</> : <>{queued} change{queued === 1 ? "" : "s"} queued — retry now?</>}
-            {online && !flushing && onRetryNow && <button onClick={onRetryNow} className="ml-auto flex items-center gap-1.5 rounded-full bg-current/10 px-3 py-1 text-xs font-medium hover:bg-current/20"><RefreshCw className="size-3" /> retry</button>}
+            {online && !flushing && onRetryNow && <Button type="button" variant="ghost" onClick={onRetryNow} className="ml-auto flex items-center gap-1.5 rounded-full bg-current/10 px-3 py-1 text-xs font-medium hover:bg-current/20"><RefreshCw className="size-3" /> retry</Button>}
             {flushing && <motion.span aria-hidden animate={{ x: ["-100%", "100%"] }} transition={{ duration: 1.1, repeat: Infinity, ease: "linear" }} className="absolute bottom-0 left-0 h-[2.5px] w-1/3 bg-current" />}
-          </div>
+    </div>
         </motion.div>
       )}
     </AnimatePresence>

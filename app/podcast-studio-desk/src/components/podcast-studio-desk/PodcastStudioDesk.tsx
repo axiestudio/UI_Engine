@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Radio, Upload } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { JobTray, type Job } from "job-tray"
 import { UploadQueue, type UploadFile } from "upload-queue"
 import { EventTimelineDay, type TimelineEvent } from "event-timeline-day"
@@ -93,7 +93,7 @@ export function PodcastStudioDesk({ show = "Quiet logistics", episode = "EP 128"
           <span className="flex items-center gap-1.5 font-mono text-[12px] tabular-nums text-muted-foreground">
             <Radio className="size-3.5" /> {running} render job{running === 1 ? "" : "s"}
           </span>
-          <button
+          <Button type="button" variant="ghost"
             onClick={() =>
               setJobs((js: Job[]) => [
                 ...js.filter((j: Job) => j.id !== "mixdown-re"),
@@ -103,7 +103,7 @@ export function PodcastStudioDesk({ show = "Quiet logistics", episode = "EP 128"
             className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"
           >
             Queue new mixdown
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -154,7 +154,7 @@ export function PodcastStudioDesk({ show = "Quiet logistics", episode = "EP 128"
           <section className="overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Publish schedule</span>
-              <MonoLabel className="text-[10px] text-muted-foreground" tick={false}>cron</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">cron</span>
             </header>
             <div className="space-y-2 p-3">
               <CronPreview expr={cron} onChange={(v: string) => setCron(v)} />

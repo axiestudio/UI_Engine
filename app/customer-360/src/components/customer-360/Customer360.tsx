@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { UserRound, Wallet } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
@@ -50,6 +51,7 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
 
   return (
     <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-background", className)}>
+      <MotionConfig reducedMotion="user">
       {/* identity header */}
       <div className="flex flex-wrap items-center gap-4 border-b border-border/60 bg-card px-5 py-4">
         <Avatar className="size-12 ring-2 ring-ring/20 ring-offset-background">
@@ -58,7 +60,8 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
         <div className="min-w-0">
           <motion.h2 animate={{ textShadow: toasts.length ? "0 0 24px hsl(var(--ring)/0.5)" : "none" }} className="font-display text-lg font-semibold tracking-tight">{name}</motion.h2>
           <p className="text-xs text-muted-foreground">{since} · {chair}</p>
-        </div>
+          </MotionConfig>
+    </div>
         <div className="ml-auto flex items-center gap-2">
           <Badge variant="secondary" className="gap-1 text-xs"><Wallet className="size-3" aria-hidden /> 12 visits · 4.9★</Badge>
         </div>
@@ -88,7 +91,7 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
             <CardContent className="space-y-4 p-4">
               <CopySecretField label="Client portal link" value="https://house.fit/a/ahl-2021-m" />
               <CopySecretField label="Booking token" value="tk_live_88·41·02·7f" onRotate={() => { push("token rotated", "warn") }} />
-              <button onClick={() => setDrawer(true)} className="h-9 w-full rounded-lg border border-border/70 text-sm font-medium hover:bg-muted">open full record → side drawer</button>
+              <Button type="button" variant="ghost" onClick={() => setDrawer(true)} className="h-9 w-full rounded-lg border border-border/70 text-sm font-medium hover:bg-muted">open full record → side drawer</Button>
             </CardContent>
           </Card>
         </aside>
@@ -98,7 +101,7 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
           <div className="space-y-3 text-[13px]">
           <p className="text-muted-foreground">Record {editIndex + 1} — hairline edit rail, same data.</p>
           <div className="h-40 rounded-lg border border-border/60 bg-muted/40" /><div className="h-24 rounded-lg border border-border/60 bg-muted/40" />
-          <button className="mt-2 h-9 w-full rounded-md bg-[hsl(var(--err))] text-sm font-medium text-white" onClick={() => { push("anonymisation scheduled", "warn"); setDrawer(false) }}>anonymise account</button>
+          <Button type="button" variant="ghost" className="mt-2 h-9 w-full rounded-md bg-[hsl(var(--err))] text-sm font-medium text-white" onClick={() => { push("anonymisation scheduled", "warn"); setDrawer(false) }}>anonymise account</Button>
         </div>
       </DetailDrawerSplit>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} />

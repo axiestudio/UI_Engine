@@ -1,12 +1,15 @@
 import * as React from "react"
-import { useReducedMotion } from "motion/react"
+import { animate, useReducedMotion, useMotionValue, useTransform, motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 
 // ═══ JOB      state beliefs so they can't be skimmed away
 // ═══ EMOTION  someone at the keys, right now, for you
 // ═══ SIGNATURE the machine types the manifest at 220wpm, one line at a
-//               time, with a block caret that keeps blinking after the set
+//               time, with a block caret that keeps blinking after the set —
+//               the character pump is the motion engine (animate + MotionValue,
+//               like the registry's vendored typewriters), never a hand-rolled
+//               setTimeout state machine; React re-renders once per line.
 //   SITE     → values/about band on dark or paper
 //   APP      → agent/console "live log" surface — pass streamed `lines`
 //             (new lines type as they arrive — this is the same mechanic)
@@ -23,44 +26,42 @@ export type TypewriterManifestoProps = {
   className?: string
 }
 
+/** One typed line — text is sliced off a MotionValue tweened by the motion
+ * engine, so no per-character React renders. Calls onDone after the typed
+ * beat (420ms), sequenced by the engine's onComplete, not a state machine. */
+function TypedLine({ text, speed, onDone }: { text: string; speed: number; onDone: () => void }) {
+  const count = useMotionValue(0)
+  const shown = useTransform(count, (v) => text.slice(0, Math.round(v)))
+  React.useEffect(() => {
+    const controls = animate(count, text.length, {
+      duration: text.length / speed,
+      ease: "linear",
+      onComplete: () => {
+        const t = window.setTimeout(onDone, 420)
+        return () => window.clearTimeout(t)
+      },
+    })
+    return () => controls.stop()
+  }, [count, text, speed, onDone])
+  return <motion.span>{shown}</motion.span>
+}
+
 export function TypewriterManifesto({ eyebrow = "TRANSMISSION", title, lines, speed = 22, screen = false, className }: TypewriterManifestoProps) {
   const reduceMotion = useReducedMotion()
   const reduce = !!reduceMotion
-  const [visible, setVisible] = React.useState(0)
-  const [chars, setChars] = React.useState(0)
-  const text = typeof lines[visible] === "string" ? (lines[visible] as string) : null
-  const done = visible >= lines.length
+  const [typedCount, setTypedCount] = React.useState(reduce ? lines.length : 0)
 
-  // Sync initial state when reduced-motion preference changes (SSR-safe)
+  // Reset when the manifest changes or reduced-motion flips (SSR-safe)
   React.useEffect(() => {
-    if (reduce) {
-      setVisible(lines.length)
-      setChars(0)
-    } else {
-      setVisible(0)
-      setChars(0)
-    }
-  }, [reduce, lines.length])
+    setTypedCount(reduce ? lines.length : 0)
+  }, [reduce, lines])
 
-  React.useEffect(() => {
-    if (reduce) return
-    if (!text) {
-      if (!done) {
-        const t = setTimeout(() => setVisible((v) => Math.min(lines.length, v + 1)), 120)
-        return () => clearTimeout(t)
-      }
-      return
-    }
-    if (chars < text.length) {
-      const t = setTimeout(() => setChars((c) => c + 1), 1000 / speed)
-      return () => clearTimeout(t)
-    }
-    const t = setTimeout(() => {
-      setVisible((v) => v + 1)
-      setChars(0)
-    }, 420)
-    return () => clearTimeout(t)
-  }, [chars, visible, reduce, done, text, speed, lines.length])
+  const text = typeof lines[typedCount] === "string" ? (lines[typedCount] as string) : null
+  const done = typedCount >= lines.length
+
+  const onLineDone = React.useCallback(() => {
+    setTypedCount((v) => v + 1)
+  }, [])
 
   const Body = (
     <div className={cn("relative mx-auto w-full max-w-[720px]", screen && "mx-0")}>
@@ -70,7 +71,7 @@ export function TypewriterManifesto({ eyebrow = "TRANSMISSION", title, lines, sp
         aria-live={reduce ? "off" : "polite"}
         aria-busy={!done && !reduce}
       >
-        {lines.slice(0, visible).map((l, i) => (
+        {lines.slice(0, typedCount).map((l, i) => (
           <li key={i} className="flex gap-3">
             <span aria-hidden className="select-none tabular-nums opacity-40">
               {String(i + 1).padStart(2, "0")}
@@ -80,16 +81,16 @@ export function TypewriterManifesto({ eyebrow = "TRANSMISSION", title, lines, sp
         ))}
         {text && !done && !reduce && (
           <li className="flex gap-3" aria-hidden>
-            <span className="select-none tabular-nums opacity-40">{String(visible + 1).padStart(2, "0")}</span>
+            <span className="select-none tabular-nums opacity-40">{String(typedCount + 1).padStart(2, "0")}</span>
             <span>
-              {text.slice(0, chars)}
+              <TypedLine text={text} speed={speed} onDone={onLineDone} />
               <span className="ml-0.5 inline-block h-[1.05em] w-[0.6ch] translate-y-[3px] bg-current animate-[blink_1s_steps(2)_infinite]" aria-hidden />
             </span>
           </li>
         )}
       </ul>
       <span className="sr-only" aria-live={reduce ? "off" : "polite"}>
-        {reduce ? lines.filter((l) => typeof l === "string").join(". ") : done ? "Transmission complete." : `Line ${visible + 1} of ${lines.length}`}
+        {reduce ? lines.filter((l) => typeof l === "string").join(". ") : done ? "Transmission complete." : `Line ${typedCount + 1} of ${lines.length}`}
       </span>
       <style>{`@keyframes blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }`}</style>
     </div>

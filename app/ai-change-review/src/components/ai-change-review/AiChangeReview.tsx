@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Check, Sparkles, Undo2, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — "AI proposed 6 changes" done HONESTLY.
@@ -29,15 +30,17 @@ export function AiChangeReview({ hunks, onAccept, onReject, className }: AiChang
   const ins = hunks.filter((h) => st(h.id) === "in").length
   return (
     <div className={cn("overflow-hidden rounded-xl border bg-card font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex items-center gap-2 border-b border-border/60 bg-muted/40 px-4 py-3">
         <Sparkles aria-hidden className="size-4 text-[hsl(var(--pinned))]" />
         <p className="text-sm font-medium">
           Agent proposed {hunks.length} changes <span className="text-xs text-muted-foreground">{ins}/{hunks.length} accepted</span>
         </p>
         <div className="ml-auto flex gap-1.5">
-          <button disabled={!pend.length} onClick={() => pend.forEach((h) => accept(h.id))} className="h-7 rounded-md bg-[hsl(var(--ok))] px-3 text-xs font-medium text-white disabled:opacity-40">Accept all</button>
-          <button disabled={!pend.length && !ins} onClick={() => setState(Object.fromEntries(hunks.map((h) => [h.id, st(h.id) === "in" ? st(h.id) : "out"])))} className="h-7 rounded-md border border-border/70 px-3 text-xs font-medium text-muted-foreground hover:bg-muted disabled:opacity-40">Dismiss rest</button>
-        </div>
+          <Button type="button" variant="ghost" disabled={!pend.length} onClick={() => pend.forEach((h) => accept(h.id))} className="h-7 rounded-md bg-[hsl(var(--ok))] px-3 text-xs font-medium text-white disabled:opacity-40">Accept all</Button>
+          <Button type="button" variant="ghost" disabled={!pend.length && !ins} onClick={() => setState(Object.fromEntries(hunks.map((h) => [h.id, st(h.id) === "in" ? st(h.id) : "out"])))} className="h-7 rounded-md border border-border/70 px-3 text-xs font-medium text-muted-foreground hover:bg-muted disabled:opacity-40">Dismiss rest</Button>
+          </MotionConfig>
+    </div>
       </header>
       <AnimatePresence initial={false}>
         {hunks.map((h) => {
@@ -51,14 +54,14 @@ export function AiChangeReview({ hunks, onAccept, onReject, className }: AiChang
                 {v === "in" ? (
                   <span className="flex items-center gap-1 font-medium text-[hsl(var(--ok))]">
                     <Check className="size-3.5" /> applied
-                    <button aria-label={`Undo accepting ${h.title}`} onClick={() => setState((s) => ({ ...s, [h.id]: "pending" }))} className="ml-1 opacity-60 hover:opacity-100"><Undo2 className="size-3.5" /></button>
+                    <Button type="button" variant="ghost" aria-label={`Undo accepting ${h.title}`} onClick={() => setState((s) => ({ ...s, [h.id]: "pending" }))} className="ml-1 opacity-60 hover:opacity-100"><Undo2 className="size-3.5" /></Button>
                   </span>
                 ) : v === "out" ? (
                   <span className="font-medium text-[hsl(var(--err))]">skipped <span className="font-mono text-[10px] opacity-70">undo in 4s</span></span>
                 ) : (
                   <span className="flex gap-1">
-                    <button aria-label={`Accept hunk: ${h.title}`} onClick={() => accept(h.id)} className="grid size-7 place-items-center rounded-md border border-[hsl(var(--ok)/0.5)] text-[hsl(var(--ok))] hover:bg-[hsl(var(--ok)/0.12)]"><Check className="size-4" /></button>
-                    <button aria-label={`Reject hunk: ${h.title}`} onClick={() => reject(h.id)} className="grid size-7 place-items-center rounded-md border text-muted-foreground hover:border-[hsl(var(--err)/0.5)] hover:text-[hsl(var(--err))]"><X className="size-4" /></button>
+                    <Button type="button" variant="ghost" aria-label={`Accept hunk: ${h.title}`} onClick={() => accept(h.id)} className="grid size-7 place-items-center rounded-md border border-[hsl(var(--ok)/0.5)] text-[hsl(var(--ok))] hover:bg-[hsl(var(--ok)/0.12)]"><Check className="size-4" /></Button>
+                    <Button type="button" variant="ghost" aria-label={`Reject hunk: ${h.title}`} onClick={() => reject(h.id)} className="grid size-7 place-items-center rounded-md border text-muted-foreground hover:border-[hsl(var(--err)/0.5)] hover:text-[hsl(var(--err))]"><X className="size-4" /></Button>
                   </span>
                 )}
               </div>

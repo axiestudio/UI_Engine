@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CloudOff, HandCoins, Tags } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { FunnelStageBars, type FunnelStage } from "funnel-stage-bars"
 import { DateRangePresets, type Range } from "date-range-presets"
@@ -90,15 +91,16 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Giving circle</h2>
         <span className="text-[12px] text-muted-foreground">{campaign} · count night</span>
         <span className={cn("flex items-center gap-1.5 rounded border px-2 py-0.5 text-[11px] font-semibold", online ? "border-border text-muted-foreground" : "border-[hsl(var(--warn)/0.5)] bg-[hsl(var(--warn)/0.08)] text-[hsl(var(--warn))]")}>
           <CloudOff className="size-3.5" /> {online ? "synced" : `counting offline · ${queued} queued`}
         </span>
-        <button onClick={closeBatch} disabled={counted.length === 0} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
+        <Button type="button" variant="ghost" onClick={closeBatch} disabled={counted.length === 0} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
           <HandCoins className="size-3.5" /> Close batch · {total.toLocaleString("sv-SE")} kr
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[250px_minmax(0,1fr)_250px]">
@@ -112,7 +114,8 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
             <div className="p-3">
               <DateRangePresets value={win} onChange={setWin} presets={[{ label: "Count week", days: 7 }, { label: "Fortnight", days: 14 }, { label: "Quarter", days: 90 }]} />
               <p className="mt-2 text-[11px] text-muted-foreground">The window scopes the funnel and the Sunday envelopes below.</p>
-            </div>
+          </MotionConfig>
+    </div>
           </section>
         </aside>
 
@@ -122,13 +125,13 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
             <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground"><Tags className="size-3.5" /> Offerings · {counted.length} counted</span>
             <div className="flex gap-1.5">
               {TEAM.map((t) => (
-                <button
+                <Button type="button" variant="ghost"
                   key={t}
                   onClick={() => setTeam((ts) => (ts.includes(t) ? ts.filter((x) => x !== t) : [...ts, t]))}
                   className={cn("rounded border px-1.5 py-0.5 text-[10px] font-semibold", team.includes(t) ? "border-primary bg-accent text-accent-foreground" : "text-muted-foreground hover:bg-muted")}
                 >
                   {t}
-                </button>
+                </Button>
               ))}
             </div>
           </header>
@@ -150,17 +153,17 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
                   </td>
                   <td className="px-3 py-1 font-mono font-bold tabular-nums">{r.no}</td>
                   <td className="px-2 py-1">
-                    <button onClick={() => patch(r.id, { fund: cycle(FUNDS, r.fund) })} className="rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+                    <Button type="button" variant="ghost" onClick={() => patch(r.id, { fund: cycle(FUNDS, r.fund) })} className="rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
                       {r.fund}
-                    </button>
+                    </Button>
                   </td>
                   <td className="px-2 py-1">
                     <DragNumberField value={r.amount} onValueChange={(v: number) => patch(r.id, { amount: Math.max(0, Math.round(v)) })} step={10} precision={0} min={0} unit="kr" />
                   </td>
                   <td className="px-3 py-1 text-right">
-                    <button onClick={() => patch(r.id, { by: cycle(team.length ? team : TEAM, r.by) })} className="text-[11px] font-semibold text-[hsl(var(--info))] hover:underline">
+                    <Button type="button" variant="ghost" onClick={() => patch(r.id, { by: cycle(team.length ? team : TEAM, r.by) })} className="text-[11px] font-semibold text-[hsl(var(--info))] hover:underline">
                       {r.by}
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}

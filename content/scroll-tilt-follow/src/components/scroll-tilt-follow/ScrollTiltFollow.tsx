@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { Tilt } from "@/components/primitives/tilt"
-
+import { cn } from "@/lib/utils"
 
 // ═══ JOB         Tilt follow — a card that tilts with scroll AND cursor.
 // ═══ EMOTION     Two kinds of motion, one card.

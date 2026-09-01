@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Bell, CheckCheck, WifiOff } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ProgressiveBlur } from "@/components/primitives/progressive-blur"
 import { RadialGauge } from "radial-gauge"
@@ -110,18 +111,19 @@ export function KitchenDisplay({ line = "Line Grill 1", service = "dinner servic
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Kitchen display</h2>
         <span className="text-[12px] text-muted-foreground">{line} · {service}</span>
         <span className={cn("flex items-center gap-1 text-[12px] font-semibold", online ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>
           {online ? <CheckCheck className="size-3.5" /> : <WifiOff className="size-3.5" />} line link {online ? "live" : "down"}
         </span>
-        <button onClick={() => { setOnline(!online); push(online ? "line link dropped — bumping queues locally" : "line link restored", online ? "warn" : "ok") }} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
+        <Button type="button" variant="ghost" onClick={() => { setOnline(!online); push(online ? "line link dropped — bumping queues locally" : "line link restored", online ? "warn" : "ok") }} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
           {online ? <WifiOff className="size-3.5" /> : <CheckCheck className="size-3.5" />} {online ? "Drop link" : "Restore link"}
-        </button>
-        <button onClick={recall} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
+        </Button>
+        <Button type="button" variant="ghost" onClick={recall} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
           <Bell className="size-3.5" /> Recall last
-        </button>
+        </Button>
       </header>
 
       <div className="min-h-0 flex-1 p-4">
@@ -179,13 +181,14 @@ export function KitchenDisplay({ line = "Line Grill 1", service = "dinner servic
                           >
                             {overdue ? `over ${fmt(due)}` : `due ${fmt(due)}`}
                           </motion.span>
-                        </div>
+          </MotionConfig>
+    </div>
                         <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-muted">
                           <div className={cn("h-full rounded-full", overdue ? "bg-[hsl(var(--err))]" : flare ? "bg-[hsl(var(--warn))]" : "bg-[hsl(var(--ok))]")} style={{ width: `${pct}%` }} />
                         </div>
                         <div className="mt-2 flex items-center justify-between">
                           <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">{t.station} · {itemTotal(t)} pcs</span>
-                          <button onClick={() => bump(t)} className="flex h-7 items-center rounded-md border bg-background px-2.5 text-[11px] font-bold hover:bg-muted">{queuedIds.has(t.id) ? "queued" : "Bump"}</button>
+                          <Button type="button" variant="ghost" onClick={() => bump(t)} className="flex h-7 items-center rounded-md border bg-background px-2.5 text-[11px] font-bold hover:bg-muted">{queuedIds.has(t.id) ? "queued" : "Bump"}</Button>
                         </div>
                       </footer>
                     </motion.article>

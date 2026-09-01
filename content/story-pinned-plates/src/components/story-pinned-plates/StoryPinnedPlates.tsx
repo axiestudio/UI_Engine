@@ -28,7 +28,7 @@ export function StoryPinnedPlates({ eyebrow = "PLATES", plates = DEFAULT_PLATES,
     <section ref={ref} className={cn("relative w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <div className="absolute left-0 top-6 w-full px-5 sm:px-8">
-          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
         </div>
         {plates.map((p, i) => {
           const start = i / plates.length

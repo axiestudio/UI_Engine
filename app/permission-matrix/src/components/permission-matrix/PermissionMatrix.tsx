@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { Check, Circle, HelpCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — admin screens' final boss, tamed.
@@ -22,6 +23,7 @@ export function PermissionMatrix({ perms, roles, value, onSet, readOnly, classNa
   const cell = (p: string, r: string): TriState => value[r]?.[p] ?? "deny"
   return (
     <div className={cn("overflow-x-auto rounded-lg border font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="border-b border-border/60 bg-muted/50">
@@ -38,15 +40,16 @@ export function PermissionMatrix({ perms, roles, value, onSet, readOnly, classNa
                 const next = CYCLE[(CYCLE.indexOf(v) + 1) % 3]
                 return (
                   <td key={r} className="p-1.5 text-center">
-                    <button
+                    <Button
                       type="button"
+                      variant="ghost"
                       disabled={readOnly}
                       aria-label={`${p} for ${r}: ${v === "allow" ? "allowed" : v === "ask" ? "ask user" : "denied"}${readOnly ? "" : ". click to set " + next}`}
                       onClick={() => { setDirty((d) => ({ ...d, [p]: true })); onSet?.(p, r, next); setTimeout(() => setDirty((d) => ({ ...d, [p]: false })), 900) }}
                       className={cn("mx-auto grid size-7 place-items-center rounded-full border transition-all", v === "allow" && "border-[hsl(var(--ok))] bg-[hsl(var(--ok)/0.14)] text-[hsl(var(--ok))]", v === "ask" && "border-[hsl(var(--warn))] bg-[hsl(var(--warn)/0.12)] text-[hsl(var(--warn))]", v === "deny" && "border-border text-muted-foreground hover:border-[hsl(var(--err))] hover:text-[hsl(var(--err))]")}
                     >
                       {v === "allow" ? <Check className="size-3.5" strokeWidth={3} /> : v === "ask" ? <HelpCircle className="size-3.5" /> : <Circle className="size-2.5" />}
-                    </button>
+                    </Button>
                   </td>
                 )
               })}
@@ -54,6 +57,7 @@ export function PermissionMatrix({ perms, roles, value, onSet, readOnly, classNa
           ))}
         </tbody>
       </table>
+          </MotionConfig>
     </div>
   )
 }

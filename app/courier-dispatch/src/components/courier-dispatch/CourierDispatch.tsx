@@ -1,8 +1,8 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { MapPin, Navigation, RadioTower, Truck } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { StickyGroupList, type GroupList } from "sticky-group-list"
 import { AnnotationPinLayer, type Pin } from "annotation-pin-layer"
 import { OfflineQueueBanner } from "offline-queue-banner"
@@ -105,14 +105,14 @@ export function CourierDispatch({ city = "Stockholm innerstad", routes = DEFAULT
 
   return (
     <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <Grain opacity={0.03} />
+      <MotionConfig reducedMotion="user">
 
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Courier dispatch</h2>
         <span className="text-[12px] text-muted-foreground">{city}</span>
         <span className="text-[12px] text-muted-foreground">· wave 2 · {remaining} stops left</span>
-        <button onClick={() => setOnline((o) => !o)} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><RadioTower className="size-3.5" /> {online ? "Simulate dead zone" : "Data link down"}</button>
-        <button onClick={pingAll} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">Ping drivers</button>
+        <Button type="button" variant="ghost" onClick={() => setOnline((o) => !o)} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><RadioTower className="size-3.5" /> {online ? "Simulate dead zone" : "Data link down"}</Button>
+        <Button type="button" variant="ghost" onClick={pingAll} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">Ping drivers</Button>
       </header>
 
       <OfflineQueueBanner online={online} queued={queued} onRetryNow={() => { if (online) return; setOnline(true); setQueued(0); push("Link restored", "ok", `${queued} queued pings flushed.`) }} className="shrink-0 rounded-none border-x-0 border-t-0" />
@@ -133,7 +133,8 @@ export function CourierDispatch({ city = "Stockholm innerstad", routes = DEFAULT
                   <div className={cn("flex items-center justify-between px-3 py-1.5 text-[12px]", s.done && "opacity-50")}>
                     <span className={cn("font-medium", s.done && "line-through")}>{s.label}</span>
                     <span className="ml-2 shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">{s.window} · {s.parcels}p</span>
-                  </div>
+          </MotionConfig>
+    </div>
                 )}
               />
             </div>
@@ -184,7 +185,7 @@ export function CourierDispatch({ city = "Stockholm innerstad", routes = DEFAULT
           <section className="overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">ETA scrubbers</span>
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">±15 min · customers notified &gt; 5</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">±15 min · customers notified &gt; 5</span>
             </header>
             <div className="grid gap-2.5 p-3 sm:grid-cols-2">
               {wave.map((r) => (

@@ -3,6 +3,13 @@ import { CalendarDays, Loader2, AlertCircle } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Booking bar — a compact inline booking widget with validation.
@@ -89,9 +96,9 @@ export function BookingBar({
             <div className="mt-6 rounded-xl bg-emerald-500/10 p-4 ring-1 ring-emerald-500/15" role="status" aria-live="polite">
               <p className="font-display text-sm font-bold text-emerald-700">Booked — {service} on {new Date(date).toLocaleDateString()}</p>
               <p className="mt-1 text-sm font-medium text-muted-foreground">We’ll confirm by email. You can pick another slot below.</p>
-              <button type="button" onClick={() => setStatus("idle")} className="mt-3 font-mono text-[11px] font-bold uppercase tracking-widest text-foreground underline-offset-4 hover:underline">
+              <Button variant="link" onClick={() => setStatus("idle")} className="mt-3 h-auto p-0 font-mono text-[11px] font-bold uppercase tracking-widest">
                 Book another
-              </button>
+              </Button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate className="mt-6 grid gap-4 sm:grid-cols-[1fr_1fr_auto] sm:items-start">
@@ -99,24 +106,27 @@ export function BookingBar({
                 <label htmlFor={serviceId} className="mb-1.5 block font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                   Service <span aria-hidden className="text-foreground">*</span>
                 </label>
-                <select
-                  id={serviceId}
-                  value={service}
-                  onChange={(e) => setService(e.target.value)}
-                  onBlur={() => setTouched((t) => ({ ...t, service: true }))}
-                  aria-invalid={!!serviceError}
-                  aria-describedby={serviceError ? `${serviceId}-error` : undefined}
-                  className={cn(
-                    "h-11 w-full rounded-xl border bg-background px-3 text-sm font-medium shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                    serviceError && "border-destructive focus-visible:ring-destructive/40",
-                  )}
-                >
-                  {services.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
+                <Select value={service} onValueChange={setService}>
+                  <SelectTrigger
+                    id={serviceId}
+                    aria-invalid={!!serviceError}
+                    aria-describedby={serviceError ? `${serviceId}-error` : undefined}
+                    onBlur={() => setTouched((t) => ({ ...t, service: true }))}
+                    className={cn(
+                      "h-11 w-full rounded-xl font-medium shadow-xs",
+                      serviceError && "border-destructive focus-visible:ring-destructive/40",
+                    )}
+                  >
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {services.map((s) => (
+                      <SelectItem key={s} value={s}>
+                        {s}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <div className="min-h-[18px] pt-1">
                   {serviceError && (
                     <p id={`${serviceId}-error`} role="alert" className="flex items-center gap-1 text-xs font-medium text-destructive">

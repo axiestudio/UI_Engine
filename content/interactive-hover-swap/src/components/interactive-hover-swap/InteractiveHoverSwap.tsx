@@ -3,6 +3,7 @@ import { motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Hover swap — hovering a row swaps a full-width media backdrop.
 // ═══ EMOTION     A fast, tactile index.
@@ -41,13 +42,11 @@ export function InteractiveHoverSwap({ eyebrow = "INDEX", rows = DEFAULT_ROWS, c
           <p className="px-6 pt-6 font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
           <div className="mt-4">
             {rows.map((r, i) => (
-              <button key={r.id} type="button"
-                onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)}
-                className="group flex w-full items-center gap-4 border-t border-foreground/10 px-6 py-5 text-left">
+              <Button type="button" key={r.id} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} variant="default" className={group flex w-full items-center gap-4 border-t border-foreground/10 px-6 py-5 text-left}>
                 <span className="font-mono text-[10px] font-bold text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className={cn("flex-1 font-display text-3xl font-bold tracking-[-0.02em] transition-colors sm:text-5xl", i === active ? "text-foreground" : "text-muted-foreground")}>{r.title}</h3>
                 <span className={cn("shrink-0 font-mono text-[11px] font-bold uppercase tracking-widest transition-opacity", i === active ? "opacity-100" : "opacity-0")}>{r.body ?? "View"}</span>
-              </button>
+              
             ))}
           </div>
           <div className="px-6 py-4">

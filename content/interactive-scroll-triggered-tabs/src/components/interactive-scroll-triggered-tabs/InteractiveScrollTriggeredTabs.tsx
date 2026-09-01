@@ -1,8 +1,9 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useScroll, useMotionValueEvent } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Scroll-triggered tabs — tab activation driven by scroll position.
 // ═══ EMOTION     You read, the tabs follow.
@@ -25,19 +26,15 @@ const DEFAULT_ROWS = [
 export function InteractiveScrollTriggeredTabs({ eyebrow = "SCROLLABLE", title = "The tabs follow your reading.", rows = DEFAULT_ROWS, className }: InteractiveScrollTriggeredTabsProps) {
   const [active, setActive] = React.useState(0)
   const wrap = React.useRef<HTMLDivElement>(null)
-  React.useEffect(() => {
-    const onScroll = () => {
-      const els = wrap.current?.querySelectorAll<HTMLElement>("[data-row]")
-      if (!els) return
-      const mid = window.innerHeight * 0.5
-      let cur = 0
-      els.forEach((el, i) => { if (el.getBoundingClientRect().top < mid) cur = i })
-      setActive(cur)
-    }
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", () => {
+    const els = wrap.current?.querySelectorAll<HTMLElement>("[data-row]")
+    if (!els) return
+    const mid = window.innerHeight * 0.5
+    let cur = 0
+    els.forEach((el, i) => { if (el.getBoundingClientRect().top < mid) cur = i })
+    setActive(cur)
+  })
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
@@ -47,15 +44,14 @@ export function InteractiveScrollTriggeredTabs({ eyebrow = "SCROLLABLE", title =
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", false ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <div ref={wrap} className="mt-10 grid gap-8 lg:grid-cols-[240px_1fr]">
         <div className="sticky top-20 h-fit rounded-xl border bg-card shadow-sm p-2">
           {rows.map((r, i) => (
-            <button key={r.id} type="button" className={cn("flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent")}>
+            <Button type="button" key={r.id} variant="default" className={cn(cn("flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent"))}>
               <span className="font-mono text-[10px] opacity-50">{String(i + 1).padStart(2, "0")}</span>{r.label}
-            </button>
+            
           ))}
         </div>
         <div className="space-y-6">

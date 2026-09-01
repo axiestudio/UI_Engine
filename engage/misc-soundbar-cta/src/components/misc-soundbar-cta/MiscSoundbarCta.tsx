@@ -65,13 +65,14 @@ export function MiscSoundbarCta({ eyebrow = "LISTEN", title = "Press play on the
               {isPlaying ? <Pause className="mr-2 h-4 w-4" /> : <Volume2 className="mr-2 h-4 w-4" />} {cta}
             </Button>
             {!reduce && (
-              <button
+              <Button
+                variant="link"
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
-                className="font-mono text-[10px] font-bold uppercase tracking-widest text-background/60 underline-offset-4 hover:text-background hover:underline"
+                className="h-auto p-0 font-mono text-[10px] font-bold uppercase tracking-widest text-background/60 underline-offset-4 hover:text-background hover:underline"
               >
                 {isPlaying ? "Pause animation" : "Resume animation"}
-              </button>
+              </Button>
             )}
           </div>
         </InView>

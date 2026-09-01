@@ -3,7 +3,7 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
-import { MonoLabel, SectionHead } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         A booking flow that survives thumb-dragging.
@@ -111,7 +111,15 @@ export function EmblaStepsWizard({
   return (
     <div className={cn("w-full", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} align="center" className="mx-auto" />
+                <header className="mx-auto max-w-2xl text-center mx-auto">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <InView once variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}>
@@ -119,7 +127,7 @@ export function EmblaStepsWizard({
           <div className="overflow-hidden rounded-[16px] border border-border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]">
             {/* chrome header */}
             <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
-              <MonoLabel>QUIET TIMES · BOKA</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">QUIET TIMES · BOKA</span>
               <span aria-live="polite" className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
                 {finished ? "DONE · TACK!" : `STEP ${selected + 1} / ${steps.length}`}
               </span>
@@ -168,19 +176,20 @@ export function EmblaStepsWizard({
 
             {/* footer: back · dots · next/finish */}
             <div className="flex items-center justify-between gap-3 border-t border-border px-5 py-3.5">
-              <button
+              <Button
                 type="button"
+                variant="ghost"
                 onClick={() => embla?.scrollPrev()}
                 disabled={selected === 0}
                 className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-background px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <ChevronLeft className="size-3.5" aria-hidden />
                 Back
-              </button>
+              </Button>
 
               <div className="flex items-center gap-2">
                 {steps.map((step, i) => (
-                  <button
+                  <Button
                     key={step.id}
                     type="button"
                     aria-label={`Go to step ${i + 1}: ${step.title}`}
@@ -190,7 +199,7 @@ export function EmblaStepsWizard({
                       "size-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       i === selected ? "scale-110 bg-foreground" : "bg-muted-foreground/35 hover:bg-muted-foreground/60",
                     )}
-                  />
+                   />
                 ))}
               </div>
 
@@ -199,14 +208,15 @@ export function EmblaStepsWizard({
                   Bokat ✓
                 </span>
               ) : (
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
                   onClick={advance}
                   className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-background transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {selected === last ? "Finish" : "Next"}
                   <ChevronRight className="size-3.5" aria-hidden />
-                </button>
+                </Button>
               )}
             </div>
           </div>

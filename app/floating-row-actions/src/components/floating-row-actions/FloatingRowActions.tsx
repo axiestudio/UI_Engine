@@ -1,8 +1,8 @@
 import * as React from "react"
 import { FloatingPortal, useFloating, useInteractions, useRole, shift, offset, autoUpdate } from "@floating-ui/react"
 import { CalendarClock, Pencil, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Put each booking's tools exactly where the row is.
@@ -71,12 +71,21 @@ export function FloatingRowActions({
     middleware: [offset(10), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   })
-  const { getFloatingProps } = useInteractions([useRole(context, { role: "toolbar" })])
+  const { getFloatingProps } = useInteractions([useRole(context, { role: "toolbar" as "dialog" })])
 
   return (
-    <SectionShell tone={tone} width={1280} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: reduce ? 0 : 0.1 }}>
@@ -145,7 +154,7 @@ export function FloatingRowActions({
             className="z-50 flex items-center gap-1 rounded-xl border border-border bg-card p-1 shadow-[0_18px_44px_-16px_hsl(var(--foreground)/0.45)]"
           >
             {ACTIONS.map(({ kind, label, verb, icon: Icon }) => (
-              <button
+              <Button
                 key={kind}
                 type="button"
                 title={label}
@@ -157,11 +166,12 @@ export function FloatingRowActions({
                 className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <Icon className="size-4" strokeWidth={2.25} aria-hidden />
-              </button>
+              </Button>
             ))}
           </div>
         </FloatingPortal>
       )}
-    </SectionShell>
+    </div>
+    </section>
   )
 }

@@ -27,7 +27,8 @@
     "watermelon-ui": [
       "https://registry.watermelon.sh/r/card.json",
       "https://registry.watermelon.sh/r/label.json",
-      "https://registry.watermelon.sh/r/input.json"
+      "https://registry.watermelon.sh/r/input.json",
+      "https://registry.watermelon.sh/r/button.json"
     ]
   },
   "scripts": {

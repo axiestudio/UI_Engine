@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CloudUpload, Compass, FileCheck, Send } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { StepperForm, type Step } from "stepper-form"
 import { UploadQueue, type UploadFile } from "upload-queue"
 import { ProductTourSpotlight, type TourStep } from "product-tour-spotlight"
@@ -82,6 +82,7 @@ function Ring({ pct, tone }: { pct: number; tone: string }) {
   const c = 2 * Math.PI * r
   return (
     <svg width="32" height="32" viewBox="0 0 32 32" className="shrink-0 -rotate-90">
+      <MotionConfig reducedMotion="user">
       <circle cx="16" cy="16" r={r} fill="none" strokeWidth="3" className="stroke-muted" />
       <circle
         cx="16"
@@ -94,6 +95,7 @@ function Ring({ pct, tone }: { pct: number; tone: string }) {
         strokeDasharray={c}
         strokeDashoffset={c * (1 - pct / 100)}
       />
+          </MotionConfig>
     </svg>
   )
 }
@@ -138,13 +140,13 @@ export function OnboardingJourney({ hire = "Dana Kowalski", role = "Frontend eng
           <span className="flex h-8 items-center rounded-md border bg-muted/40 px-3 font-mono text-[12px] tabular-nums text-muted-foreground">
             {complete}/{DEFAULT_DOCS.length} docs
           </span>
-          <button
+          <Button type="button" variant="ghost"
             onClick={() => setTourStep(0)}
             className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"
           >
             <Compass className="size-3.5" /> Run guided tour
-          </button>
-        </div>
+          </Button>
+    </div>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 xl:grid-cols-[360px_minmax(0,1fr)_320px]">
@@ -232,13 +234,13 @@ export function OnboardingJourney({ hire = "Dana Kowalski", role = "Frontend eng
                 placeholder={`${buddy.split("@")[1] ?? "buddy"} — I land on the 1st, could we walk the deploy checklist on day one?`}
                 onSubmit={() => push(`Note sent to ${buddy}`, "ok")}
               />
-              <button
+              <Button type="button" variant="ghost"
                 onClick={() => note.trim() && push(`Note sent to ${buddy}`, "ok")}
                 disabled={!note.trim()}
                 className="mt-3 flex h-9 shrink-0 items-center justify-center gap-2 rounded-md bg-[hsl(var(--info))] text-[12px] font-bold uppercase tracking-[0.12em] text-white hover:bg-[hsl(var(--info)/0.9)] disabled:opacity-40"
               >
                 <Send className="size-3.5" /> Send note
-              </button>
+              </Button>
             </div>
           </section>
           <AnimatePresence>

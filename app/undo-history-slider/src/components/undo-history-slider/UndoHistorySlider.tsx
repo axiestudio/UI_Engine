@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { History, RotateCcw } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — Figma's history rail, extractable.
@@ -21,9 +22,12 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
   const idx = hoverIdx ?? versions.length - 1
   return (
     <div className={cn("rounded-xl border bg-card p-4 font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border/60 bg-muted/40">
         {versions.map((v, i) => (
-          <div key={v.id} aria-hidden={i !== idx} className={cn("absolute inset-0 transition-opacity duration-200", i === idx ? "opacity-100" : "opacity-0")}>{render(v)}</div>
+          <div key={v.id} aria-hidden={i !== idx} className={cn("absolute inset-0 transition-opacity duration-200", i === idx ? "opacity-100" : "opacity-0")}>{render(v)}      
+          </MotionConfig>
+    </div>
         ))}
         {hoverIdx !== null && hoverIdx < versions.length - 1 && (
           <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute right-2 top-2 flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-white"><History className="size-3" /> previewing</motion.span>
@@ -37,9 +41,9 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
           <ul className="flex w-full items-center justify-between px-2">
             {versions.map((v, i) => (
               <li key={v.id}>
-                <button aria-label={`Preview ${v.label}`} onMouseEnter={() => { setHoverIdx(i); i < versions.length - 1 && setPending(v) }} onMouseLeave={() => hoverIdx !== null && setHoverIdx(null)} className="group grid size-6 place-items-center">
+                <Button type="button" variant="ghost" aria-label={`Preview ${v.label}`} onMouseEnter={() => { setHoverIdx(i); i < versions.length - 1 && setPending(v) }} onMouseLeave={() => hoverIdx !== null && setHoverIdx(null)} className="group grid size-6 place-items-center">
                   <motion.span animate={{ scale: i === idx ? 1.5 : 1, background: i === idx ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground))" }} transition={{ type: "spring", stiffness: 400, damping: 24 }} className="block size-1.5 rounded-full ring-4 ring-card" />
-                </button>
+                </Button>
               </li>
             ))}
           </ul>

@@ -1,7 +1,7 @@
 {
   "name": "floating-filter-toolbar",
   "version": "0.1.0",
-  "description": "Data table toolbar — filter popover, columns menu, tooltips; flips and shifts at edges (Floating UI)",
+  "description": "Data table toolbar \u2014 filter popover, columns menu, tooltips; flips and shifts at edges (Floating UI)",
   "type": "module",
   "main": "dist/floating-filter-toolbar.cjs.js",
   "module": "dist/floating-filter-toolbar.es.js",
@@ -24,7 +24,9 @@
     "motion-primitives": [
       "in-view"
     ],
-    "watermelon-ui": []
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

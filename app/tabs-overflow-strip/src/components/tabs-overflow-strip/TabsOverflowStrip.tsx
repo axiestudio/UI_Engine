@@ -1,5 +1,6 @@
 import * as React from "react"
 import { X, ChevronsUpDown, Pin, PinOff } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — every editor-class webapp needs honest tabs.
@@ -45,13 +46,13 @@ export function TabsOverflowStrip({ tabs, value, onChange, onClose, onPin, class
           const active = t.id === value
           return (
             <div key={t.id} className="group relative flex shrink-0 items-center gap-1.5">
-              <button role="tab" aria-selected={active} onClick={() => onChange(t.id)} onMouseDown={(e) => { if (e.button === 1) { e.preventDefault(); onClose?.(t.id) } }} className={cn("flex min-w-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring", active ? "text-foreground" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground")}>
+              <Button type="button" variant="ghost" role="tab" aria-selected={active} onClick={() => onChange(t.id)} onMouseDown={(e) => { if (e.button === 1) { e.preventDefault(); onClose?.(t.id) } }} className={cn("flex min-w-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring", active ? "text-foreground" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground")}>
                 {t.pinned && <Pin aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />}
                 <span className="max-w-[18ch] truncate">{t.label}</span>
                 {t.dirty && <span aria-hidden title="unsaved" className="size-1.5 shrink-0 rounded-full bg-[hsl(var(--warn))]" />}
-              </button>
-              {!t.pinned && onClose && <button aria-label={`Close ${t.label}`} onClick={() => onClose(t.id)} className="grid size-5 shrink-0 place-items-center rounded-md text-muted-foreground opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100 hover:bg-muted"><X className="size-3.5" /></button>}
-              {onPin && <button aria-label={`${t.pinned ? "Unpin" : "Pin"} ${t.label}`} onClick={() => onPin(t.id)} className="grid size-5 shrink-0 place-items-center rounded-md text-muted-foreground opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100 hover:bg-muted">{t.pinned ? <PinOff className="size-3.5" /> : <Pin className="size-3.5" />}</button>}
+              </Button>
+              {!t.pinned && onClose && <Button type="button" variant="ghost" aria-label={`Close ${t.label}`} onClick={() => onClose(t.id)} className="grid size-5 shrink-0 place-items-center rounded-md text-muted-foreground opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100 hover:bg-muted"><X className="size-3.5" /></Button>}
+              {onPin && <Button type="button" variant="ghost" aria-label={`${t.pinned ? "Unpin" : "Pin"} ${t.label}`} onClick={() => onPin(t.id)} className="grid size-5 shrink-0 place-items-center rounded-md text-muted-foreground opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100 hover:bg-muted">{t.pinned ? <PinOff className="size-3.5" /> : <Pin className="size-3.5" />}</Button>}
               {active && <span aria-hidden className="pointer-events-none absolute inset-x-1 -bottom-px h-0.5 rounded-full bg-foreground" />}
             </div>
           )
@@ -60,12 +61,12 @@ export function TabsOverflowStrip({ tabs, value, onChange, onClose, onPin, class
       </div>
       {overflow.length > 0 && (
         <>
-          <button aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)} className="mb-1 mr-1 flex items-center gap-1 self-center rounded-md px-2 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"><ChevronsUpDown className="size-4" /> {overflow.length}</button>
+          <Button type="button" variant="ghost" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)} className="mb-1 mr-1 flex items-center gap-1 self-center rounded-md px-2 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"><ChevronsUpDown className="size-4" /> {overflow.length}</Button>
           {menu && (
             <>
               <div className="fixed inset-0 z-20" onClick={() => setMenu(false)} aria-hidden />
               <ul role="menu" className="absolute right-3 top-full z-30 mt-1 w-60 rounded-lg border border-border bg-popover p-1 shadow-xl">
-                {overflow.map((t) => <li key={t.id}><button role="menuitem" onClick={() => { onChange(t.id); setMenu(false) }} className="flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-sm hover:bg-accent"><span className="truncate">{t.label}</span>{t.dirty && <span aria-hidden className="ml-auto size-1.5 rounded-full bg-[hsl(var(--warn))]" />}</button></li>)}
+                {overflow.map((t) => <li key={t.id}><Button type="button" variant="ghost" role="menuitem" onClick={() => { onChange(t.id); setMenu(false) }} className="flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-sm hover:bg-accent"><span className="truncate">{t.label}</span>{t.dirty && <span aria-hidden className="ml-auto size-1.5 rounded-full bg-[hsl(var(--warn))]" />}</Button></li>)}
               </ul>
             </>
           )}

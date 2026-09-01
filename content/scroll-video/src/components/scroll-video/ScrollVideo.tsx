@@ -44,7 +44,7 @@ export function ScrollVideo({
         </motion.div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-gradient-to-t from-black/60 to-transparent p-8 pb-12 text-center text-background">
-          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-background/60'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-background/60")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <h2 className="mt-2 font-display text-4xl font-bold tracking-[-0.035em] sm:text-5xl">{title}</h2>
           <p className="mt-3 max-w-md text-sm font-medium leading-relaxed text-background/70">{description}</p>
         </div>

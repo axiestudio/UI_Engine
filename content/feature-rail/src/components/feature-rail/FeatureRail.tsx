@@ -3,6 +3,7 @@ import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
 import type { LucideIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Feature rail — a horizontal scrollable rail of features.
 // ═══ EMOTION     Dense, browsable.
@@ -37,8 +38,8 @@ export function FeatureRail({ eyebrow = "RAIL", title = "Slide through the stack
   </header>
         </InView>
         <div className="hidden shrink-0 gap-2 sm:flex">
-          <button type="button" onClick={() => scroll(-1)} className="flex h-9 w-9 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent" aria-label="Scroll back">←</button>
-          <button type="button" onClick={() => scroll(1)} className="flex h-9 w-9 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent" aria-label="Scroll forward">→</button>
+          <Button type="button" onClick={() => scroll(-1)} aria label="Scroll back" variant="default" size="icon" className={flex h-9 w-9 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent}>←
+          <Button type="button" onClick={() => scroll(1)} aria label="Scroll forward" variant="default" size="icon" className={flex h-9 w-9 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent}>→
         </div>
       </div>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

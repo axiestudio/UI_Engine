@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import { AlertTriangle, Check, KeyRound, Lock, Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
 
@@ -237,11 +238,11 @@ export function Airlock({
                   ))}
                 </div>
 
-                <button
+                <Button
                   type="submit"
                   disabled={busy || !isComplete}
                   aria-busy={busy}
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[hsl(var(--warn))] px-6 font-mono text-[11px] font-black uppercase tracking-[0.2em] text-black shadow-sm transition-all hover:bg-[hsl(var(--warn))]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--warn))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--hull))] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="h-11 rounded-full bg-[hsl(var(--warn))] px-6 font-mono text-[11px] font-black uppercase tracking-[0.2em] text-black shadow-sm hover:bg-[hsl(var(--warn))]/90 focus-visible:ring-[hsl(var(--warn))] focus-visible:ring-offset-[hsl(var(--hull))]"
                 >
                   {busy ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <KeyRound className="size-4" aria-hidden />}
                   {busy ? "Cycling…" : "Cycle outer door"}

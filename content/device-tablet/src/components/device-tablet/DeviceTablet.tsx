@@ -1,8 +1,9 @@
 import * as React from "react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-
 import { cn } from "@/lib/utils"
+import { Ipad } from "@/components/eldora/ipad"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Flip through product screens on one steady canvas.
 // ═══ EMOTION     Curated demo table — the reviewer is in control.
@@ -73,11 +74,11 @@ export function DeviceTablet({
         <figure className="mt-10">
           {/* ── The machine ── */}
           <div className="relative">
-            <div className="relative rounded-[30px] bg-black p-[12px] shadow-[0_36px_72px_-32px_hsl(var(--foreground)/0.5),inset_0_0_0_2px_hsl(0_0%_100%/0.08)]">
-              {/* camera — physical hardware */}
-              <span aria-hidden className="absolute left-3 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-white/25" />
-
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[19px] bg-background sm:aspect-[16/10]">
+            <div className="relative">
+              {/* Eldora UI Ipad frame */}
+              <Ipad className="pointer-events-none block h-auto w-full" />
+              {/* screen content lies on Eldora's display rect (6.03%/7.12%/87.93%/85.72%) */}
+              <div className="absolute overflow-hidden" style={{ left: "6.03%", top: "7.12%", width: "87.93%", height: "85.72%" }}>
                 {children ?? (
                   <AnimatePresence mode="popLayout" initial={false}>
                     <motion.img
@@ -106,19 +107,12 @@ export function DeviceTablet({
           {!children && screens.length > 1 && (
             <div className="mt-6 flex items-center justify-center gap-3" role="tablist" aria-label="Screens">
               {screens.map((s, x) => (
-                <button
-                  key={s.src}
-                  type="button"
-                  role="tab"
-                  aria-selected={x === i}
-                  onClick={() => setI(x)}
-                  className={cn(
+                <Button type="button" key={s.src} role="tab" aria selected={x === i} onClick={() => setI(x)} variant="default" className={cn(cn(
                     "group relative h-14 w-24 overflow-hidden rounded-lg border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     x === i
                       ? "border-primary ring-1 ring-primary shadow-md"
                       : "border-border opacity-60 hover:opacity-90",
-                  )}
-                >
+                  ))}>
                   <img src={s.src} alt="" loading="lazy" className="h-full w-full object-cover" />
                   <span
                     className={cn(
@@ -127,7 +121,7 @@ export function DeviceTablet({
                   >
                     {s.caption ?? `Screen ${x + 1}`}
                   </span>
-                </button>
+                
               ))}
             </div>
           )}

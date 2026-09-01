@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { Undo2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — compliance wants receipts; users want revert.
@@ -20,6 +21,7 @@ export function SwitchAuditTrail({ entries, onRevert, className }: SwitchAuditTr
   let day = ""
   return (
     <ol className={cn("space-y-1 font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       {entries.map((e) => {
         const d = new Date(e.at).toLocaleDateString()
         const header = d !== day
@@ -38,11 +40,12 @@ export function SwitchAuditTrail({ entries, onRevert, className }: SwitchAuditTr
                 </span>
                 <span className="ml-2 text-xs text-muted-foreground">{new Date(e.at).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}</span>
               </p>
-              {onRevert && <button onClick={() => onRevert(e)} className="flex items-center gap-1 rounded-md border border-border/70 px-2 py-1 text-xs font-medium text-muted-foreground opacity-0 transition-opacity hover:bg-muted focus-visible:opacity-100 group-hover:opacity-100"><Undo2 className="size-3" /> revert</button>}
+              {onRevert && <Button type="button" variant="ghost" onClick={() => onRevert(e)} className="flex items-center gap-1 rounded-md border border-border/70 px-2 py-1 text-xs font-medium text-muted-foreground opacity-0 transition-opacity hover:bg-muted focus-visible:opacity-100 group-hover:opacity-100"><Undo2 className="size-3" /> revert</Button>}
             </div>
           </motion.li>
         )
       })}
+          </MotionConfig>
     </ol>
   )
 }

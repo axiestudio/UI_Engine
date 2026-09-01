@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useReducedMotion } from "motion/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export interface WaveformProps {
@@ -202,14 +203,14 @@ export function Waveform({
         </g>
       </svg>
 
-      <button
+      <Button variant="ghost"
         type="button"
         aria-pressed={isPaused}
         onClick={() => setSelfPaused((p) => !p)}
         className="absolute inset-0 cursor-pointer bg-transparent outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--app-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--card)]"
       >
         <span className="sr-only">{isPaused ? "Resume waveform" : "Pause waveform"}</span>
-      </button>
+      </Button>
 
       <span aria-live="polite" className="sr-only">
         {isPaused ? "Waveform paused" : "Waveform playing"}

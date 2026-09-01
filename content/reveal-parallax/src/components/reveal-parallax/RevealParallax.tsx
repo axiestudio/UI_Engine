@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
 
 // ═══ JOB         A masked content band that parallaxes as you scroll it in.
 // ═══ EMOTION     Depth — layers move at different rates.
@@ -86,7 +87,7 @@ export function RevealParallax({
             </motion.div>
           </div>
         </InView>
-        {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", z-[1])}><Noise patternAlpha={Math.round((0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>}
+        {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", "z-[1]")}><Noise patternAlpha={Math.round((0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>}
       </div>
     
   </div>

@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { ArrowDownUp, Video } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Ordinal } from "@/components/primitives/handcraft"
 import { ActivityHeatmap, type HeatCell } from "activity-heatmap"
 import { RadialGauge } from "radial-gauge"
 import { CronPreview } from "cron-preview"
@@ -160,15 +159,17 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
 
   return (
     <div className={cn("flex flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* console band — dark ink, split off the workspace below */}
       <header className="bg-foreground px-6 py-5 text-background">
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
           <div>
-            <MonoLabel className="text-background/60">Coach console</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-background/60">Coach console</span>
             <h2 className="mt-1.5 font-display text-[21px] font-bold leading-none tracking-[-0.02em]">
               {block} <span aria-hidden className="mx-1.5 opacity-40">/</span> <span className="font-mono text-[15px] font-medium opacity-80">{week}</span>
             </h2>
-          </div>
+          </MotionConfig>
+    </div>
           <SegmentedControl
             size="sm"
             value={who}
@@ -186,7 +187,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
         <div className="flex flex-col gap-5 lg:col-span-4 lg:border-r lg:pr-6">
           <section aria-label={`Readiness · ${athlete.name}`}>
             <div className="flex items-baseline justify-between">
-              <MonoLabel className="text-muted-foreground" tick={false}>Readiness</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Readiness</span>
               <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{athlete.name}</span>
             </div>
             <RadialGauge
@@ -210,7 +211,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
           </section>
 
           <section aria-label="Session cadence" className="mt-auto rounded-lg border border-dashed p-4">
-            <MonoLabel className="text-muted-foreground" tick={false}>Auto-book cadence</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Auto-book cadence</span>
             <div className="mt-3">
               <CronPreview expr={cadence} onChange={(v: string) => { setCadence(v); push("cadence updated — next sessions re-booked", "info") }} />
             </div>
@@ -259,7 +260,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
             <ul className="divide-y divide-border/60">
               {segments.map((s, i) => (
                 <li key={s.name} className="flex items-center gap-3 px-4 py-2">
-                  <Ordinal n={i + 1} total={segments.length} className="shrink-0" />
+                  <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground shrink-0">{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(segments.length).padStart(2, "0")}</span></span>
                   <div className="min-w-0 flex-1">
                     <p className="text-[12px] font-semibold">{s.name}</p>
                     <p className="truncate text-[10px] text-muted-foreground">{s.detail}</p>
@@ -286,7 +287,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
         <div className="flex flex-col gap-5 lg:col-span-3">
           <section aria-label="Form video drops">
             <div className="flex items-center justify-between">
-              <MonoLabel className="text-muted-foreground" tick={false}>Form drops</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Form drops</span>
               <Video className="size-3.5 text-muted-foreground" aria-hidden />
             </div>
             <UploadQueue
@@ -297,7 +298,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
             />
           </section>
           <section aria-label="Coach marks" className="mt-auto border-t pt-3">
-            <MonoLabel className="text-muted-foreground">Coach marks</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Coach marks</span>
             <ul className="mt-2 space-y-1.5 text-[11px] leading-[1.5] text-muted-foreground">
               <li className="flex gap-1.5"><span className="text-[hsl(var(--ok))]">·</span> squat top set 3 — depth good, bar path steady</li>
               <li className="flex gap-1.5"><motion.span animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="text-[hsl(var(--warn))]">·</motion.span> deadlift friday — hips shoot early, cue wedge</li>
@@ -310,7 +311,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
       {/* adherence band — full-width heatmap anchors the console */}
       <section className="border-t bg-muted/20 px-6 py-4" aria-label="Adherence">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <MonoLabel className="text-muted-foreground" tick={false}>Adherence · {athlete.name}</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Adherence · {athlete.name}</span>
           <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{weeksDone} sessions logged</span>
         </div>
         <ActivityHeatmap className="mt-3" cells={cells} weeks={16} levelOf={levelOf} weekStartDay={1} showTooltip showLegend />

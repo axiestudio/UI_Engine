@@ -47,7 +47,7 @@ export function ImageFrame({
         <figure className="mt-10">
           <div className={cn("relative overflow-hidden rounded-[24px] border bg-muted shadow-2xl", aspect)}>
             <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
-            <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-background'))}>
+            <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-background")}>
     <span className="absolute border-current top-[14px] left-[14px] border-t border-l" style={{ width: 18, height: 18 }} />
     <span className="absolute border-current top-[14px] right-[14px] border-t border-r" style={{ width: 18, height: 18 }} />
     <span className="absolute border-current bottom-[14px] left-[14px] border-b border-l" style={{ width: 18, height: 18 }} />

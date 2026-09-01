@@ -2,6 +2,7 @@ import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
+import { Slider } from "@/components/ui/slider"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Financing — a monthly-installment estimator.
@@ -49,7 +50,7 @@ export function CommerceFinancing({ eyebrow = "PAY", title = "Monthly financing"
               <span>Term: {term} months</span>
               <span>{term} mo × €{monthly.toFixed(0)}</span>
             </div>
-            <input type="range" min={minTerm} max={maxTerm} value={term} onChange={(e) => setTerm(Number(e.target.value))} className="mt-4 w-full accent-foreground" aria-label="Term" />
+            <Slider value={[term]} min={minTerm} max={maxTerm} step={1} aria-label="Term in months" onValueChange={([v]) => setTerm(v ?? minTerm)} className="mt-4" />
           </div>
           <Button size="lg" className="h-11 w-full rounded-full font-mono text-[11px] font-bold uppercase tracking-[0.12em]">Select a plan</Button>
         </div>

@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarCheck, Camera, Send } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { CornerTicks, Dots, MonoLabel } from "@/components/primitives/handcraft"
 import { UploadQueue, type UploadFile } from "upload-queue"
 import { InlineEditCell } from "inline-edit-cell"
 import { AnnotationPinLayer, type Pin } from "annotation-pin-layer"
@@ -90,13 +89,15 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
 
   return (
     <div className={cn("flex flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* editorial masthead — the address is the title */}
       <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4">
         <div>
           <div className="flex items-baseline gap-3">
             <h2 className="font-display text-[21px] font-bold leading-none tracking-[-0.02em]">{address}</h2>
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{mls} · 4 bed · {area} m²</span>
-          </div>
+          </MotionConfig>
+    </div>
           <p className="mt-1.5 flex items-center gap-1.5 text-[12px] text-muted-foreground">
             <Camera className="size-3.5" aria-hidden /> {pins.length} pin note{pins.length === 1 ? "" : "s"} on the board · {pendingUploads} media item{pendingUploads === 1 ? "" : "s"} pending
           </p>
@@ -124,8 +125,6 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
           onRemove={(id: string) => setPins((ps) => ps.filter((p) => p.id !== id))}
           canvas={
             <div className="relative aspect-[16/9] max-h-[380px] w-full overflow-hidden bg-gradient-to-br from-accent via-secondary to-primary/40 sm:aspect-[21/9]">
-              <Dots className="text-background/70" />
-              <CornerTicks className="text-background/80" />
               <span className="absolute left-3 top-3 rounded border bg-background/85 px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 Photography · {pins.length} pin{pins.length === 1 ? "" : "s"}
               </span>
@@ -139,7 +138,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
       <section className="border-b bg-muted/20 px-6 py-3" aria-label="Open house windows">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
           <div className="flex items-center gap-2">
-            <MonoLabel className="text-muted-foreground" tick={false}>Open house</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Open house</span>
             <span className="flex items-center gap-1 text-[11px] font-semibold text-[hsl(var(--info))]">
               <CalendarCheck className="size-3.5" aria-hidden /> {liveSlots} slot{liveSlots === 1 ? "" : "s"} live
             </span>
@@ -157,7 +156,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
             {WINDOWS.map((w) => {
               const on = slots.has(w)
               return (
-                <button
+                <Button type="button" variant="ghost"
                   key={w}
                   onClick={() => toggleWindow(w)}
                   aria-pressed={on}
@@ -167,7 +166,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
                   )}
                 >
                   {w}
-                </button>
+                </Button>
               )
             })}
           </div>
@@ -182,7 +181,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
         {/* comp ledger */}
         <section className="overflow-hidden rounded-lg border bg-card lg:col-span-4" aria-label="Price grid">
           <div className="flex items-baseline justify-between border-b px-4 pb-2 pt-3">
-            <MonoLabel className="text-muted-foreground" tick={false}>Comp ledger</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Comp ledger</span>
             <span className="font-mono text-[10px] tabular-nums text-muted-foreground">{COMPS.length} sold nearby</span>
           </div>
           <table className="w-full border-collapse text-[12px]">
@@ -219,7 +218,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
             </tbody>
           </table>
           <div className="flex items-baseline justify-between border-t px-4 py-2">
-            <MonoLabel className="text-muted-foreground" tick={false}>kr / m²</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">kr / m²</span>
             <motion.span key={ppm} initial={{ scale: 1.12, opacity: 0.5 }} animate={{ scale: 1, opacity: 1 }} className="font-mono text-[13px] font-bold tabular-nums">{ppm.toLocaleString()}</motion.span>
           </div>
         </section>
@@ -228,7 +227,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
         <div className="flex min-w-0 flex-col gap-5 lg:col-span-5">
           <section aria-label="Media uploads">
             <div className="flex items-baseline justify-between">
-              <MonoLabel className="text-muted-foreground" tick={false}>Media uploads</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Media uploads</span>
               <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{pendingUploads} pending</span>
             </div>
             <UploadQueue
@@ -239,7 +238,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
             />
           </section>
           <section aria-label="Facts" className="mt-auto border-t pt-3">
-            <MonoLabel className="text-muted-foreground">Facts</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Facts</span>
             <dl className="mt-2 grid grid-cols-1 gap-x-8 gap-y-1 text-[12px] sm:grid-cols-2">
               {[
                 ["Living area", `${area} m²`],
@@ -261,7 +260,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
         {/* quota — docked flush against the deck's bottom rail */}
         <aside className="flex flex-col border-t pt-4 lg:col-span-3 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0" aria-label="Media quota">
           <div className="mt-auto">
-            <MonoLabel className="text-muted-foreground" tick={false}>Media quota</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Media quota</span>
             <StorageRingMeter
               className="mt-3"
               segments={[

@@ -4,6 +4,7 @@ import { Check, Download } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type ReceiptLine = {

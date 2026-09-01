@@ -76,7 +76,7 @@ export function EmblaSwatchPicker({
   }, [hex])
 
   return (
-    <section className={cn("bg-background text-foreground", className)>
+    <section className={cn("bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <header className="">

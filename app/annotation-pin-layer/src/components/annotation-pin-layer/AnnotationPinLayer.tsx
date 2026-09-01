@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { MessageSquarePlus, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — review screens need to be POINTED AT.
@@ -26,8 +27,11 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, author = 
   }
   return (
     <div className={cn("relative font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <div className="pointer-events-none">
-        <div className="opacity-100 [&_*]:pointer-events-auto">{canvas}</div>
+        <div className="opacity-100 [&_*]:pointer-events-auto">{canvas}      
+          </MotionConfig>
+    </div>
       </div>
       <div ref={host} className={cn("absolute inset-0", adding && "cursor-crosshair")} onClick={(e) => {
         if (!adding || !onAddPin) return
@@ -61,17 +65,17 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, author = 
             <motion.div initial={{ opacity: 0, scale: 0.85, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ type: "spring", stiffness: 380, damping: 28 }} className="absolute z-[6] w-64 -translate-x-1/2 rounded-xl border bg-popover p-3 shadow-2xl" style={{ left: `${Math.min(0.86, Math.max(0.14, sel.x)) * 100}%`, top: `calc(${sel.y * 100}% + 16px)` }}>
               <div className="flex items-start justify-between gap-2">
                 <p className="text-[12px] leading-snug">{sel.text}</p>
-                <button aria-label="Close annotation" onClick={() => setSel(null)} className="grid size-5 shrink-0 place-items-center rounded hover:bg-muted"><X className="size-3" /></button>
+                <Button type="button" variant="ghost" aria-label="Close annotation" onClick={() => setSel(null)} className="grid size-5 shrink-0 place-items-center rounded hover:bg-muted"><X className="size-3" /></Button>
               </div>
-              <p className="mt-2 flex items-center justify-between text-xs text-muted-foreground">{sel.author}{onRemove && <button onClick={() => { onRemove(sel.id); setSel(null) }} className="font-medium text-[hsl(var(--err))] hover:underline">delete</button>}</p>
+              <p className="mt-2 flex items-center justify-between text-xs text-muted-foreground">{sel.author}{onRemove && <Button type="button" variant="ghost" onClick={() => { onRemove(sel.id); setSel(null) }} className="font-medium text-[hsl(var(--err))] hover:underline">delete</Button>}</p>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
       {onAddPin && (
-        <button onClick={() => setAdding((a) => !a)} aria-pressed={adding} className={cn("absolute bottom-3 right-3 z-[7] flex h-10 items-center gap-2 rounded-full px-4 text-xs font-medium shadow-lg transition-colors", adding ? "bg-[hsl(var(--err))] text-white" : "bg-foreground text-background")}>
+        <Button type="button" variant="ghost" onClick={() => setAdding((a) => !a)} aria-pressed={adding} className={cn("absolute bottom-3 right-3 z-[7] flex h-10 items-center gap-2 rounded-full px-4 text-xs font-medium shadow-lg transition-colors", adding ? "bg-[hsl(var(--err))] text-white" : "bg-foreground text-background")}>
           <MessageSquarePlus className="size-4" /> {adding ? "click where · esc" : "annotate"}
-        </button>
+        </Button>
       )}
     </div>
   )

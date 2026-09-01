@@ -1,12 +1,13 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/scroll-progress.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/scroll-progress.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/scroll-progress.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/scroll-progress.tsx (local tokenized variant)
  */
 'use client';
 
-import { motion, type SpringOptions, useScroll, useSpring } from 'motion/react';
+import { motion, useScroll, useSpring } from 'motion/react';
+import type { SpringOptions } from 'motion/react';
 import { cn } from '@/lib/utils';
-import { type RefObject } from 'react';
+import type { RefObject } from 'react';
 
 export type ScrollProgressProps = {
   className?: string;

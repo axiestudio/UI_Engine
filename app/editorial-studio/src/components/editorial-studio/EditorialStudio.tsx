@@ -1,11 +1,10 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { PenLine } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { TextEffect } from "@/components/primitives/text-effect"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { MentionTextarea } from "mention-textarea"
 import { SmartSkeleton } from "smart-skeleton"
 import { CodeSnippetPanel } from "code-snippet-panel"
@@ -37,7 +36,7 @@ export function EditorialStudio({ className }: EditorialStudioProps) {
 
   return (
     <div className={cn("relative isolate min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans", className)}>
-      <Grain opacity={0.035} />
+      <MotionConfig reducedMotion="user">
       <header className="flex flex-wrap items-center gap-4 border-b bg-card px-5 py-4">
         <span className="flex items-center gap-2"><PenLine className="size-4 text-muted-foreground" aria-hidden />{!rendering ? <TextEffect key={title} preset="fade" as="h2" className="font-display text-lg font-black tracking-tight" per="char" speedReveal={0.3}>{title}</TextEffect> : <h2 className="font-display text-lg font-black tracking-tight">rendering…</h2>}</span>
         <Badge variant="secondary" className="font-mono text-[9px]">draft 2201-04</Badge>
@@ -46,23 +45,24 @@ export function EditorialStudio({ className }: EditorialStudioProps) {
       <div className="grid gap-5 p-5 lg:grid-cols-[1fr_380px]">
         <div className="space-y-5">
           <Card><CardContent className="p-5">
-            <MonoLabel className="mb-1 block text-muted-foreground">HEADLINE (edit and watch it decode)</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-1 block text-muted-foreground">HEADLINE (edit and watch it decode)</span>
             <input value={title} onChange={(e) => setTitle(e.target.value)} className="mb-4 h-9 w-full rounded-md border bg-background px-3 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]" />
             <MentionTextarea value={body} onChange={setBody} max={900} onSubmit={publish} placeholder="Paragraph one… @Elin for the photo credit, /gif for the loop" mentions={[{ id: "e", label: "Elin" }, { id: "k", label: "Klara" }]} commands={[{ cmd: "gif", describe: "embed the press loop", run: () => push("loop embedded (press-loop.mp4)") }]} />
           </CardContent></Card>
           <Card><CardContent className="p-5">
-            <MonoLabel className="mb-3 block text-muted-foreground">EMBED ON THE SITE — deploy snippet</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-3 block text-muted-foreground">EMBED ON THE SITE — deploy snippet</span>
             <CodeSnippetPanel title={`<EngineArticle slug=\"${title.split(" ")[0].toLowerCase()}\" channel=\"${channel}\" />`} code={`import { EngineArticle } from "engine/web"\n\n<EngineArticle slug="north-mirror-nov" channel="${channel}" autoSync={${true}} />`} />
           </CardContent></Card>
-        </div>
+          </MotionConfig>
+    </div>
         <aside className="space-y-5">
           <Card><CardContent className="p-5">
-            <MonoLabel className="mb-2 block text-muted-foreground">PUBLISH WINDOW — what readers see, and when</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-2 block text-muted-foreground">PUBLISH WINDOW — what readers see, and when</span>
             <CronPreview expr={cron} onChange={setCron} />
             <motion.button whileTap={{ scale: 0.97 }} onClick={publish} className="mt-4 h-10 w-full rounded-lg bg-primary font-mono text-[11px] font-black uppercase tracking-[0.18em] text-primary-foreground">{rendering ? "building…" : "publish → " + channel}</motion.button>
           </CardContent></Card>
           <Card><CardContent className="p-5">
-            <MonoLabel className="mb-3 block text-muted-foreground">READER PREVIEW</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-3 block text-muted-foreground">READER PREVIEW</span>
             <SmartSkeleton loading={rendering} lines={6}>
               <article className="space-y-2">
                 <h3 className="font-display text-lg font-black leading-tight">{title}</h3>

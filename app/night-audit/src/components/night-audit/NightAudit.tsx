@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { KeyRound, MoonStar, RefreshCw, WifiOff } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { StepperForm, type Step } from "stepper-form"
@@ -130,13 +130,14 @@ export function NightAudit({ property = "Hotel Bryggen", clerk = "N. Haddad", bu
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* screen header */}
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <MoonStar className="size-4 text-muted-foreground" />
         <h2 className="text-[13px] font-bold">Night audit</h2>
         <span className="text-[12px] text-muted-foreground">{property}</span>
         <span className="text-[12px] text-muted-foreground">· business day {businessDate} · clerk {clerk}</span>
-        <button
+        <Button type="button" variant="ghost"
           onClick={() => {
             setOnline((o: boolean) => !o)
             setQueued((q: number) => (online ? q + 3 : q))
@@ -145,13 +146,14 @@ export function NightAudit({ property = "Hotel Bryggen", clerk = "N. Haddad", bu
           className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"
         >
           {online ? <WifiOff className="size-3.5" /> : <RefreshCw className="size-3.5" />} {online ? "Simulate link drop" : "Restore link"}
-        </button>
+        </Button>
       </header>
 
       {!online && (
         <div className="px-4 pt-3">
           <OfflineQueueBanner online={online} queued={queued} flushing={flushing} onRetryNow={retryResync} />
-        </div>
+          </MotionConfig>
+    </div>
       )}
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 xl:grid-cols-[340px_minmax(0,1fr)_300px]">
@@ -224,13 +226,13 @@ export function NightAudit({ property = "Hotel Bryggen", clerk = "N. Haddad", bu
           </Table>
           <div className="flex items-center justify-between gap-3 border-t px-3 py-2">
             <p className="text-[11px] text-muted-foreground">Short passes stay flagged until reception confirms loss or return.</p>
-            <button
+            <Button type="button" variant="ghost"
               onClick={flagSelected}
               disabled={selected.size === 0}
               className="flex h-8 shrink-0 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40"
             >
               <KeyRound className="size-3.5" /> Flag {selected.size || ""} for key audit
-            </button>
+            </Button>
           </div>
         </section>
 

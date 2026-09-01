@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { BarChart3, Filter, Plus, Wallet } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { TabsOverflowStrip, type AppTab } from "tabs-overflow-strip"
@@ -193,6 +193,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
 
   return (
     <div className={cn("flex min-h-[560px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Store backend</h2>
         <span className="text-[12px] text-muted-foreground">{store}</span>
@@ -204,7 +205,8 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
           <Button size="sm" onClick={requestPayout} disabled={!!payout}>
             <Wallet className="size-3.5" /> {payout ? `Requested · ${payout.at}` : "Request payout"}
           </Button>
-        </div>
+          </MotionConfig>
+    </div>
       </header>
 
       <div className="border-b bg-background px-4 pt-2">

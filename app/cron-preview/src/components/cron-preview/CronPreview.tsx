@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarClock } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -23,6 +23,7 @@ export function CronPreview({ expr, onChange, now = () => new Date(), className 
   const nexts = useMemoFiveParts(parts, now())
   return (
     <div className={cn("space-y-3 font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <div className="flex flex-wrap gap-2" role="group" aria-label="Cron expression">
         {parts.map((p, i) => (
           <label key={i} className="flex flex-col gap-1">
@@ -30,7 +31,8 @@ export function CronPreview({ expr, onChange, now = () => new Date(), className 
             <input value={p} onChange={(e) => { const n = [...parts]; n[i] = e.target.value.replace(/\s/g, ""); onChange(n.join(" ").trim()) }} aria-label={NAMES[i]} className={cn("h-9 w-16 rounded-lg border border-border/70 bg-background px-2 text-center font-mono text-[13px] font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring", !fieldOk(p, [59, 23, 31, 12, 7][i]) && "border-[hsl(var(--err))] text-[hsl(var(--err))]")} />
           </label>
         ))}
-      </div>
+          </MotionConfig>
+    </div>
       <div className="flex items-center gap-2 text-[13px]">
         <CalendarClock aria-hidden className={cn("size-4", valid ? "text-[hsl(var(--info))]" : "text-[hsl(var(--err))]")} />
         <AnimatePresence mode="wait">

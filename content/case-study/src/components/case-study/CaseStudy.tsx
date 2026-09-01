@@ -62,7 +62,7 @@ export function CaseStudy({
             ink ? "border-background/15 bg-background/[0.03]" : "border-border bg-card shadow-sm",
           )}
         >
-          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/25'))}>
+          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-foreground/25")}>
     <span className="absolute border-current top-[9px] left-[9px] border-t border-l" style={{ width: 13, height: 13 }} />
     <span className="absolute border-current top-[9px] right-[9px] border-t border-r" style={{ width: 13, height: 13 }} />
     <span className="absolute border-current bottom-[9px] left-[9px] border-b border-l" style={{ width: 13, height: 13 }} />

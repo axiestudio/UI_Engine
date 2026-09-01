@@ -1,10 +1,11 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/disclosure.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/disclosure.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/disclosure.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/disclosure.tsx (local tokenized variant)
  */
 'use client';
 import * as React from 'react';
-import { AnimatePresence, motion, MotionConfig, type Transition, type Variant, type Variants } from 'motion/react';
+import { AnimatePresence, motion, MotionConfig } from 'motion/react';
+import type { Transition, Variant, Variants } from 'motion/react';
 import { createContext, useContext, useState, useId, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -112,7 +113,7 @@ export function DisclosureTrigger({
     <>
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
-          ? React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+          ? React.cloneElement(child, {
               onClick: toggle,
               role: 'button',
               'aria-expanded': open,
@@ -125,9 +126,9 @@ export function DisclosureTrigger({
               },
               className: cn(
                 className,
-                (child as React.ReactElement<{ className?: string }>).props?.className
+                (child as React.ReactElement<any>).props.className
               ),
-              ...(child as React.ReactElement<{ className?: string }>).props,
+              ...(child as React.ReactElement<any>).props,
             })
           : child;
       })}

@@ -11,7 +11,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { MdDesignServices, MdDeveloperMode } from "react-icons/md";
+import { Palette, Code2 } from "lucide-react"
 
 const MotionCard = motion(Card);
 
@@ -162,7 +162,7 @@ const Bento1 = () => {
                   className="absolute top-0 w-full bg-[#151515] rounded-[2rem] p-4 flex items-center gap-4 h-fit z-10 border border-white/5"
                 >
                   <div className="min-w-[90px] h-[70px] rounded-2xl bg-black shadow-inner shadow-white/5">
-                    <MdDeveloperMode className="size-6 md:size-9 text-[#FFDC17]" />
+                    <Code2 className="size-6 md:size-9 text-[#FFDC17]" />
                   </div>
                   <div className="flex flex-col mt-0.5 gap-1">
                     <div className="flex items-center gap-1.5">
@@ -200,7 +200,7 @@ const Bento1 = () => {
                   className="absolute top-7 w-full bg-[#151515] rounded-[2rem] p-4 flex gap-4 h-fit z-20 border border-white/5"
                 >
                   <div className="min-w-[90px] h-[70px] rounded-2xl bg-black flex items-center justify-center relative shadow-inner shadow-white/5">
-                    <MdDesignServices className="size-6 md:size-9 text-[#FFDC17]" />
+                    <Palette className="size-6 md:size-9 text-[#FFDC17]" />
                   </div>
 
                   <div className="flex flex-col justify-center gap-1.5">

@@ -127,7 +127,7 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
 
           <Separator className="my-4" />
 
-          <Button type="button" variant="ghost" type="button" onClick={() => void copy()} aria-label={`Copy ${recipe.name} yield ${result}`} className="mt-auto flex w-full items-center gap-3 rounded-xl border border-dashed p-3 text-left outline-none transition-colors hover:bg-muted/40 focus-visible:ring-[3px] focus-visible:ring-ring/50"> h-auto>
+          <Button type="button" variant="ghost" onClick={() => void copy()} aria-label={`Copy ${recipe.name} yield ${result}`} className="mt-auto flex w-full items-center gap-3 rounded-xl border border-dashed p-3 text-left outline-none transition-colors hover:bg-muted/40 focus-visible:ring-[3px] focus-visible:ring-ring/50 h-auto">
             <motion.span
               aria-hidden
               initial={reduced ? false : { scale: 0.8, opacity: 0 }}
@@ -152,7 +152,7 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
 
 export function PaletteRecipes({ recipes = DEFAULT_RECIPES, eyebrow = "PALETTE · RECIPES", className, onPick }: PaletteRecipeProps) {
   return (
-    <section className={cn("bg-background text-foreground", className)>
+    <section className={cn("bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
             <header className="">
         {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}

@@ -2,6 +2,7 @@ import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 import { Magnetic } from "@/components/primitives/magnetic"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Design language ──────────────────────────────────────────────────────────
 // JOB: turn a name into a person you'd trust in a quiet room.
@@ -134,9 +135,9 @@ export function Expert({
                         {cta.label}
                       </a>
                     ) : (
-                      <button type="button" onClick={cta.onClick} className="inline-flex h-11 items-center rounded-full bg-foreground px-7 font-display text-sm font-bold tracking-tight text-background transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                      <Button type="button" onClick={cta.onClick} variant="default" className={inline-flex h-11 items-center rounded-full bg-foreground px-7 font-display text-sm font-bold tracking-tight text-background transition-transform hover:scale-[1.02] active:scale-[0.98]}>
                         {cta.label}
-                      </button>
+                      
                     )
                     return <Magnetic intensity={0.18} range={60}>{label}</Magnetic>
                   })()}

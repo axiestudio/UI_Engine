@@ -1,5 +1,6 @@
 'use client';
-import { AnimatePresence, motion, Transition, Variants } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
+import type { Transition, Variants } from 'motion/react';
 import React, { createContext, useContext, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { useId } from 'react';

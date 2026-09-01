@@ -1,5 +1,5 @@
 import * as React from "react"
-import { LuTent, LuHammer, LuWrench } from "react-icons/lu"
+import { Tent, Hammer, Wrench } from "lucide-react"
 import { ListStack, type ListItem } from "@/components/watermelon/list-stack"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
@@ -17,9 +17,9 @@ export type StackProps = {
 // ── Stack ────────────────────────────────────────────────────────────────────
 
 const DEFAULT_ITEMS: ListItem[] = [
-  { id: "st1", title: "Workbench residency", location: "Bench 4, north wall", date: "Year-round", icon: LuHammer },
-  { id: "st2", title: "Annual check-up", location: "In your home or ours", date: "Every spring", icon: LuWrench },
-  { id: "st3", title: "Field demonstrations", location: "Maker fair, pavilion B", date: "Each October", icon: LuTent },
+  { id: "st1", title: "Workbench residency", location: "Bench 4, north wall", date: "Year-round", icon: Hammer },
+  { id: "st2", title: "Annual check-up", location: "In your home or ours", date: "Every spring", icon: Wrench },
+  { id: "st3", title: "Field demonstrations", location: "Maker fair, pavilion B", date: "Each October", icon: Tent },
 ]
 export function Stack({ eyebrow = "Highlights", title = "Pinned, one at a time", subtitle, items = DEFAULT_ITEMS, className }: StackProps) {
   if (!items.length) return null

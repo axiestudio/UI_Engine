@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { InView } from "@/components/primitives/in-view"
 import { Magnetic } from "@/components/primitives/magnetic"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type FaqEntry = {
@@ -130,30 +131,19 @@ export function Faq({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             {categories.length > 0 && (
               <div role="tablist" aria-label="FAQ categories" className="flex flex-wrap items-center gap-1.5">
-                <button
-                  role="tab"
-                  aria-selected={category === null}
-                  onClick={() => setCategory(null)}
-                  className={cn(
+                <Button type="button" role="tab" aria selected={category === null} onClick={() => setCategory(null)} variant="default" className={cn(cn(
                     "rounded-full px-3.5 py-2 text-sm font-bold tracking-tight transition-colors",
                     category === null ? "bg-foreground text-background shadow-sm" : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                  )}
-                >
+                  ))}>
                   All
-                </button>
+                
                 {categories.map((c) => (
-                  <button
-                    key={c}
-                    role="tab"
-                    aria-selected={category === c}
-                    onClick={() => setCategory(category === c ? null : c)}
-                    className={cn(
+                  <Button type="button" key={c} role="tab" aria selected={category === c} onClick={() => setCategory(category === c ? null : c)} variant="default" className={cn(cn(
                       "rounded-full px-3.5 py-2 text-sm font-bold tracking-tight transition-colors",
                       category === c ? "bg-foreground text-background shadow-sm" : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                    )}
-                  >
+                    ))}>
                     {c}
-                  </button>
+                  
                 ))}
               </div>
             )}
@@ -170,14 +160,9 @@ export function Faq({
                   className="h-10 w-full rounded-full border bg-card pl-9 pr-9 text-sm font-medium outline-none transition-shadow placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 {query && (
-                  <button
-                    type="button"
-                    aria-label="Clear search"
-                    onClick={() => setQuery("")}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
-                  >
+                  <Button type="button" aria label="Clear search" onClick={() => setQuery("")} variant="default" className={absolute right-2.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:bg-accent hover:text-foreground}>
                     <X className="h-3.5 w-3.5" />
-                  </button>
+                  
                 )}
               </div>
             )}

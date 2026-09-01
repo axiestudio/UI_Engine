@@ -1,6 +1,5 @@
 import * as React from "react"
-import { motion, useScroll, useTransform } from "motion/react"
-
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Smart sections — a sticky index that highlights whichever section you read.
@@ -22,20 +21,15 @@ const DEFAULT_SECTIONS = [
 ]
 export function ScrollSmartSections({ eyebrow = "INDEX", sections = DEFAULT_SECTIONS, className }: ScrollSmartSectionsProps) {
   const wrap = React.useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: wrap, offset: ["start start", "end end"] })
+  const { scrollY, scrollYProgress } = useScroll({ target: wrap, offset: ["start start", "end end"] })
   const progress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
   const [active, setActive] = React.useState(0)
-  React.useEffect(() => {
-    const onScroll = () => {
-      const mid = window.innerHeight * 0.45
-      let cur = 0
-      wrap.current?.querySelectorAll<HTMLElement>("[data-sec]").forEach((el, i) => { if (el.getBoundingClientRect().top < mid) cur = i })
-      setActive(cur)
-    }
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  useMotionValueEvent(scrollY, "change", () => {
+    const mid = window.innerHeight * 0.45
+    let cur = 0
+    wrap.current?.querySelectorAll<HTMLElement>("[data-sec]").forEach((el, i) => { if (el.getBoundingClientRect().top < mid) cur = i })
+    setActive(cur)
+  })
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -177,6 +177,7 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
 
   return (
     <div className={cn("flex min-h-[560px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <Landmark className="size-4 text-primary" />
         <h2 className="text-[13px] font-bold">Finance</h2>
@@ -199,7 +200,8 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
               <div>
                 <h3 className="text-[13px] font-bold tracking-tight">Cash position</h3>
                 <p className="text-[11px] text-muted-foreground">daily open / close · {period} · bank + clearing</p>
-              </div>
+          </MotionConfig>
+    </div>
               <div className="flex items-baseline gap-2">
                 <span className="font-mono text-[20px] font-black tabular-nums">{compactKr(last ? last.close : 0)}</span>
                 <span className={cn("flex items-center gap-0.5 text-[11px] font-bold tabular-nums", lastUp ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>

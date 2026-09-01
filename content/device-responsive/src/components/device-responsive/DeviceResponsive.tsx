@@ -2,8 +2,8 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Lock, MoveHorizontal, Play } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
-
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Prove the design survives every viewport — live.
 // ═══ EMOTION     Control. "I dragged it; it held."
@@ -156,14 +156,14 @@ export function DeviceResponsive({
               animate={{ width: w }}
               transition={dragging || reduce ? { duration: 0 } : { type: "spring", stiffness: 240, damping: 28 }}
               className={cn(
-                "relative overflow-hidden rounded-[16px] border bg-[#0b0b0b] shadow-[0_24px_56px_-26px_hsl(var(--foreground)/0.45),0_2px_0_0_hsl(var(--foreground)/0.3)]",
+                "relative overflow-hidden rounded-[16px] border bg-black/95 shadow-[0_24px_56px_-26px_hsl(var(--foreground)/0.45),0_2px_0_0_hsl(var(--foreground)/0.3)]",
                 ink ? "border-background/15" : "border-border",
                 dragging && "cursor-ew-resize",
               )}
               style={{ maxWidth: "100%" }}
             >
               {/* compact chrome */}
-              <div className="border-b border-white/[0.07] bg-[#161616] px-3 py-2">
+              <div className="border-b border-white/[0.07] bg-black/90 px-3 py-2">
                 <div className="flex items-center gap-2">
                   <span aria-hidden className="flex gap-1.5">
                     <span className="size-2 rounded-full bg-white/60" />
@@ -257,17 +257,13 @@ export function DeviceResponsive({
             <span>{caption}</span>
             <span className="flex items-center gap-3">
               {reel && (
-                <button
-                  type="button"
-                  onClick={runReel}
-                  className={cn(
+                <Button type="button" onClick={runReel} variant="default" className={cn(cn(
                     "inline-flex h-7 items-center gap-1.5 rounded-full border px-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     ink ? "border-background/25 text-background hover:bg-background/10" : "border-border text-foreground hover:bg-muted",
-                  )}
-                >
+                  ))}>
                   <Play className="size-2.5" aria-hidden />
                   Reel
-                </button>
+                
               )}
               <span aria-hidden>●</span>
             </span>

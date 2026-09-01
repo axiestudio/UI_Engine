@@ -1,12 +1,8 @@
 import * as React from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import {
-  CarouselProvider,
-  CarouselContent,
-  CarouselItem,
-  CarouselNavigation,
-  CarouselIndicator,
-} from "@/components/primitives/carousel"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
+import { Button } from "@/components/ui/button"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 
@@ -110,20 +106,25 @@ export function ContentCarousel({
   autoplay = 0,
   className,
 }: ContentCarouselProps) {
-  const timer = React.useRef<number | undefined>(undefined)
-  const [seed, setSeed] = React.useState(0)
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+  const play = autoplay > 0 && slides.length > 1
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: play, align: "start" },
+    play ? [Autoplay({ delay: autoplay * 1000, stopOnInteraction: true, playOnInit: !reduce })] : [],
+  )
+  const [idx, setIdx] = React.useState(0)
   React.useEffect(() => {
-    if (autoplay > 0 && slides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      timer.current = window.setInterval(() => setSeed((s) => s + 1), autoplay * 1000)
-      return () => window.clearInterval(timer.current)
-    }
-  }, [autoplay, slides.length])
+    if (!emblaApi) return
+    const onSelect = () => setIdx(emblaApi.selectedScrollSnap())
+    onSelect()
+    emblaApi.on("select", onSelect)
+    return () => { emblaApi.off("select", onSelect) }
+  }, [emblaApi])
 
   if (!slides.length) return null
 
   return (
-    <CarouselProvider key={seed}>
-      <section className={cn("w-full bg-background text-foreground", className)} aria-roledescription="carousel" aria-label={title ?? "Highlights"}>
+    <section className={cn("w-full bg-background text-foreground", className)} aria-roledescription="carousel" aria-label={title ?? "Highlights"}>
         <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8">
           {(eyebrow || title) && (
             <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
@@ -134,7 +135,24 @@ export function ContentCarousel({
                 </div>
                 {showArrows && (
                   <div className="flex gap-2">
-                    <CarouselNavigation className="!static !w-auto translate-y-0" alwaysShow />
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      onClick={() => emblaApi?.scrollPrev()}
+                      aria-label="Previous slide"
+                      className="rounded-full"
+                    >
+                      <ArrowLeft />
+                    </Button>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      onClick={() => emblaApi?.scrollNext()}
+                      aria-label="Next slide"
+                      className="rounded-full"
+                    >
+                      <ArrowRight />
+                    </Button>
                   </div>
                 )}
               </header>
@@ -142,17 +160,30 @@ export function ContentCarousel({
           )}
           <div className="relative">
             <div className="group/hover relative overflow-hidden">
-              <div className="overflow-hidden">
-                <CarouselContent className={cn(perViewLg === 2 && "lg:hidden", perViewLg === 3 && "lg:hidden")}>
+              <div ref={emblaRef} className="overflow-hidden">
+                <div className="flex">
                   {slides.map((s, i) => (
-                    <CarouselItem key={s.id ?? i} className="pb-4">
+                    <div key={s.id ?? i} className="min-w-0 flex-[0_0_100%] pb-4 pr-4">
                       <SlideCard slide={s} perView={1} />
-                    </CarouselItem>
+                    </div>
                   ))}
-                </CarouselContent>
-                {perViewLg === 1 && showArrows && <CarouselNavigation alwaysShow />}
-                {perViewLg === 1 && showIndicator && <CarouselIndicator />}
+                </div>
               </div>
+              {perViewLg === 1 && showIndicator && (
+                <div className="flex justify-center gap-2">
+                  {slides.map((s, i) => (
+                    <Button
+                      key={s.id ?? i}
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => emblaApi?.scrollTo(i)}
+                      aria-label={`Go to slide ${i + 1}`}
+                      aria-current={i === idx}
+                      className={cn("h-2 rounded-full p-0", i === idx ? "w-6 bg-foreground" : "w-2 bg-muted-foreground/40")}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
 
             {perViewLg > 1 && (
@@ -167,6 +198,5 @@ export function ContentCarousel({
           </div>
         </div>
       </section>
-    </CarouselProvider>
   )
 }

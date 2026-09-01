@@ -1,21 +1,8 @@
 'use client';
 
-import {
-  useState,
-  useId,
-  useRef,
-  useEffect,
-  createContext,
-  useContext,
-  isValidElement,
-} from 'react';
-import {
-  AnimatePresence,
-  MotionConfig,
-  motion,
-  Transition,
-  Variants,
-} from 'motion/react';
+import { useState, useId, useRef, useEffect, createContext, useContext, isValidElement } from 'react';
+import { AnimatePresence, MotionConfig, motion } from 'motion/react';
+import type { Transition, Variants } from 'motion/react';
 import useClickOutside from '@/hooks/useClickOutside';
 import { cn } from '@/lib/utils';
 

@@ -1,10 +1,9 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { RadioTower } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { GlowEffect } from "@/components/primitives/glow-effect"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { StatusHealthStrip } from "status-health-strip"
 import { ChatThreadVirtual } from "chat-thread-virtual"
 import { JobTray } from "job-tray"
@@ -50,13 +49,14 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
 
   return (
     <div className={cn("relative isolate min-h-[600px] overflow-hidden rounded-2xl border bg-background font-sans", hot && "border-[hsl(var(--err)/0.6)]", className)}>
+      <MotionConfig reducedMotion="user">
       {hot && <GlowEffect colors={["hsl(0 80% 55%)", "hsl(0 60% 35%)"]} mode="pulse" blur="strong" />}
       <OfflineQueueBanner online={true} queued={0} />
       <StatusHealthStrip services={[
         { name: "Checkout API", state: hot ? "degraded" : "operational", region: "eu" }, { name: "Payments", state: hot ? "down" : "operational", region: "eu", note: hot ? "proxy rollback mid-flight" : undefined }, { name: "Board websockets", state: "operational", region: "eu" },
       ]} />
       <header className="flex flex-wrap items-center gap-3 border-b bg-card px-5 py-4">
-        <RadioTower aria-hidden className={"size-4 " + (hot ? "animate-pulse text-[hsl(var(--err))]" : "text-[hsl(var(--warn))]")} />
+        <RadioTower aria-hidden className={"size-4 " + (hot ? "motion-safe:motion-safe:animate-pulse text-[hsl(var(--err))]" : "text-[hsl(var(--warn))]")} />
         <h2 className="font-display text-lg font-black tracking-tight">{incident}</h2>
         <Badge className={cn("ml-auto font-mono text-[9px]", hot ? "bg-[hsl(var(--err))] text-white" : "bg-[hsl(var(--warn)/0.15)] text-[hsl(var(--warn))] border border-current")}>SEV {hot ? 1 : 2} · ack 700s</Badge>
       </header>
@@ -65,11 +65,12 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
         <div className="grid gap-5 sm:grid-rows-[minmax(0,1fr)_auto]">
           <div className="rounded-xl border bg-card p-1">
             <ChatThreadVirtual messages={msgs.map((m) => ({ ...m }))} canEdit={() => false} />
-          </div>
+          </MotionConfig>
+    </div>
           <div className="rounded-xl border bg-card"><PipelineRunGraph run="rollback 226" stages={stages} onRerunFailed={() => setStages((s) => s.map((x) => x.status === "fail" ? { ...x, status: "running", log: ["manual retry"] } : x))} /></div>
         </div>
         <aside className="flex flex-col items-center gap-4 rounded-xl border bg-card p-5">
-          <MonoLabel className="self-start text-muted-foreground">SEVERITY (live)</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] self-start text-muted-foreground">SEVERITY (live)</span>
           <RadialGauge value={Math.round(sev)} label="SEVERITY" unit="" zones={[{ to: 0.55, color: "hsl(var(--ok))", label: "watch" }, { to: 0.8, color: "hsl(var(--warn))", label: "page" }, { to: 1, color: "hsl(var(--err))", label: "esc-1" }]} />
           <input aria-label="Simulate severity" type="range" min={0} max={100} value={sev} onChange={(e) => setSev(+e.target.value)} className="w-44 accent-[hsl(var(--err))]" />
           <div className="w-full rounded-lg border bg-[hsl(var(--app-code))] p-3 text-[11px] leading-relaxed text-muted-foreground">
@@ -79,7 +80,6 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
       </div>
       <JobTray jobs={jobs} onCancel={(j) => setJobs((x) => x.map((y) => y.id === j.id ? { ...y, status: "error", error: "cancelled", progress: undefined } : y))} onDismiss={(id) => setJobs((x) => x.filter((y) => y.id !== id))} />
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="tr" />
-      <Grain opacity={0.04} />
     </div>
   )
 }

@@ -103,3 +103,67 @@
 .img-hover-wash { position: relative; overflow: hidden; }
 .img-hover-wash img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s; }
 .img-hover-wash:hover img { transform: scale(1.05); }
+
+/* chart tokens — Bklit chart contract (full hsl() values, mirrors UI/app/funnel-stage-bars) */
+:root {
+  --chart-1: hsl(222 47% 36%);
+  --chart-2: hsl(212 88% 48%);
+  --chart-3: hsl(152 62% 36%);
+  --chart-4: hsl(38 92% 50%);
+  --chart-5: hsl(0 72% 51%);
+  --chart-grid: hsl(218 18% 88%);
+  --chart-line-primary: hsl(222 47% 36%);
+  --chart-line-secondary: hsl(212 88% 48%);
+  --chart-crosshair: hsl(220 9% 46%);
+  --chart-tooltip-bg: hsl(0 0% 100%);
+  --chart-tooltip-fg: hsl(222 15% 14%);
+  --chart-foreground: hsl(222 15% 14%);
+  --chart-foreground-muted: hsl(220 9% 46%);
+  --chart-label: hsl(220 9% 46%);
+  --chart-background: hsl(0 0% 100%);
+}
+.dark {
+  --chart-1: hsl(213 90% 64%);
+  --chart-2: hsl(212 90% 64%);
+  --chart-3: hsl(152 55% 46%);
+  --chart-4: hsl(38 92% 55%);
+  --chart-5: hsl(0 78% 62%);
+  --chart-grid: hsl(220 14% 20%);
+  --chart-line-primary: hsl(213 90% 64%);
+  --chart-line-secondary: hsl(212 90% 64%);
+  --chart-crosshair: hsl(219 12% 65%);
+  --chart-tooltip-bg: hsl(222 18% 10.5%);
+  --chart-tooltip-fg: hsl(216 25% 94%);
+  --chart-foreground: hsl(216 25% 94%);
+  --chart-foreground-muted: hsl(219 12% 65%);
+  --chart-label: hsl(219 12% 65%);
+  --chart-background: hsl(222 20% 8%);
+}
+
+/* chart tokens — remainder of the Bklit contract (defaults for parts this chart barely touches) */
+:root {
+  --chart-tooltip-background: hsl(0 0% 100%);
+  --chart-indicator-color: hsl(222 47% 36%);
+  --chart-indicator-secondary-color: hsl(212 88% 48%);
+  --chart-brush-border: hsl(218 18% 88%);
+  --chart-marker-background: hsl(222 15% 14%);
+  --chart-marker-border: hsl(218 18% 88%);
+  --chart-marker-foreground: hsl(0 0% 100%);
+  --chart-marker-badge-background: hsl(222 15% 14%);
+  --chart-marker-badge-foreground: hsl(0 0% 100%);
+  --chart-segment-background: hsl(216 25% 95%);
+  --chart-segment-line: hsl(212 72% 66%);
+}
+.dark {
+  --chart-tooltip-background: hsl(222 18% 10.5%);
+  --chart-indicator-color: hsl(213 90% 64%);
+  --chart-indicator-secondary-color: hsl(212 90% 64%);
+  --chart-brush-border: hsl(220 14% 20%);
+  --chart-marker-background: hsl(216 25% 94%);
+  --chart-marker-border: hsl(220 14% 20%);
+  --chart-marker-foreground: hsl(222 20% 8%);
+  --chart-marker-badge-background: hsl(216 25% 94%);
+  --chart-marker-badge-foreground: hsl(222 20% 8%);
+  --chart-segment-background: hsl(220 15% 16%);
+  --chart-segment-line: hsl(212 45% 42%);
+}

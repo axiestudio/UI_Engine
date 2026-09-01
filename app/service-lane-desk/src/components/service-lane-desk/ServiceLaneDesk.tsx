@@ -1,8 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Camera, CircleCheck, Clock3, KeySquare } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, CornerTicks } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Checkbox } from "@/components/watermelon/checkbox"
@@ -145,6 +144,7 @@ export function ServiceLaneDesk({
 
   return (
     <div className={cn("flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — plain label voice */}
       <header className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b px-5 py-3">
         <h2 className="text-[15px] font-semibold leading-tight">Service lane</h2>
@@ -157,13 +157,14 @@ export function ServiceLaneDesk({
           <Button size="sm" disabled={closing || approvedRows.length === 0} onClick={closeOrder}>
             <CircleCheck aria-hidden /> {closing ? "Closing…" : "Close order"}
           </Button>
-        </div>
+          </MotionConfig>
+    </div>
       </header>
 
       {/* lane band — bay utilisation across the shop floor */}
       <section aria-label="Bay utilisation" className="border-b bg-muted/30 px-4 pb-2 pt-2.5">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Bay utilisation · hours booked vs open</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Bay utilisation · hours booked vs open</span>
           <div className="flex items-center gap-3">
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{bookedTotal.toFixed(1)} of {(SHIFT_HOURS * bayRow.length).toFixed(1)} shift-hours</span>
             <SegmentedControl size="sm" value={activeBay} onChange={setActiveBay} options={BAYS} />
@@ -222,7 +223,7 @@ export function ServiceLaneDesk({
           {/* work order ledger */}
           <section aria-label="Work order" className="min-w-0 border-b">
             <div className="flex items-baseline justify-between border-b px-4 py-2">
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Work order · {approvedRows.length}/{rows.length} approved</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Work order · {approvedRows.length}/{rows.length} approved</span>
               <span className="font-mono text-[12px] font-bold tabular-nums">{total.toLocaleString()} kr</span>
             </div>
             <Table>
@@ -288,7 +289,7 @@ export function ServiceLaneDesk({
               <div className="flex items-baseline justify-between">
                 <span className="flex items-baseline gap-2">
                   <Camera className="size-3.5 shrink-0 translate-y-0.5 text-muted-foreground" aria-hidden />
-                  <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Damage photos · intake camera</MonoLabel>
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Damage photos · intake camera</span>
                 </span>
                 <span className="font-mono text-[10px] text-muted-foreground">claims ref CL-88214</span>
               </div>
@@ -308,9 +309,8 @@ export function ServiceLaneDesk({
         <aside aria-label="Vehicle rail" className="flex min-w-0 flex-col border-t lg:col-span-5 lg:border-t-0 lg:border-l">
           {/* vehicle keycard pass */}
           <section className="group relative overflow-hidden border-b px-4 py-4" aria-label="Vehicle keycard">
-            <CornerTicks className="text-muted-foreground/50" />
             <div className="flex items-center justify-between">
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Loan pass · day</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Loan pass · day</span>
               <KeySquare className="size-4 text-[hsl(var(--info))]" aria-hidden />
             </div>
             <p className="mt-2 font-mono text-[20px] font-bold tracking-[0.08em]">{activeCar.reg}</p>
@@ -325,7 +325,7 @@ export function ServiceLaneDesk({
 
           {/* service history rail */}
           <section aria-label="Service history" className="min-h-0 flex-1 px-4 py-3">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Service history</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Service history</span>
             <ol className="mt-2.5">
               {history.map((h, i) => (
                 <li key={h.id} className="relative flex gap-3 pb-4 last:pb-0">

@@ -1,8 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CreditCard, Plus, Printer, Scissors, Undo2 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { InlineEditCell } from "inline-edit-cell"
 import { SegmentedControl } from "segmented-control"
@@ -78,6 +77,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
 
   return (
     <div className={cn("relative flex flex-col overflow-hidden rounded-2xl border-2 border-foreground/85 bg-background font-sans text-foreground shadow-sm", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — display numeral voice */}
       <header className="flex flex-wrap items-center gap-x-5 gap-y-2 border-b px-5 pb-2.5 pt-3.5">
         <div className="flex items-baseline gap-3">
@@ -85,7 +85,8 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
             № <span className="tabular-nums">{no}</span>
           </h2>
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">till 2 · {openedBy}</span>
-        </div>
+          </MotionConfig>
+    </div>
         <div className="ml-auto flex gap-1.5">
           <Button variant="outline" size="sm" onClick={() => push("receipt sent to printer", "ok")}>
             <Printer aria-hidden /> Reprint
@@ -106,7 +107,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
         {/* lines — till-roll ledger, dashed rules */}
         <section aria-label="Ticket lines" className="min-w-0 flex-1 border-b lg:border-b-0 lg:border-r">
           <div className="flex items-baseline justify-between border-b px-5 py-2">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Ticket · {active.length} active lines</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Ticket · {active.length} active lines</span>
             <Button variant="ghost" size="xs" onClick={addLine}>
               <Plus aria-hidden /> add line
             </Button>
@@ -163,7 +164,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
         {/* running total panel — mirrors every line, grows as the ticket grows */}
         <aside aria-label="Running total" className={cn("relative flex w-full shrink-0 flex-col bg-muted/30 lg:w-[300px]", approved && "bg-[hsl(var(--ok)/0.07)]")}>
           <div className="flex items-baseline justify-between border-b px-4 py-2">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Running total</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Running total</span>
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{active.length} lines</span>
           </div>
           <ul className="divide-y px-4">
@@ -246,7 +247,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
         <section aria-label="Loyalty" className="border-b px-4 py-3 md:border-b-0 md:border-r">
           <div className="flex items-baseline gap-2">
             <span className="font-mono text-[10px] font-bold tabular-nums text-muted-foreground">01</span>
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Loyalty</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Loyalty</span>
           </div>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {TAGS.map((t) => (
@@ -271,7 +272,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
         <section aria-label="Delivery" className="border-b px-4 py-3 md:border-b-0 md:border-r">
           <div className="flex items-baseline gap-2">
             <span className="font-mono text-[10px] font-bold tabular-nums text-muted-foreground">02</span>
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Delivery</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Delivery</span>
           </div>
           <SegmentedControl
             size="sm"
@@ -288,7 +289,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
         <section aria-label="Pay" className="px-4 py-3">
           <div className="flex items-baseline gap-2">
             <span className="font-mono text-[10px] font-bold tabular-nums text-muted-foreground">03</span>
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Pay</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Pay</span>
             <span className="ml-auto font-mono text-[13px] font-bold tabular-nums">{total.toLocaleString()} kr</span>
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-2">

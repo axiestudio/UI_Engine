@@ -4,7 +4,6 @@ export { Showcase } from "./components/showcase/Showcase"
 export type { ShowcaseProps, ShowcaseShot } from "./components/showcase/Showcase"
 
 // Vendored upstream registry sources (provenance kept for direct use):
-export { default as Noise } from "./components/primitives/noise"
 export { InView } from "./components/primitives/in-view"
 export { Spotlight } from "./components/primitives/spotlight"
 export { Badge, badgeVariants } from "./components/ui/badge"

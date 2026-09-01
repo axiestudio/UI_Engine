@@ -1,14 +1,8 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState, createContext, useContext } from 'react';
-import {
-  motion,
-  MotionValue,
-  SpringOptions,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from 'motion/react';
+import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'motion/react';
+import type { SpringOptions } from 'motion/react';
 
 const ImageComparisonContext = createContext<
   | {

@@ -1,10 +1,11 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/progressive-blur.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/progressive-blur.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/progressive-blur.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/progressive-blur.tsx (local tokenized variant)
  */
 'use client';
 import { cn } from '@/lib/utils';
-import { type HTMLMotionProps, motion } from 'motion/react';
+import { motion } from 'motion/react';
+import type { HTMLMotionProps } from 'motion/react';
 
 export const GRADIENT_ANGLES = {
   top: 0,

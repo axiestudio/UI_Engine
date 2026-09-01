@@ -1,8 +1,8 @@
 import * as React from "react"
 // embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
 import { cn } from "@/lib/utils"
-
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Borrow trust without buying a billboard.
@@ -33,15 +33,12 @@ export function EmblaLogoWall({
 }: EmblaLogoWallProps) {
   const ink = tone === "ink"
   const slides = React.useMemo(() => [...logos, ...logos], [logos])
-  const [emblaRef, embla] = useEmblaCarousel({ loop: true, align: "center", axis: "x", dragFree: true, containScroll: "keepSnaps" })
-  const [hovering, setHovering] = React.useState(false)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+  const [hovering, setHovering] = React.useState(false)
+  const [emblaRef, embla] = useEmblaCarousel({ loop: true, align: "center", axis: "x", dragFree: true, containScroll: "keepSnaps" }, [
+    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true, stopOnFocusIn: true, playOnInit: !reduce }),
+  ])
 
-  React.useEffect(() => {
-    if (!embla || reduce || hovering) return
-    const id = window.setInterval(() => embla.scrollNext(), 3000)
-    return () => window.clearInterval(id)
-  }, [embla, reduce, hovering])
 
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

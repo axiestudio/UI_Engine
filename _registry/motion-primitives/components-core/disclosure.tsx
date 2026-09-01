@@ -1,13 +1,7 @@
 'use client';
 import * as React from 'react';
-import {
-  AnimatePresence,
-  motion,
-  MotionConfig,
-  Transition,
-  Variant,
-  Variants,
-} from 'motion/react';
+import { AnimatePresence, motion, MotionConfig } from 'motion/react';
+import type { Transition, Variant, Variants } from 'motion/react';
 import { createContext, useContext, useState, useId, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -128,9 +122,9 @@ export function DisclosureTrigger({
               },
               className: cn(
                 className,
-                (child as React.ReactElement).props.className
+                (child as React.ReactElement<any>).props.className
               ),
-              ...(child as React.ReactElement).props,
+              ...(child as React.ReactElement<any>).props,
             })
           : child;
       })}

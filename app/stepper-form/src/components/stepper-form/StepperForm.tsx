@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Check, ChevronLeft, ChevronRight, CircleAlert } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — multi-step flows that can't be linear-only.
@@ -40,10 +41,11 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
 
   return (
     <div className={cn("font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <ol className="mb-6 flex items-center gap-0" aria-label="Form steps">
         {steps.map((s, x) => (
           <li key={s.title} className="flex flex-1 items-center last:flex-none">
-            <button
+            <Button variant="ghost"
               type="button"
               onClick={() => { if (doneThrough(x) || x === i) { setErrors({}); setI(x) } }}
               aria-current={x === i ? "step" : undefined}
@@ -52,7 +54,7 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
             >
               <motion.span layout className={cn("grid size-6 place-items-center rounded-full border-2 text-[11px] tabular-nums", x === i ? "border-[hsl(var(--app-focus))]" : doneThrough(x) ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-white" : "border-current")}>{doneThrough(x) ? <Check className="size-3.5" /> : x + 1}</motion.span>
               <span className="hidden sm:inline">{s.title}</span>
-            </button>
+            </Button>
             {x < steps.length - 1 && <span className="relative mx-2 h-[2px] flex-1 overflow-hidden rounded bg-muted"><motion.span initial={false} animate={{ width: doneThrough(x) ? "100%" : "0%" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} className="block h-full bg-[hsl(var(--ok))]" /></span>}
           </li>
         ))}
@@ -75,12 +77,13 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
                 className={cn("h-10 w-full rounded-lg border border-border/70 bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring", errors[f.key] && "border-[hsl(var(--err))]")}
               />
               {errors[f.key] && <p id={`e-${f.key}`} className="mt-1 flex items-center gap-1.5 text-[13px] font-medium text-[hsl(var(--err))]"><CircleAlert className="size-3.5" /> {errors[f.key]}</p>}
-            </div>
+          </MotionConfig>
+    </div>
           ))}
         </motion.fieldset>
       </AnimatePresence>
       <div className="mt-7 flex items-center gap-2">
-        {i > 0 && <button type="button" onClick={() => setI(i - 1)} className="flex h-10 items-center gap-1 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted"><ChevronLeft className="size-4" /> Back</button>}
+        {i > 0 && <Button type="button" variant="ghost" onClick={() => setI(i - 1)} className="flex h-10 items-center gap-1 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted"><ChevronLeft className="size-4" /> Back</Button>}
         <motion.button whileTap={{ scale: 0.97 }} type="button" onClick={next} className="flex h-10 items-center gap-1 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm focus-visible:ring-2 focus-visible:ring-ring">
           {i === steps.length - 1 ? submitLabel : "Continue"} <ChevronRight className="size-4" />
         </motion.button>

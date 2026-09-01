@@ -90,8 +90,10 @@ function CopyButton({ value, label = "Copy" }: { value: string; label?: string }
   const timer = React.useRef<number | undefined>(undefined)
   React.useEffect(() => () => window.clearTimeout(timer.current), [])
   return (
-    <button
+    <Button
       type="button"
+      variant="ghost"
+      size="icon"
       aria-label={`${label} ${value}`}
       onClick={async () => {
         try {
@@ -102,7 +104,7 @@ function CopyButton({ value, label = "Copy" }: { value: string; label?: string }
           /* clipboard unavailable — button is still announced */
         }
       }}
-      className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+      className="size-6 shrink-0 rounded-md text-muted-foreground hover:text-foreground"
     >
       {copied ? <Check className="h-3.5 w-3.5 stroke-[2.5]" /> : <Copy className="h-3.5 w-3.5" />}
     </button>

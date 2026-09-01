@@ -3,6 +3,7 @@ import { motion, useMotionValue, useInView, useSpring } from "motion/react"
 import { Play } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Video reveal — a video that clips open on scroll into view.
 // ═══ EMOTION     The curtain lifts onto the film.
@@ -64,9 +65,9 @@ export function VideoReveal({
           className="aspect-video w-full object-cover will-change-[clip-path]"
           src={src}
         />
-        <button type="button" aria-label="Play" className="absolute inset-0 flex items-center justify-center text-white opacity-0">
+        <Button type="button" aria label="Play" variant="default" className={absolute inset-0 flex items-center justify-center text-white opacity-0}>
           <Play className="h-10 w-10" />
-        </button>
+        
         {caption && <p className="pointer-events-none absolute inset-x-0 bottom-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">{caption}</p>}
       </div>
     

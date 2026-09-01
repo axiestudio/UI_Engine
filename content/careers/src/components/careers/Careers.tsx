@@ -1,6 +1,5 @@
 import * as React from "react"
 import { ArrowUpRight, MapPin } from "lucide-react"
-
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 

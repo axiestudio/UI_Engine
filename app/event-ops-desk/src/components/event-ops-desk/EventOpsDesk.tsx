@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarClock, DoorOpen, KeyRound, Radio, Stamp } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Ordinal } from "@/components/primitives/handcraft"
 import { DateRangePresets, type Range } from "date-range-presets"
 import { StatusHealthStrip, type Service } from "status-health-strip"
 import { JobTray, type Job } from "job-tray"
@@ -91,15 +91,16 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Event ops</h2>
         <span className="text-[12px] text-muted-foreground">{venue}</span>
         <span className="flex items-center gap-1.5 rounded border border-[hsl(var(--warn)/0.5)] bg-[hsl(var(--warn)/0.08)] px-2 py-0.5 text-[11px] font-semibold text-[hsl(var(--warn))]">
           <Radio className="size-3.5" /> ch 3 down
         </span>
-        <button onClick={openDoors} disabled={isDoors} className={cn("ml-auto flex h-8 items-center gap-1.5 rounded-md px-3 text-[11px] font-semibold", isDoors ? "border bg-background text-muted-foreground disabled:opacity-60" : "bg-[hsl(var(--ok))] text-white hover:bg-[hsl(var(--ok)/0.9)]")}>
+        <Button type="button" variant="ghost" onClick={openDoors} disabled={isDoors} className={cn("ml-auto flex h-8 items-center gap-1.5 rounded-md px-3 text-[11px] font-semibold", isDoors ? "border bg-background text-muted-foreground disabled:opacity-60" : "bg-[hsl(var(--ok))] text-white hover:bg-[hsl(var(--ok)/0.9)]")}>
           <DoorOpen className="size-3.5" /> {isDoors ? "Doors open" : "Open doors"}
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[270px_minmax(0,1fr)_280px]">
@@ -112,7 +113,9 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
             <div className="p-3">
               <DateRangePresets value={win} onChange={setWin} presets={[{ label: "Tonight", days: 0 }, { label: "Weekend", days: 2 }, { label: "Next 7 days", days: 7 }]} />
               <dl className="mt-3 space-y-1 text-[12px]">
-                <div className="flex justify-between"><dt className="text-muted-foreground">Window</dt><dd className="font-mono text-[12px] tabular-nums">{hours} h</dd></div>
+                <div className="flex justify-between"><dt className="text-muted-foreground">Window</dt><dd className="font-mono text-[12px] tabular-nums">{hours} h</dd>      
+          </MotionConfig>
+    </div>
                 <div className="flex justify-between"><dt className="text-muted-foreground">Passes / hour</dt><dd className="font-mono font-bold tabular-nums">{perHour.toLocaleString()}</dd></div>
                 <div className="flex justify-between"><dt className="text-muted-foreground">Peak lane load</dt><dd className="font-mono tabular-nums">Gate A · 340/h</dd></div>
               </dl>
@@ -128,13 +131,13 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card">
           <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Pass issuance · {totalIssued}/{totalPasses} issued</span>
-            <button
+            <Button type="button" variant="ghost"
               onClick={() => { board.filter((p) => sel.includes(p.id) && p.issued < p.total).forEach((p) => issue([p.id])); push(`${sel.length} batches bumped by one pass`) }}
               disabled={sel.length === 0}
               className="flex items-center gap-1 text-[11px] font-bold text-[hsl(var(--info))] disabled:opacity-40"
             >
               <Stamp className="size-3.5" /> issue selected
-            </button>
+            </Button>
           </header>
           <table className="w-full border-collapse text-[12px]">
             <thead>
@@ -166,9 +169,9 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
                       <div className="h-1.5 w-full max-w-[140px] overflow-hidden rounded-full bg-muted">
                         <motion.div className="h-full rounded-full bg-[hsl(var(--info))]" animate={{ width: `${Math.round((p.issued / p.total) * 100)}%` }} transition={{ type: "spring", stiffness: 160, damping: 22 }} />
                       </div>
-                      <button onClick={() => issue([p.id])} disabled={p.issued >= p.total || !isDoors} className="text-[10px] font-bold uppercase text-muted-foreground hover:text-foreground disabled:opacity-30">
+                      <Button type="button" variant="ghost" onClick={() => issue([p.id])} disabled={p.issued >= p.total || !isDoors} className="text-[10px] font-bold uppercase text-muted-foreground hover:text-foreground disabled:opacity-30">
                         {p.issued >= p.total ? "full" : "issue"}
-                      </button>
+                      </Button>
                     </div>
                   </td>
                 </tr>
@@ -187,17 +190,17 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
             <ul className="divide-y">
               {crew.map((c, i) => (
                 <li key={c.id} className="flex items-center gap-2 px-3 py-1.5">
-                  <Ordinal n={i + 1} className="shrink-0" />
+                  <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground shrink-0">{String(i + 1).padStart(2, "0")}</span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-[12px] font-semibold">{c.name}</p>
                     <p className="text-[10px] text-muted-foreground">{c.station} · <span className="font-mono">{c.call}</span> · {c.radio}</p>
                   </div>
-                  <button
+                  <Button type="button" variant="ghost"
                     onClick={() => setCrew((cs) => cs.map((x) => (x.id === c.id ? { ...x, confirmed: !x.confirmed } : x)))}
                     className={cn("rounded border px-1.5 py-0.5 text-[10px] font-semibold", c.confirmed ? "border-[hsl(var(--ok)/0.4)] text-[hsl(var(--ok))]" : "text-muted-foreground hover:bg-muted")}
                   >
                     {c.confirmed ? "on set" : "confirm"}
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>

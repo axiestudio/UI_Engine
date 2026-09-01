@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils"
 
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Introduce the six people behind the chairs.
 // ═══ EMOTION     A front desk that already knows you — warm, not precious.
@@ -63,20 +64,13 @@ function MemberAvatar({ member, tone }: { member: TeamMember; tone: "paper" | "i
 
   return (
     <>
-      <button
-        type="button"
-        ref={refs.setReference}
-        {...getReferenceProps()}
-        aria-expanded={open}
-        aria-label={`${member.name}, ${member.role}`}
-        className={cn(
+      <Button type="button" ref={refs.setReference} getReferenceProps aria expanded={open} label={`${member.name}, ${member.role}`} variant="default" className={cn(cn(
           "relative size-12 rounded-full border-2 bg-foreground font-mono text-[12px] font-black text-background transition-all duration-300 hover:z-10 hover:-translate-y-1 focus-visible:z-10 focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           tone === "ink" ? "border-foreground/25" : "border-background",
           open && "z-10 -translate-y-1",
-        )}
-      >
+        ))}>
         <span aria-hidden>{member.initials}</span>
-      </button>
+      
 
       {open && (
         <FloatingPortal>
@@ -97,13 +91,9 @@ function MemberAvatar({ member, tone }: { member: TeamMember; tone: "paper" | "i
               </span>
             </div>
             <p className="mt-3 text-[12px] font-medium leading-relaxed text-muted-foreground">{member.bio}</p>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="mt-3.5 w-full rounded-lg px-3 py-2 font-mono text-[10px] font-black uppercase tracking-[0.16em] text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
+            <Button type="button" onClick={() => setOpen(false)} variant="default" className={mt-3.5 w-full rounded-lg px-3 py-2 font-mono text-[10px] font-black uppercase tracking-[0.16em] text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring}>
               Book with {member.name.split(" ")[0]}
-            </button>
+            
           </div>
         </FloatingPortal>
       )}

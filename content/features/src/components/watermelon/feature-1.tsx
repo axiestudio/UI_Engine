@@ -5,13 +5,7 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  HiLightBulb,
-  HiShieldCheck,
-  HiSupport,
-  HiDatabase,
-  HiSwitchHorizontal,
-} from "react-icons/hi";
+import { Lightbulb, ShieldCheck, Headphones, Database, ArrowLeftRight } from "lucide-react"
 
 export default function Features1() {
   return (
@@ -25,7 +19,7 @@ export default function Features1() {
           <CardContent className="p-6">
             <div className="bg-muted dark:bg-muted/10 mb-2 size-fit rounded-lg p-px">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/80 shadow-[inset_0_-2px_0.5px_0px_rgba(0,0,0,0),inset_0px_2px_0_2px_rgba(255,255,255,1),0_0px_6px_0_rgba(0,0,0,0.07),0_2px_4px_0_rgba(0,0,0,0.05)] dark:bg-black/20 dark:shadow-[inset_0_-1px_0px_0px_rgba(0,0,0,0.1),inset_0px_1px_0px_0px_rgba(255,255,255,0.05),0_0px_2px_0_rgba(0,0,0,0.2),0_1px_4px_0_rgba(0,0,0,0.05)]">
-                <HiLightBulb className="h-5 w-5 text-orange-500" />
+                <Lightbulb className="h-5 w-5 text-orange-500" />
               </div>
             </div>
             <h3 className="text-lg font-medium">Smart issue detection</h3>
@@ -45,7 +39,7 @@ export default function Features1() {
           <CardContent className="p-6">
             <div className="bg-muted dark:bg-muted/10 mb-2 size-fit rounded-lg p-px">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/80 shadow-[inset_0_-2px_0.5px_0px_rgba(0,0,0,0),inset_0px_2px_0_2px_rgba(255,255,255,1),0_0px_6px_0_rgba(0,0,0,0.07),0_2px_4px_0_rgba(0,0,0,0.05)] dark:bg-black/20 dark:shadow-[inset_0_-1px_0px_0px_rgba(0,0,0,0.1),inset_0px_1px_0px_0px_rgba(255,255,255,0.05),0_0px_2px_0_rgba(0,0,0,0.2),0_1px_4px_0_rgba(0,0,0,0.05)]">
-                <HiDatabase className="h-5 w-5 text-purple-500" />
+                <Database className="h-5 w-5 text-purple-500" />
               </div>
             </div>
             <h3 className="mb-1 text-lg font-medium">Fast transactions</h3>
@@ -64,7 +58,7 @@ export default function Features1() {
           <CardContent className="p-6">
             <div className="bg-muted dark:bg-muted/10 mb-3 size-fit rounded-lg p-px">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/80 shadow-[inset_0_-2px_0.5px_0px_rgba(0,0,0,0),inset_0px_2px_0_2px_rgba(255,255,255,1),0_0px_6px_0_rgba(0,0,0,0.07),0_2px_4px_0_rgba(0,0,0,0.05)] dark:bg-black/20 dark:shadow-[inset_0_-1px_0px_0px_rgba(0,0,0,0.1),inset_0px_1px_0px_0px_rgba(255,255,255,0.05),0_0px_2px_0_rgba(0,0,0,0.2),0_1px_4px_0_rgba(0,0,0,0.05)]">
-                <HiShieldCheck className="h-5 w-5 text-green-500" />
+                <ShieldCheck className="h-5 w-5 text-green-500" />
               </div>
             </div>
             <h3 className="mb-2 text-lg font-medium">
@@ -104,7 +98,7 @@ export default function Features1() {
           <CardContent className="p-6">
             <div className="bg-muted dark:bg-muted/10 mb-2 size-fit rounded-lg p-px">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/80 shadow-[inset_0_-2px_0.5px_0px_rgba(0,0,0,0),inset_0px_2px_0_2px_rgba(255,255,255,1),0_0px_6px_0_rgba(0,0,0,0.07),0_2px_4px_0_rgba(0,0,0,0.05)] dark:bg-black/20 dark:shadow-[inset_0_-1px_0px_0px_rgba(0,0,0,0.1),inset_0px_1px_0px_0px_rgba(255,255,255,0.05),0_0px_2px_0_rgba(0,0,0,0.2),0_1px_4px_0_rgba(0,0,0,0.05)]">
-                <HiSwitchHorizontal className="h-5 w-5 text-pink-500" />
+                <ArrowLeftRight className="h-5 w-5 text-pink-500" />
               </div>
             </div>
             <h3 className="mb-1 text-lg font-medium">Effortless transfers</h3>
@@ -123,7 +117,7 @@ export default function Features1() {
           <CardContent className="p-6">
             <div className="bg-muted dark:bg-muted/10 mb-2 size-fit rounded-lg p-px">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/80 shadow-[inset_0_-2px_0.5px_0px_rgba(0,0,0,0),inset_0px_2px_0_2px_rgba(255,255,255,1),0_0px_6px_0_rgba(0,0,0,0.07),0_2px_4px_0_rgba(0,0,0,0.05)] dark:bg-black/20 dark:shadow-[inset_0_-1px_0px_0px_rgba(0,0,0,0.1),inset_0px_1px_0px_0px_rgba(255,255,255,0.05),0_0px_2px_0_rgba(0,0,0,0.2),0_1px_4px_0_rgba(0,0,0,0.05)]">
-                <HiSupport className="h-5 w-5 text-blue-500" />
+                <Headphones className="h-5 w-5 text-blue-500" />
               </div>
             </div>
             <h3 className="mb-1 text-lg font-medium">Always-on support</h3>

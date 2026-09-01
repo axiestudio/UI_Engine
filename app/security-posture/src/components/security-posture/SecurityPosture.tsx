@@ -1,8 +1,7 @@
 import * as React from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Check, CircleAlert, FileSearch, KeyRound, LoaderCircle, ShieldCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import {
   Dialog,
   DialogClose,
@@ -187,6 +186,7 @@ export function SecurityPosture({
 
   return (
     <div className={cn("flex min-h-[560px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Security posture</h2>
         <Badge variant="outline" className="font-mono text-[10px] uppercase">{env}</Badge>
@@ -198,7 +198,8 @@ export function SecurityPosture({
           <Button variant="outline" size="sm" disabled={!stale} onClick={() => keyRows.filter((k) => k.stale).forEach((k) => rotate(k.id))}>
             <KeyRound className="size-3.5" /> Rotate stale {stale ? `(${stale})` : ""}
           </Button>
-        </div>
+          </MotionConfig>
+    </div>
       </header>
 
       <div className="border-b bg-background px-4 py-3">
@@ -248,7 +249,7 @@ export function SecurityPosture({
         <section className="col-span-1 flex min-w-0 flex-col overflow-hidden rounded-lg border bg-card lg:col-span-7">
           <header className="flex h-10 items-center justify-between border-b px-3">
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Role matrix · {roleRows.length} roles</span>
-            <MonoLabel className="text-[10px] text-muted-foreground" tick={false}>click standing to cycle tri-state</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">click standing to cycle tri-state</span>
           </header>
           <Table>
             <TableHeader>
@@ -272,7 +273,7 @@ export function SecurityPosture({
                   </TableCell>
                   <TableCell className="px-2 py-1.5 text-right font-mono text-[12px] tabular-nums">{r.members}</TableCell>
                   <TableCell className="px-3 py-1.5 text-right">
-                    <button
+                    <Button type="button" variant="ghost"
                       onClick={() => cycleStanding(r.id)}
                       title="Cycle standing: clean → drift → violation"
                       aria-label={`${r.role} standing: ${r.standing}. Click to cycle.`}
@@ -284,7 +285,7 @@ export function SecurityPosture({
                       >
                         {r.standing}
                       </Badge>
-                    </button>
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -354,7 +355,7 @@ export function SecurityPosture({
                         s.state === "queued" && "text-muted-foreground",
                       )}
                     >
-                      {s.state === "passed" ? <Check className="size-3" /> : s.state === "running" ? <LoaderCircle className="size-3 animate-spin" /> : s.state === "blocked" ? <CircleAlert className="size-3" /> : <span className="size-1.5 rounded-full bg-current" />}
+                      {s.state === "passed" ? <Check className="size-3" /> : s.state === "running" ? <LoaderCircle className="size-3 motion-safe:motion-safe:animate-spin" /> : s.state === "blocked" ? <CircleAlert className="size-3" /> : <span className="size-1.5 rounded-full bg-current" />}
                     </span>
                     <p className="truncate text-[12px] font-bold">{s.label}</p>
                   </div>

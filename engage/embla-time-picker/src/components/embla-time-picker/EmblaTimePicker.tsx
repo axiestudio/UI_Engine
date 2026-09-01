@@ -3,6 +3,7 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 
@@ -110,10 +111,10 @@ export function EmblaTimePicker({
                 <span aria-hidden className="font-display text-[22px] font-black text-muted-foreground/50">:</span>
                 <Wheel values={minutes} value={minute} onChange={(m) => setT((t) => ({ ...t, minute: m }))} ariaLabel="Minutes" />
               </div>
-              <button
+              <Button
                 type="button"
                 onClick={() => onConfirm?.({ hour, minute })}
-                className="mt-6 h-11 w-full rounded-full bg-foreground text-[11px] font-black uppercase tracking-[0.14em] text-background transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="mt-6 h-11 w-full rounded-full text-[11px] font-black uppercase tracking-[0.14em] transition-transform hover:-translate-y-0.5"
               >
                 Book {String(hour).padStart(2, "0")}:{String(minute).padStart(2, "0")}
               </button>

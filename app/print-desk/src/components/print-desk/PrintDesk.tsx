@@ -1,8 +1,7 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { Layers, RotateCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { SegmentedControl } from "segmented-control"
 import { PipelineRunGraph, type Stage } from "pipeline-run-graph"
@@ -136,12 +135,14 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
 
   return (
     <div className={cn("flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — mono eyebrow + odometer numeral, no 48px strip */}
       <header className="flex items-end justify-between gap-6 border-b px-6 pb-3 pt-4">
         <div className="min-w-0">
-          <MonoLabel className="text-[10px] text-muted-foreground">Print desk · shift {shift}</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Print desk · shift {shift}</span>
           <h2 className="mt-1 truncate font-display text-[22px] font-bold leading-tight tracking-[-0.02em]">{press}</h2>
-        </div>
+          </MotionConfig>
+    </div>
         <div className="shrink-0 text-right">
           <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">sheets today</span>
           <motion.span
@@ -184,7 +185,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
         {/* artwork ledger — bare ruled rows, no card chrome */}
         <section aria-label="Artwork queue" className="min-w-0 border-b lg:col-span-5 lg:border-b-0 lg:border-r">
           <div className="flex items-baseline justify-between border-b px-4 py-2">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Artwork queue</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Artwork queue</span>
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{queue.length} jobs</span>
           </div>
           <ul className="divide-y">
@@ -213,7 +214,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
           {/* throughput — vendored Bklit area chart, driven by run state + target */}
           <section aria-label="Throughput" className="border-b">
             <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2">
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Throughput · impressions per hour</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Throughput · impressions per hour</span>
               <div className="flex items-center gap-3">
                 <DragNumberField
                   label="Target sheets / h"
@@ -264,7 +265,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
           {/* proofs — wide overlay panel, revision switcher floats over the diff */}
           <section aria-label="Copy proofs" className="relative min-h-0 flex-1">
             <div className="flex items-baseline justify-between border-b px-4 py-2 pr-36">
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Copy proofs</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Copy proofs</span>
               <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{proofs.filter((l) => l.kind === "add").length}+ {proofs.filter((l) => l.kind === "del").length}− vs previous ink-jet proof</span>
             </div>
             <div className="absolute right-3 top-1.5 z-10 flex gap-0.5 rounded-md border bg-background/90 p-0.5 shadow-sm backdrop-blur-sm">
@@ -292,7 +293,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
       {/* stock dock — full-width strip pinned to the bottom edge */}
       <footer className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t bg-muted/20 px-4 py-2.5">
         <Layers className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
-        <MonoLabel tick={false} className="shrink-0 text-[10px] text-muted-foreground">Stock</MonoLabel>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] shrink-0 text-[10px] text-muted-foreground">Stock</span>
         <SegmentedControl
           size="sm"
           value={stock}

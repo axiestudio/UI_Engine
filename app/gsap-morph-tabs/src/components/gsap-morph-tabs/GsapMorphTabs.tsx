@@ -1,7 +1,7 @@
 import * as React from "react"
 import gsap from "gsap"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         One app card whose frame keeps pace with its content —
@@ -94,15 +94,24 @@ export function GsapMorphTabs({
   }
 
   return (
-    <SectionShell width={920} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <div className="mt-10 overflow-hidden rounded-2xl border bg-card shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-2 border-b px-5 py-4 sm:px-6">
           <div>
-            <MonoLabel>Quiet Times Studio · Front desk</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Quiet Times Studio · Front desk</span>
             <p className="mt-1 font-display text-[15px] font-bold tracking-tight text-foreground">The day, at a glance</p>
           </div>
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Jönköping · CET</span>
@@ -111,9 +120,10 @@ export function GsapMorphTabs({
         <div className="px-5 pb-6 pt-4 sm:px-6">
           <div role="tablist" aria-label="Studio panels" className="flex flex-wrap gap-2">
             {TABS.map((t) => (
-              <button
+              <Button
                 key={t.id}
                 type="button"
+                variant="ghost"
                 role="tab"
                 id={`tab-${t.id}`}
                 aria-selected={active === t.id}
@@ -125,7 +135,7 @@ export function GsapMorphTabs({
                 )}
               >
                 {t.label}
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -183,7 +193,7 @@ export function GsapMorphTabs({
               >
                 <div className="rounded-xl bg-muted p-4 sm:p-5">
                   <div className="flex items-center justify-between border-b border-border pb-3">
-                    <MonoLabel tick={false}>Pinned notes</MonoLabel>
+                    <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Pinned notes</span>
                     <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">read-only</span>
                   </div>
                   <p className="mt-3 whitespace-pre-line text-sm leading-6 text-muted-foreground">{NOTE}</p>
@@ -198,6 +208,7 @@ export function GsapMorphTabs({
         <span>{caption}</span>
         <span aria-hidden>●</span>
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

@@ -1,8 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarClock, MessageSquareReply, Pause, Play, SendHorizonal } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Checkbox } from "@/components/watermelon/checkbox"
@@ -143,6 +142,7 @@ export function SocialScheduler({
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Queue the week</h2>
         <span className="font-mono text-[12px] text-muted-foreground">{handle}</span>
@@ -189,7 +189,8 @@ export function SocialScheduler({
               <Button size="sm" onClick={queueIt} disabled={!text.trim()} className="shrink-0 gap-1.5 uppercase tracking-[0.08em]">
                 <SendHorizonal className="size-3.5" /> Queue post
               </Button>
-            </div>
+          </MotionConfig>
+    </div>
           </div>
         </section>
 
@@ -269,7 +270,7 @@ export function SocialScheduler({
         <section className="overflow-hidden rounded-lg border bg-card lg:col-span-8">
           <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Reach heat · past 14 weeks</span>
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">mid-week lunches win</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">mid-week lunches win</span>
           </header>
           <div className="p-3">
             <ActivityHeatmap

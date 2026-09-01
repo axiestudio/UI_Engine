@@ -1,8 +1,8 @@
 import { Fragment, useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ListTree, ScanSearch, ShieldAlert, SquareCheckBig } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { FilterTokenBuilder, type FilterToken } from "filter-token-builder"
 import { InlineEditCell } from "inline-edit-cell"
 import { BulkSelectBar, type BulkAction } from "bulk-select-bar"
@@ -152,6 +152,7 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Data quality</h2>
         <span className="text-[12px] text-muted-foreground">{ledger}</span>
@@ -159,9 +160,9 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
         <span className="flex items-center gap-1.5 rounded border border-[hsl(var(--err)/0.4)] bg-[hsl(var(--err)/0.08)] px-2 py-0.5 text-[11px] font-semibold text-[hsl(var(--err))]">
           <ShieldAlert className="size-3.5" /> {conflicts} conflicts
         </span>
-        <button onClick={rescan} disabled={scan} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
+        <Button type="button" variant="ghost" onClick={rescan} disabled={scan} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
           <ScanSearch className="size-3.5" /> {scan ? "Scanning…" : "Rescan columns"}
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[260px_minmax(0,1fr)_230px]">
@@ -176,15 +177,16 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
               <p className="mt-2.5 text-[11px] text-muted-foreground">Tokens scope the record tree below. <code className="font-mono">:</code> means contains.</p>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {(["stale", "conflict"] as const).map((s) => (
-                  <button key={s} onClick={() => setTokens([{ field: "state", op: "=", value: s }])} className="rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground hover:bg-muted">
+                  <Button type="button" variant="ghost" key={s} onClick={() => setTokens([{ field: "state", op: "=", value: s }])} className="rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground hover:bg-muted">
                     {s} only
-                  </button>
+                  </Button>
                 ))}
-              </div>
+          </MotionConfig>
+    </div>
             </div>
           </section>
           <section className="rounded-lg border bg-card p-3">
-            <MonoLabel className="text-muted-foreground">Sync window</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Sync window</span>
             <dl className="mt-2 space-y-1 text-[12px]">
               <div className="flex justify-between"><dt className="text-muted-foreground">Last run</dt><dd className="font-mono tabular-nums">{syncedAt}</dd></div>
               <div className="flex justify-between"><dt className="text-muted-foreground">Records</dt><dd className="font-mono tabular-nums">{rows.reduce((a, g) => a + g.records.length, 0)}</dd></div>
@@ -197,12 +199,12 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card">
           <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Record tree · {leafIds.length} in scope</span>
-            <button
+            <Button type="button" variant="ghost"
               onClick={() => setSel(leafIds.length && sel.length === leafIds.length ? [] : leafIds)}
               className="flex items-center gap-1 text-[11px] font-bold text-[hsl(var(--info))]"
             >
               <SquareCheckBig className="size-3.5" /> {sel.length === leafIds.length && leafIds.length > 0 ? "clear" : "select all"}
-            </button>
+            </Button>
           </header>
           <table className="w-full border-collapse text-[12px]">
             <thead>
@@ -229,9 +231,9 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
                         />
                       </td>
                       <td colSpan={4} className="px-3 py-1">
-                        <button onClick={() => setOpen((o) => ({ ...o, [g.id]: !o[g.id] }))} className="flex items-center gap-1.5 text-left text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground">
+                        <Button type="button" variant="ghost" onClick={() => setOpen((o) => ({ ...o, [g.id]: !o[g.id] }))} className="flex items-center gap-1.5 text-left text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground">
                           <span className={cn("transition-transform", open[g.id] && "rotate-90")}>▸</span> {g.label} · {g.active.length}
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                     {open[g.id] !== false &&
@@ -290,7 +292,7 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
             </SmartSkeleton>
           </section>
           <section className="rounded-lg border bg-card p-3">
-            <MonoLabel className="text-muted-foreground">House rules</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">House rules</span>
             <ul className="mt-2 space-y-1.5 text-[11px] leading-[1.5] text-muted-foreground">
               <li>· duplicates merge, never delete — history stays attached</li>
               <li>· quarantined rows are excluded from the nightly sync</li>

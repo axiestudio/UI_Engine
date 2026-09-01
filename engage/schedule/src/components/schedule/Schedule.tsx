@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Check, Clock3 } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Button } from "@/components/ui/button"
 import { Magnetic } from "@/components/primitives/magnetic"
 import { cn } from "@/lib/utils"
 
@@ -122,44 +124,39 @@ export function Schedule({
               {slots.length === 0 ? (
                 <p className="mt-3 text-sm font-medium text-muted-foreground">No published slots — use the booking link.</p>
               ) : (
-                <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3" role="radiogroup" aria-label="Choose a time slot">
-                  {slots.map((s, i) => {
-                    const active = selected === i
-                    return (
-                      <button
-                        key={`${s.day}-${s.time}`}
-                        type="button"
-                        role="radio"
-                        aria-checked={active}
-                        onClick={() => setSelected(i)}
-                        className={cn(
-                          "flex flex-col items-start rounded-xl border px-3 py-2.5 text-left transition-all",
-                          active ? "border-foreground bg-foreground text-background shadow-sm" : "bg-background hover:bg-accent"
-                        )}
-                      >
-                        <span className="font-display text-sm font-extrabold tracking-tight">{s.time}</span>
-                        <span className={cn("font-mono text-[10px] font-bold uppercase tracking-widest", active ? "text-background/70" : "text-muted-foreground")}>{s.day}</span>
-                        {s.label && <span className={cn("mt-1 text-[10px] font-semibold", active ? "text-background/70" : "text-muted-foreground")}>{s.label}</span>}
-                      </button>
-                    )
-                  })}
-                </div>
+                <RadioGroup
+                  value={selected === null ? undefined : String(selected)}
+                  onValueChange={(v) => setSelected(Number(v))}
+                  aria-label="Choose a time slot"
+                  className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3"
+                >
+                  {slots.map((s, i) => (
+                    <RadioGroupItem
+                      key={`${s.day}-${s.time}`}
+                      value={String(i)}
+                      className={cn(
+                        "flex flex-col items-start rounded-xl border px-3 py-2.5 text-left shadow-none transition-all [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background data-[state=unchecked]:bg-background hover:bg-accent data-[state=checked]:hover:bg-foreground",
+                      )}
+                    >
+                      <span className="font-display text-sm font-extrabold tracking-tight">{s.time}</span>
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground data-[state=checked]:text-background/70">{s.day}</span>
+                      {s.label && <span className="mt-1 text-[10px] font-semibold text-muted-foreground data-[state=checked]:text-background/70">{s.label}</span>}
+                    </RadioGroupItem>
+                  ))}
+                </RadioGroup>
               )}
               {onBook && slots.length > 0 && (
                 <div className="mt-4 flex items-center justify-between gap-3">
                   {footerNote ? <p className="text-[11px] font-medium text-muted-foreground">{footerNote}</p> : <span />}
                   <Magnetic intensity={0.2} range={50}>
-                    <button
+                    <Button
                       type="button"
                       disabled={selected === null}
                       onClick={() => {
                         const s = slots[selected ?? 0]
                         if (s) onBook({ day: s.day, time: s.time })
                       }}
-                      className={cn(
-                        "inline-flex h-10 items-center gap-1.5 rounded-full px-5 font-display text-sm font-extrabold tracking-tight shadow-sm transition-all",
-                        selected === null ? "cursor-not-allowed bg-muted text-muted-foreground" : "bg-foreground text-background hover:scale-[1.02] active:scale-[0.98]"
-                      )}
+                      className="h-10 rounded-full px-5 font-display text-sm font-extrabold tracking-tight"
                     >
                       <Check className="h-3.5 w-3.5 stroke-[3]" />
                       {bookLabel}
@@ -168,7 +165,7 @@ export function Schedule({
                           {slots[selected]?.time}
                         </span>
                       )}
-                    </button>
+                    </Button>
                   </Magnetic>
                 </div>
               )}

@@ -122,8 +122,7 @@ function ShadeSwatch({
 
   return (
     <div className="flex flex-col items-center gap-1.5">
-      <Button type="button" variant="ghost"
-        type="button"
+      <Button variant="ghost"
         ref={refs.setReference}
         {...getReferenceProps()}
         aria-expanded={open}
@@ -157,12 +156,11 @@ function ShadeSwatch({
             </div>
             <div className="space-y-0.5">
               {scale.map((value) => (
-                <Button type="button" variant="ghost"
+                <Button variant="ghost"
                   key={value}
-                  type="button"
                   onClick={() => copyHex(value)}
                   className="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >>
+                >
                   <span
                     aria-hidden
                     className="h-5 flex-1 rounded-md border border-border"
@@ -209,7 +207,7 @@ export function FloatingShadePicker({
   const [openHex, setOpenHex] = React.useState<string | null>(null)
 
   return (
-    <section className={cn("bg-background text-foreground", className)>
+    <section className={cn("bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <InView once variants={REVEAL} transition={{ duration: 0.8, ease: EASE }}>
                 <header className="">

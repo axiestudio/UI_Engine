@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { CircleAlert, Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — grids where "just click the value" works.
@@ -28,6 +29,7 @@ export function InlineEditCell({ value, name, onSave, mono, width, className }: 
   }
   return (
     <span className={cn("relative inline-flex items-center font-sans", className)} style={width ? { width } : undefined}>
+      <MotionConfig reducedMotion="user">
       {editing ? (
         <motion.input
           autoFocus initial={{ scaleX: 0.92 }} animate={{ scaleX: 1 }}
@@ -36,12 +38,14 @@ export function InlineEditCell({ value, name, onSave, mono, width, className }: 
           className={cn("h-7 w-full rounded-md border-2 bg-background px-1.5 text-[13px] outline-none", state === "rejected" ? "border-[hsl(var(--err))]" : "border-[hsl(var(--app-focus))]", mono && "font-mono")}
         />
       ) : (
-        <button type="button" onClick={() => { setDraft(committed.current); setState("idle"); setEditing(true) }} className={cn("group flex h-7 w-full items-center justify-between gap-2 rounded-md px-1.5 text-left text-[13px] hover:bg-muted/50 focus-visible:bg-muted/60 focus-visible:outline-none", mono && "font-mono")}>
-          <span className={cn("truncate", state === "rejected" && "text-[hsl(var(--err))]")}>{draft}</span>
+        <Button type="button" variant="ghost" onClick={() => { setDraft(committed.current); setState("idle"); setEditing(true) }} className={cn("group flex h-7 w-full items-center justify-between gap-2 rounded-md px-1.5 text-left text-[13px] hover:bg-muted/50 focus-visible:bg-muted/60 focus-visible:outline-none", mono && "font-mono")}>
+          <span className={cn("truncate", state === "rejected" && "text-[hsl(var(--err))]")}>{draft}      
+          </MotionConfig>
+    </span>
           <span aria-hidden className="w-4 text-center text-[13px] opacity-0 transition-opacity group-hover:opacity-40">✎</span>
-        </button>
+        </Button>
       )}
-      {state === "saving" && <Loader2 data-slot="save-spinner" aria-hidden className="absolute -right-5 size-3.5 animate-spin text-[hsl(var(--info))]" />}
+      {state === "saving" && <Loader2 data-slot="save-spinner" aria-hidden className="absolute -right-5 size-3.5 motion-safe:motion-safe:animate-spin text-[hsl(var(--info))]" />}
       {state === "rejected" && <motion.span role="alert" initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="absolute -right-5 flex items-center gap-1 whitespace-nowrap text-[hsl(var(--err))]"><CircleAlert className="size-3.5" /></motion.span>}
       <span className="sr-only" aria-live="polite">{state === "rejected" ? "The server rejected that change — old value restored." : ""}</span>
     </span>

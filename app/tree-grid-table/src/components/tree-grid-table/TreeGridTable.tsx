@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronRight, Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — org charts, file systems, BOMs: hierarchy that streams.
@@ -37,7 +38,7 @@ export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className
         <div style={{ paddingLeft: 10 + depth * 18 }} className="group relative flex h-9 items-center gap-1.5 text-[13px]">
           {depth > 0 && <span aria-hidden className="absolute left-[calc(10px+(var(--d)*18px)-9px)] top-0 h-full w-px bg-border/70" style={{ ["--d" as string]: depth - 1 } as React.CSSProperties} />}
           {children || fake ? (
-            <button aria-label={`${expanded ? "Collapse" : "Expand"} ${n.label}`} onClick={() => toggle(n)} className="grid size-6 shrink-0 place-items-center rounded-md text-muted-foreground hover:bg-accent"><motion.span animate={{ rotate: expanded ? 90 : 0 }} transition={{ duration: 0.18 }} className="block"><ChevronRight className="size-4" /></motion.span></button>
+            <Button type="button" variant="ghost" aria-label={`${expanded ? "Collapse" : "Expand"} ${n.label}`} onClick={() => toggle(n)} className="grid size-6 shrink-0 place-items-center rounded-md text-muted-foreground hover:bg-accent"><motion.span animate={{ rotate: expanded ? 90 : 0 }} transition={{ duration: 0.18 }} className="block"><ChevronRight className="size-4" /></motion.span></Button>
           ) : <span aria-hidden className="size-6 shrink-0" />}
           <span className="min-w-0 flex-1 truncate font-medium">{n.label}</span>
           {n.meta && <span className="text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 md:opacity-100">{n.meta}</span>}

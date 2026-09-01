@@ -2,6 +2,8 @@ import * as React from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import { ArrowDown, ArrowUp, Check, Minus } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Button } from "@/components/ui/button"
 import { MonoLabel, CornerTicks } from "@/components/primitives/handcraft"
 
 // ═══ JOB      make plan tiers physical — you ride to the one you choose
@@ -48,9 +50,6 @@ export function ElevatorFloors({
   const [internal, setInternal] = React.useState(() => Math.max(0, Math.min(floors.length - 1, defaultFloor)))
   const floor = controlledFloor ?? internal
   const active = floors[floor] ?? floors[0]
-  const groupRef = React.useRef<HTMLDivElement>(null)
-  const radioRefs = React.useRef<(HTMLButtonElement | null)[]>([])
-
   const setFloor = React.useCallback(
     (next: number) => {
       const clamped = Math.max(0, Math.min(floors.length - 1, next))
@@ -59,31 +58,6 @@ export function ElevatorFloors({
     },
     [controlledFloor, floors.length, onFloorChange],
   )
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-      e.preventDefault()
-      const next = floor > 0 ? floor - 1 : floors.length - 1
-      setFloor(next)
-      radioRefs.current[next]?.focus()
-    }
-    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-      e.preventDefault()
-      const next = floor < floors.length - 1 ? floor + 1 : 0
-      setFloor(next)
-      radioRefs.current[next]?.focus()
-    }
-    if (e.key === "Home") {
-      e.preventDefault()
-      setFloor(0)
-      radioRefs.current[0]?.focus()
-    }
-    if (e.key === "End") {
-      e.preventDefault()
-      setFloor(floors.length - 1)
-      radioRefs.current[floors.length - 1]?.focus()
-    }
-  }
 
   if (!floors.length) {
     return (
@@ -119,55 +93,49 @@ export function ElevatorFloors({
                 {floor + 1}
               </span>
               <span className="flex flex-col gap-1.5">
-                <button
+                <Button
                   type="button"
+                  variant="outline"
                   aria-label="Floor up"
                   disabled={floor === floors.length - 1}
                   onClick={() => setFloor(floor + 1)}
-                  className="grid size-7 place-items-center rounded-full border border-white/20 bg-white/[0.04] text-white transition-colors hover:bg-white/10 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--lift-shaft))] disabled:cursor-not-allowed disabled:opacity-30"
+                  className="size-7 rounded-full border-white/20 bg-white/[0.04] p-0 text-white hover:bg-white/10 hover:border-white/30 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-[hsl(var(--lift-shaft))]"
                 >
                   <ArrowUp className="size-3.5" aria-hidden />
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="outline"
                   aria-label="Floor down"
                   disabled={floor === 0}
                   onClick={() => setFloor(floor - 1)}
-                  className="grid size-7 place-items-center rounded-full border border-white/20 bg-white/[0.04] text-white transition-colors hover:bg-white/10 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--lift-shaft))] disabled:cursor-not-allowed disabled:opacity-30"
+                  className="size-7 rounded-full border-white/20 bg-white/[0.04] p-0 text-white hover:bg-white/10 hover:border-white/30 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-[hsl(var(--lift-shaft))]"
                 >
                   <ArrowDown className="size-3.5" aria-hidden />
-                </button>
+                </Button>
               </span>
             </div>
 
             {/* brass floor buttons */}
-            <div ref={groupRef} role="radiogroup" aria-label="Pricing floors" onKeyDown={handleKeyDown} className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-3">
-              {floors.map((f, i) => {
-                const selected = i === floor
-                return (
-                  <button
-                    key={f.name}
-                    type="button"
-                    ref={(el) => {
-                      radioRefs.current[i] = el
-                    }}
-                    role="radio"
-                    aria-checked={selected}
-                    tabIndex={selected ? 0 : -1}
-                    onClick={() => setFloor(i)}
-                    className={cn(
-                      "group flex h-[72px] flex-col items-center justify-center gap-1 rounded-2xl border-2 px-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--lift-shaft))]",
-                      selected
-                        ? "border-[hsl(var(--lift-panel))] bg-[hsl(var(--lift-panel))] text-[hsl(var(--lift-shaft))] shadow-[0_6px_20px_hsl(var(--lift-panel)/0.35)]"
-                        : "border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:bg-white/[0.07] hover:text-white",
-                    )}
-                  >
-                    <span className="font-display text-lg leading-none tabular-nums">{i + 1}</span>
-                    <span className="line-clamp-1 px-1 text-center leading-tight">{f.name}</span>
-                  </button>
-                )
-              })}
-            </div>
+            <RadioGroup
+              value={String(floor)}
+              onValueChange={(v) => setFloor(Number(v))}
+              aria-label="Pricing floors"
+              className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-3 [&_[data-slot=radio-group-indicator]]:hidden"
+            >
+              {floors.map((f, i) => (
+                <RadioGroupItem
+                  key={f.name}
+                  value={String(i)}
+                  className={cn(
+                    "group flex h-[72px] flex-col items-center justify-center gap-1 rounded-2xl border-2 px-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] shadow-none transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-panel))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--lift-shaft))] data-[state=checked]:border-[hsl(var(--lift-panel))] data-[state=checked]:bg-[hsl(var(--lift-panel))] data-[state=checked]:text-[hsl(var(--lift-shaft))] data-[state=checked]:shadow-[0_6px_20px_hsl(var(--lift-panel)/0.35)] data-[state=unchecked]:border-white/15 data-[state=unchecked]:bg-white/[0.03] data-[state=unchecked]:text-white/70 hover:border-white/30 hover:bg-white/[0.07] hover:text-white",
+                  )}
+                >
+                  <span className="font-display text-lg leading-none tabular-nums">{i + 1}</span>
+                  <span className="line-clamp-1 px-1 text-center leading-tight">{f.name}</span>
+                </RadioGroupItem>
+              ))}
+            </RadioGroup>
 
             <p className="sr-only" aria-live="polite">
               Selected floor {floor + 1}: {active.name} {active.price ? `at ${active.price} ${active.period ?? ""}` : ""}
@@ -244,13 +212,13 @@ export function ElevatorFloors({
                       {active.cta.label}
                     </a>
                   ) : (
-                    <button
+                    <Button
                       type="button"
                       onClick={active.cta.onClick}
-                      className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[hsl(var(--lift-shaft))] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-all hover:translate-y-[-1px] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--lift-shaft))] focus-visible:ring-offset-2"
+                      className="mt-6 h-11 rounded-full bg-[hsl(var(--lift-shaft))] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white hover:bg-[hsl(var(--lift-shaft))]/90 hover:translate-y-[-1px] hover:shadow-md"
                     >
                       {active.cta.label}
-                    </button>
+                    </Button>
                   )
                 )}
               </motion.div>

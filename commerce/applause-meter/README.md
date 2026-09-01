@@ -1,15 +1,16 @@
 # applause-meter
 
-Rating as applause — amplitude meter, count-up, standing-ovation bar
+**JOB** — make a rating feel earned: proof with a pulse.
+**SIGNATURE** — an amplitude equalizer whose bars lean toward the score, a
+spring-driven count-up verdict rendered by vendored React Bits `CountUp`
+(no hand-rolled rAF tweens), and a standing-ovation line above 4.7.
 
-**Dual-surface preset.** Ship it as a website *section* or wrap the same component as a webapp *feature* — the engine view for this preset exposes a `SECTION | FEATURE` toggle so you can see both against real content.
+## Sources
 
-Category `commerce` · motion via `motion/react` · brand tokens in `src/index.css` (`:root` + `.dark`).
+Original section design + handcraft kit; vendored `react-bits:CountUp-TS-TW`.
+Motion via `motion/react`. `prefers-reduced-motion` → instant count. Re-themes
+with the engine tokens.
 
-## Install & build
-
-From the repo root: `npm run build:applause-meter` (or `npm run build:presets`). Engine consumes it via the `file:` dependency.
-
-## Vendoring model
-
-Original design work; only the in-repo `handcraft` kit + `motion-primitives` snapshots (when listed in `presetSources`) are vendored — MIT. See `UI/VENDORING-STRATEGY.md`.
+```tsx
+<ApplauseMeter value={4.8} count={312} />
+```

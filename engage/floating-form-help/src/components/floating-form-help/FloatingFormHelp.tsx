@@ -15,6 +15,7 @@ import {
   arrow,
   autoUpdate,
 } from "@floating-ui/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell, SectionHead, MonoLabel } from "@/components/primitives/handcraft"
@@ -239,9 +240,9 @@ export function FloatingFormHelp({
               className={cn(FIELD, "mt-1.5 min-h-20 py-2 leading-5")}
             />
           </div>
-          <button
+          <Button
             type="submit"
-            className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md bg-primary text-[13px] font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="h-10 w-full gap-2 rounded-md text-[13px] font-semibold"
           >
             {submitted ? (
               <>

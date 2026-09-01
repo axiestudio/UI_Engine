@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "floating-pin-notes.es.js" : "floating-pin-notes.cjs.js"),
     },
-    rollupOptions: { external: ["react","react-dom","react/jsx-runtime","motion","motion/react","class-variance-authority","clsx","lucide-react","tailwind-merge","@floating-ui/react"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "tailwind-merge", "@floating-ui/react", "@floating-ui/react-dom"] },
     cssCodeSplit: false,
   },
 })

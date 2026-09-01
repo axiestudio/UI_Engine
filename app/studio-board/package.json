@@ -26,7 +26,8 @@
     ],
     "watermelon-ui": [
       "https://registry.watermelon.sh/r/badge.json",
-      "https://registry.watermelon.sh/r/card.json"
+      "https://registry.watermelon.sh/r/card.json",
+      "https://registry.watermelon.sh/r/button.json"
     ]
   },
   "scripts": {

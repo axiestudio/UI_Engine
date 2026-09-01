@@ -1,7 +1,7 @@
 {
   "name": "waveform",
   "version": "0.1.0",
-  "description": "Live signal waveform — morphing polyline over mirrored level bars, dashed centreline, holds a static frame when paused or reduced-motion",
+  "description": "Live signal waveform \u2014 morphing polyline over mirrored level bars, dashed centreline, holds a static frame when paused or reduced-motion",
   "type": "module",
   "main": "dist/waveform.js",
   "module": "dist/waveform.js",
@@ -24,7 +24,10 @@
   ],
   "presetSources": {
     "andromeda-spec": [
-      "https://aicanvas.me/design-systems/andromeda/waveform (design spec only — reimplemented MIT-clean)"
+      "https://aicanvas.me/design-systems/andromeda/waveform (design spec only \u2014 reimplemented MIT-clean)"
+    ],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json"
     ]
   },
   "scripts": {

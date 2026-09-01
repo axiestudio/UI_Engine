@@ -186,14 +186,15 @@ export function Testimonials({
   const secondRow = items.length > 2 ? (sliderReverseSecondRow ? [...items].reverse() : items) : null
 
   return (
-    <section className={cn("w-full overflow-hidden bg-background text-foreground", className)} aria-label={title}>
-      <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
-        <div className="mx-auto w-full max-w-[1280px] px-4 pt-16 sm:px-6 lg:px-8">
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={title}>
+      <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", "border-border")} />
+      <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: 1280, ["--shell-w" as string]: `${1280}px` }}>
+        <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
-              {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
-              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
-              {intro && <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{intro}</p>}
+              {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+              <h2 className="font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]">{title}</h2>
+              {intro && <p className="mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base text-muted-foreground">{intro}</p>}
             </div>
             {summary && (
               <div className="rounded-[20px] border bg-card px-6 py-4 shadow-sm">
@@ -210,10 +211,10 @@ export function Testimonials({
               </div>
             )}
           </div>
-        </div>
+        </InView>
 
         {variant === "carousel" && (
-          <div className="mx-auto w-full max-w-[860px] px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-[860px] px-4 sm:px-6 lg:px-8">
             <div className="relative px-8 lg:px-12">
               <Carousel disableDrag={!!reduce}>
                 <CarouselContent>
@@ -265,7 +266,7 @@ export function Testimonials({
               <p className="sr-only">{items.map((t) => `${t.author}: ${t.body}`).join(" ")}</p>
             </div>
           ))}
-      </InView>
+      </div>
     </section>
   )
 }

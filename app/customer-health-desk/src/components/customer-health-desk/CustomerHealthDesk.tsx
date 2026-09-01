@@ -1,8 +1,7 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { CalendarPlus, Download, LifeBuoy, TrendingDown, TrendingUp } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { DragNumberField } from "drag-number-field"
 import { RadialGauge } from "radial-gauge"
@@ -163,7 +162,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
 
   return (
     <div className={cn("relative isolate flex min-h-[620px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <Grain opacity={0.03} />
+      <MotionConfig reducedMotion="user">
 
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Customer health</h2>
@@ -179,13 +178,14 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
           <Button variant="outline" size="sm" onClick={exportBook}>
             <Download className="size-3.5" /> Export book
           </Button>
-        </div>
+          </MotionConfig>
+    </div>
       </header>
 
       {/* book of business — switcher band */}
       <div role="group" aria-label="Book of business" className="flex shrink-0 flex-wrap items-center gap-1.5 border-b bg-background px-4 py-2">
         {book.map((a) => (
-          <button
+          <Button type="button" variant="ghost"
             key={a.id}
             onClick={() => setActiveId(a.id)}
             aria-pressed={a.id === activeId}
@@ -196,7 +196,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
           >
             <span className="font-medium">{a.name}</span>
             <span className={cn("font-mono text-[11px] tabular-nums", a.health < 60 ? "text-[hsl(var(--err))]" : a.health < 75 ? "text-[hsl(var(--warn))]" : "text-[hsl(var(--ok))]")}>{a.health}</span>
-          </button>
+          </Button>
         ))}
         <span className="ml-auto font-mono text-[11px] tabular-nums text-muted-foreground">{book.length} accounts</span>
       </div>
@@ -227,7 +227,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
         <section className="col-span-1 flex flex-col overflow-hidden rounded-lg border bg-card lg:col-span-4">
           <header className="flex h-10 shrink-0 items-center justify-between border-b px-3">
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Usage trend · weekly actives</span>
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">18 wks</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">18 wks</span>
           </header>
           <div className="px-1 pt-2">
             <AreaChart data={trend} margin={{ top: 10, right: 12, bottom: 22, left: 28 }} style={{ height: 170 }}>
@@ -318,7 +318,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Compose renewal note</span>
               <div className="flex flex-wrap gap-1.5">
                 {SOURCES.map((s) => (
-                  <button
+                  <Button type="button" variant="ghost"
                     key={s.n}
                     onClick={() => toggleCite(s.n)}
                     aria-pressed={cites.includes(s.n)}
@@ -329,7 +329,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
                     title={s.title}
                   >
                     cite {s.n} · {s.domain}
-                  </button>
+                  </Button>
                 ))}
               </div>
               <textarea

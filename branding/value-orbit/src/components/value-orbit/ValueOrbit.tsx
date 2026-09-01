@@ -53,7 +53,7 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
   const orbitFrozen = pinned != null || reduced
 
   return (
-    <section className={cn("bg-background text-foreground", className)>
+    <section className={cn("bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="grid items-center gap-14 lg:grid-cols-[420px_1fr]">
         {/* orbit */}
@@ -126,7 +126,7 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
                     )}
                   >
                     <span className="flex items-baseline gap-3">
-                      <span className={cn("font-mono text-[11px] font-semibold tabular-nums text-muted-foreground", isActive ? "opacity-90" : "opacity-50")>{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(values.length).padStart(2, "0")}</span></span>
+                      <span className={cn("font-mono text-[11px] font-semibold tabular-nums text-muted-foreground", isActive ? "opacity-90" : "opacity-50")}>{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(values.length).padStart(2, "0")}</span></span>
                       <span className="font-display text-sm font-black uppercase tracking-[0.12em] text-foreground">{v.word}</span>
                     </span>
                     <p className={cn("max-w-md text-[14px] leading-relaxed transition-opacity duration-300", isActive ? "opacity-100 text-foreground" : "text-muted-foreground")}>{v.note}</p>

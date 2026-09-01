@@ -12,8 +12,8 @@ import {
   autoUpdate,
 } from "@floating-ui/react"
 import { Bell } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Keep the day's news one bell away from the chrome.
@@ -72,20 +72,30 @@ export function FloatingNotifDock({
   const groups: ("Today" | "Earlier")[] = ["Today", "Earlier"]
 
   return (
-    <SectionShell tone={tone} width={760} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: reduce ? 0 : 0.1 }}>
         <div className="mt-10">
           <div className={cn("mx-auto w-full max-w-md overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
             <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
-              <MonoLabel className="text-muted-foreground">Quiet Times · Reception</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Quiet Times · Reception</span>
               <div className="flex items-center gap-4">
                 <span className="font-mono text-[11px] font-bold text-muted-foreground">09:12</span>
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
                   ref={refs.setReference}
                   {...getReferenceProps()}
                   aria-expanded={open}
@@ -98,7 +108,7 @@ export function FloatingNotifDock({
                       {unread}
                     </span>
                   )}
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -136,13 +146,14 @@ export function FloatingNotifDock({
           >
             <div className="flex items-center justify-between border-b border-border px-4 py-3">
               <p className="font-mono text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">Notifications</p>
-              <button
-                type="button"
-                onClick={markAllRead}
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={markAllRead}
                 className="rounded-md px-2 py-1 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Mark all read
-              </button>
+              </Button>
             </div>
 
             {groups.map((group) => {
@@ -156,8 +167,9 @@ export function FloatingNotifDock({
                       const isRead = read.includes(item.id)
                       return (
                         <li key={item.id}>
-                          <button
+                          <Button
                             type="button"
+                            variant="ghost"
                             onClick={() => markOne(item.id)}
                             className={cn(
                               "flex w-full items-start gap-3 rounded-lg px-2 py-2.5 text-left transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
@@ -173,7 +185,7 @@ export function FloatingNotifDock({
                               <span className="mt-0.5 block text-[12px] font-medium leading-snug text-muted-foreground">{item.body}</span>
                               <span className="mt-1 block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{item.time}</span>
                             </span>
-                          </button>
+                          </Button>
                         </li>
                       )
                     })}
@@ -188,6 +200,7 @@ export function FloatingNotifDock({
           </div>
         </FloatingPortal>
       )}
-    </SectionShell>
+    </div>
+    </section>
   )
 }

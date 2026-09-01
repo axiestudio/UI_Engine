@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, useMotionValue, useTransform, animate, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig, animate, useMotionValue, useTransform } from "motion/react"
 import { CircleAlert, CheckCircle2, Info, X, XCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — ephemeral feedback that respects the user's time.
@@ -19,9 +20,11 @@ const TONE = { ok: { i: CheckCircle2, c: "hsl(var(--ok))" }, err: { i: XCircle, 
 export function ToastStack({ toasts, onDismiss, pos = "br", className }: ToastStackProps) {
   return (
     <div className={cn("pointer-events-none fixed z-[125] flex w-[min(92vw,380px)] flex-col gap-2 p-4", pos === "br" && "bottom-0 right-0", pos === "tr" && "top-0 right-0", pos === "bl" && "bottom-0 left-0", pos === "tl" && "top-0 left-0", className)} aria-label="Notifications">
+      <MotionConfig reducedMotion="user">
       <AnimatePresence initial={false}>
         {toasts.map((t) => <ToastCard key={t.id} toast={t} onDismiss={onDismiss} />)}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }
@@ -49,8 +52,8 @@ function ToastCard({ toast: t, onDismiss }: { toast: Toast; onDismiss: (id: stri
           <p className="text-sm font-medium leading-snug">{t.title}</p>
           {t.body && <p className="mt-0.5 text-[13px] leading-snug text-muted-foreground">{t.body}</p>}
         </div>
-        {t.action && <button onClick={() => { t.action!.run(); dismiss() }} className="h-fit shrink-0 rounded-md border border-border/70 bg-background px-2.5 py-1 text-xs font-medium hover:bg-muted">{t.action.label}</button>}
-        <button aria-label="Dismiss" onClick={dismiss} className="grid size-6 shrink-0 place-items-center self-start rounded-md text-muted-foreground hover:bg-muted"><X className="size-3.5" /></button>
+        {t.action && <Button type="button" variant="ghost" onClick={() => { t.action!.run(); dismiss() }} className="h-fit shrink-0 rounded-md border border-border/70 bg-background px-2.5 py-1 text-xs font-medium hover:bg-muted">{t.action.label}</Button>}
+        <Button type="button" variant="ghost" aria-label="Dismiss" onClick={dismiss} className="grid size-6 shrink-0 place-items-center self-start rounded-md text-muted-foreground hover:bg-muted"><X className="size-3.5" /></Button>
       </div>
       <motion.div className="absolute bottom-0 left-0 h-[3px] w-full origin-left" style={{ background: color }} animate={{ scaleX: paused ? undefined : 0 }} initial={{ scaleX: 1 }} transition={{ duration: (t.duration ?? 5000) / 1000, ease: "linear" }} />
     </motion.div>

@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { AtSign } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — comments that actually notify the right human.
@@ -75,6 +76,7 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
 
   return (
     <div className={cn("relative rounded-lg border border-border/70 bg-background shadow-sm transition-shadow focus-within:ring-2 focus-within:ring-ring", className)}>
+      <MotionConfig reducedMotion="user">
       <textarea ref={ta} value={value} aria-label="Message with mentions" rows={3} placeholder={placeholder} onChange={(e) => { auto.current = true; onChange(e.target.value) }} onKeyUp={(e) => { detect(); if (e.key === "Enter" && e.metaKey) onSubmit?.() }} onClick={detect} onKeyDown={(e) => {
         if (pop && opts.length) {
           if (e.key === "ArrowDown") { e.preventDefault(); setIdx((i) => (i + 1) % opts.length) }
@@ -88,16 +90,17 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
         <div className="flex items-center gap-2">
           <span className={cn("font-mono text-[11px] tabular-nums", over ? "font-semibold text-[hsl(var(--err))]" : "text-muted-foreground")}>{value.length}/{max}</span>
           <svg aria-hidden viewBox="0 0 20 20" className="size-4 -rotate-90"><circle cx="10" cy="10" r="8" fill="none" stroke="hsl(var(--muted-foreground)/0.3)" strokeWidth="2.5" /><circle cx="10" cy="10" r="8" fill="none" stroke={over ? "hsl(var(--err))" : "hsl(var(--app-focus))"} strokeWidth="2.5" strokeLinecap="round" strokeDasharray={`${pct * 50.2} 50.2`} className="transition-[stroke-dasharray]" /></svg>
-        </div>
+          </MotionConfig>
+    </div>
       </div>
       <AnimatePresence>
         {pop && opts.length > 0 && (
           <motion.ul role="listbox" aria-label={pop.kind === "at" ? "Mention" : "Commands"} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, transition: { duration: 0.08 } }} className="absolute inset-x-2 z-50 overflow-hidden rounded-lg border bg-popover shadow-xl" style={{ top: pop.top }}>
             {opts.map((o, i) => (
               <li key={o.id} role="option" aria-selected={i === idx}>
-                <button onMouseDown={(e) => e.preventDefault()} onClick={() => { pick(o.insert); pop.kind === "slash" && cmds.find((c) => c.cmd === o.main.slice(1))?.run() }} className={cn("flex w-full items-baseline gap-2 px-3 py-2 text-left text-sm", i === idx && "bg-accent")}>
+                <Button type="button" variant="ghost" onMouseDown={(e) => e.preventDefault()} onClick={() => { pick(o.insert); pop.kind === "slash" && cmds.find((c) => c.cmd === o.main.slice(1))?.run() }} className={cn("flex w-full items-baseline gap-2 px-3 py-2 text-left text-sm", i === idx && "bg-accent")}>
                   <span className="font-mono font-medium">{o.main}</span><span className="truncate text-xs text-muted-foreground">{o.sub}</span>
-                </button>
+                </Button>
               </li>
             ))}
           </motion.ul>

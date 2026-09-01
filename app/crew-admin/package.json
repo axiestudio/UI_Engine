@@ -29,7 +29,8 @@
       "https://registry.watermelon.sh/r/table.json",
       "https://registry.watermelon.sh/r/checkbox.json",
       "https://registry.watermelon.sh/r/avatar.json",
-      "https://registry.watermelon.sh/r/switch.json"
+      "https://registry.watermelon.sh/r/switch.json",
+      "https://registry.watermelon.sh/r/button.json"
     ]
   },
   "scripts": {

@@ -1,10 +1,11 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/spotlight.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/spotlight.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/spotlight.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/spotlight.tsx (local tokenized variant)
  */
 'use client';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { motion, useSpring, useTransform, type SpringOptions } from 'motion/react';
+import { motion, useSpring, useTransform } from 'motion/react';
+import type { SpringOptions } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 export type SpotlightProps = {

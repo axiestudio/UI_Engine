@@ -84,7 +84,7 @@ export function SwatchSpectrum({
   }
 
   return (
-    <section className={cn("bg-background text-foreground", className)>
+    <section className={cn("bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
       <div className="flex items-end justify-between gap-4">
                 <header className="">
@@ -102,18 +102,19 @@ export function SwatchSpectrum({
           const ratio = contrast(s.hex, fg)
           const pass = ratio >= 4.5
           return (
-            <Button type="button" variant="ghost"
+            <Button
               key={s.name}
               type="button"
+              variant="ghost"
               aria-label={`Copy ${s.name} ${s.hex}, contrast ${ratio.toFixed(1)} to 1. ${pass ? "Passes AA." : "Large text only."}`}
               onClick={() => void copy(s)}
               style={{ backgroundColor: s.hex, color: fg, flexGrow: 1, flexBasis: 0 }}
               className={cn(
-                "group relative flex min-w-14 cursor-pointer flex-col justify-between rounded-lg p-4 text-left outline-none",
+                "group relative flex h-auto min-w-14 cursor-pointer flex-col justify-between rounded-lg p-4 text-left outline-none",
                 "hover:grow-[2.4] focus-visible:grow-[2.4] focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-current",
                 reduced ? "" : "transition-[flex-grow] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
               )}
-            > h-auto>
+            >
               <span className="flex items-center justify-between font-mono text-[10px] font-black uppercase tracking-[0.2em] opacity-80">
                 {s.name}
                 {copied === s.name ? (

@@ -1,5 +1,6 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — mutually-exclusive views deserve a thumb, not radios styled
@@ -37,15 +38,17 @@ export function SegmentedControl({ options, value, onChange, size = "md", classN
   }
   return (
     <div ref={host} role="radiogroup" aria-label="View" onKeyDown={key} className={cn("relative inline-flex rounded-full border bg-muted/60 p-[3px] font-sans select-none", className)}>
+      <MotionConfig reducedMotion="user">
       <motion.span aria-hidden initial={false} animate={{ x: thumb.x, width: thumb.w }} transition={{ type: "spring", stiffness: 420, damping: 34 }} className="absolute top-[3px] bottom-[3px] rounded-full bg-card shadow-[0_1px_3px_rgba(0,0,0,0.18)]" style={{ left: 0 }} />
       {options.map((o) => {
         const Icon = o.icon
         return (
-          <button key={o.value} ref={(el) => { refs.current[o.value] = el }} role="radio" aria-checked={o.value === value} tabIndex={o.value === value ? 0 : -1} onClick={() => onChange(o.value)} className={cn("relative z-[1] flex items-center gap-1.5 rounded-full px-3.5 font-medium transition-colors", size === "sm" ? "h-7 text-[11px]" : "h-8 text-[12px]", o.value === value ? "text-foreground" : "text-muted-foreground hover:text-foreground")}>
+          <Button type="button" variant="ghost" key={o.value} ref={(el) => { refs.current[o.value] = el }} role="radio" aria-checked={o.value === value} tabIndex={o.value === value ? 0 : -1} onClick={() => onChange(o.value)} className={cn("relative z-[1] flex items-center gap-1.5 rounded-full px-3.5 font-medium transition-colors", size === "sm" ? "h-7 text-[11px]" : "h-8 text-[12px]", o.value === value ? "text-foreground" : "text-muted-foreground hover:text-foreground")}>
             {Icon && <Icon className="size-3.5" />} {o.label}
-          </button>
+          </Button>
         )
       })}
+          </MotionConfig>
     </div>
   )
 }

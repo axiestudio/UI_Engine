@@ -1,8 +1,8 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-
 import { cn } from "@/lib/utils"
+import { Iphone17Pro } from "@/components/eldora/iphone-17-pro"
 
 // ═══ JOB         Show the pocket version of the product — app or site.
 // ═══ EMOTION     Held in one hand, obviously. Intimate, alive.
@@ -72,15 +72,12 @@ export function DeviceMobile({
             whileHover={reduce ? undefined : { rotateX: tiltX, rotateY: tiltY, y: -6 }}
             transition={{ type: "spring", stiffness: 220, damping: 18 }}
             style={{ transformPerspective: 900 }}
-            className="relative w-[248px] rounded-[44px] bg-black p-[10px] shadow-[0_40px_80px_-32px_hsl(var(--foreground)/0.55),inset_0_0_0_2px_hsl(0_0%_100%/0.08)]"
+            className="relative w-[248px]"
           >
-            {/* hardware side buttons — physical constants */}
-            <span aria-hidden className="absolute -left-[2.5px] top-[92px] h-12 w-[3px] rounded-l-sm bg-black/90" />
-            <span aria-hidden className="absolute -left-[2.5px] top-[152px] h-9 w-[3px] rounded-l-sm bg-black/90" />
-            <span aria-hidden className="absolute -right-[2.5px] top-[118px] h-16 w-[3px] rounded-r-sm bg-black/90" />
-
-            {/* screen */}
-            <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[35px] bg-background">
+            {/* Eldora UI Iphone17Pro frame */}
+            <Iphone17Pro className="pointer-events-none block h-auto w-full" />
+            {/* screen content lies on Eldora's display rect (7.04%/3.20%/85.99%/93.59%) */}
+            <div className="absolute overflow-hidden" style={{ left: "7.04%", top: "3.20%", width: "85.99%", height: "93.59%" }}>
               {children ?? (
                 <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />
               )}

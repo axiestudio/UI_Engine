@@ -1,8 +1,7 @@
 import * as React from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarClock, KeySquare } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { DateRangePresets, type Range } from "date-range-presets"
 import { OfflineQueueBanner } from "offline-queue-banner"
@@ -116,12 +115,14 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
 
   return (
     <div className={cn("flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — plain voice with count chips */}
       <header className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b px-5 py-3">
         <div className="min-w-0">
-          <MonoLabel className="text-[10px] text-muted-foreground">Night porter</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Night porter</span>
           <h2 className="mt-0.5 truncate text-[15px] font-semibold leading-tight">{hotel}</h2>
-        </div>
+          </MotionConfig>
+    </div>
         <dl className="ml-2 hidden items-baseline gap-1.5 sm:flex" aria-label="Tonight at the desk">
           <div className="rounded-full border bg-muted/40 px-2.5 py-0.5 font-mono text-[11px] tabular-nums text-muted-foreground">
             <dt className="sr-only">Arrivals tonight</dt>
@@ -144,7 +145,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
         {/* the spine — full-height occupancy rail with floor groupings */}
         <aside aria-label="Room rail" className="flex w-full shrink-0 flex-col border-b lg:w-[300px] lg:border-b-0 lg:border-r">
           <div className="border-b px-4 pb-4 pt-3">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">House · rooms let</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">House · rooms let</span>
             <div className="mt-2">
               <RadialGauge
                 value={occupancy}
@@ -211,7 +212,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b px-5 py-3">
             <div className="flex items-baseline gap-2">
               <CalendarClock className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Stay window</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Stay window</span>
             </div>
             <DateRangePresets value={stay} onChange={setStay} presets={[{ label: "1 night", days: 1 }, { label: "Weekend", days: 2 }, { label: "Week", days: 7 }]} />
             <dl className="flex items-baseline gap-4 font-mono text-[11px] tabular-nums text-muted-foreground">
@@ -225,7 +226,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
             {/* channel switchboard — compact switch rows */}
             <section aria-label="Channel switchboard" className="min-w-0 border-b lg:col-span-7 lg:border-b-0 lg:border-r">
               <div className="flex items-baseline justify-between border-b px-5 py-2">
-                <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Channel switchboard</MonoLabel>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Channel switchboard</span>
                 <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{channelArrivals.length} tonight on {channel}</span>
               </div>
               <ul className="divide-y" role="listbox" aria-label="Channels">
@@ -279,7 +280,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
             {/* pass tray — keycards deal in */}
             <section aria-label="Keycards" className="flex min-h-0 min-w-0 flex-col bg-muted/20 lg:col-span-5">
               <div className="flex items-baseline justify-between border-b px-5 py-2">
-                <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Passes</MonoLabel>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Passes</span>
                 <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{cards.length} cut</span>
               </div>
               <ul className="min-h-0 flex-1 space-y-2 overflow-auto px-4 py-3">

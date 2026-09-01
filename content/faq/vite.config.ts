@@ -16,7 +16,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "faq.es.js" : "faq.cjs.js"),
     },
-    rollupOptions: { external: ["react", "react-dom", "react/jsx-runtime", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "tailwind-merge", "@radix-ui/react-accordion", "react-icons", "@radix-ui/react-label", "@radix-ui/react-select", "@radix-ui/react-avatar", "react-icons/io5", "react-icons/fi"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "clsx", "lucide-react", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

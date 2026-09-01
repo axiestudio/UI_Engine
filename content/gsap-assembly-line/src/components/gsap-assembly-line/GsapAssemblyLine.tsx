@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger)
 //                 scroll, with the step counter and part name keeping pace.
 //                 Each part is its own component in the PARTS registry.
 
-type Part = { id: string; label: string; render: () => React.ReactNode; from: React.CSSProperties & Record<string, unknown> }
+type Part = { id: string; label: string; render: () => React.ReactNode; from: { y?: number; x?: number; rotate?: string; opacity?: number } }
 
 const PARTS: Part[] = [
   {
@@ -25,17 +25,17 @@ const PARTS: Part[] = [
   },
   {
     id: "column", label: "The column",
-    from: { y: 90, x: -120, rotate: -14, opacity: 0 },
+    from: { y: 90, x: -120, rotate: "-14deg", opacity: 0 },
     render: () => <div className="absolute bottom-6 left-1/2 h-32 w-8 -translate-x-1/2 rounded-t-full border border-foreground/20 bg-[hsl(var(--foreground)/0.2)]" />,
   },
   {
     id: "arm", label: "The reading arm",
-    from: { x: 150, rotate: 10, opacity: 0 },
+    from: { x: 150, rotate: "10deg", opacity: 0 },
     render: () => <div className="absolute bottom-[124px] left-1/2 h-7 w-40 -translate-x-[30%] rounded-full border border-foreground/20 bg-[hsl(var(--primary)/0.35)]" />,
   },
   {
     id: "head", label: "The lens head",
-    from: { y: -120, x: 60, rotate: 18, opacity: 0 },
+    from: { y: -120, x: 60, rotate: "18deg", opacity: 0 },
     render: () => (
       <div className="absolute bottom-[150px] left-1/2 flex size-20 -translate-x-[10%] items-center justify-center rounded-full border-4 border-foreground/25 bg-[hsl(var(--primary)/0.5)]">
         <span className="size-7 rounded-full bg-foreground/80" />
@@ -86,7 +86,7 @@ export function GsapAssemblyLine({
       })
       pinsRef.current.forEach((el, i) => {
         if (!el) return
-        tl.to(el, { ...PARTS[i].from, y: 0, x: 0, rotate: 0, opacity: 1, duration: 1, ease: "power2.out" }, i * 0.9)
+        tl.to(el, { ...PARTS[i].from, y: 0, x: 0, rotate: "0deg", opacity: 1, duration: 1, ease: "power2.out" }, i * 0.9)
       })
     }, stageRef)
     return () => ctx.revert()

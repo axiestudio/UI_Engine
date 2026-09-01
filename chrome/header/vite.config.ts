@@ -25,7 +25,7 @@ export default defineConfig({
       fileName: (format) => (format === "es" ? "header.es.js" : "header.cjs.js"),
     },
     rollupOptions: {
-      external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "cmdk"],
+      external: ["react", "motion", "motion/react", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "cmdk"],
       output: {
         globals: {
           react: "React",

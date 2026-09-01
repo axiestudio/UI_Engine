@@ -1,13 +1,15 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import useEmblaCarousel from "embla-carousel-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-// ═══ JOB         Product gallery — a main frame with thumbs and a zoom-on-hover main.
+// ═══ JOB         Product gallery — a draggable main frame with thumbs.
 // ═══ EMOTION     Inspect before you buy.
-// ═══ SIGNATURE   A selected main image + thumbnail rail + crossfade between frames.
+// ═══ SIGNATURE   An Embla-powered rail — drag, snap and loop mechanics belong
+//                 to the library; thumbs, counter and the product story stay ours.
 
 export type GalleryFrame = { id: string; src?: string; alt?: string }
 
@@ -17,7 +19,6 @@ const DEFAULT_FRAMES: GalleryFrame[] = [
   { id: "detail", src: "/frames/frame_0009.webp", alt: "Oak desk lamp — brass joint detail" },
   { id: "room", src: "/frames/frame_0011.webp", alt: "Oak desk lamp — in the skylight room" },
 ]
-export type GalleryFrame = { id: string; src?: string; alt?: string }
 
 export type CommerceProductGalleryProps = {
   eyebrow?: string
@@ -28,27 +29,75 @@ export type CommerceProductGalleryProps = {
 }
 
 export function CommerceProductGallery({ eyebrow = "PRODUCT", name = "Product gallery", price = "€890", frames = DEFAULT_FRAMES, className }: CommerceProductGalleryProps) {
-  const [sel, setSel] = React.useState(0)
-  const cur = frames[sel]
+  const [emblaRef, embla] = useEmblaCarousel({ loop: true })
+  const [selected, setSelected] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!embla) return
+    const onSelect = () => setSelected(embla.selectedScrollSnap())
+    embla.on("select", onSelect)
+    onSelect()
+    return () => {
+      embla.off("select", onSelect)
+    }
+  }, [embla])
+
   return (
     <SectionShell width={1120} grain rule="bottom" className={className}>
       <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
         <InView once variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-muted">
-              {frames.map((f, i) => (
-                <motion.img key={f.id} src={f.src} alt={f.alt ?? ""} className="absolute inset-0 h-full w-full object-cover"
-                  initial={false} animate={{ opacity: i === sel ? 1 : 0, scale: i === sel ? 1 : 1.05 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
-              ))}
+            <div
+              className="relative cursor-grab overflow-hidden rounded-2xl border bg-muted active:cursor-grabbing"
+              ref={emblaRef}
+              role="group"
+              aria-roledescription="carousel"
+              aria-label={`${name} gallery`}
+            >
+              <div className="flex touch-pan-y">
+                {frames.map((f, i) => (
+                  <div
+                    key={f.id}
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`${f.alt ?? `Frame ${i + 1}`}, ${i + 1} of ${frames.length}`}
+                    className="relative aspect-[4/3] min-w-0 shrink-0 grow-0 basis-[100%]"
+                  >
+                    {f.src ? (
+                      <img src={f.src} alt={f.alt ?? ""} draggable={false} className="absolute inset-0 h-full w-full object-cover" />
+                    ) : (
+                      <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-secondary to-muted" />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <button
+                type="button"
+                aria-label="Previous image"
+                onClick={() => embla?.scrollPrev()}
+                className="absolute left-3 top-1/2 z-10 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-background/85 text-foreground backdrop-blur transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <ChevronLeft className="size-4" aria-hidden />
+              </button>
+              <button
+                type="button"
+                aria-label="Next image"
+                onClick={() => embla?.scrollNext()}
+                className="absolute right-3 top-1/2 z-10 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-background/85 text-foreground backdrop-blur transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <ChevronRight className="size-4" aria-hidden />
+              </button>
             </div>
-            <div className="mt-3 flex gap-2">
+            <div className="mt-3 flex items-center gap-2">
               {frames.map((f, i) => (
-                <button key={f.id} type="button" onClick={() => setSel(i)} aria-label={f.alt ?? `Frame ${i + 1}`}
-                  className={cn("img-hover-wash h-16 w-20 overflow-hidden rounded-lg border transition-all", i === sel ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100")}>
+                <button key={f.id} type="button" onClick={() => embla?.scrollTo(i)} aria-label={f.alt ?? `Frame ${i + 1}`} aria-current={i === selected ? "true" : undefined}
+                  className={cn("img-hover-wash h-16 w-20 overflow-hidden rounded-lg border transition-all", i === selected ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100")}>
                   {f.src ? <img src={f.src} alt="" className="h-full w-full object-cover" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                 </button>
               ))}
+              <span aria-live="polite" className="ml-auto font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground tabular-nums">
+                {selected + 1} / {frames.length}
+              </span>
             </div>
           </div>
         </InView>

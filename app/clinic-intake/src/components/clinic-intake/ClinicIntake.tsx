@@ -1,8 +1,8 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarCheck, ClipboardList, FilePlus2, KeyRound } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { StepperForm, type Step } from "stepper-form"
 import { UploadQueue, type UploadFile } from "upload-queue"
 import { CopySecretField } from "copy-secret-field"
@@ -112,7 +112,7 @@ export function ClinicIntake({ patient = "New patient", clinic = "Sundberg Famil
 
   return (
     <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <Grain opacity={0.03} />
+      <MotionConfig reducedMotion="user">
 
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Patient intake</h2>
@@ -121,7 +121,7 @@ export function ClinicIntake({ patient = "New patient", clinic = "Sundberg Famil
         <span className={cn("ml-2 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-semibold", intakeReady ? "border-[hsl(var(--ok)/0.4)] text-[hsl(var(--ok))]" : "text-muted-foreground")}>
           {intakeReady ? "ready to book" : "incomplete"}
         </span>
-        <button onClick={addScan} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><FilePlus2 className="size-3.5" /> Scan document</button>
+        <Button type="button" variant="ghost" onClick={addScan} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><FilePlus2 className="size-3.5" /> Scan document</Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[minmax(0,1fr)_330px]">
@@ -141,7 +141,8 @@ export function ClinicIntake({ patient = "New patient", clinic = "Sundberg Famil
                     <div key={k} className="flex justify-between gap-4">
                       <span className="text-muted-foreground">{k}</span>
                       <span className="truncate">{v}</span>
-                    </div>
+          </MotionConfig>
+    </div>
                   ))}
                 </div>
               </motion.div>
@@ -168,10 +169,10 @@ export function ClinicIntake({ patient = "New patient", clinic = "Sundberg Famil
             <div className="grid gap-2 p-3">
               {DAYS.map((d) => (
                 <div key={d.day}>
-                  <MonoLabel tick={false} className="mb-1 block text-[10px] text-muted-foreground">{d.day}</MonoLabel>
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-1 block text-[10px] text-muted-foreground">{d.day}</span>
                   <div className="flex flex-wrap gap-1">
                     {d.slots.map((s, i) => (
-                      <button
+                      <Button type="button" variant="ghost"
                         key={i}
                         disabled={!s}
                         onClick={() => { setDay(d.day); setSlot(s) }}
@@ -182,7 +183,7 @@ export function ClinicIntake({ patient = "New patient", clinic = "Sundberg Famil
                         )}
                       >
                         {s ?? "taken"}
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </div>

@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Info, Sparkles, TrendingUp, Wrench, Zap, type LucideIcon } from "lucide-react"
-
 import { TextShimmer } from "@/components/primitives/text-shimmer"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"

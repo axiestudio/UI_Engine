@@ -15,7 +15,6 @@ const DEFAULT_TIERS: LoyaltyTierDef[] = [
   { id: "patron", name: "Patron", spend: "3 000 kr / year", perks: ["Priority skylight seats", "Colour bar credits", "Programme printing"], current: true },
   { id: "atelier", name: "Atelier", spend: "9 000 kr / year", perks: ["A room on your name", "Press room access", "School nights included"] },
 ]
-export type LoyaltyTierDef = { id: string; name: string; spend: string; perks?: string[]; current?: boolean }
 
 export type CommerceLoyaltyTierProps = {
   eyebrow?: string

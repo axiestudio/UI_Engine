@@ -38,7 +38,10 @@
       "src/components/primitives/sliding-number.tsx"
     ],
     "vendored": "handcraft kit (in-repo)",
-    "motion": "motion/react"
+    "motion": "motion/react",
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",

@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "embla-logo-wall.es.js" : "embla-logo-wall.cjs.js"),
     },
-    rollupOptions: { external: ["react","react-dom","react/jsx-runtime","motion","motion/react","class-variance-authority","clsx","lucide-react","tailwind-merge","embla-carousel-react"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "tailwind-merge", "embla-carousel-react"] },
     cssCodeSplit: false,
   },
 })

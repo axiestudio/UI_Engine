@@ -1,5 +1,5 @@
 import * as React from "react"
-import {
+import { autoUpdate,
   FloatingPortal,
   useFloating,
   useHover,
@@ -15,6 +15,8 @@ import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
 import { InView } from "@/components/primitives/in-view"
+import type { ReferenceType } from "@floating-ui/react-dom"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Let the photo explain itself.
 // ═══ EMOTION     Being walked through the room by someone who knows it.
@@ -42,7 +44,7 @@ function Pin({ pin, index, tone }: { pin: PinNote; index: number; tone: "paper" 
   const { refs, floatingStyles, context } = useFloating({
     placement: "top",
     middleware: [offset(10), flip({ padding: 12 }), shift({ padding: 12 }), arrow({ element: arrowRef })],
-    whileElementsMounted: React.useCallback((ref: HTMLElement, flo: HTMLElement, upd: () => void) => autoUpd(ref, flo, upd), []),
+    whileElementsMounted: autoUpdate,
   })
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, { move: false }),
@@ -54,25 +56,12 @@ function Pin({ pin, index, tone }: { pin: PinNote; index: number; tone: "paper" 
 
   return (
     <>
-      <button
-        ref={refs.setReference}
-        {...getReferenceProps({
-          onMouseEnter: () => setOpen(true),
-          onMouseLeave: () => setOpen(false),
-          onFocus: () => setOpen(true),
-          onBlur: () => setOpen(false),
-          onClick: () => setOpen((o) => !o),
-        })}
-        aria-expanded={open}
-        aria-label={`${index + 1} — ${pin.title}`}
-        className={cn(
+      <Button type="button" ref={refs.setReference} getReferenceProps onMouseEnter setOpen true onMouseLeave false onFocus onBlur onClick o aria expanded={open} label={`${index + 1} — ${pin.title}`} style={{ left: `${pin.x * 100}%`, top: `${pin.y * 100}%` }} variant="default" className={cn(cn(
           "absolute z-[2] flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 font-mono text-[10px] font-black shadow-lg transition-transform hover:scale-110 focus-visible:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           open ? "border-primary bg-primary text-primary-foreground" : "border-background bg-foreground text-background",
-        )}
-        style={{ left: `${pin.x * 100}%`, top: `${pin.y * 100}%` }}
-      >
+        ))}>
         {index + 1}
-      </button>
+      
       {open && (
         <FloatingPortal>
           <div
@@ -95,22 +84,6 @@ function Pin({ pin, index, tone }: { pin: PinNote; index: number; tone: "paper" 
   )
 }
 
-// tiny autoUpdate shim (keeps the note pinned on scroll/resize)
-function autoUpd(ref: HTMLElement, flo: HTMLElement, update: () => void) {
-  const io = new ResizeObserver(update)
-  io.observe(ref)
-  io.observe(flo)
-  const ro = new ResizeObserver(update)
-  ro.observe(document.documentElement)
-  window.addEventListener("scroll", update, true)
-  window.addEventListener("resize", update)
-  return () => {
-    io.disconnect()
-    ro.disconnect()
-    window.removeEventListener("scroll", update, true)
-    window.removeEventListener("resize", update)
-  }
-}
 
 export function FloatingPinNotes({
   eyebrow = "FLOATING UI · PIN NOTES",
@@ -145,7 +118,7 @@ export function FloatingPinNotes({
         <figure className="mt-10">
           <div className={cn("relative overflow-hidden rounded-[20px] border", ink ? "border-background/15" : "border-border")}>
             <img src={src} alt={alt} loading="lazy" className="aspect-[16/10] w-full object-cover" />
-            <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-background/70'))}>
+            <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-background/70")}>
     <span className="absolute border-current top-[12px] left-[12px] border-t border-l" style={{ width: 16, height: 16 }} />
     <span className="absolute border-current top-[12px] right-[12px] border-t border-r" style={{ width: 16, height: 16 }} />
     <span className="absolute border-current bottom-[12px] left-[12px] border-b border-l" style={{ width: 16, height: 16 }} />

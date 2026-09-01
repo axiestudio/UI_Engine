@@ -1,8 +1,8 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { GraduationCap, Mail, Printer } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { ActivityHeatmap, type HeatCell } from "activity-heatmap"
 import { StickyGroupList, type GroupList } from "sticky-group-list"
 import { PermissionMatrix, type TriState } from "permission-matrix"
@@ -87,15 +87,15 @@ export function ClassroomRoster({ course = "Swedish 8–9", term = "HT26", stude
 
   return (
     <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <Grain opacity={0.03} />
+      <MotionConfig reducedMotion="user">
 
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Classroom roster</h2>
         <span className="text-[12px] text-muted-foreground">{course}</span>
         <span className="text-[12px] text-muted-foreground">· {atRisk} attendance risk</span>
         <SegmentedControl size="sm" className="ml-2" value={termView} onChange={setTermView} options={[{ value: "HT26", label: "HT26" }, { value: "VT26", label: "VT26" }]} />
-        <button className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Printer className="size-3.5" /> Seating plan</button>
-        <button className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Mail className="size-3.5" /> Message picked ({picked.length})</button>
+        <Button type="button" variant="ghost" className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Printer className="size-3.5" /> Seating plan</Button>
+        <Button type="button" variant="ghost" className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Mail className="size-3.5" /> Message picked ({picked.length})</Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[270px_minmax(0,1fr)_330px]">
@@ -111,16 +111,17 @@ export function ClassroomRoster({ course = "Swedish 8–9", term = "HT26", stude
                 groups={groups}
                 height="100%"
                 renderRow={(s) => (
-                  <button
+                  <Button type="button" variant="ghost"
                     onClick={() => togglePick(s.id, !picked.includes(s.id))}
                     className={cn("flex w-full items-center justify-between px-3 py-1.5 text-left text-[12px] hover:bg-muted/50", picked.includes(s.id) && "bg-accent/50")}
                   >
                     <span className="font-medium">{s.name}</span>
                     <span className="font-mono tabular-nums text-muted-foreground">{s.present}%</span>
-                  </button>
+                  </Button>
                 )}
               />
-            </div>
+          </MotionConfig>
+    </div>
           </section>
           <p className="px-1 text-[11px] text-muted-foreground">Sticky rail keeps each circle's header pinned while you scan for gaps.</p>
         </aside>
@@ -168,7 +169,7 @@ export function ClassroomRoster({ course = "Swedish 8–9", term = "HT26", stude
           <section className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Student vs staff sheet</span>
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">click cycles</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">click cycles</span>
             </header>
             <div className="p-3">
               <PermissionMatrix perms={PERMS} roles={ROLES} value={matrix} onSet={(row, col, v) => setMatrix((m) => ({ ...m, [row]: { ...m[row], [col]: v } }))} />

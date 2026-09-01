@@ -6,6 +6,7 @@ import { BorderTrail } from "@/components/primitives/border-trail"
 import { TextEffect } from "@/components/primitives/text-effect"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type NewsletterProps = {
@@ -70,7 +71,7 @@ export function Newsletter({
             ink ? "border-background/15 bg-background/[0.03]" : "border-border bg-card shadow-sm",
           )}
         >
-          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/20'))}>
+          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-foreground/20")}>
     <span className="absolute border-current top-[8px] left-[8px] border-t border-l" style={{ width: 12, height: 12 }} />
     <span className="absolute border-current top-[8px] right-[8px] border-t border-r" style={{ width: 12, height: 12 }} />
     <span className="absolute border-current bottom-[8px] left-[8px] border-b border-l" style={{ width: 12, height: 12 }} />

@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Download, Minus, Pause, Plus } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { AnnotationPinLayer, type Pin } from "annotation-pin-layer"
@@ -96,13 +97,14 @@ export function MediaReviewRoom({ cut = "V4 · runtime 02:41", runtime = "02:41"
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Review a cut</h2>
         <span className="text-[12px] text-muted-foreground">{cut}</span>
         <span className={cn("text-[12px] font-semibold", pending === 0 ? "text-[hsl(var(--ok))]" : "text-muted-foreground")}>{REEDIT_HUNKS.length - pending}/{REEDIT_HUNKS.length} re-edit hunks resolved</span>
-        <button onClick={exportReview} disabled={exported} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
+        <Button type="button" variant="ghost" onClick={exportReview} disabled={exported} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
           <Download className="size-3.5" /> {exported ? "Exported" : "Export review"}
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[minmax(0,1fr)_320px]">
@@ -123,19 +125,20 @@ export function MediaReviewRoom({ cut = "V4 · runtime 02:41", runtime = "02:41"
                   <div className="relative aspect-[16/9] w-full overflow-hidden rounded-md border bg-gradient-to-br from-[hsl(222_30%_16%)] via-[hsl(222_26%_12%)] to-[hsl(220_22%_8%)]">
                     <Spotlight size={280} className="from-zinc-300/20 via-zinc-500/10 to-zinc-700/5" />
                     <div className="absolute inset-x-4 bottom-4 flex items-center gap-3">
-                      <button onClick={() => setPlaying(!playing)} aria-label={playing ? "Pause" : "Play"} className="flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-white/10 text-white hover:bg-white/20">
+                      <Button type="button" variant="ghost" onClick={() => setPlaying(!playing)} aria-label={playing ? "Pause" : "Play"} className="flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-white/10 text-white hover:bg-white/20">
                         {playing ? <Pause className="size-3.5" /> : <span className="ml-0.5 border-y-[5px] border-l-[8px] border-y-transparent border-l-white" />}
-                      </button>
+                      </Button>
                       <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/15">
                         <div className="h-full rounded-full bg-white/70" style={{ width: `${(tc / 161) * 100}%` }} />
-                      </div>
+          </MotionConfig>
+    </div>
                       <motion.span key={tc} initial={{ opacity: 0.4 }} animate={{ opacity: 1 }} className="rounded border border-white/15 bg-black/50 px-1.5 py-0.5 font-mono text-[11px] tabular-nums text-white/90">
                         TC {fmtTC(tc)} / {runtime}
                       </motion.span>
                     </div>
                     <div className="absolute right-4 top-4 flex gap-1">
-                      <button onClick={() => setTc((t) => Math.max(0, t - 1))} aria-label="Back one second" className="flex h-7 w-7 items-center justify-center rounded-md border border-white/15 bg-black/40 text-white/80 hover:bg-black/60"><Minus className="size-3" /></button>
-                      <button onClick={() => setTc((t) => Math.min(161, t + 1))} aria-label="Forward one second" className="flex h-7 w-7 items-center justify-center rounded-md border border-white/15 bg-black/40 text-white/80 hover:bg-black/60"><Plus className="size-3" /></button>
+                      <Button type="button" variant="ghost" onClick={() => setTc((t) => Math.max(0, t - 1))} aria-label="Back one second" className="flex h-7 w-7 items-center justify-center rounded-md border border-white/15 bg-black/40 text-white/80 hover:bg-black/60"><Minus className="size-3" /></Button>
+                      <Button type="button" variant="ghost" onClick={() => setTc((t) => Math.min(161, t + 1))} aria-label="Forward one second" className="flex h-7 w-7 items-center justify-center rounded-md border border-white/15 bg-black/40 text-white/80 hover:bg-black/60"><Plus className="size-3" /></Button>
                     </div>
                   </div>
                 }

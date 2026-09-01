@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
@@ -7,7 +8,6 @@ import { Checkbox } from "@/components/watermelon/checkbox"
 import { Switch } from "@/components/ui/switch"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Separator } from "@/components/ui/separator"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/primitives/dialog"
 import { PermissionMatrix } from "permission-matrix"
 import { AsyncMultiselect, type PickOption } from "async-multiselect"
@@ -51,7 +51,6 @@ export function CrewAdmin({ className }: CrewAdminProps) {
 
   return (
     <div className={cn("relative isolate overflow-hidden rounded-2xl border bg-background font-sans", className)}>
-      <Grain opacity={0.035} />
       <header className="flex flex-wrap items-center gap-3 border-b bg-card px-5 py-4">
         <h2 className="font-display text-lg font-black tracking-tight">Crew & access</h2>
         <Badge variant="secondary" className="font-mono text-[9px]">{CREW.length} on the books</Badge>
@@ -93,11 +92,11 @@ export function CrewAdmin({ className }: CrewAdminProps) {
           <Separator className="my-5" />
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <MonoLabel className="mb-2 block text-muted-foreground">SHIFT ASSIGNMENT (async crew search)</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-2 block text-muted-foreground">SHIFT ASSIGNMENT (async crew search)</span>
               <AsyncMultiselect value={assign} onValueChange={setAssign} label="crew" loadItems={async (q, page) => { await new Promise((r) => setTimeout(r, 350)); const b = ALL_PEOPLE.filter((p) => p.label.toLowerCase().includes(q.toLowerCase())); return { items: b.slice(0, 6), more: false } }} />
             </div>
             <div>
-              <MonoLabel className="mb-2 block text-muted-foreground">ACCESS TAGS</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-2 block text-muted-foreground">ACCESS TAGS</span>
               <TokenInput value={["till", "door-code", "press-kit"].slice(0, sel.length || 3)} onChange={() => {}} label="access tags" />
             </div>
           </div>
@@ -105,11 +104,11 @@ export function CrewAdmin({ className }: CrewAdminProps) {
         <aside className="h-fit">
           <Card>
             <CardContent className="p-5">
-              <MonoLabel className="mb-3 block text-muted-foreground">INVITE A NEW CHAIR</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-3 block text-muted-foreground">INVITE A NEW CHAIR</span>
               <input value={invite} onChange={(e) => setInvite(e.target.value)} placeholder="temp@studio.house" className="mb-3 h-9 w-full rounded-md border bg-background px-3 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]" />
               <label className="mb-1 flex items-center gap-2 text-[11px] font-bold text-muted-foreground"><Switch /> send invite now</label>
               <PasswordMeter value="temp-pass-" onChange={() => {}} onScore={setScore} />
-              <button disabled={score < 70} onClick={() => push("temporary credentials issued", "ok")} className="mt-4 h-9 w-full rounded-md bg-primary text-[10px] font-black uppercase tracking-[0.18em] text-primary-foreground disabled:opacity-40">issue temp password</button>
+              <Button type="button" variant="ghost" disabled={score < 70} onClick={() => push("temporary credentials issued", "ok")} className="mt-4 h-9 w-full rounded-md bg-primary text-[10px] font-black uppercase tracking-[0.18em] text-primary-foreground disabled:opacity-40">issue temp password</Button>
             </CardContent>
           </Card>
         </aside>

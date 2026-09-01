@@ -5,11 +5,11 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { FaBolt, FaRocket, FaShieldAlt } from "react-icons/fa";
+import { Zap, Rocket, ShieldCheck } from "lucide-react"
 
 const stats = [
   {
-    icon: FaBolt,
+    icon: Zap,
     gradientFrom: "from-amber-400",
     gradientTo: "to-orange-500",
     pillBg: "bg-amber-500/10",
@@ -23,7 +23,7 @@ const stats = [
       "Engineering teams push more high-quality code with automated reviews and instant CI feedback loops.",
   },
   {
-    icon: FaRocket,
+    icon: Rocket,
     gradientFrom: "from-cyan-400",
     gradientTo: "to-blue-500",
     pillBg: "bg-cyan-500/10",
@@ -37,7 +37,7 @@ const stats = [
       "Zero-downtime deploys with canary rollouts mean your team ships confidently, every single day.",
   },
   {
-    icon: FaShieldAlt,
+    icon: ShieldCheck,
     gradientFrom: "from-emerald-400",
     gradientTo: "to-teal-500",
     pillBg: "bg-emerald-500/10",

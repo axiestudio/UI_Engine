@@ -2,6 +2,7 @@ import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Tabs deep — a sticky left tab rail that swaps a large detail panel.
 // ═══ EMOTION     Drill-down that stays in place.
@@ -35,16 +36,14 @@ export function InteractiveTabsDeep({ eyebrow = "DEEP", title = "A drill-down th
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <div className="mt-10 grid gap-10 lg:grid-cols-[240px_1fr]">
         <div className="flex gap-2 overflow-x-auto lg:flex-col lg:overflow-visible">
           {tabs.map((t, i) => (
-            <button key={t.id} type="button" onClick={() => setActive(i)}
-              className={cn("shrink-0 rounded-xl px-4 py-3 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")}>
+            <Button type="button" key={t.id} onClick={() => setActive(i)} variant="default" className={cn(cn("shrink-0 rounded-xl px-4 py-3 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent"))}>
               {t.label}
-            </button>
+            
           ))}
         </div>
         <div className="rounded-xl border p-6 sm:p-8">

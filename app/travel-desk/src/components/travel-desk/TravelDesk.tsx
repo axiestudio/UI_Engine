@@ -1,8 +1,7 @@
 import * as React from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Plane, RadioTower, TicketCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { OfflineQueueBanner } from "offline-queue-banner"
@@ -113,12 +112,14 @@ export function TravelDesk({
 
   return (
     <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — mono masthead: the PNR is the identity */}
       <header className="flex flex-wrap items-end gap-x-5 gap-y-2 px-5 py-3">
         <div>
-          <MonoLabel className="text-muted-foreground">Itinerary ops</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Itinerary ops</span>
           <p className="font-mono text-[26px] font-bold leading-none tracking-tight">{pnr}</p>
-        </div>
+          </MotionConfig>
+    </div>
         <p className="pb-0.5 text-[13px] font-semibold">
           {traveller} <span className="font-normal text-muted-foreground">· ARN→JFK via OSL/AMS</span>
         </p>
@@ -157,7 +158,7 @@ export function TravelDesk({
                     className={cn(
                       "relative z-10 mt-1.5 grid size-[15px] shrink-0 place-items-center rounded-full border-2 bg-background",
                       l.state === "landed" && "border-[hsl(var(--muted-foreground))]",
-                      l.state === "boarding" && "border-[hsl(var(--ok))] animate-pulse",
+                      l.state === "boarding" && "border-[hsl(var(--ok))] motion-safe:motion-safe:animate-pulse",
                       l.state === "scheduled" && "border-border",
                     )}
                   />
@@ -213,7 +214,7 @@ export function TravelDesk({
                                   <span className="text-[19px] font-black tracking-tight">{l.from}</span>
                                   <Plane className="size-3.5 text-muted-foreground" />
                                   <span className="text-[19px] font-black tracking-tight">{l.to}</span>
-                                  <MonoLabel tick={false} className="ml-auto text-[9px] text-muted-foreground">{b.fare} · {pnr}</MonoLabel>
+                                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] ml-auto text-[9px] text-muted-foreground">{b.fare} · {pnr}</span>
                                 </div>
                                 <p className="px-3 text-[11px] text-muted-foreground">
                                   {b.pax} · dep {l.dep} · gate <span className="font-mono font-bold text-foreground">{l.state === "boarding" ? "D14" : "—"}</span>
@@ -254,7 +255,7 @@ export function TravelDesk({
         <aside className="flex flex-col gap-5 p-5 lg:col-span-5">
           <section aria-label="Booking windows" className="rounded-lg border border-dashed bg-background p-3">
             <div className="mb-2 flex items-baseline justify-between">
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Booking windows</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Booking windows</span>
               <span className="font-mono text-[10px] uppercase text-muted-foreground">docked</span>
             </div>
             <ul className="grid gap-1.5">

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import * as React from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -115,12 +116,11 @@ export function StorageRingMeter({
             onMouseEnter={() => setHi(i)}
             onMouseLeave={() => setHi(null)}
           >
-            <button
+            <Button type="button" variant="ghost"
               className={cn(
                 "flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left text-[12px] transition-colors hover:bg-muted/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[hsl(var(--app-focus))]",
                 hi === i && "bg-muted/80"
               )}
-              type="button"
             >
               <span
                 aria-hidden
@@ -131,7 +131,7 @@ export function StorageRingMeter({
               <span className="font-mono tabular-nums text-muted-foreground">
                 {human(s.bytes)}
               </span>
-            </button>
+            </Button>
           </li>
         ))}
         <li className="flex items-center justify-between px-2 pt-1 text-[11px] text-muted-foreground">

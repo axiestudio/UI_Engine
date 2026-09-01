@@ -1,8 +1,8 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CheckCheck, CircleStop, Cpu, FileText, Trash2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Grain } from "@/components/primitives/handcraft"
 import { AiPromptComposer } from "ai-prompt-composer"
 import { AiChangeReview, type Hunk } from "ai-change-review"
 import { CitationHoverCard, type Source } from "citation-hover-card"
@@ -110,15 +110,15 @@ export function AgentConsoleDesk({ session = "OPS-4417", model: defaultModel = "
 
   return (
     <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <Grain opacity={0.03} />
+      <MotionConfig reducedMotion="user">
 
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Agent console</h2>
         <span className="text-[12px] text-muted-foreground">{session}</span>
         <span className="text-[12px] text-muted-foreground">· sandbox tenancy · operator on shift</span>
         {busy && <span className="inline-flex items-center gap-1 rounded border bg-[hsl(var(--info)/0.08)] px-1.5 py-0.5 text-[10px] font-semibold text-[hsl(var(--info))]">streaming…</span>}
-        <button onClick={() => { setHunks(DEFAULT_HUNKS); setApplied([]); setRejected([]) }} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Trash2 className="size-3.5" /> Reset approvals</button>
-        <button onClick={stopStream} disabled={!busy} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40"><CircleStop className="size-3.5" /> Stop</button>
+        <Button type="button" variant="ghost" onClick={() => { setHunks(DEFAULT_HUNKS); setApplied([]); setRejected([]) }} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Trash2 className="size-3.5" /> Reset approvals</Button>
+        <Button type="button" variant="ghost" onClick={stopStream} disabled={!busy} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40"><CircleStop className="size-3.5" /> Stop</Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[290px_minmax(0,1fr)_330px]">
@@ -132,7 +132,9 @@ export function AgentConsoleDesk({ session = "OPS-4417", model: defaultModel = "
             <div className="flex items-center gap-3 p-3">
               <RadialGauge value={tokens} max={200_000} label="ctx" unit="tok" precision={0} size={92} zones={[{ to: 60, color: "hsl(var(--ok))" }, { to: 85, color: "hsl(var(--warn))" }, { to: 100, color: "hsl(var(--err))" }]} className="shrink-0" />
               <div className="min-w-0 space-y-1 text-[12px]">
-                <div className="flex justify-between gap-2"><span className="text-muted-foreground">used</span><span className="font-mono tabular-nums">{tokens.toLocaleString()}</span></div>
+                <div className="flex justify-between gap-2"><span className="text-muted-foreground">used</span><span className="font-mono tabular-nums">{tokens.toLocaleString()}</span>      
+          </MotionConfig>
+    </div>
                 <div className="flex justify-between gap-2"><span className="text-muted-foreground">window</span><span className="font-mono tabular-nums">200,000</span></div>
                 <div className="flex justify-between gap-2"><span className="text-muted-foreground">spend / sesh</span><span className="font-mono tabular-nums">kr 12.40</span></div>
               </div>
@@ -218,7 +220,7 @@ export function AgentConsoleDesk({ session = "OPS-4417", model: defaultModel = "
               {[["writes to src/", "hunks only"], ["secrets access", "deny"], ["deploy", "ask operator"]].map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between rounded-md border bg-background px-2.5 py-1.5">
                   <span className="font-mono text-[11px]">{k}</span>
-                  <MonoLabel tick={false} className="text-[10px] text-muted-foreground">{v}</MonoLabel>
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">{v}</span>
                 </div>
               ))}
             </div>

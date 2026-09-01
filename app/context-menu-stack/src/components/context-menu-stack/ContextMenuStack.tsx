@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — right-click done properly.
@@ -52,6 +53,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
 
   return (
     <div className={className} onContextMenu={(e) => { e.preventDefault(); open({ x: e.clientX, y: e.clientY }) }} onKeyDown={onKeyRoot} tabIndex={0} aria-haspopup="menu">
+      <MotionConfig reducedMotion="user">
       {children}
       <AnimatePresence>
         {pos && (
@@ -70,7 +72,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
             >
               {flat.map((m, i) =>
                 m.sep ? <div key={i} aria-hidden className="my-1 h-px bg-border" /> : (
-                  <button
+                  <Button type="button" variant="ghost"
                     key={i}
                     role="menuitem"
                     aria-disabled={m.disabled}
@@ -81,13 +83,14 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
                   >
                     <span className="flex-1 truncate">{m.label}</span>
                     {m.submenu ? <ChevronRight className="size-3.5 opacity-60" /> : m.shortcut && <kbd className="font-mono text-[10px] text-muted-foreground">{m.shortcut}</kbd>}
-                  </button>
+                  </Button>
                 )
               )}
             </motion.div>
           </>
         )}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }

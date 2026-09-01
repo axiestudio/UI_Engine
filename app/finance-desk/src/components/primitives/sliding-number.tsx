@@ -1,10 +1,10 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/sliding-number.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/sliding-number.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/sliding-number.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/sliding-number.tsx (local tokenized variant)
  */
 'use client';
 import { useEffect, useId } from 'react';
-import { type MotionValue, motion, useSpring, useTransform, motionValue,  } from 'motion/react';
+import { MotionValue, motion, useSpring, useTransform, motionValue } from 'motion/react';
 import useMeasure from 'react-use-measure';
 
 const TRANSITION = {

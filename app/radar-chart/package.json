@@ -1,7 +1,7 @@
 {
   "name": "radar-chart",
   "version": "0.1.0",
-  "description": "Radar/spider chart for multi-axis diagnostics — card-framed with kicker header, series legend hover lift",
+  "description": "Radar/spider chart for multi-axis diagnostics \u2014 card-framed with kicker header, series legend hover lift",
   "type": "module",
   "main": "dist/radar-chart.js",
   "module": "dist/radar-chart.js",
@@ -35,6 +35,9 @@
       "packages/ui/src/charts/use-enter-complete.ts",
       "packages/ui/src/charts/use-mount-progress.ts",
       "packages/ui/src/components/shimmering-text.tsx"
+    ],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json"
     ]
   },
   "scripts": {

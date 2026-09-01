@@ -34,12 +34,12 @@ export function Calculator({ eyebrow = "QUOTE", title = "What will it cost?", un
         <div className={cn("mt-8 rounded-2xl border p-6", ink ? "border-background/15 bg-background/5" : "border-border bg-card")}>
           <div className="flex items-center justify-between gap-4">
             <span className="font-mono text-[10px] font-bold uppercase tracking-[0.12em]">{unit}: {qty}</span>
-            <span className="font-display text-2xl font-semibold">{(qty * rate).toFixed(0)} → {Math.round(total)} / {annual ? "yr" : "mo"}</span>
+            <span className="font-display text-2xl font-semibold tabular-nums">{(qty * rate).toFixed(0)} → {Math.round(total)} / {annual ? "yr" : "mo"}</span>
           </div>
-          <input type="range" min={min} max={max} value={qty} onChange={(e) => setQty(Number(e.target.value))} className="mt-6 w-full accent-foreground" aria-label={unit} />
-          <div className="mt-5 flex gap-2">
-            <button type="button" onClick={() => setAnnual(true)} className={cn("flex-1 rounded-lg px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors", annual ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")}>Annual −20%</button>
-            <button type="button" onClick={() => setAnnual(false)} className={cn("flex-1 rounded-lg px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors", !annual ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")}>Monthly</button>
+          <Slider id="calculator-qty" value={[qty]} min={min} max={max} step={1} aria-label={unit} onValueChange={([v]) => setQty(v ?? min)} className="mt-6" />
+          <div className="mt-5 flex gap-2" role="group" aria-label="Billing cadence">
+            <button type="button" onClick={() => setAnnual(true)} aria-pressed={annual} className={cn("flex-1 rounded-lg px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors", annual ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")}>Annual −20%</button>
+            <button type="button" onClick={() => setAnnual(false)} aria-pressed={!annual} className={cn("flex-1 rounded-lg px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors", !annual ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")}>Monthly</button>
           </div>
         </div>
       </InView>

@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Inbox, Send } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { Button } from "@/components/ui/button"
 import { BarChart, Bar, Grid, BarXAxis, BarYAxis, ChartTooltip } from "@/components/bklit"
@@ -170,7 +169,7 @@ export function GradeDesk({
       key,
       header: (
         <div className="flex items-baseline justify-between px-3 py-1.5">
-          <MonoLabel tick={false} className="text-[10px] text-muted-foreground">{label}</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">{label}</span>
           <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{gRows.length}</span>
         </div>
       ),
@@ -180,6 +179,7 @@ export function GradeDesk({
 
   return (
     <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — display-numeral voice: the cohort itself is the masthead */}
       <header className="flex flex-wrap items-end gap-x-4 gap-y-2 border-b px-5 py-3">
         <motion.h2
@@ -191,9 +191,10 @@ export function GradeDesk({
           {cohort}
         </motion.h2>
         <div className="pb-1">
-          <MonoLabel className="text-muted-foreground">Marking desk</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Marking desk</span>
           <p className="text-[13px] font-semibold">{course} <span className="font-normal text-muted-foreground">· {term}</span></p>
-        </div>
+          </MotionConfig>
+    </div>
         <span className="mb-1 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold tabular-nums">
           {unmarked.length} unmarked
         </span>
@@ -226,7 +227,7 @@ export function GradeDesk({
         <aside className="flex flex-col gap-5 border-b p-5 lg:col-span-3 lg:border-b-0 lg:border-r">
           <section aria-label="Class switcher" className="rounded-lg border border-dashed bg-background p-3">
             <div className="mb-2 flex items-baseline justify-between">
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Class</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Class</span>
               <span className="font-mono text-[10px] text-muted-foreground">recomputes all panels</span>
             </div>
             <SegmentedControl
@@ -243,7 +244,7 @@ export function GradeDesk({
 
           {/* publish ledger — bare rail, rules only */}
           <section aria-label="Publish ledger" className="flex flex-1 flex-col">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Ledger</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Ledger</span>
             <dl className="mt-1 divide-y border-y text-[12px]">
               {[
                 ["Graded", String(graded.length)],

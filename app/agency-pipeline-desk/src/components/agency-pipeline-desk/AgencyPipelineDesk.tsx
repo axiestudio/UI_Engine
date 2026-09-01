@@ -1,8 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ClipboardCheck, Download, RefreshCcw, Sparkles, UserPlus } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, CornerTicks, Accent } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { FunnelStageBars } from "funnel-stage-bars"
 import { PipelineRunGraph, type Stage } from "pipeline-run-graph"
@@ -86,12 +85,14 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
 
   return (
     <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* header — display masthead: the studio name carries the desk */}
       <header className="flex flex-wrap items-end gap-x-4 gap-y-2 border-b px-5 py-3">
         <div>
-          <MonoLabel className="text-muted-foreground">Studio operations · {week}</MonoLabel>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Studio operations · {week}</span>
           <h2 className="font-display text-[24px] font-black leading-none tracking-[-0.03em]">{studio}</h2>
-        </div>
+          </MotionConfig>
+    </div>
         <span className="mb-0.5 hidden items-center gap-1.5 rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground md:inline-flex">render farm · 11 nodes online</span>
         <div className="ml-auto mb-0.5 flex gap-2">
           <Button variant="outline" size="sm"><Download className="size-3.5" /> Weekly PDF</Button>
@@ -103,7 +104,7 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
         {/* FUNNEL SPINE — tall vertical rail, the desk's left bone */}
         <aside className="flex min-w-0 flex-col border-b p-5 lg:col-span-3 lg:border-b-0 lg:border-r" aria-label="Pitch funnel">
           <div className="flex items-baseline justify-between">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Pitch funnel</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Pitch funnel</span>
             <span className="font-mono text-[10px] tabular-nums text-muted-foreground">q3 · 24 in</span>
           </div>
           <div className="mt-3 min-h-0 flex-1">
@@ -199,10 +200,9 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
             <div className="grid gap-2 pt-2.5">
               {PASSES.map((p, i) => (
                 <div key={p.id} className="group relative overflow-hidden rounded-md border bg-muted/20 p-3">
-                  <CornerTicks offset={6} size={9} className="text-border" />
                   <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-muted-foreground">{String(i + 1).padStart(2, "0")} /</span>
                   <p className="mt-1 font-display text-[15px] font-black leading-tight tracking-tight">
-                    Welcome, <Accent>{p.client}</Accent>
+                    Welcome, <em className="font-serif italic">{p.client}</em>
                   </p>
                   <p className="text-[12px] text-muted-foreground">{p.job}</p>
                   <div className="mt-2 flex items-center justify-between border-t border-dashed pt-2 text-[11px]">
@@ -227,7 +227,7 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
 
           {/* farm throughput — bare mono rail, rules only */}
           <section aria-label="Farm throughput">
-            <MonoLabel tick={false} className="text-[10px] text-muted-foreground">Farm throughput</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Farm throughput</span>
             <dl className="mt-1 grid grid-cols-2 divide-x border-y text-[12px] [&>div:nth-child(odd)]:border-r">
               {[
                 ["frames / h", "41,208"],

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, MotionConfig } from "motion/react"
 import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -35,6 +35,7 @@ export function GhostSuggestInput({ value, onChange, suggest, placeholder, label
   const accept = () => { if (!ghost) return; onChange(value + ghost); setGhost(null); setAccepted((a) => a + 1) }
   return (
     <div className={cn("relative font-sans", className)}>
+      <MotionConfig reducedMotion="user">
       <div className="relative">
         <input ref={ref} aria-label={label} value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={(e) => { if (e.key === "Tab" && ghost) { e.preventDefault(); accept() } if (e.key === "Escape") setGhost(null) }} placeholder={placeholder} className="h-10 w-full rounded-lg border border-border/70 bg-background pl-9 pr-20 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
         <Search aria-hidden className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/70" />
@@ -48,7 +49,8 @@ export function GhostSuggestInput({ value, onChange, suggest, placeholder, label
           {ghost && <motion.kbd initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="rounded-md border border-border/60 bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium">tab ↵</motion.kbd>}
           <span className="text-[10px] text-muted-foreground/60">{latency ? `${latency}ms` : ""}</span>
         </span>
-      </div>
+          </MotionConfig>
+    </div>
       <p className="sr-only" aria-live="polite">{ghost ? "Suggestion available, press Tab to accept." : ""}</p>
     </div>
   )

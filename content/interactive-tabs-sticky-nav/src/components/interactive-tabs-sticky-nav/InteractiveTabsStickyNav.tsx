@@ -2,6 +2,7 @@ import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Sticky tabs nav — a tab bar that sticks as you scroll through tab panels.
 // ═══ EMOTION     Persistent context.
@@ -34,16 +35,14 @@ export function InteractiveTabsStickyNav({ eyebrow = "STICKY", title = "Tabs tha
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", false ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <div className="sticky top-16 z-30 mt-10 -mx-2 overflow-x-auto rounded-xl border bg-background/85 p-1 backdrop-blur">
         <div className="flex min-w-max gap-1">
           {tabs.map((t, i) => (
-            <button key={t.id} type="button" onClick={() => select(t.id)}
-              className={cn("rounded-xl px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", active === t.id ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent")}>
+            <Button type="button" key={t.id} onClick={() => select(t.id)} variant="default" className={cn(cn("rounded-xl px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", active === t.id ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent"))}>
               <span className="mr-2 opacity-50">{String(i + 1).padStart(2, "0")}</span>{t.label}
-            </button>
+            
           ))}
         </div>
       </div>

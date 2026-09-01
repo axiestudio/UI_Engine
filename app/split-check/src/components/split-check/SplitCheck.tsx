@@ -1,9 +1,9 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Plus, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
-import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 
 // ═══ JOB         Settle the bill at the counter — who owes what, no maths.
 // ═══ EMOTION     The fairness of a napkin sketch, without the napkin.
@@ -100,13 +100,22 @@ export function SplitCheck({
   const hair = ink ? "border-background/15" : "border-border"
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView
         once
         variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <InView
@@ -126,13 +135,13 @@ export function SplitCheck({
             >
               {/* ── chrome ── */}
               <div className={cn("border-b px-6 pb-5 pt-6", hair)}>
-                <MonoLabel className="text-muted-foreground">{heading}</MonoLabel>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{heading}</span>
                 <h3 className="mt-3 font-display text-xl font-bold tracking-[-0.02em]">The check, settled</h3>
               </div>
 
               <div className="px-6 pb-6 pt-5">
                 {/* ── people chips ── */}
-                <MonoLabel className="text-muted-foreground">At the table</MonoLabel>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">At the table</span>
                 <div className="mt-2 flex flex-wrap items-center gap-2" aria-live="polite">
                   <AnimatePresence mode="popLayout" initial={false}>
                     {people.map((p) => (
@@ -146,14 +155,14 @@ export function SplitCheck({
                         className="inline-flex items-center gap-1 rounded-full bg-muted py-1 pl-3 pr-1"
                       >
                         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.08em]">{p.name}</span>
-                        <button
+                        <Button variant="ghost"
                           type="button"
                           aria-label={`Remove ${p.name} from the check`}
                           onClick={() => removePerson(p.id)}
                           className="grid size-5 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           <X className="size-3" aria-hidden />
-                        </button>
+                        </Button>
                       </motion.span>
                     ))}
                   </AnimatePresence>
@@ -174,18 +183,18 @@ export function SplitCheck({
                     aria-label="Add a person to the check"
                     className="h-9 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   />
-                  <button
+                  <Button variant="ghost"
                     type="submit"
                     aria-label="Add person"
                     className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-md bg-primary px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <Plus className="size-3.5" aria-hidden /> Add
-                  </button>
+                  </Button>
                 </form>
 
                 {/* ── items with cycling who-chips ── */}
                 <div className="mt-6">
-                  <MonoLabel className="text-muted-foreground">The check</MonoLabel>
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">The check</span>
                   <ul className="mt-1">
                     {items.map((it) => {
                       const person = people.find((p) => p.id === it.who)
@@ -198,7 +207,7 @@ export function SplitCheck({
                         >
                           <span className="min-w-0 flex-1 truncate text-sm font-semibold">{it.name}</span>
                           <span className="shrink-0 font-mono text-[13px] tabular-nums text-muted-foreground">{kr(it.amount)}</span>
-                          <button
+                          <Button variant="ghost"
                             type="button"
                             onClick={() => cycleWho(it.id)}
                             aria-label={`${it.name} is charged to ${person ? person.name : "no one"} — tap to cycle the assignment`}
@@ -211,7 +220,7 @@ export function SplitCheck({
                             )}
                           >
                             {person ? initials(person.name) : "–"}
-                          </button>
+                          </Button>
                         </motion.li>
                       )
                     })}
@@ -220,7 +229,7 @@ export function SplitCheck({
 
                 {/* ── live split ── */}
                 <div aria-live="polite" className="mt-5 rounded-lg border bg-muted/50 p-4">
-                  <MonoLabel className="text-muted-foreground">Split</MonoLabel>
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Split</span>
                   <ul className="mt-2 space-y-1.5">
                     {totals.map(({ person, amount }) => (
                       <motion.li layout={!reduce} key={person.id} transition={{ type: "spring", stiffness: 420, damping: 32 }} className="flex items-baseline justify-between gap-3 font-mono text-[13px]">
@@ -255,6 +264,7 @@ export function SplitCheck({
           </figcaption>
         </figure>
       </InView>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

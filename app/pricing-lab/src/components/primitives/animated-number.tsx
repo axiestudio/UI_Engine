@@ -1,10 +1,11 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/animated-number.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/animated-number.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/animated-number.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/animated-number.tsx (local tokenized variant)
  */
 'use client';
 import { cn } from '@/lib/utils';
-import { motion, type SpringOptions, useSpring, useTransform } from 'motion/react';
+import { motion, useSpring, useTransform } from 'motion/react';
+import type { SpringOptions } from 'motion/react';
 import { useEffect } from 'react';
 
 export type AnimatedNumberProps = {

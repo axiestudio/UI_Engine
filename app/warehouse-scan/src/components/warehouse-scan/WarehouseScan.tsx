@@ -1,8 +1,8 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Barcode, CircleAlert, RefreshCcw, ScanLine } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { OfflineQueueBanner } from "offline-queue-banner"
 import { TokenInput } from "token-input"
@@ -110,6 +110,7 @@ export function WarehouseScan({
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Cycle count</h2>
         <span className="text-[12px] text-muted-foreground">{zone}</span>
@@ -119,10 +120,11 @@ export function WarehouseScan({
             <ScanLine className={cn("size-3.5", lastScan && "text-[hsl(var(--ok))]")} aria-hidden />
             {lastScan ? `last scan ${lastScan.bin} · ${lastScan.at}` : "no scans yet"}
           </span>
-          <button onClick={scanNext} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
+          <Button type="button" variant="ghost" onClick={scanNext} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
             <Barcode className="size-3.5" /> Scan next
-          </button>
-        </div>
+          </Button>
+          </MotionConfig>
+    </div>
       </header>
 
       <div className="border-b bg-background px-4 py-2.5">
@@ -151,7 +153,7 @@ export function WarehouseScan({
           <section className="flex-1 overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
               Sync jobs
-              <RefreshCcw className={cn("size-3.5", flushing && "animate-spin")} />
+              <RefreshCcw className={cn("size-3.5", flushing && "motion-safe:motion-safe:animate-spin")} />
             </header>
             <div className="p-3">
               <JobTray
@@ -237,18 +239,18 @@ export function WarehouseScan({
                           {r.bin} · expected {r.expected} · counted {r.counted}
                         </p>
                         <div className="mt-2 flex gap-1.5">
-                          <button
+                          <Button type="button" variant="ghost"
                             onClick={() => setSheet((rs) => rs.map((x) => (x.id === r.id ? { ...x, accepted: true } : x)))}
                             className="h-6 flex-1 rounded border bg-background text-[10px] font-bold uppercase tracking-wide hover:bg-muted"
                           >
                             Accept
-                          </button>
-                          <button
+                          </Button>
+                          <Button type="button" variant="ghost"
                             onClick={() => setCounted(r.id, r.expected)}
                             className="h-6 flex-1 rounded border bg-background text-[10px] font-bold uppercase tracking-wide hover:bg-muted"
                           >
                             Set to expected
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     </motion.li>
@@ -266,7 +268,7 @@ export function WarehouseScan({
           <section className="overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
               Shift tally
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">{device}</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">{device}</span>
             </header>
             <div className="space-y-1.5 p-3 text-[12px]">
               <div className="flex justify-between">

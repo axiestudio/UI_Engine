@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import {motion, AnimatePresence} from "motion/react"
 import { X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — power users discover power only if you show the map.
@@ -42,8 +43,9 @@ export function KeyboardMapOverlay({ bindings, title = "Keyboard map", show: sho
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={cn("fixed inset-0 z-[120] flex items-center justify-center bg-black/60 p-6 backdrop-blur-sm", className)}>
           <motion.div ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-label={title} onKeyDown={onOwn} initial={{ scale: 0.97, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.98, opacity: 0 }} className="max-h-[80vh] w-full max-w-[720px] overflow-y-auto rounded-xl border bg-background p-6 shadow-2xl outline-none">
             <div className="mb-5 flex items-center justify-between">
-              <div><h3 className="font-display text-lg font-semibold tracking-tight">{title}</h3><p className="text-xs text-muted-foreground">try a combo — it flashes here</p></div>
-              <button aria-label="Close keyboard map" onClick={() => (showProp === undefined ? setInner(false) : onToggle?.(false))} className="grid size-8 place-items-center rounded-md hover:bg-muted"><X className="size-4" /></button>
+              <div><h3 className="font-display text-lg font-semibold tracking-tight">{title}</h3><p className="text-xs text-muted-foreground">try a combo — it flashes here</p>      
+    </div>
+              <Button type="button" variant="ghost" aria-label="Close keyboard map" onClick={() => (showProp === undefined ? setInner(false) : onToggle?.(false))} className="grid size-8 place-items-center rounded-md hover:bg-muted"><X className="size-4" /></Button>
             </div>
             <ul className="grid gap-1.5 sm:grid-cols-2">
               {bindings.map((b) => (

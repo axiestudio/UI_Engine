@@ -1,8 +1,7 @@
 import * as React from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { AlarmClock, BellRing, PhoneForwarded, Search, Waypoints } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { Badge } from "@/components/ui/badge"
@@ -132,6 +131,7 @@ export function SupportDesk({
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Agent console</h2>
         <span className="text-[12px] text-muted-foreground">{agent}</span>
@@ -161,7 +161,8 @@ export function SupportDesk({
                 onSelect={(h) => setFocus(rows.some((r) => r.id === h.id) ? h.id : null)}
               />
               <p className="text-[11px] text-muted-foreground">Selecting a ticket hit focuses its card on the switchboard.</p>
-            </div>
+          </MotionConfig>
+    </div>
           </section>
 
           <section className="flex-1 overflow-hidden rounded-lg border bg-card">

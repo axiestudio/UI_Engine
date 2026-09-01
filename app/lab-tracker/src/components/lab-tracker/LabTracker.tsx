@@ -251,7 +251,7 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
           <ul className="px-2 py-2">
             {ASSAY_TREE.map((p) => (
               <li key={p.id} className="relative">
-                <button
+                <Button type="button" variant="ghost"
                   onClick={() => togglePanel(p.id)}
                   aria-expanded={open.has(p.id)}
                   className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-left hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]"
@@ -259,7 +259,7 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
                   <ChevronRight className={cn("size-3.5 text-muted-foreground transition-transform", open.has(p.id) && "rotate-90")} />
                   <span className="text-[12px] font-semibold">{p.label}</span>
                   <span className="ml-auto font-mono text-[10px] text-muted-foreground">{p.instrument}</span>
-                </button>
+                </Button>
                 <AnimatePresence initial={false}>
                   {open.has(p.id) && (
                     <motion.ul
@@ -273,7 +273,7 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
                         const on = selectedAnalyte === a
                         return (
                           <li key={a}>
-                            <button
+                            <Button type="button" variant="ghost"
                               aria-pressed={on}
                               onClick={() => setSelectedAnalyte((sel) => (sel === a ? null : a))}
                               className={cn(
@@ -283,7 +283,7 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
                             >
                               <span className="font-semibold">{a}</span>
                               <span className="text-[10px] tabular-nums text-muted-foreground">{n} · {RANGES[a].ref}</span>
-                            </button>
+                            </Button>
                           </li>
                         )
                       })}

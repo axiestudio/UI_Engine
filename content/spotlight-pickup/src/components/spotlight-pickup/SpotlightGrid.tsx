@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
 
 
 // ═══ JOB      turn a lineup/menu into an event — you scan, the room lights it
@@ -43,7 +44,7 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
     <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--stage))] px-4 py-20 text-white sm:px-6 lg:px-8", className)}>
       <div className="mx-auto w-full max-w-[1120px]">
         <div className="mb-9">
-          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-white/45'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-white/45")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           {title && <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-[40px]">{title}</h2>}
         </div>
         <div
@@ -83,7 +84,7 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
             </div>
           )}
         </div>
-        <span aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", z-[3])}><Noise patternAlpha={Math.round((0.07) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
+        <span aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", "z-[3]")}><Noise patternAlpha={Math.round((0.07) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
       </div>
     </section>
   )

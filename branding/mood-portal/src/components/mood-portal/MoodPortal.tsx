@@ -66,7 +66,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
   const active = moods.find((m) => m.id === open) ?? null
 
   return (
-    <section className={cn("bg-background text-foreground", className)>
+    <section className={cn("bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
                 <header className="">

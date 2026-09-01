@@ -1,12 +1,6 @@
 'use client';
-import {
-  motion,
-  AnimatePresence,
-  Transition,
-  Variants,
-  Variant,
-  MotionConfig,
-} from 'motion/react';
+import { motion, AnimatePresence, MotionConfig } from 'motion/react';
+import type { Transition, Variants, Variant } from 'motion/react';
 import { cn } from '@/lib/utils';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 

@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { PenLine, ShieldCheck, Undo2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { InlineEditCell } from "inline-edit-cell"
 import { DiffPaneSplit, type DiffLine } from "diff-pane-split"
@@ -106,6 +106,7 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* screen header */}
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Payroll run</h2>
@@ -114,13 +115,13 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
         {changed.length > 0 && (
           <span className="rounded bg-[hsl(var(--warn)/0.14)] px-1.5 py-0.5 text-[10px] font-bold uppercase text-[hsl(var(--warn))]">{changed.length} changed</span>
         )}
-        <button
+        <Button type="button" variant="ghost"
           onClick={() => setDiffOpen((o: boolean) => !o)}
           disabled={changed.length === 0}
           className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40"
         >
           <PenLine className="size-3.5" /> {diffOpen ? "Hide diff" : `Review ${changed.length} change${changed.length > 1 ? "s" : ""}`}
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 xl:grid-cols-[minmax(0,1fr)_340px]">
@@ -169,7 +170,9 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
                 })}
               </tbody>
             </table>
-            <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Tap a base amount to edit · edited rows keep their previous value for the diff and audit log.</div>
+            <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Tap a base amount to edit · edited rows keep their previous value for the diff and audit log.      
+          </MotionConfig>
+    </div>
           </section>
 
           <AnimatePresence>
@@ -204,19 +207,19 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
                 {approved ? (
                   <motion.div key="approved" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between rounded-md border border-[hsl(var(--ok)/0.5)] bg-[hsl(var(--ok)/0.08)] px-3 py-2">
                     <span className="text-[12px] font-bold text-[hsl(var(--ok))]">SIGNED · {approved.at}</span>
-                    <button onClick={() => setApproved(null)} className="flex items-center gap-1 text-[11px] font-semibold text-muted-foreground hover:text-foreground">
+                    <Button type="button" variant="ghost" onClick={() => setApproved(null)} className="flex items-center gap-1 text-[11px] font-semibold text-muted-foreground hover:text-foreground">
                       <Undo2 className="size-3" /> reopen
-                    </button>
+                    </Button>
                   </motion.div>
                 ) : (
                   <motion.div key="pending" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    <button
+                    <Button type="button" variant="ghost"
                       onClick={approve}
                       disabled={selected.size === 0}
                       className="flex h-10 w-full items-center justify-center gap-2 rounded-md bg-[hsl(var(--ok))] text-[12px] font-black uppercase tracking-[0.12em] text-white hover:bg-[hsl(var(--ok)/0.9)] disabled:opacity-40"
                     >
                       <ShieldCheck className="size-4" /> Approve {selected.size || "—"} · {selectedTotal ? SEK(selectedTotal) : "no lines"}
-                    </button>
+                    </Button>
                     <p className="mt-2 text-[11px] text-muted-foreground">Approving signs the selected lines with the HSM key below. Changed rows must be reviewed first.</p>
                   </motion.div>
                 )}
@@ -239,7 +242,7 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
           <section className="overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Budget vs actual</span>
-              <MonoLabel className="text-[10px] text-muted-foreground" tick={false}>{period}</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">{period}</span>
             </header>
             <div className="flex items-center justify-center p-3">
               <RadialGauge

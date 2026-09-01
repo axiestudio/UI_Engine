@@ -2,8 +2,8 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Lock } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
-
 import { cn } from "@/lib/utils"
+import { MacbookPro } from "@/components/eldora/macbook-pro"
 
 // ═══ JOB         Show a full website as it lands on a real desktop.
 // ═══ EMOTION     "That could be my site, on my machine, tonight."
@@ -41,7 +41,6 @@ export function DeviceDesktop({
   className,
 }: DeviceDesktopProps) {
   const ink = tone === "ink"
-  const hair = ink ? "border-background/15" : "border-border"
   const [woken, setWoken] = React.useState(false)
 
   return (
@@ -67,20 +66,17 @@ export function DeviceDesktop({
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
       >
         <figure className="mt-10">
-          {/* ── The machine ── */}
-          <div
-            className={cn(
-              "overflow-hidden rounded-[18px] border bg-[#0b0b0b] shadow-[0_24px_60px_-24px_hsl(var(--foreground)/0.4),0_2px_0_0_hsl(var(--foreground)/0.35)]",
-              hair,
-            )}
-          >
-            {/* Browser chrome */}
-            <div className={cn("border-b bg-[#161616] px-4 pb-2.5 pt-3", "border-white/[0.07]")}>
-              <div className="flex items-center gap-2.5">
+          {/* ── The machine — Eldora UI MacbookPro repo frame ── */}
+          <div className="relative mx-auto w-full max-w-[760px]">
+            <MacbookPro className="pointer-events-none block h-auto w-full" />
+            {/* screen content sits on the Eldora display rect (11.46%/5.33%/77.11%/80.96%) */}
+            <div className="absolute overflow-hidden" style={{ left: "11.46%", top: "5.33%", width: "77.11%", height: "80.96%" }}>
+              {/* Browser chrome — token-styled, reads like hardware */}
+              <div className="flex items-center gap-2 border-b border-background/15 bg-black/90 px-3 pb-1.5 pt-2">
                 {/* Monochrome traffic lights — deliberate hardware-neutral chrome */}
-                <span aria-hidden className="flex gap-1.5">
+                <span aria-hidden className="flex gap-1">
                   {["opacity-60", "opacity-40", "opacity-25"].map((o, i) => (
-                    <span key={i} className={cn("size-2.5 rounded-full bg-white", o)} />
+                    <span key={i} className={cn("size-2 rounded-full bg-white", o)} />
                   ))}
                 </span>
                 {/* Tab strip */}
@@ -89,8 +85,8 @@ export function DeviceDesktop({
                     <span
                       key={t}
                       className={cn(
-                        "rounded-t-md px-3 py-1 font-mono text-[10px] font-semibold tracking-wide",
-                        i === 0 ? "bg-[#0b0b0b] text-white/85" : "text-white/35",
+                        "rounded-t px-2.5 py-0.5 font-mono text-[9px] font-semibold tracking-wide",
+                        i === 0 ? "bg-black text-white/85" : "text-white/35",
                       )}
                     >
                       {t}
@@ -98,51 +94,39 @@ export function DeviceDesktop({
                   ))}
                 </span>
                 {/* Address pill */}
-                <span
-                  className={cn(
-                    "ml-auto flex h-6 min-w-0 items-center gap-1.5 rounded-full bg-white/[0.07] px-3 font-mono text-[10px] font-medium text-white/60",
-                    ink && "sm:max-w-[46%]",
-                  )}
-                >
+                <span className="ml-auto flex h-5 min-w-0 items-center gap-1.5 rounded-full bg-white/10 px-2.5 font-mono text-[9px] font-medium text-white/60">
                   <Lock className="size-2.5 shrink-0" aria-hidden />
                   <span className="truncate">{url}</span>
                 </span>
               </div>
-            </div>
-
-            {/* Screen — power-on */}
-            <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
-              {children ?? (
-                <img
-                  src={src}
-                  alt={alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-top"
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-background">
+                {children ?? (
+                  <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover object-top" />
+                )}
+                {/* wake overlay */}
+                <motion.span
+                  aria-hidden
+                  className="absolute inset-0 z-[2] bg-black"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: woken ? 0 : 1 }}
+                  transition={{ duration: 0.55, ease: "easeOut", delay: 0.35 }}
+                  onAnimationComplete={() => setWoken(true)}
                 />
-              )}
-              {/* wake overlay */}
-              <motion.span
-                aria-hidden
-                className="absolute inset-0 z-[2] bg-black"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: woken ? 0 : 1 }}
-                transition={{ duration: 0.55, ease: "easeOut", delay: 0.35 }}
-                onAnimationComplete={() => setWoken(true)}
-              />
-              {/* scanline sweep */}
-              <motion.span
-                aria-hidden
-                className="absolute inset-x-0 z-[3] h-16 bg-[linear-gradient(to_bottom,transparent,hsl(var(--background)/0.16),transparent)]"
-                initial={{ y: "-20%", opacity: 0 }}
-                animate={{ y: "420%", opacity: [0, 1, 1, 0] }}
-                transition={{ duration: 1.1, ease: "easeInOut", delay: 0.45, times: [0, 0.2, 0.8, 1] }}
-              />
-              <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', z-[4] text-white/50'))}>
-    <span className="absolute border-current top-[10px] left-[10px] border-t border-l" style={{ width: 14, height: 14 }} />
-    <span className="absolute border-current top-[10px] right-[10px] border-t border-r" style={{ width: 14, height: 14 }} />
-    <span className="absolute border-current bottom-[10px] left-[10px] border-b border-l" style={{ width: 14, height: 14 }} />
-    <span className="absolute border-current bottom-[10px] right-[10px] border-b border-r" style={{ width: 14, height: 14 }} />
-  </span>
+                {/* scanline sweep */}
+                <motion.span
+                  aria-hidden
+                  className="absolute inset-x-0 z-[3] h-16 bg-[linear-gradient(to_bottom,transparent,hsl(var(--background)/0.16),transparent)]"
+                  initial={{ y: "-20%", opacity: 0 }}
+                  animate={{ y: "420%", opacity: [0, 1, 1, 0] }}
+                  transition={{ duration: 1.1, ease: "easeInOut", delay: 0.45, times: [0, 0.2, 0.8, 1] }}
+                />
+                <span aria-hidden className={cn("pointer-events-none absolute inset-0 z-[4] text-white/50")}>
+                  <span className="absolute border-current top-[6px] left-[6px] border-t border-l" style={{ width: 10, height: 10 }} />
+                  <span className="absolute border-current top-[6px] right-[6px] border-t border-r" style={{ width: 10, height: 10 }} />
+                  <span className="absolute border-current bottom-[6px] left-[6px] border-b border-l" style={{ width: 10, height: 10 }} />
+                  <span className="absolute border-current bottom-[6px] right-[6px] border-b border-r" style={{ width: 10, height: 10 }} />
+                </span>
+              </div>
             </div>
           </div>
 

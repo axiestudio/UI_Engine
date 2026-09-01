@@ -13,9 +13,9 @@ import {
   offset,
   autoUpdate,
 } from "@floating-ui/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell, SectionHead, MonoLabel } from "@/components/primitives/handcraft"
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -116,8 +116,9 @@ function StatusPill({
 
   return (
     <>
-      <button
+      <Button
         type="button"
+        variant="ghost"
         ref={refs.setReference}
         {...getReferenceProps()}
         aria-expanded={open}
@@ -132,7 +133,7 @@ function StatusPill({
           )}
         />
         {service.name}
-      </button>
+      </Button>
       {open && (
         <FloatingPortal>
           <motion.div
@@ -167,13 +168,14 @@ function StatusPill({
               </div>
             </dl>
             <div className="mt-3 border-t border-border pt-3">
-              <MonoLabel tick={false}>Last incident</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Last incident</span>
               <p className="mt-1.5 font-mono text-[10px] leading-4 text-muted-foreground">
                 {service.incident}
               </p>
             </div>
-            <button
+            <Button
               type="button"
+              variant="ghost"
               onClick={runCheck}
               disabled={checking}
               aria-busy={checking}
@@ -187,7 +189,7 @@ function StatusPill({
               ) : (
                 "Run check"
               )}
-            </button>
+            </Button>
           </motion.div>
         </FloatingPortal>
       )}
@@ -216,9 +218,18 @@ export function FloatingStatusPills({
   const degraded = SERVICES.filter((s) => s.status !== "operational").length
 
   return (
-    <SectionShell width={920} tone={tone} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={REVEAL} transition={{ duration: 0.8, ease: EASE }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-[34px] text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
       <div className="mt-10 flex flex-wrap items-center gap-2.5">
         {SERVICES.map((service) => (
@@ -237,6 +248,7 @@ export function FloatingStatusPills({
         <span>{caption}</span>
         <span aria-hidden>●</span>
       </p>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

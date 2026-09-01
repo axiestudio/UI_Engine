@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — onboarding that points at the REAL UI, not screenshots.
@@ -52,13 +53,13 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
                 <p className="text-xs text-muted-foreground">Step {step + 1} / {steps.length}</p>
                 <h4 className="mt-1.5 font-display text-base font-semibold tracking-tight">{steps[step].title}</h4>
               </div>
-              <button aria-label="Exit tour" onClick={onExit} className="grid size-7 place-items-center rounded-md text-muted-foreground hover:bg-muted"><X className="size-4" /></button>
+              <Button type="button" variant="ghost" aria-label="Exit tour" onClick={onExit} className="grid size-7 place-items-center rounded-md text-muted-foreground hover:bg-muted"><X className="size-4" /></Button>
             </div>
             <div className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{steps[step].body}</div>
             <div className="mt-5 flex items-center gap-2">
-              <button onClick={() => (step === steps.length - 1 ? onExit?.() : go(step + 1))} className="h-9 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm">{step === steps.length - 1 ? "Finish" : "Next"}</button>
-              {step > 0 && <button onClick={() => go(step - 1)} className="h-9 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted">Back</button>}
-              <button onClick={onExit} className="ml-auto text-sm font-medium text-muted-foreground hover:text-foreground">Skip tour</button>
+              <Button type="button" variant="ghost" onClick={() => (step === steps.length - 1 ? onExit?.() : go(step + 1))} className="h-9 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm">{step === steps.length - 1 ? "Finish" : "Next"}</Button>
+              {step > 0 && <Button type="button" variant="ghost" onClick={() => go(step - 1)} className="h-9 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted">Back</Button>}
+              <Button type="button" variant="ghost" onClick={onExit} className="ml-auto text-sm font-medium text-muted-foreground hover:text-foreground">Skip tour</Button>
             </div>
           </motion.div>
         </AnimatePresence>

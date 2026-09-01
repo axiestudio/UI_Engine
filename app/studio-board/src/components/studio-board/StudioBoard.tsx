@@ -1,8 +1,8 @@
 import * as React from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Check, Pause, Play, StepForward } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { SegmentedControl } from "segmented-control"
 import { DragNumberField } from "drag-number-field"
@@ -72,6 +72,7 @@ function Flap({ text, width, className }: { text: string; width: number; classNa
   const chars = text.toUpperCase().slice(0, width).padEnd(width, " ").split("")
   return (
     <span className={cn("inline-flex select-none", className)} aria-hidden>
+      <MotionConfig reducedMotion="user">
       {chars.map((ch, i) => (
         <span key={i} className="relative inline-flex h-[22px] w-[13px] items-center justify-center overflow-hidden rounded-[3px] bg-background/10">
           <AnimatePresence initial={false}>
@@ -88,7 +89,8 @@ function Flap({ text, width, className }: { text: string; width: number; classNa
             </motion.span>
           </AnimatePresence>
           <span aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-background/20" />
-        </span>
+              </MotionConfig>
+    </span>
       ))}
     </span>
   )
@@ -200,21 +202,21 @@ export function StudioBoard({
         <span className="text-[12px] text-muted-foreground">· {day}</span>
         <div className="ml-auto flex items-center gap-2">
           <SegmentedControl size="sm" value={view} onChange={setView} options={VIEW_OPTS} />
-          <button
+          <Button type="button" variant="ghost"
             onClick={() => setRunning((r) => !r)}
             className={cn("flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted", running && "border-[hsl(var(--ok)/0.5)] text-[hsl(var(--ok))]")}
           >
             {running ? <Pause className="size-3.5" /> : <Play className="size-3.5" />} {running ? "Hold clock" : "Run clock"}
-          </button>
-          <button
+          </Button>
+          <Button type="button" variant="ghost"
             onClick={() => setNow((n) => n + 1)}
             disabled={running}
             className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-2.5 text-[11px] font-semibold hover:bg-muted disabled:opacity-40"
             aria-label="Step one minute"
           >
             <StepForward className="size-3.5" /> +1 min
-          </button>
-        </div>
+          </Button>
+    </div>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-auto p-4 lg:grid-cols-[250px_minmax(0,1fr)_290px]">
@@ -276,9 +278,9 @@ export function StudioBoard({
         {/* the solari board */}
         <section className="flex min-w-0 flex-col overflow-hidden rounded-lg border bg-foreground text-background">
           <header className="flex h-9 shrink-0 items-center justify-between border-b border-background/15 px-3">
-            <MonoLabel tick={false} className="text-[10px] text-background/60">Solari · appointments</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-background/60">Solari · appointments</span>
             <span className="flex items-center gap-2 font-mono text-[13px] font-bold tabular-nums">
-              <span aria-hidden className={cn("size-1.5 rounded-full", running ? "animate-pulse bg-[hsl(var(--ok))]" : "bg-background/40")} />
+              <span aria-hidden className={cn("size-1.5 rounded-full", running ? "motion-safe:motion-safe:animate-pulse bg-[hsl(var(--ok))]" : "bg-background/40")} />
               {fmt(now)}
             </span>
           </header>

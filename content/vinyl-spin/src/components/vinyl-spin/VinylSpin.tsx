@@ -2,6 +2,8 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Pause, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
+import { Button } from "@/components/ui/button"
 
 
 // ═══ JOB      give a quote/track a ritual object instead of a card
@@ -72,7 +74,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
 
         {/* copy + play control */}
         <div className={cn("min-w-0 flex-1", compact ? "text-center sm:text-left" : "")}>
-          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{artist}</span>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{artist}</span>
           <h2 className={cn("mt-3 font-display font-bold tracking-tight", compact ? "text-2xl" : "text-[32px] sm:text-[40px]")}>{title}</h2>
           <AnimatePresence mode="wait">
             {out && (
@@ -81,17 +83,12 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
               </motion.blockquote>
             )}
           </AnimatePresence>
-          <button
-            type="button"
-            aria-pressed={out}
-            onClick={() => { const next = !out; if (playingProp === undefined) setInner(next); onToggle?.(next) }}
-            className={cn("mt-6 inline-flex h-12 items-center gap-3 rounded-full pl-2 pr-6 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors", out ? "bg-foreground text-background" : "border-2 border-foreground text-foreground hover:bg-foreground/5")}
-          >
+          <Button type="button" aria pressed={out} onClick={() => { const next = !out; if (playingProp === undefined) setInner(next); onToggle?.(next) }} variant="default" className={cn(cn("mt-6 inline-flex h-12 items-center gap-3 rounded-full pl-2 pr-6 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors", out ? "bg-foreground text-background" : "border-2 border-foreground text-foreground hover:bg-foreground/5"))}>
             <span className={cn("grid size-9 place-items-center rounded-full", out ? "bg-background text-foreground" : "bg-foreground text-background")}>
               {out ? <Pause className="size-4" /> : <Play className="size-4 translate-x-[1px]" />}
             </span>
             {out ? "Let it run" : "Drop the needle"}
-          </button>
+          
           <p className="sr-only">{out ? "Now spinning." : "Stopped."}</p>
         </div>
       </div>

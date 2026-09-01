@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Bell, ConciergeBell, PhoneCall, Wifi } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, Ordinal } from "@/components/primitives/handcraft"
 import { TabsOverflowStrip, type AppTab } from "tabs-overflow-strip"
 import { DragNumberField } from "drag-number-field"
 import { OfflineQueueBanner } from "offline-queue-banner"
@@ -108,6 +108,7 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Floor manager</h2>
         <span className="text-[12px] text-muted-foreground">{room}</span>
@@ -115,9 +116,9 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
         <span className={cn("flex items-center gap-1.5 rounded border px-2 py-0.5 text-[11px] font-semibold", online ? "border-border text-muted-foreground" : "border-[hsl(var(--err)/0.4)] bg-[hsl(var(--err)/0.08)] text-[hsl(var(--err))]")}>
           <Wifi className="size-3.5" /> {online ? "wi-fi ok" : "wi-fi drop"}
         </span>
-        <button onClick={() => push("shift note pinned to the pass — 86ers all night")} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
+        <Button type="button" variant="ghost" onClick={() => push("shift note pinned to the pass — 86ers all night")} className="ml-auto flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
           <ConciergeBell className="size-3.5" /> Shift note
-        </button>
+        </Button>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[250px_minmax(0,1fr)_250px]">
@@ -135,13 +136,14 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
                   <div className="flex items-baseline justify-between">
                     <p className="text-[12px] font-semibold">{c.caller}</p>
                     <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{c.waited}</span>
-                  </div>
+          </MotionConfig>
+    </div>
                   <p className="text-[11px] text-muted-foreground">{c.about}</p>
                   <div className="mt-1.5 flex gap-1.5">
                     {["→ host", "→ kitchen", "take booking"].map((r) => (
-                      <button key={r} onClick={() => push(`${c.caller} routed — ${r.replace("→ ", "")}`)} className="rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+                      <Button type="button" variant="ghost" key={r} onClick={() => push(`${c.caller} routed — ${r.replace("→ ", "")}`)} className="rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
                         {r}
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </li>
@@ -163,13 +165,13 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
           <div className="max-h-[380px] overflow-y-auto">
             <div className="sticky top-0 z-10 flex flex-wrap gap-1.5 border-b bg-card/95 px-3 py-2 backdrop-blur">
               {board.map((t) => (
-                <button
+                <Button type="button" variant="ghost"
                   key={t.id}
                   onClick={() => setSel(t.table)}
                   className={cn("rounded border px-2 py-0.5 font-mono text-[11px] font-bold tabular-nums transition-colors", RAIL_STYLES[t.state], sel === t.table && "ring-2 ring-[hsl(var(--app-focus))] ring-offset-1")}
                 >
                   {t.table}
-                </button>
+                </Button>
               ))}
             </div>
             <table className="w-full border-collapse text-[12px]">
@@ -203,7 +205,7 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
             <header className="flex h-9 items-center border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Covers</header>
             <div className="space-y-3 p-3">
               <div className="flex items-baseline justify-between">
-                <MonoLabel className="text-[10px] text-muted-foreground">Seated now</MonoLabel>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Seated now</span>
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.span key={seated} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 10, opacity: 0 }} className="font-mono text-[26px] font-black tabular-nums">
                     {seated}
@@ -226,14 +228,14 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
                 {activePings.length === 0 && <li className="px-3 py-3 text-[11px] text-muted-foreground">Nothing asked for from this table.</li>}
                 {activePings.map((p, i) => (
                   <motion.li key={p.id} layout initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex items-center gap-2 px-3 py-1.5">
-                    <Ordinal n={i + 1} className="shrink-0" />
+                    <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground shrink-0">{String(i + 1).padStart(2, "0")}</span>
                     <div className="min-w-0 flex-1">
                       <p className="text-[12px]">{p.text}</p>
                       <p className="font-mono text-[10px] tabular-nums text-muted-foreground">{p.at}</p>
                     </div>
-                    <button onClick={() => { setInbox((ps) => ps.filter((x) => x.id !== p.id)); push(`ping cleared — ${p.table}`) }} className="text-[10px] font-bold uppercase text-muted-foreground hover:text-[hsl(var(--ok))]">
+                    <Button type="button" variant="ghost" onClick={() => { setInbox((ps) => ps.filter((x) => x.id !== p.id)); push(`ping cleared — ${p.table}`) }} className="text-[10px] font-bold uppercase text-muted-foreground hover:text-[hsl(var(--ok))]">
                       done
-                    </button>
+                    </Button>
                   </motion.li>
                 ))}
               </AnimatePresence>

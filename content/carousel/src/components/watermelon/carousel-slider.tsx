@@ -13,8 +13,7 @@ import {
   type PanInfo,
   type Variants,
 } from "motion/react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { FavouriteIcon } from "@hugeicons/core-free-icons";
+import { Heart } from "lucide-react"
 
 /* ---------------- Types ---------------- */
 
@@ -87,8 +86,7 @@ const variants: Variants = {
 export const CarouselSlider: React.FC<CarouselSliderProps> = ({
   slides = DEFAULT_SLIDES,
   favouriteIcon = (props) => (
-    <HugeiconsIcon
-      icon={FavouriteIcon}
+    <Heart
       size={26}
       strokeWidth={1.5}
       {...props}

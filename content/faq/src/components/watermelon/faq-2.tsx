@@ -3,7 +3,7 @@
  * Item: faq-2 (type registry:ui). Fetched 2026-08-29. Do not edit unless intentionally adopting upstream changes.
  */
 import { useState } from "react";
-import { FiPlus, FiMinus } from "react-icons/fi";
+import { Plus, Minus } from "lucide-react"
 import {
   Accordion,
   AccordionContent,
@@ -124,11 +124,11 @@ export default function FAQ2({
                     {item.question}
                   </span>
                   <span className="bg-muted text-muted-foreground group-hover:bg-muted-foreground/20 group-data-[state=open]:bg-primary group-data-[state=open]:text-primary-foreground flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300">
-                    <FiPlus
+                    <Plus
                       size={12}
                       className="block group-data-[state=open]:hidden"
                     />
-                    <FiMinus
+                    <Minus
                       size={12}
                       className="hidden group-data-[state=open]:block"
                     />

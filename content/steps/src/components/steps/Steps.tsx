@@ -76,7 +76,7 @@ function StepCard({
             ink && "transition-colors duration-500 group-hover:bg-background/5",
           )}
         >
-          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100'))}>
+          {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-foreground/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100")}>
     <span className="absolute border-current top-[8px] left-[8px] border-t border-l" style={{ width: 11, height: 11 }} />
     <span className="absolute border-current top-[8px] right-[8px] border-t border-r" style={{ width: 11, height: 11 }} />
     <span className="absolute border-current bottom-[8px] left-[8px] border-b border-l" style={{ width: 11, height: 11 }} />

@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Database, Flame, GitCommitHorizontal, History, Pause, Play, Server } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { RadialGauge } from "radial-gauge"
@@ -129,13 +128,15 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* masthead — two-row editorial header, not the 48px strip */}
       <header className="flex flex-wrap items-end gap-x-6 gap-y-3 border-b bg-card px-5 pb-4 pt-5">
         <div className="min-w-0">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">MLOPS · MONITOR 02</p>
           <h2 className="mt-1.5 font-display text-2xl font-semibold tracking-tight">Model monitor</h2>
           <p className="mt-1 font-mono text-[12px] tabular-nums text-muted-foreground">{model} · {version} · shadow 5%</p>
-        </div>
+          </MotionConfig>
+    </div>
         <div className="ml-auto flex flex-wrap items-center gap-2.5">
           <span
             className={cn(
@@ -156,7 +157,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
         {/* latency — notch gauge beside the real p50/p95/p99 line chart */}
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card lg:col-span-8">
           <header className="flex flex-wrap items-center gap-x-4 gap-y-1 border-b bg-muted/30 px-3 py-2">
-            <MonoLabel className="text-[10px] text-muted-foreground">Serving latency</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Serving latency</span>
             <span className="ml-auto flex flex-wrap items-center gap-3">
               {latencyMeta.map((m) => (
                 <span key={m.dataKey} className="flex items-center gap-1.5 font-mono text-[11px] tabular-nums text-muted-foreground">
@@ -210,7 +211,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
         {/* drift — 26-week heatmap rail, tooltip on, legend from the leaf */}
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card lg:col-span-4">
           <header className="flex items-center justify-between border-b bg-muted/30 px-3 py-2">
-            <MonoLabel className="text-[10px] text-muted-foreground">Feature drift</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Feature drift</span>
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">psi/day · 26 wk</span>
           </header>
           <div className="p-3">
@@ -225,7 +226,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
         {/* feature store — dense table, count chip */}
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card lg:col-span-5">
           <header className="flex items-center justify-between border-b bg-muted/30 px-3 py-2">
-            <MonoLabel className="text-[10px] text-muted-foreground">Feature store</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Feature store</span>
             <Badge variant="secondary" className="font-mono text-[10px]">{served}/{features.length} served</Badge>
           </header>
           <table className="w-full border-collapse text-[12px]">
@@ -265,7 +266,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
         {/* error budget — real burn trajectory (vendored Bklit area) under the SLO odometer */}
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card lg:col-span-3">
           <header className="flex items-center justify-between border-b bg-muted/30 px-3 py-2">
-            <MonoLabel className="text-[10px] text-muted-foreground">Error budget</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Error budget</span>
             <Flame className="size-3.5 text-muted-foreground" />
           </header>
           <div className="space-y-2 p-3">
@@ -302,7 +303,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
         {/* retrain — cron preview keeps recomputing */}
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card lg:col-span-4">
           <header className="flex items-center justify-between border-b bg-muted/30 px-3 py-2">
-            <MonoLabel className="text-[10px] text-muted-foreground">Retrain schedule</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Retrain schedule</span>
             <GitCommitHorizontal className="size-3.5 text-muted-foreground" />
           </header>
           <div className="space-y-2 p-3">
@@ -315,7 +316,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
         <section className="min-w-0 overflow-hidden rounded-lg border bg-card lg:col-span-12">
           <header className="flex items-center gap-3 border-b bg-muted/30 px-3 py-2">
             <History className="size-3.5 text-muted-foreground" />
-            <MonoLabel className="text-[10px] text-muted-foreground">Deploy timeline</MonoLabel>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Deploy timeline</span>
             <span className="ml-auto font-mono text-[11px] tabular-nums text-muted-foreground">last 4 days · {DEFAULT_DEPLOYS.length} events</span>
           </header>
           <div className="max-h-56 overflow-y-auto p-3">

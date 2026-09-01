@@ -1,8 +1,8 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Plus, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
 
 // ═══ JOB         Draft an invoice without doing any math in your head.
@@ -74,16 +74,25 @@ export function InvoiceBuilder({
   const total = subtotal + moms
 
   return (
-    <SectionShell tone={tone} width={760} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: reduce ? 0 : 0.1 }}>
         <div className="mt-10">
           <div className={cn("mx-auto w-full max-w-[560px] overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
             <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
-              <MonoLabel>Quiet Times Studio — Faktura</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Quiet Times Studio — Faktura</span>
               <span className="font-mono text-[11px] font-bold text-muted-foreground">Jönköping · #042</span>
             </div>
 
@@ -132,27 +141,29 @@ export function InvoiceBuilder({
                         aria-label={`Line ${i + 1} price in kronor`}
                         className={cn(FIELD, "text-right font-mono tabular-nums")}
                       />
-                      <button
+                      <Button
                         type="button"
+                        variant="ghost"
                         onClick={() => removeRow(row.id)}
                         aria-label={`Remove line ${i + 1}`}
                         className="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         <X className="size-4" aria-hidden />
-                      </button>
+                      </Button>
                     </div>
                   </motion.div>
                 ))}
               </AnimatePresence>
 
-              <button
+              <Button
                 type="button"
+                variant="ghost"
                 onClick={addRow}
                 className="mt-2 flex h-9 w-full items-center justify-center gap-1.5 rounded-md border border-dashed border-border text-[13px] font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <Plus className="size-4" aria-hidden />
                 Add row
-              </button>
+              </Button>
 
               <div className="mt-5 space-y-1.5 border-t border-border pt-4">
                 <div className="flex items-center justify-between text-[13px]">
@@ -186,6 +197,7 @@ export function InvoiceBuilder({
           </p>
         </div>
       </InView>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

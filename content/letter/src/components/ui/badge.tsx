@@ -3,7 +3,7 @@
  * Item: badge (type registry:ui). Snapshot: UI/_registry/watermelon/r/badge.json
  */
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
+import { Slot as SlotPrimitive } from "radix-ui"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
@@ -36,7 +36,7 @@ function Badge({
   ...props
 }: React.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "span"
+  const Comp = asChild ? SlotPrimitive.Root : "span"
 
   return (
     <Comp

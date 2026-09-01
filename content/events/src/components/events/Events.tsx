@@ -1,6 +1,5 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
-
 import { BorderTrail } from "@/components/primitives/border-trail"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
@@ -81,7 +80,7 @@ export function Events({
               )}
             >
               {event.featured && <BorderTrail size={36} className={cn(ink ? "bg-background" : "bg-foreground")} />}
-              {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0"('lit', ', text-foreground/20'))}>
+              {!ink && <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-foreground/20")}>
     <span className="absolute border-current top-[7px] left-[7px] border-t border-l" style={{ width: 10, height: 10 }} />
     <span className="absolute border-current top-[7px] right-[7px] border-t border-r" style={{ width: 10, height: 10 }} />
     <span className="absolute border-current bottom-[7px] left-[7px] border-b border-l" style={{ width: 10, height: 10 }} />

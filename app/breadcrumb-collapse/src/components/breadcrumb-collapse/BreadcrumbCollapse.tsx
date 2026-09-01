@@ -1,5 +1,6 @@
 import * as React from "react"
 import { ChevronRight, ChevronsUpDown, House } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — deep nesting is a fact of webapps; the bar adapts.
@@ -52,7 +53,7 @@ export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps
               <React.Fragment key={c.label + i}>
                 {i === 1 && hidden.length > 0 && (
                   <li className="flex items-center">
-                    <button type="button" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)} className="rounded px-1.5 py-1 text-muted-foreground hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring">…</button>
+                    <Button type="button" variant="ghost" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)} className="rounded px-1.5 py-1 text-muted-foreground hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring">…</Button>
                   </li>
                 )}
                 <li className={cn("flex min-w-0 items-center gap-1", afterGap && "")}>

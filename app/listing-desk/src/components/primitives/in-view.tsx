@@ -1,10 +1,12 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/in-view.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/in-view.tsx
+ * Vendored from motion-primitives by ibelick (MIT): components/core/in-view.tsx
+ * Snapshot: UI/_registry/motion-primitives/components-core/in-view.tsx (local tokenized variant)
  */
 'use client';
-import { type ReactNode, useRef, useState } from 'react';
-import { motion, useInView, type Variant, type Transition, type UseInViewOptions,  } from 'motion/react';
+import { useMemo, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import { motion, useInView } from 'motion/react';
+import type { Variant, Transition, UseInViewOptions } from 'motion/react';
 
 export type InViewProps = {
   children: ReactNode;
@@ -16,6 +18,8 @@ export type InViewProps = {
   viewOptions?: UseInViewOptions;
   as?: React.ElementType;
   once?: boolean
+  delay?: number
+  className?: string
 };
 
 const defaultVariants = {
@@ -29,10 +33,16 @@ export function InView({
   transition,
   viewOptions,
   as = 'div',
-  once
+  once,
+  delay = 0,
+  className
 }: InViewProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, viewOptions);
+  const reduce = useMemo(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    [],
+  );
 
   const [isViewed, setIsViewed] = useState(false)
 
@@ -41,14 +51,15 @@ export function InView({
   return (
     <MotionComponent
       ref={ref}
-      initial='hidden'
+      initial={reduce ? 'visible' : 'hidden'}
       onAnimationComplete={() => {
         if (once) setIsViewed(true)
       }}
       animate={(isInView || isViewed) ? "visible" : "hidden"}
 
       variants={variants}
-      transition={transition}
+      transition={reduce ? { duration: 0 } : { ...transition, delay }}
+      className={className}
     >
       {children}
     </MotionComponent>

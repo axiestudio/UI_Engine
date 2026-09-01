@@ -1,8 +1,8 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ChevronDown, ChevronRight, HardHat, MapPin, NotebookPen, UploadCloud } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel } from "@/components/primitives/handcraft"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { AnnotationPinLayer, type Pin } from "annotation-pin-layer"
@@ -131,20 +131,22 @@ export function SiteLogDesk({
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Site daily log</h2>
         <span className="text-[12px] text-muted-foreground">{site}</span>
         <span className="text-[12px] text-muted-foreground">· {logDate} · 11 °C, wind 9 m/s</span>
         <div className="ml-auto flex items-center gap-2">
           <span className="font-mono text-[11px] text-muted-foreground">{signedLeaves.length}/{allLeaves.length} signed</span>
-          <button
+          <Button type="button" variant="ghost"
             onClick={() => onSubmit?.(signedLeaves.length)}
             disabled={signedLeaves.length === 0}
             className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted disabled:opacity-40"
           >
             <HardHat className="size-3.5" /> Submit day log
-          </button>
-        </div>
+          </Button>
+          </MotionConfig>
+    </div>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-auto p-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_290px]">
@@ -153,7 +155,7 @@ export function SiteLogDesk({
           <section className="min-w-0 overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">WBS · day sign-off</span>
-              <MonoLabel tick={false} className="text-[10px] text-muted-foreground">FIDIC programme rev 7</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">FIDIC programme rev 7</span>
             </header>
             <Table>
               <TableHeader>
@@ -177,13 +179,13 @@ export function SiteLogDesk({
                         />
                       </TableCell>
                       <TableCell className="px-2 py-1" style={{ paddingLeft: `${8 + depth * 18}px` }}>
-                        <button
+                        <Button type="button" variant="ghost"
                           onClick={() => setExpanded((x) => (x.includes(n.id) ? x.filter((i) => i !== n.id) : [...x, n.id]))}
                           className={cn("mr-1 inline-flex size-4 items-center justify-center rounded align-[-3px] hover:bg-muted", !n.kids?.length && "invisible")}
                           aria-label={expanded.includes(n.id) ? `Collapse ${n.label}` : `Expand ${n.label}`}
                         >
                           {expanded.includes(n.id) ? <ChevronDown className="size-3" /> : <ChevronRight className="size-3" />}
-                        </button>
+                        </Button>
                         <span className={cn("font-mono text-[11px] text-muted-foreground", depth > 0 && "pl-1")}>{n.code}</span>
                         <span className={cn("ml-2 text-[12px]", depth === 0 ? "font-bold" : "font-medium")}>{n.label}</span>
                       </TableCell>
@@ -228,9 +230,9 @@ export function SiteLogDesk({
                 placeholder="Log an event for the record…"
                 className="h-8 flex-1 rounded-md border bg-background px-2.5 text-[12px] outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
               />
-              <button onClick={addNote} className="flex h-8 items-center gap-1 rounded-md border bg-background px-2.5 text-[11px] font-semibold hover:bg-muted">
+              <Button type="button" variant="ghost" onClick={addNote} className="flex h-8 items-center gap-1 rounded-md border bg-background px-2.5 text-[11px] font-semibold hover:bg-muted">
                 <NotebookPen className="size-3.5" /> Add
-              </button>
+              </Button>
             </div>
           </section>
         </div>

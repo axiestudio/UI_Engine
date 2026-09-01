@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ExternalLink, Globe } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — answers people can trust have receipts visible on hover.
@@ -22,15 +23,16 @@ export function CitationHoverCard({ children, sources, className }: CitationHove
   const parts = React.useMemo(() => children.split(/(\[\d+\])/g), [children])
   return (
     <div ref={host} className={cn("relative text-[13px] leading-[1.75] font-sans", className)} onMouseLeave={() => setOpen(null)}>
+      <MotionConfig reducedMotion="user">
       {parts.map((p, i) => {
         const m = p.match(/^\[(\d+)\]$/)
         if (!m) return <React.Fragment key={i}>{p}</React.Fragment>
         const n = +m[1]
         const src = sources.find((s) => s.n === n)
         return (
-          <button key={i} onMouseEnter={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(), hr = host.current!.getBoundingClientRect(); setOpen(n); setPos({ x: r.left - hr.left + r.width / 2, bottom: hr.bottom - r.top + 10 }) }} onFocus={(e) => { const r = e.currentTarget.getBoundingClientRect(), hr = host.current!.getBoundingClientRect(); setOpen(n); setPos({ x: r.left - hr.left + r.width / 2, bottom: hr.bottom - r.top + 10 }) }} aria-label={src ? `Citation ${n}: ${src.title}` : `Citation ${n}`} className="mx-px inline-block align-super font-mono text-[10px] font-medium text-[hsl(var(--info))] underline decoration-dotted underline-offset-2">
+          <Button type="button" variant="ghost" key={i} onMouseEnter={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(), hr = host.current!.getBoundingClientRect(); setOpen(n); setPos({ x: r.left - hr.left + r.width / 2, bottom: hr.bottom - r.top + 10 }) }} onFocus={(e) => { const r = e.currentTarget.getBoundingClientRect(), hr = host.current!.getBoundingClientRect(); setOpen(n); setPos({ x: r.left - hr.left + r.width / 2, bottom: hr.bottom - r.top + 10 }) }} aria-label={src ? `Citation ${n}: ${src.title}` : `Citation ${n}`} className="mx-px inline-block align-super font-mono text-[10px] font-medium text-[hsl(var(--info))] underline decoration-dotted underline-offset-2">
             {p}
-          </button>
+          </Button>
         )
       })}
       <AnimatePresence>
@@ -43,6 +45,7 @@ export function CitationHoverCard({ children, sources, className }: CitationHove
           </motion.aside>
         )}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }

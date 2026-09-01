@@ -38,7 +38,7 @@ export function FilmStrip({ frames, eyebrow = "THE REEL", title, height = "320vh
       <section className={cn("w-full px-4 py-16 sm:px-6", className)}>
         <div className="mx-auto mb-8 flex w-full max-w-[1120px] items-end justify-between px-6">
           <div>
-            <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+            <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
             {title && <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
           </div>
         </div>
@@ -69,7 +69,7 @@ function HeadLine({ eyebrow, title, idx, total }: { eyebrow: string; title?: Rea
   return (
     <div className="mx-auto flex w-full max-w-[1120px] items-end justify-between px-6">
       <div>
-        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
         {title && <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>}
       </div>
       <p className="font-mono text-[12px] font-bold tracking-[0.18em] text-muted-foreground">

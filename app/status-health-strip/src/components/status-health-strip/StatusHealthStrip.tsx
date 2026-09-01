@@ -1,6 +1,7 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { AlertTriangle, ChevronDown } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — "is it us?" answered in one glance.
@@ -23,6 +24,7 @@ export function StatusHealthStrip({ services, region, onRegion, className }: Sta
   const bad = shown.filter((s) => s.state !== "operational")
   return (
     <div className={cn("border-b bg-muted/40 font-sans", className)} role="status" aria-label="System health">
+      <MotionConfig reducedMotion="user">
       <div className="mx-auto flex h-9 w-full max-w-[1200px] items-center gap-3 px-4 text-xs">
         <span className="flex items-center gap-1.5 font-semibold uppercase tracking-wider text-muted-foreground">
           <span className={cn("size-2 rounded-full", bad.length === 0 ? "bg-[hsl(var(--ok))] shadow-[0_0_8px_hsl(var(--ok)/0.7)]" : bad.some((b) => b.state === "down") ? "bg-[hsl(var(--err))]" : "bg-[hsl(var(--warn))]")} />
@@ -41,10 +43,11 @@ export function StatusHealthStrip({ services, region, onRegion, className }: Sta
               </select>
             </label>
           )}
-          <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex items-center gap-1 rounded px-2 py-1 text-xs font-medium text-muted-foreground hover:bg-muted">
+          <Button type="button" variant="ghost" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex items-center gap-1 rounded px-2 py-1 text-xs font-medium text-muted-foreground hover:bg-muted">
             details <ChevronDown className={cn("size-3 transition-transform", open && "rotate-180")} />
-          </button>
-        </div>
+          </Button>
+          </MotionConfig>
+    </div>
       </div>
       <AnimatePresence initial={false}>
         {open && (

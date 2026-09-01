@@ -26,7 +26,7 @@ export function InteractiveMagneticMenu({ eyebrow = "MENU", title = "A menu that
     <section className={cn("relative isolate overflow-hidden py-20 sm:py-28", className)}>
       <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]"('lit', ', justify-center text-muted-foreground'))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "justify-center text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <h2 className="mt-4 font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">{title}</h2>
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}>

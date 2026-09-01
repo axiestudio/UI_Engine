@@ -3,7 +3,6 @@ import { motion } from "motion/react"
 import { Check, Flame } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
-import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 
 // ═══ JOB         Seven days, three habits, zero drama — tap the week honest.
 // ═══ EMOTION     The quiet pride of a wall chart filling up.
@@ -60,13 +59,22 @@ export function HabitStrip({
   const hair = ink ? "border-background/15" : "border-border"
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView
         once
         variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+                <header className="">
+          {eyebrow != null && (
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
+          )}
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-[34px] text-foreground">{title}</h2>
+          {subtitle != null && (
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{subtitle}</p>
+          )}
+        </header>
       </InView>
 
       <InView
@@ -86,7 +94,7 @@ export function HabitStrip({
             >
               {/* ── chrome ── */}
               <div className={cn("border-b px-6 pb-5 pt-6", hair)}>
-                <MonoLabel className="text-muted-foreground">Quiet Times Studio · week 35</MonoLabel>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Quiet Times Studio · week 35</span>
                 <h3 className="mt-3 font-display text-xl font-bold tracking-[-0.02em]">{heading}</h3>
               </div>
 
@@ -189,6 +197,7 @@ export function HabitStrip({
           </figcaption>
         </figure>
       </InView>
-    </SectionShell>
+    </div>
+    </section>
   )
 }

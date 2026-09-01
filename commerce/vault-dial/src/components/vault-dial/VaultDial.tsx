@@ -22,7 +22,6 @@ const DEFAULT_TIERS: VaultTier[] = [
   { label: "Regular", code: "SOUTH-10", hint: "10% off, book the skylight" },
   { label: "Keyholder", code: "HOUSE-15", hint: "15% off, and a key to the press room" },
 ]
-export type VaultTier = { label: string; code: string; hint?: string }
 
 export type VaultDialProps = {
   eyebrow?: string

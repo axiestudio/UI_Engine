@@ -1,5 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
+import { cn } from "@/lib/utils"
 
 
 // ═══ JOB         Sticky quote parallax — a huge quote pinned while a photo drifts behind.

@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Armchair, Ticket, Wifi } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { MonoLabel, CornerTicks } from "@/components/primitives/handcraft"
 import { TabsOverflowStrip, type AppTab } from "tabs-overflow-strip"
 import { StatusHealthStrip, type Service } from "status-health-strip"
 import { EventTimelineDay, type TimelineEvent } from "event-timeline-day"
@@ -91,6 +91,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+      <MotionConfig reducedMotion="user">
       {/* screen header */}
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Rooftop ops</h2>
@@ -106,7 +107,8 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
         <p className="mt-1.5 flex items-center gap-1.5 text-[10px] text-muted-foreground">
           <Wifi className="size-3" /> dot on a tab = wifi degraded in that zone · badges auto-print on the WP80 printer
         </p>
-      </div>
+          </MotionConfig>
+    </div>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 xl:grid-cols-[300px_minmax(0,1fr)_320px]">
         {/* hostess switchboard */}
@@ -123,12 +125,12 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
                   <span className="font-mono text-[11px] tabular-nums text-muted-foreground">wait {w.wait}′</span>
                 </div>
                 <p className="text-[11px] text-muted-foreground">{w.party} pax · {w.preference}</p>
-                <button
+                <Button type="button" variant="ghost"
                   onClick={() => seat(w)}
                   className="mt-1.5 flex h-7 items-center gap-1.5 rounded-md border bg-background px-2.5 text-[11px] font-semibold hover:bg-muted"
                 >
                   <Armchair className="size-3" /> Seat next free
-                </button>
+                </Button>
               </li>
             ))}
             {walkins.length === 0 && <li className="px-3 py-4 text-center text-[11px] text-muted-foreground">Queue clear — next reservation block at 23:30.</li>}
@@ -163,7 +165,6 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
               </div>
               {/* pass preview */}
               <div className={cn("group relative overflow-hidden rounded-lg border bg-background p-3", voided && "opacity-60")}>
-                <CornerTicks size={10} offset={6} className="text-muted-foreground/50" />
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{venue}</span>
                   <Ticket className="size-3.5 text-muted-foreground" />
@@ -182,7 +183,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
                     </motion.span>
                   )}
                 </AnimatePresence>
-                <button
+                <Button type="button" variant="ghost"
                   onClick={() => {
                     if (voided) {
                       setVoided(false)
@@ -201,7 +202,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
                   )}
                 >
                   {voided ? "Restore pass" : "Void pass"}
-                </button>
+                </Button>
               </div>
             </div>
           </section>
@@ -222,7 +223,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
           <section className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Service log</span>
-              <MonoLabel className="text-[10px] text-muted-foreground" tick={false}>live</MonoLabel>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">live</span>
             </header>
             <div className="max-h-[430px] overflow-y-auto p-3">
               <EventTimelineDay events={log} />

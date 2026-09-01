@@ -1,8 +1,10 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
+import Autoplay from "embla-carousel-autoplay"
+import useEmblaCarousel from "embla-carousel-react"
 
 // ═══ JOB         Slideshow mask — an auto-advancing set of crossfading slides.
 // ═══ EMOTION     A clean rotation of imagery.
@@ -29,11 +31,19 @@ const DEFAULT_FRAMES = [
 ]
 export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotation.", frames = DEFAULT_FRAMES, interval = 4200, tone = "paper", className }: MediaSlideshowMaskProps) {
   const ink = tone === "ink"
+  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true },
+    [Autoplay({ delay: interval, stopOnInteraction: false, playOnInit: !reduce })],
+  )
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % frames.length), interval)
-    return () => clearInterval(t)
-  }, [frames.length, interval])
+    if (!emblaApi) return
+    const onSelect = () => setIdx(emblaApi.selectedScrollSnap())
+    onSelect()
+    emblaApi.on("select", onSelect)
+    return () => { emblaApi.off("select", onSelect) }
+  }, [emblaApi])
   const active = frames[idx]
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
@@ -44,25 +54,27 @@ export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotat
           <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
-    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
   </header>
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.97 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="relative mt-10 overflow-hidden rounded-xl border bg-muted">
-          <div className="relative aspect-[16/9]">
-            <AnimatePresence mode="sync">
-              <motion.img
-                key={active.id}
-                src={active.src}
-                alt={active.alt ?? ""}
-                className="absolute inset-0 h-full w-full object-cover"
-                initial={{ opacity: 0, clipPath: "inset(50% 0 50% 0)" }}
-                animate={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </AnimatePresence>
-            {active.caption && <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{active.caption}</span>}
+        <div ref={emblaRef} className="relative mt-10 overflow-hidden rounded-xl border bg-muted">
+          <div className="flex aspect-[16/9]">
+            {frames.map((f, i) => (
+              <div key={f.id} className="relative min-w-0 flex-[0_0_100%]">
+                <motion.img
+                  src={f.src}
+                  alt={f.alt ?? ""}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  initial={false}
+                  animate={{
+                    opacity: i === idx ? 1 : 0,
+                    clipPath: i === idx ? "inset(0 0 0 0)" : "inset(50% 0 50% 0)",
+                  }}
+                  transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                />
+                {f.caption && <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{f.caption}</span>}
+              </div>
+            ))}
           </div>
           <div className="flex justify-center gap-2 py-3">
             {frames.map((f, i) => (

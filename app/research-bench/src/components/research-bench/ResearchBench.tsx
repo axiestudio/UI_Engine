@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FlaskConical, NotebookPen, Play, Quote } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { Ordinal } from "@/components/primitives/handcraft"
 import { CodeSnippetPanel } from "code-snippet-panel"
 import { UndoHistorySlider, type Version } from "undo-history-slider"
 import { SmartSkeleton } from "smart-skeleton"
@@ -110,20 +110,20 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
             <ul className="p-1.5">
               {groups.map((g: DatasetGroup, i: number) => (
                 <li key={g.id}>
-                  <button
+                  <Button type="button" variant="ghost"
                     onClick={() => setActiveGroup(g.id)}
                     className={cn(
                       "flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left",
                       activeGroup === g.id ? "bg-accent text-accent-foreground" : "hover:bg-muted/50",
                     )}
                   >
-                    <Ordinal n={i + 1} total={groups.length} className="shrink-0" />
+                    <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground shrink-0">{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(groups.length).padStart(2, "0")}</span></span>
                     <span className="min-w-0 flex-1">
                       <span className="block text-[12px] font-semibold">{g.label}</span>
                       <span className="block truncate text-[11px] text-muted-foreground">{g.note}</span>
                     </span>
                     <span className="font-mono text-[12px] tabular-nums text-muted-foreground">{g.rows.toLocaleString("sv-SE")}</span>
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>
@@ -147,7 +147,7 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
                   <p className="mt-1 text-[13px] leading-[1.55] text-foreground/90">
                     {e.body.split(/(\[\d\])/).map((part: string, i: number) =>
                       /^\[\d\]$/.test(part) ? (
-                        <button
+                        <Button type="button" variant="ghost"
                           key={i}
                           onClick={() => setOpenCite((c: string | null) => (c === e.id + part ? null : e.id + part))}
                           className={cn(
@@ -156,7 +156,7 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
                           )}
                         >
                           {part.slice(1, -1)}
-                        </button>
+                        </Button>
                       ) : (
                         <span key={i}>{part}</span>
                       ),
@@ -178,9 +178,9 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
           <section className="overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Run cell · {group?.label}</span>
-              <button onClick={run} disabled={loading} className="flex h-7 items-center gap-1.5 rounded-md border bg-background px-2.5 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
+              <Button type="button" variant="ghost" onClick={run} disabled={loading} className="flex h-7 items-center gap-1.5 rounded-md border bg-background px-2.5 text-[11px] font-semibold hover:bg-muted disabled:opacity-40">
                 <Play className="size-3" /> {loading ? "Running…" : "Run"}
-              </button>
+              </Button>
             </header>
             <div className="p-3">
               <CodeSnippetPanel code={CODE.replace("{group}", group?.id ?? "")} language="python" title={`wear_by_strap.py · ${group?.id}`} />

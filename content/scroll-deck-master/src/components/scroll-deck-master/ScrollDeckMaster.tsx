@@ -1,6 +1,5 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Deck master — a fully scroll-controlled horizontal story with a HUD.

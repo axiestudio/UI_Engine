@@ -1,6 +1,7 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
@@ -106,22 +107,26 @@ export function AvailabilityMonth({
                   {monthLabel}
                 </h3>
                 <div className="flex gap-1.5">
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="icon"
                     onClick={() => go(-1)}
                     aria-label="Previous month"
-                    className="flex size-9 items-center justify-center rounded-md border border-border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="size-9 rounded-md"
                   >
                     <ChevronLeft className="size-4" aria-hidden />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="icon"
                     onClick={() => go(1)}
                     aria-label="Next month"
-                    className="flex size-9 items-center justify-center rounded-md border border-border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="size-9 rounded-md"
                   >
                     <ChevronRight className="size-4" aria-hidden />
-                  </button>
+                  </Button>
                 </div>
               </div>
 

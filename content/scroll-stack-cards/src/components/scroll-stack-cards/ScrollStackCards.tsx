@@ -1,7 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
-
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Stack-cards — a deck where cards peel off to reveal the next.
