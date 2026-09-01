@@ -1,6 +1,7 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Plus, X } from "lucide-react"
+import { toast, Toaster } from "sonner"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
@@ -9,6 +10,9 @@ import { InView } from "@/components/primitives/in-view"
 // ═══ EMOTION     The total quietly agreeing with itself.
 // ═══ SIGNATURE   Line items you add and strike out with a spring, a live
 //                 subtotal, moms at 25% and one big honest TOTAL — all tabular.
+//                 Draft → saved → paid is a real state machine: every move is
+//                 validated (rows must describe and price) and acknowledged by
+//                 preset-scoped Sonner toasts; the PAID stamp is in-document.
 
 export type InvoiceLine = {
   id: string
@@ -37,6 +41,9 @@ const DEFAULT_ITEMS: InvoiceLine[] = [
 const FIELD =
   "h-9 w-full rounded-md border border-border bg-background px-2.5 text-[13px] text-foreground placeholder:text-muted-foreground/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 
+const TOASTER_ID = "invoice-builder"
+const fakeLedger = () => new Promise<string>((r) => setTimeout(() => r("ok"), 800))
+
 const formatKr = (n: number) =>
   n.toLocaleString("sv-SE", {
     minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
@@ -59,6 +66,9 @@ export function InvoiceBuilder({
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const [rows, setRows] = React.useState<InvoiceLine[]>(items)
   const nextId = React.useRef(rows.length + 1)
+  const [status, setStatus] = React.useState<"draft" | "saved" | "paid">("draft")
+  const [paidAt, setPaidAt] = React.useState("")
+  const [paying, setPaying] = React.useState(false)
 
   const addRow = () => {
     setRows((rs) => [...rs, { id: `r${nextId.current++}`, label: "", price: "" }])
@@ -72,6 +82,60 @@ export function InvoiceBuilder({
   const subtotal = rows.reduce((sum, r) => sum + parseKr(r.price), 0)
   const moms = subtotal * 0.25
   const total = subtotal + moms
+
+  const firstBadRow = () =>
+    rows.length && rows.every((r) => r.label.trim() && parseKr(r.price) > 0)
+      ? -1
+      : rows.findIndex((r) => !r.label.trim() || parseKr(r.price) <= 0)
+
+  const save = () => {
+    if (!rows.length) {
+      toast.error("Nothing to invoice — the ticket has no lines", { toasterId: TOASTER_ID })
+      return
+    }
+    const bad = firstBadRow()
+    if (bad >= 0) {
+      toast.error(`Can't save — line ${bad + 1} ${rows[bad].label.trim() ? "has no price" : "has no description"}`, {
+        description: "Every line must say what was done and how much.",
+        duration: 6000,
+        toasterId: TOASTER_ID,
+      })
+      return
+    }
+    setStatus("saved")
+    toast.success("Draft #042 saved", { description: `${formatKr(total)} kr · moms 25% included`, toasterId: TOASTER_ID })
+  }
+
+  const markPaid = () => {
+    if (status !== "saved") {
+      toast.error("Save the draft first — nothing is in the ledger to settle", { duration: 5000, toasterId: TOASTER_ID })
+      return
+    }
+    setPaying(true)
+    toast.promise(fakeLedger, {
+      loading: "Recording payment with the ledger…",
+      success: () => {
+        setPaying(false)
+        setStatus("paid")
+        setPaidAt(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))
+        return "Marked paid — the stamp is on it"
+      },
+      error: () => { setPaying(false); return "The ledger said no — still on you to send" },
+      duration: 4500,
+      toasterId: TOASTER_ID,
+    })
+  }
+
+  const sendMail = () => {
+    if (status === "draft") {
+      toast.error("Can't send an unsaved draft", { description: "Save first, then the PDF goes out.", duration: 5000, toasterId: TOASTER_ID })
+      return
+    }
+    toast(status === "paid" ? "Paid receipt is on its way" : "Invoice #042 is on its way", {
+      description: status === "paid" ? "Stamp included — no reminder needed." : "Payment due in 30 days.",
+      toasterId: TOASTER_ID,
+    })
+  }
 
   return (
     <section className={cn("bg-background text-foreground", className)}>
@@ -90,7 +154,18 @@ export function InvoiceBuilder({
 
       <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: reduce ? 0 : 0.1 }}>
         <div className="mt-10">
-          <div className={cn("mx-auto w-full max-w-[560px] overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
+          <div className={cn("relative mx-auto w-full max-w-[560px] overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
+            {status === "paid" && (
+              <motion.span
+                initial={{ opacity: 0, scale: 1.6, rotate: -20 }}
+                animate={{ opacity: 1, scale: 1, rotate: -11 }}
+                transition={{ type: "spring", stiffness: 320, damping: 18 }}
+                aria-label="Marked paid"
+                className="pointer-events-none absolute right-6 top-16 z-10 select-none rounded-sm border-[3px] border-[hsl(var(--ok)/0.65)] px-3 py-0.5 font-mono text-[15px] font-black uppercase leading-tight tracking-[0.3em] text-[hsl(var(--ok)/0.8)]"
+              >
+                Paid<span className="block pt-0.5 text-center text-[9px] font-bold tracking-[0.18em] text-[hsl(var(--ok)/0.65)]">{paidAt}</span>
+              </motion.span>
+            )}
             <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Quiet Times Studio — Faktura</span>
               <span className="font-mono text-[11px] font-bold text-muted-foreground">Jönköping · #042</span>
@@ -183,6 +258,21 @@ export function InvoiceBuilder({
                   </span>
                 </div>
               </div>
+
+              <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-dashed border-border pt-4">
+                <Button type="button" variant="outline" size="sm" onClick={save} className="h-8 px-3 font-mono text-[11px] uppercase tracking-[0.14em]">
+                  {status === "draft" ? "Save draft" : "Save again"}
+                </Button>
+                <Button type="button" variant="outline" size="sm" disabled={status !== "saved" || paying} onClick={markPaid} className="h-8 px-3 font-mono text-[11px] uppercase tracking-[0.14em]">
+                  {paying ? "Recording…" : "Mark as paid"}
+                </Button>
+                <Button type="button" variant="outline" size="sm" disabled={status === "draft"} onClick={sendMail} className="h-8 px-3 font-mono text-[11px] uppercase tracking-[0.14em]">
+                  Send
+                </Button>
+                <span aria-live="polite" className="ml-auto font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                  {status === "paid" ? "settled · thank you" : status === "saved" ? "saved · unpaid" : "draft — unsaved"}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -198,6 +288,7 @@ export function InvoiceBuilder({
         </div>
       </InView>
     </div>
+      <Toaster id={TOASTER_ID} position="bottom-right" richColors closeButton />
     </section>
   )
 }

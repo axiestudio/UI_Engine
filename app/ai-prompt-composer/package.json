@@ -38,7 +38,9 @@
       "https://registry.watermelon.sh/r/textarea.json"
     ],
     "ai-elements": [
-      "https://registry.ai-sdk.dev/prompt-input.json"
+      "https://registry.ai-sdk.dev/prompt-input.json",
+      "https://registry.ai-sdk.dev/loader.json",
+      "https://registry.ai-sdk.dev/shimmer.json"
     ]
   },
   "scripts": {

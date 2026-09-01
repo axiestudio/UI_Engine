@@ -1,23 +1,42 @@
 import * as React from "react"
-import { ChevronRight, ChevronsUpDown, House } from "lucide-react"
+import { ChevronRight, House } from "lucide-react"
+import {
+  FloatingPortal,
+  autoUpdate,
+  flip,
+  hide,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useListNavigation,
+  useRole,
+  useTypeahead,
+} from "@floating-ui/react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — deep nesting is a fact of webapps; the bar adapts.
 // JOB      show location in hierarchy without stealing header width
 // SIGNATURE when tight, it collapses the MIDDLE (keeps home + tail), overflow
-//           folds into a `…` menu that opens upward with the hidden path.
-// MEASURE  real ResizeObserver math — this is navigation, not a mock.
-// API      items [{label, href?}] , `onOpenMenu` for your router.
-// A11Y     nav[aria-label] + ol semantics preserved even when collapsed.
+//           folds into a `…` menu that opens UPWARD (flip) with the hidden
+//           path — anchored by Floating UI, shift keeps it on stage.
+// MEASURE  real ResizeObserver math — this is navigation, not a mock. That
+//          measuring stays; the popup anchoring is pure useFloating
+//          [offset → flip → shift(8) → hide] + autoUpdate, no fixed coords.
+// API      items [{label, href?}] , `onNavigate` for your router (optional).
+// A11Y     nav[aria-label] + ol semantics preserved when collapsed; the menu
+//          is role=menu with roving focus + typeahead; trigger has
+//          aria-haspopup/aria-expanded.
 
 export type Crumb = { label: string; href?: string }
-export type BreadcrumbCollapseProps = { items: Crumb[]; className?: string }
+export type BreadcrumbCollapseProps = { items: Crumb[]; onNavigate?: (c: Crumb) => void; className?: string }
 
-export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps) {
+export function BreadcrumbCollapse({ items, onNavigate, className }: BreadcrumbCollapseProps) {
   const host = React.useRef<HTMLDivElement>(null)
   const [fit, setFit] = React.useState(items.length)
-  const [menu, setMenu] = React.useState(false)
   React.useEffect(() => {
     const el = host.current
     if (!el) return
@@ -41,7 +60,10 @@ export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps
   const hidden = items.filter((i) => !shown.includes(i))
 
   const CrumbEl = ({ c, last }: { c: Crumb; last?: boolean }) =>
-    c.href && !last ? <a href={c.href} className="max-w-[16ch] truncate rounded px-1 text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring">{c.label}</a> : <span aria-current={last ? "page" : undefined} className={cn("max-w-[22ch] truncate", last && "font-medium text-foreground")}>{c.label}</span>
+    c.href && !last ? (
+      onNavigate ? <Button type="button" variant="link" onClick={() => onNavigate(c)} className="max-w-[16ch] truncate rounded px-1 text-sm font-normal text-muted-foreground underline-offset-0 hover:text-foreground hover:no-underline">{c.label}</Button>
+      : <a href={c.href} className="max-w-[16ch] truncate rounded px-1 text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring">{c.label}</a>
+    ) : <span aria-current={last ? "page" : undefined} className={cn("max-w-[22ch] truncate", last && "font-medium text-foreground")}>{c.label}</span>
 
   return (
     <div ref={host} className={cn("relative flex w-full min-w-0 items-center gap-1 font-sans text-sm", className)} aria-label="Breadcrumb">
@@ -53,7 +75,7 @@ export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps
               <React.Fragment key={c.label + i}>
                 {i === 1 && hidden.length > 0 && (
                   <li className="flex items-center">
-                    <Button type="button" variant="ghost" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)} className="rounded px-1.5 py-1 text-muted-foreground hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring">…</Button>
+                    <OverflowMenu items={hidden} onNavigate={onNavigate} />
                   </li>
                 )}
                 <li className={cn("flex min-w-0 items-center gap-1", afterGap && "")}>
@@ -65,18 +87,64 @@ export function BreadcrumbCollapse({ items, className }: BreadcrumbCollapseProps
           })}
         </ol>
       </nav>
-      {menu && hidden.length > 0 && (
-        <>
-          <div className="fixed inset-0 z-20" onClick={() => setMenu(false)} aria-hidden />
-          <ul role="menu" className="absolute left-7 top-7 z-30 w-64 rounded-lg border bg-popover p-1 shadow-xl">
-            {hidden.map((h) => (
+    </div>
+  )
+}
+
+/** `…` chip → Floating UI menu of the collapsed middle segments. */
+function OverflowMenu({ items, onNavigate }: { items: Crumb[]; onNavigate?: (c: Crumb) => void }) {
+  const [menu, setMenu] = React.useState(false)
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null)
+  const listRef = React.useRef<Array<HTMLElement | null>>([])
+  // useTypeahead matches by string; indices align with the element list
+  const labelsRef = React.useRef<Array<string | null>>([])
+  labelsRef.current = items.map((c) => c.label)
+
+  const { refs, floatingStyles, context } = useFloating({
+    open: menu,
+    onOpenChange: setMenu,
+    placement: "bottom-start",
+    middleware: [offset(4), flip({ padding: 8 }), shift({ padding: 8 }), hide()],
+    whileElementsMounted: autoUpdate,
+  })
+  const click = useClick(context)
+  const dismiss = useDismiss(context)
+  const role = useRole(context, { role: "menu" })
+  const listNav = useListNavigation(context, { listRef, activeIndex, onNavigate: setActiveIndex })
+  const typeahead = useTypeahead(context, { listRef: labelsRef, activeIndex, onMatch: setActiveIndex })
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions([click, dismiss, role, listNav, typeahead])
+
+  return (
+    <>
+      <Button type="button" ref={refs.setReference} variant="ghost" aria-label={`${items.length} hidden path segments`} {...getReferenceProps({ "aria-haspopup": "menu", "aria-expanded": menu })} className="rounded px-1.5 py-1 text-muted-foreground hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring">…</Button>
+      <FloatingPortal>
+        {menu && (
+          <ul
+            ref={refs.setFloating}
+            style={floatingStyles}
+            aria-label="Collapsed breadcrumb path"
+            className="z-30 flex w-64 flex-col gap-0.5 rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-xl outline-none"
+            {...getFloatingProps()}
+          >
+            {items.map((h, i) => (
               <li key={h.label} role="none">
-                {h.href ? <a role="menuitem" href={h.href} onClick={() => setMenu(false)} className="block truncate rounded-md px-2.5 py-1.5 text-sm hover:bg-accent">{h.label}</a> : <span role="menuitem" className="block truncate rounded-md px-2.5 py-1.5 text-sm opacity-70">{h.label}</span>}
+                <Button
+                  type="button"
+                  variant="ghost"
+                  ref={(el) => { listRef.current[i] = el }}
+                  {...getItemProps({
+                    role: "menuitem",
+                    onClick: () => { setMenu(false); if (onNavigate) onNavigate(h); else if (h.href) window.location.assign(h.href) },
+                  })}
+                  className="block w-full truncate rounded-md px-2.5 py-1.5 text-left text-sm font-normal hover:bg-accent"
+                >
+                  {h.label}
+                </Button>
               </li>
             ))}
           </ul>
-        </>
-      )}
-    </div>
+        )}
+      </FloatingPortal>
+    </>
   )
 }

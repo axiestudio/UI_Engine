@@ -19,6 +19,7 @@ import GlassIcons from "@/components/reactbits/GlassIcons"
 import { useAnimeScope } from "@/hooks/use-anime-scope"
 import { useHoverPanel } from "@/hooks/use-hover-panel"
 import { FloatingPortal } from "@floating-ui/react"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 // COMPOSITE — react-bits GlassIcons (3D-tilt glass tiles) +
 // floating-ui engine (preview cards via use-hover-panel recipe) +
@@ -300,9 +301,20 @@ export function SidebarAnimeGlass({
               Manage spaces
               <ArrowUpRight aria-hidden="true" />
             </Button>
-            <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
-              house plan · 6 / 8 seats
-            </p>
+            {/* Account — every sidebar closes with the person using it */}
+            <div className="mt-4 flex items-center gap-3 rounded-xl border bg-background p-3">
+              <Avatar className="size-8">
+                <AvatarFallback className="text-[11px] font-bold">ES</AvatarFallback>
+              </Avatar>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[12.5px] font-bold leading-tight">
+                  Elin Sandberg
+                </p>
+                <p className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                  studio plan · 6 / 8 seats
+                </p>
+              </div>
+            </div>
           </div>
         </aside>
 

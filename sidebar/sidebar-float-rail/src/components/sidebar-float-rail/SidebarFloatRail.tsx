@@ -11,25 +11,29 @@ import {
   ChevronsLeft,
   PanelLeftOpen,
   Bell,
+  Menu,
+  X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { useHoverPanel } from "@/hooks/use-hover-panel"
 import { usePrefersReducedMotion } from "@/hooks/with-gsap"
 
-// COMPOSITE — watermelon button/badge/separator (shadcn kit) +
+// COMPOSITE — watermelon button/badge/separator/avatar (shadcn kit) +
 // floating-ui engine (hover labels via use-hover-panel recipe) +
-// gsap engine (width choreography on expand/collapse).
+// gsap engine (width choreography + off-canvas drawer slide).
 // JOB      the icon-first rail that collapses to a thin strip: labels live
-//          in Floating UI panels so the collapsed state stays fully usable
+//          in Floating UI panels so the collapsed state stays fully usable;
+//          the footer carries the account with an online marker
 // MOVE     GSAP tweens the rail width and staggers the labels out on
 //          collapse / in on expand; Floating UI owns label positioning
-// MOBILE   the 72px rail is already pocket-sized — below md the rail is
-//          pinned collapsed and the desktop expand toggle hides.
-//          `mobile={false}` removes that clamp: the rail expands at every
-//          width and the host owns mobile (e.g. its own sheet).
+// MOBILE   below md the rail is an off-canvas drawer (GSAP xPercent slide,
+//          opened from the content header). `mobile={false}` pins the rail
+//          at its collapsed width at every size — the host owns mobile
+//          (e.g. mount the rail inside its own sheet).
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState(
@@ -120,13 +124,55 @@ function RailButton({ it, active, expanded, onSelect }: RailButtonProps) {
   )
 }
 
+/** Account row; collapsed state reveals the name via a Floating UI panel. */
+function ProfileRailButton({ expanded }: { expanded: boolean }) {
+  const panel = useHoverPanel({
+    placement: "right",
+    gap: 10,
+    role: "tooltip",
+  })
+  return (
+    <>
+      <Button
+        ref={panel.refs.setReference as React.Ref<HTMLButtonElement>}
+        {...panel.getReferenceProps()}
+        variant="ghost"
+        size="icon"
+        aria-label="Account — Elin Sandberg, studio plan"
+        className="relative size-10 shrink-0"
+      >
+        <Avatar className="size-7">
+          <AvatarFallback className="text-[10px] font-bold">ES</AvatarFallback>
+        </Avatar>
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-card bg-[hsl(var(--ok))]"
+        />
+      </Button>
+      {!expanded && panel.open && (
+        <div
+          ref={panel.refs.setFloating}
+          style={panel.floatingStyles}
+          {...panel.getFloatingProps()}
+          className="z-50 rounded-md border bg-popover px-2.5 py-1.5 text-[12px] font-semibold text-popover-foreground shadow-md"
+        >
+          Elin Sandberg
+          <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+            studio plan
+          </span>
+        </div>
+      )}
+    </>
+  )
+}
+
 export type SidebarFloatRailProps = {
   className?: string
   /**
-   * Built-in mobile behavior (default true): below `md` the rail is pinned
-   * to its 72px collapsed state and the expand toggle hides. Set `false` to
-   * disable the clamp — the rail expands at every width and the host owns
-   * mobile (e.g. mount the rail inside its own sheet).
+   * Built-in mobile layout (default true): below `md` the rail becomes an
+   * off-canvas drawer opened from the content header. Set `false` to
+   * disable it — the rail then renders pinned at its collapsed width on
+   * every screen and the host owns mobile (e.g. its own sheet).
    */
   mobile?: boolean
 }
@@ -137,22 +183,50 @@ export function SidebarFloatRail({
 }: SidebarFloatRailProps) {
   const [expanded, setExpanded] = React.useState(false)
   const [active, setActive] = React.useState("Overview")
+  const [drawerOpen, setDrawerOpen] = React.useState(false)
   const isMobile = useIsMobile()
-  const clamp = mobile && isMobile
-  const effExpanded = expanded && !clamp
+  const overlayMode = mobile && isMobile
+  const effExpanded = overlayMode ? drawerOpen : expanded
   const reduce = usePrefersReducedMotion()
   const asideRef = React.useRef<HTMLElement>(null)
   const labelRefs = React.useRef<Map<string, HTMLSpanElement>>(new Map())
+  const slideInit = React.useRef(false)
 
-  // GSAP: width tween + label stagger. Widths live in one place.
+  React.useEffect(() => {
+    if (!overlayMode || !drawerOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDrawerOpen(false)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [overlayMode, drawerOpen])
+
+  // GSAP: desktop = width tween + label stagger; mobile drawer = xPercent
+  // slide at drawer width. One engine, one motion language.
   React.useEffect(() => {
     if (!asideRef.current) return
     const labels = Array.from(labelRefs.current.values())
-    gsap.to(asideRef.current, {
-      width: effExpanded ? 264 : 72,
-      duration: reduce ? 0 : 0.4,
-      ease: "power3.inOut",
-    })
+    if (overlayMode) {
+      gsap.set(asideRef.current, { width: 264 })
+      if (!slideInit.current) {
+        gsap.set(asideRef.current, { xPercent: drawerOpen ? 0 : -105 })
+        slideInit.current = true
+        return
+      }
+      gsap.to(asideRef.current, {
+        xPercent: drawerOpen ? 0 : -105,
+        duration: reduce ? 0 : 0.42,
+        ease: "power3.inOut",
+      })
+    } else {
+      slideInit.current = false
+      gsap.set(asideRef.current, { clearProps: "xPercent" })
+      gsap.to(asideRef.current, {
+        width: effExpanded ? 264 : 72,
+        duration: reduce ? 0 : 0.4,
+        ease: "power3.inOut",
+      })
+    }
     if (labels.length) {
       gsap.fromTo(
         labels,
@@ -167,47 +241,110 @@ export function SidebarFloatRail({
         },
       )
     }
-  }, [effExpanded, reduce])
+  }, [effExpanded, overlayMode, drawerOpen, reduce])
 
   const setLabelRef = (label: string) => (el: HTMLSpanElement | null) => {
     if (el) labelRefs.current.set(label, el)
     else labelRefs.current.delete(label)
   }
 
+  // 2026 currency: arrow-key nav on the primary list (↑↓ move, Home/End
+  // jump) — buttons stay in tab order; arrows are an accelerator.
+  const navListRef = React.useRef<HTMLUListElement>(null)
+  const onNavKeyDown = (e: React.KeyboardEvent) => {
+    if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(e.key)) return
+    const items = Array.from(
+      navListRef.current?.querySelectorAll<HTMLButtonElement>("button") ?? [],
+    )
+    if (!items.length) return
+    e.preventDefault()
+    const i = items.indexOf(document.activeElement as HTMLButtonElement)
+    const next =
+      e.key === "ArrowDown"
+        ? items[(i + 1) % items.length]
+        : e.key === "ArrowUp"
+          ? items[(i - 1 + items.length) % items.length]
+          : e.key === "Home"
+            ? items[0]
+            : items[items.length - 1]
+    next?.focus()
+  }
+
+  const select = (label: string) => {
+    setActive(label)
+    if (overlayMode) setDrawerOpen(false)
+  }
+
   return (
     <div
       className={cn(
-        "relative isolate flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans",
+        "relative isolate flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground",
         className,
       )}
     >
+      {/* Mobile backdrop */}
+      {overlayMode && drawerOpen && (
+        <button
+          type="button"
+          aria-label="Close navigation"
+          onClick={() => setDrawerOpen(false)}
+          className="absolute inset-0 z-30 bg-foreground/40 backdrop-blur-[2px]"
+        />
+      )}
+
       {/* ─── The rail ─────────────────────────────────────────────── */}
       <aside
         ref={asideRef}
         aria-label="App sidebar"
         aria-expanded={effExpanded}
-        className="relative flex w-[72px] shrink-0 flex-col border-r bg-card"
+        {...(overlayMode ? { inert: !drawerOpen } : {})}
+        className={cn(
+          "relative flex shrink-0 flex-col border-r bg-card",
+          overlayMode
+            ? "absolute inset-y-0 left-0 z-40 w-[264px] shadow-2xl"
+            : "w-[72px]",
+        )}
       >
-        {/* Brand */}
-        <div className="flex h-16 items-center gap-2.5 overflow-hidden border-b px-4">
+        {/* Brand — workspace header: mark + name + plan (name & plan ride
+            the GSAP label stagger) */}
+        <div className="flex h-16 shrink-0 items-center gap-2.5 overflow-hidden border-b px-4">
           <span aria-hidden="true" className="size-8 shrink-0 rounded-lg bg-primary" />
-          <span
-            ref={setLabelRef("brand")}
-            className="min-w-0 whitespace-nowrap font-display text-[15px] font-bold opacity-0 tracking-tight"
-          >
-            Northline
-          </span>
+          <div className="min-w-0 whitespace-nowrap">
+            <span
+              ref={setLabelRef("brand")}
+              className="block font-display text-[15px] font-bold leading-tight opacity-0 tracking-tight"
+            >
+              Northline
+            </span>
+            <span
+              ref={setLabelRef("Studio workspace")}
+              className="block text-[10px] font-semibold uppercase tracking-[0.12em] leading-tight text-muted-foreground opacity-0"
+            >
+              Studio workspace
+            </span>
+          </div>
+          {overlayMode && (
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              aria-label="Close navigation"
+              onClick={() => setDrawerOpen(false)}
+              className="ml-auto shrink-0 text-muted-foreground"
+            >
+              <X />
+            </Button>
+          )}
         </div>
 
-        <nav aria-label="Primary" className="flex-1 overflow-hidden px-3.5 py-3">
-          <ul className="space-y-1.5">
+        <nav aria-label="Primary" className="min-h-0 flex-1 overflow-hidden px-3.5 py-3">
+          <ul ref={navListRef} onKeyDown={onNavKeyDown} className="space-y-1.5">
             {RAIL.map((it) => (
               <li key={it.label} className="flex items-center">
                 <RailButton
                   it={it}
                   active={active === it.label}
                   expanded={effExpanded}
-                  onSelect={() => setActive(it.label)}
+                  onSelect={() => select(it.label)}
                 />
                 <span
                   ref={setLabelRef(it.label)}
@@ -243,8 +380,19 @@ export function SidebarFloatRail({
           </ul>
         </div>
 
-        {/* The toggle — desktop affordance; hidden while mobile-clamped */}
+        {/* The account — every sidebar closes with the person using it */}
         <div className="border-t p-3.5">
+          <ul className="space-y-1.5">
+            <li className="flex items-center">
+              <ProfileRailButton expanded={effExpanded} />
+              <span
+                ref={setLabelRef("Elin Sandberg")}
+                className="ml-3 min-w-0 whitespace-nowrap text-[13px] font-semibold text-foreground opacity-0"
+              >
+                Elin Sandberg
+              </span>
+            </li>
+          </ul>
           <Button
             variant="ghost"
             size="icon"
@@ -252,8 +400,8 @@ export function SidebarFloatRail({
             aria-label={effExpanded ? "Collapse sidebar" : "Expand sidebar"}
             aria-expanded={effExpanded}
             className={cn(
-              "size-10 shrink-0 text-muted-foreground",
-              clamp && "hidden",
+              "mt-1.5 size-10 shrink-0 text-muted-foreground",
+              overlayMode && "hidden",
             )}
           >
             {effExpanded ? (
@@ -268,6 +416,17 @@ export function SidebarFloatRail({
       {/* ─── Content space ────────────────────────────────────────── */}
       <div className="flex min-w-0 flex-1 flex-col bg-background">
         <header className="flex h-16 shrink-0 items-center gap-3 border-b px-4 sm:px-6">
+          {mobile && (
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              aria-label="Open navigation"
+              onClick={() => setDrawerOpen(true)}
+              className="md:hidden"
+            >
+              <Menu />
+            </Button>
+          )}
           <h2 className="font-display text-lg font-bold tracking-tight">
             {active}
           </h2>

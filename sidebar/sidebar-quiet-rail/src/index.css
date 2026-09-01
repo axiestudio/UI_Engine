@@ -30,6 +30,8 @@
     --ring: 0 0% 9%;
     --radius: 0.875rem;
 
+    --ok: 152 62% 36%;
+
     --brand: 0 0% 9%;
     --brand-foreground: 0 0% 98%;
 
@@ -55,6 +57,7 @@
     --accent-foreground: 0 0% 98%;
     --border: 0 0% 18%;
     --input: 0 0% 18%;
+    --ok: 152 55% 46%;
     --ring: 0 0% 83%;
     --brand: 0 0% 98%;
     --brand-foreground: 0 0% 9%;

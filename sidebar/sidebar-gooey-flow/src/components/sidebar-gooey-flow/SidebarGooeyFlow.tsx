@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import GooeyNav from "@/components/reactbits/GooeyNav"
 import { useAnimeScope } from "@/hooks/use-anime-scope"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 // COMPOSITE — react-bits GooeyNav (SVG-goo section switcher, particle burst)
 // + anime.js v4 engine (scope-staggered panel entrances via use-anime-scope
@@ -179,9 +180,11 @@ export function SidebarGooeyFlow({
           {/* Gooey section switcher — its lighten-blend filter needs a dark
               plate so the white text reads; --color-* vars feed the
               particles. The pill switches sections via captured click
-              (single source of truth with the section state). */}
+              (single source of truth with the section state). The
+              sgf-plate hook aligns the effect-overlay font with the links
+              so the active label doesn't double. */}
           <div
-            className="relative mx-3 mt-4 overflow-hidden rounded-xl border border-white/10 bg-[hsl(var(--background))] px-1 py-4 [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:px-2 [&_a]:text-[12px] [&_a]:font-bold"
+            className="sgf-plate relative mx-3 mt-4 overflow-hidden rounded-xl border border-white/10 bg-[hsl(var(--background))] px-1 py-4 [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:px-2 [&_a]:text-[12px] [&_a]:font-bold"
             onClick={(e) => {
               const a = (e.target as HTMLElement).closest("a")
               if (!a) return
@@ -215,6 +218,24 @@ export function SidebarGooeyFlow({
               <Trash2 className="size-3.5 shrink-0" aria-hidden="true" />
               <span className="truncate">Swept 2 days ago</span>
             </div>
+          </div>
+
+          {/* Account — every sidebar closes with the person using it */}
+          <div className="flex items-center gap-3 border-t p-4">
+            <Avatar className="size-9">
+              <AvatarFallback className="text-[11px] font-bold">KA</AvatarFallback>
+            </Avatar>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-[13px] font-semibold leading-tight">
+                Kim Andersson
+              </p>
+              <p className="truncate text-[11px] text-muted-foreground">
+                kim@northline.co
+              </p>
+            </div>
+            <Badge variant="secondary" className="shrink-0 font-mono text-[9px] uppercase tracking-[0.1em]">
+              pro
+            </Badge>
           </div>
         </aside>
 

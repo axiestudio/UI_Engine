@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import SplitText from "@/components/reactbits/SplitText"
 import { useGsapScope, usePrefersReducedMotion } from "@/hooks/with-gsap"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 // COMPOSITE — react-bits SplitText (GSAP SplitText plugin char-entrance) +
 // gsap engine (scoped, reduced-motion-aware timelines via with-gsap recipe) +
@@ -256,18 +257,23 @@ export function SidebarGsapCinema({
             </ul>
           </nav>
 
-          <div className="sgc-footer flex items-center gap-2.5 border-t p-4">
+          <div className="sgc-footer flex items-center gap-3 border-t p-4">
+            <Avatar className="size-9">
+              <AvatarFallback className="font-mono text-[11px] font-bold">
+                MO
+              </AvatarFallback>
+            </Avatar>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-[13px] font-semibold leading-tight">
+                M. Okafor
+              </p>
+              <p className="truncate font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                editor · m-okafor
+              </p>
+            </div>
             <Button variant="ghost" size="icon-sm" aria-label="Settings" className="text-muted-foreground">
               <Settings />
             </Button>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-[13px] font-semibold leading-tight">
-                Premiere build 0.9
-              </p>
-              <p className="truncate font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-                session · m-okafor
-              </p>
-            </div>
           </div>
         </aside>
 

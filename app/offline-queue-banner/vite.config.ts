@@ -13,7 +13,17 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "offline-queue-banner.es.js" : "offline-queue-banner.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: [
+      "clsx",
+      "lucide-react",
+      "motion",
+      "motion/react",
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "tailwind-merge",
+      "sonner",
+    ] },
     cssCodeSplit: false,
   },
 })

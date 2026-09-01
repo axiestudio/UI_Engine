@@ -1,14 +1,19 @@
 import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Check, ChevronLeft, ChevronRight, CircleAlert } from "lucide-react"
+import { toast, Toaster } from "sonner"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — multi-step flows that can't be linear-only.
 // JOB      collect structured data over steps without stranding the user
 // SIGNATURE the rail fills like a progress fuse; completed chips become
 //           check-marked and REVISITABLE (deep-link back keeps data); invalid
-//           "Continue" shakes and focuses the first bad field instead of lying.
+//           "Continue" shakes, focuses the first bad field, marks it inline
+//           AND reports a Sonner summary naming the field — never lies.
+//           Final submit runs toast.promise (loading → success/error) and the
+//           form shows its confirmation state.
 // API      steps [{title, fields:[{key,label,type?,required?,validate?}]}],
 //          onSubmit(data) ; state lives in the component with controlled option.
 // A11Y     fieldset/legend per step, aria-invalid + describedby error text,
@@ -18,26 +23,81 @@ export type Field = { key: string; label: string; type?: string; required?: bool
 export type Step = { title: string; fields: Field[] }
 export type StepperFormProps = { steps: Step[]; onSubmit: (data: Record<string, string>) => void; submitLabel?: string; className?: string }
 
+const TOASTER_ID = "stepper-form"
+
 export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className }: StepperFormProps) {
   const [i, setI] = React.useState(0)
   const [data, setData] = React.useState<Record<string, string>>({})
   const [errors, setErrors] = React.useState<Record<string, string>>({})
+  const [shake, setShake] = React.useState(0)
+  const [sending, setSending] = React.useState(false)
+  const [finished, setFinished] = React.useState(false)
   const step = steps[i]
   const refs = React.useRef<Record<string, HTMLInputElement>>({})
+  const dataRef = React.useRef(data)
+  dataRef.current = data
+  const submitRef = React.useRef(onSubmit)
+  submitRef.current = onSubmit
 
+  // real validation pass — inline marks PLUS a toast summary naming first bad field
   const validateStep = () => {
     const e: Record<string, string> = {}
+    const bad: { label: string; msg: string }[] = []
     for (const f of step.fields) {
       const v = (data[f.key] ?? "").trim()
-      if (f.required && !v) e[f.key] = "Required"
-      else if (f.validate && v) { const m = f.validate(v, data); if (m) e[f.key] = m }
+      if (f.required && !v) { e[f.key] = "Required"; bad.push({ label: f.label, msg: "is required" }) }
+      else if (f.validate && v) { const m = f.validate(v, data); if (m) { e[f.key] = m; bad.push({ label: f.label, msg: m }) } }
     }
     setErrors(e)
-    if (Object.keys(e)[0]) refs.current[e && Object.keys(e)[0]]?.focus()
-    return Object.keys(e).length === 0
+    if (bad.length) {
+      refs.current[Object.keys(e)[0]]?.focus()
+      setShake((s) => s + 1)
+      toast.error(`Step “${step.title}” can't advance — ${bad.length === 1 ? "one field needs you" : `${bad.length} fields need you`}`, {
+        description: bad[0].label + " " + bad[0].msg + (bad.length > 1 ? ` · +${bad.length - 1} more marked in red` : ""),
+        duration: 6000,
+        toasterId: TOASTER_ID,
+      })
+    }
+    return !bad.length
   }
-  const next = () => { if (validateStep()) { if (i === steps.length - 1) onSubmit(data); else setI(i + 1) } }
+
+  // final submit: fake network hop around the host's synchronous onSubmit —
+  // a threw-in there rejects and the toast reports the error instead.
+  const finish = () => {
+    if (!validateStep()) return
+    setSending(true)
+    toast.promise(
+      new Promise<Record<string, string>>((resolve, reject) => {
+        setTimeout(() => {
+          try { submitRef.current({ ...dataRef.current }); resolve({ ...dataRef.current }) } catch { reject(new Error("the save refused")) }
+        }, 900)
+      }),
+      {
+        loading: `Checking step ${i + 1} of ${steps.length} and sending…`,
+        success: () => { setFinished(true); setSending(false); return `Saved — all ${steps.length} steps check out` },
+        error: "Could not save — the answers stayed put",
+        duration: 4000,
+        toasterId: TOASTER_ID,
+      },
+    )
+  }
+
+  const next = () => { if (validateStep()) { if (i === steps.length - 1) finish(); else setI(i + 1) } }
   const doneThrough = (s: number) => s < i
+
+  if (finished) {
+    return (
+      <div className={cn("font-sans", className)} role="status" aria-live="polite">
+        <div className="mx-auto flex max-w-sm flex-col items-center gap-3 rounded-xl border border-[hsl(var(--ok)/0.4)] bg-[hsl(var(--ok)/0.06)] px-6 py-10 text-center">
+          <span className="grid size-10 place-items-center rounded-full bg-[hsl(var(--ok))] text-white"><Check className="size-5" aria-hidden /></span>
+          <p className="font-display text-lg font-semibold tracking-tight">Sent and checked through.</p>
+          <p className="text-sm text-muted-foreground">{steps.length} steps · {Object.keys(data).length} answers · nothing left required.</p>
+          <Button type="button" variant="outline" size="sm" onClick={() => { setFinished(false); setI(steps.length - 1) }}>Edit answers</Button>
+        </div>
+        <Toaster id={TOASTER_ID} position="bottom-center" richColors closeButton />
+      </div>
+    )
+  }
 
   return (
     <div className={cn("font-sans", className)}>
@@ -65,7 +125,7 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
           {step.fields.map((f) => (
             <div key={f.key}>
               <label htmlFor={`f-${f.key}`} className="mb-1.5 flex items-center gap-1 text-sm font-medium text-muted-foreground">{f.label}{f.required ? <span aria-hidden className="text-[hsl(var(--err))]">*</span> : <span className="text-xs text-muted-foreground">optional</span>}</label>
-              <input
+              <Input
                 id={`f-${f.key}`}
                 ref={(el) => { if (el) refs.current[f.key] = el }}
                 type={f.type ?? "text"}
@@ -74,22 +134,24 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
                 placeholder={f.placeholder}
                 aria-invalid={!!errors[f.key]}
                 aria-describedby={errors[f.key] ? `e-${f.key}` : undefined}
-                className={cn("h-10 w-full rounded-lg border border-border/70 bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring", errors[f.key] && "border-[hsl(var(--err))]")}
+                className={cn("h-10 rounded-lg text-sm", errors[f.key] && "border-[hsl(var(--err))]")}
               />
               {errors[f.key] && <p id={`e-${f.key}`} className="mt-1 flex items-center gap-1.5 text-[13px] font-medium text-[hsl(var(--err))]"><CircleAlert className="size-3.5" /> {errors[f.key]}</p>}
-          
-    </div>
+            </div>
           ))}
         </motion.fieldset>
       </AnimatePresence>
       <div className="mt-7 flex items-center gap-2">
         {i > 0 && <Button type="button" variant="ghost" onClick={() => setI(i - 1)} className="flex h-10 items-center gap-1 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted"><ChevronLeft className="size-4" /> Back</Button>}
-        <motion.button whileTap={{ scale: 0.97 }} type="button" onClick={next} className="flex h-10 items-center gap-1 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm focus-visible:ring-2 focus-visible:ring-ring">
-          {i === steps.length - 1 ? submitLabel : "Continue"} <ChevronRight className="size-4" />
-        </motion.button>
+        <motion.div animate={shake ? { x: [0, -7, 7, -5, 5, -2, 2, 0] } : { x: 0 }} transition={{ duration: 0.42 }}>
+          <Button type="button" onClick={next} disabled={sending} className="flex h-10 items-center gap-1 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm">
+            {sending ? "Sending…" : i === steps.length - 1 ? submitLabel : "Continue"} <ChevronRight className="size-4" />
+          </Button>
+        </motion.div>
         <span className="ml-auto text-xs text-muted-foreground">step {i + 1}/{steps.length}</span>
       </div>
-          </MotionConfig>
+      </MotionConfig>
+      <Toaster id={TOASTER_ID} position="bottom-center" richColors closeButton />
     </div>
   )
 }

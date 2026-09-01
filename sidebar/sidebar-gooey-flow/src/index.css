@@ -94,3 +94,24 @@
 }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* GooeyNav effect overlay must match the link metrics AND box — the lis
+   stretch in the vertical stack, so grid-centering drifts off the
+   left-padded link text. Mirror the link's padding + alignment instead. */
+.sgf-plate .effect.text {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: 0.6em 1em;
+  line-height: 1.5;
+  text-align: left;
+}
+/* The goo particle burst is decorative — drop it when the user opts out. */
+@media (prefers-reduced-motion: reduce) {
+  .sgf-plate .particle,
+  .sgf-plate .point {
+    animation: none;
+    opacity: 0 !important;
+  }
+}

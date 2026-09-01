@@ -1,20 +1,22 @@
 import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
-import { CreditCard, Plus, Printer, Scissors, Undo2 } from "lucide-react"
+import { Check, CreditCard, Plus, Printer, Scissors, Undo2 } from "lucide-react"
+import { toast, Toaster } from "sonner"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { InlineEditCell } from "inline-edit-cell"
 import { SegmentedControl } from "segmented-control"
-import { ToastStack } from "toast-stack"
 
 // COMPOSITE SCREEN · POINT OF SALE — ticket build
 // Structure: a real ticket ledger. The sale is one till roll: lines with
 // inline qty edits on the left; the running total panel on the right grows a
-// mirrored line for every ticket line; loyalty → delivery → pay form a
-// stepped footer flow; and the receipt card springs out over the totals panel
-// as the signature. No three-pane roster, no card headers.
-// Composed of: inline-edit-cell · segmented-control · toast-stack · shadcn
-// Button · motion receipt · handcraft kit.
+// mirrored line for every ticket line; loyalty → delivery → pay form a REAL
+// stepped footer flow (each step validates, gates the next, shows its state);
+// and the receipt card springs out over the totals panel as the signature.
+// No three-pane roster, no card headers.
+// Composed of: inline-edit-cell · segmented-control · Sonner (preset-scoped
+// toasterId) · shadcn Button/Input · motion receipt.
 
 export type SaleLine = { id: string; name: string; qty: number; price: number; voided?: boolean }
 export type CheckoutDeskProps = {
@@ -22,6 +24,8 @@ export type CheckoutDeskProps = {
   openedBy?: string
   lines?: SaleLine[]
   onAuthorised?: (total: number) => void
+  /** Host the real terminal here; default is a fake gate that authorises. */
+  paymentApi?: (total: number) => Promise<string>
   className?: string
 }
 
@@ -33,20 +37,28 @@ const DEFAULT_LINES: SaleLine[] = [
 
 const VAT = 0.25
 const ORDER_NO = "TILL-2-4812"
+const TOASTER_ID = "checkout-desk"
 
 const TAGS = ["priority", "quiet chair"]
 
-export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines = DEFAULT_LINES, onAuthorised, className }: CheckoutDeskProps) {
+const fakeTerminal = (ms = 1400) => (total: number) =>
+  new Promise<string>((resolve) => setTimeout(() => resolve("42"), ms)).then(() => String(total))
+
+export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines = DEFAULT_LINES, onAuthorised, paymentApi, className }: CheckoutDeskProps) {
   const [rows, setRows] = React.useState(lines)
   const [tender, setTender] = React.useState("card")
   const [fulfilment, setFulfilment] = React.useState("collect")
   const [disc, setDisc] = React.useState<string | null>(null)
   const [authorising, setAuthorising] = React.useState(false)
   const [approved, setApproved] = React.useState<null | { tail: string; at: string }>(null)
-  const [toasts, setToasts] = React.useState<{ id: string; title: string; tone?: "ok" | "warn"; action?: { label: string; run: () => void } }[]>([])
-
-  const push = (title: string, tone: "ok" | "warn" = "ok", action?: { label: string; run: () => void }) =>
-    setToasts((t) => [...t.slice(-2), { id: String(Date.now() + Math.random()), title, tone, action }])
+  // the stepped flow is REAL: loyalty must be confirmed before delivery,
+  // delivery (address when courier) before pay. each number reflects state.
+  const [loyaltyDone, setLoyaltyDone] = React.useState(false)
+  const [deliveryDone, setDeliveryDone] = React.useState(false)
+  const [address, setAddress] = React.useState("")
+  const [giftCode, setGiftCode] = React.useState("")
+  const addressRef = React.useRef<HTMLInputElement>(null)
+  const giftRef = React.useRef<HTMLInputElement>(null)
 
   const active = rows.filter((r) => !r.voided)
   const gross = active.reduce((a, r) => a + r.price * r.qty, 0)
@@ -58,21 +70,79 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
   const setQty = (id: string, q: number) => setRows((rs) => rs.map((r) => (r.id === id ? { ...r, qty: q } : r)))
   const voidLine = (r: SaleLine) => {
     setRows((rs) => rs.map((x) => (x.id === r.id ? { ...x, voided: true } : x)))
-    push(`Line voided — ${r.name}`, "warn", { label: "Undo", run: () => setRows((rs) => rs.map((x) => (x.id === r.id ? { ...x, voided: false } : x))) })
+    toast.warning(`Line voided — ${r.name}`, {
+      id: `void-${r.id}`,
+      description: "Voided lines stay on the ticket for the audit.",
+      action: { label: "Undo", onClick: () => setRows((rs) => rs.map((x) => (x.id === r.id ? { ...x, voided: false } : x))) },
+      duration: 5000,
+      toasterId: TOASTER_ID,
+    })
   }
   const addLine = () => {
     const l = { id: "m" + Date.now(), name: "Manual line", qty: 1, price: 0 }
     setRows((r) => [...r, l])
-    push("manual line added — set price", "ok")
+    toast("manual line added — set price", { toasterId: TOASTER_ID })
   }
 
-  const authorise = () => {
+  const confirmLoyalty = () => { setLoyaltyDone(true); toast("loyalty confirmed — on to delivery", { duration: 2600, toasterId: TOASTER_ID }) }
+  const confirmDelivery = () => {
+    if (fulfilment === "courier" && !address.trim()) {
+      toast.error("Courier needs a drop-off address", { description: "“Delivery address” is empty — fill it to continue.", duration: 6000, toasterId: TOASTER_ID })
+      addressRef.current?.focus()
+      return
+    }
+    setDeliveryDone(true)
+    toast("delivery set — ready to charge", { duration: 2600, toasterId: TOASTER_ID })
+  }
+
+  const authorise = async () => {
+    if (!loyaltyDone || !deliveryDone) return
+    if (tender === "gift" && !giftCode.trim()) {
+      toast.error("Charge blocked — gift card code is empty", { description: "Type the code printed on the card to continue.", duration: 6000, toasterId: TOASTER_ID })
+      giftRef.current?.focus()
+      return
+    }
     setAuthorising(true)
-    setTimeout(() => {
-      setAuthorising(false)
+    const run = (paymentApi ?? fakeTerminal())(total)
+      .then(() => "42")
+    try {
+      await toast.promise(run, {
+        loading: `Waiting for terminal · ${total.toLocaleString()} kr ${tender}…`,
+        success: `Payment authorised — ${tender} ••42`,
+        error: "Terminal declined — the sale stays open",
+        duration: 4000,
+        toasterId: TOASTER_ID,
+      })
       setApproved({ tail: "42", at: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" }) })
       onAuthorised?.(total)
-    }, 1200)
+    } catch {
+      /* the declined toast carries the news; nothing else to do */
+    } finally {
+      setAuthorising(false)
+    }
+  }
+
+  const stepState = (n: 1 | 2 | 3): "done" | "current" | "locked" =>
+    n === 1 ? (loyaltyDone ? "done" : "current")
+      : n === 2 ? (!loyaltyDone ? "locked" : deliveryDone ? "done" : "current")
+      : !loyaltyDone || !deliveryDone ? "locked" : approved ? "done" : "current"
+
+  const StepMark = ({ n, label }: { n: 1 | 2 | 3; label: string }) => {
+    const s = stepState(n as 1 | 2 | 3)
+    return (
+      <div className="flex items-baseline gap-2">
+        <span
+          aria-label={`Step ${n} · ${label} · ${s === "done" ? "confirmed" : s === "current" ? "in progress" : "locked"}`}
+          className={cn(
+            "grid size-[18px] shrink-0 translate-y-[2px] place-items-center rounded-full border-2 font-mono text-[9px] font-bold tabular-nums",
+            s === "done" ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-white" : s === "current" ? "border-foreground text-foreground" : "border-muted-foreground/40 text-muted-foreground/60",
+          )}
+        >
+          {s === "done" ? <Check aria-hidden className="size-2.5" /> : `0${n}`}
+        </span>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">{label}</span>
+      </div>
+    )
   }
 
   return (
@@ -85,17 +155,16 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
             № <span className="tabular-nums">{no}</span>
           </h2>
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">till 2 · {openedBy}</span>
-          
-    </div>
+        </div>
         <div className="ml-auto flex gap-1.5">
-          <Button variant="outline" size="sm" onClick={() => push("receipt sent to printer", "ok")}>
+          <Button variant="outline" size="sm" onClick={() => toast.success("receipt sent to printer", { toasterId: TOASTER_ID })}>
             <Printer aria-hidden /> Reprint
           </Button>
           <Button
             variant="outline"
             size="sm"
             disabled={!rows.some((r) => r.voided)}
-            onClick={() => { setRows((rs) => rs.map((r) => ({ ...r, voided: false }))); push("voided lines restored", "ok") }}
+            onClick={() => { setRows((rs) => rs.map((r) => ({ ...r, voided: false }))); toast.success("voided lines restored", { toasterId: TOASTER_ID }) }}
           >
             Restore voids
           </Button>
@@ -216,7 +285,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
               >
                 <div className="flex items-center justify-between border-b border-dashed bg-muted/40 px-3 py-1.5">
                   <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[hsl(var(--ok))]">Authorised · {approved.at}</span>
-                  <Button variant="ghost" size="xs" onClick={() => push("refund opened — manager PIN at terminal", "warn")}>
+                  <Button variant="ghost" size="xs" onClick={() => toast.warning("refund opened — manager PIN at terminal", { toasterId: TOASTER_ID })}>
                     <Undo2 aria-hidden className="size-3" /> refund
                   </Button>
                 </div>
@@ -241,20 +310,17 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
         </aside>
       </div>
 
-      {/* stepped footer flow — loyalty → delivery → pay */}
+      {/* stepped footer flow — loyalty → delivery → pay, each step gates the next */}
       <footer className="grid grid-cols-1 border-t md:grid-cols-3">
         {/* step 1 · loyalty */}
-        <section aria-label="Loyalty" className="border-b px-4 py-3 md:border-b-0 md:border-r">
-          <div className="flex items-baseline gap-2">
-            <span className="font-mono text-[10px] font-bold tabular-nums text-muted-foreground">01</span>
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Loyalty</span>
-          </div>
+        <section aria-label="Loyalty" className={cn("border-b px-4 py-3 md:border-b-0 md:border-r", !loyaltyDone && "bg-muted/20")}>
+          <StepMark n={1} label="Loyalty" />
           <div className="mt-2 flex flex-wrap gap-1.5">
             {TAGS.map((t) => (
               <span key={t} className="rounded-full border bg-muted/40 px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">{t}</span>
             ))}
           </div>
-          <div className="mt-2 flex gap-1.5">
+          <div className="mt-2 flex items-center gap-1.5">
             {[["staff — 20%", "staff"], ["regular — 10%", "regular"]].map(([label, key]) => (
               <Button
                 key={key}
@@ -262,18 +328,21 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
                 variant={disc === key ? "secondary" : "outline"}
                 aria-pressed={disc === key}
                 onClick={() => setDisc(disc === key ? null : key)}
+                disabled={!!approved}
               >
                 {label}
               </Button>
             ))}
+            {loyaltyDone ? (
+              <span className="ml-auto flex items-center gap-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--ok))]"><Check aria-hidden className="size-3" /> locked in</span>
+            ) : (
+              <Button size="xs" variant="outline" onClick={confirmLoyalty} className={cn("ml-auto", !loyaltyDone && "bg-primary text-primary-foreground hover:bg-primary/90")}>next</Button>
+            )}
           </div>
         </section>
         {/* step 2 · delivery */}
-        <section aria-label="Delivery" className="border-b px-4 py-3 md:border-b-0 md:border-r">
-          <div className="flex items-baseline gap-2">
-            <span className="font-mono text-[10px] font-bold tabular-nums text-muted-foreground">02</span>
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Delivery</span>
-          </div>
+        <section aria-label="Delivery" className={cn("border-b px-4 py-3 md:border-b-0 md:border-r", !loyaltyDone && "pointer-events-none opacity-45")}>
+          <StepMark n={2} label="Delivery" />
           <SegmentedControl
             size="sm"
             className="mt-2 w-full max-w-[280px]"
@@ -281,37 +350,50 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
             onChange={setFulfilment}
             options={[{ value: "collect", label: "Collect" }, { value: "courier", label: "Courier" }, { value: "post", label: "Post" }]}
           />
+          {fulfilment === "courier" && !deliveryDone && (
+            <div className="mt-2 max-w-[280px]">
+              <label htmlFor="cd-address" className="mb-1 block font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Delivery address</label>
+              <Input id="cd-address" ref={addressRef} placeholder="gatan 12, jönköping" value={address} onChange={(e) => setAddress(e.target.value)} className="h-8 text-[12px]" />
+            </div>
+          )}
           <p className="mt-1.5 text-[11px] text-muted-foreground">
             {fulfilment === "courier" ? "Same-day courier — address on the member card." : fulfilment === "post" ? "Ships tomorrow with the morning run." : "Handed over at the desk after payment."}
           </p>
+          {deliveryDone ? (
+            <span className="mt-1.5 flex items-center gap-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--ok))]"><Check aria-hidden className="size-3" /> {fulfilment} · confirmed</span>
+          ) : (
+            <Button size="xs" variant="outline" onClick={confirmDelivery} disabled={!loyaltyDone} className="mt-1.5">next</Button>
+          )}
         </section>
         {/* step 3 · pay */}
-        <section aria-label="Pay" className="px-4 py-3">
-          <div className="flex items-baseline gap-2">
-            <span className="font-mono text-[10px] font-bold tabular-nums text-muted-foreground">03</span>
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Pay</span>
-            <span className="ml-auto font-mono text-[13px] font-bold tabular-nums">{total.toLocaleString()} kr</span>
-          </div>
+        <section aria-label="Pay" className={cn("px-4 py-3", (!loyaltyDone || !deliveryDone) && "pointer-events-none opacity-45")}>
+          <StepMark n={3} label="Pay" />
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <SegmentedControl size="sm" value={tender} onChange={setTender} options={[{ value: "card", label: "Card" }, { value: "cash", label: "Cash" }, { value: "gift", label: "Gift" }]} />
+            <span className="ml-auto font-mono text-[13px] font-bold tabular-nums">{total.toLocaleString()} kr</span>
             <Button
               size="sm"
               onClick={authorise}
-              disabled={authorising || !!approved || !active.length}
+              disabled={authorising || !!approved || !active.length || !loyaltyDone || !deliveryDone}
               className="flex-1 min-w-40"
             >
               <CreditCard aria-hidden />
-              {authorising ? "Waiting for terminal…" : approved ? `Paid · visa ••${approved.tail}` : `Charge ${total.toLocaleString()} kr`}
+              {authorising ? "Waiting for terminal…" : approved ? `Paid · visa ••${approved.tail}` : !loyaltyDone || !deliveryDone ? "Finish steps 01–02" : `Charge ${total.toLocaleString()} kr`}
             </Button>
           </div>
+          {tender === "gift" && !approved && (
+            <div className="mt-2">
+              <label htmlFor="cd-gift" className="mb-1 block font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Gift card code</label>
+              <Input id="cd-gift" ref={giftRef} placeholder="GT-0000-0000" value={giftCode} onChange={(e) => setGiftCode(e.target.value)} className="h-8 w-44 text-[12px] font-mono" />
+            </div>
+          )}
           <p className="mt-1.5 text-[11px] text-muted-foreground">
             {tender === "cash" ? "Cash drawer count prints on the receipt." : tender === "gift" ? "Gift card balance is held pending email confirmation." : "Terminal 1 · taps, chips, wallets."}
           </p>
         </section>
       </footer>
-
-      <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
-          </MotionConfig>
+      </MotionConfig>
+      <Toaster id={TOASTER_ID} position="bottom-right" richColors closeButton />
     </div>
   )
 }

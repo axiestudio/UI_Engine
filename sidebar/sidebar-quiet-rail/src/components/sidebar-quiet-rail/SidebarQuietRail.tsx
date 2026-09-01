@@ -116,6 +116,28 @@ export function SidebarQuietRail({
   const matches = (it: NavItem) =>
     !query || it.label.toLowerCase().includes(query.trim().toLowerCase())
 
+  // 2026 currency: arrow-key nav on the primary list (↑↓ move, Home/End
+  // jump) — buttons stay in tab order; arrows are an accelerator.
+  const navListRef = React.useRef<HTMLUListElement>(null)
+  const onNavKeyDown = (e: React.KeyboardEvent) => {
+    if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(e.key)) return
+    const items = Array.from(
+      navListRef.current?.querySelectorAll<HTMLButtonElement>("button") ?? [],
+    )
+    if (!items.length) return
+    e.preventDefault()
+    const i = items.indexOf(document.activeElement as HTMLButtonElement)
+    const next =
+      e.key === "ArrowDown"
+        ? items[(i + 1) % items.length]
+        : e.key === "ArrowUp"
+          ? items[(i - 1 + items.length) % items.length]
+          : e.key === "Home"
+            ? items[0]
+            : items[items.length - 1]
+    next?.focus()
+  }
+
   const select = (label: string) => {
     setActive(label)
     if (overlayMode) setMobileOpen(false)
@@ -148,7 +170,7 @@ export function SidebarQuietRail({
   return (
     <div
       className={cn(
-        "relative isolate flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans",
+        "relative isolate flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground",
         className,
       )}
     >
@@ -170,11 +192,11 @@ export function SidebarQuietRail({
           "relative flex shrink-0 flex-col border-r bg-card",
           overlayMode
             ? cn(
-                "absolute inset-y-0 left-0 z-40 w-[264px] shadow-2xl transition-transform duration-300 ease-out",
+                "absolute inset-y-0 left-0 z-40 w-[264px] shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none",
                 mobileOpen ? "translate-x-0" : "-translate-x-full",
               )
             : cn(
-                "transition-[width] duration-200 ease-out",
+                "transition-[width] duration-200 ease-out motion-reduce:transition-none",
                 collapsed ? "w-[68px]" : "w-[264px]",
               ),
         )}
@@ -242,7 +264,7 @@ export function SidebarQuietRail({
             variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            <ul className="space-y-1">
+            <ul ref={navListRef} onKeyDown={onNavKeyDown} className="space-y-1">
               {WORKSPACES.filter(matches).map(navRow)}
             </ul>
           </InView>
@@ -330,9 +352,15 @@ export function SidebarQuietRail({
               railCollapsed && "justify-center",
             )}
           >
-            <Avatar className="size-8">
-              <AvatarFallback>ES</AvatarFallback>
-            </Avatar>
+            <div className="relative shrink-0">
+              <Avatar className="size-8">
+                <AvatarFallback>ES</AvatarFallback>
+              </Avatar>
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-card bg-[hsl(var(--ok))]"
+              />
+            </div>
             {!railCollapsed && (
               <div className="min-w-0">
                 <p className="truncate text-[13px] font-semibold leading-tight">
