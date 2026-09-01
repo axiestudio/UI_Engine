@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 
 export type BenchmarkDuelProps = {
   eyebrow?: string
@@ -53,8 +53,10 @@ export function BenchmarkDuel({
   )
 
   return (
-    <SectionShell width={760} className={className}>
-      <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
       <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
       {subtitle && <p className="mt-2 max-w-[48ch] text-[13px] leading-6 text-muted-foreground">{subtitle}</p>}
 
@@ -84,6 +86,8 @@ export function BenchmarkDuel({
       </div>
 
       <p className="mt-3 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">Scale 0–{max} · Values are live props, bars animate once on enter.</p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

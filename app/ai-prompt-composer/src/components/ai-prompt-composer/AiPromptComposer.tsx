@@ -44,7 +44,7 @@ export function AiPromptComposer({ value, onChange, onSend, busy, models = [], m
           {attachments.map((a, i) => (
             <motion.span key={a} initial={{ scale: 0.8, rotate: 0 }} animate={{ rotate: (i - attachments.length / 2) * 1.6, scale: 1 }} className="flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-border/60 bg-muted/40 px-2.5 py-1.5 text-xs font-medium"><Paperclip className="size-3" aria-hidden /> {a}</motion.span>
           ))}
-          </MotionConfig>
+          
     </div>
       )}
       <textarea ref={ta} rows={1} value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); if (!busy && value.trim()) onSend() } }} placeholder="Ask for something specific — context is cheap, clarity is not." aria-label="Prompt" className="max-h-[200px] w-full resize-none bg-transparent px-4 pb-2 pt-3.5 text-sm leading-relaxed outline-none" />
@@ -64,6 +64,7 @@ export function AiPromptComposer({ value, onChange, onSend, busy, models = [], m
         </span>
       </div>
       <p className="sr-only" aria-live="polite">{used} of {contextLimit} context tokens.</p>
+          </MotionConfig>
     </div>
   )
 }

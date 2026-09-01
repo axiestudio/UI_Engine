@@ -90,7 +90,7 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
         <div className="flex items-center gap-2">
           <span className={cn("font-mono text-[11px] tabular-nums", over ? "font-semibold text-[hsl(var(--err))]" : "text-muted-foreground")}>{value.length}/{max}</span>
           <svg aria-hidden viewBox="0 0 20 20" className="size-4 -rotate-90"><circle cx="10" cy="10" r="8" fill="none" stroke="hsl(var(--muted-foreground)/0.3)" strokeWidth="2.5" /><circle cx="10" cy="10" r="8" fill="none" stroke={over ? "hsl(var(--err))" : "hsl(var(--app-focus))"} strokeWidth="2.5" strokeLinecap="round" strokeDasharray={`${pct * 50.2} 50.2`} className="transition-[stroke-dasharray]" /></svg>
-          </MotionConfig>
+          
     </div>
       </div>
       <AnimatePresence>
@@ -106,6 +106,7 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
           </motion.ul>
         )}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }

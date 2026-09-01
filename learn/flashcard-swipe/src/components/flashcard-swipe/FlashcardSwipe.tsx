@@ -2,7 +2,8 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { RotateCcw, Check, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
+
 
 export type Flashcard = { q: string; a: string }
 export type FlashcardSwipeProps = {
@@ -54,24 +55,22 @@ export function FlashcardSwipe({ cards = DEFAULT_CARDS, className, onSwipe }: Fl
   }
 
   return (
-    <SectionShell width={760} className={cn(className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
+
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <MonoLabel className="text-muted-foreground">STUDY · FLASHCARDS</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />STUDY · FLASHCARDS</span>
         <div className="flex items-center gap-2">
           <span className="font-mono text-[11px] font-medium text-muted-foreground">
             {studied} studied · {cards.length} cards
           </span>
-          <button
-            type="button"
-            onClick={() => {
+          <Button type='button' onClick={() => {
               setOrder(cards.map((_, i) => i))
               setStudied(0)
               setFlipped(false)
-            }}
-            className="inline-flex items-center gap-1.5 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
+            }} className="inline-flex items-center gap-1.5 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
             <RotateCcw className="size-3.5" aria-hidden /> Reset
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -137,20 +136,12 @@ export function FlashcardSwipe({ cards = DEFAULT_CARDS, className, onSwipe }: Fl
                   <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-background/70">Definition</span>
                   <p className="font-serif text-[18px] italic leading-snug text-background">{cards[top]!.a}</p>
                   <div className="flex gap-2">
-                      <button
-                      type="button"
-                      onClick={() => swipe(false)}
-                      className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md border border-background/20 bg-background/10 px-4 py-2 font-mono text-xs font-medium text-background hover:bg-background/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background"
-                    >
+                      <Button type='button' onClick={() => swipe(false)} className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md border border-background/20 bg-background/10 px-4 py-2 font-mono text-xs font-medium text-background hover:bg-background/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background" variant="default">
                       <X className="size-3.5" aria-hidden /> Again
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => swipe(true)}
-                      className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-background px-4 py-2 font-mono text-xs font-medium text-foreground hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background"
-                    >
+                    </Button>
+                    <Button type='button' onClick={() => swipe(true)} className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-background px-4 py-2 font-mono text-xs font-medium text-foreground hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background" variant="default">
                       <Check className="size-3.5" aria-hidden /> Known
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </motion.div>
@@ -160,6 +151,8 @@ export function FlashcardSwipe({ cards = DEFAULT_CARDS, className, onSwipe }: Fl
       </div>
 
       <p className="mt-4 text-center font-mono text-[11px] font-medium text-muted-foreground">Drag or use arrow keys · Right = known · Left = again</p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

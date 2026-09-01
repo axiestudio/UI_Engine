@@ -45,6 +45,7 @@ export function SwitchAuditTrail({ entries, onRevert, className }: SwitchAuditTr
           </motion.li>
         )
       })}
+          
           </MotionConfig>
     </ol>
   )

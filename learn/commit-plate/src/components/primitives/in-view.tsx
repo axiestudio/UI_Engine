@@ -1,12 +1,12 @@
 /**
- * Vendored verbatim from motion-primitives by ibelick (MIT): components/core/in-view.tsx
- * Snapshot: UI/_registry/motion-primitives/components-core/in-view.tsx
+ * Vendored verbatim from motion-primitives (https://motion-primitives.com) by ibelick.
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/in-view.tsx
+ * Fetched 2026-08-29 from main branch. Do not edit unless intentionally adopting upstream changes.
  */
 'use client';
-import { useRef, useState } from 'react';
-import type { ReactNode } from 'react';
-import { motion, useInView } from 'motion/react';
-import type { Variant, Transition, UseInViewOptions } from 'motion/react';
+// Local patch for workspace tsconfig (verbatimModuleSyntax): type-only imports only, no behavior change.
+import { useRef, useState, type ReactNode } from 'react';
+import { motion, useInView, type Variant, type Transition, type UseInViewOptions,  } from 'motion/react';
 
 export type InViewProps = {
   children: ReactNode;
@@ -17,9 +17,9 @@ export type InViewProps = {
   transition?: Transition;
   viewOptions?: UseInViewOptions;
   as?: React.ElementType;
-  once?: boolean
-  delay?: number
-  className?: string
+  once?: boolean;
+  delay?: number;
+  className?: string;
 };
 
 const defaultVariants = {
@@ -31,11 +31,10 @@ export function InView({
   children,
   variants = defaultVariants,
   transition,
+  delay,
   viewOptions,
   as = 'div',
-  once,
-  delay = 0,
-  className
+  once
 }: InViewProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, viewOptions);
@@ -54,8 +53,7 @@ export function InView({
       animate={(isInView || isViewed) ? "visible" : "hidden"}
 
       variants={variants}
-      transition={{ ...transition, delay }}
-      className={className}
+      transition={delay !== undefined ? { ...transition, delay } : transition}
     >
       {children}
     </MotionComponent>

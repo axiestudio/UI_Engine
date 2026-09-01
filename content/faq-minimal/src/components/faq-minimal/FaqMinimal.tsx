@@ -38,10 +38,10 @@ export function FaqMinimal({ eyebrow = "FAQ", title = "Quick answers.", items, t
             const open = openId === q.id
             return (
               <div key={q.id}>
-                <Button type="button" onClick={() => setOpenId(open ? null : q.id)} aria expanded={open} variant="default" className={flex w-full items-baseline justify-between py-4 text-left}>
+                <Button type='button' onClick={() => setOpenId(open ? null : q.id)} aria-expanded={open} className="flex w-full items-baseline justify-between py-4 text-left" variant="default">
                   <span className={cn("font-display text-base font-bold", ink ? "text-background" : "text-foreground")}>{q.question}</span>
                   <span className={cn("ml-4 font-mono text-sm", ink ? "text-background/50" : "text-muted-foreground")}>{open ? "–" : "+"}</span>
-                
+                </Button>
                 <div className={cn("overflow-hidden transition-[height] duration-300", open ? "max-h-40 pb-4" : "max-h-0")}>
                   <p className={cn("text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{q.answer}</p>
                 </div>

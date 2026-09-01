@@ -56,7 +56,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
         { name: "Checkout API", state: hot ? "degraded" : "operational", region: "eu" }, { name: "Payments", state: hot ? "down" : "operational", region: "eu", note: hot ? "proxy rollback mid-flight" : undefined }, { name: "Board websockets", state: "operational", region: "eu" },
       ]} />
       <header className="flex flex-wrap items-center gap-3 border-b bg-card px-5 py-4">
-        <RadioTower aria-hidden className={"size-4 " + (hot ? "motion-safe:motion-safe:animate-pulse text-[hsl(var(--err))]" : "text-[hsl(var(--warn))]")} />
+        <RadioTower aria-hidden className={"size-4 " + (hot ? "motion-safe:motion-safe:motion-safe:animate-pulse text-[hsl(var(--err))]" : "text-[hsl(var(--warn))]")} />
         <h2 className="font-display text-lg font-black tracking-tight">{incident}</h2>
         <Badge className={cn("ml-auto font-mono text-[9px]", hot ? "bg-[hsl(var(--err))] text-white" : "bg-[hsl(var(--warn)/0.15)] text-[hsl(var(--warn))] border border-current")}>SEV {hot ? 1 : 2} · ack 700s</Badge>
       </header>
@@ -65,7 +65,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
         <div className="grid gap-5 sm:grid-rows-[minmax(0,1fr)_auto]">
           <div className="rounded-xl border bg-card p-1">
             <ChatThreadVirtual messages={msgs.map((m) => ({ ...m }))} canEdit={() => false} />
-          </MotionConfig>
+          
     </div>
           <div className="rounded-xl border bg-card"><PipelineRunGraph run="rollback 226" stages={stages} onRerunFailed={() => setStages((s) => s.map((x) => x.status === "fail" ? { ...x, status: "running", log: ["manual retry"] } : x))} /></div>
         </div>
@@ -80,6 +80,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
       </div>
       <JobTray jobs={jobs} onCancel={(j) => setJobs((x) => x.map((y) => y.id === j.id ? { ...y, status: "error", error: "cancelled", progress: undefined } : y))} onDismiss={(id) => setJobs((x) => x.filter((y) => y.id !== id))} />
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="tr" />
+          </MotionConfig>
     </div>
   )
 }

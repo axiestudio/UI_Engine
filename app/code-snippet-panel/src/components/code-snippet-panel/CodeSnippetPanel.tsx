@@ -54,6 +54,7 @@ export function CodeSnippetPanel({ code, language, title, copyText, className }:
         </code>
       </pre>
       <p className="sr-only" aria-live="polite">{copied ? "Code copied to clipboard." : ""}</p>
+          
           </MotionConfig>
     </figure>
   )

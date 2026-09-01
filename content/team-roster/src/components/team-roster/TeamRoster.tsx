@@ -81,14 +81,14 @@ export function TeamRoster({
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div role="group" aria-label="Filter roster" className="flex flex-wrap gap-2">
             {FILTERS.map((f) => (
-              <Button type="button" key={f.id} aria pressed={filter === f.id} onClick={() => setFilter(f.id)} variant="default" className={cn(cn(
+              <Button type='button' key={f.id} aria-pressed={filter === f.id} onClick={() => setFilter(f.id)} className={cn(
                   "rounded-full border px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   filter === f.id
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-border bg-card text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-                ))}>
+                )} variant="default">
                 {f.label}
-              
+              </Button>
             ))}
           </div>
           <p aria-live="polite" className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">

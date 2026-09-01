@@ -121,7 +121,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
         <div className="min-w-0">
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Night porter</span>
           <h2 className="mt-0.5 truncate text-[15px] font-semibold leading-tight">{hotel}</h2>
-          </MotionConfig>
+          
     </div>
         <dl className="ml-2 hidden items-baseline gap-1.5 sm:flex" aria-label="Tonight at the desk">
           <div className="rounded-full border bg-muted/40 px-2.5 py-0.5 font-mono text-[11px] tabular-nums text-muted-foreground">
@@ -329,6 +329,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
       </div>
 
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

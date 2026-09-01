@@ -13,6 +13,7 @@ import {
   offset,
   autoUpdate,
 } from "@floating-ui/react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
@@ -128,16 +129,16 @@ function SlotRow({ time, client, chairs: slotChairs, onBook }: { time: string; c
                 </li>
               ))}
             </ul>
-            <button
+            <Button
               type="button"
               onClick={() => {
                 setOpen(false)
                 onBook()
               }}
-              className="mt-3 w-full rounded-lg bg-foreground px-3 py-2 font-mono text-[10px] font-black uppercase tracking-[0.16em] text-background transition-transform hover:-translate-y-px focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="mt-3 w-full rounded-lg px-3 py-2 font-mono text-[10px] font-black uppercase tracking-[0.16em]"
             >
               Book {time}
-            </button>
+            </Button>
           </div>
         </FloatingPortal>
       )}

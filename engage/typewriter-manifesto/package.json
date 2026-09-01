@@ -26,7 +26,8 @@
   "presetSources": {
     "original-design": true,
     "vendored": "in-repo primitives: \u2014 + handcraft kit",
-    "motion": "motion/react"
+    "motion": "motion/react",
+    "watermelon-ui": []
   },
   "scripts": {
     "build": "tsc -b && vite build",

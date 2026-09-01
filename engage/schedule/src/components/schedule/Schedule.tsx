@@ -125,7 +125,7 @@ export function Schedule({
                 <p className="mt-3 text-sm font-medium text-muted-foreground">No published slots — use the booking link.</p>
               ) : (
                 <RadioGroup
-                  value={selected === null ? undefined : String(selected)}
+                  value={String(selected ?? -1)}
                   onValueChange={(v) => setSelected(Number(v))}
                   aria-label="Choose a time slot"
                   className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3"
@@ -135,7 +135,7 @@ export function Schedule({
                       key={`${s.day}-${s.time}`}
                       value={String(i)}
                       className={cn(
-                        "flex flex-col items-start rounded-xl border px-3 py-2.5 text-left shadow-none transition-all [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background data-[state=unchecked]:bg-background hover:bg-accent data-[state=checked]:hover:bg-foreground",
+                        "flex h-auto w-full flex-col items-start rounded-xl border px-3 py-2.5 text-left shadow-none transition-all [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background data-[state=unchecked]:bg-background hover:bg-accent data-[state=checked]:hover:bg-foreground",
                       )}
                     >
                       <span className="font-display text-sm font-extrabold tracking-tight">{s.time}</span>

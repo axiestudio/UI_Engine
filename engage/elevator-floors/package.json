@@ -26,7 +26,11 @@
   "presetSources": {
     "original-design": true,
     "vendored": "in-repo primitives: \u2014 + handcraft kit",
-    "motion": "motion/react"
+    "motion": "motion/react",
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json",
+      "https://registry.watermelon.sh/r/radio-group.json"
+    ]
   },
   "scripts": {
     "build": "tsc -b && vite build",
@@ -34,7 +38,10 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@radix-ui/react-radio-group": "^1.4.7",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "radix-ui": "^1.4.2",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
     "tailwind-merge": "^3.6.0"

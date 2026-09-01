@@ -141,7 +141,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
         <div className="min-w-0">
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Print desk · shift {shift}</span>
           <h2 className="mt-1 truncate font-display text-[22px] font-bold leading-tight tracking-[-0.02em]">{press}</h2>
-          </MotionConfig>
+          
     </div>
         <div className="shrink-0 text-right">
           <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">sheets today</span>
@@ -306,6 +306,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
         />
         <p className="min-w-0 flex-1 truncate text-[11px] text-muted-foreground">{STOCK_NOTES[stock]}</p>
       </footer>
+          </MotionConfig>
     </div>
   )
 }

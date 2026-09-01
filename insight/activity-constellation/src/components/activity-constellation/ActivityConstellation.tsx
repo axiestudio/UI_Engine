@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 
 export type ActivityNode = { city: string; x: number; y: number; count: number }
 
@@ -62,10 +62,12 @@ export function ActivityConstellation({
   const total = React.useMemo(() => nodes.reduce((s, n) => s + n.count, 0), [nodes])
 
   return (
-    <SectionShell width={920} tone="ink" grain className={cn("text-background", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", true && "bg-foreground", cn("text-background", className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-xl">
-          <MonoLabel className="text-background/60">{eyebrow}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-background/60")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] sm:text-[34px]">{title}</h2>
           <p className="mt-2 text-[13px] leading-6 text-background/65">{subtitle}</p>
         </div>
@@ -145,6 +147,8 @@ export function ActivityConstellation({
       </ul>
 
       <p className="mt-3 font-mono text-[11px] font-medium tracking-wide text-background/55">Map is decorative · All data available as a table to assistive tech.</p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

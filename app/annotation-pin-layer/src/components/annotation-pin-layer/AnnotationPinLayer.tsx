@@ -30,7 +30,7 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, author = 
       <MotionConfig reducedMotion="user">
       <div className="pointer-events-none">
         <div className="opacity-100 [&_*]:pointer-events-auto">{canvas}      
-          </MotionConfig>
+          
     </div>
       </div>
       <div ref={host} className={cn("absolute inset-0", adding && "cursor-crosshair")} onClick={(e) => {
@@ -77,6 +77,7 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, author = 
           <MessageSquarePlus className="size-4" /> {adding ? "click where · esc" : "annotate"}
         </Button>
       )}
+          </MotionConfig>
     </div>
   )
 }

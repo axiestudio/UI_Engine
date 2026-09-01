@@ -107,7 +107,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
         <p className="mt-1.5 flex items-center gap-1.5 text-[10px] text-muted-foreground">
           <Wifi className="size-3" /> dot on a tab = wifi degraded in that zone · badges auto-print on the WP80 printer
         </p>
-          </MotionConfig>
+          
     </div>
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 xl:grid-cols-[300px_minmax(0,1fr)_320px]">
@@ -239,6 +239,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
       </div>
 
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t: Toast[]) => t.filter((x: Toast) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

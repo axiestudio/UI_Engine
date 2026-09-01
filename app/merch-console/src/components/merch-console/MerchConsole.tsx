@@ -205,7 +205,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
           <Button size="sm" onClick={requestPayout} disabled={!!payout}>
             <Wallet className="size-3.5" /> {payout ? `Requested · ${payout.at}` : "Request payout"}
           </Button>
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -417,6 +417,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
           </div>
         </section>
       </div>
+          </MotionConfig>
     </div>
   )
 }

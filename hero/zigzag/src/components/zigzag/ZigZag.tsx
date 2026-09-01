@@ -171,6 +171,7 @@ export function ZigZag({
   const [progress, setProgress] = React.useState(0)
   const [isMobile, setIsMobile] = React.useState(false)
   const imagesRef = React.useRef<HTMLImageElement[]>([])
+  const drawRef = React.useRef<(() => void) | null>(null)
 
   React.useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768)
@@ -197,6 +198,7 @@ export function ZigZag({
     combinedFrames.forEach((src, i) => {
       const img = new Image()
       img.src = src
+      img.onload = () => drawRef.current?.()
       imgs[i] = img
     })
     imagesRef.current = imgs
@@ -230,6 +232,7 @@ export function ZigZag({
   const draw = React.useCallback(() => {
     const canvases = [canvasRef.current, canvasMobileRef.current].filter(Boolean) as HTMLCanvasElement[]
     if (!canvases.length) return
+    drawRef.current = draw
     const img = imagesRef.current[frameIndex]
     const ready = img && img.complete && img.naturalWidth > 0 ? img : null
     if (!ready) return
@@ -254,14 +257,10 @@ export function ZigZag({
 
   React.useEffect(() => {
     draw()
-    const onResize = () => draw()
-    window.addEventListener("resize", onResize)
-    return () => window.removeEventListener("resize", onResize)
-  }, [draw])
-
-  React.useEffect(() => {
-    const id = setInterval(draw, 66)
-    return () => clearInterval(id)
+    const canvases = [canvasRef.current, canvasMobileRef.current].filter(Boolean) as HTMLCanvasElement[]
+    const ro = new ResizeObserver(() => draw())
+    canvases.forEach((cv) => ro.observe(cv))
+    return () => ro.disconnect()
   }, [draw])
 
   const rawPos = React.useMemo(() => getPos(progress), [progress])

@@ -38,7 +38,7 @@ export function ResourceList({ eyebrow = "RESOURCES", title = "Downloads & docs.
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.06 }}>
         <div className="mt-6 flex flex-wrap gap-2">
           {types.map((t) => (
-            <Button type="button" key={t} onClick={() => setActive(t)} variant="default" className={cn(cn("rounded-full px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest transition-colors", t === active ? "bg-foreground text-background" : ink ? "text-background/60 hover:bg-background/10" : "text-muted-foreground hover:bg-accent"))}>{t}
+            <Button type='button' key={t} onClick={() => setActive(t)} className={cn("rounded-full px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest transition-colors", t === active ? "bg-foreground text-background" : ink ? "text-background/60 hover:bg-background/10" : "text-muted-foreground hover:bg-accent")} variant="default">{t}</Button>
           ))}
         </div>
         <div className={cn("mt-6 divide-y", ink ? "divide-background/15" : "divide-border")}>

@@ -1,11 +1,15 @@
+import {
+  defineConfig,
+} from "vite"
 import react from "@vitejs/plugin-react"
-import path from "path"
-import { defineConfig } from "vite"
 import dts from "vite-plugin-dts"
+import path from "node:path"
 
 export default defineConfig({
   plugins: [react(), dts({ include: ["src"] })],
-  resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
+  resolve: {
+    alias: { "@": path.resolve(__dirname, "./src") },
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
@@ -13,7 +17,9 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "gsap-scroll-draw.es.js" : "gsap-scroll-draw.cjs.js"),
     },
-    rollupOptions: { external: (id) => ["react-dom", "react/jsx-runtime", "motion/react", "class-variance-authority", "lucide-react", "gsap"].includes(id) || id.startsWith("gsap/") || id.startsWith("gsap/") },
+    rollupOptions: {
+      external: (id) => ["react", "react-dom", "react/jsx-runtime", "motion", "motion/react", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "cmdk", "gsap"].includes(id) || id.startsWith("gsap/"),
+    },
     cssCodeSplit: false,
   },
 })

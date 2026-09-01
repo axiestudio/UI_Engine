@@ -181,7 +181,7 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
                     {s} only
                   </Button>
                 ))}
-          </MotionConfig>
+          
     </div>
             </div>
           </section>
@@ -302,6 +302,7 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

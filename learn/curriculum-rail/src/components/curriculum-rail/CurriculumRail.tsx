@@ -2,8 +2,9 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { CheckCircle2, ChevronDown, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, Ordinal } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 export type Lesson = { title: string; minutes: number; state: "done" | "open" | "locked" }
 export type Module = { title: string; note: string; lessons: Lesson[] }
@@ -36,8 +37,10 @@ export function CurriculumRail({ modules = DEFAULT_MODULES, className, onLessonC
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <SectionShell width={920} className={cn(className)}>
-      <MonoLabel className="text-muted-foreground">CURRICULUM · THE PATH</MonoLabel>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />CURRICULUM · THE PATH</span>
       <h2 className="mt-2 max-w-[18ch] font-display text-[30px] font-bold leading-[0.98] tracking-tight text-foreground sm:text-[36px]">
         A path you can actually walk.
       </h2>
@@ -74,19 +77,13 @@ export function CurriculumRail({ modules = DEFAULT_MODULES, className, onLessonC
                     {allDone ? <CheckCircle2 className="size-4" /> : mi + 1}
                   </span>
 
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={`module-${mi}`}
-                    onClick={() => setOpenMod(isOpen ? -1 : mi)}
-                    className={cn(
+                  <Button type='button' aria-expanded={isOpen} aria-controls={`module-${mi}`} onClick={() => setOpenMod(isOpen ? -1 : mi)} className={cn(
                       "flex w-full items-center justify-between gap-4 rounded-xl border bg-card px-5 py-4 text-left shadow-sm transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       isOpen && "border-foreground/20 bg-card"
-                    )}
-                  >
+                    )} variant="default">
                     <div className="min-w-0">
                       <span className="flex items-center gap-2">
-                        <Ordinal n={mi + 1} total={modules.length} />
+                        <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>mi + 1<span className="opacity-50"> / modules.length</span></span>
                         <span className="font-display text-[17px] font-bold tracking-tight text-foreground">{m.title}</span>
                       </span>
                       <span className="mt-1 block text-[13px] leading-snug text-muted-foreground">{m.note}</span>
@@ -97,7 +94,7 @@ export function CurriculumRail({ modules = DEFAULT_MODULES, className, onLessonC
                       </span>
                       <ChevronDown className={cn("size-4 text-muted-foreground transition-transform", isOpen && "rotate-180")} aria-hidden />
                     </span>
-                  </button>
+                  </Button>
 
                   <AnimatePresence initial={false}>
                     {isOpen && (
@@ -112,15 +109,10 @@ export function CurriculumRail({ modules = DEFAULT_MODULES, className, onLessonC
                         <div className="space-y-2 pt-2">
                           {m.lessons.map((l, li) => (
                             <li key={l.title}>
-                              <button
-                                type="button"
-                                disabled={l.state === "locked"}
-                                onClick={() => onLessonClick?.(mi, li)}
-                                className={cn(
+                              <Button type='button' disabled={l.state === "locked"} onClick={() => onLessonClick?.(mi, li)} className={cn(
                                   "flex w-full items-center gap-3 rounded-lg border bg-background px-4 py-3 text-left text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                   l.state === "locked" ? "cursor-not-allowed opacity-60" : "hover:border-foreground/15 hover:bg-muted/40"
-                                )}
-                              >
+                                )} variant="default">
                                 {l.state === "done" ? (
                                   <CheckCircle2 className="size-4 shrink-0 text-foreground" aria-hidden />
                                 ) : l.state === "locked" ? (
@@ -130,7 +122,7 @@ export function CurriculumRail({ modules = DEFAULT_MODULES, className, onLessonC
                                 )}
                                 <span className={cn("flex-1 font-medium", l.state === "done" && "text-muted-foreground line-through")}>{l.title}</span>
                                 <span className="font-mono text-[11px] font-medium text-muted-foreground">{l.minutes} min</span>
-                              </button>
+                              </Button>
                             </li>
                           ))}
                         </div>
@@ -143,6 +135,8 @@ export function CurriculumRail({ modules = DEFAULT_MODULES, className, onLessonC
           })}
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

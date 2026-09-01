@@ -3,7 +3,8 @@ import { AnimatePresence, motion } from "motion/react"
 import { Check, RotateCcw, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
-import { MonoLabel, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
+
 
 // ═══ JOB         Teach the house rules with three honest questions.
 // ═══ EMOTION     A calm exam at the counter — no red pen, just the ledger.
@@ -100,13 +101,20 @@ export function QuizRunner({
   const hair = ink ? "border-background/15" : "border-border"
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <InView
         once
         variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+          <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
       </InView>
 
       <InView
@@ -127,8 +135,8 @@ export function QuizRunner({
               {/* ── chrome: label + progress segments ── */}
               <div className={cn("border-b px-6 pb-5 pt-6", hair)}>
                 <div className="flex items-center justify-between gap-3">
-                  <MonoLabel className="text-muted-foreground">{heading}</MonoLabel>
-                  <Ordinal n={Math.min(current + 1, questions.length)} total={questions.length} />
+                  <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{heading}</span>
+                  <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>Math.min(current + 1, questions.length)<span className="opacity-50"> / questions.length</span></span>
                 </div>
                 <div aria-hidden className="mt-4 flex gap-1.5">
                   {questions.map((_, i) => (
@@ -182,13 +190,9 @@ export function QuizRunner({
                       <p className="mt-2 max-w-[320px] text-sm text-muted-foreground">
                         Retakes encouraged. The ledger never judges, it only remembers.
                       </p>
-                      <button
-                        type="button"
-                        onClick={restart}
-                        className="mt-6 inline-flex h-10 items-center gap-2 rounded-full border px-5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      >
+                      <Button type='button' onClick={restart} className="mt-6 inline-flex h-10 items-center gap-2 rounded-full border px-5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
                         <RotateCcw className="size-3.5" aria-hidden /> Restart
-                      </button>
+                      </Button>
                     </motion.div>
                   ) : (
                     <motion.div
@@ -206,23 +210,17 @@ export function QuizRunner({
                           const isPicked = i === pickedIdx
                           const state = pickedIdx === null ? "idle" : isCorrect ? "correct" : isPicked ? "wrong" : "dim"
                           return (
-                            <button
-                              key={a}
-                              type="button"
-                              disabled={pickedIdx !== null}
-                              onClick={() => pick(i)}
-                              className={cn(
+                            <Button type='button' key={a} disabled={pickedIdx !== null} onClick={() => pick(i)} className={cn(
                                 "flex w-full items-center justify-between gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                 state === "idle" && "border-border hover:bg-muted",
                                 state === "correct" && "border-primary bg-primary/[0.06]",
                                 state === "wrong" && "border-border opacity-60",
                                 state === "dim" && "border-border opacity-40",
-                              )}
-                            >
+                              )} variant="default">
                               <span>{a}</span>
                               {state === "correct" && <Check className="size-4 shrink-0 text-primary" aria-hidden />}
                               {state === "wrong" && <X className="size-4 shrink-0 text-muted-foreground" aria-hidden />}
-                            </button>
+                            </Button>
                           )
                         })}
                       </div>
@@ -265,6 +263,8 @@ export function QuizRunner({
           </figcaption>
         </figure>
       </InView>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

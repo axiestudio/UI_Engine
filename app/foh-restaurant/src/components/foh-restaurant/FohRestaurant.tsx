@@ -136,7 +136,7 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
                   <div className="flex items-baseline justify-between">
                     <p className="text-[12px] font-semibold">{c.caller}</p>
                     <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{c.waited}</span>
-          </MotionConfig>
+          
     </div>
                   <p className="text-[11px] text-muted-foreground">{c.about}</p>
                   <div className="mt-1.5 flex gap-1.5">
@@ -244,6 +244,7 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

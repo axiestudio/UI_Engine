@@ -133,7 +133,7 @@ export function AgentConsoleDesk({ session = "OPS-4417", model: defaultModel = "
               <RadialGauge value={tokens} max={200_000} label="ctx" unit="tok" precision={0} size={92} zones={[{ to: 60, color: "hsl(var(--ok))" }, { to: 85, color: "hsl(var(--warn))" }, { to: 100, color: "hsl(var(--err))" }]} className="shrink-0" />
               <div className="min-w-0 space-y-1 text-[12px]">
                 <div className="flex justify-between gap-2"><span className="text-muted-foreground">used</span><span className="font-mono tabular-nums">{tokens.toLocaleString()}</span>      
-          </MotionConfig>
+          
     </div>
                 <div className="flex justify-between gap-2"><span className="text-muted-foreground">window</span><span className="font-mono tabular-nums">200,000</span></div>
                 <div className="flex justify-between gap-2"><span className="text-muted-foreground">spend / sesh</span><span className="font-mono tabular-nums">kr 12.40</span></div>
@@ -227,6 +227,7 @@ export function AgentConsoleDesk({ session = "OPS-4417", model: defaultModel = "
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

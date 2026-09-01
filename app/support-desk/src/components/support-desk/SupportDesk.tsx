@@ -161,7 +161,7 @@ export function SupportDesk({
                 onSelect={(h) => setFocus(rows.some((r) => r.id === h.id) ? h.id : null)}
               />
               <p className="text-[11px] text-muted-foreground">Selecting a ticket hit focuses its card on the switchboard.</p>
-          </MotionConfig>
+          
     </div>
           </section>
 
@@ -315,6 +315,7 @@ export function SupportDesk({
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

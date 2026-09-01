@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { SlidingNumber } from "@/components/primitives/sliding-number"
 
 export type TrendPoint = { label: string; value: number }
@@ -123,19 +123,25 @@ export function TrendScrub({
   const pt = points[index] ?? points[0]
   if (!points.length) {
     return (
-      <SectionShell width={920} className={className}>
-        <MonoLabel className="text-muted-foreground">TREND · SCRUB</MonoLabel>
+      <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />TREND · SCRUB</span>
         <h2 className="mt-2 font-display text-[28px] font-semibold tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
         <p className="mt-6 rounded-xl border border-dashed p-8 text-center text-sm text-muted-foreground">No data points.</p>
-      </SectionShell>
+      
+  </div>
+</section>
     )
   }
 
   return (
-    <SectionShell width={920} className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-xl">
-          <MonoLabel className="text-muted-foreground">TREND · SCRUB</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />TREND · SCRUB</span>
           <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">
             {title}
           </h2>
@@ -250,6 +256,8 @@ export function TrendScrub({
           {index + 1} / {points.length}
         </span>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

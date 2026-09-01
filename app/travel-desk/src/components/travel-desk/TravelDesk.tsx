@@ -118,7 +118,7 @@ export function TravelDesk({
         <div>
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Itinerary ops</span>
           <p className="font-mono text-[26px] font-bold leading-none tracking-tight">{pnr}</p>
-          </MotionConfig>
+          
     </div>
         <p className="pb-0.5 text-[13px] font-semibold">
           {traveller} <span className="font-normal text-muted-foreground">· ARN→JFK via OSL/AMS</span>
@@ -158,7 +158,7 @@ export function TravelDesk({
                     className={cn(
                       "relative z-10 mt-1.5 grid size-[15px] shrink-0 place-items-center rounded-full border-2 bg-background",
                       l.state === "landed" && "border-[hsl(var(--muted-foreground))]",
-                      l.state === "boarding" && "border-[hsl(var(--ok))] motion-safe:motion-safe:animate-pulse",
+                      l.state === "boarding" && "border-[hsl(var(--ok))] motion-safe:motion-safe:motion-safe:animate-pulse",
                       l.state === "scheduled" && "border-border",
                     )}
                   />
@@ -309,6 +309,7 @@ export function TravelDesk({
       </div>
 
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

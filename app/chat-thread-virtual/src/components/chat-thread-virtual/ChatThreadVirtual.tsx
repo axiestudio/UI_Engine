@@ -53,7 +53,7 @@ export function ChatThreadVirtual({ messages, canEdit, onEdit, className }: Chat
                     <div className="flex items-center gap-2">
                       <input autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { onEdit?.(m.id, draft); setEditing(null) } if (e.key === "Escape") setEditing(null) }} className="w-56 bg-transparent font-mono text-[12px] outline-none" />
                       <Button type="button" variant="ghost" onClick={() => { onEdit?.(m.id, draft); setEditing(null) }} className="text-xs font-medium text-muted-foreground hover:text-foreground">save</Button>
-          </MotionConfig>
+          
     </div>
                   ) : (
                     <p className="text-[13px] leading-relaxed">
@@ -77,6 +77,7 @@ export function ChatThreadVirtual({ messages, canEdit, onEdit, className }: Chat
           <motion.button initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} onClick={() => { box.current?.scrollTo({ top: 9e9 }); setStick(true) }} className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1.5 text-[10px] font-black text-background shadow-xl"><ArrowDown className="size-3" /> {newCount} new</motion.button>
         )}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }

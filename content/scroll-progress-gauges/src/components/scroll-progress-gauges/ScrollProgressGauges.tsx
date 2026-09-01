@@ -1,5 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform, useSpring, type MotionValue } from "motion/react"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Progress gauges — circular progress dials that fill as you scroll a track.
@@ -30,7 +31,7 @@ export function ScrollProgressGauges({ eyebrow = "GAUGES", gauges = DEFAULT_GAUG
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
-      <div ref={ref} className="mt-10 grid grid-cols-2 gap-8 lg:grid-cols-4">
+      <div ref={ref} className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
         {gauges.map((g, i) => <GaugeDial key={g.id} gauge={g} progress={sp} index={i} />)}
       </div>
     

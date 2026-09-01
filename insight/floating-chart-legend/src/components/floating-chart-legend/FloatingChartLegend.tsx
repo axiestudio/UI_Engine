@@ -16,7 +16,6 @@ import {
 } from "@floating-ui/react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
-import { SectionShell, SectionHead, MonoLabel } from "@/components/primitives/handcraft"
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -128,7 +127,7 @@ function LegendChip({
             className="z-50 w-56 rounded-xl border bg-card p-3.5 shadow-xl"
           >
             <div className="flex items-center justify-between gap-3">
-              <MonoLabel>{series.label}</MonoLabel>
+              <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{series.label}</span>
               <span
                 className={cn(
                   "inline-flex items-center gap-1 font-mono text-[10px] font-bold",
@@ -184,13 +183,20 @@ export function FloatingChartLegend({
   }
 
   return (
-    <SectionShell width={920} tone={tone} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <InView once variants={REVEAL} transition={{ duration: 0.8, ease: EASE }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
+          <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", false ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
       </InView>
       <div className="mt-10 rounded-2xl border bg-card p-5 shadow-sm sm:max-w-md">
         <div className="flex items-center justify-between">
-          <MonoLabel>Floor activity</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />Floor activity</span>
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
             Trailing 8 weeks
           </span>
@@ -279,6 +285,8 @@ export function FloatingChartLegend({
         <span>{caption}</span>
         <span aria-hidden>●</span>
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

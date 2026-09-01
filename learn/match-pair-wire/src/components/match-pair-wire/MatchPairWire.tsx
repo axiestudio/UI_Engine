@@ -2,8 +2,9 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Check, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 export type MatchPair = { left: string; right: string }
 export type MatchPairWireProps = {
@@ -104,8 +105,10 @@ export function MatchPairWire({ pairs = DEFAULT_PAIRS, shuffle = true, className
   const allDone = Object.keys(matched).length === pairs.length
 
   return (
-    <SectionShell width={920} className={cn(className)}>
-      <MonoLabel className="text-muted-foreground">MATCH · PAIRING</MonoLabel>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />MATCH · PAIRING</span>
       <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Connect code to meaning.</h2>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Pick a status code, then its meaning. Correct pairs latch and stay.</p>
 
@@ -164,23 +167,16 @@ export function MatchPairWire({ pairs = DEFAULT_PAIRS, shuffle = true, className
             const done = Object.values(matched).includes(right)
             return (
               <InView key={right} once delay={0.08}>
-                <button
-                  type="button"
-                  disabled={done || allDone}
-                  ref={(el) => {
+                <Button type='button' disabled={done || allDone} ref={(el) => {
                     if (el) rightRefs.current.set(right, el)
-                  }}
-                  onClick={() => tryMatch(right)}
-                  aria-disabled={done}
-                  className={cn(
+                  }} onClick={() => tryMatch(right)} aria-disabled={done} className={cn(
                     "flex w-full items-center justify-between rounded-xl border px-4 py-3.5 text-left text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     done ? "border-border bg-muted text-muted-foreground" : "border-border bg-card hover:border-foreground/20 hover:bg-muted/50",
                     selLeft && !done && "hover:border-foreground/30"
-                  )}
-                >
+                  )} variant="default">
                   <span className="font-medium leading-snug">{right}</span>
                   {done && <Check className="size-4 shrink-0 text-muted-foreground" aria-hidden />}
-                </button>
+                </Button>
               </InView>
             )
           })}
@@ -192,19 +188,17 @@ export function MatchPairWire({ pairs = DEFAULT_PAIRS, shuffle = true, className
       </p>
       {allDone && (
         <div className="mt-4 flex justify-center">
-          <button
-            type="button"
-            onClick={() => {
+          <Button type='button' onClick={() => {
               setMatched({})
               setWires([])
               setRightOrder(shuffle ? shuffleArr(pairs.map((p) => p.right)) : pairs.map((p) => p.right))
-            }}
-            className="rounded-md border bg-background px-4 py-2 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
+            }} className="rounded-md border bg-background px-4 py-2 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
             Play again
-          </button>
+          </Button>
         </div>
       )}
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

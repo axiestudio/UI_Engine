@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import Noise from "@/components/primitives/noise"
+import { Button } from "@/components/ui/button"
 
 
 // ═══ JOB      show work like a curated wall, not an image dump
@@ -55,7 +56,7 @@ export function GalleryRails({ eyebrow = "THE WALL", title, subtitle, works, onS
                     <div className={cn("w-full bg-[hsl(var(--wall-deep))]", w.span === "tall" ? "aspect-[3/4]" : "aspect-[4/3]")} />
                   )}
                   {onSelect ? (
-                    <button type="button" onClick={() => onSelect(w)} className="absolute inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[hsl(var(--plate))]" aria-label={`Open ${w.title}`} />
+                    <Button type='button' onClick={() => onSelect(w)} aria-label={`Open ${w.title}`} className="absolute inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[hsl(var(--plate))]" size="icon" variant="default"></Button>
                   ) : w.href ? (
                     <a href={w.href} className="absolute inset-0" aria-label={w.title} />
                   ) : null}

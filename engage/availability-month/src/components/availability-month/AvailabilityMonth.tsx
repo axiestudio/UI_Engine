@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 // ═══ JOB         Answer "when can I get in?" with a calendar, not a phone call.
 // ═══ EMOTION     Flipping the kitchen calendar to next month.
@@ -130,7 +131,14 @@ export function AvailabilityMonth({
                 </div>
               </div>
 
-              <div className="mt-4 grid grid-cols-7 gap-1.5">
+              <RadioGroup
+                value={selected === null ? "-1" : String(selected)}
+                onValueChange={(v) => {
+                  setSelected(Number(v))
+                  setSlot(null)
+                }}
+                className="mt-4 grid grid-cols-7 gap-1.5"
+              >
                 {WEEKDAYS.map((w) => (
                   <span key={w} aria-hidden className="grid h-7 place-items-center font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
                     {w}
@@ -139,38 +147,32 @@ export function AvailabilityMonth({
                 {cells.map((d, i) => {
                   if (d === null) return <span key={`blank-${i}`} aria-hidden />
                   const booked = isBooked(cursor.getMonth(), d)
-                  const isSelected = selected === d
                   const isToday =
                     today.getFullYear() === cursor.getFullYear() &&
                     today.getMonth() === cursor.getMonth() &&
                     today.getDate() === d
                   return (
-                    <button
+                    <RadioGroupItem
                       key={d}
-                      type="button"
+                      value={String(d)}
                       disabled={booked}
-                      aria-pressed={isSelected}
                       aria-label={`${cap(new Date(cursor.getFullYear(), cursor.getMonth(), d).toLocaleDateString("sv-SE", { day: "numeric", month: "long" }))}${
                         booked ? " — fully booked" : " — 3 slots available"
                       }`}
-                      onClick={() => {
-                        setSelected(d)
-                        setSlot(null)
-                      }}
                       className={cn(
-                        "grid aspect-square place-items-center rounded-md border text-[13px] font-semibold tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        "grid aspect-square h-auto w-auto place-items-center rounded-md border text-[13px] font-semibold tabular-nums shadow-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&_[data-slot=radio-group-indicator]]:hidden",
                         booked
                           ? "cursor-not-allowed border-transparent text-muted-foreground/50 line-through"
                           : "border-border hover:bg-muted",
-                        isSelected && "border-primary bg-primary text-primary-foreground hover:bg-primary",
-                        isToday && !isSelected && "ring-1 ring-primary",
+                        selected === d && "border-primary bg-primary text-primary-foreground hover:bg-primary",
+                        isToday && selected !== d && "ring-1 ring-primary",
                       )}
                     >
                       {d}
-                    </button>
+                    </RadioGroupItem>
                   )
                 })}
-              </div>
+              </RadioGroup>
 
               <AnimatePresence initial={false}>
                 {selDate && selected !== null && (
@@ -188,24 +190,22 @@ export function AvailabilityMonth({
                         {slots.length} slots
                       </span>
                     </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <RadioGroup
+                      value={slot ?? ""}
+                      onValueChange={(v) => setSlot(v)}
+                      aria-label="Time slots"
+                      className="mt-3 flex flex-wrap gap-2 [&_[data-slot=radio-group-indicator]]:hidden"
+                    >
                       {slots.map((s) => (
-                        <button
+                        <RadioGroupItem
                           key={s}
-                          type="button"
-                          aria-pressed={slot === s}
-                          onClick={() => setSlot(s)}
-                          className={cn(
-                            "h-9 rounded-md border px-3 font-mono text-[12px] font-bold tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                            slot === s
-                              ? "border-primary bg-primary text-primary-foreground"
-                              : "border-border bg-background hover:bg-muted",
-                          )}
+                          value={s}
+                          className="h-9 rounded-md border px-3 font-mono text-[12px] font-bold tabular-nums shadow-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=unchecked]:border-border data-[state=unchecked]:bg-background hover:bg-muted"
                         >
                           {s}
-                        </button>
+                        </RadioGroupItem>
                       ))}
-                    </div>
+                    </RadioGroup>
                     <p className="mt-3 text-[12px] font-medium text-muted-foreground">
                       Chairs 1–3 · your slot holds for 15 minutes.
                     </p>

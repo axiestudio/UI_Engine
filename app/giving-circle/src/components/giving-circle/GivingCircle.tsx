@@ -114,7 +114,7 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
             <div className="p-3">
               <DateRangePresets value={win} onChange={setWin} presets={[{ label: "Count week", days: 7 }, { label: "Fortnight", days: 14 }, { label: "Quarter", days: 90 }]} />
               <p className="mt-2 text-[11px] text-muted-foreground">The window scopes the funnel and the Sunday envelopes below.</p>
-          </MotionConfig>
+          
     </div>
           </section>
         </aside>
@@ -209,6 +209,7 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

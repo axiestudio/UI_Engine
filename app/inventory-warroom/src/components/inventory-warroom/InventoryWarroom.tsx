@@ -224,7 +224,7 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
           </span>
         )}
         <Button variant="outline" size="sm" onClick={resync} disabled={syncing} className="ml-auto gap-1.5">
-          <RefreshCw className={cn("size-3.5", syncing && "motion-safe:motion-safe:animate-spin")} /> {syncing ? "Resyncing…" : "Resync ERP"}
+          <RefreshCw className={cn("size-3.5", syncing && "motion-safe:motion-safe:motion-safe:animate-spin")} /> {syncing ? "Resyncing…" : "Resync ERP"}
         </Button>
       </header>
 
@@ -233,7 +233,7 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
         <section className="overflow-hidden rounded-lg border bg-card">
           <StatusHealthStrip services={services} region="wh-2" />
         </section>
-          </MotionConfig>
+          
     </div>
 
       {/* query band — tokens scope the ledger AND the scatter */}
@@ -416,6 +416,7 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

@@ -152,7 +152,7 @@ export function NightAudit({ property = "Hotel Bryggen", clerk = "N. Haddad", bu
       {!online && (
         <div className="px-4 pt-3">
           <OfflineQueueBanner online={online} queued={queued} flushing={flushing} onRetryNow={retryResync} />
-          </MotionConfig>
+          
     </div>
       )}
 
@@ -288,6 +288,7 @@ export function NightAudit({ property = "Hotel Bryggen", clerk = "N. Haddad", bu
       </div>
 
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t: Toast[]) => t.filter((x: Toast) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

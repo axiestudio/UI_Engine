@@ -85,16 +85,16 @@ export function GsapFlipGrid({
         {/* filter chips */}
         <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter the wall">
           {filters.map((f) => (
-            <Button type="button" key={f} role="tab" aria selected={filter === f} onClick={() => applyFilter(f)} variant="default" className={cn(cn(
+            <Button type='button' key={f} role="tab" aria-selected={filter === f} onClick={() => applyFilter(f)} className={cn(
                 "h-9 rounded-full border px-4 font-mono text-[11px] font-bold uppercase tracking-[0.12em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 filter === f
                   ? "border-foreground bg-foreground text-background"
                   : ink
                     ? "border-background/25 text-background/60 hover:border-background/50"
                     : "border-border text-muted-foreground hover:border-muted-foreground/60 hover:text-foreground",
-              ))}>
+              )} variant="default">
               {f}
-            
+            </Button>
           ))}
         </div>
 

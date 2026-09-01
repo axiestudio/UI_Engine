@@ -1,10 +1,11 @@
 import * as React from "react"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
 import { motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
-import Autoplay from "embla-carousel-autoplay"
-import useEmblaCarousel from "embla-carousel-react"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Ken Burns — slow, continuous drift across a frame.
 // ═══ EMOTION     Timeless, cinematic.
@@ -30,10 +31,7 @@ const DEFAULT_FRAMES = [
 ]
 export function MediaKenBurns({ eyebrow = "MOTION", title = "A slow drift.", frames = DEFAULT_FRAMES, interval = 7000, className }: MediaKenBurnsProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
-    [Autoplay({ delay: interval, stopOnInteraction: false, playOnInit: !reduce })],
-  )
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: interval, stopOnInteraction: false, playOnInit: !reduce })])
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => {
     if (!emblaApi) return
@@ -74,7 +72,7 @@ export function MediaKenBurns({ eyebrow = "MOTION", title = "A slow drift.", fra
             ))}
           </div>
           <div className="flex justify-center gap-2 py-3">
-            {frames.map((fr, i) => <button key={fr.id} type="button" onClick={() => setIdx(i)} aria-label={`Frame ${i + 1}`} className={cn("h-1.5 rounded-full transition-all", i === idx ? "w-6 bg-foreground" : "w-1.5 bg-muted-foreground/40")} />)}
+            {frames.map((fr, i) => <Button type='button' key={fr.id} onClick={() => setIdx(i)} aria-label={`Frame ${i + 1}`} className={cn("h-1.5 rounded-full transition-all", i === idx ? "w-6 bg-foreground" : "w-1.5 bg-muted-foreground/40")} size="icon" variant="default"></Button>)}
           </div>
         </div>
       </InView>

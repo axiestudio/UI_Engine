@@ -28,16 +28,16 @@ export function PipelineRunGraph({ run, stages, onRerunFailed, className }: Pipe
       <MotionConfig reducedMotion="user">
       <div className="mb-4 flex items-center gap-2 text-sm">
         <span className="font-semibold">{run ? `RUN ${run}` : "RUN"}</span>
-        <span aria-hidden className="flex items-center gap-0.5">{stages.map((s) => <span key={s.id} className={cn("h-2 w-6 rounded-sm", s.status === "pass" ? "bg-[hsl(var(--ok))]" : s.status === "running" ? "bg-[hsl(var(--info))] motion-safe:motion-safe:animate-pulse" : s.status === "fail" ? "bg-[hsl(var(--err))]" : s.status === "skip" ? "bg-muted" : "bg-border")} />)}</span>
+        <span aria-hidden className="flex items-center gap-0.5">{stages.map((s) => <span key={s.id} className={cn("h-2 w-6 rounded-sm", s.status === "pass" ? "bg-[hsl(var(--ok))]" : s.status === "running" ? "bg-[hsl(var(--info))] motion-safe:motion-safe:motion-safe:animate-pulse" : s.status === "fail" ? "bg-[hsl(var(--err))]" : s.status === "skip" ? "bg-muted" : "bg-border")} />)}</span>
         {failed && onRerunFailed && <Button type="button" variant="ghost" onClick={onRerunFailed} className="ml-auto rounded-full border border-[hsl(var(--err)/0.5)] px-3 py-1 text-xs font-medium text-[hsl(var(--err))] hover:bg-[hsl(var(--err)/0.08)]">rerun failed</Button>}
-          </MotionConfig>
+          
     </div>
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-3">
         {stages.map((s, i) => { const I = IC[s.status]; return (
           <li key={s.id} className="flex items-center gap-2">
             <Button type="button" variant="ghost" onClick={() => setLog(s)} aria-label={`${s.label}: ${s.status}`} className={cn("group flex items-center gap-2 rounded-full border border-border/70 px-3.5 py-2 text-sm font-medium transition-colors hover:bg-muted/50", s.status === "running" && "border-[hsl(var(--info)/0.6)] bg-[hsl(var(--info)/0.08)]", s.status === "pass" && "border-[hsl(var(--ok)/0.5)]", s.status === "fail" && "border-[hsl(var(--err))]")}
             >
-              <I aria-hidden className={cn("size-4", s.status === "running" && "motion-safe:motion-safe:animate-spin", s.status === "pass" && "text-[hsl(var(--ok))]", s.status === "fail" && "text-[hsl(var(--err))]")} />
+              <I aria-hidden className={cn("size-4", s.status === "running" && "motion-safe:motion-safe:motion-safe:animate-spin", s.status === "pass" && "text-[hsl(var(--ok))]", s.status === "fail" && "text-[hsl(var(--err))]")} />
               {s.label}
               {s.duration && <span className="font-mono text-[10px] font-medium text-muted-foreground">{s.duration}</span>}
             </Button>
@@ -54,6 +54,7 @@ export function PipelineRunGraph({ run, stages, onRerunFailed, className }: Pipe
         )}
       </AnimatePresence>
       <p className="sr-only" aria-live="polite">{stages.map((s) => `${s.label} ${s.status}`).join(", ")}</p>
+          </MotionConfig>
     </div>
   )
 }

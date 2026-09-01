@@ -107,7 +107,7 @@ function CopyButton({ value, label = "Copy" }: { value: string; label?: string }
       className="size-6 shrink-0 rounded-md text-muted-foreground hover:text-foreground"
     >
       {copied ? <Check className="h-3.5 w-3.5 stroke-[2.5]" /> : <Copy className="h-3.5 w-3.5" />}
-    </button>
+    </Button>
   )
 }
 

@@ -45,6 +45,7 @@ export function CitationHoverCard({ children, sources, className }: CitationHove
           </motion.aside>
         )}
       </AnimatePresence>
+          
           </MotionConfig>
     </div>
   )

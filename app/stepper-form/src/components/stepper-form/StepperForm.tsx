@@ -77,7 +77,7 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
                 className={cn("h-10 w-full rounded-lg border border-border/70 bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring", errors[f.key] && "border-[hsl(var(--err))]")}
               />
               {errors[f.key] && <p id={`e-${f.key}`} className="mt-1 flex items-center gap-1.5 text-[13px] font-medium text-[hsl(var(--err))]"><CircleAlert className="size-3.5" /> {errors[f.key]}</p>}
-          </MotionConfig>
+          
     </div>
           ))}
         </motion.fieldset>
@@ -89,6 +89,7 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
         </motion.button>
         <span className="ml-auto text-xs text-muted-foreground">step {i + 1}/{steps.length}</span>
       </div>
+          </MotionConfig>
     </div>
   )
 }

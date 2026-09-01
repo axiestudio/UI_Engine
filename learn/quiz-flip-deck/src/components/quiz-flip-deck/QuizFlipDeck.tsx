@@ -2,8 +2,9 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronRight, RotateCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, Ordinal } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 export type QuizCard = { q: string; a: string }
 export type QuizFlipDeckProps = {
@@ -50,9 +51,11 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
   }
 
   return (
-    <SectionShell width={760} className={cn(className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
+
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <MonoLabel className="text-muted-foreground">DECK · RECALL</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />DECK · RECALL</span>
         <div className="flex items-center gap-3">
           <span className="font-mono text-[11px] font-medium text-muted-foreground">{idx + 1} / {cards.length}</span>
           <span className="hidden h-3 w-px bg-border sm:block" aria-hidden />
@@ -64,13 +67,9 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
             </span>
             <span className="font-mono text-[11px] font-semibold text-muted-foreground">streak {streak}</span>
           </span>
-          <button
-            type="button"
-            onClick={reset}
-            className="inline-flex items-center gap-1 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
+          <Button type='button' onClick={reset} className="inline-flex items-center gap-1 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
             <RotateCcw className="size-3.5" aria-hidden /> Reset
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -86,7 +85,7 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
               className="p-6 sm:p-7"
             >
               <div className="flex items-center justify-between">
-                <Ordinal n={idx + 1} total={cards.length} />
+                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>idx + 1<span className="opacity-50"> / cards.length</span></span>
                 <span className={cn("rounded-md border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em]", revealed ? "bg-muted text-muted-foreground" : "bg-background text-muted-foreground")}>
                   {revealed ? "Answer" : "Question"}
                 </span>
@@ -104,42 +103,26 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {!revealed ? (
-                  <button
-                    type="button"
-                    onClick={() => setRevealed(true)}
-                    className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
+                  <Button type='button' onClick={() => setRevealed(true)} className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
                     Reveal answer <ChevronRight className="size-4" aria-hidden />
-                  </button>
+                  </Button>
                 ) : (
                   <>
-                    <button
-                      type="button"
-                      onClick={() => {
+                    <Button type='button' onClick={() => {
                         answer(false)
                         next()
-                      }}
-                      className="rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
+                      }} className="rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
                       Again
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
+                    </Button>
+                    <Button type='button' onClick={() => {
                         answer(true)
                         next()
-                      }}
-                      className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
+                      }} className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
                       Got it — next
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setRevealed(false)}
-                      className="rounded-md border bg-background px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted"
-                    >
+                    </Button>
+                    <Button type='button' onClick={() => setRevealed(false)} className="rounded-md border bg-background px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted" variant="default">
                       Hide
-                    </button>
+                    </Button>
                   </>
                 )}
               </div>
@@ -162,6 +145,8 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
       <p className="sr-only" aria-live="polite">
         {revealed ? `Answer: ${card.a}` : `Question ${idx + 1} of ${cards.length}: ${card.q}`}
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

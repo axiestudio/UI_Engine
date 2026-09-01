@@ -176,7 +176,7 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
             </tbody>
           </table>
           <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Reserved counts CSA boxes already promised for tomorrow's drop      
-          </MotionConfig>
+          
     </div>
         </section>
 
@@ -216,6 +216,7 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

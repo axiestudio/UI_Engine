@@ -48,6 +48,7 @@ export function SegmentedControl({ options, value, onChange, size = "md", classN
           </Button>
         )
       })}
+          
           </MotionConfig>
     </div>
   )

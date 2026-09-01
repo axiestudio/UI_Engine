@@ -38,11 +38,11 @@ export function VideoCallout({ eyebrow = "FILM", title = "One watch.", src = "/s
         <div className="relative mt-10 overflow-hidden rounded-xl border bg-foreground">
           <video className="aspect-video w-full object-cover" src={src} poster={poster} controls={playing} autoPlay={playing} playsInline muted loop />
           {!playing && (
-            <Button type="button" onClick={() => setPlaying(true)} aria label="Play video" variant="default" className={absolute inset-0 flex items-center justify-center group}>
+            <Button type='button' onClick={() => setPlaying(true)} aria-label="Play video" className="absolute inset-0 flex items-center justify-center group" variant="default">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-background/90 text-foreground shadow-xl transition-transform group-hover:scale-110">
                 <Play className="h-6 w-6 ml-0.5" />
               </span>
-            
+            </Button>
           )}
           {duration && <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/60 px-2.5 py-1 font-mono text-[10px] font-bold text-white">{duration}</span>}
         </div>

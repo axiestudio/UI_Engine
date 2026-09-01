@@ -178,7 +178,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
           <Button variant="outline" size="sm" onClick={exportBook}>
             <Download className="size-3.5" /> Export book
           </Button>
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -349,6 +349,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
           </div>
         </section>
       </div>
+          </MotionConfig>
     </div>
   )
 }

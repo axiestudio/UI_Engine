@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "schedule.es.js" : "schedule.cjs.js"),
     },
-    rollupOptions: { external: ["react", "react-dom", "react/jsx-runtime", "framer-motion", "@hugeicons/core-free-icons", "@hugeicons/react", "react-icons", "react-icons/bs", "react-icons/fa6", "@radix-ui/react-slot", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "tailwind-merge"] },
+    rollupOptions: { external: ["@hugeicons/core-free-icons", "@hugeicons/react", "@radix-ui/react-radio-group", "@radix-ui/react-slot", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-icons", "react-icons/bs", "react-icons/fa6", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

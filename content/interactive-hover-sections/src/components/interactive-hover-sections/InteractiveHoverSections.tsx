@@ -36,13 +36,13 @@ export function InteractiveHoverSections({ eyebrow = "INDEX", rows = DEFAULT_ROW
           <div className="space-y-2">
             <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
             {rows.map((r, i) => (
-              <Button type="button" key={r.id} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} variant="default" className={cn(cn("block w-full border-b py-4 text-left transition-all", i === active ? "opacity-100" : ink ? "opacity-40" : "opacity-50"))}>
+              <Button type='button' key={r.id} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} className={cn("block w-full border-b py-4 text-left transition-all", i === active ? "opacity-100" : ink ? "opacity-40" : "opacity-50")} variant="default">
                 <span className="flex items-baseline gap-3">
                   <span className="font-mono text-[10px] font-bold">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-display text-2xl font-bold sm:text-3xl">{r.title}</span>
                 </span>
                 {i === active && r.body && <span className={cn("mt-2 block pl-7 text-sm font-medium", ink ? "text-background/70" : "text-muted-foreground")}>{r.body}</span>}
-              
+              </Button>
             ))}
           </div>
           <div className="relative aspect-[4/5] overflow-hidden rounded-xl border bg-muted">

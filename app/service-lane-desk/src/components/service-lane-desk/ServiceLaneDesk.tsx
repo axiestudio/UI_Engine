@@ -157,7 +157,7 @@ export function ServiceLaneDesk({
           <Button size="sm" disabled={closing || approvedRows.length === 0} onClick={closeOrder}>
             <CircleCheck aria-hidden /> {closing ? "Closing…" : "Close order"}
           </Button>
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -355,6 +355,7 @@ export function ServiceLaneDesk({
         )}
       </AnimatePresence>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

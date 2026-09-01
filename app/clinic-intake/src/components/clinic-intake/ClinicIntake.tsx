@@ -141,7 +141,7 @@ export function ClinicIntake({ patient = "New patient", clinic = "Sundberg Famil
                     <div key={k} className="flex justify-between gap-4">
                       <span className="text-muted-foreground">{k}</span>
                       <span className="truncate">{v}</span>
-          </MotionConfig>
+          
     </div>
                   ))}
                 </div>
@@ -238,6 +238,7 @@ export function ClinicIntake({ patient = "New patient", clinic = "Sundberg Famil
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

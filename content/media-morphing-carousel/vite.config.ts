@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
   build: {
     lib: { entry: path.resolve(__dirname, "src/index.ts"), name: "MediaMorphingCarousel", formats: ["es","cjs"], fileName: (f) => (f==="es"?"media-morphing-carousel.es.js":"media-morphing-carousel.cjs.js") },
-    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "tailwind-merge", "embla-carousel-react"] },
     cssCodeSplit: false,
   },
 })

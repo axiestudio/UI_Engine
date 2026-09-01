@@ -1,7 +1,8 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
+
 
 export type ScopeItem = { name: string; x: number; y: number }
 
@@ -41,9 +42,11 @@ export function QuadrantScope({
   const quadrantOf = (it: ScopeItem) => (it.x >= 50 && it.y >= 50 ? 0 : it.x < 50 && it.y >= 50 ? 1 : it.x < 50 && it.y < 50 ? 2 : 3)
 
   return (
-    <SectionShell width={920} className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="max-w-xl">
-        <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
         <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
         <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
       </div>
@@ -65,22 +68,14 @@ export function QuadrantScope({
 
           {/* quadrants */}
           {QUADRANTS.map((q, qi) => (
-            <button
-              key={q.id}
-              type="button"
-              aria-label={`Quadrant ${q.label}: ${q.note}`}
-              onMouseEnter={() => setActive(qi)}
-              onFocus={() => setActive(qi)}
-              onMouseLeave={() => setActive(null)}
-              className={cn(
+            <Button type='button' key={q.id} aria-label={`Quadrant ${q.label}: ${q.note}`} onMouseEnter={() => setActive(qi)} onFocus={() => setActive(qi)} onMouseLeave={() => setActive(null)} className={cn(
                 "absolute grid h-1/2 w-1/2 place-items-start p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 qi === 0 && "right-0 top-0 rounded-tr-xl",
                 qi === 1 && "left-0 top-0 rounded-tl-xl",
                 qi === 2 && "bottom-0 left-0 rounded-bl-xl",
                 qi === 3 && "bottom-0 right-0 rounded-br-xl",
                 active === qi ? "bg-foreground/5" : "bg-transparent",
-              )}
-            >
+              )} variant="default">
               <span
                 className={cn(
                   "rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] shadow-sm transition-colors",
@@ -89,7 +84,7 @@ export function QuadrantScope({
               >
                 {q.label}
               </span>
-            </button>
+            </Button>
           ))}
 
           {/* items */}
@@ -129,28 +124,22 @@ export function QuadrantScope({
         {/* legend */}
         <div className="flex flex-col gap-3">
           {QUADRANTS.map((q, qi) => (
-            <button
-              key={q.id}
-              type="button"
-              onMouseEnter={() => setActive(qi)}
-              onFocus={() => setActive(qi)}
-              onMouseLeave={() => setActive(null)}
-              onBlur={() => setActive(null)}
-              className={cn(
+            <Button type='button' key={q.id} onMouseEnter={() => setActive(qi)} onFocus={() => setActive(qi)} onMouseLeave={() => setActive(null)} onBlur={() => setActive(null)} className={cn(
                 "rounded-xl border p-4 text-left shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 active === qi ? "border-foreground bg-foreground text-background" : "border-border bg-card hover:border-foreground/20",
-              )}
-            >
+              )} variant="default">
               <span className="font-display text-[13px] font-semibold uppercase tracking-[0.04em]">{q.label}</span>
               <span className={cn("mt-1 block font-mono text-[11px] font-medium", active === qi ? "text-background/70" : "text-muted-foreground")}>{q.note}</span>
               <span className={cn("mt-2 inline-flex rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold tabular-nums", active === qi ? "bg-background/15 text-background" : "bg-muted text-muted-foreground")}>
                 {items.filter((it) => quadrantOf(it) === qi).length} players
               </span>
-            </button>
+            </Button>
           ))}
           <p className="px-1 font-mono text-[11px] font-medium leading-5 text-muted-foreground">Players are positioned 0–100 on each axis. “You” is pinned for reference.</p>
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

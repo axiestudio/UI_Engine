@@ -27,14 +27,15 @@ export function InteractiveScrollTriggeredTabs({ eyebrow = "SCROLLABLE", title =
   const [active, setActive] = React.useState(0)
   const wrap = React.useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
-  useMotionValueEvent(scrollY, "change", () => {
-    const els = wrap.current?.querySelectorAll<HTMLElement>("[data-row]")
-    if (!els) return
-    const mid = window.innerHeight * 0.5
-    let cur = 0
-    els.forEach((el, i) => { if (el.getBoundingClientRect().top < mid) cur = i })
-    setActive(cur)
-  })
+    const onScroll = () => {
+      const els = wrap.current?.querySelectorAll<HTMLElement>("[data-row]")
+      if (!els) return
+      const mid = window.innerHeight * 0.5
+      let cur = 0
+      els.forEach((el, i) => { if (el.getBoundingClientRect().top < mid) cur = i })
+      setActive(cur)
+    }
+    useMotionValueEvent(scrollY, "change", onScroll)
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
@@ -49,9 +50,9 @@ export function InteractiveScrollTriggeredTabs({ eyebrow = "SCROLLABLE", title =
       <div ref={wrap} className="mt-10 grid gap-8 lg:grid-cols-[240px_1fr]">
         <div className="sticky top-20 h-fit rounded-xl border bg-card shadow-sm p-2">
           {rows.map((r, i) => (
-            <Button type="button" key={r.id} variant="default" className={cn(cn("flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent"))}>
+            <Button type='button' key={r.id} className={cn("flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent")} variant="default">
               <span className="font-mono text-[10px] opacity-50">{String(i + 1).padStart(2, "0")}</span>{r.label}
-            
+            </Button>
           ))}
         </div>
         <div className="space-y-6">

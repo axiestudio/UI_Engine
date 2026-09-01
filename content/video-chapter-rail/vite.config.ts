@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "video-chapter-rail.es.js" : "video-chapter-rail.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge", "embla-carousel-react"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "embla-carousel-react"] },
     cssCodeSplit: false,
   },
 })

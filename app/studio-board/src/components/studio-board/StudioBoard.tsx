@@ -72,7 +72,6 @@ function Flap({ text, width, className }: { text: string; width: number; classNa
   const chars = text.toUpperCase().slice(0, width).padEnd(width, " ").split("")
   return (
     <span className={cn("inline-flex select-none", className)} aria-hidden>
-      <MotionConfig reducedMotion="user">
       {chars.map((ch, i) => (
         <span key={i} className="relative inline-flex h-[22px] w-[13px] items-center justify-center overflow-hidden rounded-[3px] bg-background/10">
           <AnimatePresence initial={false}>
@@ -89,7 +88,7 @@ function Flap({ text, width, className }: { text: string; width: number; classNa
             </motion.span>
           </AnimatePresence>
           <span aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-background/20" />
-              </MotionConfig>
+              
     </span>
       ))}
     </span>
@@ -280,7 +279,7 @@ export function StudioBoard({
           <header className="flex h-9 shrink-0 items-center justify-between border-b border-background/15 px-3">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-background/60">Solari · appointments</span>
             <span className="flex items-center gap-2 font-mono text-[13px] font-bold tabular-nums">
-              <span aria-hidden className={cn("size-1.5 rounded-full", running ? "motion-safe:motion-safe:animate-pulse bg-[hsl(var(--ok))]" : "bg-background/40")} />
+              <span aria-hidden className={cn("size-1.5 rounded-full", running ? "motion-safe:motion-safe:motion-safe:animate-pulse bg-[hsl(var(--ok))]" : "bg-background/40")} />
               {fmt(now)}
             </span>
           </header>
@@ -296,6 +295,7 @@ export function StudioBoard({
                     r.status === "cancelled" && "opacity-50",
                   )}
                 >
+                  <MotionConfig reducedMotion="user">
                   <span className="font-mono text-[13px] font-bold tabular-nums">{fmt(r.at)}</span>
                   <Flap text={r.client} width={16} />
                   <Flap text={r.service} width={16} />
@@ -309,6 +309,7 @@ export function StudioBoard({
                       className="border-background/40 bg-transparent data-[state=checked]:border-background data-[state=checked]:bg-background data-[state=checked]:text-foreground"
                     />
                   </div>
+                                  </MotionConfig>
                 </div>
               )
             })}

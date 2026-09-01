@@ -2,8 +2,9 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Download, ArrowUpRight, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { SlidingNumber } from "@/components/primitives/sliding-number"
+import { Button } from "@/components/ui/button"
 
 export type ReportStat = { value: number; suffix?: string; label: string }
 
@@ -39,9 +40,11 @@ export function ReportUnfold({
   const labelEyebrow = eyebrow ?? `ANNUAL REPORT · ${year}`
 
   return (
-    <SectionShell width={920} className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="mx-auto max-w-2xl text-center">
-        <MonoLabel className="justify-center text-muted-foreground">{labelEyebrow}</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "justify-center text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{labelEyebrow}</span>
         <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
         <p className="mx-auto mt-2 max-w-[46ch] text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
       </div>
@@ -71,13 +74,9 @@ export function ReportUnfold({
                 <span className="mt-1 block font-mono text-[11px] font-medium tracking-wide text-background/55">32 pages · audited</span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setOpen(true)}
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-background px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground shadow-sm transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
-              >
+              <Button type='button' onClick={() => setOpen(true)} className="mt-8 inline-flex items-center gap-2 rounded-full bg-background px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground shadow-sm transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground" variant="default">
                 Open the report <ArrowUpRight className="size-3.5" aria-hidden />
-              </button>
+              </Button>
 
               <p className="mt-4 font-mono text-[11px] font-medium tracking-wide text-background/45">Tap to reveal highlights — no scroll trick, works with keyboard.</p>
             </motion.div>
@@ -123,13 +122,9 @@ export function ReportUnfold({
             <a href={hrefWeb} className="group inline-flex items-center gap-1.5 rounded-full border bg-background px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground shadow-sm transition-colors hover:bg-muted">
               Web version <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
             </a>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="ml-auto rounded-full border px-4 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground hover:bg-muted"
-            >
+            <Button type='button' onClick={() => setOpen(false)} className="ml-auto rounded-full border px-4 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground hover:bg-muted" variant="default">
               Back to cover
-            </button>
+            </Button>
           </div>
         </motion.div>
       </div>
@@ -137,6 +132,8 @@ export function ReportUnfold({
       {!open ? (
         <p className="mt-4 text-center font-mono text-[11px] font-medium tracking-wide text-muted-foreground">A button — not a scroll trap. Works the same on mobile and with reduced-motion.</p>
       ) : null}
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

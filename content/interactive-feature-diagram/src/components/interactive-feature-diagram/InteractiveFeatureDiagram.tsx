@@ -48,10 +48,10 @@ export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at w
               <Spotlight className="h-full w-full" size={280} />
             </div>
             {pins.map((p) => (
-              <Button type="button" key={p.id} onClick={() => setActive(p.id)} style={{ left: `${p.x}%`, top: `${p.y}%` }} aria label={p.label} variant="default" className={group absolute -translate-x-1/2 -translate-y-1/2}>
+              <Button type='button' key={p.id} onClick={() => setActive(p.id)} style={{ left: `${p.x}%`, top: `${p.y}%` }} aria-label={p.label} className="group absolute -translate-x-1/2 -translate-y-1/2" variant="default">
                 <span className={cn("block h-4 w-4 rounded-full border-2 border-white/80", active === p.id ? "scale-125 bg-background" : "bg-black/40")} />
                 <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-white/30" />
-              
+              </Button>
             ))}
           </div>
           <div className="absolute bottom-0 inset-x-0 bg-background/90 p-6 backdrop-blur">

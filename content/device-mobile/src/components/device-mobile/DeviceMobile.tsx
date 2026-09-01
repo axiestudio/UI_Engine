@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
+
 import { cn } from "@/lib/utils"
 import { Iphone17Pro } from "@/components/eldora/iphone-17-pro"
 

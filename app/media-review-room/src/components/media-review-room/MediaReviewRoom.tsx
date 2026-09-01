@@ -130,7 +130,7 @@ export function MediaReviewRoom({ cut = "V4 · runtime 02:41", runtime = "02:41"
                       </Button>
                       <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/15">
                         <div className="h-full rounded-full bg-white/70" style={{ width: `${(tc / 161) * 100}%` }} />
-          </MotionConfig>
+          
     </div>
                       <motion.span key={tc} initial={{ opacity: 0.4 }} animate={{ opacity: 1 }} className="rounded border border-white/15 bg-black/50 px-1.5 py-0.5 font-mono text-[11px] tabular-nums text-white/90">
                         TC {fmtTC(tc)} / {runtime}
@@ -206,6 +206,7 @@ export function MediaReviewRoom({ cut = "V4 · runtime 02:41", runtime = "02:41"
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((ts) => ts.filter((t) => t.id !== id))} pos="br" />
+      </MotionConfig>
     </div>
   )
 }

@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
   build: {
     lib: { entry: path.resolve(__dirname, "src/index.ts"), name: "BookingBar", formats: ["es","cjs"], fileName: (f) => (f==="es"?"booking-bar.es.js":"booking-bar.cjs.js") },
-    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "radix-ui", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["@radix-ui/react-select", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "radix-ui", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

@@ -67,9 +67,9 @@ export function Media3dGallery({ eyebrow = "DEPTH", title = "A deep carousel.", 
             })}
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <Button type="button" onClick={() => cycle(-1)} aria label="Previous" variant="default" size="icon" className={flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent}>←
+            <Button type='button' onClick={() => cycle(-1)} aria-label="Previous" className="flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent" size="icon" variant="default">←</Button>
             <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{active + 1} / {n}</span>
-            <Button type="button" onClick={() => cycle(1)} aria label="Next" variant="default" size="icon" className={flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent}>→
+            <Button type='button' onClick={() => cycle(1)} aria-label="Next" className="flex h-10 w-10 items-center justify-center rounded-full border hover:bg-accent" size="icon" variant="default">→</Button>
           </div>
         </div>
       </InView>

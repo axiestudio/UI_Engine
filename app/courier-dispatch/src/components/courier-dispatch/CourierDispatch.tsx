@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, AnimatePresence, MotionConfig } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 import { MapPin, Navigation, RadioTower, Truck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -105,7 +105,6 @@ export function CourierDispatch({ city = "Stockholm innerstad", routes = DEFAULT
 
   return (
     <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <MotionConfig reducedMotion="user">
 
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Courier dispatch</h2>
@@ -133,7 +132,7 @@ export function CourierDispatch({ city = "Stockholm innerstad", routes = DEFAULT
                   <div className={cn("flex items-center justify-between px-3 py-1.5 text-[12px]", s.done && "opacity-50")}>
                     <span className={cn("font-medium", s.done && "line-through")}>{s.label}</span>
                     <span className="ml-2 shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">{s.window} · {s.parcels}p</span>
-          </MotionConfig>
+          
     </div>
                 )}
               />

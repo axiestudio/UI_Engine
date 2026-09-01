@@ -40,14 +40,15 @@ export function InlineEditCell({ value, name, onSave, mono, width, className }: 
       ) : (
         <Button type="button" variant="ghost" onClick={() => { setDraft(committed.current); setState("idle"); setEditing(true) }} className={cn("group flex h-7 w-full items-center justify-between gap-2 rounded-md px-1.5 text-left text-[13px] hover:bg-muted/50 focus-visible:bg-muted/60 focus-visible:outline-none", mono && "font-mono")}>
           <span className={cn("truncate", state === "rejected" && "text-[hsl(var(--err))]")}>{draft}      
-          </MotionConfig>
+          
     </span>
           <span aria-hidden className="w-4 text-center text-[13px] opacity-0 transition-opacity group-hover:opacity-40">✎</span>
         </Button>
       )}
-      {state === "saving" && <Loader2 data-slot="save-spinner" aria-hidden className="absolute -right-5 size-3.5 motion-safe:motion-safe:animate-spin text-[hsl(var(--info))]" />}
+      {state === "saving" && <Loader2 data-slot="save-spinner" aria-hidden className="absolute -right-5 size-3.5 motion-safe:motion-safe:motion-safe:animate-spin text-[hsl(var(--info))]" />}
       {state === "rejected" && <motion.span role="alert" initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="absolute -right-5 flex items-center gap-1 whitespace-nowrap text-[hsl(var(--err))]"><CircleAlert className="size-3.5" /></motion.span>}
       <span className="sr-only" aria-live="polite">{state === "rejected" ? "The server rejected that change — old value restored." : ""}</span>
+          </MotionConfig>
     </span>
   )
 }

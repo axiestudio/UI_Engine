@@ -7,8 +7,8 @@
 import { useState, type FC } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
-import { Flame, Sailboat, Tent } from "lucide-react"
-
+import { Flame, Sailboat } from "lucide-react"
+import { Tent } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 // Local extension: exported for preset props (shape unchanged).

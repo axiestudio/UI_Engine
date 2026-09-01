@@ -39,7 +39,7 @@ export function AiChangeReview({ hunks, onAccept, onReject, className }: AiChang
         <div className="ml-auto flex gap-1.5">
           <Button type="button" variant="ghost" disabled={!pend.length} onClick={() => pend.forEach((h) => accept(h.id))} className="h-7 rounded-md bg-[hsl(var(--ok))] px-3 text-xs font-medium text-white disabled:opacity-40">Accept all</Button>
           <Button type="button" variant="ghost" disabled={!pend.length && !ins} onClick={() => setState(Object.fromEntries(hunks.map((h) => [h.id, st(h.id) === "in" ? st(h.id) : "out"])))} className="h-7 rounded-md border border-border/70 px-3 text-xs font-medium text-muted-foreground hover:bg-muted disabled:opacity-40">Dismiss rest</Button>
-          </MotionConfig>
+          
     </div>
       </header>
       <AnimatePresence initial={false}>
@@ -76,6 +76,7 @@ export function AiChangeReview({ hunks, onAccept, onReject, className }: AiChang
         })}
       </AnimatePresence>
       <p className="sr-only" aria-live="polite">{ins} of {hunks.length} changes accepted.</p>
+          </MotionConfig>
     </div>
   )
 }

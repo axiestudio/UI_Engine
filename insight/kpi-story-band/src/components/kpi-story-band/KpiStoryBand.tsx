@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { TrendingUp, TrendingDown, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, Ordinal } from "@/components/primitives/handcraft"
+
 import { SlidingNumber } from "@/components/primitives/sliding-number"
 import { InView } from "@/components/primitives/in-view"
 
@@ -61,7 +61,7 @@ function Tile({ kpi, index, total }: { kpi: Kpi; index: number; total: number })
     <InView once delay={index * 0.06} className="h-full">
       <article className="group flex h-full flex-col rounded-xl border bg-card p-5 shadow-sm transition-shadow hover:border-foreground/10">
         <div className="flex items-center justify-between">
-          <Ordinal n={index + 1} total={total} />
+          <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>index + 1<span className="opacity-50"> / total</span></span>
           <span
             className={cn(
               "inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold tabular-nums",
@@ -106,10 +106,14 @@ export function KpiStoryBand({
   className,
 }: KpiStoryBandProps) {
   return (
-    <SectionShell width={1120} rule="both" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute top-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-t border-dashed", false ? "border-background/10" : "border-border")} />
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-xl">
-          <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <h2 className="mt-3 max-w-[14ch] font-display text-[28px] font-semibold leading-[1.02] tracking-[-0.022em] text-foreground sm:text-[36px]">
             {title}
           </h2>
@@ -131,6 +135,8 @@ export function KpiStoryBand({
           <Tile key={k.label} kpi={k} index={i} total={kpis.length} />
         ))}
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

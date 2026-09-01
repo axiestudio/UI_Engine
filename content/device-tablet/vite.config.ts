@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "device-tablet.es.js" : "device-tablet.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "clsx", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

@@ -49,9 +49,10 @@ export function GhostSuggestInput({ value, onChange, suggest, placeholder, label
           {ghost && <motion.kbd initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="rounded-md border border-border/60 bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium">tab ↵</motion.kbd>}
           <span className="text-[10px] text-muted-foreground/60">{latency ? `${latency}ms` : ""}</span>
         </span>
-          </MotionConfig>
+          
     </div>
       <p className="sr-only" aria-live="polite">{ghost ? "Suggestion available, press Tab to accept." : ""}</p>
+          </MotionConfig>
     </div>
   )
 }

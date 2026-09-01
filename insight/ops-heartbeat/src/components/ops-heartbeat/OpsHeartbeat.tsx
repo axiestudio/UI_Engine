@@ -1,7 +1,9 @@
 import * as React from "react"
 import { motion } from "motion/react"
+import { AlertTriangle, CheckCircle2, XCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { Badge } from "@/components/ui/badge"
+
 
 export type Service = { name: string; state: "ok" | "degraded" | "down"; latencyMs: number; uptime90d: number }
 
@@ -51,7 +53,7 @@ function Ecg({ state, reduce }: { state: Service["state"]; reduce: boolean }) {
 export function OpsHeartbeat({
   eyebrow = "OPS · HEARTBEAT",
   title = "Service health",
-  subtitle = "Five critical services — 90-day uptime and last-minute median latency.",
+  subtitle = "Five services. 90-day uptime, one-minute median latency.",
   services = DEFAULT_SERVICES,
   className,
 }: OpsHeartbeatProps) {
@@ -64,10 +66,12 @@ export function OpsHeartbeat({
   }, [services])
 
   return (
-    <SectionShell width={920} className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-xl">
-          <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
           <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
         </div>
@@ -103,10 +107,10 @@ export function OpsHeartbeat({
 
               <div className="min-w-0">
                 <span className="block truncate text-[13px] font-semibold leading-5 text-foreground">{s.name}</span>
-                <span className={cn("inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] ", STATE[s.state].badge)}>
-                  <span className={cn("size-1.5 rounded-full", s.state === "ok" ? "bg-success" : s.state === "degraded" ? "bg-warning" : "bg-destructive")} aria-hidden />
+                <Badge variant="outline" className={cn("mt-1 gap-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em]", STATE[s.state].badge)}>
+                  {s.state === "ok" ? <CheckCircle2 className="size-3" aria-hidden /> : s.state === "degraded" ? <AlertTriangle className="size-3" aria-hidden /> : <XCircle className="size-3" aria-hidden />}
                   {STATE[s.state].label}
-                </span>
+                </Badge>
               </div>
 
               <span className="text-right font-mono text-[12px] font-semibold tabular-nums text-foreground sm:text-center">
@@ -143,6 +147,8 @@ export function OpsHeartbeat({
           Uptime is trailing 90 days · Latency is last-minute median
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

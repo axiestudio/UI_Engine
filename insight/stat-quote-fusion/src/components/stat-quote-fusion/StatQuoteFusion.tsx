@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, CornerTicks } from "@/components/primitives/handcraft"
+
 import { AnimatedNumber } from "@/components/primitives/animated-number"
 
 export type StatQuoteFusionProps = {
@@ -31,10 +31,17 @@ export function StatQuoteFusion({
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <SectionShell width={920} tone={tone} grain padding="roomy" className={cn(ink && "text-background", className)}>
-      <CornerTicks className={ink ? "text-background/20" : "text-foreground/10"} size={10} offset={14} />
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", cn(ink && "text-background", className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
-      <MonoLabel className={ink ? "text-background/60" : "text-muted-foreground"}>{eyebrow}</MonoLabel>
+      <span aria-hidden className={cn("pointer-events-none absolute inset-0", ink ? "text-background/20" : "text-foreground/10")}>
+    <span className="absolute border-current top-[14px] left-[14px] border-t border-l" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current top-[14px] right-[14px] border-t border-r" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current bottom-[14px] left-[14px] border-b border-l" style={{ width: 10, height: 10 }} />
+    <span className="absolute border-current bottom-[14px] right-[14px] border-b border-r" style={{ width: 10, height: 10 }} />
+  </span>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", ink ? "text-background/60" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
 
       <div className="mt-8 grid items-start gap-10 lg:grid-cols-[1.05fr_1.4fr]">
         {/* stat */}
@@ -81,6 +88,8 @@ export function StatQuoteFusion({
           )}
         </blockquote>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

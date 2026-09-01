@@ -189,7 +189,7 @@ export function SocialScheduler({
               <Button size="sm" onClick={queueIt} disabled={!text.trim()} className="shrink-0 gap-1.5 uppercase tracking-[0.08em]">
                 <SendHorizonal className="size-3.5" /> Queue post
               </Button>
-          </MotionConfig>
+          
     </div>
           </div>
         </section>
@@ -366,6 +366,7 @@ export function SocialScheduler({
           </Table>
         </section>
       </div>
+          </MotionConfig>
     </div>
   )
 }

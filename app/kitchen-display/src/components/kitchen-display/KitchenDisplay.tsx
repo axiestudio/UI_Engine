@@ -111,7 +111,6 @@ export function KitchenDisplay({ line = "Line Grill 1", service = "dinner servic
 
   return (
     <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Kitchen display</h2>
         <span className="text-[12px] text-muted-foreground">{line} · {service}</span>
@@ -158,6 +157,7 @@ export function KitchenDisplay({ line = "Line Grill 1", service = "dinner servic
                       exit={{ opacity: 0, x: -24 }}
                       className={cn("flex w-[228px] shrink-0 flex-col overflow-hidden rounded-lg border bg-background", overdue && "border-[hsl(var(--err)/0.6)]")}
                     >
+                      <MotionConfig reducedMotion="user">
                       <header className={cn("flex h-9 shrink-0 items-center justify-between border-b px-3", overdue ? "bg-[hsl(var(--err)/0.12)]" : flare ? "bg-[hsl(var(--warn)/0.12)]" : "bg-muted/30")}>
                         <span className="text-[13px] font-bold">{t.order}</span>
                         <span className="rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-muted-foreground">{t.channel}</span>
@@ -181,7 +181,7 @@ export function KitchenDisplay({ line = "Line Grill 1", service = "dinner servic
                           >
                             {overdue ? `over ${fmt(due)}` : `due ${fmt(due)}`}
                           </motion.span>
-          </MotionConfig>
+          
     </div>
                         <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-muted">
                           <div className={cn("h-full rounded-full", overdue ? "bg-[hsl(var(--err))]" : flare ? "bg-[hsl(var(--warn))]" : "bg-[hsl(var(--ok))]")} style={{ width: `${pct}%` }} />
@@ -191,6 +191,7 @@ export function KitchenDisplay({ line = "Line Grill 1", service = "dinner servic
                           <Button type="button" variant="ghost" onClick={() => bump(t)} className="flex h-7 items-center rounded-md border bg-background px-2.5 text-[11px] font-bold hover:bg-muted">{queuedIds.has(t.id) ? "queued" : "Bump"}</Button>
                         </div>
                       </footer>
+                                          </MotionConfig>
                     </motion.article>
                   )
                 })}

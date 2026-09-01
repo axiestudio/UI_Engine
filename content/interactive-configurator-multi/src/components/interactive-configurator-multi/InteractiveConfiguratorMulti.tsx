@@ -84,10 +84,10 @@ export function InteractiveConfiguratorMulti({ eyebrow = "COMPOSE", title = "Two
                 <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{g.label}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {g.options.map((o) => (
-                    <Button type="button" key={o.id} onClick={() => toggle(g.id, o.id)} variant="default" className={cn(cn("flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", sel[g.id] === o.id ? "border-foreground bg-foreground text-background" : "hover:bg-accent"))}>
+                    <Button type='button' key={o.id} onClick={() => toggle(g.id, o.id)} className={cn("flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", sel[g.id] === o.id ? "border-foreground bg-foreground text-background" : "hover:bg-accent")} variant="default">
                       {o.swatch && <span className="h-3.5 w-3.5 rounded-full border border-black/10" style={{ background: o.swatch }} />}
                       {o.label}{o.price ? ` +€${o.price}` : ""}
-                    
+                    </Button>
                   ))}
                 </div>
               </div>

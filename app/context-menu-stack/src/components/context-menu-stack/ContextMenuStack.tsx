@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, AnimatePresence, MotionConfig } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -53,7 +53,6 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
 
   return (
     <div className={className} onContextMenu={(e) => { e.preventDefault(); open({ x: e.clientX, y: e.clientY }) }} onKeyDown={onKeyRoot} tabIndex={0} aria-haspopup="menu">
-      <MotionConfig reducedMotion="user">
       {children}
       <AnimatePresence>
         {pos && (
@@ -90,7 +89,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
           </>
         )}
       </AnimatePresence>
-          </MotionConfig>
+          
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion } from "motion/react"
+import { useAnimationFrame } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { MonoLabel } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
@@ -7,7 +7,9 @@ import { cn } from "@/lib/utils"
 
 // ═══ JOB         Canvas particles hero — an interactive particle field rendered via an SVG weave.
 // ═══ EMOTION     Generative, alive.
-// ═══ SIGNATURE   A constellation of dots + connecting lines that drift and react to the cursor.
+// ═══ SIGNATURE   A constellation of dots + connecting lines that drift and react to the cursor —
+//                 the frame loop is motion's useAnimationFrame (registry engine), mutating refs
+//                 and writing straight to the SVG; React never re-renders per frame.
 
 export type HeroCanvasParticlesProps = {
   eyebrow?: string
@@ -20,13 +22,13 @@ export type HeroCanvasParticlesProps = {
 
 export function HeroCanvasParticles({ eyebrow = "FIELD", title = "A constellation that listens.", subtitle = "Move the cursor and the field bends around it.", actions = [{ label: "Explore", href: "#" }], count = 60, className }: HeroCanvasParticlesProps) {
   const wrap = React.useRef<HTMLDivElement>(null)
-  const [mouse, setMouse] = React.useState({ x: 0, y: 0 })
+  const mouse = React.useRef({ x: 0, y: 0 })
   const dots = React.useMemo(() => Array.from({ length: count }).map(() => ({
     x: Math.random(), y: Math.random(), vx: (Math.random() - 0.5) * 0.0016, vy: (Math.random() - 0.5) * 0.0016, r: 1.4 + Math.random() * 2,
   })), [count])
   return (
     <section className={cn("relative isolate flex min-h-[86vh] items-center justify-center overflow-hidden bg-foreground text-background", className)}
-      onPointerMove={(e) => { const r = wrap.current?.getBoundingClientRect(); if (r) setMouse({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height }) }}>
+      onPointerMove={(e) => { const r = wrap.current?.getBoundingClientRect(); if (r) { mouse.current.x = (e.clientX - r.left) / r.width; mouse.current.y = (e.clientY - r.top) / r.height } }}>
       <div ref={wrap} className="absolute inset-0">
         <Field dots={dots} mouse={mouse} />
       </div>
@@ -46,35 +48,57 @@ export function HeroCanvasParticles({ eyebrow = "FIELD", title = "A constellatio
   )
 }
 
-function Field({ dots, mouse }: { dots: { x: number; y: number; vx: number; vy: number; r: number }[]; mouse: { x: number; y: number } }) {
-  const [p, setP] = React.useState(dots)
-  React.useEffect(() => {
-    let raf = 0
-    const tick = () => {
-      setP((prev) => prev.map((d) => {
-        let nx = d.x + d.vx, ny = d.y + d.vy
-        const dx = nx - mouse.x, dy = ny - mouse.y
-        const dist = Math.hypot(dx, dy)
-        if (dist < 0.18) { nx += (dx / (dist || 1)) * 0.002; ny += (dy / (dist || 1)) * 0.002 }
-        if (nx < 0 || nx > 1) d.vx *= -1
-        if (ny < 0 || ny > 1) d.vy *= -1
-        return { ...d, x: Math.max(0, Math.min(1, nx)), y: Math.max(0, Math.min(1, ny)) }
-      }))
-      raf = requestAnimationFrame(tick)
+type Dot = { x: number; y: number; vx: number; vy: number; r: number; el: SVGCircleElement | null; link: (SVGLineElement | null)[] }
+
+function Field({ dots, mouse }: { dots: Omit<Dot, "el" | "link">[]; mouse: React.RefObject<{ x: number; y: number }> }) {
+  const state = React.useRef<Dot[]>(dots.map((d) => ({ ...d, el: null, link: [] })))
+  // static pairing: dot i links to the next 3 dots (same neighbours as before, resolved once)
+  const pairs = React.useMemo(
+    () => state.current.flatMap((d, i) => Array.from({ length: 3 }, (_, j) => ({ a: d, b: state.current[i + 1 + j], link: { current: null as SVGLineElement | null } }))),
+    [],
+  )
+
+  useAnimationFrame(() => {
+    const s = state.current
+    const m = mouse.current
+    for (const d of s) {
+      let nx = d.x + d.vx, ny = d.y + d.vy
+      const dx = nx - m.x, dy = ny - m.y
+      const dist = Math.hypot(dx, dy)
+      if (dist < 0.18) { nx += (dx / (dist || 1)) * 0.002; ny += (dy / (dist || 1)) * 0.002 }
+      if (nx < 0 || nx > 1) d.vx *= -1
+      if (ny < 0 || ny > 1) d.vy *= -1
+      d.x = Math.max(0, Math.min(1, nx))
+      d.y = Math.max(0, Math.min(1, ny))
+      if (d.el) {
+        d.el.setAttribute("cx", String(d.x * 100))
+        d.el.setAttribute("cy", String(d.y * 100))
+      }
     }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [mouse])
+    for (const p of pairs) {
+      if (!p.b || !p.link.current) continue
+      const dist = Math.hypot(p.a.x - p.b.x, p.a.y - p.b.y)
+      const line = p.link.current
+      if (dist > 0.1) {
+        line.setAttribute("stroke", "none")
+      } else {
+        line.setAttribute("stroke", "hsl(var(--primary) / 0.25)")
+        line.setAttribute("x1", String(p.a.x * 100))
+        line.setAttribute("y1", String(p.a.y * 100))
+        line.setAttribute("x2", String(p.b.x * 100))
+        line.setAttribute("y2", String(p.b.y * 100))
+      }
+    }
+  })
+
   return (
-    <svg className="h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-      {p.map((d, i) => (
+    <svg className="h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden>
+      {state.current.map((d, i) => (
         <g key={i}>
-          <circle cx={d.x * 100} cy={d.y * 100} r={d.r * (0.1)} fill="hsl(var(--primary) / 0.8)" />
-          {p.slice(i + 1, i + 4).map((o, j) => {
-            const dist = Math.hypot(d.x - o.x, d.y - o.y)
-            if (dist > 0.1) return null
-            return <line key={j} x1={d.x * 100} y1={d.y * 100} x2={o.x * 100} y2={o.y * 100} stroke="hsl(var(--primary) / 0.25)" strokeWidth={0.15} />
-          })}
+          <circle ref={(el) => { d.el = el }} cx={d.x * 100} cy={d.y * 100} r={d.r * 0.1} fill="hsl(var(--primary) / 0.8)" />
+          {pairs.filter((p) => p.a === d).map((p, j) => (
+            <line key={j} ref={(el) => { p.link.current = el }} stroke="none" strokeWidth={0.15} />
+          ))}
         </g>
       ))}
     </svg>

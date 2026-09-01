@@ -135,22 +135,10 @@ export function ContentCarousel({
                 </div>
                 {showArrows && (
                   <div className="flex gap-2">
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() => emblaApi?.scrollPrev()}
-                      aria-label="Previous slide"
-                      className="rounded-full"
-                    >
+                    <Button size="icon" variant="outline" onClick={() => emblaApi?.scrollPrev()} aria-label="Previous slide" className="rounded-full">
                       <ArrowLeft />
                     </Button>
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() => emblaApi?.scrollNext()}
-                      aria-label="Next slide"
-                      className="rounded-full"
-                    >
+                    <Button size="icon" variant="outline" onClick={() => emblaApi?.scrollNext()} aria-label="Next slide" className="rounded-full">
                       <ArrowRight />
                     </Button>
                   </div>

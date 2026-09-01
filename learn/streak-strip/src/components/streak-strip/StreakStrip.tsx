@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 
 export type StreakStripProps = {
@@ -25,9 +25,11 @@ export function StreakStrip({ days = DEFAULT_DAYS, minutesToday = 32, lessonsDon
   const activeCount = days.filter(Boolean).length
 
   return (
-    <SectionShell width={920} padding="tight" className={cn(className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-14 sm:py-16")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="flex flex-wrap items-start justify-between gap-4">
-        <MonoLabel className="text-muted-foreground">STREAK · CONSISTENCY</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />STREAK · CONSISTENCY</span>
         <span className="font-mono text-[11px] font-medium text-muted-foreground">{activeCount} of last {days.length} days</span>
       </div>
 
@@ -84,6 +86,8 @@ export function StreakStrip({ days = DEFAULT_DAYS, minutesToday = 32, lessonsDon
           <span className="sr-only">{activeCount} of last {days.length} days active</span>
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

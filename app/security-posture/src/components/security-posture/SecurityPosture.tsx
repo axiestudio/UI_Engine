@@ -198,7 +198,7 @@ export function SecurityPosture({
           <Button variant="outline" size="sm" disabled={!stale} onClick={() => keyRows.filter((k) => k.stale).forEach((k) => rotate(k.id))}>
             <KeyRound className="size-3.5" /> Rotate stale {stale ? `(${stale})` : ""}
           </Button>
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -355,7 +355,7 @@ export function SecurityPosture({
                         s.state === "queued" && "text-muted-foreground",
                       )}
                     >
-                      {s.state === "passed" ? <Check className="size-3" /> : s.state === "running" ? <LoaderCircle className="size-3 motion-safe:motion-safe:animate-spin" /> : s.state === "blocked" ? <CircleAlert className="size-3" /> : <span className="size-1.5 rounded-full bg-current" />}
+                      {s.state === "passed" ? <Check className="size-3" /> : s.state === "running" ? <LoaderCircle className="size-3 motion-safe:motion-safe:motion-safe:animate-spin" /> : s.state === "blocked" ? <CircleAlert className="size-3" /> : <span className="size-1.5 rounded-full bg-current" />}
                     </span>
                     <p className="truncate text-[12px] font-bold">{s.label}</p>
                   </div>
@@ -430,6 +430,7 @@ export function SecurityPosture({
           </div>
         </DialogContent>
       </Dialog>
+          </MotionConfig>
     </div>
   )
 }

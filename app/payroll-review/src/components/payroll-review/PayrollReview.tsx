@@ -171,7 +171,7 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
               </tbody>
             </table>
             <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Tap a base amount to edit · edited rows keep their previous value for the diff and audit log.      
-          </MotionConfig>
+          
     </div>
           </section>
 
@@ -267,6 +267,7 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
       </div>
 
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t: Toast[]) => t.filter((x: Toast) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

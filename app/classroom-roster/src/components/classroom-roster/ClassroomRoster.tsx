@@ -120,7 +120,7 @@ export function ClassroomRoster({ course = "Swedish 8–9", term = "HT26", stude
                   </Button>
                 )}
               />
-          </MotionConfig>
+          
     </div>
           </section>
           <p className="px-1 text-[11px] text-muted-foreground">Sticky rail keeps each circle's header pinned while you scan for gaps.</p>
@@ -190,6 +190,7 @@ export function ClassroomRoster({ course = "Swedish 8–9", term = "HT26", stude
           </AnimatePresence>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

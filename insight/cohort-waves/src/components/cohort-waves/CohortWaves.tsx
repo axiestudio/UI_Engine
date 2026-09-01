@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
+
 
 export type CohortWavesProps = {
   eyebrow?: string
@@ -33,10 +34,12 @@ export function CohortWaves({
 }: CohortWavesProps) {
   const [hover, setHover] = React.useState<{ c: number; w: number } | null>(null)
   return (
-    <SectionShell width={920} className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-xl">
-          <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
           <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
         </div>
@@ -94,12 +97,13 @@ export function CohortWaves({
                     const exact = hover?.c === ci && hover?.w === w
                     return (
                       <td key={w} className="p-1">
-                        <button
-                          type="button"
-                          aria-label={`${c} cohort, week ${w}: ${empty ? "no data" : `${v}% retained`}`}
-                          onMouseEnter={() => setHover({ c: ci, w })}
-                          onFocus={() => setHover({ c: ci, w })}
-                          className={cn(
+                        <Button type='button' aria-label={`${c} cohort, week ${w}: ${empty ? "no data" : `${v}% retained`}`} onMouseEnter={() => setHover({ c: ci, w })} onFocus={() => setHover({ c: ci, w })} style={
+                            !empty
+                              ? {
+                                  backgroundColor: `hsl(var(--foreground) / ${exact ? 0.88 : isRow || isCol ? 0.22 + (v / 100) * 0.65 : 0.06 + (v / 100) * 0.42})`,
+                                }
+                              : undefined
+                          } className={cn(
                             "relative flex h-9 w-full min-w-14 items-center justify-center rounded-md font-mono text-[11px] font-semibold tabular-nums ring-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                             empty
                               ? "border border-dashed border-border bg-transparent text-muted-foreground/30"
@@ -108,17 +112,9 @@ export function CohortWaves({
                                 : isRow || isCol
                                   ? "text-background"
                                   : "text-foreground",
-                          )}
-                          style={
-                            !empty
-                              ? {
-                                  backgroundColor: `hsl(var(--foreground) / ${exact ? 0.88 : isRow || isCol ? 0.22 + (v / 100) * 0.65 : 0.06 + (v / 100) * 0.42})`,
-                                }
-                              : undefined
-                          }
-                        >
+                          )} variant="default">
                           {empty ? "—" : `${v}%`}
-                        </button>
+                        </Button>
                       </td>
                     )
                   })}
@@ -135,6 +131,8 @@ export function CohortWaves({
           <span className="hidden font-mono text-[11px] tabular-nums text-muted-foreground sm:block">{cohorts.length} × {weeks} cohorts</span>
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

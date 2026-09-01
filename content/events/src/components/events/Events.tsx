@@ -1,5 +1,6 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
+
 import { BorderTrail } from "@/components/primitives/border-trail"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"

@@ -2,8 +2,9 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 export type Mentor = { name: string; role: string; slots: string; free: boolean; bio?: string }
 export type MentorFanProps = {
@@ -25,9 +26,11 @@ export function MentorFan({ mentors = DEFAULT_MENTORS, className, onPick }: Ment
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <SectionShell width={1120} className={cn(className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div className="mx-auto max-w-2xl text-center">
-        <MonoLabel className="justify-center text-muted-foreground">MENTORS · OFFICE HOURS</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "justify-center text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />MENTORS · OFFICE HOURS</span>
         <h2 className="mx-auto mt-2 max-w-[18ch] font-display text-[30px] font-bold leading-[0.98] tracking-tight text-foreground sm:text-[36px]">
           Learn with people who ship.
         </h2>
@@ -45,18 +48,13 @@ export function MentorFan({ mentors = DEFAULT_MENTORS, className, onPick }: Ment
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
               >
-                <button
-                  type="button"
-                  onClick={() => {
+                <Button type='button' onClick={() => {
                     setSelected(m.name)
                     if (m.free) onPick?.(m.name)
-                  }}
-                  aria-pressed={isSelected}
-                  className={cn(
+                  }} aria-pressed={isSelected} className={cn(
                     "group flex w-full flex-col rounded-xl border bg-card p-5 text-left shadow-sm transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     isSelected && "border-foreground bg-card ring-1 ring-foreground/10"
-                  )}
-                >
+                  )} variant="default">
                   <div className="flex w-full items-start justify-between gap-3">
                     <span className="grid size-11 place-items-center rounded-full border bg-muted font-mono text-xs font-bold tracking-[0.14em] text-foreground">
                       {m.name
@@ -92,7 +90,7 @@ export function MentorFan({ mentors = DEFAULT_MENTORS, className, onPick }: Ment
                       {m.free ? (isSelected ? "Selected" : "Book") : "Waitlist"}
                     </span>
                   </span>
-                </button>
+                </Button>
               </motion.div>
             </InView>
           )
@@ -100,6 +98,8 @@ export function MentorFan({ mentors = DEFAULT_MENTORS, className, onPick }: Ment
       </div>
 
       <p className="mt-6 text-center font-mono text-[11px] font-medium text-muted-foreground">All mentors reply within 24h · Cancel anytime</p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

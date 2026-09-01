@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, MotionConfig } from "motion/react"
+import { motion } from "motion/react"
 import { BookmarkPlus, Download, Table2, TrendingDown, TrendingUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -97,7 +97,6 @@ export function AnalyticsDeck({ title = "Chair Economics — Q4", onExport, clas
 
   return (
     <div className={cn("relative isolate min-h-[620px] overflow-hidden rounded-xl border border-border/70 bg-background", className)}>
-      <MotionConfig reducedMotion="user">
       <ScrollProgress />
 
       {/* masthead — editorial, not a strip: kicker + display title left,
@@ -106,7 +105,7 @@ export function AnalyticsDeck({ title = "Chair Economics — Q4", onExport, clas
         <div className="min-w-0">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">BI / DECK 01</p>
           <h2 className="mt-1.5 font-display text-2xl font-semibold tracking-tight">{title}</h2>
-          </MotionConfig>
+          
     </div>
         <span className="ml-auto flex flex-wrap items-center gap-2.5">
           <Badge variant="secondary" className="font-mono text-xs">

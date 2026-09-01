@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { CalendarDays, Check, MapPin, Minus, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
@@ -104,32 +105,27 @@ export function RsvpCard({
 
             <div className="px-6 pb-5 pt-5">
               <MonoLabel className="text-muted-foreground">Attending?</MonoLabel>
-              <div role="radiogroup" aria-label="Will you attend?" className="mt-3 grid grid-cols-2 gap-2.5">
-                <button
-                  type="button"
-                  aria-pressed={attending === "yes"}
-                  onClick={() => choose("yes")}
-                  className={cn(
-                    "rounded-xl border px-4 py-3.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                    attending === "yes" ? "border-primary bg-primary/[0.06]" : "border-border hover:border-foreground/30 hover:bg-muted/40"
-                  )}
+              <RadioGroup
+                value={attending ?? ""}
+                onValueChange={(v) => choose(v as "yes" | "no")}
+                aria-label="Will you attend?"
+                className="mt-3 grid grid-cols-2 gap-2.5 [&_[data-slot=radio-group-indicator]]:hidden"
+              >
+                <RadioGroupItem
+                  value="yes"
+                  className="flex h-auto w-full flex-col items-start rounded-xl border px-4 py-3.5 text-left shadow-none transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary/[0.06] data-[state=unchecked]:border-border hover:border-foreground/30 hover:bg-muted/40"
                 >
                   <span className="block font-display text-[14px] font-bold">Joyfully yes</span>
                   <span className="mt-0.5 block text-[11px] font-medium text-muted-foreground">Hold a chair for me</span>
-                </button>
-                <button
-                  type="button"
-                  aria-pressed={attending === "no"}
-                  onClick={() => choose("no")}
-                  className={cn(
-                    "rounded-xl border px-4 py-3.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                    attending === "no" ? "border-primary bg-primary/[0.06]" : "border-border hover:border-foreground/30 hover:bg-muted/40"
-                  )}
+                </RadioGroupItem>
+                <RadioGroupItem
+                  value="no"
+                  className="flex h-auto w-full flex-col items-start rounded-xl border px-4 py-3.5 text-left shadow-none transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary/[0.06] data-[state=unchecked]:border-border hover:border-foreground/30 hover:bg-muted/40"
                 >
                   <span className="block font-display text-[14px] font-bold">Regretfully no</span>
                   <span className="mt-0.5 block text-[11px] font-medium text-muted-foreground">Release my seat</span>
-                </button>
-              </div>
+                </RadioGroupItem>
+              </RadioGroup>
             </div>
 
             <AnimatePresence initial={false} mode="wait">
@@ -142,57 +138,56 @@ export function RsvpCard({
                         <p className="text-[11px] font-medium text-muted-foreground">Up to two chairs can be held</p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <button
+                        <Button
                           type="button"
+                          variant="outline"
                           aria-label="Remove plus-one"
                           disabled={plusOne === 0}
                           onClick={() => bumpPlusOne(-1)}
                           className={cn(
-                            "flex size-8 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                            ink ? "border-background/15" : "border-border"
+                            "size-8 rounded-full bg-background p-0 hover:bg-muted disabled:pointer-events-none disabled:opacity-40",
+                            ink ? "border-background/15" : "border-border",
                           )}
                         >
                           <Minus className="size-3.5" aria-hidden />
-                        </button>
+                        </Button>
                         <span aria-live="polite" className="w-6 text-center font-mono text-[13px] font-bold tabular-nums">
                           {plusOne}
                         </span>
-                        <button
+                        <Button
                           type="button"
+                          variant="outline"
                           aria-label="Add plus-one"
                           disabled={plusOne === 2}
                           onClick={() => bumpPlusOne(1)}
                           className={cn(
-                            "flex size-8 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                            ink ? "border-background/15" : "border-border"
+                            "size-8 rounded-full bg-background p-0 hover:bg-muted disabled:pointer-events-none disabled:opacity-40",
+                            ink ? "border-background/15" : "border-border",
                           )}
                         >
                           <Plus className="size-3.5" aria-hidden />
-                        </button>
+                        </Button>
                       </div>
                     </div>
 
                     <div className={cn("flex items-center justify-between gap-3 rounded-xl border px-4 py-3", ink ? "border-background/15" : "border-border")}>
                       <p className="font-display text-[13px] font-bold">Meal</p>
-                      <div role="radiogroup" aria-label="Meal preference" className="flex gap-1.5">
+                      <RadioGroup
+                        value={meal}
+                        onValueChange={(v) => pickMeal(v as Meal)}
+                        aria-label="Meal preference"
+                        className="flex gap-1.5 [&_[data-slot=radio-group-indicator]]:hidden"
+                      >
                         {MEALS.map((m) => (
-                          <button
+                          <RadioGroupItem
                             key={m}
-                            type="button"
-                            role="radio"
-                            aria-checked={meal === m}
-                            onClick={() => pickMeal(m)}
-                            className={cn(
-                              "rounded-full border px-3 py-1 text-[11px] font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                              meal === m
-                                ? "border-primary bg-primary text-primary-foreground"
-                                : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-                            )}
+                            value={m}
+                            className="h-auto w-auto rounded-full border px-3 py-1 text-[11px] font-bold shadow-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=unchecked]:border-border data-[state=unchecked]:text-muted-foreground hover:border-foreground/30 hover:text-foreground"
                           >
                             {m}
-                          </button>
+                          </RadioGroupItem>
                         ))}
-                      </div>
+                      </RadioGroup>
                     </div>
                   </div>
                 </motion.div>
@@ -222,7 +217,7 @@ export function RsvpCard({
               >
                 {confirmed && <Check className="size-3.5" strokeWidth={3} aria-hidden />}
                 {confirmed ? (attending === "yes" ? "Saved — see you there" : "Saved — next time") : "Confirm seat"}
-              </button>
+              </Button>
             </div>
           </div>
 

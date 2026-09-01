@@ -26,7 +26,7 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
       <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border/60 bg-muted/40">
         {versions.map((v, i) => (
           <div key={v.id} aria-hidden={i !== idx} className={cn("absolute inset-0 transition-opacity duration-200", i === idx ? "opacity-100" : "opacity-0")}>{render(v)}      
-          </MotionConfig>
+          
     </div>
         ))}
         {hoverIdx !== null && hoverIdx < versions.length - 1 && (
@@ -56,6 +56,7 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
         </AnimatePresence>
       </div>
       <p className="sr-only" aria-live="polite">{pending ? `Previewing ${pending.label}. Press restore to apply.` : "At latest version."}</p>
+          </MotionConfig>
     </div>
   )
 }

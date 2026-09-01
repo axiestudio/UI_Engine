@@ -57,6 +57,7 @@ export function PermissionMatrix({ perms, roles, value, onSet, readOnly, classNa
           ))}
         </tbody>
       </table>
+          
           </MotionConfig>
     </div>
   )

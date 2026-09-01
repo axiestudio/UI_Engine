@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, AnimatePresence, MotionConfig } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 import { KeyRound, PackageOpen, Printer } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -110,14 +110,13 @@ export function CuratorDesk({ exhibition = "New light · autumn hang", onPrintLa
 
   return (
     <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
-      <MotionConfig reducedMotion="user">
 
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Curator desk</h2>
         <span className="text-[12px] text-muted-foreground">{exhibition}</span>
         <span className="text-[12px] text-muted-foreground">· {printBatch} labels printed today</span>
         <div className="ml-auto"><SegmentedControl size="sm" value={collectionId} onChange={switchCollection} options={COLLECTIONS.map((c) => ({ value: c.id, label: c.label }))} />      
-          </MotionConfig>
+          
     </div>
         <Button type="button" variant="ghost" onClick={printLabels} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted"><Printer className="size-3.5" /> Print labels ({pins.length})</Button>
       </header>

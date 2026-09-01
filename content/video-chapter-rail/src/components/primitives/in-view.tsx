@@ -17,7 +17,8 @@ export type InViewProps = {
   transition?: Transition;
   viewOptions?: UseInViewOptions;
   as?: React.ElementType;
-  once?: boolean
+  once?: boolean;
+  delay?: number;
   className?: string;
 };
 
@@ -30,6 +31,7 @@ export function InView({
   children,
   variants = defaultVariants,
   transition,
+  delay,
   viewOptions,
   as = 'div',
   once
@@ -51,7 +53,7 @@ export function InView({
       animate={(isInView || isViewed) ? "visible" : "hidden"}
 
       variants={variants}
-      transition={transition}
+      transition={delay !== undefined ? { ...transition, delay } : transition}
     >
       {children}
     </MotionComponent>

@@ -202,7 +202,7 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
             </motion.span>
           </div>
           <Button variant="outline" size="sm" onClick={restamp} disabled={stamping}>
-            <FileCheck2 className={cn("size-3.5", stamping && "animate-pulse")} />
+            <FileCheck2 className={cn("size-3.5", stamping && "motion-safe:animate-pulse")} />
             {stamping ? "Stamping…" : "Re-stamp custody"}
           </Button>
         </div>

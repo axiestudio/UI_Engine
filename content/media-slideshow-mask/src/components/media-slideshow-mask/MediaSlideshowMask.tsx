@@ -1,10 +1,11 @@
 import * as React from "react"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
 import { motion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 
 import { cn } from "@/lib/utils"
-import Autoplay from "embla-carousel-autoplay"
-import useEmblaCarousel from "embla-carousel-react"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Slideshow mask — an auto-advancing set of crossfading slides.
 // ═══ EMOTION     A clean rotation of imagery.
@@ -32,10 +33,7 @@ const DEFAULT_FRAMES = [
 export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotation.", frames = DEFAULT_FRAMES, interval = 4200, tone = "paper", className }: MediaSlideshowMaskProps) {
   const ink = tone === "ink"
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
-    [Autoplay({ delay: interval, stopOnInteraction: false, playOnInit: !reduce })],
-  )
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: interval, stopOnInteraction: false, playOnInit: !reduce })])
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => {
     if (!emblaApi) return
@@ -78,7 +76,7 @@ export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotat
           </div>
           <div className="flex justify-center gap-2 py-3">
             {frames.map((f, i) => (
-              <button key={f.id} type="button" onClick={() => setIdx(i)} className={cn("h-1.5 rounded-full transition-all", i === idx ? "w-6 bg-foreground" : "w-1.5 bg-muted-foreground/40")} aria-label={`Slide ${i + 1}`} />
+              <Button type='button' key={f.id} onClick={() => setIdx(i)} aria-label={`Slide ${i + 1}`} className={cn("h-1.5 rounded-full transition-all", i === idx ? "w-6 bg-foreground" : "w-1.5 bg-muted-foreground/40")} size="icon" variant="default"></Button>
             ))}
           </div>
         </div>

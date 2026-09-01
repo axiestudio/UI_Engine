@@ -46,7 +46,7 @@ export function StatusHealthStrip({ services, region, onRegion, className }: Sta
           <Button type="button" variant="ghost" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex items-center gap-1 rounded px-2 py-1 text-xs font-medium text-muted-foreground hover:bg-muted">
             details <ChevronDown className={cn("size-3 transition-transform", open && "rotate-180")} />
           </Button>
-          </MotionConfig>
+          
     </div>
       </div>
       <AnimatePresence initial={false}>
@@ -64,6 +64,7 @@ export function StatusHealthStrip({ services, region, onRegion, className }: Sta
           </motion.ul>
         )}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }

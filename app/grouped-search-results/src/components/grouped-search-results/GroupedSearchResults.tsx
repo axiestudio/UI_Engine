@@ -48,11 +48,12 @@ export function GroupedSearchResults({ query, items, onSelect, className }: Grou
                 </li>
               )
             })}
-                </MotionConfig>
+                
     </ul>
         </li>
       )})}
       {q && !flat.length && <li className="px-3 py-6 text-center text-sm text-muted-foreground">no answer for “{query}” — different word?</li>}
+          </MotionConfig>
     </ul>
   )
 }

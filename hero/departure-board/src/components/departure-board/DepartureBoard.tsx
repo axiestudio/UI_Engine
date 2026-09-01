@@ -1,18 +1,19 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
+import SplitFlapText from "@/components/reactbits/SplitFlapText"
 
 // ═══ JOB      make a headline feel like LIVE DATA (what's on / what's new)
 // ═══ EMOTION  the hush of a departures hall — information as theatre
-// ═══ SIGNATURE split-flap scramble: every char tumbles through randoms and
-//               settles left→right per row; re-scrambles when `items` change
+// ═══ SIGNATURE split-flap scramble: every char tumbles through the alphabet
+//               and settles left→right — the flip engine is React Bits'
+//               SplitFlapText (vendored registry piece, reduced-motion aware),
+//               never a hand-rolled rAF simulation; rows arm in a wave (design),
+//               the board layout and Solari tokens are ours
 //   SITE  → program / specials / price board section
 //   APP   → release feed, order queue, kiosk status header (pass new items)
 //   A11Y  tiles aria-hidden; real text in an sr-only line; motion is on
 //         mount/update only, never loops; reduced-motion settles instantly
-
-const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:&./-"
-const rand = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
 
 export type DepartureItem = { zone?: string; label: string; value: string; note?: string; tone?: "default" | "now" | "off" }
 
@@ -20,9 +21,7 @@ export type DepartureBoardProps = {
   eyebrow?: string
   title?: React.ReactNode
   items: DepartureItem[]
-  /** ms per char flip step */
-  speed?: number
-  /** ms between rows settling */
+  /** ms between rows arming their flip */
   rowStagger?: number
   className?: string
 }
@@ -31,40 +30,21 @@ export function DepartureBoard({
   eyebrow = "LIVE BOARD",
   title,
   items,
-  speed = 42,
   rowStagger = 160,
   className,
 }: DepartureBoardProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const signature = items.map((i) => `${i.label}|${i.value}`).join(";")
 
-  // settled[i] = number of chars finalized in row i (-sim => not started)
-  const [, tick] = React.useReducer((n: number) => n + 1, 0)
-  const settledRef = React.useRef<number[]>([])
+  // row r arms after r * rowStagger — a one-shot wave, not an engine loop
+  const [armed, setArmed] = React.useState<number[]>(reduce ? items.map((_, i) => i) : [])
   React.useEffect(() => {
     if (reduce) {
-      settledRef.current = items.map(() => 99)
-      tick()
+      setArmed(items.map((_, i) => i))
       return
     }
-    const started = performance.now() + 260
-    const total = items.reduce((m, i) => Math.max(m, i.value.length), 0)
-    let raf = 0
-    const loop = () => {
-      const t = performance.now() - started
-      settledRef.current = items.map((it, r) => {
-        const rowT = t - r * rowStagger - Math.max(0, it.label.length - it.value.length) * 12
-        return Math.floor(rowT / speed) - 4
-      })
-      tick()
-      if (t < items.length * rowStagger + total * speed + 400) raf = requestAnimationFrame(loop)
-      else {
-        settledRef.current = items.map((i) => i.value.length)
-        tick()
-      }
-    }
-    raf = requestAnimationFrame(loop)
-    return () => cancelAnimationFrame(raf)
+    const timers = items.map((_, i) => window.setTimeout(() => setArmed((a) => (a.includes(i) ? a : [...a, i])), 260 + i * rowStagger))
+    return () => timers.forEach((t) => window.clearTimeout(t))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, reduce])
 
@@ -82,7 +62,11 @@ export function DepartureBoard({
               {it.label}
               <span className="sr-only">: {it.value}</span>
             </span>
-            <FlapWord value={it.value} settled={settledRef.current[r] ?? -1} tone={it.tone} aria-hidden className="order-4 col-span-2 justify-self-start sm:order-3 sm:col-span-1" />
+            <span className="order-4 col-span-2 justify-self-start sm:order-3 sm:col-span-1" aria-hidden>
+              {armed.includes(r) && (
+                <FlapWord value={it.value} tone={it.tone} />
+              )}
+            </span>
             {it.note && <span className={cn("order-5 hidden text-[10px] font-bold uppercase tracking-[0.18em] sm:block", it.tone === "now" ? "text-[hsl(var(--solari))] animate-pulse" : "text-white/35")}>{it.note}</span>}
           </li>
         ))}
@@ -92,28 +76,20 @@ export function DepartureBoard({
   )
 }
 
-function FlapWord({ value, settled, tone, className }: { value: string; settled: number; tone?: DepartureItem["tone"]; className?: string }) {
-  const chars = value.toUpperCase().split("")
+function FlapWord({ value, tone }: { value: string; tone?: DepartureItem["tone"] }) {
   return (
-    <span className={cn("flex gap-[3px]", className)} aria-hidden>
-      {chars.map((ch, i) => {
-        const done = i < settled
-        const shown = done || ch === " " ? ch : rand()
-        return (
-          <span
-            key={i}
-            className={cn(
-              "relative inline-block min-w-[1.35ch] rounded-[3px] bg-[#101014] px-[4px] py-[3px] text-center text-[15px] font-bold leading-[1.25] tabular-nums transition-colors",
-              done ? (tone === "now" ? "text-[hsl(var(--solari))]" : "text-[hsl(var(--solari-ink))]") : "text-[hsl(var(--solari))]/70",
-            )}
-            style={{ transform: done ? undefined : `translateY(${i % 2 ? 0.5 : -0.5}px)` }}
-          >
-            {shown || "\u00A0"}
-            {/* flap split hairline */}
-            <span className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-black/60" />
-          </span>
-        )
-      })}
-    </span>
+    <SplitFlapText
+      text={value.toUpperCase()}
+      flipDuration={42}
+      stagger={28}
+      loop={false}
+      charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:&./-"
+      fontSize={15}
+      tileRadius={3}
+      gap="3px"
+      tileColor="#101014"
+      textColor={tone === "now" ? "hsl(var(--solari))" : "hsl(var(--solari-ink))"}
+      className="w-fit"
+    />
   )
 }

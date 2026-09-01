@@ -4,6 +4,7 @@ import type { MotionValue } from "motion/react"
 import { Eye } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+
 // ═══ JOB      a before/after you feel yourself opening, not a slider drag
 // ═══ EMOTION  the slow reveal of blinds letting light in
 // ═══ SIGNATURE N horizontal slats rotateX 0→88° on staggered scrub bands;

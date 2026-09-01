@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger)
 //                 scroll, with the step counter and part name keeping pace.
 //                 Each part is its own component in the PARTS registry.
 
-type Part = { id: string; label: string; render: () => React.ReactNode; from: { y?: number; x?: number; rotate?: string; opacity?: number } }
+type Part = { id: string; label: string; render: () => React.ReactNode; from: React.CSSProperties & Record<string, unknown> }
 
 const PARTS: Part[] = [
   {

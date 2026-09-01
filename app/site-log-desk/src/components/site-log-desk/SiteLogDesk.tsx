@@ -145,7 +145,7 @@ export function SiteLogDesk({
           >
             <HardHat className="size-3.5" /> Submit day log
           </Button>
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -297,6 +297,7 @@ export function SiteLogDesk({
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

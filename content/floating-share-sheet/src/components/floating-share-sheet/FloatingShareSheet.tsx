@@ -16,7 +16,6 @@ import { Check, Copy, Link2, Mail, MessageCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { InView } from "@/components/primitives/in-view"
-import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Give every published page its exit doors.
 // ═══ EMOTION     Handing the piece over — considered, not shouty.
@@ -83,10 +82,16 @@ export function FloatingShareSheet({
           <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{title}</span>
 
           <span className="relative inline-flex" ref={tipRefs.setReference} {...getTipRefProps({ onMouseEnter: () => setTipOpen(true), onMouseLeave: () => setTipOpen(false), onFocus: () => setTipOpen(true), onBlur: () => setTipOpen(false) })}>
-            <Button type="button" ref={refs.setReference} getReferenceProps aria haspopup="menu" expanded={open} variant="default" className={flex h-9 items-center gap-2 rounded-full border bg-background px-4 text-[11px] font-black uppercase tracking-[0.14em] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring}>
+            <button
+              ref={refs.setReference}
+              {...getReferenceProps()}
+              aria-haspopup="menu"
+              aria-expanded={open}
+              className="flex h-9 items-center gap-2 rounded-full border bg-background px-4 text-[11px] font-black uppercase tracking-[0.14em] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
               {copied ? <Check className="size-3.5 text-primary" strokeWidth={3} aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
               {copied ? "Link copied" : label}
-            
+            </button>
             {tipOpen && !open && (
               <FloatingPortal>
                 <div ref={tipRefs.setFloating} style={tipStyles} {...getTipFloProps()} role="tooltip" className="z-50 rounded-md bg-foreground px-2.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-background shadow-lg">
@@ -107,10 +112,16 @@ export function FloatingShareSheet({
                 className="z-50 w-52 rounded-xl border border-border bg-card p-1.5 shadow-[0_18px_44px_-16px_hsl(var(--foreground)/0.45)]"
               >
                 {channels.map(({ id, label: chLabel, icon: Icon }) => (
-                  <Button type="button" key={id} role="menuitem" onClick={() => { if (id === "copy") copy(); setOpen(false) }} variant="default" className={flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-[13px] font-medium transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring}>
+                  <button
+                    key={id}
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { if (id === "copy") copy(); setOpen(false) }}
+                    className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-[13px] font-medium transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                  >
                     <Icon className="size-3.5 text-muted-foreground" aria-hidden />
-                    {id === "copy" && copied ? <>Copied <Check className="size-3.5" aria-hidden /></> : chLabel}
-                  
+                    {id === "copy" && copied ? "Copied ✓" : chLabel}
+                  </button>
                 ))}
                 <p className="border-t border-border/60 px-2.5 pb-1 pt-2 font-mono text-[9px] font-medium tracking-wide text-muted-foreground">
                   <span className="block truncate">{url}</span>

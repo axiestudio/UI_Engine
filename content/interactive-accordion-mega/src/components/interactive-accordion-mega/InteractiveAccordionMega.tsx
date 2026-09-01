@@ -44,13 +44,13 @@ export function InteractiveAccordionMega({ eyebrow = "MEGA", title = "Rows worth
             const open = r.id === openId
             return (
               <div key={r.id} className={cn("overflow-hidden rounded-xl border transition-colors", open && (ink ? "border-background/30 bg-background/5" : "border-foreground bg-card"))}>
-                <Button type="button" onClick={() => setOpenId(open ? null : r.id)} aria expanded={open} variant="default" className={flex w-full items-center justify-between gap-4 p-6 text-left}>
+                <Button type='button' onClick={() => setOpenId(open ? null : r.id)} aria-expanded={open} className="flex w-full items-center justify-between gap-4 p-6 text-left" variant="default">
                   <div className="flex items-baseline gap-4">
                     <span className={cn("font-mono text-[11px] font-bold tracking-[0.2em]", ink ? "text-background/45" : "text-muted-foreground")}>{r.meta ?? "0" + (rows.indexOf(r) + 1)}</span>
                     <h3 className="font-display text-2xl font-bold sm:text-3xl">{r.title}</h3>
                   </div>
                   <span className={cn("shrink-0 font-mono text-xl", open ? "rotate-45" : "", ink ? "text-background/60" : "text-muted-foreground")}>+</span>
-                
+                </Button>
                 <div className={cn("grid transition-[grid-template-rows] duration-300", open ? "grid-rows-[1fr]" : "grid-rows-[0fr]")}>
                   <div className="overflow-hidden">
                     <div className="grid gap-4 px-6 pb-6 sm:grid-cols-[1fr_auto]">

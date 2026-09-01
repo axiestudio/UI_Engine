@@ -123,7 +123,7 @@ export function WarehouseScan({
           <Button type="button" variant="ghost" onClick={scanNext} className="flex h-8 items-center gap-1.5 rounded-md border bg-background px-3 text-[11px] font-semibold hover:bg-muted">
             <Barcode className="size-3.5" /> Scan next
           </Button>
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -153,7 +153,7 @@ export function WarehouseScan({
           <section className="flex-1 overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
               Sync jobs
-              <RefreshCcw className={cn("size-3.5", flushing && "motion-safe:motion-safe:animate-spin")} />
+              <RefreshCcw className={cn("size-3.5", flushing && "motion-safe:motion-safe:motion-safe:animate-spin")} />
             </header>
             <div className="p-3">
               <JobTray
@@ -287,6 +287,7 @@ export function WarehouseScan({
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

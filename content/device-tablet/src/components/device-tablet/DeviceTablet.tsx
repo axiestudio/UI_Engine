@@ -1,6 +1,7 @@
 import * as React from "react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
+
 import { cn } from "@/lib/utils"
 import { Ipad } from "@/components/eldora/ipad"
 import { Button } from "@/components/ui/button"
@@ -107,12 +108,12 @@ export function DeviceTablet({
           {!children && screens.length > 1 && (
             <div className="mt-6 flex items-center justify-center gap-3" role="tablist" aria-label="Screens">
               {screens.map((s, x) => (
-                <Button type="button" key={s.src} role="tab" aria selected={x === i} onClick={() => setI(x)} variant="default" className={cn(cn(
+                <Button type='button' key={s.src} role="tab" aria-selected={x === i} onClick={() => setI(x)} className={cn(
                     "group relative h-14 w-24 overflow-hidden rounded-lg border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     x === i
                       ? "border-primary ring-1 ring-primary shadow-md"
                       : "border-border opacity-60 hover:opacity-90",
-                  ))}>
+                  )} variant="default">
                   <img src={s.src} alt="" loading="lazy" className="h-full w-full object-cover" />
                   <span
                     className={cn(
@@ -121,7 +122,7 @@ export function DeviceTablet({
                   >
                     {s.caption ?? `Screen ${x + 1}`}
                   </span>
-                
+                </Button>
               ))}
             </div>
           )}

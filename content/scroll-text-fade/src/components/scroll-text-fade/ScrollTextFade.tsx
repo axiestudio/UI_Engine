@@ -1,5 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Text-fade — a long paragraph whose words dim when they leave the center.

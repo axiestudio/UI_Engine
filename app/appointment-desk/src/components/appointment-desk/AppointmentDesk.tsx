@@ -57,7 +57,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
         <h2 className="text-sm font-semibold">Appointments</h2>
         <span className="text-[13px] text-muted-foreground">South House · walk-ins land on the board</span>
         <div className="ml-auto"><DateRangePresets value={range} onChange={(r) => { setRange(r); push(r ? "Window applied to availability" : "Showing all open days") }} />      
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -148,6 +148,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

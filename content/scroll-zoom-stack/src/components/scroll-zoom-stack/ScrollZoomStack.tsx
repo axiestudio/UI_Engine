@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
 
+
 // ═══ JOB         Zoom stack — a pinned stage where stacked cards zoom into each other.
 // ═══ EMOTION     A camera push through layers.
 // ═══ SIGNATURE   Cards scale up and fade as the next one zooms forward.

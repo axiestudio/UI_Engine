@@ -10,9 +10,11 @@ import {
   User,
   Zap,
 } from "lucide-react"
+
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Noise from "@/components/primitives/noise"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type ActivityKind = "signup" | "review" | "milestone" | "payment" | "comment" | "refund" | "alert" | "shipment"
@@ -71,23 +73,26 @@ export function ActivityFeed({
 
   const glyphFor = (kind: ActivityKind = "milestone"): React.ReactNode => {
     const map: Record<ActivityKind, React.ReactNode> = {
-      signup: <User aria-hidden className="h-3 w-3 stroke-[2]" />,
-      review: <Star aria-hidden className="h-3 w-3 stroke-[2]" />,
-      milestone: <Zap aria-hidden className="h-3 w-3 stroke-[2]" />,
-      payment: <CreditCard aria-hidden className="h-3 w-3 stroke-[2]" />,
-      comment: <MessageSquare aria-hidden className="h-3 w-3 stroke-[2]" />,
-      refund: <Banknote aria-hidden className="h-3 w-3 stroke-[2]" />,
-      alert: <TriangleAlert aria-hidden className="h-3 w-3 stroke-[2]" />,
-      shipment: <Package aria-hidden className="h-3 w-3 stroke-[2]" />,
+      signup: <User className="size-3" />,
+      review: <Star className="size-3" />,
+      milestone: <Zap className="size-3" />,
+      payment: <CreditCard className="size-3" />,
+      comment: <MessageSquare className="size-3" />,
+      refund: <Banknote className="size-3" />,
+      alert: <TriangleAlert className="size-3" />,
+      shipment: <Package className="size-3" />,
     }
     return map[kind]
   }
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
-  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+    <section
+      className={cn(ink && "bg-foreground", "relative isolate w-full overflow-hidden", className)}
+      aria-label={title}
+    >
+      <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.06 : 0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
 
+      <div className="relative mx-auto w-full max-w-[860px] px-4 py-20 sm:px-6 sm:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           {/* copy */}
           <div>
@@ -139,7 +144,7 @@ export function ActivityFeed({
                 >
                   <span className="inline-flex items-center gap-2">
                     {cta.label}
-                    <ArrowRight aria-hidden className="h-4 w-4 stroke-[2] transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden />
                   </span>
                 </Button>
               </InView>
@@ -198,8 +203,7 @@ export function ActivityFeed({
             </p>
           </div>
         </div>
-    
-  </div>
-</section>
+      </div>
+    </section>
   )
 }

@@ -37,7 +37,7 @@ export function DiffPaneSplit({ lines, file, defaultSplit, className }: DiffPane
         <div className="flex rounded-md border">
           <Button type="button" variant="ghost" aria-pressed={!split} onClick={() => setSplit(false)} className={cn("grid size-7 place-items-center rounded-l-[5px]", !split && "bg-foreground text-background")}><Rows2 className="size-3.5" /></Button>
           <Button type="button" variant="ghost" aria-pressed={split} onClick={() => setSplit(true)} className={cn("grid size-7 place-items-center rounded-r-[5px]", split && "bg-foreground text-background")}><Columns2 className="size-3.5" /></Button>
-          </MotionConfig>
+          
     </div>
       </div>
       <motion.div key={split ? "s" : "u"} initial={{ opacity: 0 }} animate={{ opacity: 1}} className="overflow-x-auto py-1 font-mono text-[12px] leading-[1.7]">
@@ -61,6 +61,7 @@ export function DiffPaneSplit({ lines, file, defaultSplit, className }: DiffPane
           </div>
         )}
       </motion.div>
+          </MotionConfig>
     </div>
   )
 }

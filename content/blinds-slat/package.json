@@ -25,7 +25,7 @@
   ],
   "presetSources": {
     "original-design": true,
-    "vendored": true,
+    "vendored": "in-repo primitives: \u2014 + handcraft kit",
     "motion": "motion/react"
   },
   "scripts": {

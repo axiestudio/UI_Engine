@@ -1,6 +1,7 @@
 import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 import { BorderTrail } from "@/components/primitives/border-trail"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Capabilities — a framed grid where each card self-draws its edge.

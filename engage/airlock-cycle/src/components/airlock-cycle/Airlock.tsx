@@ -246,7 +246,7 @@ export function Airlock({
                 >
                   {busy ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <KeyRound className="size-4" aria-hidden />}
                   {busy ? "Cycling…" : "Cycle outer door"}
-                </button>
+                </Button>
 
                 <div className="min-h-[20px] text-center">
                   {error ? (

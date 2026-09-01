@@ -3,8 +3,9 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Answer "when can I get in?" without a phone call.
 // ═══ EMOTION     Checking the week on the fridge calendar.
@@ -105,9 +106,16 @@ export function EmblaDayTimeline({
   const ledger = (day && bookings[day.label]) ?? []
 
   return (
-    <SectionShell tone={tone} width={920} rule="bottom" className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+  <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-        <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} tone={tone} />
+          <header className={cn("relative")}>
+    {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", tone === 'ink' ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
+    <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
+    {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", tone === 'ink' ? "text-background/65" : "text-muted-foreground")}>{subtitle}</p>}
+  </header>
       </InView>
 
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}>
@@ -118,24 +126,18 @@ export function EmblaDayTimeline({
                 const selected = i === active
                 return (
                   <div key={d.label} className="min-w-0 shrink-0 grow-0 basis-1/3 px-1.5 sm:basis-1/4 lg:basis-[calc(100%/7)]">
-                    <button
-                      type="button"
-                      onClick={() => {
+                    <Button type='button' onClick={() => {
                         setActive(i)
                         embla?.scrollTo(i)
-                      }}
-                      aria-pressed={selected}
-                      aria-label={`${d.label} ${d.date}`}
-                      className={cn(
+                      }} aria-pressed={selected} aria-label={`${d.label} ${d.date}`} className={cn(
                         "flex w-full flex-col items-center gap-0.5 rounded-[16px] border px-3 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         selected
                           ? "border-primary bg-primary text-primary-foreground"
                           : cn(ink ? "border-background/15 text-muted-foreground hover:border-background/30 hover:bg-background/5 hover:text-background" : "border-border text-muted-foreground hover:border-primary/40 hover:bg-muted hover:text-foreground"),
-                      )}
-                    >
+                      )} variant="default">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] opacity-70">{d.label}</span>
                       <span className="text-lg font-semibold tabular-nums">{d.date}</span>
-                    </button>
+                    </Button>
                   </div>
                 )
               })}
@@ -150,9 +152,9 @@ export function EmblaDayTimeline({
             className={cn("mt-4 rounded-[16px] border bg-card p-5", ink ? "border-background/15" : "border-border")}
           >
             <div className="flex items-center justify-between">
-              <MonoLabel className={cn(ink && "text-background/60")}>
+              <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn(ink && "text-background/60"))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
                 {day ? `${day.label} ${day.date}` : "—"}
-              </MonoLabel>
+              </span>
               <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 {ledger.length} {ledger.length === 1 ? "booking" : "bookings"}
               </span>
@@ -181,6 +183,8 @@ export function EmblaDayTimeline({
           </p>
         </div>
       </InView>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

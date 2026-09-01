@@ -29,7 +29,8 @@
       "https://ui.shadcn.com/r/styles/new-york-v4/button.json"
     ],
     "motion-primitives": [
-      "in-view"
+      "in-view",
+      "text-loop"
     ]
   },
   "scripts": {

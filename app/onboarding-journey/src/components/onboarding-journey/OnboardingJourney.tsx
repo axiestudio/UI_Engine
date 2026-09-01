@@ -95,6 +95,7 @@ function Ring({ pct, tone }: { pct: number; tone: string }) {
         strokeDasharray={c}
         strokeDashoffset={c * (1 - pct / 100)}
       />
+          
           </MotionConfig>
     </svg>
   )

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ChevronRight, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -35,6 +35,7 @@ export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className
     const fake = loadChildren && !children && expanded
     return (
       <li role="treeitem" aria-expanded={children || fake ? expanded : undefined}>
+        <MotionConfig reducedMotion="user">
         <div style={{ paddingLeft: 10 + depth * 18 }} className="group relative flex h-9 items-center gap-1.5 text-[13px]">
           {depth > 0 && <span aria-hidden className="absolute left-[calc(10px+(var(--d)*18px)-9px)] top-0 h-full w-px bg-border/70" style={{ ["--d" as string]: depth - 1 } as React.CSSProperties} />}
           {children || fake ? (
@@ -55,6 +56,7 @@ export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className
             </AnimatePresence>
           </ul>
         )}
+              </MotionConfig>
       </li>
     )
   }

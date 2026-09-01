@@ -98,14 +98,14 @@ export function SpecSheet({
             return (
               <div key={g.id} className="border-b border-border last:border-b-0">
                 <h3>
-                  <Button type="button" aria expanded={isOpen} controls={`spec-${g.id}`} onClick={() => toggleGroup(g.id)} variant="default" className={flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset}>
+                  <Button type='button' aria-expanded={isOpen} aria-controls={`spec-${g.id}`} onClick={() => toggleGroup(g.id)} className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset" variant="default">
                     <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", "text-muted-foreground")}>gi + 1<span aria-hidden> /</span></span>
                     <span className="min-w-0 flex-1 truncate font-display text-lg font-bold tracking-tight text-foreground">{g.label}</span>
                     <span className={cn("hidden font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-opacity duration-200 sm:inline", isOpen && "opacity-0")}>
                       {g.summary}
                     </span>
                     <ChevronDown aria-hidden className={cn("size-4 shrink-0 text-muted-foreground transition-transform duration-300", isOpen && "rotate-180")} />
-                  
+                  </Button>
                 </h3>
                 <motion.div
                   id={`spec-${g.id}`}
@@ -120,9 +120,9 @@ export function SpecSheet({
                         <dt className="flex shrink-0 items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
                           {r.term}
                           {r.hint && (
-                            <Button type="button" title={r.hint} aria label={`${r.term} is measured in ${r.hint}`} variant="default" className={grid size-4 place-items-center rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring}>
+                            <Button type='button' title={r.hint} aria-label={`${r.term} is measured in ${r.hint}`} className="grid size-4 place-items-center rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
                               <Info className="size-3" aria-hidden />
-                            
+                            </Button>
                           )}
                         </dt>
                         <span aria-hidden className="mx-1 flex-1 -translate-y-1 border-b border-dotted border-border" />

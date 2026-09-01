@@ -30,6 +30,9 @@
     ],
     "motion-primitives": [
       "in-view"
+    ],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/radio-group.json"
     ]
   },
   "scripts": {
@@ -38,6 +41,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@radix-ui/react-radio-group": "^1.4.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.34.0",

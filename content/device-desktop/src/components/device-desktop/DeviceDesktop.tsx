@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Lock } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
+
 import { cn } from "@/lib/utils"
 import { MacbookPro } from "@/components/eldora/macbook-pro"
 
@@ -71,7 +72,7 @@ export function DeviceDesktop({
             <MacbookPro className="pointer-events-none block h-auto w-full" />
             {/* screen content sits on the Eldora display rect (11.46%/5.33%/77.11%/80.96%) */}
             <div className="absolute overflow-hidden" style={{ left: "11.46%", top: "5.33%", width: "77.11%", height: "80.96%" }}>
-              {/* Browser chrome — token-styled, reads like hardware */}
+              {/* Browser chrome — token-styled */}
               <div className="flex items-center gap-2 border-b border-background/15 bg-black/90 px-3 pb-1.5 pt-2">
                 {/* Monochrome traffic lights — deliberate hardware-neutral chrome */}
                 <span aria-hidden className="flex gap-1">
@@ -100,32 +101,37 @@ export function DeviceDesktop({
                 </span>
               </div>
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-background">
-                {children ?? (
-                  <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover object-top" />
-                )}
-                {/* wake overlay */}
-                <motion.span
-                  aria-hidden
-                  className="absolute inset-0 z-[2] bg-black"
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: woken ? 0 : 1 }}
-                  transition={{ duration: 0.55, ease: "easeOut", delay: 0.35 }}
-                  onAnimationComplete={() => setWoken(true)}
+              {children ?? (
+                <img
+                  src={src}
+                  alt={alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top"
                 />
-                {/* scanline sweep */}
-                <motion.span
-                  aria-hidden
-                  className="absolute inset-x-0 z-[3] h-16 bg-[linear-gradient(to_bottom,transparent,hsl(var(--background)/0.16),transparent)]"
-                  initial={{ y: "-20%", opacity: 0 }}
-                  animate={{ y: "420%", opacity: [0, 1, 1, 0] }}
-                  transition={{ duration: 1.1, ease: "easeInOut", delay: 0.45, times: [0, 0.2, 0.8, 1] }}
-                />
-                <span aria-hidden className={cn("pointer-events-none absolute inset-0 z-[4] text-white/50")}>
-                  <span className="absolute border-current top-[6px] left-[6px] border-t border-l" style={{ width: 10, height: 10 }} />
-                  <span className="absolute border-current top-[6px] right-[6px] border-t border-r" style={{ width: 10, height: 10 }} />
-                  <span className="absolute border-current bottom-[6px] left-[6px] border-b border-l" style={{ width: 10, height: 10 }} />
-                  <span className="absolute border-current bottom-[6px] right-[6px] border-b border-r" style={{ width: 10, height: 10 }} />
-                </span>
+              )}
+              {/* wake overlay */}
+              <motion.span
+                aria-hidden
+                className="absolute inset-0 z-[2] bg-black"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: woken ? 0 : 1 }}
+                transition={{ duration: 0.55, ease: "easeOut", delay: 0.35 }}
+                onAnimationComplete={() => setWoken(true)}
+              />
+              {/* scanline sweep */}
+              <motion.span
+                aria-hidden
+                className="absolute inset-x-0 z-[3] h-16 bg-[linear-gradient(to_bottom,transparent,hsl(var(--background)/0.16),transparent)]"
+                initial={{ y: "-20%", opacity: 0 }}
+                animate={{ y: "420%", opacity: [0, 1, 1, 0] }}
+                transition={{ duration: 1.1, ease: "easeInOut", delay: 0.45, times: [0, 0.2, 0.8, 1] }}
+              />
+              <span aria-hidden className={cn("pointer-events-none absolute inset-0", "z-[4] text-white/50")}>
+    <span className="absolute border-current top-[10px] left-[10px] border-t border-l" style={{ width: 14, height: 14 }} />
+    <span className="absolute border-current top-[10px] right-[10px] border-t border-r" style={{ width: 14, height: 14 }} />
+    <span className="absolute border-current bottom-[10px] left-[10px] border-b border-l" style={{ width: 14, height: 14 }} />
+    <span className="absolute border-current bottom-[10px] right-[10px] border-b border-r" style={{ width: 14, height: 14 }} />
+  </span>
               </div>
             </div>
           </div>

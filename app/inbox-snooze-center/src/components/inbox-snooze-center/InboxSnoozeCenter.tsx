@@ -26,6 +26,7 @@ export function InboxSnoozeCenter({ items, onComplete, onSnooze, completed, clas
         {items.length === 0 && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-6 py-10 text-center text-sm text-muted-foreground">Inbox zero — wild.</motion.p>}
         {items.map((it) => <SwipeRow key={it.id} it={it} onComplete={onComplete} onSnooze={onSnooze} />)}
       </AnimatePresence>
+          
           </MotionConfig>
     </div>
   )

@@ -2,7 +2,8 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
+
 
 export type FunnelStage = { label: string; count: number; reasons?: string[] }
 
@@ -34,8 +35,10 @@ export function FunnelRiver({
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <SectionShell width={920} className={className}>
-      <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
       <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
       {subtitle && <p className="mt-2 max-w-[56ch] text-[13px] leading-6 text-muted-foreground">{subtitle}</p>}
 
@@ -49,13 +52,7 @@ export function FunnelRiver({
 
           return (
             <div key={s.label} className="relative">
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                aria-controls={`funnel-panel-${i}`}
-                onClick={() => setOpen(isOpen ? null : i)}
-                className="group relative block w-full text-left focus-visible:outline-none"
-              >
+              <Button type='button' aria-expanded={isOpen} aria-controls={`funnel-panel-${i}`} onClick={() => setOpen(isOpen ? null : i)} className="group relative block w-full text-left focus-visible:outline-none" variant="default">
                 <motion.div
                   initial={reduce ? undefined : { opacity: 0, x: -8 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -93,7 +90,7 @@ export function FunnelRiver({
                 {isOpen && s.reasons?.length ? (
                   <span aria-hidden className="absolute left-6 top-full h-3 w-px bg-border" />
                 ) : null}
-              </button>
+              </Button>
 
               <AnimatePresence initial={false}>
                 {isOpen && s.reasons?.length ? (
@@ -131,6 +128,8 @@ export function FunnelRiver({
       <p className="mt-4 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">
         Width = share of the opening cohort · Click any stage for the leak breakdown
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

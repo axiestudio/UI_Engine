@@ -200,7 +200,7 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
               <div>
                 <h3 className="text-[13px] font-bold tracking-tight">Cash position</h3>
                 <p className="text-[11px] text-muted-foreground">daily open / close · {period} · bank + clearing</p>
-          </MotionConfig>
+          
     </div>
               <div className="flex items-baseline gap-2">
                 <span className="font-mono text-[20px] font-black tabular-nums">{compactKr(last ? last.close : 0)}</span>
@@ -421,6 +421,7 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
       </footer>
 
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

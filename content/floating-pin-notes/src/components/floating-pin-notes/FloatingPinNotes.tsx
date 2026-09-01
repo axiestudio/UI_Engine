@@ -16,7 +16,6 @@ import { cn } from "@/lib/utils"
 
 import { InView } from "@/components/primitives/in-view"
 import type { ReferenceType } from "@floating-ui/react-dom"
-import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Let the photo explain itself.
 // ═══ EMOTION     Being walked through the room by someone who knows it.
@@ -56,12 +55,25 @@ function Pin({ pin, index, tone }: { pin: PinNote; index: number; tone: "paper" 
 
   return (
     <>
-      <Button type="button" ref={refs.setReference} getReferenceProps onMouseEnter setOpen true onMouseLeave false onFocus onBlur onClick o aria expanded={open} label={`${index + 1} — ${pin.title}`} style={{ left: `${pin.x * 100}%`, top: `${pin.y * 100}%` }} variant="default" className={cn(cn(
+      <button
+        ref={refs.setReference}
+        {...getReferenceProps({
+          onMouseEnter: () => setOpen(true),
+          onMouseLeave: () => setOpen(false),
+          onFocus: () => setOpen(true),
+          onBlur: () => setOpen(false),
+          onClick: () => setOpen((o) => !o),
+        })}
+        aria-expanded={open}
+        aria-label={`${index + 1} — ${pin.title}`}
+        className={cn(
           "absolute z-[2] flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 font-mono text-[10px] font-black shadow-lg transition-transform hover:scale-110 focus-visible:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           open ? "border-primary bg-primary text-primary-foreground" : "border-background bg-foreground text-background",
-        ))}>
+        )}
+        style={{ left: `${pin.x * 100}%`, top: `${pin.y * 100}%` }}
+      >
         {index + 1}
-      
+      </button>
       {open && (
         <FloatingPortal>
           <div
@@ -83,7 +95,6 @@ function Pin({ pin, index, tone }: { pin: PinNote; index: number; tone: "paper" 
     </>
   )
 }
-
 
 export function FloatingPinNotes({
   eyebrow = "FLOATING UI · PIN NOTES",

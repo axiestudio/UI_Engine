@@ -64,7 +64,7 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
         </AnimatePresence>
         <input ref={input} value={q} onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 140)} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => { if (e.key === "Backspace" && !q && value.length) onValueChange(value.slice(0, -1)); if (e.key === "Enter" && onCreate && q && !exact) { e.preventDefault(); create() } }} placeholder={value.length ? "" : placeholder} className="h-7 min-w-[10ch] flex-1 bg-transparent text-sm outline-none" aria-autocomplete="list" />
         <ChevronDown aria-hidden className={cn("size-4 shrink-0 text-muted-foreground transition-transform", open && "rotate-180")} />
-          </MotionConfig>
+          
     </div>
       <AnimatePresence>
         {open && (
@@ -82,12 +82,13 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
                   </Button>
                 </li>
               ))}
-              {loading && <li className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground"><Search className="size-3.5 motion-safe:motion-safe:animate-pulse" /> loading…</li>}
+              {loading && <li className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground"><Search className="size-3.5 motion-safe:motion-safe:motion-safe:animate-pulse" /> loading…</li>}
               {!loading && !items.length && <li className="px-3 py-6 text-center text-sm text-muted-foreground">no matches</li>}
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }

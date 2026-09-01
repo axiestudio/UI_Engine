@@ -157,7 +157,7 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
           <Button variant="outline" size="sm">
             <RefreshCcw className="size-3.5" /> Refresh punches
           </Button>
-          </MotionConfig>
+          
     </div>
       </header>
 
@@ -327,6 +327,7 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
           </section>
         </div>
       </div>
+          </MotionConfig>
     </div>
   )
 }

@@ -126,7 +126,7 @@ export function LegalClauseDesk({ matter = "2024-0117 · MSA renewal", counterpa
             <div className="rounded-lg border border-dashed bg-background p-3">
               <div className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
                 <PenLine className="size-3.5" /> §11 drafting — ghost continuations on
-          </MotionConfig>
+          
     </div>
               <GhostSuggestInput
                 value={draft}
@@ -180,6 +180,7 @@ export function LegalClauseDesk({ matter = "2024-0117 · MSA renewal", counterpa
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((ts) => ts.filter((t) => t.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

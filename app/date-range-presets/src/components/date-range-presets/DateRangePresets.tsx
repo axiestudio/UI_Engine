@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, MotionConfig } from "motion/react"
+import { motion } from "motion/react"
 import { CalendarDays, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -41,7 +41,6 @@ export function DateRangePresets({ value, onChange, presets = DEFAULTS, allowCom
 
   return (
     <div className={cn("relative inline-block font-sans", className)}>
-      <MotionConfig reducedMotion="user">
       <Button type="button" variant="ghost" aria-haspopup="dialog" aria-expanded={open} onClick={() => setOpen((v) => !v)} className="flex h-9 items-center gap-2 rounded-md border border-border/70 bg-background px-3 text-sm font-medium shadow-sm hover:bg-muted/60">
         <CalendarDays aria-hidden className="size-4 text-muted-foreground" />
         {value ? `${value.from.toLocaleDateString()} → ${value.to.toLocaleDateString()}` : "Pick a range"}
@@ -59,7 +58,7 @@ export function DateRangePresets({ value, onChange, presets = DEFAULTS, allowCom
                   Compare previous <span aria-hidden className={cn("relative h-4 w-7 rounded-full transition-colors", compare && "bg-primary")}><span className={cn("absolute top-0.5 size-3 rounded-full bg-white shadow transition-all", compare ? "left-3.5" : "left-0.5")} /></span>
                 </Button>
               )}
-          </MotionConfig>
+          
     </div>
             <div className="p-3">
               <div className="mb-1.5 flex items-center justify-between">

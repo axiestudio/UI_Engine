@@ -1,3 +1,8 @@
+/**
+ * Vendored from motion-primitives (https://motion-primitives.com) by ibelick.
+ * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/text-loop.tsx
+ * Local patch for workspace tsconfig (verbatimModuleSyntax): type-only imports only, no behavior change.
+ */
 'use client';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence, type Transition, type Variants, type AnimatePresenceProps,  } from 'motion/react';

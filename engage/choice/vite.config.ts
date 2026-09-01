@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "choice.es.js" : "choice.cjs.js"),
     },
-    rollupOptions: { external: ["class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-slot", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: ["@radix-ui/react-radio-group", "class-variance-authority", "clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react-slot", "react/jsx-runtime", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

@@ -91,7 +91,7 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
         <div>
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Studio operations · {week}</span>
           <h2 className="font-display text-[24px] font-black leading-none tracking-[-0.03em]">{studio}</h2>
-          </MotionConfig>
+          
     </div>
         <span className="mb-0.5 hidden items-center gap-1.5 rounded border bg-muted/40 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground md:inline-flex">render farm · 11 nodes online</span>
         <div className="ml-auto mb-0.5 flex gap-2">
@@ -251,6 +251,7 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

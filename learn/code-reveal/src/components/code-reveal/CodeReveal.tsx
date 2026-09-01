@@ -1,98 +1,91 @@
 import * as React from "react"
-import { motion } from "motion/react"
-import { Check, Copy } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
-import { InView } from "@/components/primitives/in-view"
 
-export type CodeLine = { n: number; code: string; hi?: boolean }
+import { InView } from "@/components/primitives/in-view"
+import Terminal from "@/components/eldora/terminal"
+import { CodeBlock } from "@/components/cult/code-block"
+
+export type CodeRevealTab = { label: string; code: string; language?: string }
+
 export type CodeRevealProps = {
-  title?: string
-  lines?: CodeLine[]
-  language?: string
+  eyebrow?: string
+  title?: React.ReactNode
+  subtitle?: React.ReactNode
+  /** Command typed into the Eldora terminal. */
+  command?: string
+  /** Terminal output lines (bold marks the echo line). */
+  steps?: { text: string; bold?: boolean }[]
+  /** Code tabs shown in the Cult UI code block. */
+  tabs?: CodeRevealTab[]
   className?: string
 }
 
-const DEFAULT_LINES: CodeLine[] = [
-  { n: 1, code: "import { ship } from '@workshop/craft'" },
-  { n: 2, code: "" },
-  { n: 3, code: "export function friday() {", hi: true },
-  { n: 4, code: "  const done = ship(small)" },
-  { n: 5, code: "  return celebrate(done)", hi: true },
-  { n: 6, code: "}" },
+const DEFAULT_STEPS = [
+  { text: "$ npm run lesson -- 03" },
+  { text: "compiling … done in 842ms", bold: true },
+  { text: "lesson 03 — shipped" },
 ]
 
-export function CodeReveal({ title = "lesson-03.ts", lines = DEFAULT_LINES, language = "ts", className }: CodeRevealProps) {
-  const [copied, setCopied] = React.useState(false)
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-  const plain = lines.map((l) => l.code).join("\n")
+const DEFAULT_TABS = [
+  {
+    label: "lesson-03.ts",
+    language: "ts",
+    code: [
+      "import { ship } from '@workshop/craft'",
+      "",
+      "export function friday() {",
+      "  const done = ship(small)",
+      "  return celebrate(done)",
+      "}",
+    ].join("\n"),
+  },
+  {
+    label: "deploy.sh",
+    language: "bash",
+    code: ["#!/usr/bin/env bash", "set -euo pipefail", "npm run lesson -- 03 && npm run ship -- friday"].join("\n"),
+  },
+]
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(plain)
-    } catch {}
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1600)
-  }
-
+export function CodeReveal({
+  eyebrow = "Learning · Code reveal",
+  title = "Lesson 03 — ship something small.",
+  subtitle = "Terminal, then code. The window above is a real terminal; the block below is real code.",
+  command = "npm run lesson -- 03",
+  steps = DEFAULT_STEPS,
+  tabs = DEFAULT_TABS,
+  className,
+}: CodeRevealProps) {
   return (
-    <SectionShell width={760} padding="tight" className={cn(className)}>
-      <div className="overflow-hidden rounded-xl border bg-card shadow-sm">
-        <div className="flex items-center gap-3 border-b bg-muted/40 px-4 py-2.5">
-          <span className="flex gap-1.5" aria-hidden>
-            <span className="size-3 rounded-full border bg-background" />
-            <span className="size-3 rounded-full border bg-background" />
-            <span className="size-3 rounded-full border bg-background" />
-          </span>
-          <span className="font-mono text-[11px] font-semibold tracking-[0.12em] text-muted-foreground">{title}</span>
-          <span className="ml-2 hidden rounded-full border bg-background px-2 py-0.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">{language}</span>
-          <button
-            type="button"
-            onClick={copy}
-            aria-label="Copy code"
-            aria-pressed={copied}
-            className="ml-auto inline-flex items-center gap-1.5 rounded-md border bg-background px-3 py-1 text-muted-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          >
-            {copied ? <Check className="size-3.5" aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em]">{copied ? "Copied" : "Copy"}</span>
-          </button>
-        </div>
+    <section className={cn("relative isolate w-full overflow-hidden", className)}>
+      <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8")} style={{ maxWidth: 920 }}>
+        <InView
+          once
+          variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <header className={cn("relative")}>
+            {eyebrow && (
+              <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}>
+                <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
+                {eyebrow}
+              </span>
+            )}
+            <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", "text-foreground")}>{title}</h2>
+            {subtitle && <p className={cn("mt-4 max-w-xl text-[15px] font-medium leading-[1.7] sm:text-base", "text-muted-foreground")}>{subtitle}</p>}
+          </header>
+        </InView>
 
-        <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-7" aria-label={plain}>
-          <code aria-hidden>
-            {lines.map((l, i) => (
-              <motion.span
-                key={l.n}
-                className={cn("flex rounded-md px-1", l.hi && "bg-muted")}
-                initial={reduce ? false : { opacity: 0, y: 4 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.32, delay: 0.12 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="w-7 select-none pr-3 text-right text-muted-foreground/50">{l.n}</span>
-                <span className="whitespace-pre text-foreground">
-                  {l.code || " "}
-                  {i === lines.length - 1 && !reduce && (
-                    <motion.span
-                      aria-hidden
-                      animate={{ opacity: [1, 0] }}
-                      transition={{ duration: 0.9, repeat: Infinity, repeatDelay: 0.1 }}
-                      className="ml-0.5 inline-block h-[14px] w-[2px] translate-y-[2px] bg-foreground"
-                    />
-                  )}
-                </span>
-              </motion.span>
-            ))}
-          </code>
-        </pre>
+        <InView
+          once
+          variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        >
+          <div className="mt-10 flex flex-col gap-6">
+            <Terminal command={command} steps={steps} showLocalhost={false} hostBarTitle="workshop · lesson 03" hostMessage="done" />
+            <CodeBlock tabs={tabs} className="w-full" />
+          </div>
+        </InView>
       </div>
-
-      <InView once className="mt-3 flex items-center justify-between">
-        <MonoLabel className="text-muted-foreground text-[10px] tracking-[0.14em]">EXAMPLE · {lines.length} LINES</MonoLabel>
-        <span aria-live="polite" className="font-mono text-[10px] font-medium tracking-[0.14em] text-muted-foreground">
-          {copied ? "Copied to clipboard" : ""}
-        </span>
-      </InView>
-    </SectionShell>
+    </section>
   )
 }

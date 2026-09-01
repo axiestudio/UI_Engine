@@ -47,10 +47,11 @@ export function FilterTokenBuilder({ tokens, onChange, and, onAnd, fields = [], 
           )
         })}
         <input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === "," ) { e.preventDefault(); commit() } else if (e.key === "Backspace" && !text && tokens.length) { const last = tokens[tokens.length - 1]; setText(`${last.field}${last.op === "≠" ? "!=" : last.op}${last.value}`); onChange(tokens.slice(0, -1)) } }} placeholder={placeholder} className="h-8 min-w-[160px] flex-1 bg-transparent px-1 text-[13px] outline-none" aria-label="Add filter" list={fields.length ? "filter-fields" : undefined} aria-describedby="filter-readout" />
-          </MotionConfig>
+          
     </div>
       {fields.length > 0 && <datalist id="filter-fields">{fields.map((f) => <option key={f} value={f + "="} />)}</datalist>}
       <p id="filter-readout" className="mt-1.5 truncate text-xs text-muted-foreground">{tokens.length ? tokens.map((t) => `${t.field}${t.op}${t.value}`).join(and ? " and " : " or ") : "no filters — showing everything"}</p>
+          </MotionConfig>
     </div>
   )
 }

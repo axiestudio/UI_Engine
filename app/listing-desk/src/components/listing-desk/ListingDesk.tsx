@@ -96,7 +96,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
           <div className="flex items-baseline gap-3">
             <h2 className="font-display text-[21px] font-bold leading-none tracking-[-0.02em]">{address}</h2>
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{mls} · 4 bed · {area} m²</span>
-          </MotionConfig>
+          
     </div>
           <p className="mt-1.5 flex items-center gap-1.5 text-[12px] text-muted-foreground">
             <Camera className="size-3.5" aria-hidden /> {pins.length} pin note{pins.length === 1 ? "" : "s"} on the board · {pendingUploads} media item{pendingUploads === 1 ? "" : "s"} pending
@@ -278,6 +278,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
           </div>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

@@ -135,7 +135,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">MLOPS · MONITOR 02</p>
           <h2 className="mt-1.5 font-display text-2xl font-semibold tracking-tight">Model monitor</h2>
           <p className="mt-1 font-mono text-[12px] tabular-nums text-muted-foreground">{model} · {version} · shadow 5%</p>
-          </MotionConfig>
+          
     </div>
         <div className="ml-auto flex flex-wrap items-center gap-2.5">
           <span
@@ -337,6 +337,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
           </motion.footer>
         )}
       </AnimatePresence>
+          </MotionConfig>
     </div>
   )
 }

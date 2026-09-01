@@ -2,8 +2,9 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Check, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 export type SkillNode = { id: string; label: string; state: "done" | "available" | "locked"; description?: string }
 export type SkillTreeRailProps = {
@@ -43,10 +44,12 @@ export function SkillTreeRail({ nodes = DEFAULT_NODES, className, onUnlock }: Sk
   const doneCount = local.filter((n) => n.state === "done").length
 
   return (
-    <SectionShell width={1120} padding="tight" className={cn(className)}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-14 sm:py-16")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <MonoLabel className="text-muted-foreground">SKILL TREE · PROGRESSION</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />SKILL TREE · PROGRESSION</span>
           <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Build in order. Earn the next.</h2>
         </div>
         <span className="font-mono text-[11px] font-medium text-muted-foreground">
@@ -62,13 +65,13 @@ export function SkillTreeRail({ nodes = DEFAULT_NODES, className, onUnlock }: Sk
             return (
               <React.Fragment key={n.id}>
                 <InView once delay={i * 0.05} className="shrink-0">
-                  <button
-                    type="button"
+                  <Button
+                    variant="ghost"
                     disabled={isLocked}
                     onClick={() => complete(n)}
                     aria-label={`${n.label}: ${n.state}${n.description ? ` — ${n.description}` : ""}`}
                     aria-disabled={isLocked}
-                    className="group flex w-28 flex-col items-center gap-3 text-center focus-visible:outline-none"
+                    className="group h-auto w-28 flex-col gap-3 rounded-xl p-0 hover:bg-transparent focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <span
                       className={cn(
@@ -98,7 +101,7 @@ export function SkillTreeRail({ nodes = DEFAULT_NODES, className, onUnlock }: Sk
                       {n.description && <span className="mt-0.5 text-[11px] leading-tight text-muted-foreground">{n.description}</span>}
                     </span>
                     {n.state === "available" && <span className="rounded-full bg-foreground px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-background">Start</span>}
-                  </button>
+                  </Button>
                 </InView>
 
                 {i < local.length - 1 && (
@@ -120,6 +123,8 @@ export function SkillTreeRail({ nodes = DEFAULT_NODES, className, onUnlock }: Sk
       </div>
 
       <p className="font-mono text-[11px] font-medium text-muted-foreground">Complete an available skill to unlock the next. No skipping — that’s the point.</p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

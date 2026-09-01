@@ -129,7 +129,7 @@ function StatusPill({
           aria-hidden
           className={cn(
             "size-1.5 rounded-full",
-            operational ? "bg-primary" : "bg-muted-foreground animate-pulse",
+            operational ? "bg-primary" : "bg-muted-foreground motion-safe:animate-pulse",
           )}
         />
         {service.name}

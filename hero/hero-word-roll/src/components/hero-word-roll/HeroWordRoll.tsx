@@ -1,13 +1,16 @@
 import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 import { TextRoll } from "@/components/primitives/text-roll"
+import { TextLoop } from "@/components/primitives/text-loop"
 import { MonoLabel } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Word-roll hero — the headline cycles one word at a time.
 // ═══ EMOTION     Kinetic, restless.
-// ═══ SIGNATURE   A multi-word hero where a highlighted word rolls (TextRoll) on a timer.
+// ═══ SIGNATURE   A multi-word hero where a highlighted word rolls (TextRoll);
+//                 the word sequence is Motion Primitives' TextLoop (vendored
+//                 registry sequencer) — never a hand-rolled interval.
 
 export type HeroWordRollProps = {
   eyebrow?: string
@@ -31,11 +34,6 @@ export function HeroWordRoll({
   className,
 }: HeroWordRollProps) {
   const ink = tone === "ink"
-  const [idx, setIdx] = React.useState(0)
-  React.useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % words.length), 2600)
-    return () => clearInterval(t)
-  }, [words.length])
   return (
     <section className={cn("relative isolate overflow-hidden py-20 sm:py-28", ink && "bg-foreground text-background", className)}>
       <div className="mx-auto max-w-4xl px-5 sm:px-8">
@@ -47,14 +45,22 @@ export function HeroWordRoll({
             {lead}{" "}
             <span className={cn("inline-block text-transparent", ink ? "bg-clip-text" : "bg-clip-text")}
               style={{ backgroundImage: `linear-gradient(105deg, hsl(var(--primary)), hsl(var(--accent)))` }}>
-              <TextRoll
-                key={idx}
-                duration={0.5}
-                getEnterDelay={(i) => i * 0.08}
-                transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
+              <TextLoop
+                interval={2.6}
+                className="inline-block"
+                variants={{ initial: {}, animate: {}, exit: {} }}
               >
-                {words[idx]}
-              </TextRoll>
+                {words.map((w) => (
+                  <TextRoll
+                    key={w}
+                    duration={0.5}
+                    getEnterDelay={(i) => i * 0.08}
+                    transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
+                  >
+                    {w}
+                  </TextRoll>
+                ))}
+              </TextLoop>
             </span>{" "}
             {tail}
           </h1>

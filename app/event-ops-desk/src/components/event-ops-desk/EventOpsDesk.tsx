@@ -114,7 +114,7 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
               <DateRangePresets value={win} onChange={setWin} presets={[{ label: "Tonight", days: 0 }, { label: "Weekend", days: 2 }, { label: "Next 7 days", days: 7 }]} />
               <dl className="mt-3 space-y-1 text-[12px]">
                 <div className="flex justify-between"><dt className="text-muted-foreground">Window</dt><dd className="font-mono text-[12px] tabular-nums">{hours} h</dd>      
-          </MotionConfig>
+          
     </div>
                 <div className="flex justify-between"><dt className="text-muted-foreground">Passes / hour</dt><dd className="font-mono font-bold tabular-nums">{perHour.toLocaleString()}</dd></div>
                 <div className="flex justify-between"><dt className="text-muted-foreground">Peak lane load</dt><dd className="font-mono tabular-nums">Gate A · 340/h</dd></div>
@@ -214,6 +214,7 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

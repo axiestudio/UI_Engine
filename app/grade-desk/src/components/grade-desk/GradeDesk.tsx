@@ -193,7 +193,7 @@ export function GradeDesk({
         <div className="pb-1">
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Marking desk</span>
           <p className="text-[13px] font-semibold">{course} <span className="font-normal text-muted-foreground">· {term}</span></p>
-          </MotionConfig>
+          
     </div>
         <span className="mb-1 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold tabular-nums">
           {unmarked.length} unmarked
@@ -386,6 +386,7 @@ export function GradeDesk({
           </section>
         </aside>
       </div>
+          </MotionConfig>
     </div>
   )
 }

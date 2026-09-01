@@ -98,12 +98,12 @@ export function VideoChapterRail({
             onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
             onLoadedMetadata={(e) => setDuration(e.currentTarget.duration || 5)}
           />
-          <Button type="button" onClick={toggle} aria label={playing ? "Pause video" : "Play video"} variant="default" className={cn(cn(
+          <Button type='button' onClick={toggle} aria-label={playing ? "Pause video" : "Play video"} className={cn(
               "absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-foreground text-background shadow-lg transition-opacity duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
               playing && "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100",
-            ))}>
+            )} variant="default">
             {playing ? <Pause className="size-6 fill-current" aria-hidden /> : <Play className="size-6 translate-x-0.5 fill-current" aria-hidden />}
-          
+          </Button>
           <p className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-border bg-background/85 px-3 py-1 font-mono text-[11px] font-bold tabular-nums text-foreground shadow-sm backdrop-blur">
             {fmt(time)} <span className="text-muted-foreground">/ {fmt(duration)}</span>
           </p>
@@ -120,10 +120,10 @@ export function VideoChapterRail({
             {chapters.map((c, i) => {
               const active = i === activeIndex
               return (
-                <Button type="button" key={c.at} onClick={() => seek(c.at)} aria current={active ? "true" : undefined} label={`Jump to chapter ${i + 1}: ${c.title} at ${fmt(c.at)}`} variant="default" className={cn(cn(
+                <Button type='button' key={c.at} onClick={() => seek(c.at)} aria-current={active ? "true" : undefined} aria-label={`Jump to chapter ${i + 1}: ${c.title} at ${fmt(c.at)}`} className={cn(
                     "w-[240px] flex-none rounded-xl border p-4 text-left shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     active ? "border-primary bg-card" : "border-border bg-card hover:border-foreground/30",
-                  ))}>
+                  )} variant="default">
                   <div className="flex items-center justify-between">
                     <span className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.2em]", active ? "text-foreground" : "text-muted-foreground")}>{fmt(c.at)}</span>
                     {active ? (
@@ -136,7 +136,7 @@ export function VideoChapterRail({
                   </div>
                   <p className={cn("mt-3 font-display text-base font-bold tracking-tight", active ? "text-foreground" : "text-foreground/70")}>{c.title}</p>
                   {c.note && <p className="mt-1 text-xs font-medium leading-relaxed text-muted-foreground">{c.note}</p>}
-                
+                </Button>
               )
             })}
           </div>

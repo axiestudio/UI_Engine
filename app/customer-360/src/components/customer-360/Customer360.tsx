@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, MotionConfig } from "motion/react"
+import { motion } from "motion/react"
 import { UserRound, Wallet } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -51,7 +51,6 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
 
   return (
     <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-background", className)}>
-      <MotionConfig reducedMotion="user">
       {/* identity header */}
       <div className="flex flex-wrap items-center gap-4 border-b border-border/60 bg-card px-5 py-4">
         <Avatar className="size-12 ring-2 ring-ring/20 ring-offset-background">
@@ -60,7 +59,7 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
         <div className="min-w-0">
           <motion.h2 animate={{ textShadow: toasts.length ? "0 0 24px hsl(var(--ring)/0.5)" : "none" }} className="font-display text-lg font-semibold tracking-tight">{name}</motion.h2>
           <p className="text-xs text-muted-foreground">{since} · {chair}</p>
-          </MotionConfig>
+          
     </div>
         <div className="ml-auto flex items-center gap-2">
           <Badge variant="secondary" className="gap-1 text-xs"><Wallet className="size-3" aria-hidden /> 12 visits · 4.9★</Badge>

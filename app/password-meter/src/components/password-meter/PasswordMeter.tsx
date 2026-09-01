@@ -39,7 +39,7 @@ export function PasswordMeter({ value, onChange, breached, checking, onScore, pl
         <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-1">
           {caps && <motion.span initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} aria-hidden title="Caps Lock is on" className="grid size-6 place-items-center rounded-md bg-[hsl(var(--warn))]/15 text-[hsl(var(--warn))]"><Keyboard className="size-3.5" /></motion.span>}
           <Button type="button" variant="ghost" aria-pressed={show} aria-label={show ? "Hide password" : "Show password"} onClick={() => setShow((s) => !s)} className="grid size-7 place-items-center rounded-md text-muted-foreground hover:bg-muted"><motion.span animate={{ rotate: show ? 180 : 0 }}>{show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}</motion.span></Button>
-          </MotionConfig>
+          
     </div>
       </div>
       <div aria-hidden className="mt-2.5 flex gap-1">
@@ -56,6 +56,7 @@ export function PasswordMeter({ value, onChange, breached, checking, onScore, pl
       </ul>
       {checking && <p className="mt-2 text-xs text-muted-foreground">checking known breaches…</p>}
       {breached && <p className="mt-2 flex items-center gap-1.5 text-[13px] font-medium text-[hsl(var(--err))]"><ShieldX className="size-4" aria-hidden /> This one has appeared in a known breach — pick a different phrase.</p>}
+          </MotionConfig>
     </div>
   )
 }

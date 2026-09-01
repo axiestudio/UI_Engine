@@ -46,7 +46,7 @@ function Wheel({
   React.useEffect(() => {
     if (!embla) return
     const idx = values.indexOf(value)
-    if (idx >= 0) embla.scrollTo(idx, undefined, true)
+    if (idx >= 0) embla.scrollTo(idx, true)
     const onSelect = () => onChange(values[embla.selectedScrollSnap()])
     embla.on("select", onSelect)
     return () => {
@@ -117,7 +117,7 @@ export function EmblaTimePicker({
                 className="mt-6 h-11 w-full rounded-full text-[11px] font-black uppercase tracking-[0.14em] transition-transform hover:-translate-y-0.5"
               >
                 Book {String(hour).padStart(2, "0")}:{String(minute).padStart(2, "0")}
-              </button>
+              </Button>
             </div>
           </div>
 

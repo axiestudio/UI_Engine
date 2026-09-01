@@ -2,9 +2,10 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { cva } from "class-variance-authority"
+import { Button } from "@/components/ui/button"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40",
@@ -50,8 +51,10 @@ export function CommitPlate({ kicker = "THE ASK", placeholder = "I will ship one
   const pct = Math.min(100, (goal.length / maxLength) * 100)
 
   return (
-    <SectionShell width={760} padding="grand" className={cn(className)}>
-      <MonoLabel className="text-muted-foreground">{kicker} · YOUR COMMITMENT</MonoLabel>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-24 sm:py-32 lg:py-36")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{kicker} · YOUR COMMITMENT</span>
 
       {!committed ? (
         <InView once className="mt-6">
@@ -89,13 +92,9 @@ export function CommitPlate({ kicker = "THE ASK", placeholder = "I will ship one
             </div>
 
             <div className="mt-6 flex items-center gap-3">
-              <button
-                type="submit"
-                disabled={!valid}
-                className={cn(buttonVariants({ variant: "default" }))}
-              >
+              <Button type='button' disabled={!valid} className={cn(buttonVariants({ variant: "default" }))} variant="default">
                 Commit
-              </button>
+              </Button>
               <span className="font-mono text-[11px] font-medium text-muted-foreground">You can edit after</span>
             </div>
           </form>
@@ -114,21 +113,19 @@ export function CommitPlate({ kicker = "THE ASK", placeholder = "I will ship one
             <p className="mt-4 font-serif text-xl italic leading-snug text-foreground">“{goal}”</p>
             <p className="mt-3 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Saved · {dateLabel || "today"}</p>
           </motion.div>
-          <button
-            type="button"
-            onClick={() => {
+          <Button type='button' onClick={() => {
               setCommitted(false)
               setGoal("")
-            }}
-            className="mt-6 inline-flex items-center gap-1.5 rounded-md border bg-background px-4 py-2 font-mono text-xs font-medium text-muted-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
+            }} className="mt-6 inline-flex items-center gap-1.5 rounded-md border bg-background px-4 py-2 font-mono text-xs font-medium text-muted-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
             Edit commitment
-          </button>
+          </Button>
         </div>
       )}
       <p aria-live="polite" className="sr-only">
         {committed ? "Goal committed" : ""}
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

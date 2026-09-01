@@ -41,9 +41,9 @@ export function InteractiveTabsDeep({ eyebrow = "DEEP", title = "A drill-down th
       <div className="mt-10 grid gap-10 lg:grid-cols-[240px_1fr]">
         <div className="flex gap-2 overflow-x-auto lg:flex-col lg:overflow-visible">
           {tabs.map((t, i) => (
-            <Button type="button" key={t.id} onClick={() => setActive(i)} variant="default" className={cn(cn("shrink-0 rounded-xl px-4 py-3 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent"))}>
+            <Button type='button' key={t.id} onClick={() => setActive(i)} className={cn("shrink-0 rounded-xl px-4 py-3 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")} variant="default">
               {t.label}
-            
+            </Button>
           ))}
         </div>
         <div className="rounded-xl border p-6 sm:p-8">

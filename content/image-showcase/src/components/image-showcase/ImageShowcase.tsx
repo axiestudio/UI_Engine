@@ -52,9 +52,9 @@ export function ImageShowcase({
           {caption && <p className={cn("mt-3 text-right font-mono text-[10px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/55" : "text-muted-foreground")}>{caption}</p>}
           <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-6">
             {frames.map((f) => (
-              <Button type="button" key={f.id} onClick={() => setActiveId(f.id)} aria label={f.alt} variant="default" className={cn(cn("img-hover-wash aspect-[4/3] overflow-hidden rounded-lg border bg-muted transition-all", f.id === activeId ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100"))}>
+              <Button type='button' key={f.id} onClick={() => setActiveId(f.id)} aria-label={f.alt} className={cn("img-hover-wash aspect-[4/3] overflow-hidden rounded-lg border bg-muted transition-all", f.id === activeId ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100")} variant="default">
                 {f.src ? <img src={f.src} alt="" className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
-              
+              </Button>
             ))}
           </div>
         </div>

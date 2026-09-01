@@ -244,9 +244,9 @@ export function DistrictMapForward({
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-distmuted">{addressLabel}</p>
               <p className="mt-0.5 truncate text-[18px] font-bold text-foreground">{addressValue}</p>
             </div>
-            <Button type="button" variant="default" className={inline-flex shrink-0 items-center gap-1.5 border border-ink/70 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-foreground hover:text-background}>
+            <Button type='button' className="inline-flex shrink-0 items-center gap-1.5 border border-ink/70 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-foreground hover:text-background" variant="default">
               <Locate className="size-3.5" /> {changeLabel}
-            
+            </Button>
           </div>
           {addressHint && (
             <p className="-mt-3 font-mono text-[10.5px] font-medium uppercase tracking-[0.1em] text-muted-foreground/80">{addressHint}</p>

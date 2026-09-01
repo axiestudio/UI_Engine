@@ -2,7 +2,8 @@ import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { AlertTriangle, AlertCircle, ChevronDown, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
+
 
 export type Anomaly = { id: string; at: string; severity: "critical" | "warn"; signal: string; metric: string; value: string }
 
@@ -46,10 +47,12 @@ export function AnomalyWire({
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <SectionShell width={920} className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-xl">
-          <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
           <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
         </div>
@@ -76,13 +79,7 @@ export function AnomalyWire({
               transition={{ duration: 0.4, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden rounded-xl border bg-card shadow-sm"
             >
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                aria-controls={`anomaly-${a.id}`}
-                onClick={() => setOpen(isOpen ? null : a.id)}
-                className="flex w-full items-center gap-4 px-4 py-4 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-5"
-              >
+              <Button type='button' aria-expanded={isOpen} aria-controls={`anomaly-${a.id}`} onClick={() => setOpen(isOpen ? null : a.id)} className="flex w-full items-center gap-4 px-4 py-4 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-5" variant="default">
                 <span className={cn("grid size-9 shrink-0 place-items-center rounded-full border", S.chip)}>
                   <Icon className="size-4" aria-hidden />
                 </span>
@@ -104,7 +101,7 @@ export function AnomalyWire({
                   <ChevronDown className={cn("size-4 text-muted-foreground transition-transform", isOpen && "rotate-180 text-foreground")} aria-hidden />
                 </span>
                 <ChevronDown className={cn("size-4 shrink-0 text-muted-foreground sm:hidden", isOpen && "rotate-180 text-foreground")} aria-hidden />
-              </button>
+              </Button>
 
               <AnimatePresence initial={false}>
                 {isOpen && (
@@ -122,12 +119,12 @@ export function AnomalyWire({
                         <span className="text-muted-foreground">7-day baseline · seasonal-adjusted · detector v3</span>
                       </div>
                       <div className="ml-auto flex gap-2">
-                        <button type="button" className="rounded-full bg-foreground px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-background shadow-sm transition-colors hover:bg-foreground/90">
+                        <Button type='button' className="rounded-full bg-foreground px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-background shadow-sm transition-colors hover:bg-foreground/90" variant="default">
                           Acknowledge
-                        </button>
-                        <button type="button" className="rounded-full border bg-background px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-muted">
+                        </Button>
+                        <Button type='button' className="rounded-full border bg-background px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-muted" variant="default">
                           Assign
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </motion.div>
@@ -142,6 +139,8 @@ export function AnomalyWire({
       <p aria-live="polite" aria-atomic="true" className="sr-only">
         {anomalies.length} anomalies shown, {anomalies.filter((a) => a.severity === "critical").length} critical.
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

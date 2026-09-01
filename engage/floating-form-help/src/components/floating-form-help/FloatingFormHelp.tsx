@@ -255,7 +255,7 @@ export function FloatingFormHelp({
                 <ArrowRight className="size-4" aria-hidden />
               </>
             )}
-          </button>
+          </Button>
           <p aria-live="polite" className="sr-only">
             {submitted ? "Booking request sent — we will confirm by SMS" : ""}
           </p>

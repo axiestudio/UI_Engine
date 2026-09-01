@@ -2,9 +2,10 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Clock3, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { InView } from "@/components/primitives/in-view"
 import { cva } from "class-variance-authority"
+import { Button } from "@/components/ui/button"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md border text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50",
@@ -73,8 +74,10 @@ export function ChapterScrub({ title = "Lesson 04 — Shipping small", duration 
   const activeChapter = [...chapters].reverse().find((c) => t >= c.at) ?? chapters[0]
 
   return (
-    <SectionShell width={920} className={cn(className)}>
-      <MonoLabel className="text-muted-foreground">VIDEO · CHAPTERS</MonoLabel>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />VIDEO · CHAPTERS</span>
 
       <InView once className="mt-6">
         <div className="group relative overflow-hidden rounded-xl border bg-muted">
@@ -82,13 +85,9 @@ export function ChapterScrub({ title = "Lesson 04 — Shipping small", duration 
             className="grid aspect-video place-items-center bg-foreground text-background"
             style={poster ? { backgroundImage: `url(${poster})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
           >
-            <button
-              type="button"
-              aria-label="Play lesson"
-              className="grid size-14 place-items-center rounded-full bg-background text-foreground shadow-sm ring-1 ring-border transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
+            <Button type='button' aria-label="Play lesson" className="grid size-14 place-items-center rounded-full bg-background text-foreground shadow-sm ring-1 ring-border transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" variant="default">
               <Play className="size-5 translate-x-px fill-current" aria-hidden />
-            </button>
+            </Button>
           </div>
           <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-background/90 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.14em] text-foreground shadow-sm backdrop-blur">
             <Clock3 className="size-3" aria-hidden /> {fmt(duration)}
@@ -139,20 +138,9 @@ export function ChapterScrub({ title = "Lesson 04 — Shipping small", duration 
                 const left = (c.at / duration) * 100
                 const reached = t >= c.at
                 return (
-                  <button
-                    key={c.label}
-                    type="button"
-                    aria-label={`Jump to ${c.label} at ${fmt(c.at)}`}
-                    onClick={() => seekTo(c.at)}
-                    onMouseEnter={() => setHover(c)}
-                    onMouseLeave={() => setHover(null)}
-                    onFocus={() => setFocusedTick(i)}
-                    onBlur={() => setFocusedTick(null)}
-                    style={{ left: `${left}%` }}
-                    className="absolute top-1/2 z-10 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
+                  <Button type='button' key={c.label} aria-label={`Jump to ${c.label} at ${fmt(c.at)}`} onClick={() => seekTo(c.at)} onMouseEnter={() => setHover(c)} onMouseLeave={() => setHover(null)} onFocus={() => setFocusedTick(i)} onBlur={() => setFocusedTick(null)} style={{ left: `${left}%` }} className="absolute top-1/2 z-10 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
                     <span className={cn("absolute left-1/2 top-1/2 h-4 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full", reached ? "bg-foreground" : "bg-border")} />
-                  </button>
+                  </Button>
                 )
               })}
             </div>
@@ -186,19 +174,15 @@ export function ChapterScrub({ title = "Lesson 04 — Shipping small", duration 
           {chapters.map((c, i) => {
             const active = t >= c.at && (i === chapters.length - 1 || t < chapters[i + 1]!.at)
             return (
-              <button
-                key={c.label}
-                type="button"
-                onClick={() => seekTo(c.at)}
-                aria-current={active ? "true" : undefined}
-                className={cn(buttonVariants({ variant: active ? "default" : "outline", size: "sm" }), "font-mono text-[10px] font-medium tracking-[0.12em]")}
-              >
+              <Button type='button' key={c.label} onClick={() => seekTo(c.at)} aria-current={active ? "true" : undefined} className={cn(buttonVariants({ variant: active ? "default" : "outline", size: "sm" }), "font-mono text-[10px] font-medium tracking-[0.12em]")} variant="default">
                 {String(i + 1).padStart(2, "0")} · {c.label}
-              </button>
+              </Button>
             )
           })}
         </div>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

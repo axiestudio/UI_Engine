@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CloudOff, RefreshCw, Wifi } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -22,6 +22,7 @@ export function OfflineQueueBanner({ online, queued, flushing, onRetryNow, class
   const show = !online || queued > 0 || !!flushing
   return (
     <AnimatePresence initial={false}>
+  <MotionConfig reducedMotion="user">
       {show && (
         <motion.div role="status" aria-live="polite" initial={{ y: -34, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -34, opacity: 0 }} transition={{ type: "spring", stiffness: 300, damping: 30 }} className={cn("relative w-full overflow-hidden font-sans", className)}>
           <div className={cn("flex items-center gap-2.5 px-4 py-2 text-sm font-medium", !online ? "bg-[hsl(var(--warn)/0.15)] text-[hsl(var(--warn))]" : flushing ? "bg-[hsl(var(--info)/0.12)] text-[hsl(var(--info))]" : "bg-[hsl(var(--ok)/0.12)] text-[hsl(var(--ok))]")}>
@@ -32,6 +33,7 @@ export function OfflineQueueBanner({ online, queued, flushing, onRetryNow, class
     </div>
         </motion.div>
       )}
-    </AnimatePresence>
+      </MotionConfig>
+</AnimatePresence>
   )
 }

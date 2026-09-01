@@ -30,7 +30,8 @@
     ],
     "motion-primitives": [
       "in-view"
-    ]
+    ],
+    "watermelon-ui": []
   },
   "scripts": {
     "build": "tsc -b && vite build",

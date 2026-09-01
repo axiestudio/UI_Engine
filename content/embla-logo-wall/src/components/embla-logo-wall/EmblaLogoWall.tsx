@@ -1,9 +1,10 @@
 import * as React from "react"
 // embla-carousel-react v8 documents the default import — portable across builds
 import useEmblaCarousel from "embla-carousel-react"
-import Autoplay from "embla-carousel-autoplay"
 import { cn } from "@/lib/utils"
+
 import { InView } from "@/components/primitives/in-view"
+import Autoplay from "embla-carousel-autoplay"
 
 // ═══ JOB         Borrow trust without buying a billboard.
 // ═══ EMOTION     A quiet wall of names behind the reception desk.
@@ -33,11 +34,12 @@ export function EmblaLogoWall({
 }: EmblaLogoWallProps) {
   const ink = tone === "ink"
   const slides = React.useMemo(() => [...logos, ...logos], [logos])
-  const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
-  const [hovering, setHovering] = React.useState(false)
+    const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const [emblaRef, embla] = useEmblaCarousel({ loop: true, align: "center", axis: "x", dragFree: true, containScroll: "keepSnaps" }, [
     Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true, stopOnFocusIn: true, playOnInit: !reduce }),
   ])
+  const [hovering, setHovering] = React.useState(false)
+
 
 
   return (

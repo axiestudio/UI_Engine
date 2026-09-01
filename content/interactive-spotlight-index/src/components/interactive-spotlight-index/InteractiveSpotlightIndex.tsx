@@ -58,9 +58,9 @@ export function InteractiveSpotlightIndex({ eyebrow = "INDEX", title = "Point to
         <div>
           <div className="flex flex-wrap gap-2">
             {entries.map((e, i) => (
-              <Button type="button" key={e.id} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} variant="default" className={cn(cn("rounded-full border px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent"))}>
+              <Button type='button' key={e.id} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} className={cn("rounded-full border px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent")} variant="default">
                 {e.label}
-              
+              </Button>
             ))}
           </div>
           <div className="mt-6 min-h-[80px]">

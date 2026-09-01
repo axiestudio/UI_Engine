@@ -1,5 +1,6 @@
 import * as React from "react"
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Smart sections — a sticky index that highlights whichever section you read.

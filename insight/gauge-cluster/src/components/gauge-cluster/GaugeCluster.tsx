@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell, Ordinal } from "@/components/primitives/handcraft"
+
 
 export type Gauge = { label: string; value: number; max: number; unit?: string; warn?: number; danger?: number }
 
@@ -120,9 +120,11 @@ export function GaugeCluster({
   className,
 }: GaugeClusterProps) {
   return (
-    <SectionShell width={920} className={className}>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+
       <div className="max-w-xl">
-        <MonoLabel className="text-muted-foreground">{eyebrow}</MonoLabel>
+        <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
         <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]">{title}</h2>
         <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{subtitle}</p>
       </div>
@@ -136,6 +138,8 @@ export function GaugeCluster({
       <p className="mt-4 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">
         Each gauge is a <span className="font-semibold text-foreground">role=meter</span> · Needle settles with a spring, disabled when reduced-motion is on.
       </p>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

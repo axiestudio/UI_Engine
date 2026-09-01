@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { MonoLabel, SectionShell } from "@/components/primitives/handcraft"
+
 import { MorphingPopover, MorphingPopoverTrigger, MorphingPopoverContent } from "@/components/primitives/morphing-popover"
 import { InView } from "@/components/primitives/in-view"
 
@@ -40,8 +40,10 @@ function TermChip({ t, index }: { t: Term; index: number }) {
 export function GlossaryMorph({ body = DEFAULT_BODY, className }: GlossaryMorphProps) {
   const terms = body.filter((b): b is Term => typeof b !== "string")
   return (
-    <SectionShell width={760} className={cn(className)}>
-      <MonoLabel className="text-muted-foreground">GLOSSARY · IN CONTEXT</MonoLabel>
+    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn(className))}>
+  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
+
+      <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />GLOSSARY · IN CONTEXT</span>
       <h2 className="mt-2 max-w-[18ch] font-display text-[30px] font-bold leading-[0.98] tracking-tight text-foreground sm:text-[36px]">
         Definitions that <em className="font-serif italic font-medium">meet you mid-sentence.</em>
       </h2>
@@ -62,6 +64,8 @@ export function GlossaryMorph({ body = DEFAULT_BODY, className }: GlossaryMorphP
         <span className="font-mono text-[11px] font-medium text-muted-foreground">{terms.length} terms · click dotted words</span>
         <span className="hidden font-mono text-[11px] font-medium text-muted-foreground sm:inline">Esc to close</span>
       </div>
-    </SectionShell>
+    
+  </div>
+</section>
   )
 }

@@ -85,7 +85,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
             № <span className="tabular-nums">{no}</span>
           </h2>
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">till 2 · {openedBy}</span>
-          </MotionConfig>
+          
     </div>
         <div className="ml-auto flex gap-1.5">
           <Button variant="outline" size="sm" onClick={() => push("receipt sent to printer", "ok")}>
@@ -311,6 +311,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
       </footer>
 
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

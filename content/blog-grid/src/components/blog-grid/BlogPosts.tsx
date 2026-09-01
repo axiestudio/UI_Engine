@@ -1,6 +1,7 @@
 import * as React from "react"
 import { ArrowUpRight } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
+
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Blog grid — article cards with category, date, read time.

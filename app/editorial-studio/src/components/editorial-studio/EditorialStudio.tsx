@@ -53,7 +53,7 @@ export function EditorialStudio({ className }: EditorialStudioProps) {
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-3 block text-muted-foreground">EMBED ON THE SITE — deploy snippet</span>
             <CodeSnippetPanel title={`<EngineArticle slug=\"${title.split(" ")[0].toLowerCase()}\" channel=\"${channel}\" />`} code={`import { EngineArticle } from "engine/web"\n\n<EngineArticle slug="north-mirror-nov" channel="${channel}" autoSync={${true}} />`} />
           </CardContent></Card>
-          </MotionConfig>
+          
     </div>
         <aside className="space-y-5">
           <Card><CardContent className="p-5">
@@ -74,6 +74,7 @@ export function EditorialStudio({ className }: EditorialStudioProps) {
         </aside>
       </div>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} pos="tl" />
+          </MotionConfig>
     </div>
   )
 }

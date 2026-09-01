@@ -168,7 +168,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
             <h2 className="mt-1.5 font-display text-[21px] font-bold leading-none tracking-[-0.02em]">
               {block} <span aria-hidden className="mx-1.5 opacity-40">/</span> <span className="font-mono text-[15px] font-medium opacity-80">{week}</span>
             </h2>
-          </MotionConfig>
+          
     </div>
           <SegmentedControl
             size="sm"
@@ -318,6 +318,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
       </section>
 
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
+          </MotionConfig>
     </div>
   )
 }

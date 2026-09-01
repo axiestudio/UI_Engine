@@ -37,7 +37,7 @@ export function MergeConflictPanel({ conflicts, onResolve, className }: MergeCon
         <GitMerge aria-hidden className="size-4" />
         <span>{conflicts.length - pending.length}/{conflicts.length} conflicts resolved</span>
         <div className="ml-auto h-1 w-24 overflow-hidden rounded-full bg-muted"><motion.div animate={{ width: `${((conflicts.length - pending.length) / conflicts.length) * 100}%` }} className="h-full rounded-full bg-[hsl(var(--ok))]" />      
-          </MotionConfig>
+          
     </div>
       </div>
       {current && (
@@ -57,6 +57,7 @@ export function MergeConflictPanel({ conflicts, onResolve, className }: MergeCon
         </motion.div>
       )}
       {!current && <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-2 rounded-lg border border-[hsl(var(--ok)/0.4)] bg-[hsl(var(--ok)/0.08)] px-4 py-3 text-sm font-medium text-[hsl(var(--ok))]"><Check className="size-4" /> Branch is clean. Ship it.</motion.p>}
+          </MotionConfig>
     </div>
   )
 }
