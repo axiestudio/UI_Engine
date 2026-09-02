@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "announcement.es.js" : "announcement.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "react-icons"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "react-icons", "react/jsx-runtime", "react-dom", "motion/react"] },
     cssCodeSplit: false,
   },
 })

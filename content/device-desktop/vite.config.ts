@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "device-desktop.es.js" : "device-desktop.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge", "react/jsx-runtime", "react-dom", "motion/react"] },
     cssCodeSplit: false,
   },
 })

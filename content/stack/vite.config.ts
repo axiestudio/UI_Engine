@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "stack.es.js" : "stack.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "react/jsx-runtime", "motion", "clsx", "lucide-react", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "spotlight-pickup.es.js" : "spotlight-pickup.cjs.js"),
     },
-    rollupOptions: { external: ["react", "clsx", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "react/jsx-runtime", "clsx", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

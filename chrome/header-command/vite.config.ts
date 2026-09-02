@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "header-command.es.js" : "header-command.cjs.js"),
     },
-    rollupOptions: { external: ["react", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "cmdk"] },
+    rollupOptions: { external: ["react", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "cmdk", "react/jsx-runtime", "react-dom"] },
     cssCodeSplit: false,
   },
 })

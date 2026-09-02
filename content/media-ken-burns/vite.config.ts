@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
   build: {
     lib: { entry: path.resolve(__dirname, "src/index.ts"), name: "MediaKenBurns", formats: ["es","cjs"], fileName: (f) => (f==="es"?"media-ken-burns.es.js":"media-ken-burns.cjs.js") },
-    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "tailwind-merge", "embla-carousel-react"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "tailwind-merge", "embla-carousel-react", "react/jsx-runtime", "react-dom", "motion/react"] },
     cssCodeSplit: false,
   },
 })

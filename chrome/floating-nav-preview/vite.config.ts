@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "floating-nav-preview.es.js" : "floating-nav-preview.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge", "@floating-ui/react"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "lucide-react", "tailwind-merge", "@floating-ui/react", "react/jsx-runtime", "react-dom", "motion/react"] },
     cssCodeSplit: false,
   },
 })

@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "quote-feature.es.js" : "quote-feature.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "radix-ui", "clsx", "lucide-react", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "motion", "radix-ui", "clsx", "lucide-react", "tailwind-merge", "react/jsx-runtime", "react-dom", "motion/react"] },
     cssCodeSplit: false,
   },
 })

@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "carousel.es.js" : "carousel.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "embla-carousel-react"] },
+    rollupOptions: { external: ["react", "react/jsx-runtime", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "embla-carousel-react"] },
     cssCodeSplit: false,
   },
 })

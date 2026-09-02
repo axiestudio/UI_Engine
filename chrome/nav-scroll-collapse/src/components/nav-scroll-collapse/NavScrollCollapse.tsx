@@ -17,7 +17,6 @@ export function NavScrollCollapse({ brand = "STUDIO", links = [{ id: "a", label:
   const [collapsed, setCollapsed] = React.useState(false)
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, "change", (y) => setCollapsed(y > 60))
-  }, [])
   return (
     <div className={cn("relative", className)}>
       <header className={cn("sticky top-0 z-40 border-b transition-all duration-300", collapsed ? "border-border bg-background/85 py-2 backdrop-blur" : "border-transparent py-6")}>

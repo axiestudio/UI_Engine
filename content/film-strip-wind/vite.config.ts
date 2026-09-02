@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "film-strip-wind.es.js" : "film-strip-wind.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "clsx", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "react/jsx-runtime", "motion", "clsx", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

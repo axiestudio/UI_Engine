@@ -25,7 +25,7 @@ export default defineConfig({
       fileName: (format) => (format === "es" ? "footer.es.js" : "footer.cjs.js"),
     },
     rollupOptions: {
-      external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge"],
+      external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "react/jsx-runtime", "react-dom", "motion/react"],
     },
     cssCodeSplit: false,
   },

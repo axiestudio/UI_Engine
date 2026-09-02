@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "logos.es.js" : "logos.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "clsx", "tailwind-merge", "react-use-measure"] },
+    rollupOptions: { external: ["react", "motion", "clsx", "tailwind-merge", "react-use-measure", "react/jsx-runtime", "react-dom", "motion/react"] },
     cssCodeSplit: false,
   },
 })

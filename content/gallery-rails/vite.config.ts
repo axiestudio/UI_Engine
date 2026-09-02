@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "gallery-rails.es.js" : "gallery-rails.cjs.js"),
     },
-    rollupOptions: { external: ["react", "motion", "radix-ui", "class-variance-authority", "clsx", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "react/jsx-runtime", "motion", "radix-ui", "class-variance-authority", "clsx", "tailwind-merge"] },
     cssCodeSplit: false,
   },
 })

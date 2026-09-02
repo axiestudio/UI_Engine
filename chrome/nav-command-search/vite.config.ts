@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
   build: {
     lib: { entry: path.resolve(__dirname, "src/index.ts"), name: "NavCommandSearch", formats: ["es","cjs"], fileName: (f) => (f==="es"?"nav-command-search.es.js":"nav-command-search.cjs.js") },
-    rollupOptions: { external: ["react", "react-dom", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "react-dom", "motion", "radix-ui", "class-variance-authority", "clsx", "lucide-react", "tailwind-merge", "react/jsx-runtime", "motion/react"] },
     cssCodeSplit: false,
   },
 })

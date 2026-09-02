@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "gallery.es.js" : "gallery.cjs.js"),
     },
-    rollupOptions: { external: ["react", "react-dom", "motion", "clsx", "lucide-react", "tailwind-merge"] },
+    rollupOptions: { external: ["react", "react-dom", "motion", "clsx", "lucide-react", "tailwind-merge", "react/jsx-runtime", "motion/react"] },
     cssCodeSplit: false,
   },
 })
