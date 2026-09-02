@@ -14,12 +14,17 @@ export type Resource = { id: string; title: string; type?: string; size?: string
 export type ResourceListProps = {
   eyebrow?: string
   title?: React.ReactNode
-  resources: Resource[]
+  resources?: Resource[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function ResourceList({ eyebrow = "RESOURCES", title = "Downloads & docs.", resources, tone = "paper", className }: ResourceListProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_RESOURCE_LIST_RESOURCES = [{id:"r1",title:"Demo deck",type:"PDF"},{id:"r2",title:"Tokens",type:"ZIP"}]
+
+
+export function ResourceList({ eyebrow = "RESOURCES", title = "Downloads & docs.", resources = DEMO_RESOURCE_LIST_RESOURCES, tone = "paper", className }: ResourceListProps) {
   const ink = tone === "ink"
   const types = ["All", ...Array.from(new Set(resources.map((r) => r.type ?? "Other")))]
   const [active, setActive] = React.useState("All")

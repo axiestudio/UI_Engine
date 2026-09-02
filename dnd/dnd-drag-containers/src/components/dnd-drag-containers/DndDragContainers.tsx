@@ -30,16 +30,21 @@ export type DndDragContainersProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  containers: DragContainer[]
+  containers?: DragContainer[]
   onChange?: (containers: DragContainer[]) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_DRAG_CONTAINERS_CONTAINERS = [ { id: "c1", title: "Queue", items: [{ id: "q1", label: "Set up repo" }, { id: "q2", label: "Write tokens" }] }, { id: "c2", title: "Doing", items: [{ id: "d1", label: "Build sidebar" }] }, { id: "c3", title: "Done", items: [{ id: "s1", label: "Design system" }] }, ]
+
 
 export function DndDragContainers({
   eyebrow = "MULTI",
   title = "Drag between containers.",
   subtitle = "Cards can move to any container — reorder within a column or cross the gap.",
-  containers,
+  containers = DEMO_DND_DRAG_CONTAINERS_CONTAINERS,
   onChange,
   className,
 }: DndDragContainersProps) {

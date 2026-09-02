@@ -27,18 +27,23 @@ export type DndTabReorderProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  tabs: TabItem[]
+  tabs?: TabItem[]
   activeId?: string
   onActiveChange?: (id: string) => void
   onChange?: (tabs: TabItem[]) => void
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_TAB_REORDER_TABS = [ { id: "overview", label: "Overview" }, { id: "features", label: "Features" }, { id: "pricing", label: "Pricing" }, { id: "faq", label: "FAQ" }, ]
+
+
 export function DndTabReorder({
   eyebrow = "TABS",
   title = "Order the tabs.",
   subtitle = "Drag a tab to a new position — the active indicator follows with a shared layout animation.",
-  tabs,
+  tabs = DEMO_DND_TAB_REORDER_TABS,
   activeId,
   onActiveChange,
   onChange,

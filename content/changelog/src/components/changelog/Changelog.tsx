@@ -28,7 +28,7 @@ export type ChangelogProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  releases: Release[]
+  releases?: Release[]
   tone?: "paper" | "ink"
   subscribe?: { label: string; href: string }
   className?: string
@@ -156,11 +156,16 @@ function ReleaseEntry({ release, index, total, tone, latest }: { release: Releas
 
 // ── Changelog ────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_CHANGELOG_RELEASES: Release[] = [ { version: "2.6.0", date: "2026-08-22", title: "Real-time booking", changes: [{ type: "feature", text: "Live availability chips on the schedule preset." }, { type: "improvement", text: "Hero scrub frame preloading halves first-frame latency." }, { type: "fix", text: "Announcement bar no longer covers the mobile menu." }], link: { label: "Compare", href: "#" } }, { version: "2.5.1", date: "2026-08-04", title: "Tokens polish", changes: [{ type: "fix", text: "Dark-mode border contrast on card grids." }, { type: "note", text: "All presets now import without side-effect CSS surprises." }] }, { version: "2.5.0", date: "2026-07-19", title: "Presets for everyone", changes: [{ type: "breaking", text: "sessions prop replaced by sessions array with frame ranges." }, { type: "feature", text: "ZigZag, testimonials, pricing and features presets land." }] }, ]
+
 export function Changelog({
   eyebrow = "Changelog",
   title = "Shipped, weekly",
   subtitle = "Every improvement lands here first — what changed, why it matters, and what broke on the way.",
-  releases,
+  releases = DEMO_CHANGELOG_RELEASES,
   tone = "paper",
   subscribe,
   className,

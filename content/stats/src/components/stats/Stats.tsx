@@ -1,3 +1,4 @@
+import { Clock, MessagesSquare, Star, ThumbsUp } from "lucide-react"
 import * as React from "react"
 import { motion, useInView, useMotionValue, useSpring, useTransform, useReducedMotion } from "motion/react"
 import { BorderTrail } from "@/components/primitives/border-trail"
@@ -25,7 +26,7 @@ export type StatsProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  items: StatItem[]
+  items?: StatItem[]
   /** ink = dark band with light type; paper = bordered tiles on light bg. */
   tone?: "paper" | "ink"
   /** 2 / 3 / 4 columns on desktop. Default 4 (clamped to items length). */
@@ -85,11 +86,16 @@ function StatTile({ item, tone, separators, index }: { item: StatItem; tone: "pa
 
 // ── Stats ────────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_STATS_ITEMS = [ { value: 1839, label: "Verified reviews", suffix: "+", description: "Across Google, Trustpilot and Apple Maps", icon: MessagesSquare }, { value: 4.9, decimals: 1, label: "Average rating", suffix: "/5", icon: Star }, { value: 25, label: "Years on the high street", suffix: " yrs", icon: Clock }, { value: "9 in 10", label: "Would come back", icon: ThumbsUp }, ]
+
 export function Stats({
   eyebrow,
   title,
   subtitle,
-  items,
+  items = DEMO_STATS_ITEMS,
   tone = "ink",
   columns = 4,
   separators,

@@ -21,7 +21,7 @@ export type VisitUsProps = {
   eyebrow?: string
   intro?: React.ReactNode
   /** Address lines shown in the info panel. */
-  address: React.ReactNode[]
+  address?: React.ReactNode[]
   /** Google Maps query for the embed — e.g. "Trädgårdsgatan 12, Jönköping". Defaults to the joined address. */
   mapQuery?: string
   /** Embed zoom level (Google `z` param). Default 16. */
@@ -113,11 +113,16 @@ function CopyButton({ value, label = "Copy" }: { value: string; label?: string }
 
 // ── VisitUs ──────────────────────────────────────────────────────────────────
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_VISIT_US_ADDRESS = ["Studio Gatan 12", "553 16 Jönköping"]
+
+
 export function VisitUs({
   title = "Visit us",
   eyebrow = "Location",
   intro,
-  address,
+  address = DEMO_VISIT_US_ADDRESS,
   mapQuery,
   zoom = 16,
   phone,

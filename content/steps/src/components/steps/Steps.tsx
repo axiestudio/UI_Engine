@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, CalendarCheck, Hand, MapPin} from "lucide-react"
 
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
@@ -16,7 +16,7 @@ export type StepsProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  items: StepItem[]
+  items?: StepItem[]
   /** 2 / 3 / 4 columns on desktop. Default 3 (clamped to items length). */
   columns?: 2 | 3 | 4
   /** ink = dark band with light type; paper = bordered cards on light bg. */
@@ -128,11 +128,16 @@ function StepCard({
 
 // ── Steps ────────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_STEPS_ITEMS = [ { id: "book", title: "Book online", description: "Pick a real-time slot — confirmation lands in your inbox in seconds.", icon: CalendarCheck }, { id: "arrive", title: "Arrive", description: "A quiet corner and tea wait for you. No clipboards, no small talk required.", icon: MapPin }, { id: "treat", title: "Treat", description: "60 or 90 minutes calibrated to the tension you flagged when booking.", icon: Hand }, ]
+
 export function Steps({
   eyebrow,
   title,
   subtitle,
-  items,
+  items = DEMO_STEPS_ITEMS,
   columns = 3,
   tone = "paper",
   numbered = true,

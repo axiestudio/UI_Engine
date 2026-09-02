@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
 export type WaitlistProps = {
   eyebrow?: string
   /** Solid first line, e.g. "Something good". */
-  title: string
+  title?: string
   /** Second line, e.g. "is coming soon" — words rise one by one. */
   titleHighlight?: string
   subtitle?: string
@@ -19,7 +19,7 @@ export type WaitlistProps = {
   buttonLabel?: string
   successTitle?: string
   successDescription?: string
-  onSubmit: (email: string) => void | Promise<void>
+  onSubmit?: (email: string) => void | Promise<void>
   /** Optional signup counter — rendered as a flip-style mono readout. */
   count?: number
   countLabel?: string
@@ -38,16 +38,22 @@ export type WaitlistProps = {
 //   it almost touches — urgency in the letterforms themselves.
 // · The form is a single signing line: input + hard-cornered button, no card
 //   wrapper. Less chrome = more tension.
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_WAITLIST_TITLE = "Something good"
+const DEMO_WAITLIST_ONSUBMIT = () => {}
+
 export function Waitlist({
   eyebrow,
-  title,
+  title = DEMO_WAITLIST_TITLE,
   titleHighlight,
   subtitle = "Join the waitlist — one email at launch.",
   placeholder = "you@company.com",
   buttonLabel = "Join waitlist",
   successTitle = "You're in line",
   successDescription = "Watch your inbox — we'll ping you the moment doors open.",
-  onSubmit,
+  onSubmit = DEMO_WAITLIST_ONSUBMIT,
   count,
   countLabel = "already waiting",
   launchLabel = "Launching soon",

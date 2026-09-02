@@ -16,7 +16,7 @@ export type HeroManifestoProps = {
   /** Mono eyebrow, e.g. "Studio — est. 2019". */
   eyebrow?: string
   /** Three stacked lines; middle renders indented + serif-italic (the turn). */
-  lines: [React.ReactNode, React.ReactNode, React.ReactNode]
+  lines?: [React.ReactNode, React.ReactNode, React.ReactNode]
   subtitle?: string
   primaryAction?: { label: string; href?: string; onClick?: () => void }
   secondaryAction?: { label: string; href?: string; onClick?: () => void }
@@ -34,9 +34,15 @@ export type HeroManifestoProps = {
 //   serif-italic — the "turn" in the argument.
 // · CTAs upgraded to proper shadcn pair (solid pill + quiet ghost); the
 //   colophon strip stays as the sign-off, with live year.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HERO_MANIFESTO_LINES = ["Care that", "actually listens,", "then delivers."]
+
+
 export function HeroManifesto({
   eyebrow = "Manifesto",
-  lines,
+  lines = DEMO_HERO_MANIFESTO_LINES,
   subtitle,
   primaryAction,
   secondaryAction,

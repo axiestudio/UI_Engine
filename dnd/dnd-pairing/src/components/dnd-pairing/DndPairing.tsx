@@ -29,20 +29,26 @@ export type DndPairingProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  left: PairLeft[]
-  right: PairRight[]
+  left?: PairLeft[]
+  right?: PairRight[]
   /** Mark pairs correct when id matches the right id. */
   matches?: Record<string, string>
   onMatch?: (pairs: Record<string, string>) => void
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_PAIRING_LEFT = [ { id: "l1", label: "Draggable" }, { id: "l2", label: "Droppable" }, { id: "l3", label: "Sortable" }, { id: "l4", label: "Sensor" }, ]
+const DEMO_DND_PAIRING_RIGHT = [ { id: "l1", label: "Draggable" }, { id: "l2", label: "Droppable" }, { id: "l3", label: "Sortable" }, { id: "l4", label: "Sensor" }, ]
+
+
 export function DndPairing({
   eyebrow = "MATCH",
   title = "Pair them up.",
   subtitle = "Drag a term onto its match. Correct pairings lock in.",
-  left,
-  right,
+  left = DEMO_DND_PAIRING_LEFT,
+  right = DEMO_DND_PAIRING_RIGHT,
   matches = {},
   onMatch,
   className,

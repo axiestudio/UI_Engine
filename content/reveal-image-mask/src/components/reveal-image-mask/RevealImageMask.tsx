@@ -11,18 +11,23 @@ export type RevealImageMaskProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  src: string
+  src?: string
   alt?: string
   caption?: React.ReactNode
   tone?: "paper" | "ink"
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_REVEAL_IMAGE_MASK_SRC = "/showcase/hero-poster.webp"
+
+
 export function RevealImageMask({
   eyebrow = "MASKS",
   title = "A picture parts.",
   subtitle = "The frame opens from a hairline slit in the middle, like curtains over a window.",
-  src,
+  src = DEMO_REVEAL_IMAGE_MASK_SRC,
   alt = "",
   caption,
   tone = "paper",

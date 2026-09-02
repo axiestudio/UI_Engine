@@ -14,8 +14,8 @@ export type CaseStudyMetric = {
 
 export type CaseStudyProps = {
   eyebrow?: string
-  brand: string
-  quote: string
+  brand?: string
+  quote?: string
   author?: { name: string; role?: string; initials?: string }
   metrics?: CaseStudyMetric[]
   image?: { src: string; alt?: string }
@@ -33,10 +33,17 @@ export type CaseStudyProps = {
 //   not interface. Brand line sits above as a mono stamp.
 // · Metrics read like an annual report: hairline-divided tiles, mono labels.
 // · Image gets corner ticks + a hard 1deg tilt that settles on hover.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_CASE_STUDY_BRAND = "Aurum Studio"
+const DEMO_CASE_STUDY_QUOTE = "We replaced three tools and doubled rebookings in a single quarter."
+
+
 export function CaseStudy({
   eyebrow = "Customer story",
-  brand,
-  quote,
+  brand = DEMO_CASE_STUDY_BRAND,
+  quote = DEMO_CASE_STUDY_QUOTE,
   author,
   metrics,
   image,

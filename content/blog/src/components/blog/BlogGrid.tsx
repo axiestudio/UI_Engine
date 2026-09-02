@@ -23,7 +23,7 @@ export type BlogGridProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  posts: BlogPost[]
+  posts?: BlogPost[]
   /** Highlight the first post as a wide lead card. Default true when >=3 posts. */
   lead?: boolean
   /** Shimmer the (string) post titles on hover. Default false. */
@@ -85,7 +85,12 @@ function PostCard({ post, lead, shimmer }: { post: BlogPost; lead?: boolean; shi
 
 // ── BlogGrid ─────────────────────────────────────────────────────────────────
 
-export function BlogGrid({ eyebrow, title, subtitle, posts, lead, shimmerTitles = false, moreLink, className }: BlogGridProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_BLOG_POSTS = [ { title: "What 'deep tissue' actually means", excerpt: "Pressure is a communication, not a boast. How we calibrate a session to your nervous system.", date: "2026-08-12", readMinutes: 4, image: "/showcase/hero-poster.webp", tag: "Techniques", href: "#", author: "Astrid L." }, { title: "Neck pain and the desk", excerpt: "Three positions that quietly load your cervical spine.", date: "2026-07-28", readMinutes: 3, href: "#", tag: "Desk body" }, { title: "Booking for two", excerpt: "Couples sessions — how to make them work.", date: "2026-07-10", readMinutes: 2, href: "#", tag: "Studio" }, { title: "Aftercare that matters", excerpt: "Water, walking, and the 48-hour window.", date: "2026-06-22", readMinutes: 5, href: "#", tag: "Recovery" }, ]
+
+export function BlogGrid({ eyebrow, title, subtitle, posts = DEMO_BLOG_POSTS, lead, shimmerTitles = false, moreLink, className }: BlogGridProps) {
   if (!posts.length) return null
   const useLead = lead ?? posts.length >= 3
   const gridPosts = useLead ? posts.slice(1) : posts

@@ -14,12 +14,17 @@ export type FaqAccordionProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: FaqItem[]
+  items?: FaqItem[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function FaqAccordion({ eyebrow = "FAQ", title = "Questions, answered.", subtitle = "The things people ask before they start.", items, tone = "paper", className }: FaqAccordionProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_FAQ_ACCORDION_ITEMS = [ { id: "q1", question: "Is it token-first?", answer: "Yes. Every section reads the engine's token surface." }, { id: "q2", question: "Does it work with my framework?", answer: "Yes — each preset is a standalone package." }, { id: "q3", question: "Are animations accessible?", answer: "Reduced-motion collapses every effect to a plain state." }, ]
+
+
+export function FaqAccordion({ eyebrow = "FAQ", title = "Questions, answered.", subtitle = "The things people ask before they start.", items = DEMO_FAQ_ACCORDION_ITEMS, tone = "paper", className }: FaqAccordionProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

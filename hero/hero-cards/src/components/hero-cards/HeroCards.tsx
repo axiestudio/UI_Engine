@@ -18,7 +18,7 @@ export type StackCard = {
 
 export type HeroCardsProps = {
   eyebrow?: string
-  title: string
+  title?: string
   titleHighlight?: string
   subtitle?: string
   primaryAction?: { label: string; href?: string; onClick?: () => void }
@@ -39,9 +39,15 @@ export type HeroCardsProps = {
 // · Cards are proper rounded surfaces now (ring-1 + layered shadow), the
 //   ledger rows keep their hairline rhythm, and the CTA pair is the refined
 //   shadcn duo with a magnetic primary.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HERO_CARDS_TITLE = "Reports that"
+
+
 export function HeroCards({
   eyebrow,
-  title,
+  title = DEMO_HERO_CARDS_TITLE,
   titleHighlight,
   subtitle,
   primaryAction,

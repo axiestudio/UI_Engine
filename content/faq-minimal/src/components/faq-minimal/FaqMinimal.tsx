@@ -13,12 +13,17 @@ export type FaqMinimalItem = { id: string; question: string; answer?: React.Reac
 export type FaqMinimalProps = {
   eyebrow?: string
   title?: React.ReactNode
-  items: FaqMinimalItem[]
+  items?: FaqMinimalItem[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function FaqMinimal({ eyebrow = "FAQ", title = "Quick answers.", items, tone = "paper", className }: FaqMinimalProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_FAQ_MINIMAL_ITEMS = [{id:"q1",question:"Is it token-first?",answer:"Yes."},{id:"q2",question:"Does it re-theme?",answer:"Yep."}]
+
+
+export function FaqMinimal({ eyebrow = "FAQ", title = "Quick answers.", items = DEMO_FAQ_MINIMAL_ITEMS, tone = "paper", className }: FaqMinimalProps) {
   const ink = tone === "ink"
   const [openId, setOpenId] = React.useState<string | null>(items[0]?.id ?? null)
   return (

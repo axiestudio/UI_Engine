@@ -13,12 +13,17 @@ export type Award = { id: string; title: string; org?: string; year?: string }
 export type AwardStripProps = {
   eyebrow?: string
   title?: React.ReactNode
-  awards: Award[]
+  awards?: Award[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function AwardStrip({ eyebrow = "HONORS", title = "Recognized.", awards, tone = "paper", className }: AwardStripProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_AWARD_STRIP_AWARDS = [{id:"a1",title:"Site of the Day",org:"Awwwards",year:"2025"},{id:"a2",title:"Best UI",org:"FWA",year:"2025"},{id:"a3",title:"MVP",org:"CSSDA",year:"2024"}]
+
+
+export function AwardStrip({ eyebrow = "HONORS", title = "Recognized.", awards = DEMO_AWARD_STRIP_AWARDS, tone = "paper", className }: AwardStripProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

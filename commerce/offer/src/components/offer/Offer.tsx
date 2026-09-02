@@ -20,12 +20,12 @@ import { cn } from "@/lib/utils"
 
 export type OfferProps = {
   badge?: string
-  title: string
+  title?: string
   description?: string
   /** ISO datetime or Date — the countdown target. Past → sold-out state. */
-  until: string | Date
+  until?: string | Date
   price?: { from?: number | string; to?: number | string; unit?: string }
-  cta: { label: string; href?: string; onClick?: () => void }
+  cta?: { label: string; href?: string; onClick?: () => void }
   /** Expired copy. Default honest "This one's gone." — don't fake a dead offer. */
   expiredLabel?: string
   className?: string
@@ -76,7 +76,14 @@ function Countdown({ until, reduced }: { until: number; reduced: boolean | null 
   )
 }
 
-export function Offer({ badge = "Limited time", title, description, until, price, cta, expiredLabel = "Offer ended — check back for the next one.", className }: OfferProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_OFFER_TITLE = "Autumn reset \u2014 60 + scalp, twice"
+const DEMO_OFFER_UNTIL = new Date(Date.now() + 1000 * 60 * 60 * 24 * 5 + 1000 * 60 * 37)
+const DEMO_OFFER_CTA = { label: "Claim the pair", href: "#" }
+
+export function Offer({ badge = "Limited time", title = DEMO_OFFER_TITLE, description, until = DEMO_OFFER_UNTIL, price, cta = DEMO_OFFER_CTA, expiredLabel = "Offer ended — check back for the next one.", className }: OfferProps) {
   const reduce = useReducedMotion()
   const target = React.useMemo(() => (until instanceof Date ? until.getTime() : new Date(until).getTime()), [until])
   const [gone, setGone] = React.useState(() => Date.now() >= target)

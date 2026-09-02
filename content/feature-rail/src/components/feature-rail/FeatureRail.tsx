@@ -15,12 +15,17 @@ export type FeatureRailProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: FeatureRailItem[]
+  items?: FeatureRailItem[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function FeatureRail({ eyebrow = "RAIL", title = "Slide through the stack.", subtitle = "A snap-scroll rail of features.", items, tone = "paper", className }: FeatureRailProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_FEATURE_RAIL_ITEMS = [{id:"a",title:"Token-first"},{id:"b",title:"Accessible"},{id:"c",title:"Motion"},{id:"d",title:"Vendored"}]
+
+
+export function FeatureRail({ eyebrow = "RAIL", title = "Slide through the stack.", subtitle = "A snap-scroll rail of features.", items = DEMO_FEATURE_RAIL_ITEMS, tone = "paper", className }: FeatureRailProps) {
   const ink = tone === "ink"
   const ref = React.useRef<HTMLDivElement>(null)
   const scroll = (dir: number) => ref.current?.scrollBy({ left: dir * 320, behavior: "smooth" })

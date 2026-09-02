@@ -27,19 +27,25 @@ export type DndTableColsProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  columns: ColDef[]
+  columns?: ColDef[]
   /** Rows keyed by column id. */
-  rows: Record<string, React.ReactNode>[]
+  rows?: Record<string, React.ReactNode>[]
   onChange?: (columns: ColDef[]) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_TABLE_COLS_COLUMNS = [ { id: "name", label: "Name" }, { id: "min", label: "Min" }, { id: "price", label: "Price" }, ]
+const DEMO_DND_TABLE_COLS_ROWS = [ { name: "Deep tissue", min: "60", price: "890" }, { name: "Classic", min: "60", price: "790" }, { name: "Prenatal", min: "45", price: "690" }, ]
+
 
 export function DndTableCols({
   eyebrow = "COLS",
   title = "Reshape the columns.",
   subtitle = "Drag the header cells to move whole columns — the values follow.",
-  columns,
-  rows,
+  columns = DEMO_DND_TABLE_COLS_COLUMNS,
+  rows = DEMO_DND_TABLE_COLS_ROWS,
   onChange,
   className,
 }: DndTableColsProps) {

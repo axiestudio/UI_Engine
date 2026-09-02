@@ -15,17 +15,22 @@ export type FeatureGridProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: FeatureItem[]
+  items?: FeatureItem[]
   columns?: 2 | 3 | 4
   tone?: "paper" | "ink"
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_FEATURE_GRID_ITEMS = [ { id: "f1", title: "Token-first", body: "Every section re-themes with the engine." }, { id: "f2", title: "Accessible", body: "Reduced-motion and screen-reader aware." }, { id: "f3", title: "Signature moves", body: "One deliberate interaction per section." }, ]
+
+
 export function FeatureGrid({
   eyebrow = "FEATURES",
   title = "Everything you need to ship.",
   subtitle = "The sections, tokens and patterns you reach for on every build.",
-  items,
+  items = DEMO_FEATURE_GRID_ITEMS,
   columns = 3,
   tone = "paper",
   className,

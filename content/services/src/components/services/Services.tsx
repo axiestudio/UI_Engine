@@ -14,17 +14,22 @@ export type ServicesProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: ServiceItem[]
+  items?: ServiceItem[]
   columns?: 2 | 3
   tone?: "paper" | "ink"
   className?: string
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_SERVICES_ITEMS = [ { id: "s1", title: "Brand sites", body: "Launch-ready marketing sites.", price: "from €4k", link: { label: "Explore", href: "#" } }, { id: "s2", title: "Design systems", body: "Token-first component libraries.", price: "from €8k", link: { label: "Explore", href: "#" } }, { id: "s3", title: "Motion", body: "Scroll-driven and animated flows.", price: "from €3k", link: { label: "Explore", href: "#" } }, ]
+
 export function Services({
   eyebrow = "SERVICES",
   title = "What we do.",
   subtitle = "A focused set of offers, each with a clear starting point.",
-  items,
+  items = DEMO_SERVICES_ITEMS,
   columns = 3,
   tone = "paper",
   className,

@@ -25,7 +25,7 @@ export type HeroAction = {
 export type HeroProps = {
   eyebrow?: string
   /** Leading title part rendered solid. */
-  title: string
+  title?: string
   /** Second title part — words rise word-by-word; keep it a plain string — pair with Accent via custom JSX if needed. */
   titleHighlight?: string
   subtitle?: string
@@ -81,9 +81,14 @@ function ProofRow({ proof, ink }: { proof: HeroProof; ink: boolean }) {
 //   a wall of blur. One <Accent> serif word breaks the grotesk monotony.
 // · Primary CTA is magnetic + breathing glow ring; secondary stays quiet.
 // · Visual gets corner ticks + sheen + -1.5deg settle — like a pinned print.
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HERO_TITLE = "Care that shows up."
+
 export function Hero({
   eyebrow,
-  title,
+  title = DEMO_HERO_TITLE,
   titleHighlight,
   subtitle,
   primaryAction,

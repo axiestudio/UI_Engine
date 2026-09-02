@@ -39,7 +39,7 @@ export type ContactProps = {
   intro?: React.ReactNode
   fields?: ContactFieldDef[]
   /** Async handler — receives a flat record of trimmed values. Rejection surfaces a form-level error; resolution shows the success state. */
-  onSubmit: (values: Record<string, string>) => Promise<void> | void
+  onSubmit?: (values: Record<string, string>) => Promise<void> | void
   submitLabel?: string
   submittingLabel?: string
   /** Small reassurance line under the submit button. */
@@ -105,12 +105,17 @@ function FieldShell({ f, error, count, children }: { f: ContactFieldDef; error?:
 
 // ── Contact ──────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_CONTACT_ONSUBMIT = () => {}
+
 export function Contact({
   eyebrow = "Contact",
   title = "Get in touch",
   intro,
   fields = DEFAULT_FIELDS,
-  onSubmit,
+  onSubmit = DEMO_CONTACT_ONSUBMIT,
   submitLabel = "Send message",
   submittingLabel = "Sending…",
   responseTime = "We usually reply within one business day.",

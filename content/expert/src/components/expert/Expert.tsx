@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button"
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type ExpertProps = {
-  name: string
-  role: string
+  name?: string
+  role?: string
   /** 4:5 portrait. Missing/broken → initials block (always styled, never broken). */
   photo?: string
   photoAlt?: string
@@ -31,9 +31,15 @@ export type ExpertProps = {
   className?: string
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_EXPERT_NAME = "Astrid Lindqvist"
+const DEMO_EXPERT_ROLE = "founder \u00b7 deep tissue"
+
 export function Expert({
-  name,
-  role,
+  name = DEMO_EXPERT_NAME,
+  role = DEMO_EXPERT_ROLE,
   photo,
   photoAlt,
   quote,

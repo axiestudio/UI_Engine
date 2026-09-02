@@ -27,7 +27,7 @@ export type EventsProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  events: EventItem[]
+  events?: EventItem[]
   columns?: 2 | 3
   tone?: "paper" | "ink"
   className?: string
@@ -40,11 +40,16 @@ export type EventsProps = {
 //   whole card tilts -0.5deg until hovered (settle to 0 like picking it up).
 // · The featured event gets a "LIVE" tag rotated -6deg, like a stamp.
 // · Meta rows are mono ledger lines. The register arrow slides on hover.
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_EVENTS_EVENTS = [ { day: "12", month: "SEP", dateNote: "Thu · 15:00 CET", title: "Live Q&A: booking flows that convert", featured: true, meta: [{ label: "Format", value: "Webinar" }, { label: "Host", value: "Astrid L." }], href: "#" }, { day: "03", month: "OCT", dateNote: "Fri · 09:00 CET", title: "Workshop: intake forms", meta: [{ label: "Format", value: "Workshop" }], href: "#" }, { day: "21", month: "OCT", dateNote: "Tue · 17:00 CET", title: "Community meetup", meta: [{ label: "Format", value: "In person" }], href: "#" }, ]
+
 export function Events({
   eyebrow,
   title = "Events & webinars",
   subtitle = "Learn live, ask questions, leave with something you can use.",
-  events,
+  events = DEMO_EVENTS_EVENTS,
   columns = 3,
   tone = "paper",
   className,

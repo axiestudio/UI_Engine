@@ -29,16 +29,21 @@ export type DndDragOverlayProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  pieces: OverlayPiece[]
+  pieces?: OverlayPiece[]
   onDrop?: (id: string, target: string | null) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_DRAG_OVERLAY_PIECES = [ { id: "o1", label: "Violet tile" }, { id: "o2", label: "Amber tile" }, { id: "o3", label: "Ink tile" }, ]
+
 
 export function DndDragOverlay({
   eyebrow = "OVERLAY",
   title = "Drag with a true overlay.",
   subtitle = "The lifted card follows your pointer at full fidelity — it's a real element, not a ghost.",
-  pieces,
+  pieces = DEMO_DND_DRAG_OVERLAY_PIECES,
   onDrop,
   className,
 }: DndDragOverlayProps) {

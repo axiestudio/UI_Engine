@@ -33,17 +33,22 @@ export type DndSortableListProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: DndSortableListItem[]
+  items?: DndSortableListItem[]
   onChange?: (items: DndSortableListItem[]) => void
   tone?: "paper" | "ink"
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_SORTABLE_LIST_ITEMS = [ { id: "a", title: "Confirm the brief", tag: "Today" }, { id: "b", title: "Sketch the layout", tag: "Draft" }, { id: "c", title: "Build the section", tag: "Dev" }, { id: "d", title: "Ship to production", tag: "Live" }, ]
+
+
 export function DndSortableList({
   eyebrow = "SORTABLE",
   title = "Reorder the list.",
   subtitle = "Grab a handle and drag, or focus an item and use arrow keys.",
-  items,
+  items = DEMO_DND_SORTABLE_LIST_ITEMS,
   onChange,
   tone = "paper",
   className,

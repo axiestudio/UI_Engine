@@ -14,17 +14,22 @@ export type PortfolioProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: ProjectItem[]
+  items?: ProjectItem[]
   columns?: 2 | 3
   tone?: "paper" | "ink"
   className?: string
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_PORTFOLIO_ITEMS = [ { id: "p1", title: "Nord Studio", category: "Brand site", year: "2025", image: "/showcase/content/content-03-product.webp" }, { id: "p2", title: "Atelier", category: "E-commerce", year: "2025", image: "/showcase/content/content-04-architecture.webp" }, { id: "p3", title: "Field Notes", category: "Editorial", year: "2024", image: "/showcase/content/content-05-workshop.webp" }, ]
+
 export function Portfolio({
   eyebrow = "WORK",
   title = "Selected projects.",
   subtitle = "A grid of work — image zooms on hover, category and year sit beside the title.",
-  items,
+  items = DEMO_PORTFOLIO_ITEMS,
   columns = 3,
   tone = "paper",
   className,

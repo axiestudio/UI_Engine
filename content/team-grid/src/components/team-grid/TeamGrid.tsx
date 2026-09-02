@@ -13,13 +13,18 @@ export type TeamGridProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  members: TeamMember[]
+  members?: TeamMember[]
   columns?: 2 | 3 | 4
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function TeamGrid({ eyebrow = "TEAM", title = "The people behind it.", subtitle = "A small team, a broad surface.", members, columns = 3, tone = "paper", className }: TeamGridProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_TEAM_GRID_MEMBERS = [ { id: "t1", name: "Ada Lindqvist", role: "Design lead" }, { id: "t2", name: "Milo Sato", role: "Motion" }, { id: "t3", name: "Iris Novak", role: "Engineering" }, ]
+
+
+export function TeamGrid({ eyebrow = "TEAM", title = "The people behind it.", subtitle = "A small team, a broad surface.", members = DEMO_TEAM_GRID_MEMBERS, columns = 3, tone = "paper", className }: TeamGridProps) {
   const ink = tone === "ink"
   const cols = columns === 2 ? "sm:grid-cols-2" : columns === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3"
   return (

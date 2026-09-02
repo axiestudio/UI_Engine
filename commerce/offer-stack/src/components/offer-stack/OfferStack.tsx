@@ -14,13 +14,18 @@ export type OfferStackItem = { id: string; name: string; price: string; period?:
 export type OfferStackProps = {
   eyebrow?: string
   title?: React.ReactNode
-  offers: OfferStackItem[]
+  offers?: OfferStackItem[]
   cta?: string
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function OfferStack({ eyebrow = "OFFERS", title = "Choose a package", offers, cta = "Choose", tone = "paper", className }: OfferStackProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_OFFER_STACK_OFFERS = [{id:"o1",name:"Basic",price:"€90"},{id:"o2",name:"Pro",price:"€180",feature:true,perks:["All sections","Motion"]}]
+
+
+export function OfferStack({ eyebrow = "OFFERS", title = "Choose a package", offers = DEMO_OFFER_STACK_OFFERS, cta = "Choose", tone = "paper", className }: OfferStackProps) {
   const ink = tone === "ink"
   const featured = offers.find((o) => o.feature) ?? offers[0]
   const rest = offers.filter((o) => o !== featured)

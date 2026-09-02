@@ -29,18 +29,24 @@ export type DndDropZoneProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: SlotItem[]
-  slots: DropSlot[]
+  items?: SlotItem[]
+  slots?: DropSlot[]
   onChange?: (assignments: Record<string, string>) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_DROP_ZONE_ITEMS = [ { id: "i1", label: "Header" }, { id: "i2", label: "Hero" }, { id: "i3", label: "Pricing" }, { id: "i4", label: "Footer" }, ]
+const DEMO_DND_DROP_ZONE_SLOTS = [ { id: "s1", label: "Top slot" }, { id: "s2", label: "Middle slot" }, { id: "s3", label: "Bottom slot" }, { id: "s4", label: "Spare slot" }, ]
+
 
 export function DndDropZone({
   eyebrow = "ASSEMBLE",
   title = "Fit it in.",
   subtitle = "Drag each piece into a slot. A slot only accepts one piece at a time.",
-  items,
-  slots,
+  items = DEMO_DND_DROP_ZONE_ITEMS,
+  slots = DEMO_DND_DROP_ZONE_SLOTS,
   onChange,
   className,
 }: DndDropZoneProps) {

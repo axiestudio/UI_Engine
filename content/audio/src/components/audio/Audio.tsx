@@ -9,7 +9,7 @@ export type AudioProps = {
   title?: string
   subtitle?: string
   /** Direct file or stream URL (mp3/ogg). Host owns hosting/CDN. */
-  src: string
+  src?: string
   trackTitle?: string
   artist?: string
   /** Optional cover art (falls back to a token-styled placeholder). */
@@ -21,11 +21,16 @@ export type AudioProps = {
 
 // ── Audio ────────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_AUDIO_SRC = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+
 export function Audio({
   eyebrow = "Listen",
   title,
   subtitle,
-  src,
+  src = DEMO_AUDIO_SRC,
   trackTitle = "Audio note",
   artist,
   cover,

@@ -27,16 +27,21 @@ export type DndSidebarReorderProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: SideItem[]
+  items?: SideItem[]
   onChange?: (items: SideItem[]) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_SIDEBAR_REORDER_ITEMS = [ { id: "home", label: "Home" }, { id: "discover", label: "Discover" }, { id: "library", label: "Library" }, { id: "settings", label: "Settings" }, ]
+
 
 export function DndSidebarReorder({
   eyebrow = "NAV",
   title = "Order the sidebar.",
   subtitle = "Drag items to reorder the navigation — collapse the rail to preview the compact view.",
-  items,
+  items = DEMO_DND_SIDEBAR_REORDER_ITEMS,
   onChange,
   className,
 }: DndSidebarReorderProps) {

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Check } from "lucide-react"
+import { Check, CalendarCheck, Hand, ShieldCheck} from "lucide-react"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
@@ -22,7 +22,7 @@ export type FeaturesProps = {
   /** When provided, the grid renders as a section with a heading. */
   title?: string
   subtitle?: string
-  items: FeatureItem[]
+  items?: FeatureItem[]
   /** Grid columns on lg. Default 3 (clamped to item count). */
   columns?: 2 | 3 | 4
   /** Cursor-following spotlight glow on cards. Default true. */
@@ -90,7 +90,12 @@ function FeatureCard({ f, glow }: { f: FeatureItem; glow: boolean }) {
 
 // ── Features ─────────────────────────────────────────────────────────────────
 
-export function Features({ eyebrow, title, subtitle, items, columns = 3, spotlight = true, tone = "paper", className }: FeaturesProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_FEATURES_ITEMS = [ { id: "deep-tissue", title: "Deep tissue", description: "Focused pressure for chronic tension — neck, shoulders, lower back.", bullets: ["60 or 90 min", "Certified therapists"], icon: Hand, badge: "Most booked", action: { label: "Book this", href: "#contact" } }, { id: "sports", title: "Sports recovery", description: "Post-event flush and mobility work, timed to your training week.", bullets: ["Same-evening slots"], icon: CalendarCheck, action: { label: "Check schedule", href: "#" } }, { id: "wellness", title: "Wellness membership", description: "Monthly sessions with priority booking and guest discounts.", bullets: ["Cancel anytime", "25 yrs on the high street"], icon: ShieldCheck }, ]
+
+export function Features({ eyebrow, title, subtitle, items = DEMO_FEATURES_ITEMS, columns = 3, spotlight = true, tone = "paper", className }: FeaturesProps) {
   if (!items.length) return null
   const cols = Math.min(columns, Math.max(1, items.length))
   const ink = tone === "ink"

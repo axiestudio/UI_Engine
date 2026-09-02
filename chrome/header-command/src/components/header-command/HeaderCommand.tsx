@@ -18,7 +18,7 @@ export type CommandLink = { label: string; href: string; group?: string; keyword
 export type HeaderCommandProps = {
   brand?: string
   logo?: React.ReactNode
-  links: CommandLink[]
+  links?: CommandLink[]
   cta?: { label: string; href?: string; onClick?: () => void }
   /** Keys that open the palette. Default "⌘K". */
   hotkey?: boolean
@@ -35,10 +35,16 @@ export type HeaderCommandProps = {
 //   in first-seen order; the palette gains a hint footer.
 // · The bar stays tight (h-14, hairline, blur) — all voice lives in the
 //   palette, none in the chrome. Mobile sheet mirrors the same field.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HEADER_COMMAND_LINKS = [ { label: "Pricing", href: "#", group: "Pages" }, { label: "Journal", href: "#", group: "Pages" }, { label: "Book a session", href: "#", group: "Actions", shortcut: "B" }, { label: "Buy gift card", href: "#", group: "Actions" }, ]
+
+
 export function HeaderCommand({
   brand = "Brand",
   logo,
-  links,
+  links = DEMO_HEADER_COMMAND_LINKS,
   cta,
   hotkey = true,
   onSelect,

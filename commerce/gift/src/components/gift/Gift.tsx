@@ -20,11 +20,11 @@ export type GiftProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  brand: string
-  amounts: number[]
+  brand?: string
+  amounts?: number[]
   defaultAmount?: number
   /** e.g. "60-minute deep tissue + tea after" */
-  includes: string[]
+  includes?: string[]
   message?: string
   messageAuthor?: string
   validNote?: string
@@ -33,14 +33,21 @@ export type GiftProps = {
   className?: string
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_GIFT_BRAND = "AURUM"
+const DEMO_GIFT_AMOUNTS = [590, 890, 1280, 1780]
+const DEMO_GIFT_INCLUDES = ["One 60-min treatment, any kind", "Tea & the quiet corner after", "A card that never expires"]
+
 export function Gift({
   eyebrow = "Gift a membership",
   title = "Digital delivery — no shipping required",
   subtitle,
-  brand,
-  amounts,
+  brand = DEMO_GIFT_BRAND,
+  amounts = DEMO_GIFT_AMOUNTS,
   defaultAmount,
-  includes,
+  includes = DEMO_GIFT_INCLUDES,
   message,
   messageAuthor,
   validNote = "Delivered as PDF in two minutes · never expires",

@@ -16,7 +16,7 @@ export type Logo = {
 export type LogosProps = {
   /** Small caption above the strip, e.g. "Trusted by teams at". */
   label?: string
-  logos: Logo[]
+  logos?: Logo[]
   /** "marquee" — InfiniteSlider loop. "wall" — static bordered grid. Default "marquee". */
   variant?: "marquee" | "wall"
   /** Marquee px/s. Default 40. */
@@ -52,7 +52,12 @@ function LogoItem({ logo, muted = true }: { logo: Logo; muted?: boolean }) {
 
 // ── Logos ────────────────────────────────────────────────────────────────────
 
-export function Logos({ label, logos, variant = "marquee", speed = 40, reverse = false, columns = 4, className }: LogosProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_LOGOS_LOGOS = [{ name: "Jönköping Nu" }, { name: "Health Weekly" }, { name: "The Table Review" }, { name: "Nordic Wellness" }, { name: "City Guide" }, { name: "Press Club" }]
+
+export function Logos({ label, logos = DEMO_LOGOS_LOGOS, variant = "marquee", speed = 40, reverse = false, columns = 4, className }: LogosProps) {
   if (!logos.length) return null
 
   return (

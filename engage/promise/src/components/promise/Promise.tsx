@@ -19,7 +19,7 @@ export type PromiseFact = { label: string; value?: string }
 
 export type PromiseProps = {
   /** The oath. Keep it one sentence. */
-  statement: string
+  statement?: string
   /** Optional words highlighted inside the statement via *asterisk* markers. */
   facts?: PromiseFact[]
   signature?: { name: string; role?: string }
@@ -27,7 +27,12 @@ export type PromiseProps = {
   className?: string
 }
 
-export function Promise({ statement, facts = [], signature, className }: PromiseProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_PROMISE_STATEMENT = "If the tension is still there when you stand up, the *next session is on us*."
+
+export function Promise({ statement = DEMO_PROMISE_STATEMENT, facts = [], signature, className }: PromiseProps) {
   const reduce = useReducedMotion()
   // *word* segments render foreground-bold (the emphasis ink in the oath)
   const segments = React.useMemo(() => {

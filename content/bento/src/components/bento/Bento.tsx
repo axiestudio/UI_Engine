@@ -1,3 +1,4 @@
+import { CalendarCheck, Clock, ShieldCheck, Star } from "lucide-react"
 import * as React from "react"
 import { Spotlight } from "@/components/primitives/spotlight"
 import { InView } from "@/components/primitives/in-view"
@@ -26,7 +27,7 @@ export type BentoProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  cells: BentoCell[]
+  cells?: BentoCell[]
   /** Cursor spotlight per non-image cell. Default true. */
   spotlight?: boolean
   className?: string
@@ -70,7 +71,12 @@ function Cell({ c, glow }: { c: BentoCell; glow: boolean }) {
 
 // ── Bento ────────────────────────────────────────────────────────────────────
 
-export function Bento({ eyebrow, title, subtitle, cells, spotlight = true, className }: BentoProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_BENTO_CELLS: BentoCell[] = [ { id: "studio", image: "/showcase/hero-poster.webp", title: "The studio", description: "Two quiet rooms, evening light.", span: { sm: 2, lg: 2 } }, { title: "Certified staff", description: "Every therapist, licensed and listed.", icon: ShieldCheck }, { title: "Late openings", description: "Book until 21:00 on weekdays.", icon: Clock }, { title: "25 years", description: "Same door since 2001.", tone: "ink", icon: Star }, { title: "Real-time booking", description: "Live availability from the front desk system.", icon: CalendarCheck, span: { lg: 2 } }, ]
+
+export function Bento({ eyebrow, title, subtitle, cells = DEMO_BENTO_CELLS, spotlight = true, className }: BentoProps) {
   if (!cells.length) return null
   return (
     <section className={cn("w-full bg-background text-foreground", className)} aria-label={title ?? "Highlights"}>

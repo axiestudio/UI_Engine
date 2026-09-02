@@ -14,17 +14,22 @@ export type ImageShowcaseProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  frames: ShowcaseFrame[]
+  frames?: ShowcaseFrame[]
   caption?: string
   tone?: "paper" | "ink"
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_IMAGE_SHOWCASE_FRAMES = [ { id: "f1", src: "/showcase/content/content-01-office.webp", alt: "Office" }, { id: "f2", src: "/showcase/content/content-02-team.webp", alt: "Team" }, { id: "f3", src: "/showcase/content/content-03-product.webp", alt: "Product" }, { id: "f4", src: "/showcase/content/content-04-architecture.webp", alt: "Architecture" }, { id: "f5", src: "/showcase/content/content-05-workshop.webp", alt: "Workshop" }, { id: "f6", src: "/showcase/content/content-06-nature.webp", alt: "Nature" }, ]
+
+
 export function ImageShowcase({
   eyebrow = "SHOWCASE",
   title = "A look inside.",
   subtitle = "Pick a frame from the strip — the large view follows.",
-  frames,
+  frames = DEMO_IMAGE_SHOWCASE_FRAMES,
   caption,
   tone = "paper",
   className,

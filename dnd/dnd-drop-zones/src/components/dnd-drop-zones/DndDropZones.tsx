@@ -29,18 +29,24 @@ export type DndDropZonesProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: ZoneItem[]
-  zones: ZoneDef[]
+  items?: ZoneItem[]
+  zones?: ZoneDef[]
   onChange?: (assignments: Record<string, string>) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_DROP_ZONES_ITEMS = [ { id: "p1", label: "Header", kind: "chrome" }, { id: "p2", label: "Hero", kind: "hero" }, { id: "p3", label: "Pricing", kind: "commerce" }, { id: "p4", label: "Quote", kind: "content" }, ]
+const DEMO_DND_DROP_ZONES_ZONES = [ { id: "s1", title: "Hero zone", kinds: ["hero"] }, { id: "s2", title: "Commerce zone", kinds: ["commerce"] }, { id: "s3", title: "Chrome zone", kinds: ["chrome"] }, { id: "s4", title: "Content zone", kinds: ["content"] }, ]
+
 
 export function DndDropZones({
   eyebrow = "ZONES",
   title = "Route each piece.",
   subtitle = "Each zone only accepts the kinds it declares — drop the rest back and it snaps home.",
-  items,
-  zones,
+  items = DEMO_DND_DROP_ZONES_ITEMS,
+  zones = DEMO_DND_DROP_ZONES_ZONES,
   onChange,
   className,
 }: DndDropZonesProps) {

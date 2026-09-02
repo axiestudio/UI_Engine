@@ -17,7 +17,7 @@ export type ProductChip = {
 
 export type HeroProductProps = {
   eyebrow?: string
-  title: string
+  title?: string
   titleHighlight?: string
   subtitle?: string
   primaryAction?: { label: string; href?: string; onClick?: () => void }
@@ -40,9 +40,15 @@ export type HeroProductProps = {
 //   ±2° tilt and staggered pop-in; they sell the numbers before the copy does.
 // · The frame bleeds off the section bottom; a subtle fade keeps the crop
 //   intentional. Ink gets depth glow; paper gets the mouse spotlight.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HERO_PRODUCT_TITLE = "Your whole studio,"
+
+
 export function HeroProduct({
   eyebrow,
-  title,
+  title = DEMO_HERO_PRODUCT_TITLE,
   titleHighlight,
   subtitle,
   primaryAction,

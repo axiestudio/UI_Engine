@@ -27,17 +27,22 @@ export type DndSortableGridProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  tiles: GridTile[]
+  tiles?: GridTile[]
   onChange?: (tiles: GridTile[]) => void
   columns?: 2 | 3 | 4
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_SORTABLE_GRID_TILES = [ { id: "t1", title: "Treatment room", imageSrc: "/showcase/content/content-08-conference.webp" }, { id: "t2", title: "Waiting corner", imageSrc: "/showcase/content/content-09-materials.webp" }, { id: "t3", title: "Evening light", imageSrc: "/showcase/content/content-10-atelier.webp" }, { id: "t4", title: "Storage wall", imageSrc: "/showcase/gallery-01.webp" }, { id: "t5", title: "Table detail", imageSrc: "/showcase/gallery-02.webp" }, { id: "t6", title: "The entrance", imageSrc: "/showcase/content/content-01-office.webp" }, ]
+
+
 export function DndSortableGrid({
   eyebrow = "TILER",
   title = "Arrange the grid.",
   subtitle = "Drag tiles to re-order the gallery — the card mirrors where it will land.",
-  tiles,
+  tiles = DEMO_DND_SORTABLE_GRID_TILES,
   onChange,
   columns = 3,
   className,

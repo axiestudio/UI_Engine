@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 // ── Types ────────────────────────────────────────────────────────────────────
 export type HeroInkProps = {
   eyebrow?: string
-  title: string
+  title?: string
   titleHighlight?: string
   subtitle?: string
   primaryAction?: { label: string; href?: string; onClick?: () => void }
@@ -31,9 +31,15 @@ export type HeroInkProps = {
 //   first read is "product", not "poster".
 // · Signature kept: corner ticks + the coordinates strip — now quieter, with
 //   diamond separators and a proper hairline above.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HERO_INK_TITLE = "The quiet way"
+
+
 export function HeroInk({
   eyebrow,
-  title,
+  title = DEMO_HERO_INK_TITLE,
   titleHighlight,
   subtitle,
   primaryAction,

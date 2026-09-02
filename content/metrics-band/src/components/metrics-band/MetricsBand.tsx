@@ -13,12 +13,17 @@ export type MetricItem = { id: string; value: number; suffix?: string; label: st
 export type MetricsBandProps = {
   eyebrow?: string
   title?: React.ReactNode
-  metrics: MetricItem[]
+  metrics?: MetricItem[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function MetricsBand({ eyebrow = "METRICS", title = "The numbers.", metrics, tone = "paper", className }: MetricsBandProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_METRICS_BAND_METRICS = [{id:"m1",value:40,suffix:"+",label:"Sections"},{id:"m2",value:12,label:"Installs"}]
+
+
+export function MetricsBand({ eyebrow = "METRICS", title = "The numbers.", metrics = DEMO_METRICS_BAND_METRICS, tone = "paper", className }: MetricsBandProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

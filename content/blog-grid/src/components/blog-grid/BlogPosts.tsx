@@ -14,12 +14,17 @@ export type BlogPostsProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  posts: BlogPost[]
+  posts?: BlogPost[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function BlogPosts({ eyebrow = "JOURNAL", title = "Notes & methods.", subtitle = "Short reads on design and motion.", posts, tone = "paper", className }: BlogPostsProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_BLOG_GRID_POSTS = [ { id: "b1", title: "The discipline of one move per section", category: "Method", date: "Aug 2026", read: "4 min" }, { id: "b2", title: "Scaling a token system across 40 sections", category: "Tokens", date: "Aug 2026", read: "6 min" }, { id: "b3", title: "Scroll storytelling that respects the reader", category: "Motion", date: "Jul 2026", read: "5 min" }, { id: "b4", title: "Why accessibility is a design decision, not a checkbox", category: "A11y", date: "Jul 2026", read: "3 min" }, ]
+
+
+export function BlogPosts({ eyebrow = "JOURNAL", title = "Notes & methods.", subtitle = "Short reads on design and motion.", posts = DEMO_BLOG_GRID_POSTS, tone = "paper", className }: BlogPostsProps) {
   const ink = tone === "ink"
   const [featured, ...rest] = posts
   return (

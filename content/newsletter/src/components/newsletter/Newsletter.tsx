@@ -18,7 +18,7 @@ export type NewsletterProps = {
   successTitle?: string
   successDescription?: string
   finePrint?: string
-  onSubmit: (email: string) => void | Promise<void>
+  onSubmit?: (email: string) => void | Promise<void>
   /** ink = dark band with card; paper = bordered card on light bg. Default ink. */
   tone?: "paper" | "ink"
   className?: string
@@ -32,6 +32,11 @@ export type NewsletterProps = {
 //   read as a template.
 // · Input sits ON a rule line (borderless bottom line), like signing the slip.
 // · The button is magnetic with a hard offset shadow on hover — tactile.
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_NEWSLETTER_ONSUBMIT = () => {}
+
 export function Newsletter({
   eyebrow = "The letter",
   title = "Get the good stuff",
@@ -41,7 +46,7 @@ export function Newsletter({
   successTitle = "You're on the list",
   successDescription = "Check your inbox to confirm — the next letter lands Sunday.",
   finePrint = "Unsubscribe with one click. We never share your address.",
-  onSubmit,
+  onSubmit = DEMO_NEWSLETTER_ONSUBMIT,
   tone = "ink",
   className,
 }: NewsletterProps) {

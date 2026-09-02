@@ -28,7 +28,7 @@ export type DndImageUploaderProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  images: UploadImage[]
+  images?: UploadImage[]
   onChange?: (images: UploadImage[]) => void
   onRemove?: (id: string) => void
   /** Simulated async add; returns demo images. */
@@ -39,11 +39,16 @@ export type DndImageUploaderProps = {
 let seq = 0
 const mk = (name: string): UploadImage => ({ id: `img-${++seq}`, name, size: `${(Math.random() * 3 + 0.4).toFixed(1)} MB` })
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_IMAGE_UPLOADER_IMAGES = [ { id: "i1", name: "poster.webp", size: "1.2 MB", src: "/showcase/hero-poster.webp" }, { id: "i2", name: "frame_0032.webp", size: "900 KB", src: "/showcase/content/content-02-team.webp" }, ]
+
+
 export function DndImageUploader({
   eyebrow = "GALLERY",
   title = "Drop & order your images.",
   subtitle = "Drop files anywhere in the zone, then drag thumbnails to set the order they'll display.",
-  images,
+  images = DEMO_DND_IMAGE_UPLOADER_IMAGES,
   onChange,
   onRemove,
   onAdd,

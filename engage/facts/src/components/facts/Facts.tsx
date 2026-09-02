@@ -22,13 +22,18 @@ export type FactItem = {
 export type FactsProps = {
   eyebrow?: string
   title?: string
-  items: FactItem[]
+  items?: FactItem[]
   /** Horizontal rail on mobile, grid on lg. Default true. */
   singleRow?: boolean
   className?: string
 }
 
-export function Facts({ eyebrow = "Practicalities", title, items, singleRow = true, className }: FactsProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_FACTS_ITEMS = [ { label: "Parking", value: "Kvarnen, 40 m" }, { label: "Step-free", value: "Ground floor, 90 cm door" }, { label: "Languages", value: "SV · EN · AR · TI" }, { label: "Changing", value: "Lockers, towels, dryer" }, { label: "Kids", value: "Welcome in waiting room" }, { label: "Gift cards", value: "Digital, never expires" }, ]
+
+export function Facts({ eyebrow = "Practicalities", title, items = DEMO_FACTS_ITEMS, singleRow = true, className }: FactsProps) {
   if (!items.length) return null
   return (
     <section className={cn("w-full bg-background text-foreground", className)} aria-label={title ?? eyebrow}>

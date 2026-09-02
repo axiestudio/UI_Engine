@@ -26,7 +26,7 @@ export type RecapProps = {
   eyebrow?: string
   title?: string
   signedBy?: string
-  items: AftercareItem[]
+  items?: AftercareItem[]
   /** Shows a stamp once everything's ticked. Default true. */
   celebrate?: boolean
   doneLabel?: string
@@ -35,11 +35,16 @@ export type RecapProps = {
   className?: string
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_RECAP_ITEMS = [ { id: "water", todo: "Water, more than feels sensible", when: "tonight", note: "The tissues you just moved need it." }, { id: "no-gym", todo: "Skip the gym tonight", when: "tonight" }, { id: "heat", todo: "Warm shower, slow neck rolls", when: "tomorrow", note: "Ten seconds each way, not ten." }, { id: "book", todo: "Book the next one before you forget", when: "day 7" }, ]
+
 export function Recap({
   eyebrow = "Before checkout",
   title = "What happens next",
   signedBy,
-  items,
+  items = DEMO_RECAP_ITEMS,
   celebrate = true,
   doneLabel = "You're set.",
   onDoneChange,

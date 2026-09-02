@@ -28,7 +28,7 @@ export type DndSortableTreeProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  nodes: TreeNode[]
+  nodes?: TreeNode[]
   onChange?: (nodes: TreeNode[]) => void
   className?: string
 }
@@ -52,11 +52,16 @@ function unflatten(flat: FlatNode[]): TreeNode[] {
   return root
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_SORTABLE_TREE_NODES = [ { id: "root", label: "Project", type: "folder", children: [ { id: "src", label: "src", type: "folder", children: [ { id: "app", label: "app.tsx", type: "file" }, { id: "main", label: "main.tsx", type: "file" }, ] }, { id: "pkg", label: "package.json", type: "file" }, { id: "readme", label: "README.md", type: "file" }, ] }, { id: "dist", label: "dist", type: "folder", children: [] }, ]
+
+
 export function DndSortableTree({
   eyebrow = "TREE",
   title = "Rebuild the tree.",
   subtitle = "Drag any node to a new spot. Children travel with their parent.",
-  nodes,
+  nodes = DEMO_DND_SORTABLE_TREE_NODES,
   onChange,
   className,
 }: DndSortableTreeProps) {

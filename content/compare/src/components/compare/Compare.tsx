@@ -33,8 +33,8 @@ export type CompareProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  products: CompareProduct[]
-  features: CompareFeature[]
+  products?: CompareProduct[]
+  features?: CompareFeature[]
   tone?: "paper" | "ink"
   className?: string
 }
@@ -71,12 +71,18 @@ function CellValue({ value, ink }: { value: CompareCell; ink: boolean }) {
 
 // ── Compare ──────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_COMPARE_PRODUCTS = [{ name: "Ours", highlight: true, cta: { label: "Start free", href: "#" } }, { name: "Other A" }, { name: "Other B" }]
+const DEMO_COMPARE_FEATURES = [ { feature: "Real-time booking", values: [true, false, true] }, { feature: "Custom domain", values: [true, "Add-on", false] }, { feature: "Unlimited staff", values: [true, true, "Add-on"] }, { feature: "No transaction fee", values: [true, false, false] }, ]
+
 export function Compare({
   eyebrow,
   title = "Why switch",
   subtitle = "A plain look at what you get here that you don't get there.",
-  products,
-  features,
+  products = DEMO_COMPARE_PRODUCTS,
+  features = DEMO_COMPARE_FEATURES,
   tone = "paper",
   className,
 }: CompareProps) {

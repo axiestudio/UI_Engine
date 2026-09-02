@@ -15,12 +15,17 @@ export type StatsBandProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  stats: StatItem[]
+  stats?: StatItem[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function StatsBand({ eyebrow = "NUMBERS", title = "Proof, counted.", subtitle = "Figures count up as the band enters view.", stats, tone = "paper", className }: StatsBandProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_STATS_BAND_STATS = [ { id: "s1", value: 40, suffix: "+", label: "Sections" }, { id: "s2", value: 12, suffix: "k", label: "Installs" }, { id: "s3", value: 4.9, suffix: "", decimals: 1, label: "Avg rating" }, { id: "s4", value: 99, suffix: "%", label: "Fast refresh" }, ]
+
+
+export function StatsBand({ eyebrow = "NUMBERS", title = "Proof, counted.", subtitle = "Figures count up as the band enters view.", stats = DEMO_STATS_BAND_STATS, tone = "paper", className }: StatsBandProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

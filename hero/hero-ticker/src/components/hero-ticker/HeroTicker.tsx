@@ -12,7 +12,7 @@ export type HeroTickerProps = {
   /** Headline start, e.g. "Build" — the rotating word follows it. */
   title: string
   /** Words that rotate inside the headline, e.g. ["websites", "apps", "stores"]. */
-  rotating: string[]
+  rotating?: string[]
   /** Headline tail after the rotating word, e.g. "faster". */
   titleTail?: string
   subtitle?: string
@@ -33,10 +33,16 @@ export type HeroTickerProps = {
 //   gradient edge dissolve, pause on hover, frozen for reduced-motion users.
 // · CTAs upgraded to the proper shadcn pair; everything else stays still so
 //   the motion has nowhere to hide.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HERO_TICKER_ROTATING = ["booking pages", "client apps", "gift cards", "intake forms"]
+
+
 export function HeroTicker({
   eyebrow,
   title = "Build",
-  rotating,
+  rotating = DEMO_HERO_TICKER_ROTATING,
   titleTail,
   subtitle,
   primaryAction,

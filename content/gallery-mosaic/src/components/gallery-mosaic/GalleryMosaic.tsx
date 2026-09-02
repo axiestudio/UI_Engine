@@ -12,12 +12,17 @@ export type MosaicFrame = { id: string; src?: string; alt?: string; span?: strin
 export type GalleryMosaicProps = {
   eyebrow?: string
   title?: React.ReactNode
-  frames: MosaicFrame[]
+  frames?: MosaicFrame[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function GalleryMosaic({ eyebrow = "MOSAIC", title = "A spread, not a grid.", frames, tone = "paper", className }: GalleryMosaicProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_GALLERY_MOSAIC_FRAMES = [{id:"g1",span:"col-span-2 aspect-square"},{id:"g2",span:"aspect-square"},{id:"g3",span:"aspect-square"},{id:"g4",span:"col-span-2 aspect-square"}]
+
+
+export function GalleryMosaic({ eyebrow = "MOSAIC", title = "A spread, not a grid.", frames = DEMO_GALLERY_MOSAIC_FRAMES, tone = "paper", className }: GalleryMosaicProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

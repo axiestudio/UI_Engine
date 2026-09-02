@@ -26,8 +26,8 @@ export type ChoiceOption = {
 }
 
 export type ChoiceProps = {
-  question: string
-  options: ChoiceOption[]
+  question?: string
+  options?: ChoiceOption[]
   defaultId?: string
   value?: string
   onChange?: (id: string) => void
@@ -101,7 +101,13 @@ function Door({
   )
 }
 
-export function Choice({ question, options, defaultId, value, onChange, confirmLabel = "This one", className }: ChoiceProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_CHOICE_QUESTION = "Deep pressure, or the long exhale?"
+const DEMO_CHOICE_OPTIONS = [ { id: "focus", title: "Focused work", tag: "The strong kind", description: "60 min on one stubborn shoulder.", image: "/showcase/content/content-06-nature.webp", imageAlt: "Focused session" }, { id: "calm", title: "Whole-body calm", tag: "Most chosen", description: "Slow pressure head to toe, lights off.", image: "/showcase/content/content-07-corner.webp", imageAlt: "Calm session" }, ]
+
+export function Choice({ question = DEMO_CHOICE_QUESTION, options = DEMO_CHOICE_OPTIONS, defaultId, value, onChange, confirmLabel = "This one", className }: ChoiceProps) {
   const reduce = useReducedMotion()
   const controlled = value !== undefined
   const [internal, setInternal] = React.useState(defaultId ?? "")

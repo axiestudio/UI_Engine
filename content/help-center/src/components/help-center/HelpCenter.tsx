@@ -18,7 +18,7 @@ export type HelpCenterProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  categories: HelpCategory[]
+  categories?: HelpCategory[]
   /** Consumer-wired search field. */
   onSearch?: (query: string) => void
   searchPlaceholder?: string
@@ -37,11 +37,16 @@ export type HelpCenterProps = {
 // · Dots field sits behind the header only, masked — depth without noise.
 const FALLBACK_ICONS = [BookOpen, CreditCard, Users, LifeBuoy, Settings]
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HELP_CENTER_CATEGORIES = [ { title: "Getting started", description: "Set up your first space in minutes.", icon: Rocket, href: "#", count: 12 }, { title: "Billing", description: "Invoices, plans and refunds.", icon: CreditCard, href: "#", count: 8 }, { title: "Account & security", description: "Logins, 2FA and data export.", icon: ShieldCheck, href: "#", count: 6 }, { title: "Bookings", description: "Slots, reminders and no-shows.", icon: CalendarCheck, href: "#", count: 15 }, { title: "Payments", description: "Stripe, payouts and disputes.", icon: CreditCard, href: "#", count: 9 }, { title: "Contact support", description: "Still stuck? We reply within a day.", icon: LifeBuoy, href: "#", count: 1 }, ]
+
+
 export function HelpCenter({
   eyebrow = "Help center",
   title = "How can we help?",
   subtitle = "Search for a question, or browse the shelves below.",
-  categories,
+  categories = DEMO_HELP_CENTER_CATEGORIES,
   onSearch,
   searchPlaceholder = "Search help articles…",
   footerLink,

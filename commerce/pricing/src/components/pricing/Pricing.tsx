@@ -30,7 +30,7 @@ export type PricingProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  plans: PricingPlan[]
+  plans?: PricingPlan[]
   /** Show the monthly/yearly switch. Default true when any plan has priceYearly. */
   toggleable?: boolean
   defaultYearly?: boolean
@@ -103,11 +103,16 @@ function PlanCard({ plan, yearly, currency, periodLabel }: { plan: PricingPlan; 
 
 // ── Pricing ──────────────────────────────────────────────────────────────────
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_PRICING_PLANS = [ { name: "Single session", description: "Pay as you go", priceMonthly: 890, priceYearly: null, billingPeriodLabel: { monthly: "/ 60 min" }, cta: { label: "Book a session", href: "#contact" }, features: [{ label: "60-minute treatment" }, { label: "Evening slots" }, { label: "Membership pricing", included: false }] }, { name: "Membership", description: "For regulars", popular: true, priceMonthly: 690, priceYearly: 7020, billingPeriodLabel: { monthly: "/ mo", yearly: "/ yr" }, cta: { label: "Join", href: "#contact" }, features: [{ label: "One session monthly" }, { label: "Priority booking" }, { label: "10% off add-ons" }], footnote: "Cancel anytime" }, { name: "Packages", description: "5 sessions, yours to use", priceMonthly: 4100, priceYearly: null, billingPeriodLabel: { monthly: "/ 5-pack" }, cta: { label: "Ask about packages", href: "#" }, features: [{ label: "Valid 12 months" }, { label: "Shareable" }] }, ]
+
+
 export function Pricing({
   eyebrow = "Pricing",
   title = "Pricing plans",
   subtitle,
-  plans,
+  plans = DEMO_PRICING_PLANS,
   toggleable,
   defaultYearly = false,
   saveLabel = "Save 15%",

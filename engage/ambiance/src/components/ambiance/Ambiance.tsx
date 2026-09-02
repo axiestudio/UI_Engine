@@ -23,7 +23,7 @@ export type AmbianceProps = {
   kicker?: string
   line?: string
   /** Exactly three recommended (portrait wide, tall left, tall right). Fewer degrade gracefully. */
-  shots: AmbianceProps_shots
+  shots?: AmbianceProps_shots
   /** Parallax intensity in px for drift between layers. Default 42; reduced-motion disables. */
   drift?: number
   className?: string
@@ -65,7 +65,12 @@ function DriftImage({
   )
 }
 
-export function Ambiance({ kicker = "stepping inside", line, shots, drift = 42, className }: AmbianceProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_AMBIANCE_SHOTS: AmbianceProps_shots = [ { src: "/showcase/content/content-03-product.webp", alt: "Treatment room, low lamps", caption: "Room one — warm table" }, { src: "/showcase/content/content-04-architecture.webp", alt: "Oils and towels", caption: "Oils, cedar & almond" }, { src: "/showcase/content/content-05-workshop.webp", alt: "Evening light on the wall", caption: "18:40, Tuesday" }, ]
+
+export function Ambiance({ kicker = "stepping inside", line, shots = DEMO_AMBIANCE_SHOTS, drift = 42, className }: AmbianceProps) {
   const reduce = useReducedMotion()
   const wrapRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start end", "end start"] })

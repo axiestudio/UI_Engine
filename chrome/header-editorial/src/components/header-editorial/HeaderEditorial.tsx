@@ -10,7 +10,7 @@ export type HeaderEditorialProps = {
   brand?: string
   logo?: React.ReactNode
   /** Split links: half left of the wordmark, half right. */
-  links: HeaderLink[]
+  links?: HeaderLink[]
   /** Top utility strip content, e.g. date or tagline. */
   meta?: string
   /** Right side of the utility strip, e.g. social links. */
@@ -28,10 +28,16 @@ export type HeaderEditorialProps = {
 //   (scale-x origin-left), the way headlines get ruled in print.
 // · Mobile rows carry ordinals (01, 02 …) and an up-right arrow — a table of
 //   contents, not a dropdown.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HEADER_EDITORIAL_LINKS = [{ label: "Stories", href: "#" }, { label: "Craft", href: "#" }, { label: "Studio", href: "#" }, { label: "Archive", href: "#" }, { label: "Contact", href: "#" }]
+
+
 export function HeaderEditorial({
   brand = "The Journal",
   logo,
-  links,
+  links = DEMO_HEADER_EDITORIAL_LINKS,
   meta,
   metaRight,
   sticky = false,

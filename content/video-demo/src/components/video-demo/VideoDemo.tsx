@@ -13,10 +13,10 @@ export type VideoDemoProps = {
   title?: string
   subtitle?: string
   /** Poster image for the framed player. */
-  poster: string
+  poster?: string
   posterAlt?: string
   /** Embed URL loaded in the lightbox (YouTube/Vimeo embed or direct mp4). */
-  src: string
+  src?: string
   /** mp4 when true renders a native <video controls>, otherwise an <iframe>. Default false. */
   direct?: boolean
   playLabel?: string
@@ -94,13 +94,19 @@ function DevicePoster({
 
 // ── VideoDemo ────────────────────────────────────────────────────────────────
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_VIDEO_DEMO_POSTER = "/showcase/hero-poster.webp"
+const DEMO_VIDEO_DEMO_SRC = "https://www.youtube.com/embed/dQw4w9WgXcQ"
+
+
 export function VideoDemo({
   eyebrow,
   title = "See it in motion",
   subtitle,
-  poster,
+  poster = DEMO_VIDEO_DEMO_POSTER,
   posterAlt = "Product demo video",
-  src,
+  src = DEMO_VIDEO_DEMO_SRC,
   direct = false,
   playLabel = "Play demo",
   urlLabel = "demo.example.com",

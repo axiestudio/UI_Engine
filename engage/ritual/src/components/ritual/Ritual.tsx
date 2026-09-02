@@ -30,7 +30,7 @@ export type RitualProps = {
   beforeNote?: string
   /** "Water. Skip the gym after." */
   afterNote?: string
-  steps: RitualStep[]
+  steps?: RitualStep[]
   className?: string
 }
 
@@ -46,7 +46,12 @@ function StepDot({ lit }: { lit: boolean }) {
   )
 }
 
-export function Ritual({ eyebrow = "The visit", title = "What actually happens", subtitle, beforeNote, afterNote, steps, className }: RitualProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_RITUAL_STEPS = [ { id: "arrive", title: "Tea, shoes off", duration: "5 min", body: "The corner chair, not a clipboard." }, { id: "talk", title: "We talk", duration: "10 min", body: "Where it hurts, what you want from the hour, what you'd rather not." }, { id: "table", title: "The table", duration: "60 min", body: "Lights low, blanket to the shoulders, the clock faced away." }, { id: "quiet", title: "Water & the quiet corner", duration: "10 min", body: "No reception small-talk required." }, ]
+
+export function Ritual({ eyebrow = "The visit", title = "What actually happens", subtitle, beforeNote, afterNote, steps = DEMO_RITUAL_STEPS, className }: RitualProps) {
   const reduce = useReducedMotion()
   const wrapRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start 75%", "end 55%"] })

@@ -30,17 +30,22 @@ export type DndMenuBuilderProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  palette: MenuItem[]
+  palette?: MenuItem[]
   initialItems?: MenuItem[]
   onChange?: (items: MenuItem[]) => void
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_MENU_BUILDER_PALETTE = [ { id: "home", label: "Home", href: "/" }, { id: "services", label: "Services", href: "/services" }, { id: "pricing", label: "Pricing", href: "/pricing" }, { id: "journal", label: "Journal", href: "/journal" }, ]
+
+
 export function DndMenuBuilder({
   eyebrow = "MENUS",
   title = "Build the menu.",
   subtitle = "Drag destinations onto the menu, then reorder or remove them.",
-  palette,
+  palette = DEMO_DND_MENU_BUILDER_PALETTE,
   initialItems = [],
   onChange,
   className,

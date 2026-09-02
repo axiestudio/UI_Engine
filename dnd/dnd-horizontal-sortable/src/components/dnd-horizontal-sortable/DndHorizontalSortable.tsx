@@ -27,16 +27,21 @@ export type DndHorizontalSortableProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  items: ChipItem[]
+  items?: ChipItem[]
   onChange?: (items: ChipItem[]) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_HORIZONTAL_SORTABLE_ITEMS = [ { id: "p1", label: "Choose" }, { id: "p2", label: "Book" }, { id: "p3", label: "Confirm" }, { id: "p4", label: "Arrive" }, ]
+
 
 export function DndHorizontalSortable({
   eyebrow = "SEQ",
   title = "Order the steps.",
   subtitle = "Drag chips left or right to sequence them. Arrow keys work too.",
-  items,
+  items = DEMO_DND_HORIZONTAL_SORTABLE_ITEMS,
   onChange,
   className,
 }: DndHorizontalSortableProps) {

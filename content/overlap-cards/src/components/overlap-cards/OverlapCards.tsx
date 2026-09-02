@@ -13,12 +13,17 @@ export type OverlapCardsProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  cards: OverlapCard[]
+  cards?: OverlapCard[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function OverlapCards({ eyebrow = "LAYERS", title = "Cards that crest.", subtitle = "A row of cards overhangs the boundary between two bands.", cards, tone = "paper", className }: OverlapCardsProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_OVERLAP_CARDS_CARDS = [ { id: "o1", title: "Design", body: "Editorial, hand-tuned." }, { id: "o2", title: "Motion", body: "One move per section." }, { id: "o3", title: "Ship", body: "Install one package at a time." }, ]
+
+
+export function OverlapCards({ eyebrow = "LAYERS", title = "Cards that crest.", subtitle = "A row of cards overhangs the boundary between two bands.", cards = DEMO_OVERLAP_CARDS_CARDS, tone = "paper", className }: OverlapCardsProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate bg-background pb-28", ink && "bg-foreground text-background", className)}>

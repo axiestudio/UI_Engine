@@ -13,12 +13,17 @@ export type TimelineVerticalProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  entries: TimelineEntry[]
+  entries?: TimelineEntry[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function TimelineVertical({ eyebrow = "MILESTONES", title = "The road so far.", subtitle = "A vertical rail of dated milestones.", entries, tone = "paper", className }: TimelineVerticalProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_TIMELINE_VERTICAL_ENTRIES = [ { id: "m1", date: "2024", title: "The idea", body: "Forty sections, one language." }, { id: "m2", date: "2025", title: "The build", body: "Tokens, primitives and so much wireframe." }, { id: "m3", date: "2026", title: "The launch", body: "A library you can ship a site from." }, ]
+
+
+export function TimelineVertical({ eyebrow = "MILESTONES", title = "The road so far.", subtitle = "A vertical rail of dated milestones.", entries = DEMO_TIMELINE_VERTICAL_ENTRIES, tone = "paper", className }: TimelineVerticalProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

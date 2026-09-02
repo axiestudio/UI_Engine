@@ -13,12 +13,17 @@ export type BrandValuesProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  values: ValueItem[]
+  values?: ValueItem[]
   tone?: "paper" | "ink"
   className?: string
 }
 
-export function BrandValues({ eyebrow = "VALUES", title = "What we hold the line on.", subtitle = "Three principles that shape every decision.", values, tone = "paper", className }: BrandValuesProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_BRAND_VALUES_VALUES = [ { id: "v1", title: "Intent over ornament", body: "Every flourish earns its place." }, { id: "v2", title: "Tokens before themes", body: "Change one surface, re-theme everything." }, { id: "v3", title: "Motion with purpose", body: "Never animate for its own sake." }, ]
+
+
+export function BrandValues({ eyebrow = "VALUES", title = "What we hold the line on.", subtitle = "Three principles that shape every decision.", values = DEMO_BRAND_VALUES_VALUES, tone = "paper", className }: BrandValuesProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>

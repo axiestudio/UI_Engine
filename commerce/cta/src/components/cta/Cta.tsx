@@ -19,9 +19,9 @@ export type CtaProps = {
   /** Small mono line above the headline, e.g. "Ready when you are". */
   eyebrow?: string
   /** Headline — accepts JSX for line breaks. */
-  title: React.ReactNode
+  title?: React.ReactNode
   description?: React.ReactNode
-  primary: CtaAction
+  primary?: CtaAction
   secondary?: CtaAction
   /** ink = dark band, paper = bordered light panel, ghost = no container. */
   tone?: "ink" | "paper" | "ghost"
@@ -36,11 +36,17 @@ export type CtaProps = {
 
 // ── CTA ──────────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_CTA_TITLE = "Book your next session in 30 seconds."
+const DEMO_CTA_PRIMARY = { label: "Book now", href: "#contact" }
+
 export function Cta({
   eyebrow,
-  title,
+  title = DEMO_CTA_TITLE,
   description,
-  primary,
+  primary = DEMO_CTA_PRIMARY,
   secondary,
   tone = "ink",
   shimmer = true,

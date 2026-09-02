@@ -10,7 +10,7 @@ export type WizardStep = {
 }
 
 export type ProgressStepsProps = {
-  steps: WizardStep[]
+  steps?: WizardStep[]
   /** Index of the active step (0-based). */
   current: number
   onStepClick?: (index: number) => void
@@ -34,8 +34,13 @@ function Check() {
   )
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_STEPPER_STEPS = [{ id: "s", label: "Service", detail: "Deep tissue" }, { id: "t", label: "Time", detail: "Tue 16:30" }, { id: "p", label: "Details" }, { id: "d", label: "Done" }]
+
 export function ProgressSteps({
-  steps,
+  steps = DEMO_STEPPER_STEPS,
   current,
   onStepClick,
   backNavigation = true,

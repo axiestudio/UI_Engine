@@ -30,11 +30,16 @@ export type LetterProps = {
   successLabel?: string
   note?: string
   /** required — no fake "subscribed!". Rejects keep the card in error mode. */
-  onSubmit: (email: string) => Promise<void> | void
+  onSubmit?: (email: string) => Promise<void> | void
   className?: string
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_LETTER_ONSUBMIT = () => {}
 
 export function Letter({
   signedBy,
@@ -45,7 +50,7 @@ export function Letter({
   subscribeLabel = "Post it to me",
   successLabel = "Addressed. It'll arrive with the next month.",
   note = "Monthly. No sales theatre. Unsubscribe in one click, no hard feelings.",
-  onSubmit,
+  onSubmit = DEMO_LETTER_ONSUBMIT,
   className,
 }: LetterProps) {
   const reduce = useReducedMotion()

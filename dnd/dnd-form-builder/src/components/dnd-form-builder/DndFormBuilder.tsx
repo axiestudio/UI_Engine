@@ -31,17 +31,22 @@ export type DndFormBuilderProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  fieldTypes: { type: FieldType; label: string }[]
+  fieldTypes?: { type: FieldType; label: string }[]
   initialFields?: FormField[]
   onChange?: (fields: FormField[]) => void
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_FORM_BUILDER_FIELDTYPES = [ { type: "text", label: "Text field" }, { type: "email", label: "Email" }, { type: "tel", label: "Phone" }, { type: "textarea", label: "Paragraph" }, { type: "select", label: "Dropdown" }, { type: "switch", label: "Switch" }, ]
+
+
 export function DndFormBuilder({
   eyebrow = "FORMS",
   title = "Build the form.",
   subtitle = "Drag field types onto the canvas, then reorder and remove them.",
-  fieldTypes,
+  fieldTypes = DEMO_DND_FORM_BUILDER_FIELDTYPES,
   initialFields = [],
   onChange,
   className,

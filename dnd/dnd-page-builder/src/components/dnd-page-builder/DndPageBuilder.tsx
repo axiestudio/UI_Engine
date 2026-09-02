@@ -30,17 +30,22 @@ export type DndPageBuilderProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  palette: PageBlock[]
+  palette?: PageBlock[]
   initialBlocks?: PageBlock[]
   onChange?: (blocks: PageBlock[]) => void
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_PAGE_BUILDER_PALETTE = [ { id: "hero", type: "hero", label: "Hero" }, { id: "features", type: "content", label: "Features" }, { id: "bento", type: "content", label: "Bento" }, { id: "pricing", type: "commerce", label: "Pricing" }, { id: "footer", type: "chrome", label: "Footer" }, ]
+
+
 export function DndPageBuilder({
   eyebrow = "PAGES",
   title = "Build the page.",
   subtitle = "Drag a block onto the canvas and reorder it. Remove anything you don't need.",
-  palette,
+  palette = DEMO_DND_PAGE_BUILDER_PALETTE,
   initialBlocks = [],
   onChange,
   className,

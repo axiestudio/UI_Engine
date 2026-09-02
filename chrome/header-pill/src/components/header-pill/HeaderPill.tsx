@@ -10,7 +10,7 @@ export type HeaderLink = { label: string; href: string }
 export type HeaderPillProps = {
   brand?: string
   logo?: React.ReactNode
-  links: HeaderLink[]
+  links?: HeaderLink[]
   cta?: { label: string; href?: string; onClick?: () => void }
   /** Index of the active link, rendered as a filled segment. Default none. */
   activeIndex?: number
@@ -27,10 +27,16 @@ export type HeaderPillProps = {
 //   pill) instead of an underline dot — reads as a segmented control.
 // · Mobile drops out of the pill as a matching glass card with divided rows
 //   and a full-width CTA.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HEADER_PILL_LINKS = [{ label: "Services", href: "#" }, { label: "Pricing", href: "#" }, { label: "Journal", href: "#" }, { label: "About", href: "#" }]
+
+
 export function HeaderPill({
   brand = "Brand",
   logo,
-  links,
+  links = DEMO_HEADER_PILL_LINKS,
   cta,
   activeIndex = -1,
   className,

@@ -12,7 +12,7 @@ export type EmptyStateAction = {
 
 export type EmptyStateProps = {
   icon?: React.ElementType
-  title: string
+  title?: string
   description?: string
   primaryAction?: EmptyStateAction
   secondaryAction?: EmptyStateAction
@@ -31,9 +31,15 @@ export type EmptyStateProps = {
 //   tips below read like a checklist you're about to complete.
 // · Buttons are square-cornered with hard-offset hover — same tactile family
 //   as newsletter/waitlist.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_EMPTY_STATE_TITLE = "No sessions yet"
+
+
 export function EmptyState({
   icon: Icon,
-  title,
+  title = DEMO_EMPTY_STATE_TITLE,
   description,
   primaryAction,
   secondaryAction,

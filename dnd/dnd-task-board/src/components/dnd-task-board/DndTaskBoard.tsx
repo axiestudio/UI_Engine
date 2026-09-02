@@ -30,7 +30,7 @@ export type DndTaskBoardProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  tasks: TaskItem[]
+  tasks?: TaskItem[]
   onChange?: (tasks: TaskItem[]) => void
   className?: string
 }
@@ -41,7 +41,12 @@ const COLUMNS = [
   { id: "done", title: "Done", icon: CheckCircle2 },
 ] as const
 
-export function DndTaskBoard({ eyebrow = "LIFEBOARD", title = "Move work forward.", subtitle = "Drag a task across the board. It announces its move for a consistent experience.", tasks, onChange, className }: DndTaskBoardProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_TASK_BOARD_TASKS = [ { id: "ta1", title: "Sketch wireframes", kind: "todo" }, { id: "ta2", title: "Write tokens", kind: "doing" }, { id: "ta3", title: "Land the hero", kind: "done" }, ]
+
+
+export function DndTaskBoard({ eyebrow = "LIFEBOARD", title = "Move work forward.", subtitle = "Drag a task across the board. It announces its move for a consistent experience.", tasks = DEMO_DND_TASK_BOARD_TASKS, onChange, className }: DndTaskBoardProps) {
   const [state, setState] = React.useState(tasks)
   React.useEffect(() => { setState(tasks) }, [tasks])
   const [activeId, setActiveId] = React.useState<string | null>(null)

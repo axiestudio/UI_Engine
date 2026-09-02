@@ -18,7 +18,7 @@ export type PlaceFact = { label: string; value: string }
 
 export type PlaceProps = {
   /** The landmark line — goes on the marquee as-is (e.g. "TRÄDGÅRDSGATAN 12"). */
-  landmark: string
+  landmark?: string
   /** Word(s) between repeats on the ribbon. Default "·". */
   separator?: string
   story?: string
@@ -29,7 +29,12 @@ export type PlaceProps = {
   className?: string
 }
 
-export function Place({ landmark, separator = "·", story, facts = [], speed = "gentle", reverse = false, className }: PlaceProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_PLACE_LANDMARK = "TR\u00c4DG\u00c5RDSGATAN 12"
+
+export function Place({ landmark = DEMO_PLACE_LANDMARK, separator = "·", story, facts = [], speed = "gentle", reverse = false, className }: PlaceProps) {
   return (
     <section className={cn("relative w-full overflow-hidden bg-background text-foreground", className)} aria-label={`${landmark} — our address`}>
       {/* ribbon landmark */}

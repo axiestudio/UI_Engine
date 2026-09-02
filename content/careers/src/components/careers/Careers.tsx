@@ -18,7 +18,7 @@ export type CareersProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  jobs: Job[]
+  jobs?: Job[]
   /** Group rows by department. Default true when departments present. */
   grouped?: boolean
   applyLabel?: string
@@ -34,11 +34,16 @@ export type CareersProps = {
 // · Department groups get a mono count ("engineering · 2 open") — a hiring
 //   signal, not decoration.
 // · The sign-off echoes the steps/changelog family: dashed rule + italic line.
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_CAREERS_JOBS = [ { title: "Senior Frontend Engineer", department: "Engineering", location: "Remote (EU)", type: "Full-time", href: "#" }, { title: "Product Designer", department: "Design", location: "Stockholm", type: "Full-time", href: "#" }, { title: "Customer Success Lead", department: "Support", location: "Remote", type: "Full-time", href: "#" }, { title: "Motion Design Intern", department: "Design", location: "Stockholm", type: "6 months", href: "#" }, ]
+
 export function Careers({
   eyebrow = "Careers",
   title = "Do the best work of your life",
   subtitle = "Small team, real ownership, careful craft. If a role below sounds like you, we read every application.",
-  jobs,
+  jobs = DEMO_CAREERS_JOBS,
   grouped = true,
   applyLabel = "Apply",
   tone = "paper",

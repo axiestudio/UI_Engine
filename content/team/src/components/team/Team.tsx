@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Mail } from "lucide-react"
+import { Mail, Globe} from "lucide-react"
 import { Tilt } from "@/components/primitives/tilt"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
@@ -22,7 +22,7 @@ export type TeamProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  members: TeamMember[]
+  members?: TeamMember[]
   /** Columns on desktop — clamped to the number of members. Default 3. */
   columns?: 2 | 3 | 4
   /** Subtle 3D tilt on hover. Default true (a no-op for touch + reduced motion is inherent: no JS animation there). */
@@ -108,7 +108,12 @@ function MemberCard({ m, tilt = true, showBios = false }: { m: TeamMember; tilt?
 
 // ── Team ─────────────────────────────────────────────────────────────────────
 
-export function Team({ eyebrow = "The people", title = "Meet the team", subtitle, members, columns = 3, tilt = true, showBios = false, className }: TeamProps) {
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_TEAM_MEMBERS = [ { name: "Astrid L.", role: "Founder · Physio", tags: ["25 yrs", "Cert."], bio: "Treats chronic neck and back tension." }, { name: "Omar K.", role: "Deep-tissue specialist", tags: ["Evenings"], bio: "Sports recovery and posture work." }, { name: "Elin S.", role: "Head of reception", tags: ["SV", "EN", "AR"], bio: "Books, reschedules and remembers your name." }, { name: "Noa B.", role: "Massage therapist", links: [{ label: "Email", href: "mailto:hei@example.com" }, { label: "Website", href: "#", icon: Globe }] }, ]
+
+export function Team({ eyebrow = "The people", title = "Meet the team", subtitle, members = DEMO_TEAM_MEMBERS, columns = 3, tilt = true, showBios = false, className }: TeamProps) {
   if (!members.length) return null
   const cols = Math.min(columns, members.length)
 

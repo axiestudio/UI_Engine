@@ -21,8 +21,8 @@ export type TablePresetProps = {
   eyebrow?: string
   title?: string
   description?: string
-  columns: TableColumn[]
-  rows: Record<string, string | number>[]
+  columns?: TableColumn[]
+  rows?: Record<string, string | number>[]
   caption?: string
   /** Zebra striping + row hover. Default true. */
   striped?: boolean
@@ -48,12 +48,18 @@ function sortRows(rows: Record<string, string | number>[], key: string, dir: "as
   })
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_TABLE_COLUMNS: TableColumn[] = [ { key: "name", label: "Treatment" }, { key: "minutes", label: "Min", align: "right", sortable: true }, { key: "price", label: "kr", align: "right", sortable: true }, { key: "staff", label: "Lead", align: "center" }, ]
+const DEMO_TABLE_ROWS: Record<string, string | number>[] = [ { name: "Deep tissue", minutes: 60, price: 890, staff: "Omar" }, { name: "Classic relaxation", minutes: 60, price: 790, staff: "Astrid" }, { name: "Prenatal", minutes: 45, price: 690, staff: "Elin" }, { name: "Couples", minutes: 90, price: 1680, staff: "Two tables" }, { name: "Express neck & shoulders", minutes: 25, price: 450, staff: "Any" }, ]
+
 export function TablePreset({
   eyebrow,
   title,
   description,
-  columns,
-  rows,
+  columns = DEMO_TABLE_COLUMNS,
+  rows = DEMO_TABLE_ROWS,
   caption,
   striped = true,
   dense = true,

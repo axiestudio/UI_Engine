@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils"
 // ────────────────────────────────────────────────────────────────────────────
 
 export type QuoteFeatureProps = {
-  quote: string
+  quote?: string
   /** Primary attribution shown under the quote. */
-  author: string
+  author?: string
   role?: string
   /** Additional voices the quote was chosen from — slow roll, reduced-motion takes the first. */
   alsoFrom?: string[]
@@ -27,7 +27,13 @@ export type QuoteFeatureProps = {
   className?: string
 }
 
-export function QuoteFeature({ quote, author, role, alsoFrom = [], moreLink, interval = 3.5, className }: QuoteFeatureProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_QUOTE_FEATURE_QUOTE = "I walked in with a knot in my shoulder. I walked out whistling."
+const DEMO_QUOTE_FEATURE_AUTHOR = "Priya S."
+
+
+export function QuoteFeature({ quote = DEMO_QUOTE_FEATURE_QUOTE, author = DEMO_QUOTE_FEATURE_AUTHOR, role, alsoFrom = [], moreLink, interval = 3.5, className }: QuoteFeatureProps) {
   const voices = React.useMemo(() => [`${author}${role ? ` · ${role}` : ""}`, ...alsoFrom], [author, role, alsoFrom])
   return (
     <section className={cn("relative w-full overflow-hidden bg-background text-foreground", className)} aria-label="A word from a guest">

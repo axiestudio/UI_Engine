@@ -27,16 +27,21 @@ export type DndReorderCardsProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  cards: RankCard[]
+  cards?: RankCard[]
   onChange?: (cards: RankCard[]) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_REORDER_CARDS_CARDS = [ { id: "r1", title: "Land the hero", score: "P0" }, { id: "r2", title: "Token theming", score: "P1" }, { id: "r3", title: "A11y pass", score: "P1" }, { id: "r4", title: "Edge case polish", score: "P2" }, ]
+
 
 export function DndReorderCards({
   eyebrow = "RANK",
   title = "Rank the priorities.",
   subtitle = "Drag cards into order, or focus one and use the arrow keys. The number is your position.",
-  cards,
+  cards = DEMO_DND_REORDER_CARDS_CARDS,
   onChange,
   className,
 }: DndReorderCardsProps) {

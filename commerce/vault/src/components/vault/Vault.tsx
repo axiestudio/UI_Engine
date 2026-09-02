@@ -26,22 +26,28 @@ export type VaultProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  lines: VaultLine[]
+  lines?: VaultLine[]
   totalLabel?: string
-  total: string
+  total?: string
   note?: string
   cta?: { label: string; href?: string; onClick?: () => void }
   unit?: string
   className?: string
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_VAULT_LINES = [ { label: "60-minute deep tissue, head to toe", value: "890 kr" }, { label: "Assessment & posture notes", value: "150 kr" }, { label: "Percussion finish", value: "120 kr" }, { label: "24-h aftercare line", value: "100 kr" }, { label: "Tea, quiet corner, zero rush", value: "150 kr" }, ]
+const DEMO_VAULT_TOTAL = "1 510 kr"
+
 export function Vault({
   eyebrow = "What is included",
   title = "Full access — one price, no add-ons",
   subtitle,
-  lines,
+  lines = DEMO_VAULT_LINES,
   totalLabel = "Included",
-  total,
+  total = DEMO_VAULT_TOTAL,
   note,
   cta,
   className,

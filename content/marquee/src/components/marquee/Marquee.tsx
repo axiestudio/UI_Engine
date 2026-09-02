@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type MarqueeProps = {
-  items: React.ReactNode[]
+  items?: React.ReactNode[]
   /** Seconds per full loop. Default 30. */
   speed?: number
   reverse?: boolean
@@ -22,8 +22,13 @@ export type MarqueeProps = {
 
 // ── Marquee ──────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_MARQUEE_ITEMS = ["Vercel", "Linear", "Raycast", "Notion", "Figma", "Stripe"]
+
 export function Marquee({
-  items,
+  items = DEMO_MARQUEE_ITEMS,
   speed = 30,
   reverse = false,
   pauseOnHover = true,

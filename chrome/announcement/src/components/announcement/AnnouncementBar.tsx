@@ -16,7 +16,7 @@ export type AnnouncementMessage = {
 
 export type AnnouncementBarProps = {
   /** One string or message object — or an array that rotates on a timer. */
-  messages: (string | AnnouncementMessage)[] | string | AnnouncementMessage
+  messages?: (string | AnnouncementMessage)[] | string | AnnouncementMessage
   /** Whole-strip action link shown as a chip on the right of the message. */
   cta?: { label: string; href: string }
   tone?: "ink" | "paper"
@@ -44,8 +44,13 @@ function renderMessage(m: AnnouncementMessage) {
 
 // ── AnnouncementBar ──────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_ANNOUNCEMENT_MESSAGES = ["Summer slots open", "Now roll booking", "Free first-visit consultation"]
+
 export function AnnouncementBar({
-  messages,
+  messages = DEMO_ANNOUNCEMENT_MESSAGES,
   cta,
   tone = "ink",
   dismissKey,

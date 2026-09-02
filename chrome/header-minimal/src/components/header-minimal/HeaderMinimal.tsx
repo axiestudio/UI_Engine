@@ -9,7 +9,7 @@ export type HeaderLink = { label: string; href: string }
 export type HeaderMinimalProps = {
   brand?: string
   logo?: React.ReactNode
-  links: HeaderLink[]
+  links?: HeaderLink[]
   cta?: { label: string; href?: string; onClick?: () => void }
   className?: string
 }
@@ -23,10 +23,16 @@ export type HeaderMinimalProps = {
 //   that draws in on hover — the bar's only ornament.
 // · The CTA keeps its gesture: the arrow leaves the frame on hover, now from
 //   inside a subtle pill so it reads as tappable, not decorative.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HEADER_MINIMAL_LINKS = [{ label: "Services", href: "#" }, { label: "Studio", href: "#" }, { label: "Journal", href: "#" }]
+
+
 export function HeaderMinimal({
   brand = "Brand",
   logo,
-  links,
+  links = DEMO_HEADER_MINIMAL_LINKS,
   cta,
   className,
 }: HeaderMinimalProps) {

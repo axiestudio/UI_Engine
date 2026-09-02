@@ -27,18 +27,24 @@ export type DndTableRowsProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  headers: string[]
-  rows: TableRowData[]
+  headers?: string[]
+  rows?: TableRowData[]
   onChange?: (rows: TableRowData[]) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_TABLE_ROWS_HEADERS = ["Treatment", "Min", "kr"]
+const DEMO_DND_TABLE_ROWS_ROWS = [ { id: "r1", cells: ["Deep tissue", "60", "890"] }, { id: "r2", cells: ["Classic relaxation", "60", "790"] }, { id: "r3", cells: ["Prenatal", "45", "690"] }, { id: "r4", cells: ["Couples", "90", "1680"] }, ]
+
 
 export function DndTableRows({
   eyebrow = "ROWS",
   title = "Reorder the table.",
   subtitle = "Grab any row and drag it to a new position. Column order never changes.",
-  headers,
-  rows,
+  headers = DEMO_DND_TABLE_ROWS_HEADERS,
+  rows = DEMO_DND_TABLE_ROWS_ROWS,
   onChange,
   className,
 }: DndTableRowsProps) {

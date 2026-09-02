@@ -43,7 +43,7 @@ export type FooterNewsletter = {
 }
 
 export type FooterProps = {
-  brandName: string
+  brandName?: string
   tagline?: string
   /** Custom logo node. Falls back to an initials mark built from `brandName`. */
   logo?: React.ReactNode
@@ -183,8 +183,13 @@ function ScrollTop() {
 
 // ── Footer ───────────────────────────────────────────────────────────────────
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_FOOTER_BRANDNAME = "Engine"
+
 export function Footer({
-  brandName,
+  brandName = DEMO_FOOTER_BRANDNAME,
   tagline,
   logo,
   columns = [],

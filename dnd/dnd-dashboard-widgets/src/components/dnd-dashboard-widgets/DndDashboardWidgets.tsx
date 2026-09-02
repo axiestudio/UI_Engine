@@ -30,17 +30,22 @@ export type DndDashboardWidgetsProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  zones: WidgetZone[]
+  zones?: WidgetZone[]
   onChange?: (zones: WidgetZone[]) => void
   onReset?: () => void
   className?: string
 }
 
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_DASHBOARD_WIDGETS_ZONES = [ { id: "z1", title: "Headline", widgets: [{ id: "w1", title: "Revenue", body: "Monthly recurring revenue." }, { id: "w2", title: "Bookings", body: "This week's sessions." }] }, { id: "z2", title: "Operational", widgets: [{ id: "w3", title: "No-show rate", body: "Rolling 30 days." }, { id: "w4", title: "Staff load", body: "Capacity per therapist." }] }, { id: "z3", title: "Growth", widgets: [{ id: "w5", title: "Waitlist", body: "People waiting for slots." }] }, ]
+
+
 export function DndDashboardWidgets({
   eyebrow = "DASH",
   title = "Compose your dashboard.",
   subtitle = "Move widgets between zones or reorder within a zone. Every zone re-flows instantly.",
-  zones,
+  zones = DEMO_DND_DASHBOARD_WIDGETS_ZONES,
   onChange,
   className,
 }: DndDashboardWidgetsProps) {

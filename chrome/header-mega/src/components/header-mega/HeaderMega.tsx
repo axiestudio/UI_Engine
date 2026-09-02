@@ -17,7 +17,7 @@ export type HeaderNavItem = {
 export type HeaderMegaProps = {
   brand?: string
   logo?: React.ReactNode
-  nav: HeaderNavItem[]
+  nav?: HeaderNavItem[]
   cta?: { label: string; href?: string; onClick?: () => void }
   /** Featured tile inside the open mega panel. */
   featured?: { title: string; description: string; href: string; tag?: string }
@@ -37,10 +37,16 @@ export type HeaderMegaProps = {
 //   columns by a dashed rule.
 // · Trigger links carry an animated underline that grows on hover and
 //   hardens when open. Square corners stay — the enterprise voice.
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HEADER_MEGA_NAV = [ { label: "Product", href: "#", columns: [ { heading: "Platform", links: [{ label: "Booking", description: "Real-time slots", href: "#" }, { label: "Payments", description: "Stripe built-in", href: "#" }, { label: "Reminders", description: "SMS + email", href: "#" }] }, { heading: "Tools", links: [{ label: "Analytics", description: "Weekly digests", href: "#" }, { label: "Intake forms", description: "Fully branded", href: "#" }] }, ] }, { label: "Pricing", href: "#" }, { label: "Docs", href: "#" }, ]
+
+
 export function HeaderMega({
   brand = "Brand",
   logo,
-  nav,
+  nav = DEMO_HEADER_MEGA_NAV,
   cta,
   featured,
   sticky = true,

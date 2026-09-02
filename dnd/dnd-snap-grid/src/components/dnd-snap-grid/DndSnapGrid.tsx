@@ -29,16 +29,21 @@ export type DndSnapGridProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  pieces: SnapPiece[]
+  pieces?: SnapPiece[]
   onChange?: (positions: Record<string, { x: number; y: number }>) => void
   className?: string
 }
+
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_DND_SNAP_GRID_PIECES = [ { id: "g1", label: "Logo" }, { id: "g2", label: "Hero" }, { id: "g3", label: "CTA" }, { id: "g4", label: "Footer" }, { id: "g5", label: "Stats" }, { id: "g6", label: "Gallery" }, ]
+
 
 export function DndSnapGrid({
   eyebrow = "PINBOARD",
   title = "Drop it on the grid.",
   subtitle = "Pieces snap to the cell grid and stay inside the board. Drag to re-lay them out.",
-  pieces,
+  pieces = DEMO_DND_SNAP_GRID_PIECES,
   onChange,
   className,
 }: DndSnapGridProps) {

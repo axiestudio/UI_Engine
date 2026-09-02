@@ -25,7 +25,7 @@ export type RoadmapProps = {
   eyebrow?: string
   title?: string
   subtitle?: string
-  columns: RoadmapColumnDef[]
+  columns?: RoadmapColumnDef[]
   tone?: "paper" | "ink"
   className?: string
 }
@@ -83,11 +83,16 @@ function RoadmapCard({ item, ink }: { item: RoadmapItem; ink: boolean }) {
   )
 }
 
+
+// Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_ROADMAP_COLUMNS: RoadmapColumnDef[] = [ { status: "now", description: "In active development.", items: [{ title: "Recurring bookings", tag: "Booking", votes: 312, description: "Weekly, bi-weekly and monthly series." }, { title: "SMS reminders", tag: "Notifications", votes: 141 }] }, { status: "next", items: [{ title: "Native mobile app", votes: 188 }, { title: "Multi-location support", votes: 96 }] }, { status: "later", items: [{ title: "AI intake summaries", votes: 64 }] }, ]
+
 export function Roadmap({
   eyebrow = "Roadmap",
   title = "Where we're headed",
   subtitle = "Public and honest — what's in motion, what's queued, what's a maybe. Shipped work lives in the changelog.",
-  columns,
+  columns = DEMO_ROADMAP_COLUMNS,
   tone = "paper",
   className,
 }: RoadmapProps) {
