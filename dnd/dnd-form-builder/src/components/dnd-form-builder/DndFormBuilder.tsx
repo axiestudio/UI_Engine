@@ -39,7 +39,7 @@ export type DndFormBuilderProps = {
 
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
-const DEMO_DND_FORM_BUILDER_FIELDTYPES = [ { type: "text", label: "Text field" }, { type: "email", label: "Email" }, { type: "tel", label: "Phone" }, { type: "textarea", label: "Paragraph" }, { type: "select", label: "Dropdown" }, { type: "switch", label: "Switch" }, ]
+const DEMO_DND_FORM_BUILDER_FIELDTYPES: { type: FieldType; label: string }[] = [ { type: "text", label: "Text field" }, { type: "email", label: "Email" }, { type: "tel", label: "Phone" }, { type: "textarea", label: "Paragraph" }, { type: "select", label: "Dropdown" }, { type: "switch", label: "Switch" }, ]
 
 
 export function DndFormBuilder({

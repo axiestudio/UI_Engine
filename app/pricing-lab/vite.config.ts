@@ -5,7 +5,15 @@ import dts from "vite-plugin-dts"
 
 export default defineConfig({
   plugins: [react(), dts({ include: ["src"], tsconfigPath: "./tsconfig.app.json", entryRoot: "src" })],
-  resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
+  resolve: {
+    alias: [
+      { find: "@", replacement: path.resolve(__dirname, "./src") },
+      // CJS-only use-sync-external-store (pulled in by react-redux via recharts)
+      // calls require("react") — broken in ESM browser bundles. Alias to React's
+      // native shim so the ESM graph stays clean.
+      { find: /^use-sync-external-store(\/.*)?$/, replacement: path.resolve(__dirname, "src/lib/use-sync-external-store.ts") },
+    ],
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

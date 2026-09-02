@@ -3,6 +3,7 @@ import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ChevronRight, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { InView } from "@/components/primitives/in-view"
 
 // ═══ APP-PRIMARY — org charts, file systems, BOMs: hierarchy that streams.
 // JOB      browse unlimited nested rows without loading the ocean
@@ -60,5 +61,24 @@ export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className
       </li>
     )
   }
-  return <ul role="tree" className={cn("divide-y divide-border/70 border border-border/70", className)}>{nodes.map((n) => <Row key={n.id} n={n} depth={0} />)}</ul>
+  return (
+    <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
+      <div className="mx-auto w-full max-w-[720px] px-4 py-12 sm:px-6 sm:py-14">
+        <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Tree grid · lazy branches</span>
+          <h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">Branch, on demand.</h2>
+          <p className="mt-2.5 max-w-xl text-sm leading-6 text-muted-foreground">
+            Expand a row that was never loaded and it streams in on the spot — a skeleton first, the kids after, guides staying quiet along the rail.
+          </p>
+        </InView>
+        <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+          <ul role="tree" className="divide-y divide-border/60 py-1.5">{nodes.map((n) => <Row key={n.id} n={n} depth={0} />)}</ul>
+        </div>
+        <p className="mx-auto mt-6 flex items-center justify-between border-t border-border/60 pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+          <span>Height spring · Skeleton rows · Keyboard ←→</span>
+          <span aria-hidden>●</span>
+        </p>
+      </div>
+    </section>
+  )
 }

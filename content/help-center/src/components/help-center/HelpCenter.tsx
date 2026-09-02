@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ArrowUpRight, BookOpen, CreditCard, LifeBuoy, Search, Settings, Users } from "lucide-react"
+import { ArrowUpRight, BookOpen, CalendarCheck, CreditCard, LifeBuoy, Rocket, Search, Settings, ShieldCheck, Users } from "lucide-react"
 
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"

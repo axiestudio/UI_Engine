@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ArrowDownIcon, CheckCheck, Pencil, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 import { Conversation, ConversationContent, ConversationEmptyState } from "@/components/ai-elements/conversation"
 import { Message, MessageContent, MessageActions, MessageAction } from "@/components/ai-elements/message"
@@ -29,22 +30,50 @@ export type ChatThreadVirtualProps = { messages: Msg[]; canEdit?: (m: Msg) => bo
 export function ChatThreadVirtual({ messages, canEdit, onEdit, reeditWindowSec = 90, className }: ChatThreadVirtualProps) {
   const [count, setCount] = React.useState(messages.length)
   React.useEffect(() => { if (messages.length > count) setCount(messages.length) }, [messages.length, count])
+  const channel = messages.find((m) => !m.me)?.author ?? "live thread"
+  const own = messages.filter((m) => m.me).length
   return (
-    <div className={cn("relative flex flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm", className)}>
+    <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
       <MotionConfig reducedMotion="user">
-        <Conversation className="h-[420px]" aria-live="polite">
-          {messages.length === 0 ? (
-            <ConversationEmptyState title="The channel is quiet" description="Newest traffic will land here." />
-          ) : (
-            <ConversationContent className="gap-1.5 px-4 py-3">
-              <Thread messages={messages} canEdit={canEdit} onEdit={onEdit} reeditSec={reeditWindowSec} />
-            </ConversationContent>
-          )}
-          <NewRepliesPill messages={messages} />
-        </Conversation>
-        <p className="sr-only" aria-live="polite">{count} messages in the thread.</p>
+        <div className="mx-auto w-full max-w-[720px] px-4 py-12 sm:px-6 sm:py-14">
+          {/* ── scene header ─────────────────────────────────────────── */}
+          <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Support channel · {messages.length} messages</span>
+            <h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">Stay near the tail.</h2>
+            <p className="mt-2.5 max-w-xl text-sm leading-6 text-muted-foreground">
+              A live thread that never drags you along — follow only while you&apos;re at the bottom, and a pill taps you back when replies land.
+            </p>
+          </InView>
+
+          {/* ── hero card: the scroller ──────────────────────────────── */}
+          <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+            <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 px-6 py-4">
+              <h3 className="text-sm font-bold tracking-tight">{channel}</h3>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                {own} of yours · follow the tail
+              </span>
+            </header>
+            <Conversation className="h-[430px]" aria-live="polite">
+              {messages.length === 0 ? (
+                <ConversationEmptyState title="The channel is quiet" description="Newest traffic will land here." />
+              ) : (
+                <ConversationContent className="gap-1.5 px-5 py-4">
+                  <Thread messages={messages} canEdit={canEdit} onEdit={onEdit} reeditSec={reeditWindowSec} />
+                </ConversationContent>
+              )}
+              <NewRepliesPill messages={messages} />
+            </Conversation>
+            <p className="sr-only" aria-live="polite">{count} messages in the thread.</p>
+          </div>
+
+          {/* ── caption line ─────────────────────────────────────────── */}
+          <p className="mx-auto mt-6 flex items-center justify-between border-t border-border/60 pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+            <span>AI-elements scroller · Stick to tail · Reedit window</span>
+            <span aria-hidden>●</span>
+          </p>
+        </div>
       </MotionConfig>
-    </div>
+    </section>
   )
 }
 

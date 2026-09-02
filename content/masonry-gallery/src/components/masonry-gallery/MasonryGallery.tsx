@@ -29,7 +29,7 @@ const RATIOS: Record<NonNullable<MasonryItem["ratio"]>, string> = {
 
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
-const DEMO_MASONRY_GALLERY_ITEMS = [ { id: "m1", src: "/showcase/content/content-01-office.webp", alt: "Office detail", ratio: "tall" }, { id: "m2", src: "/showcase/content/content-02-team.webp", alt: "Team detail", ratio: "square" }, { id: "m3", src: "/showcase/content/content-03-product.webp", alt: "Product detail", ratio: "wide" }, { id: "m4", src: "/showcase/content/content-04-architecture.webp", alt: "Architecture detail", ratio: "tall" }, { id: "m5", src: "/showcase/content/content-05-workshop.webp", alt: "Workshop detail", ratio: "square" }, { id: "m6", src: "/showcase/content/content-06-nature.webp", alt: "Nature detail", ratio: "wide" }, ]
+const DEMO_MASONRY_GALLERY_ITEMS: MasonryItem[] = [ { id: "m1", src: "/showcase/content/content-01-office.webp", alt: "Office detail", ratio: "tall" }, { id: "m2", src: "/showcase/content/content-02-team.webp", alt: "Team detail", ratio: "square" }, { id: "m3", src: "/showcase/content/content-03-product.webp", alt: "Product detail", ratio: "wide" }, { id: "m4", src: "/showcase/content/content-04-architecture.webp", alt: "Architecture detail", ratio: "tall" }, { id: "m5", src: "/showcase/content/content-05-workshop.webp", alt: "Workshop detail", ratio: "square" }, { id: "m6", src: "/showcase/content/content-06-nature.webp", alt: "Nature detail", ratio: "wide" }, ]
 
 
 export function MasonryGallery({

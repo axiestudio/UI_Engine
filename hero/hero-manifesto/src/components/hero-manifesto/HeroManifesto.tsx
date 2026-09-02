@@ -37,7 +37,7 @@ export type HeroManifestoProps = {
 
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
-const DEMO_HERO_MANIFESTO_LINES = ["Care that", "actually listens,", "then delivers."]
+const DEMO_HERO_MANIFESTO_LINES: [React.ReactNode, React.ReactNode, React.ReactNode] = ["Care that", "actually listens,", "then delivers."]
 
 
 export function HeroManifesto({

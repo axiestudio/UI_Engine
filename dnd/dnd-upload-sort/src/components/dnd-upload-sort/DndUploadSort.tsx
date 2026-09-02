@@ -42,7 +42,7 @@ const KIND_ICON: Record<NonNullable<UploadFile["kind"]>, React.ElementType> = {
 
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
-const DEMO_DND_UPLOAD_SORT_FILES = [ { id: "f1", name: "hero-poster.webp", size: "1.2 MB", kind: "image" }, { id: "f2", name: "brand-sheet.pdf", size: "440 KB", kind: "pdf" }, { id: "f3", name: "ambient-mix.mp3", size: "3.4 MB", kind: "audio" }, { id: "f4", name: "notes.txt", size: "2 KB", kind: "other" }, ]
+const DEMO_DND_UPLOAD_SORT_FILES: UploadFile[] = [ { id: "f1", name: "hero-poster.webp", size: "1.2 MB", kind: "image" }, { id: "f2", name: "brand-sheet.pdf", size: "440 KB", kind: "pdf" }, { id: "f3", name: "ambient-mix.mp3", size: "3.4 MB", kind: "audio" }, { id: "f4", name: "notes.txt", size: "2 KB", kind: "other" }, ]
 
 
 export function DndUploadSort({

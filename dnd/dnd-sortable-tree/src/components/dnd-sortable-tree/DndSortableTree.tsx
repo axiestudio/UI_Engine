@@ -54,7 +54,7 @@ function unflatten(flat: FlatNode[]): TreeNode[] {
 
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
-const DEMO_DND_SORTABLE_TREE_NODES = [ { id: "root", label: "Project", type: "folder", children: [ { id: "src", label: "src", type: "folder", children: [ { id: "app", label: "app.tsx", type: "file" }, { id: "main", label: "main.tsx", type: "file" }, ] }, { id: "pkg", label: "package.json", type: "file" }, { id: "readme", label: "README.md", type: "file" }, ] }, { id: "dist", label: "dist", type: "folder", children: [] }, ]
+const DEMO_DND_SORTABLE_TREE_NODES: TreeNode[] = [ { id: "root", label: "Project", type: "folder", children: [ { id: "src", label: "src", type: "folder", children: [ { id: "app", label: "app.tsx", type: "file" }, { id: "main", label: "main.tsx", type: "file" }, ] }, { id: "pkg", label: "package.json", type: "file" }, { id: "readme", label: "README.md", type: "file" }, ] }, { id: "dist", label: "dist", type: "folder", children: [] }, ]
 
 
 export function DndSortableTree({

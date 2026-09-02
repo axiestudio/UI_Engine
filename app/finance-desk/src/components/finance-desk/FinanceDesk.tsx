@@ -3,12 +3,9 @@ import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import {
   ArrowDownRight,
   ArrowUpRight,
-  BookOpen,
   CheckCheck,
   Flame,
-  Landmark,
   Lock,
-  Receipt,
   Undo2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -18,6 +15,8 @@ import { InlineEditCell } from "inline-edit-cell"
 import { UploadQueue, type UploadFile } from "upload-queue"
 import { ToastStack, type Toast } from "toast-stack"
 import { SlidingNumber } from "@/components/primitives/sliding-number"
+import { InView } from "@/components/primitives/in-view"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { CandlestickChart, type OHLCDataPoint } from "@/components/bklit/candlestick-chart"
 import { Candlestick } from "@/components/bklit/candlestick"
@@ -176,41 +175,47 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
   const lastUp = dayDelta >= 0
 
   return (
-    <div className={cn("flex min-h-[560px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
       <MotionConfig reducedMotion="user">
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
-        <Landmark className="size-4 text-primary" />
-        <h2 className="text-[13px] font-bold">Finance</h2>
-        <span className="text-[12px] text-muted-foreground">{period} · closer {closer}</span>
-        <span className="flex items-center gap-1.5 rounded border border-[hsl(var(--warn)/0.5)] bg-[hsl(var(--warn)/0.08)] px-2 py-0.5 text-[11px] font-semibold text-[hsl(var(--warn))]">
-          <Flame className="size-3.5" /> burn {burnPct}% of plan
-        </span>
-        {locked && (
-          <span className="flex items-center gap-1.5 rounded border border-border bg-muted px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
-            <Lock className="size-3" /> books locked
-          </span>
-        )}
-      </header>
+        <div className="mx-auto w-full max-w-[920px] px-4 py-12 sm:px-6 sm:py-14">
+          {/* ── scene header ─────────────────────────────────────────────── */}
+          <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Finance · Month close</span>
+            <h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">Books, honest.</h2>
+            <p className="mt-2.5 max-w-xl text-sm leading-6 text-muted-foreground">
+              {period} behind {closer} — the cash position walks daily, the ledger edits in place, and nothing is ever hidden: reversals re-stamp themselves into the trail.
+            </p>
+          </InView>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-12">
-        {/* ── money column: cash position chart + ledger ─────────────────── */}
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-8">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <div className="flex flex-wrap items-end justify-between gap-2 px-4 pt-3.5">
+          {/* ── hero: cash position ─────────────────────────────────────── */}
+          <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+            <div className="flex flex-wrap items-start justify-between gap-3 px-6 pt-6">
               <div>
-                <h3 className="text-[13px] font-bold tracking-tight">Cash position</h3>
-                <p className="text-[11px] text-muted-foreground">daily open / close · {period} · bank + clearing</p>
-          
-    </div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-mono text-[20px] font-black tabular-nums">{compactKr(last ? last.close : 0)}</span>
-                <span className={cn("flex items-center gap-0.5 text-[11px] font-bold tabular-nums", lastUp ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>
-                  {lastUp ? <ArrowUpRight className="size-3" /> : <ArrowDownRight className="size-3" />}
-                  {compactKr(Math.abs(dayDelta))} today
-                </span>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Cash position · daily open / close</span>
+                <div className="mt-3 flex items-baseline gap-3">
+                  <span className="font-display text-4xl font-bold tracking-tight tabular-nums sm:text-5xl">{compactKr(last ? last.close : 0)}</span>
+                  <span className="font-mono text-sm font-bold text-muted-foreground">kr</span>
+                  <span className={cn("flex items-center gap-0.5 text-xs font-bold tabular-nums", lastUp ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>
+                    {lastUp ? <ArrowUpRight className="size-3.5" aria-hidden /> : <ArrowDownRight className="size-3.5" aria-hidden />}
+                    {compactKr(Math.abs(dayDelta))} today
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                {!locked && (
+                  <Badge variant="secondary" className="gap-1.5">
+                    <Flame className="size-3" aria-hidden /> burn {burnPct}% of plan
+                  </Badge>
+                )}
+                {locked && (
+                  <Badge variant="outline" className="gap-1.5">
+                    <Lock className="size-3" aria-hidden /> books locked
+                  </Badge>
+                )}
               </div>
             </div>
-            <div className="px-2 pb-1 pt-2">
+
+            <div className="mt-2 px-3 pb-2 pt-2">
               <CandlestickChart
                 data={CASH_SERIES}
                 margin={{ top: 10, right: 14, bottom: 24, left: 48 }}
@@ -237,191 +242,200 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                 />
               </CandlestickChart>
             </div>
-            <dl className="grid grid-cols-4 divide-x border-t px-0 py-2 text-[11px]">
+
+            <dl className="grid grid-cols-2 divide-x divide-border/60 border-t bg-muted/20 py-3 sm:grid-cols-4">
               {([
                 ["month open", compactKr(first ? first.open : 0)],
                 ["month close", compactKr(last ? last.close : 0)],
                 ["net Δ month", `${monthDelta >= 0 ? "+" : "−"}${compactKr(Math.abs(monthDelta))}`],
                 ["low / high", `${compactKr(windowLow)} / ${compactKr(windowHigh)}`],
               ] as const).map(([k, v]) => (
-                <div key={k} className="px-4">
-                  <dt className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{k}</dt>
-                  <dd className="mt-0.5 font-mono tabular-nums">{v}</dd>
+                <div key={k} className="px-4 sm:px-5">
+                  <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{k}</dt>
+                  <dd className="mt-1 font-mono text-sm font-bold tabular-nums">{v}</dd>
                 </div>
               ))}
             </dl>
-          </section>
+          </div>
 
-          <section className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-lg border bg-card">
-            <header className="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-2.5">
-              <h3 className="flex items-center gap-1.5 text-[13px] font-bold tracking-tight">
-                <BookOpen className="size-3.5 text-muted-foreground" /> Ledger
-                <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] font-semibold text-muted-foreground">{ledger.length}</span>
-              </h3>
-              <span className="text-[11px] text-muted-foreground">
-                pending <span className="font-mono font-bold text-[hsl(var(--warn))]">{pendingSum.toLocaleString("sv-SE")}</span> kr · tap a memo to edit
-              </span>
-            </header>
-            <table className="w-full border-collapse text-[12px]">
-              <thead>
-                <tr className="border-b bg-muted/20 text-left text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
-                  <th className="px-4 py-1.5 font-semibold">Date</th>
-                  <th className="px-2 py-1.5 font-semibold">Account</th>
-                  <th className="px-2 py-1.5 font-semibold">Memo</th>
-                  <th className="px-2 py-1.5 text-right font-semibold">Amount</th>
-                  <th className="w-24 px-3 py-1.5 text-right font-semibold" />
-                </tr>
-              </thead>
-              <tbody>
-                {ledger.map((e) => (
-                  <tr key={e.id} className={cn("border-b border-border/50 last:border-0", e.state === "reversed" && "opacity-45", diffs[e.id] && "bg-[hsl(var(--warn)/0.05)]")}>
-                    <td className="px-4 py-1 font-mono tabular-nums text-muted-foreground">{e.date}</td>
-                    <td className="px-2 py-1 font-mono text-[11px]">{e.account}</td>
-                    <td className="px-2 py-1">
-                      {e.state !== "reversed" ? (
-                        <InlineEditCell
-                          value={e.memo}
-                          name={`memo of ${e.id}`}
-                          onSave={async (v: string) => {
-                            const next = v.trim()
-                            if (!next) throw new Error("memo")
-                            setLedger((es) => es.map((x) => (x.id === e.id ? { ...x, memo: next } : x)))
-                            if (e.state === "posted") stageMemoEdit(e.id, e.memo, next)
-                          }}
-                          width={190}
-                        />
-                      ) : (
-                        <span className="line-through">{e.memo}</span>
-                      )}
-                    </td>
-                    <td className={cn("px-2 py-1 text-right font-mono font-bold tabular-nums", e.amount < 0 ? "text-[hsl(var(--err))]" : "text-[hsl(var(--ok))]")}>
-                      {e.amount.toLocaleString("sv-SE")}
-                    </td>
-                    <td className="px-3 py-1 text-right">
-                      {e.state === "pending" && (
-                        <Button variant="ghost" size="sm" onClick={() => post(e.id)} className="h-6 px-2 text-[10px] font-bold uppercase text-[hsl(var(--info))]">
-                          post
-                        </Button>
-                      )}
-                      {e.state === "posted" && (
-                        <Button variant="ghost" size="sm" onClick={() => revert(e)} className="h-6 px-2 text-[10px] font-bold uppercase text-muted-foreground hover:text-[hsl(var(--err))]">
-                          revert
-                        </Button>
-                      )}
-                    </td>
+          {/* ── money column + rail ──────────────────────────────────────── */}
+          <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
+            {/* ledger */}
+            <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)] lg:col-span-8">
+              <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 px-6 py-4">
+                <h3 className="flex items-center gap-2.5 text-sm font-bold tracking-tight">
+                  Ledger
+                  <Badge variant="secondary">{ledger.length} rows</Badge>
+                </h3>
+                <span className="text-xs text-muted-foreground">
+                  pending <span className="font-mono font-bold text-[hsl(var(--warn))]">{pendingSum.toLocaleString("sv-SE")}</span> kr · tap a memo to edit
+                </span>
+              </header>
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-border/60 bg-muted/20 text-left font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                    <th className="px-6 py-2.5 font-semibold">Date</th>
+                    <th className="px-3 py-2.5 font-semibold">Account</th>
+                    <th className="px-3 py-2.5 font-semibold">Memo</th>
+                    <th className="px-3 py-2.5 text-right font-semibold">Amount</th>
+                    <th className="w-24 px-4 py-2.5 text-right font-semibold" />
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="mt-auto flex items-baseline justify-between border-t bg-muted/20 px-4 py-2.5">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Closing balance · posted</span>
-              <span className="flex items-center gap-1.5 font-mono text-[22px] font-black tabular-nums">
-                <SlidingNumber value={balance} />
-                <span className="text-[12px] font-bold text-muted-foreground">kr</span>
-              </span>
-            </div>
-          </section>
-        </div>
+                </thead>
+                <tbody>
+                  {ledger.map((e) => (
+                    <tr key={e.id} className={cn("border-b border-border/50 last:border-0", e.state === "reversed" && "opacity-45", diffs[e.id] && "bg-[hsl(var(--warn)/0.05)]")}>
+                      <td className="px-6 py-2 font-mono text-xs tabular-nums text-muted-foreground">{e.date}</td>
+                      <td className="px-3 py-2 font-mono text-xs">{e.account}</td>
+                      <td className="px-3 py-2">
+                        {e.state !== "reversed" ? (
+                          <InlineEditCell
+                            value={e.memo}
+                            name={`memo of ${e.id}`}
+                            onSave={async (v: string) => {
+                              const next = v.trim()
+                              if (!next) throw new Error("memo")
+                              setLedger((es) => es.map((x) => (x.id === e.id ? { ...x, memo: next } : x)))
+                              if (e.state === "posted") stageMemoEdit(e.id, e.memo, next)
+                            }}
+                            width={190}
+                          />
+                        ) : (
+                          <span className="line-through">{e.memo}</span>
+                        )}
+                      </td>
+                      <td className={cn("px-3 py-2 text-right font-mono text-sm font-bold tabular-nums", e.amount < 0 ? "text-[hsl(var(--err))]" : "text-[hsl(var(--ok))]")}>
+                        {e.amount.toLocaleString("sv-SE")}
+                      </td>
+                      <td className="px-4 py-2 text-right">
+                        {e.state === "pending" && (
+                          <Button variant="ghost" size="sm" onClick={() => post(e.id)} className="h-8 px-3 text-xs font-bold text-[hsl(var(--info))]">
+                            Post
+                          </Button>
+                        )}
+                        {e.state === "posted" && (
+                          <Button variant="ghost" size="sm" onClick={() => revert(e)} className="h-8 px-3 text-xs font-bold text-muted-foreground hover:text-[hsl(var(--err))]">
+                            Revert
+                          </Button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="mt-auto flex items-baseline justify-between border-t border-border/60 bg-muted/20 px-6 py-4">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Closing balance · posted</span>
+                <span className="flex items-baseline gap-1.5 font-mono text-2xl font-black tabular-nums">
+                  <SlidingNumber value={balance} />
+                  <span className="text-sm font-bold text-muted-foreground">kr</span>
+                </span>
+              </div>
+            </section>
 
-        {/* ── control rail: burn, receipts, trail ────────────────────────── */}
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-4">
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <div className="flex items-center justify-between px-4 pt-3.5">
-              <h3 className="flex items-center gap-1.5 text-[13px] font-bold tracking-tight">
-                <Flame className="size-3.5 text-[hsl(var(--warn))]" /> Burn rate
-              </h3>
-              <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] font-semibold text-muted-foreground">of plan</span>
-            </div>
-            <div className="flex flex-col items-center gap-3 p-3">
-              <RadialGauge
-                value={burnPct}
-                min={0}
-                max={120}
-                precision={0}
-                size={168}
-                notches={48}
-                showCenterValue
-                label="of plan"
-                unit="%"
-                zones={[
-                  { to: 70, color: "hsl(var(--ok))", label: "on plan" },
-                  { to: 100, color: "hsl(var(--warn))", label: "watch" },
-                  { to: 120, color: "hsl(var(--err))", label: "over" },
-                ]}
-              />
-              <dl className="w-full space-y-1.5 border-t px-1 pt-2.5 text-[12px]">
-                <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Cash on hand</dt>
-                  <dd className="font-mono font-semibold tabular-nums">{CASH_ON_HAND.toLocaleString("sv-SE")} kr</dd>
+            {/* rail */}
+            <div className="flex min-w-0 flex-col gap-5 lg:col-span-4">
+              <section className="rounded-2xl border border-border bg-card p-5 shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+                <header className="flex items-center justify-between">
+                  <h3 className="flex items-center gap-2 text-sm font-bold tracking-tight">
+                    <Flame className="size-4 text-[hsl(var(--warn))]" aria-hidden /> Burn rate
+                  </h3>
+                  <Badge variant="outline">plan</Badge>
+                </header>
+                <div className="mt-4 flex flex-col items-center gap-4">
+                  <RadialGauge
+                    value={burnPct}
+                    min={0}
+                    max={120}
+                    precision={0}
+                    size={168}
+                    notches={48}
+                    showCenterValue
+                    label="of plan"
+                    unit="%"
+                    zones={[
+                      { to: 70, color: "hsl(var(--ok))", label: "on plan" },
+                      { to: 100, color: "hsl(var(--warn))", label: "watch" },
+                      { to: 120, color: "hsl(var(--err))", label: "over" },
+                    ]}
+                  />
+                  <dl className="w-full space-y-1.5 border-t border-border/60 pt-3 text-sm">
+                    <div className="flex justify-between">
+                      <dt className="text-muted-foreground">Cash on hand</dt>
+                      <dd className="font-mono font-semibold tabular-nums">{CASH_ON_HAND.toLocaleString("sv-SE")} kr</dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt className="text-muted-foreground">Runway</dt>
+                      <dd className="font-mono font-bold tabular-nums">9.3 months</dd>
+                    </div>
+                  </dl>
                 </div>
-                <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Runway</dt>
-                  <dd className="font-mono font-bold tabular-nums">9.3 months</dd>
-                </div>
-              </dl>
+              </section>
+
+              <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+                <header className="flex items-center justify-between border-b border-border/60 px-5 py-3.5">
+                  <h3 className="text-sm font-bold tracking-tight">Receipt drop</h3>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{files.length} docs</span>
+                </header>
+                <UploadQueue
+                  files={files}
+                  onRemove={(id: string) => setFiles((fs) => fs.filter((f) => f.id !== id))}
+                  onRetry={(id: string) => setFiles((fs) => fs.map((f) => (f.id === id ? { ...f, status: "uploading", progress: 8, error: undefined } : f)))}
+                  className="border-0"
+                />
+              </section>
+
+              <section className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+                <header className="flex items-center justify-between border-b border-border/60 px-5 py-3.5">
+                  <h3 className="text-sm font-bold tracking-tight">Audit trail</h3>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{trail.length} events</span>
+                </header>
+                <ul className="flex-1 divide-y divide-border/50">
+                  <AnimatePresence initial={false}>
+                    {[...trail].reverse().map((t) => (
+                      <motion.li key={t.id} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2.5 px-5 py-2.5">
+                        <span className={cn("mt-1.5 size-1.5 shrink-0 rounded-full", t.honest ? "bg-[hsl(var(--ok))]" : "bg-muted-foreground/40")} />
+                        <span className="shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">{t.at}</span>
+                        <span className={cn("text-xs leading-[1.55]", t.honest ? "font-semibold text-[hsl(var(--ok))]" : "text-muted-foreground")}>
+                          {t.honest && <Undo2 className="mr-1 inline size-3" aria-hidden />}
+                          {t.text}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </AnimatePresence>
+                </ul>
+                <p className="border-t border-border/60 px-5 py-3 text-xs leading-5 text-muted-foreground">Reversions re-stamp with operator and time — originals are never hidden.</p>
+              </section>
             </div>
-          </section>
+          </div>
 
-          <section className="overflow-hidden rounded-lg border bg-card">
-            <header className="flex items-center gap-1.5 border-b px-4 py-2">
-              <Receipt className="size-3.5 text-muted-foreground" />
-              <h3 className="text-[13px] font-bold tracking-tight">Receipt drop</h3>
-              <span className="ml-auto font-mono text-[10px] text-muted-foreground">{files.length} docs</span>
-            </header>
-            <UploadQueue
-              files={files}
-              onRemove={(id: string) => setFiles((fs) => fs.filter((f) => f.id !== id))}
-              onRetry={(id: string) => setFiles((fs) => fs.map((f) => (f.id === id ? { ...f, status: "uploading", progress: 8, error: undefined } : f)))}
-              className="border-0"
-            />
-          </section>
+          {/* ── close bar ─────────────────────────────────────────────────── */}
+          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 sm:px-6">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Month close</span>
+            <span aria-live="polite" className="min-w-0 flex-1 truncate text-xs text-muted-foreground">
+              {diffCount > 0
+                ? `${diffCount} memo edit${diffCount === 1 ? "" : "s"} staged — approve to close the diff trail`
+                : pendingSum !== 0
+                  ? "post or revert pending rows before locking"
+                  : locked
+                    ? `books locked for ${period}`
+                    : "ledger balanced — ready to lock"}
+            </span>
+            <Button variant="outline" onClick={approveEdits} disabled={diffCount === 0}>
+              <CheckCheck className="size-3.5" aria-hidden /> Approve edits {diffCount > 0 ? `(${diffCount})` : ""}
+            </Button>
+            <Button onClick={lockMonth} disabled={locked || pendingSum !== 0 || diffCount > 0}>
+              <Lock className="size-3.5" aria-hidden /> {locked ? "Books locked" : "Lock month"}
+            </Button>
+          </div>
 
-          <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border bg-card">
-            <header className="flex items-center justify-between border-b px-4 py-2">
-              <h3 className="text-[13px] font-bold tracking-tight">Audit trail</h3>
-              <span className="font-mono text-[10px] text-muted-foreground">{trail.length} events</span>
-            </header>
-            <ul className="max-h-[168px] flex-1 divide-y overflow-auto">
-              <AnimatePresence initial={false}>
-                {[...trail].reverse().map((t) => (
-                  <motion.li key={t.id} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2 px-4 py-1.5">
-                    <span className={cn("mt-1.5 size-1.5 shrink-0 rounded-full", t.honest ? "bg-[hsl(var(--ok))]" : "bg-muted-foreground/40")} />
-                    <span className="shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">{t.at}</span>
-                    <span className={cn("text-[11px] leading-[1.5]", t.honest ? "font-semibold text-[hsl(var(--ok))]" : "text-muted-foreground")}>
-                      {t.honest && <Undo2 className="mr-1 inline size-3" aria-hidden />}
-                      {t.text}
-                    </span>
-                  </motion.li>
-                ))}
-              </AnimatePresence>
-            </ul>
-            <p className="border-t px-4 py-2 text-[11px] text-muted-foreground">Reversions re-stamp with operator and time — originals are never hidden.</p>
-          </section>
+          {/* ── caption line ──────────────────────────────────────────────── */}
+          <p className="mx-auto mt-6 flex items-center justify-between border-t border-border/60 pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+            <span>Cash position · Ledger · Trail</span>
+            <span aria-hidden>●</span>
+          </p>
         </div>
-      </div>
-
-      {/* ── month close action bar: edits → diff trail → approve → lock ── */}
-      <footer className="flex h-14 shrink-0 flex-wrap items-center gap-3 border-t bg-background px-4">
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Month close</span>
-        <span className="min-w-0 flex-1 truncate text-[11px] text-muted-foreground">
-          {diffCount > 0
-            ? `${diffCount} memo edit${diffCount === 1 ? "" : "s"} staged — approve to close the diff trail`
-            : pendingSum !== 0
-              ? "post or revert pending rows before locking"
-              : locked
-                ? `books locked for ${period}`
-                : "ledger balanced — ready to lock"}
-        </span>
-        <Button variant="outline" size="sm" onClick={approveEdits} disabled={diffCount === 0}>
-          <CheckCheck className="size-3.5" /> Approve edits {diffCount > 0 ? `(${diffCount})` : ""}
-        </Button>
-        <Button size="sm" onClick={lockMonth} disabled={locked || pendingSum !== 0 || diffCount > 0}>
-          <Lock className="size-3.5" /> {locked ? "Books locked" : "Lock month"}
-        </Button>
-      </footer>
+      </MotionConfig>
 
       <ToastStack toasts={toasts} onDismiss={(id: string) => setToasts((t) => t.filter((x) => x.id !== id))} pos="br" />
-          </MotionConfig>
-    </div>
+    </section>
   )
 }

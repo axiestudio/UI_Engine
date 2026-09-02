@@ -1,5 +1,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { InView } from "@/components/primitives/in-view"
+import { Badge } from "@/components/ui/badge"
 import { HEATMAP_DEFAULT_ENTER_EASE } from "../bklit/heatmap/heatmap-animation"
 import { HeatmapChart } from "../bklit/heatmap/heatmap-chart"
 import { HeatmapCells } from "../bklit/heatmap/heatmap-cells"
@@ -109,38 +111,59 @@ export function ActivityHeatmap({
   }, [cells])
 
   return (
-    <div className={cn("font-sans", className)}>
-      <div className="mb-2 flex items-baseline justify-between">
-        <p className="text-sm font-medium">{total.toLocaleString()} events <span className="text-muted-foreground">/ last {cols} weeks</span></p>
-        <p className="text-xs font-medium text-muted-foreground">best streak {streak}d</p>
+    <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
+      <div className="mx-auto w-full max-w-[720px] px-4 py-12 sm:px-6 sm:py-14">
+        {/* ── scene header ───────────────────────────────────────────── */}
+        <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Activity · last {cols} weeks</span>
+          <h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">Time, as texture.</h2>
+          <p className="mt-2.5 max-w-xl text-sm leading-6 text-muted-foreground">
+            Six months of focus in one grid — every cell a day. Hover a column to lift the week, or a day to read its count.
+          </p>
+        </InView>
+
+        {/* ── hero card ──────────────────────────────────────────────── */}
+        <div className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)] sm:p-7">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <p className="font-display text-2xl font-bold tracking-tight tabular-nums">
+              {total.toLocaleString()} <span className="text-sm font-bold text-muted-foreground">events</span>
+            </p>
+            <Badge variant="secondary">best streak {streak}d</Badge>
+          </div>
+
+          <div className="mt-6" role="img" aria-label={`Activity heatmap: ${total.toLocaleString()} events across ${cols} weeks, best streak ${streak} days.`}>
+            <HeatmapChart
+              data={columns}
+              gap={3}
+              margin={{ top: 4, right: 4, bottom: 0, left: 34 }}
+              animationDuration={1100}
+              enterTransition={{ type: "tween", duration: 0.4, ease: HEATMAP_DEFAULT_ENTER_EASE }}
+              levelColors={levelColors}
+              colorScale={fillScale}
+              fillScale={fillScale}
+              weekStartDay={weekStartDay}
+            >
+              <HeatmapCells cornerRadius={2} hoverScope="column" hideGhostCells={false} />
+              <HeatmapYAxis />
+              <HeatmapSeparator every={4} spacing={0} stroke="var(--chart-grid)" />
+              {showTooltip ? (
+                <HeatmapTooltip formatLabel={(count) => `${count.toLocaleString()} events`} />
+              ) : null}
+            </HeatmapChart>
+          </div>
+
+          {showLegend ? <HeatmapLegend levelStyles={levelStyles} interactive={false} className="mt-5" /> : null}
+          <p className="sr-only">
+            {`Activity over the last ${cols} weeks: ${total.toLocaleString()} events total, best streak ${streak} day${streak === 1 ? "" : "s"}. Use a pointer to read the exact date and count per day.`}
+          </p>
+        </div>
+
+        {/* ── caption line ───────────────────────────────────────────── */}
+        <p className="mx-auto mt-6 flex items-center justify-between border-t border-border/60 pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+          <span>Day cells · Column hover · Tooltip</span>
+          <span aria-hidden>●</span>
+        </p>
       </div>
-      <div
-        role="img"
-        aria-label={`Activity heatmap: ${total.toLocaleString()} events across ${cols} weeks, best streak ${streak} days.`}
-      >
-        <HeatmapChart
-          data={columns}
-          gap={3}
-          margin={{ top: 4, right: 4, bottom: 0, left: 34 }}
-          animationDuration={1100}
-          enterTransition={{ type: "tween", duration: 0.4, ease: HEATMAP_DEFAULT_ENTER_EASE }}
-          levelColors={levelColors}
-          colorScale={fillScale}
-          fillScale={fillScale}
-          weekStartDay={weekStartDay}
-        >
-          <HeatmapCells cornerRadius={2} hoverScope="column" hideGhostCells={false} />
-          <HeatmapYAxis />
-          <HeatmapSeparator every={4} spacing={0} stroke="var(--chart-grid)" />
-          {showTooltip ? (
-            <HeatmapTooltip formatLabel={(count) => `${count.toLocaleString()} events`} />
-          ) : null}
-        </HeatmapChart>
-      </div>
-      {showLegend ? <HeatmapLegend levelStyles={levelStyles} interactive={false} className="mt-2.5" /> : null}
-      <p className="sr-only">
-        {`Activity over the last ${cols} weeks: ${total.toLocaleString()} events total, best streak ${streak} day${streak === 1 ? "" : "s"}. Use a pointer to read the exact date and count per day.`}
-      </p>
-    </div>
+    </section>
   )
 }

@@ -37,10 +37,10 @@ export type DndKanbanProps = {
 
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
-const DEMO_DND_KANBAN_COLUMNS = [ { id: "backlog", title: "Backlog", cards: [{ id: "b1", title: "Research", tag: "idea" }, { id: "b2", title: "Audit", tag: "todo" }] }, { id: "doing", title: "In progress", cards: [{ id: "d1", title: "Build kanban", tag: "dev" }, { id: "d2", title: "Write a11y", tag: "docs" }] }, { id: "done", title: "Done", cards: [{ id: "do1", title: "Grid sort", tag: "shipped" }] }, ]
+const DEMO_DND_KANBAN_COLUMNS: KanbanColumn[] = [ { id: "backlog", title: "Backlog", cards: [{ id: "b1", title: "Research", tag: "idea" }, { id: "b2", title: "Audit", tag: "todo" }] }, { id: "doing", title: "In progress", cards: [{ id: "d1", title: "Build kanban", tag: "dev" }, { id: "d2", title: "Write a11y", tag: "docs" }] }, { id: "done", title: "Done", cards: [{ id: "do1", title: "Grid sort", tag: "shipped" }] }, ]
 
 
-export function DndKanban({ eyebrow = "KANBAN", title = "Move the cards.", subtitle = "Drag a card between columns = DEMO_DND_KANBAN_COLUMNS, or sort within a column. Keyboard works too.", columns, onChange, className }: DndKanbanProps) {
+export function DndKanban({ eyebrow = "KANBAN", title = "Move the cards.", subtitle = "Drag a card between columns, or sort within a column. Keyboard works too.", columns = DEMO_DND_KANBAN_COLUMNS, onChange, className }: DndKanbanProps) {
   const [state, setState] = React.useState(columns)
   React.useEffect(() => { setState(columns) }, [columns])
   const [activeCard, setActiveCard] = React.useState<string | null>(null)

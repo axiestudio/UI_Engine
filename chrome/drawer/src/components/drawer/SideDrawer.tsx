@@ -39,14 +39,26 @@ export type DrawerProps = {
 
 // ── Drawer ───────────────────────────────────────────────────────────────────
 
+// Demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same sheet the engine desktop demo shows.
+const DEMO_TITLE = "Studio menu"
+const DEMO_DESCRIPTION = "Everything the desktop nav has, one thumb away."
+const DEMO_ITEMS: DrawerAction[] = [
+  { label: "Book a session", primary: true, href: "#book" },
+  { label: "Treatments", href: "#" },
+  { label: "Visit us", href: "#" },
+  { label: "Journal", href: "#" },
+]
+const DEMO_FOOTER = "Open today · until 18:00"
+
 export function Drawer({
   trigger,
   triggerLabel = "Menu",
-  title,
-  description,
-  items = [],
+  title = DEMO_TITLE,
+  description = DEMO_DESCRIPTION,
+  items = DEMO_ITEMS,
   children,
-  footer,
+  footer = DEMO_FOOTER,
   onOpenChange,
   className,
 }: DrawerProps) {
