@@ -45,7 +45,7 @@ export function MergeConflictPanel({ conflicts, onResolve, className }: MergeCon
           <p className="border-b border-border/60 bg-muted/40 px-4 py-2 font-mono text-[12px] font-medium">{current.file}</p>
           <div role="radiogroup" aria-label={`Resolution for ${current.file}`} className="grid gap-px bg-border sm:grid-cols-2">
             {([["current", "Current — 1"], ["incoming", "Incoming — 2"]] as const).map(([v, l]) => (
-              <Button type="button" variant="ghost" key={v} role="radio" aria-checked={pick[current.id] === v} onClick={() => choose(current, v)} className={cn("group flex flex-col p-4 text-left text-sm transition-colors", pick[current.id] === v ? "bg-accent" : "bg-card hover:bg-muted/40", v === "incoming" && "border-l")}>
+              <Button type="button" variant="ghost" key={v} role="radio" aria-checked={pick[current.id] === v} onClick={() => choose(current, v)} className={cn("group flex h-auto flex-col p-4 text-left text-sm transition-colors", pick[current.id] === v ? "bg-accent" : "bg-card hover:bg-muted/40", v === "incoming" && "border-l")}>
                 <span className="mb-2 flex items-center justify-between text-xs font-medium text-muted-foreground">{l}{pick[current.id] === v && <Check className="size-3.5 text-[hsl(var(--ok))]" />}</span>
                 <pre className={cn("whitespace-pre-wrap font-mono text-[12px]", v === "current" && "text-[hsl(var(--err))]", v === "incoming" && "text-[hsl(var(--info))]")}>{current[v]}</pre>
               </Button>

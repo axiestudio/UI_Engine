@@ -85,7 +85,7 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
               className="p-6 sm:p-7"
             >
               <div className="flex items-center justify-between">
-                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>idx + 1<span className="opacity-50"> / cards.length</span></span>
+                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums")}>{String(idx + 1).padStart(2, "0")}<span className="opacity-50"> / {String(cards.length).padStart(2, "0")}</span></span>
                 <span className={cn("rounded-md border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em]", revealed ? "bg-muted text-muted-foreground" : "bg-background text-muted-foreground")}>
                   {revealed ? "Answer" : "Question"}
                 </span>

@@ -212,7 +212,7 @@ export function SocialScheduler({
         <section className="flex flex-col overflow-hidden rounded-lg border bg-card lg:col-span-4">
           <div className="flex items-baseline justify-between px-3 pt-3">
             <h3 className="font-display text-[13px] font-bold">Weekly quota</h3>
-            <span className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">used + queued / cap</span>
+            <span className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground tabular-nums">{totals.used + totals.queued} / {totals.quota}</span>
           </div>
           <div className="px-3 pt-1" role="img" aria-label={`Per-network quota: ${totals.used} published and ${totals.queued} queued of ${totals.quota} weekly slots`}>
             <BarChart

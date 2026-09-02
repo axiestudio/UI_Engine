@@ -62,7 +62,7 @@ function Tile({ kpi, index, total }: { kpi: Kpi; index: number; total: number })
     <InView once delay={index * 0.06} className="h-full">
       <article className="group flex h-full flex-col rounded-xl border bg-card p-5 shadow-sm transition-shadow hover:border-foreground/10">
         <div className="flex items-center justify-between">
-          <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>index + 1<span className="opacity-50"> / total</span></span>
+          <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums")}>{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
           <span
             className={cn(
               "inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold tabular-nums",

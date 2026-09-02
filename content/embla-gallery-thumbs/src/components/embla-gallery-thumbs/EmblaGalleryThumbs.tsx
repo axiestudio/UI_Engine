@@ -143,7 +143,7 @@ export function EmblaGalleryThumbs({
             >
               <span>{caption}</span>
               <span aria-live="polite" className="flex items-center gap-3">
-                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", ink ? "text-background/60" : undefined)}>selected + 1<span className="opacity-50"> / frames.length</span></span>
+                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums", ink ? "text-background/60" : undefined)}>{String(selected + 1).padStart(2, "0")}<span className="opacity-50"> / {String(frames.length).padStart(2, "0")}</span></span>
                 <span aria-hidden>●</span>
               </span>
             </figcaption>

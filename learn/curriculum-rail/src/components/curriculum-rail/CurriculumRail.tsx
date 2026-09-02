@@ -83,7 +83,7 @@ export function CurriculumRail({ modules = DEFAULT_MODULES, className, onLessonC
                     )} variant="default">
                     <div className="min-w-0">
                       <span className="flex items-center gap-2">
-                        <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>mi + 1<span className="opacity-50"> / modules.length</span></span>
+                        <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums")}>{String(mi + 1).padStart(2, "0")}<span className="opacity-50"> / {String(modules.length).padStart(2, "0")}</span></span>
                         <span className="font-display text-[17px] font-bold tracking-tight text-foreground">{m.title}</span>
                       </span>
                       <span className="mt-1 block text-[13px] leading-snug text-muted-foreground">{m.note}</span>

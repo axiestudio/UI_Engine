@@ -98,8 +98,8 @@ export function SpecSheet({
             return (
               <div key={g.id} className="border-b border-border last:border-b-0">
                 <h3>
-                  <Button type='button' aria-expanded={isOpen} aria-controls={`spec-${g.id}`} onClick={() => toggleGroup(g.id)} className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset" variant="default">
-                    <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", "text-muted-foreground")}>gi + 1<span aria-hidden> /</span></span>
+                  <Button type='button' aria-expanded={isOpen} aria-controls={`spec-${g.id}`} onClick={() => toggleGroup(g.id)} className="flex h-auto w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset" variant="default">
+                    <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums", "text-muted-foreground")}>{String(gi + 1).padStart(2, "0")}<span aria-hidden className="opacity-50"> /</span></span>
                     <span className="min-w-0 flex-1 truncate font-display text-lg font-bold tracking-tight text-foreground">{g.label}</span>
                     <span className={cn("hidden font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-opacity duration-200 sm:inline", isOpen && "opacity-0")}>
                       {g.summary}

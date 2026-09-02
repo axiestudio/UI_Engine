@@ -94,7 +94,7 @@ function StepCard({
             </span>
           )}
           <div className={cn("relative", numbered && "mt-14 sm:mt-16")}>
-            <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", cn(ink ? "text-background/70" : "text-foreground/70"))}>index + 1<span className="opacity-50"> / total</span></span>
+            <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums", cn(ink ? "text-background/70" : "text-foreground/70"))}>{String(index + 1).padStart(2, "0")}{total != null && <span className="opacity-50"> / {String(total).padStart(2, "0")}</span>}</span>
             {Icon && (
               <span
                 className={cn(

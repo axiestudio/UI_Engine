@@ -50,7 +50,7 @@ export function InteractiveScrollTriggeredTabs({ eyebrow = "SCROLLABLE", title =
       <div ref={wrap} className="mt-10 grid gap-8 lg:grid-cols-[240px_1fr]">
         <div className="sticky top-20 h-fit rounded-xl border bg-card shadow-sm p-2">
           {rows.map((r, i) => (
-            <Button type='button' key={r.id} className={cn("flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent")} variant="default">
+            <Button type='button' key={r.id} className={cn("flex h-auto w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold transition-colors", i === active ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent")} variant="default">
               <span className="font-mono text-[10px] opacity-50">{String(i + 1).padStart(2, "0")}</span>{r.label}
             </Button>
           ))}

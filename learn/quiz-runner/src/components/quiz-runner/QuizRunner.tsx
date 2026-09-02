@@ -136,7 +136,7 @@ export function QuizRunner({
               <div className={cn("border-b px-6 pb-5 pt-6", hair)}>
                 <div className="flex items-center justify-between gap-3">
                   <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{heading}</span>
-                  <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>Math.min(current + 1, questions.length)<span className="opacity-50"> / questions.length</span></span>
+                  <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums")}>{String(Math.min(current + 1, questions.length)).padStart(2, "0")}<span className="opacity-50"> / {String(questions.length).padStart(2, "0")}</span></span>
                 </div>
                 <div aria-hidden className="mt-4 flex gap-1.5">
                   {questions.map((_, i) => (

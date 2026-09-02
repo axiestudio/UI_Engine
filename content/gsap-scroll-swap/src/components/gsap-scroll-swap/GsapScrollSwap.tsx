@@ -158,7 +158,7 @@ export function GsapScrollSwap({
               className="flex min-h-[60vh] flex-col justify-center border-t border-border/60 py-12"
             >
               <div className="flex items-center justify-between">
-                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60")}>i + 1<span className="opacity-50"> / CHAPTERS.length</span></span>
+                <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums")}>{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(CHAPTERS.length).padStart(2, "0")}</span></span>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{chapter.kicker}</span>
               </div>
               <p className="mt-6 max-w-md text-[15px] leading-7 text-muted-foreground">{chapter.body}</p>

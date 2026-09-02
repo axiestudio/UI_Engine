@@ -40,7 +40,7 @@ export function GroupedSearchResults({ query, items, onSelect, className }: Grou
               const i = flat.indexOf(h.id), sel = i === active
               return (
                 <li key={h.id} id={rowId(h.id)} role="option" aria-selected={sel}>
-                  <Button type="button" variant="ghost" onClick={() => onSelect(h)} onMouseEnter={() => setActive(i)} className={cn("relative flex w-full flex-col rounded-md px-3 py-2 text-left", sel && "bg-accent")}>
+                  <Button type="button" variant="ghost" onClick={() => onSelect(h)} onMouseEnter={() => setActive(i)} className={cn("relative flex h-auto w-full flex-col rounded-md px-3 py-2 text-left", sel && "bg-accent")}>
                     {sel && <motion.span layoutId="search-active" className="absolute left-0 top-1 bottom-1 w-[3px] rounded-full bg-foreground" />}
                     <span className="text-sm font-medium">{h.title.split("").map((c, x) => <span key={x} className={m?.marks.has(x) ? "underline decoration-2 decoration-foreground/30 text-foreground" : ""}>{c}</span>)}</span>
                     {h.sub && <span className="truncate text-xs text-muted-foreground">{h.sub}</span>}

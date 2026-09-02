@@ -4,6 +4,8 @@ import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
+import { Iphone17Pro } from "@/components/eldora/iphone-17-pro"
+import { Ipad } from "@/components/eldora/ipad"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type VideoDemoProps = {
@@ -23,6 +25,71 @@ export type VideoDemoProps = {
   caption?: string
   tone?: "paper" | "ink"
   className?: string
+}
+
+// ── Device-framed poster (Eldora mockups) ────────────────────────────────────
+// Tablet/mobile get the registry device mockup; desktop keeps the flat browser-chrome card.
+
+function DevicePoster({
+  poster,
+  posterAlt,
+  playLabel,
+  onOpen,
+  ink,
+}: {
+  poster: string
+  posterAlt: string
+  playLabel: string
+  onOpen: () => void
+  ink: boolean
+}) {
+  return (
+    <div className="flex justify-center">
+      {/* tablet — Eldora iPad (engine tablet sim = 768px window) */}
+      <Button
+        type='button'
+        onClick={onOpen}
+        aria-label={playLabel}
+        className="relative hidden h-auto w-full max-w-[520px] overflow-hidden rounded-[28px] border-0 bg-transparent p-0 shadow-2xl transition-transform duration-300 hover:scale-[1.01] md:block lg:hidden"
+        variant="default"
+      >
+        <Ipad width={520} height={400} className="!h-auto !w-full" aria-hidden />
+        <span className="absolute left-[6.03%] top-[7.12%] h-[85.72%] w-[87.93%] overflow-hidden rounded-[9px] bg-muted">
+          <img src={poster} alt={posterAlt} className="h-full w-full object-cover object-top" loading="lazy" />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className={cn(
+              "flex size-14 items-center justify-center rounded-full shadow-xl",
+              ink ? "bg-background text-foreground" : "bg-foreground text-background",
+            )}>
+              <Play className="ml-0.5 size-5 fill-current" />
+            </span>
+          </span>
+        </span>
+      </Button>
+
+      {/* mobile — Eldora iPhone 17 Pro, sub-md viewports */}
+      <Button
+        type='button'
+        onClick={onOpen}
+        aria-label={playLabel}
+        className="relative block h-auto w-full max-w-[270px] overflow-hidden rounded-[40px] border-0 bg-transparent p-0 shadow-2xl transition-transform duration-300 hover:scale-[1.01] md:hidden"
+        variant="default"
+      >
+        <Iphone17Pro width={200} height={400} className="!h-auto !w-full" aria-hidden />
+        <span className="absolute left-[7.04%] top-[3.2%] h-[93.59%] w-[85.99%] overflow-hidden rounded-[32px] bg-muted">
+          <img src={poster} alt={posterAlt} className="h-full w-full object-cover object-top" loading="lazy" />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className={cn(
+              "flex size-12 items-center justify-center rounded-full shadow-xl",
+              ink ? "bg-background text-foreground" : "bg-foreground text-background",
+            )}>
+              <Play className="ml-0.5 size-5 fill-current" />
+            </span>
+          </span>
+        </span>
+      </Button>
+    </div>
+  )
 }
 
 // ── VideoDemo ────────────────────────────────────────────────────────────────
@@ -72,9 +139,20 @@ export function VideoDemo({
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           viewOptions={{ once: true, margin: "-80px" }}
         >
-          <figure className="group relative mx-auto max-w-4xl">
+          {/* tablet + mobile — registry device mockups */}
+          <figure className="group relative mx-auto max-w-4xl lg:hidden">
+            <DevicePoster poster={poster} posterAlt={posterAlt} playLabel={playLabel} onOpen={() => setOpen(true)} ink={ink} />
+            {caption && (
+              <figcaption className={cn("mt-4 text-center text-sm font-medium", ink ? "text-background/60" : "text-muted-foreground")}>
+                {caption}
+              </figcaption>
+            )}
+          </figure>
+
+          {/* desktop — browser-chrome card, unchanged */}
+          <figure className="group relative mx-auto hidden max-w-4xl lg:block">
             <Button type='button' onClick={() => setOpen(true)} aria-label={playLabel} className={cn(
-                "relative block w-full overflow-hidden rounded-[20px] border text-left shadow-2xl transition-transform duration-300 group-hover:scale-[1.01]",
+                "relative block h-auto w-full overflow-hidden rounded-[20px] border text-left shadow-2xl transition-transform duration-300 group-hover:scale-[1.01]",
                 ink ? "border-background/20 bg-background/5" : "border-border bg-card",
               )} variant="default">
               <div className={cn("flex items-center gap-3 border-b px-4 py-3", ink ? "border-background/10 bg-background/5" : "border-border bg-muted/50")}>
@@ -111,7 +189,7 @@ export function VideoDemo({
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="!max-w-4xl gap-0 overflow-hidden border-none bg-black p-0">
+        <DialogContent className="!max-w-none w-[min(56rem,calc(100%-2rem))] gap-0 overflow-hidden border-none bg-black p-0">
           <DialogTitle className="sr-only">{title}</DialogTitle>
           <div className="aspect-video w-full">
             {direct ? (

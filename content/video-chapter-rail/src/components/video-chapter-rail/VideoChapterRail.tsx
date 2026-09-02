@@ -121,7 +121,7 @@ export function VideoChapterRail({
               const active = i === activeIndex
               return (
                 <Button type='button' key={c.at} onClick={() => seek(c.at)} aria-current={active ? "true" : undefined} aria-label={`Jump to chapter ${i + 1}: ${c.title} at ${fmt(c.at)}`} className={cn(
-                    "w-[240px] flex-none rounded-xl border p-4 text-left shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "block h-auto w-[240px] flex-none whitespace-normal rounded-xl border p-4 text-left shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     active ? "border-primary bg-card" : "border-border bg-card hover:border-foreground/30",
                   )} variant="default">
                   <div className="flex items-center justify-between">
@@ -131,7 +131,7 @@ export function VideoChapterRail({
                         <span aria-hidden className="size-1 rounded-full bg-background" /> Now
                       </span>
                     ) : (
-                      <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", "text-muted-foreground")}>i + 1<span className="opacity-50"> / chapters.length</span></span>
+                      <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums", "text-muted-foreground")}>{String(i + 1).padStart(2, "0")}<span className="opacity-50"> / {String(chapters.length).padStart(2, "0")}</span></span>
                     )}
                   </div>
                   <p className={cn("mt-3 font-display text-base font-bold tracking-tight", active ? "text-foreground" : "text-foreground/70")}>{c.title}</p>

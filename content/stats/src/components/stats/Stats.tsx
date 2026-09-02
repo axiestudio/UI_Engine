@@ -68,7 +68,7 @@ function StatTile({ item, tone, separators, index }: { item: StatItem; tone: "pa
       )}
     >
       {separators && <BorderTrail size={40} className="absolute inset-x-0 top-0 h-px" style={{ background: "transparent", backgroundColor: "transparent" }} />}
-      <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", cn("absolute right-4 top-4", ink ? "text-background/35" : "text-muted-foreground/50"))}>index + 1<span className="opacity-50"> / undefined</span></span>
+      <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums", cn("absolute right-4 top-4", ink ? "text-background/35" : "text-muted-foreground/50"))}>{String(index + 1).padStart(2, "0")}<span aria-hidden className="opacity-50"> /</span></span>
       <p className={cn("font-display text-[40px] font-bold leading-none tracking-[-0.04em] tabular-nums sm:text-[52px]", ink ? "text-background" : "text-foreground")}>
         {item.prefix}
         {typeof item.value === "number" ? <CountUp value={item.value} decimals={item.decimals ?? 0} /> : item.value}

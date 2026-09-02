@@ -52,7 +52,7 @@ export function FunnelRiver({
 
           return (
             <div key={s.label} className="relative">
-              <Button type='button' aria-expanded={isOpen} aria-controls={`funnel-panel-${i}`} onClick={() => setOpen(isOpen ? null : i)} className="group relative block w-full text-left focus-visible:outline-none" variant="default">
+              <Button type='button' aria-expanded={isOpen} aria-controls={`funnel-panel-${i}`} onClick={() => setOpen(isOpen ? null : i)} className="group relative block h-auto w-full text-left focus-visible:outline-none" variant="default">
                 <motion.div
                   initial={reduce ? undefined : { opacity: 0, x: -8 }}
                   whileInView={{ opacity: 1, x: 0 }}

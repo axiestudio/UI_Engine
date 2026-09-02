@@ -70,12 +70,12 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
         {open && (
           <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4, transition: { duration: 0.1 } }} onMouseDown={(e) => e.preventDefault()} className="absolute inset-x-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-lg border bg-popover shadow-xl">
             {onCreate && q.trim() && !exact && (
-              <Button type="button" variant="ghost" onClick={create} className="flex w-full items-center gap-2 border-b border-border/60 bg-accent/50 px-3 py-2.5 text-left text-sm font-medium hover:bg-accent"><Plus className="size-4" aria-hidden /> Create “{q.trim()}”</Button>
+              <Button type="button" variant="ghost" onClick={create} className="flex h-auto w-full items-center gap-2 border-b border-border/60 bg-accent/50 px-3 py-2.5 text-left text-sm font-medium hover:bg-accent"><Plus className="size-4" aria-hidden /> Create “{q.trim()}”</Button>
             )}
             <ul role="listbox" aria-multiselectable="true" className="max-h-64 overflow-y-auto py-1" onScroll={(e) => { const el = e.currentTarget; if (more && !loading && el.scrollTop + el.clientHeight > el.scrollHeight - 40) fetchPage(q, page + 1) }}>
               {items.map((it) => (
                 <li key={it.id}>
-                  <Button type="button" variant="ghost" role="option" aria-selected={selected.has(it.id)} onClick={() => toggle(it)} className={cn("flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm hover:bg-accent", selected.has(it.id) && "bg-accent/50")}>
+                  <Button type="button" variant="ghost" role="option" aria-selected={selected.has(it.id)} onClick={() => toggle(it)} className={cn("flex h-auto w-full items-center gap-2.5 px-3 py-2 text-left text-sm hover:bg-accent", selected.has(it.id) && "bg-accent/50")}>
                     <span className={cn("grid size-4 place-items-center rounded border", selected.has(it.id) ? "border-primary bg-primary text-primary-foreground" : "border-input")}><Check className="size-3" aria-hidden /></span>
                     <span className="min-w-0 flex-1 truncate">{it.label}</span>
                     {it.meta && <span className="text-xs text-muted-foreground">{it.meta}</span>}

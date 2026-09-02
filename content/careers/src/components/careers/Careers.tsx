@@ -93,7 +93,7 @@ export function Careers({
                       ink ? "border-background/10 hover:bg-background/5" : "border-border hover:bg-secondary/60",
                     )}
                   >
-                    <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60", cn("hidden shrink-0 sm:block", ink ? "text-background/50" : "text-muted-foreground/70"))}>i + 1<span aria-hidden> /</span></span>
+                    <span className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 tabular-nums", cn("hidden shrink-0 sm:block", ink ? "text-background/50" : "text-muted-foreground/70"))}>{String(i + 1).padStart(2, "0")}<span aria-hidden className="opacity-50"> /</span></span>
                     <div className="min-w-0 flex-1">
                       <h3 className={cn("truncate font-display text-lg font-bold tracking-[-0.02em] sm:text-xl", ink ? "text-background" : "text-foreground")}>
                         {job.title}
