@@ -26,7 +26,7 @@ export function EventTimelineDay({ events, groupBy = defaultGroup, className }: 
     g ? g[1].push(e) : groups.push([k, [e]])
   }
   return (
-    <ol className={cn("space-y-7 font-sans", className)} aria-label="Activity timeline">
+    <ol className={cn("relative isolate space-y-7 overflow-hidden font-sans", className)} aria-label="Activity timeline">
       {groups.map(([day, evs]) => (
         <li key={day}>
           <div className="mb-3 flex items-center gap-3">
@@ -38,7 +38,7 @@ export function EventTimelineDay({ events, groupBy = defaultGroup, className }: 
             {evs.map((e, i) => (
               <motion.li key={e.id} initial={{ opacity: 0, x: 10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }} className="group relative">
                 <span aria-hidden className="absolute -left-[22px] top-3.5 size-2.5 rounded-full border-2 border-background transition-transform group-hover:scale-125" style={{ background: KIND_COLOR[e.kind] }} />
-                <div className="rounded-lg border bg-card px-4 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-shadow group-hover:shadow-md">
+                <div className="rounded-lg border bg-card px-4 py-3 shadow-sm transition-shadow group-hover:shadow-md">
                   <p className="text-[13px] font-medium leading-snug">
                     {e.actor && <strong className="font-semibold">{e.actor} </strong>}<span className="rounded px-1 font-mono text-[10px] font-medium uppercase tracking-wide" style={{ color: KIND_COLOR[e.kind], background: `color-mix(in srgb, ${KIND_COLOR[e.kind]} 12%, transparent)` }}>{e.kind}</span> {e.text}
                   </p>

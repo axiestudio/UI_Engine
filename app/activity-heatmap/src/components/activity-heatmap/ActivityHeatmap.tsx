@@ -111,7 +111,7 @@ export function ActivityHeatmap({
   }, [cells])
 
   return (
-    <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background", className)}>
       <div className="mx-auto w-full max-w-[720px] px-4 py-12 sm:px-6 sm:py-14">
         {/* ── scene header ───────────────────────────────────────────── */}
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

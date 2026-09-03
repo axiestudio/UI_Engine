@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── BOARD BASE — the bottom bun. Skip / continue, lights up when done. ──────
@@ -14,26 +15,28 @@ export type BoardBaseProps = {
 export function BoardBase({ cta = "Enter the studio", onCta, onSkip, ready, className }: BoardBaseProps) {
   return (
     <div className={cn("flex items-center gap-3 rounded-b-[14px] border-t border-app-line/70 bg-muted/30 px-5 py-3.5", className)}>
-      <button
+      <Button
         type="button"
+        variant="ghost"
+        size="sm"
         onClick={onSkip}
-        className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground"
       >
         Skip for now
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
+        variant="default"
+        size="sm"
         onClick={onCta}
-        aria-disabled={!ready}
+        disabled={!ready}
         className={cn(
-          "ml-auto h-9 rounded-full px-5 text-[11px] font-black uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-          ready
-            ? "bg-foreground text-background hover:-translate-y-0.5"
-            : "cursor-not-allowed bg-muted text-muted-foreground",
+          "ml-auto h-9 rounded-full px-5 text-[11px] font-black uppercase tracking-[0.14em]",
+          ready && "hover:-translate-y-0.5"
         )}
       >
         {cta}
-      </button>
+      </Button>
     </div>
   )
 }

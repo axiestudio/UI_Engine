@@ -29,6 +29,8 @@ import { Waveform } from "waveform"
 // Single source of truth: role standing, key staleness, remediations and
 // service state feed BOTH the radar hero and the gauge strip — cycle a role,
 // rotate a key or remediate a finding and the whole hero recomputes.
+// ISOLATION: root wrapper is relative isolate overflow-hidden — anchors inside
+// the engine content pane (Law 2).
 
 export type RoleRow = {
   id: string
@@ -185,7 +187,7 @@ export function SecurityPosture({
   const pipelineSettled = stages.every((s) => s.state === "passed")
 
   return (
-    <div className={cn("flex min-h-[560px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[560px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Security posture</h2>

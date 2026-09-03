@@ -27,7 +27,7 @@ export function DiffPaneSplit({ lines, file, defaultSplit, className }: DiffPane
     }
   }
   return (
-    <div className={cn("overflow-hidden rounded-xl border border-border/70 bg-card font-sans", className)}>
+    <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-card font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div className="flex items-center gap-2 border-b border-border/60 bg-muted/30 px-3 py-2 text-sm">
         <CornerDownLeft aria-hidden className="size-3.5 rotate-90 text-muted-foreground" />

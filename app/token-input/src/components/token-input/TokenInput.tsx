@@ -17,6 +17,7 @@ import {
   useTypeahead,
 } from "@floating-ui/react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — emails, tags, scopes: lists typed, not picked.
@@ -78,18 +79,18 @@ export function TokenInput({ value, onChange, placeholder = "Type, paste, or pre
   const pickSuggestion = (s: string) => { add(s) }
 
   return (
-    <div className={cn("font-sans", className)} onClick={() => ref.current?.focus()}>
+    <div className={cn("relative isolate font-sans", className)} onClick={() => ref.current?.focus()}>
       <MotionConfig reducedMotion="user">
       <div className={cn("flex min-h-11 flex-wrap items-center gap-1.5 rounded-lg border bg-background px-2.5 py-1.5 cursor-text transition-shadow focus-within:ring-2 focus-within:ring-[hsl(var(--app-focus))]")}>
         <AnimatePresence initial={false}>
           {value.map((t) => (
-            <motion.span layout key={t} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: shake === t.toLowerCase() ? [1, 1.06, 0.96, 1.03, 1] : 1, boxShadow: shake === t.toLowerCase() ? "0 0 0 2px hsl(var(--err))" : "0 0 0 0 #0000" }} exit={{ scale: 0.8, opacity: 0 }} transition={{ layout: { duration: 0.18 }, opacity: { duration: shake === t.toLowerCase() ? 0.4 : 0.15 } }} className="flex items-center gap-1 rounded-full bg-accent py-0.5 pl-2.5 pr-1 text-[12px] font-bold text-accent-foreground">
+            <motion.span layout key={t} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: shake === t.toLowerCase() ? [1, 1.06, 0.96, 1.03, 1] : 1, boxShadow: shake === t.toLowerCase() ? "0 0 0 2px hsl(var(--err))" : "0 0 0 0 transparent" }} exit={{ scale: 0.8, opacity: 0 }} transition={{ layout: { duration: 0.18 }, opacity: { duration: shake === t.toLowerCase() ? 0.4 : 0.15 } }} className="flex items-center gap-1 rounded-full bg-accent py-0.5 pl-2.5 pr-1 text-[12px] font-bold text-accent-foreground">
               {t}
               <Button type="button" variant="ghost" aria-label={`Remove ${t}`} onClick={(e) => { e.stopPropagation(); onChange(value.filter((x) => x !== t)) }} className="grid size-4 place-items-center rounded-full hover:bg-primary-foreground/20"><X className="size-3" /></Button>
             </motion.span>
           ))}
         </AnimatePresence>
-        <input ref={useMergeRefs([ref, refs.setReference])} aria-label={label} role="combobox" aria-expanded={listOpen && matches.length > 0} aria-autocomplete="list" aria-controls="token-input-listbox" value={text} {...getReferenceProps({ onChange: (e: React.ChangeEvent<HTMLElement>) => { const v = (e.target as HTMLInputElement).value; setText(v); setArmed(false); setListOpen(v.trim().length > 0) }, onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => {
+        <Input ref={useMergeRefs([ref, refs.setReference])} aria-label={label} role="combobox" aria-expanded={listOpen && matches.length > 0} aria-autocomplete="list" aria-controls="token-input-listbox" value={text} {...getReferenceProps({ onChange: (e: React.ChangeEvent<HTMLElement>) => { const v = (e.target as HTMLInputElement).value; setText(v); setArmed(false); setListOpen(v.trim().length > 0) }, onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => {
           if (e.key === "Enter" && listOpen && matches.length > 0 && activeIndex != null) { e.preventDefault(); pickSuggestion(matches[activeIndex]); ref.current?.focus(); return }
           if ((e.key === "Enter" || e.key === " " || e.key === ",") && text.trim()) { e.preventDefault(); add(text) }
           else if (e.key === "Backspace" && !text && value.length) {

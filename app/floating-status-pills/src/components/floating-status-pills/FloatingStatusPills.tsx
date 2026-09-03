@@ -218,7 +218,7 @@ export function FloatingStatusPills({
   const degraded = SERVICES.filter((s) => s.status !== "operational").length
 
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={REVEAL} transition={{ duration: 0.8, ease: EASE }}>
                 <header className="">

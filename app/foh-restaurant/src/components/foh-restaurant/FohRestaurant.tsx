@@ -107,7 +107,7 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
   }
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Floor manager</h2>
@@ -163,7 +163,7 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
             <span className="text-[11px] font-bold text-[hsl(var(--info))]">tap a chip to select · tap a row to advance</span>
           </header>
           <div className="max-h-[380px] overflow-y-auto">
-            <div className="sticky top-0 z-10 flex flex-wrap gap-1.5 border-b bg-card/95 px-3 py-2 backdrop-blur">
+            <div className="sticky top-0 z-10 flex flex-wrap gap-1.5 border-b bg-card px-3 py-2">
               {board.map((t) => (
                 <Button type="button" variant="ghost"
                   key={t.id}

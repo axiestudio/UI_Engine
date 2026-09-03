@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { Check, Flame } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 
@@ -158,22 +159,22 @@ export function HabitStrip({
                         <div className="grid shrink-0 grid-cols-7 gap-1">
                           {row.map((isDone, di) => (
                             <div key={di} role="gridcell">
-                              <motion.button
-                                type="button"
-                                whileTap={reduce ? undefined : { scale: 0.82 }}
-                                transition={{ type: "spring", stiffness: 520, damping: 18 }}
-                                aria-pressed={isDone}
-                                aria-label={`${habit} — ${DAYS_FULL[di]} — ${isDone ? "done" : "not done"}`}
-                                onClick={() => toggle(ri, di)}
-                                className={cn(
-                                  "grid size-7 place-items-center rounded-md border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                                  isDone
-                                    ? "border-primary bg-primary text-primary-foreground"
-                                    : "border-border bg-background text-transparent hover:border-muted-foreground/50",
-                                )}
-                              >
-                                <Check className="size-3.5" aria-hidden />
-                              </motion.button>
+                              <motion.div whileTap={reduce ? undefined : { scale: 0.82 }} transition={{ type: "spring", stiffness: 520, damping: 18 }}>
+                                <Button
+                                  type="button"
+                                  aria-pressed={isDone}
+                                  aria-label={`${habit} — ${DAYS_FULL[di]} — ${isDone ? "done" : "not done"}`}
+                                  onClick={() => toggle(ri, di)}
+                                  className={cn(
+                                    "grid size-7 place-items-center rounded-md border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                                    isDone
+                                      ? "border-primary bg-primary text-primary-foreground"
+                                      : "border-border bg-background text-transparent hover:border-muted-foreground/50",
+                                  )}
+                                >
+                                  <Check className="size-3.5" aria-hidden />
+                                </Button>
+                              </motion.div>
                             </div>
                           ))}
                         </div>

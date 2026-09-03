@@ -127,7 +127,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
   )
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* masthead — two-row editorial header, not the 48px strip */}
       <header className="flex flex-wrap items-end gap-x-6 gap-y-3 border-b bg-card px-5 pb-4 pt-5">

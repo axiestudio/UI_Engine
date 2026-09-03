@@ -4,6 +4,8 @@ import { PenLine } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 import { TextEffect } from "@/components/primitives/text-effect"
 import { MentionTextarea } from "mention-textarea"
 import { SmartSkeleton } from "smart-skeleton"
@@ -46,7 +48,7 @@ export function EditorialStudio({ className }: EditorialStudioProps) {
         <div className="space-y-5">
           <Card><CardContent className="p-5">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-1 block text-muted-foreground">HEADLINE (edit and watch it decode)</span>
-            <input value={title} onChange={(e) => setTitle(e.target.value)} className="mb-4 h-9 w-full rounded-md border bg-background px-3 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]" />
+            <Input value={title} onChange={(e) => setTitle(e.target.value)} className="mb-4 h-9 w-full rounded-md text-[13px]" />
             <MentionTextarea value={body} onChange={setBody} max={900} onSubmit={publish} placeholder="Paragraph one… @Elin for the photo credit, /gif for the loop" mentions={[{ id: "e", label: "Elin" }, { id: "k", label: "Klara" }]} commands={[{ cmd: "gif", describe: "embed the press loop", run: () => push("loop embedded (press-loop.mp4)") }]} />
           </CardContent></Card>
           <Card><CardContent className="p-5">
@@ -59,7 +61,7 @@ export function EditorialStudio({ className }: EditorialStudioProps) {
           <Card><CardContent className="p-5">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-2 block text-muted-foreground">PUBLISH WINDOW — what readers see, and when</span>
             <CronPreview expr={cron} onChange={setCron} />
-            <motion.button whileTap={{ scale: 0.97 }} onClick={publish} className="mt-4 h-10 w-full rounded-lg bg-primary font-mono text-[11px] font-black uppercase tracking-[0.18em] text-primary-foreground">{rendering ? "building…" : "publish → " + channel}</motion.button>
+            <Button onClick={publish} disabled={rendering} className="mt-4 h-10 w-full font-mono text-[11px] uppercase tracking-[0.18em]">{rendering ? "building…" : "publish to " + channel}</Button>
           </CardContent></Card>
           <Card><CardContent className="p-5">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-3 block text-muted-foreground">READER PREVIEW</span>

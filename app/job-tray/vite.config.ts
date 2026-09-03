@@ -13,7 +13,17 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "job-tray.es.js" : "job-tray.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: [
+      "clsx",
+      "lucide-react",
+      "motion",
+      "motion/react",
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "tailwind-merge",
+      "@radix-ui/react-collapsible",
+    ] },
     cssCodeSplit: false,
   },
 })

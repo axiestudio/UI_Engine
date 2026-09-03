@@ -143,7 +143,7 @@ export function ServiceLaneDesk({
   }
 
   return (
-    <div className={cn("flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — plain label voice */}
       <header className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b px-5 py-3">
@@ -349,7 +349,7 @@ export function ServiceLaneDesk({
 
       <AnimatePresence>
         {closing && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pointer-events-none fixed inset-0 z-40 grid place-items-center">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pointer-events-none absolute inset-0 z-40 grid place-items-center">
             <span className="rounded-md bg-foreground px-4 py-2 text-[12px] font-bold text-background">Closing order · printing job card…</span>
           </motion.div>
         )}

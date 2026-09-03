@@ -135,7 +135,7 @@ export function Waveform({
   return (
     <div
       className={cn(
-        "relative select-none bg-card px-5 pb-4 pt-3",
+        "relative isolate overflow-hidden select-none bg-card px-5 pb-4 pt-3",
         className
       )}
       data-paused={isPaused || undefined}

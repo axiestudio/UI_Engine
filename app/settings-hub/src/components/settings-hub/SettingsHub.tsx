@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
@@ -51,7 +52,7 @@ export function SettingsHub({ className }: SettingsHubProps) {
             <Card><CardContent className="grid gap-5 p-5 sm:grid-cols-2">
               <div>
                 <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-1 block text-muted-foreground">DISPLAY NAME / EMAIL</span>
-                <input defaultValue="Elin Sandberg" className="h-9 w-full rounded-md border bg-background px-3 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]" />
+                <Input defaultValue="Elin Sandberg" className="h-9 w-full rounded-md text-[13px]" />
                 <div className="mt-3"><MentionTextarea value={bio} onChange={setBio} max={160} onSubmit={() => push("bio saved", "ok")} placeholder="One line the team sees on your card — you can @mention teams…" /></div>
               </div>
               <div>

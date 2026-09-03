@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         A booking flow that survives thumb-dragging.
@@ -157,13 +158,13 @@ export function EmblaStepsWizard({
                             >
                               {field.label}
                             </label>
-                            <input
+                            <Input
                               id={`wiz-${key}`}
                               type={field.type ?? "text"}
                               value={values[key] ?? ""}
                               onChange={(e) => setValues((v) => ({ ...v, [key]: e.target.value }))}
                               placeholder={field.placeholder}
-                              className="h-10 w-full rounded-md border border-border bg-background px-3 text-[13px] font-medium text-foreground placeholder:font-normal placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                              className="h-10 text-[13px] font-medium"
                             />
                           </div>
                         )

@@ -66,7 +66,7 @@ export function BreadcrumbCollapse({ items, onNavigate, className }: BreadcrumbC
     ) : <span aria-current={last ? "page" : undefined} className={cn("max-w-[22ch] truncate", last && "font-medium text-foreground")}>{c.label}</span>
 
   return (
-    <div ref={host} className={cn("relative flex w-full min-w-0 items-center gap-1 font-sans text-sm", className)} aria-label="Breadcrumb">
+    <div ref={host} className={cn("relative isolate flex w-full min-w-0 items-center gap-1 overflow-hidden font-sans text-sm", className)} aria-label="Breadcrumb">
       <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1">
         <ol className="flex min-w-0 items-center gap-1 list-none m-0 p-0">
           {shown.map((c, i) => {

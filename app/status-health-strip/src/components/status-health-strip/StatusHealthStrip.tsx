@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { AlertTriangle, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — "is it us?" answered in one glance.
@@ -23,9 +24,9 @@ export function StatusHealthStrip({ services, region, onRegion, className }: Sta
   const shown = region ? services.filter((s) => s.region === region) : services
   const bad = shown.filter((s) => s.state !== "operational")
   return (
-    <div className={cn("border-b bg-muted/40 font-sans", className)} role="status" aria-label="System health">
+    <div className={cn("relative isolate border-b bg-muted/40 font-sans", className)} role="status" aria-label="System health">
       <MotionConfig reducedMotion="user">
-      <div className="mx-auto flex h-9 w-full max-w-[1200px] items-center gap-3 px-4 text-xs">
+      <div className="mx-auto flex h-9 w-full max-w-[1200px] items-center gap-3 overflow-hidden px-4 text-xs">
         <span className="flex items-center gap-1.5 font-semibold uppercase tracking-wider text-muted-foreground">
           <span className={cn("size-2 rounded-full", bad.length === 0 ? "bg-[hsl(var(--ok))] shadow-[0_0_8px_hsl(var(--ok)/0.7)]" : bad.some((b) => b.state === "down") ? "bg-[hsl(var(--err))]" : "bg-[hsl(var(--warn))]")} />
           {bad.length === 0 ? "All systems normal" : `${bad.length} issue${bad.length > 1 ? "s" : ""}`}
@@ -37,10 +38,15 @@ export function StatusHealthStrip({ services, region, onRegion, className }: Sta
           {onRegion && regions.length > 0 && (
             <label className="flex items-center gap-1 text-muted-foreground">
               <span className="sr-only">Region</span>
-              <select value={region ?? "all"} onChange={(e) => onRegion(e.target.value === "all" ? "" : e.target.value)} className="rounded-md border border-border/70 bg-background px-1.5 py-1 text-xs">
-                <option value="all">All regions</option>
-                {regions.map((r) => <option key={r} value={r}>{r}</option>)}
-              </select>
+              <Select value={region || "all"} onValueChange={(v) => onRegion(v === "all" ? "" : v)}>
+                <SelectTrigger size="sm" className="h-7 rounded-md border border-border/70 bg-background px-2 text-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All regions</SelectItem>
+                  {regions.map((r) => <SelectItem key={r} value={r}>{r}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </label>
           )}
           <Button type="button" variant="ghost" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex items-center gap-1 rounded px-2 py-1 text-xs font-medium text-muted-foreground hover:bg-muted">

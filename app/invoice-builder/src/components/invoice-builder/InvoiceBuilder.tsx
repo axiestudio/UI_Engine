@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { Plus, X } from "lucide-react"
 import { toast, Toaster } from "sonner"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 
@@ -138,7 +139,7 @@ export function InvoiceBuilder({
   }
 
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <header className="">
@@ -198,7 +199,7 @@ export function InvoiceBuilder({
                     style={{ overflow: "hidden" }}
                   >
                     <div className="grid grid-cols-[1fr_104px_32px] items-center gap-2 py-1.5">
-                      <input
+                      <Input
                         type="text"
                         value={row.label}
                         onChange={(e) => setLabel(row.id, e.target.value)}
@@ -206,7 +207,7 @@ export function InvoiceBuilder({
                         aria-label={`Line ${i + 1} description`}
                         className={FIELD}
                       />
-                      <input
+                      <Input
                         type="number"
                         min={0}
                         step={50}

@@ -258,7 +258,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
   return (
     <div
       ref={wrapperRef}
-      className={className}
+      className={cn("relative isolate overflow-hidden", className)}
       onContextMenu={(e) => { e.preventDefault(); open({ x: e.clientX, y: e.clientY }, false) }}
       onKeyDown={(e) => {
         if (pos) return

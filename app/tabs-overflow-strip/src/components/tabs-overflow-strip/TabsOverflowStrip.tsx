@@ -64,7 +64,7 @@ export function TabsOverflowStrip({ tabs, value, onChange, onClose, onPin, class
   const key = (e: React.KeyboardEvent) => { const i = visible.findIndex((t) => t.id === value); if (e.key === "ArrowRight") { e.preventDefault(); onChange(visible[Math.min(visible.length - 1, i + 1)].id) } if (e.key === "ArrowLeft") { e.preventDefault(); onChange(visible[Math.max(0, i - 1)].id) } if (e.key === "w" && (e.metaKey || e.ctrlKey) && onClose) { e.preventDefault(); onClose(value) } }
 
   return (
-    <div className={cn("relative flex items-stretch border-b border-border", className)}>
+    <div className={cn("relative isolate flex items-stretch overflow-hidden border-b border-border", className)}>
       <div className="relative flex min-w-0 flex-1">
       <div ref={strip} role="tablist" aria-label="Open records" tabIndex={0} onKeyDown={key} onWheel={(e) => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) strip.current?.scrollBy({ left: e.deltaX }) }} className="flex flex-1 items-stretch gap-0.5 overflow-x-auto px-2 no-scrollbar">
         {visible.map((t) => {

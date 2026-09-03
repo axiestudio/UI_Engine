@@ -120,7 +120,7 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
   const running = phase === "compile" || phase === "scan"
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       {/* screen header */}
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Lab notebook</h2>
@@ -219,7 +219,7 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
             </header>
             <div className="p-3">
               <CodeBlock code={CODE.replace("{group}", group?.id ?? "")} language="python" showLineNumbers>
-                <CodeBlockCopyButton aria-label="Copy cell code" onClick={() => {}} className="bg-background/80 backdrop-blur" />
+                <CodeBlockCopyButton aria-label="Copy cell code" onClick={() => {}} className="bg-background" />
               </CodeBlock>
               <div className="mt-3" aria-live="polite">
                 {running ? (

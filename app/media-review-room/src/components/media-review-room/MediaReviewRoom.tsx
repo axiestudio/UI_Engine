@@ -96,7 +96,7 @@ export function MediaReviewRoom({ cut = "V4 · runtime 02:41", runtime = "02:41"
   }
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Review a cut</h2>
@@ -122,7 +122,7 @@ export function MediaReviewRoom({ cut = "V4 · runtime 02:41", runtime = "02:41"
                 onAddPin={(p: { x: number; y: number }) => setPins((ps) => [...ps, { id: "m" + String(Date.now()), x: p.x, y: p.y, author: "R. Idris", text: `Note at ${fmtTC(tc)} — describe the fix.` }])}
                 onRemove={(id: string) => setPins((ps) => ps.filter((p) => p.id !== id))}
                 canvas={
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-md border bg-gradient-to-br from-[hsl(222_30%_16%)] via-[hsl(222_26%_12%)] to-[hsl(220_22%_8%)]">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-md border bg-gradient-to-br from-app-stage-1 via-app-stage-2 to-app-stage-3">
                     <Spotlight size={280} className="from-zinc-300/20 via-zinc-500/10 to-zinc-700/5" />
                     <div className="absolute inset-x-4 bottom-4 flex items-center gap-3">
                       <Button type="button" variant="ghost" onClick={() => setPlaying(!playing)} aria-label={playing ? "Pause" : "Play"} className="flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-white/10 text-white hover:bg-white/20">

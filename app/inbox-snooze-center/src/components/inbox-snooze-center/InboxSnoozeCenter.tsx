@@ -16,7 +16,7 @@ export type InboxSnoozeCenterProps = { items: InboxItem[]; onComplete: (id: stri
 
 export function InboxSnoozeCenter({ items, onComplete, onSnooze, completed, className }: InboxSnoozeCenterProps) {
   return (
-    <div className={cn("overflow-hidden rounded-xl border bg-card font-sans", className)} role="region" aria-label="Notification inbox">
+    <div className={cn("relative isolate overflow-hidden rounded-xl border bg-card font-sans", className)} role="region" aria-label="Notification inbox">
       <MotionConfig reducedMotion="user">
       <header className="flex items-center justify-between border-b border-border/60 bg-muted/40 px-4 py-3">
         <p className="text-sm font-semibold">Inbox <span className="text-xs font-medium text-muted-foreground">{items.length} open · {completed} done today</span></p>
@@ -54,7 +54,7 @@ function SwipeRow({ it, onComplete, onSnooze }: { it: InboxItem; onComplete: (id
       </motion.article>
       <AnimatePresence>
         {menu && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute inset-x-0 bottom-0 z-10 flex items-center gap-1.5 border-t border-border/60 bg-popover/95 p-3 backdrop-blur">
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute inset-x-0 bottom-0 z-10 flex items-center gap-1.5 border-t border-border/60 bg-popover p-3">
             <span className="mr-auto text-xs text-muted-foreground">snooze until</span>
             {["10 min", "2 hr", "tonight", "tomorrow"].map((s) => <Button type="button" variant="ghost" key={s} onClick={() => { setMenu(false); onSnooze(it.id, s) }} className="rounded-full border border-border/60 px-2.5 py-1 text-xs font-medium hover:bg-accent">{s}</Button>)}
             <Button type="button" variant="ghost" aria-label="Close snooze menu" onClick={() => setMenu(false)} className="px-2 text-xs font-medium text-muted-foreground">✕</Button>

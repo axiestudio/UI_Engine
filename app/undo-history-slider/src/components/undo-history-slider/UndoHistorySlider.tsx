@@ -52,7 +52,7 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
       <div className="mt-2 flex items-center justify-between">
         <p className="text-xs text-muted-foreground">{head ?? "history"} · {versions.length} versions</p>
         <AnimatePresence>
-          {pending && <motion.button initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} onClick={() => { onRestore(pending.id); setPending(null); setHoverIdx(null) }} className="flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-xs font-medium text-primary-foreground shadow-sm"><RotateCcw className="size-3.5" /> restore “{pending.label}”</motion.button>}
+          {pending && <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }}><Button onClick={() => { onRestore(pending.id); setPending(null); setHoverIdx(null) }} className="flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium shadow-sm"><RotateCcw className="size-3.5" /> restore “{pending.label}”</Button></motion.div>}
         </AnimatePresence>
       </div>
       <p className="sr-only" aria-live="polite">{pending ? `Previewing ${pending.label}. Press restore to apply.` : "At latest version."}</p>

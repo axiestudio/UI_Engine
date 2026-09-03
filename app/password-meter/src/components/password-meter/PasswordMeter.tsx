@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, MotionConfig } from "motion/react"
 import { Eye, EyeOff, Keyboard, ShieldCheck, ShieldX } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — registration forms with a brain.
@@ -32,10 +33,10 @@ export function PasswordMeter({ value, onChange, breached, checking, onScore, pl
   const hue = breached ? "hsl(var(--err))" : score < 40 ? "hsl(var(--err))" : score < 70 ? "hsl(var(--warn))" : "hsl(var(--ok))"
 
   return (
-    <div className={cn("font-sans", className)}>
+    <div className={cn("relative isolate overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div className="relative">
-        <input type={show ? "text" : "password"} value={value} onChange={(e) => onChange(e.target.value)} onKeyUp={(e) => setCaps(e.getModifierState("CapsLock"))} placeholder={placeholder} autoComplete="new-password" aria-describedby="pwd-rules" className="h-11 w-full rounded-lg border bg-background pl-3.5 pr-16 text-[14px] tracking-[0.04em] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]" />
+        <Input type={show ? "text" : "password"} value={value} onChange={(e) => onChange(e.target.value)} onKeyUp={(e) => setCaps(e.getModifierState("CapsLock"))} placeholder={placeholder} autoComplete="new-password" aria-describedby="pwd-rules" className="h-11 w-full rounded-lg border bg-background pl-3.5 pr-16 text-[14px] tracking-[0.04em]" />
         <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-1">
           {caps && <motion.span initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} aria-hidden title="Caps Lock is on" className="grid size-6 place-items-center rounded-md bg-[hsl(var(--warn))]/15 text-[hsl(var(--warn))]"><Keyboard className="size-3.5" /></motion.span>}
           <Button type="button" variant="ghost" aria-pressed={show} aria-label={show ? "Hide password" : "Show password"} onClick={() => setShow((s) => !s)} className="grid size-7 place-items-center rounded-md text-muted-foreground hover:bg-muted"><motion.span animate={{ rotate: show ? 180 : 0 }}>{show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}</motion.span></Button>

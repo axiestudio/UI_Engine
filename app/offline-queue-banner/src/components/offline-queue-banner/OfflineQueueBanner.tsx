@@ -99,7 +99,7 @@ export function OfflineQueueBanner({ online, queued, flushing, onRetryNow, lastE
       <AnimatePresence initial={false}>
         <MotionConfig reducedMotion="user">
           {show && (
-            <motion.div role="status" aria-live="polite" initial={{ y: -34, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -34, opacity: 0 }} transition={{ type: "spring", stiffness: 300, damping: 30 }} className={cn("relative w-full overflow-hidden font-sans", className)}>
+            <motion.div role="status" aria-live="polite" initial={{ y: -34, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -34, opacity: 0 }} transition={{ type: "spring", stiffness: 300, damping: 30 }}               className={cn("relative isolate w-full overflow-hidden font-sans", className)}>
               <div className={cn("flex items-center gap-2.5 px-4 py-2 text-sm font-medium", !online ? "bg-[hsl(var(--warn)/0.15)] text-[hsl(var(--warn))]" : flushing ? "bg-[hsl(var(--info)/0.12)] text-[hsl(var(--info))]" : "bg-[hsl(var(--ok)/0.12)] text-[hsl(var(--ok))]")}>
                 {online ? <Wifi aria-hidden className="size-4" /> : <CloudOff aria-hidden className="size-4" />}
                 {!online ? <>You’re offline — <motion.span key={queued} initial={{ scale: 1.35, color: "inherit" }} animate={{ scale: 1 }} className="font-mono font-semibold tabular-nums">{queued}</motion.span> change{queued === 1 ? "" : "s"} will sync when you’re back</> : paused ? <>Sync paused — the connection dropped mid-push; <span className="font-mono font-semibold tabular-nums">{queued}</span> still pending</> : flushing ? <>Pushing {queued} pending change{queued === 1 ? "" : "s"}…</> : <>{queued} change{queued === 1 ? "" : "s"} queued — retry now?</>}

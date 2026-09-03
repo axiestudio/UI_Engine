@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Filter, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — Power-Query-as-tokens. Typed filters, readable to anyone.
@@ -26,7 +27,7 @@ export function FilterTokenBuilder({ tokens, onChange, and, onAnd, fields = [], 
     setText("")
   }
   return (
-    <div className={cn("rounded-lg border bg-background p-2.5 font-sans", className)}>
+    <div className={cn("relative isolate overflow-hidden rounded-lg border bg-background p-2.5 font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div className="flex min-h-9 flex-wrap items-center gap-1.5">
         <Filter aria-hidden className="size-4 shrink-0 text-muted-foreground" />
@@ -46,7 +47,7 @@ export function FilterTokenBuilder({ tokens, onChange, and, onAnd, fields = [], 
             </React.Fragment>
           )
         })}
-        <input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === "," ) { e.preventDefault(); commit() } else if (e.key === "Backspace" && !text && tokens.length) { const last = tokens[tokens.length - 1]; setText(`${last.field}${last.op === "≠" ? "!=" : last.op}${last.value}`); onChange(tokens.slice(0, -1)) } }} placeholder={placeholder} className="h-8 min-w-[160px] flex-1 bg-transparent px-1 text-[13px] outline-none" aria-label="Add filter" list={fields.length ? "filter-fields" : undefined} aria-describedby="filter-readout" />
+        <Input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === "," ) { e.preventDefault(); commit() } else if (e.key === "Backspace" && !text && tokens.length) { const last = tokens[tokens.length - 1]; setText(`${last.field}${last.op === "≠" ? "!=" : last.op}${last.value}`); onChange(tokens.slice(0, -1)) } }} placeholder={placeholder} className="h-8 min-w-[160px] flex-1 rounded-md border-0 bg-transparent px-1 text-[13px] shadow-none focus-visible:ring-0 focus-visible:ring-offset-0" aria-label="Add filter" list={fields.length ? "filter-fields" : undefined} aria-describedby="filter-readout" />
           
     </div>
       {fields.length > 0 && <datalist id="filter-fields">{fields.map((f) => <option key={f} value={f + "="} />)}</datalist>}

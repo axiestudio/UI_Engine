@@ -16,6 +16,7 @@ import {
 } from "@floating-ui/react"
 import { ArrowDownUp, Check, ChevronDown, Columns3, Filter, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 
@@ -163,12 +164,12 @@ export function FloatingFilterToolbar({ title = "The plant bench — demo grid",
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <div className="relative">
             <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" aria-hidden />
-            <input
+            <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search plants"
               aria-label="Search plants"
-              className="h-9 w-48 rounded-md border bg-background pl-8 pr-3 text-[13px] font-medium outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-9 w-48 pl-8 text-[13px] font-medium"
             />
           </div>
 

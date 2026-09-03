@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ArrowDownIcon, CheckCheck, Pencil, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
 import { Conversation, ConversationContent, ConversationEmptyState } from "@/components/ai-elements/conversation"
@@ -33,7 +34,7 @@ export function ChatThreadVirtual({ messages, canEdit, onEdit, reeditWindowSec =
   const channel = messages.find((m) => !m.me)?.author ?? "live thread"
   const own = messages.filter((m) => m.me).length
   return (
-    <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background", className)}>
       <MotionConfig reducedMotion="user">
         <div className="mx-auto w-full max-w-[720px] px-4 py-12 sm:px-6 sm:py-14">
           {/* ── scene header ─────────────────────────────────────────── */}
@@ -118,7 +119,7 @@ function Thread({ messages, canEdit, onEdit, reeditSec }: { messages: Msg[]; can
                   )}
                   {isEditing ? (
                     <div className="flex items-center gap-2 py-0.5">
-                      <input autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") save(m.id); if (e.key === "Escape") setEditing(null) }} aria-label="Reedit message" className="w-56 bg-transparent font-mono text-[12px] text-foreground outline-none" />
+                      <Input autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") save(m.id); if (e.key === "Escape") setEditing(null) }} aria-label="Reedit message" className="w-56 bg-transparent font-mono text-[12px] text-foreground outline-none" />
                       <Button type="button" variant="outline" size="sm" onClick={() => save(m.id)} className="h-6 px-2 text-[11px] font-medium text-foreground">save</Button>
                       <Button type="button" variant="ghost" size="sm" onClick={() => setEditing(null)} className="h-6 px-2 text-[11px] text-muted-foreground">esc</Button>
                     </div>

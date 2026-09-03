@@ -138,15 +138,15 @@ export function CuratorDesk({ exhibition = "New light · autumn hang", onPrintLa
             onRemove={(id) => setPins((ps) => ps.filter((p) => p.id !== id))}
             onAddPin={({ x, y }) => setPins((ps) => [...ps, { id: "p" + Date.now(), x, y, author: "label · draft", text: "New label draft — fill artist, title, year, medium, lender" }])}
             canvas={
-              <div className="relative h-full min-h-[300px] w-full overflow-hidden bg-[hsl(40_30%_94%)]">
+              <div className="relative h-full min-h-[300px] w-full overflow-hidden bg-app-wall">
                 <div aria-hidden className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_1px_1px,hsl(var(--foreground))_0.5px,transparent_0)] [background-size:9px_9px]" />
-                <div aria-hidden className="absolute bottom-0 left-1/2 h-14 w-2/3 -translate-x-1/2 rounded-sm bg-[hsl(40_18%_82%)] shadow-[inset_0_6px_0_hsl(40_18%_74%)]" />
+                <div aria-hidden className="absolute bottom-0 left-1/2 h-14 w-2/3 -translate-x-1/2 rounded-sm bg-app-shelf shadow-[inset_0_6px_0_hsl(var(--wall-shelf-deep))]" />
                 <div className="absolute inset-x-0 bottom-14 flex items-end justify-center gap-8 px-10">
                   <AnimatePresence initial={false}>
                     {works.map((w, i) => (
                       <motion.figure key={w.id} layout initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ delay: i * 0.05 }} className="flex flex-col items-center gap-2" style={{ width: `${w.width}%`, maxWidth: 220 }}>
-                        <div className="w-full border-[6px] border-[hsl(35_25%_78%)] bg-background p-1.5 shadow-md" style={{ height: w.height }}>
-                          <div className={cn("h-full w-full", w.year % 2 ? "bg-gradient-to-br from-[hsl(215_30%_30%)] to-[hsl(215_25%_55%)]" : "bg-gradient-to-tl from-[hsl(28_45%_50%)] to-[hsl(35_35%_72%)]")} />
+                        <div className="w-full border-[6px] border-app-frame bg-background p-1.5 shadow-md" style={{ height: w.height }}>
+                          <div className={cn("h-full w-full", w.year % 2 ? "bg-gradient-to-br from-app-painting-cool-deep to-app-painting-cool" : "bg-gradient-to-tl from-app-painting-warm-deep to-app-painting-warm")} />
                         </div>
                         <figcaption className="rounded-sm border bg-background px-1.5 py-0.5 text-center text-[9px] leading-tight text-muted-foreground shadow-sm">
                           <span className="font-semibold text-foreground">{w.artist}</span> · {w.title} ({w.year})

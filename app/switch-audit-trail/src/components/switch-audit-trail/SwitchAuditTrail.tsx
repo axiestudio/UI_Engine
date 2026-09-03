@@ -20,7 +20,7 @@ const initials = (a: string) => a.split(/\s+/).map((w) => w[0]).join("").slice(0
 export function SwitchAuditTrail({ entries, onRevert, className }: SwitchAuditTrailProps) {
   let day = ""
   return (
-    <ol className={cn("space-y-1 font-sans", className)}>
+    <ol className={cn("relative isolate space-y-1 overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
       {entries.map((e) => {
         const d = new Date(e.at).toLocaleDateString()

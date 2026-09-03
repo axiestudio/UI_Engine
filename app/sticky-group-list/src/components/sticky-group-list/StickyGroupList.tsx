@@ -13,10 +13,10 @@ export type StickyGroupListProps<T> = { groups: GroupList<T>[]; renderRow: (t: T
 
 export function StickyGroupList<T>({ groups, renderRow, height = "520px", className }: StickyGroupListProps<T>) {
   return (
-    <div className={cn("overflow-y-auto rounded-xl border bg-card font-sans", className)} style={{ height }} tabIndex={0}>
+    <div className={cn("relative isolate overflow-y-auto overflow-x-hidden rounded-xl border bg-card font-sans", className)} style={{ height }} tabIndex={0}>
       {groups.map((g) => (
         <section key={g.key} aria-label={g.key}>
-          <h3 className="sticky top-0 z-10 flex items-center justify-between border-b border-border/60 bg-muted/70 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur-sm">
+          <h3 className="sticky top-0 z-10 flex items-center justify-between border-b border-border/60 bg-muted px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {g.header}<span className="rounded-full bg-background px-1.5 py-0.5 text-[10px] tabular-nums">{g.rows.length}</span>
           </h3>
           <ol>{g.rows.map((r, i) => <li key={i} className="px-4 py-2.5 transition-colors hover:bg-muted/40 odd:bg-transparent">{renderRow(r)}</li>)}</ol>

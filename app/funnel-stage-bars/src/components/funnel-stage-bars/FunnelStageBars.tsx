@@ -97,7 +97,7 @@ export function FunnelStageBars({
   const ariaLabel = `${eyebrow}: ${stages.map((s) => s.label).join(" → ")}; ${convPct}% overall conversion`
 
   return (
-    <figure className={cn("font-sans", className)}>
+    <figure className={cn("relative isolate overflow-hidden font-sans", className)}>
       <figcaption className="mb-4 flex items-baseline justify-between">
         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{eyebrow}</p>
         {topLabel && <p className="text-sm font-medium">{topLabel}: <span className="font-semibold text-[hsl(var(--info))]">{convPct}%</span></p>}
@@ -127,7 +127,7 @@ export function FunnelStageBars({
                 <div
                   aria-hidden
                   key={`drop-${st.label}`}
-                  className="pointer-events-none absolute z-30 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-background/80 px-2 py-0.5 font-mono text-[10px] font-semibold text-[hsl(var(--err))] backdrop-blur-sm"
+                  className="pointer-events-none absolute z-30 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-popover px-2 py-0.5 font-mono text-[10px] font-semibold text-[hsl(var(--err))]"
                   style={{
                     left: horiz ? center : sz.w / 2,
                     top: horiz ? sz.h / 2 : center,

@@ -25,7 +25,8 @@
       "in-view"
     ],
     "watermelon-ui": [
-      "https://registry.watermelon.sh/r/button.json"
+      "https://registry.watermelon.sh/r/button.json",
+      "https://registry.watermelon.sh/r/input.json"
     ]
   },
   "scripts": {

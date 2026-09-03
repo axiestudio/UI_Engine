@@ -22,7 +22,7 @@ export function PermissionMatrix({ perms, roles, value, onSet, readOnly, classNa
   const [hover, setHover] = React.useState<string | null>(null)
   const cell = (p: string, r: string): TriState => value[r]?.[p] ?? "deny"
   return (
-    <div className={cn("overflow-x-auto rounded-lg border font-sans", className)}>
+    <div className={cn("relative isolate overflow-x-auto rounded-lg border font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <table className="w-full border-collapse text-sm">
         <thead>

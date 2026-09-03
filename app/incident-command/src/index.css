@@ -41,6 +41,9 @@
     --info: 212 88% 48%;
     --pinned: 262 68% 56%;
 
+    --hot-1: 0 80% 55%;
+    --hot-2: 0 60% 35%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/watermelon/checkbox"
 import { Switch } from "@/components/ui/switch"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Separator } from "@/components/ui/separator"
+import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/primitives/dialog"
 import { PermissionMatrix } from "permission-matrix"
 import { AsyncMultiselect, type PickOption } from "async-multiselect"
@@ -105,7 +106,7 @@ export function CrewAdmin({ className }: CrewAdminProps) {
           <Card>
             <CardContent className="p-5">
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] mb-3 block text-muted-foreground">INVITE A NEW CHAIR</span>
-              <input value={invite} onChange={(e) => setInvite(e.target.value)} placeholder="temp@studio.house" className="mb-3 h-9 w-full rounded-md border bg-background px-3 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--app-focus))]" />
+              <Input value={invite} onChange={(e) => setInvite(e.target.value)} placeholder="temp@studio.house" className="mb-3 focus-visible:ring-[hsl(var(--app-focus))]" />
               <label className="mb-1 flex items-center gap-2 text-[11px] font-bold text-muted-foreground"><Switch /> send invite now</label>
               <PasswordMeter value="temp-pass-" onChange={() => {}} onScore={setScore} />
               <Button type="button" variant="ghost" disabled={score < 70} onClick={() => push("temporary credentials issued", "ok")} className="mt-4 h-9 w-full rounded-md bg-primary text-[10px] font-black uppercase tracking-[0.18em] text-primary-foreground disabled:opacity-40">issue temp password</Button>

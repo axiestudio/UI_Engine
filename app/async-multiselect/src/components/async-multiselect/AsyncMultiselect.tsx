@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Check, ChevronDown, Loader2, Plus, Search, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — the combobox that admits the list is a million rows.
@@ -51,7 +52,7 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
   const create = () => { if (!onCreate) return; const made = onCreate(q.trim()); if (made) { onValueChange([...value, made]); setQ("") } }
 
   return (
-    <div className={cn("relative font-sans", className)}>
+    <div className={cn("relative isolate overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div role="combobox" aria-expanded={open} aria-haspopup="listbox" aria-label={label} onClick={() => { setOpen(true); input.current?.focus() }} className={cn("flex min-h-11 cursor-text flex-wrap items-center gap-1.5 rounded-lg border border-border/70 bg-background px-2.5 py-1.5 shadow-sm transition-shadow", open && "ring-2 ring-ring")}>
         <AnimatePresence initial={false}>
@@ -62,7 +63,7 @@ export function AsyncMultiselect({ value, onValueChange, loadItems, placeholder 
             </motion.span>
           ))}
         </AnimatePresence>
-        <input ref={input} value={q} onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 140)} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => { if (e.key === "Backspace" && !q && value.length) onValueChange(value.slice(0, -1)); if (e.key === "Enter" && onCreate && q && !exact) { e.preventDefault(); create() } }} placeholder={value.length ? "" : placeholder} className="h-7 min-w-[10ch] flex-1 bg-transparent text-sm outline-none" aria-autocomplete="list" />
+        <Input ref={input} value={q} onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 140)} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => { if (e.key === "Backspace" && !q && value.length) onValueChange(value.slice(0, -1)); if (e.key === "Enter" && onCreate && q && !exact) { e.preventDefault(); create() } }} placeholder={value.length ? "" : placeholder} className="h-7 min-w-[10ch] flex-1 border-0 bg-transparent px-0 text-sm shadow-none focus-visible:ring-0" aria-autocomplete="list" />
         <ChevronDown aria-hidden className={cn("size-4 shrink-0 text-muted-foreground transition-transform", open && "rotate-180")} />
           
     </div>

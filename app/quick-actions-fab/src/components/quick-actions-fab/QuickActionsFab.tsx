@@ -162,7 +162,7 @@ export function QuickActionsFab({ eyebrow = "Board · October", actions = DEFAUL
   }
 
   return (
-    <div ref={stageRef} className={cn("relative h-[420px] overflow-hidden rounded-xl border border-dashed bg-muted/20", className)}>
+    <div ref={stageRef} className={cn("relative isolate h-[420px] overflow-hidden rounded-xl border border-dashed bg-muted/20", className)}>
       <div className="flex items-center justify-between border-b border-border bg-background/70 px-4 py-3">
         <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Quiet Times Studio · 18:42</span>

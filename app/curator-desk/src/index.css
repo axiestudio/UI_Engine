@@ -41,6 +41,15 @@
     --info: 212 88% 48%;
     --pinned: 262 68% 56%;
 
+    --wall: 40 30% 94%;
+    --wall-shelf: 40 18% 82%;
+    --wall-shelf-deep: 40 18% 74%;
+    --frame: 35 25% 78%;
+    --painting-cool: 215 25% 55%;
+    --painting-cool-deep: 215 30% 30%;
+    --painting-warm: 35 35% 72%;
+    --painting-warm-deep: 28 45% 50%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

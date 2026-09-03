@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
 import { DateRangePresets, type Range } from "date-range-presets"
 import { BoardingPass } from "boarding-pass-gate"
@@ -51,7 +52,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
   }
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border border-border/70 bg-muted/20", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border border-border/70 bg-muted/20", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b border-border/60 bg-background px-4">
         <h2 className="text-sm font-semibold">Appointments</h2>
@@ -118,7 +119,7 @@ export function AppointmentDesk({ onBook, className }: AppointmentDeskProps) {
                     <p className="text-[13px] text-muted-foreground">{CHAIRS[sel.c]}</p>
                     <label className="block text-xs font-medium text-muted-foreground">
                       Note for the chair (plain text — saved with the booking)
-                      <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} maxLength={160} placeholder="e.g. north mirror, no phone calls" className="mt-1 w-full resize-none rounded-md border border-border/70 bg-background px-2.5 py-2 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                      <Textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} maxLength={160} placeholder="e.g. north mirror, no phone calls" className="mt-1 min-h-16 resize-none bg-background px-2.5 py-2 text-[13px]" />
                     </label>
                     <Button type="button" variant="ghost" onClick={confirm} className="flex h-9 w-full items-center justify-center gap-2 rounded-md bg-primary text-sm font-medium text-primary-foreground shadow-sm"><CalendarCheck className="size-4" /> Hold for 24 hours</Button>
                   </motion.div>

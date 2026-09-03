@@ -30,7 +30,7 @@ export function GroupedSearchResults({ query, items, onSelect, className }: Grou
       if (e.key === "ArrowDown") { e.preventDefault(); setActive((a) => Math.min(flat.length - 1, a + 1)) }
       else if (e.key === "ArrowUp") { e.preventDefault(); setActive((a) => Math.max(0, a - 1)) }
       else if (e.key === "Enter") { e.preventDefault(); const id = flat[active]; const hit = hits.find((x) => x.h.id === id)?.h; hit && onSelect(hit) }
-    }} className={cn("font-sans outline-none", className)}>
+    }} className={cn("relative isolate overflow-hidden font-sans outline-none", className)}>
       <MotionConfig reducedMotion="user">
       {groups.map((g) => { const Icon = KIND[g.k].icon; return (
         <li key={g.k}>

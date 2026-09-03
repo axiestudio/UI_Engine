@@ -26,9 +26,9 @@ export type MoodCard = {
   id: string
   label: string
   note: string
-  /** CSS background applied to the petal — data, e.g. "hsl(140 18% 38%)". */
-  tone: string
-  /** Force ink/paper text. Auto-derived by luminance when absent. */
+  /** Token name without the --app- prefix, e.g. "mood-dawn". Resolves via bg-app-{token}. */
+  token: string
+  /** Force ink/paper text. Auto-derived by lightness when absent. */
   ink?: "light" | "dark"
 }
 
@@ -40,19 +40,26 @@ export type MoodPortalProps = {
   onOpen?: (m: MoodCard) => void
 }
 
+const MOOD_TOKENS = {
+  dawn: 88,
+  ink: 14,
+  moss: 38,
+  clay: 62,
+} as const
+
 const DEFAULT_MOODS: MoodCard[] = [
-  { id: "dawn", label: "Dawn studio", note: "First light through north glass — the brand before the noise.", tone: "hsl(32 60% 88%)", ink: "dark" },
-  { id: "ink", label: "Wet ink", note: "Black ink pooling on cotton paper. Decisions, permanent.", tone: "hsl(220 12% 14%)" },
-  { id: "moss", label: "Moss wall", note: "The quiet green of work that compounds slowly.", tone: "hsl(140 18% 38%)" },
-  { id: "clay", label: "Raw clay", note: "Unfired, honest material. Every brand starts here.", tone: "hsl(22 35% 62%)", ink: "dark" },
+  { id: "dawn", label: "Dawn studio", note: "First light through north glass — the brand before the noise.", token: "mood-dawn", ink: "dark" },
+  { id: "ink", label: "Wet ink", note: "Black ink pooling on cotton paper. Decisions, permanent.", token: "mood-ink" },
+  { id: "moss", label: "Moss wall", note: "The quiet green of work that compounds slowly.", token: "mood-moss" },
+  { id: "clay", label: "Raw clay", note: "Unfired, honest material. Every brand starts here.", token: "mood-clay", ink: "dark" },
 ]
 
-/** Derive light/dark ink from a CSS hsl() string's lightness component. */
-function derivedInk(tone: string, forced?: "light" | "dark"): "light" | "dark" {
+/** Derive light/dark ink from a token's lightness (committed in MOOD_TOKENS). */
+function derivedInk(token: MoodCard["token"], forced?: "light" | "dark"): "light" | "dark" {
   if (forced) return forced
-  const parts = tone.replace(/^hsla?\(/, "").replace(/\)$/, "").split(/[\s,/]+/).filter(Boolean)
-  const L = Number.parseFloat(parts[2])
-  if (Number.isNaN(L)) return "light"
+  const key = token.replace(/^mood-/, "") as keyof typeof MOOD_TOKENS
+  const L = MOOD_TOKENS[key]
+  if (L == null) return "light"
   return L > 55 ? "dark" : "light"
 }
 
@@ -78,7 +85,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {moods.map((m, i) => {
-          const ink = derivedInk(m.tone, m.ink)
+          const ink = derivedInk(m.token, m.ink)
           return (
             <Tilt key={m.id} className="h-[300px]" rotationFactor={8}>
               <Dialog open={open === m.id} onOpenChange={(o) => { setOpen(o ? m.id : null); if (o) onOpen?.(m) }}>
@@ -88,7 +95,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
                     aria-label={`Open mood: ${m.label}`}
                     whileHover={reduced ? undefined : { scale: 1.02 }}
                     transition={{ duration: 0.25 }}
-                    style={{ background: m.tone, color: ink === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))", borderRadius: petalRadius(i) }}
+                    style={{ background: `hsl(var(--app-${m.token}))`, color: ink === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))", borderRadius: petalRadius(i) }}
                     className={cn(
                       "group relative flex h-full w-full flex-col justify-end overflow-hidden rounded-2xl p-6 text-left",
                       "shadow-[0_18px_40px_-18px_rgb(0_0_0/0.45)] outline-none ring-offset-2 ring-offset-background",
@@ -108,7 +115,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
                       animate={{ scale: 1, opacity: 1 }}
                       exit={reduced ? undefined : { scale: 0.72, opacity: 0 }}
                       transition={{ type: "spring", stiffness: 260, damping: 24 }}
-                      style={{ background: active!.tone, color: derivedInk(active!.tone, active!.ink) === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))" }}
+                      style={{ background: `hsl(var(--app-${active!.token}))`, color: derivedInk(active!.token, active!.ink) === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))" }}
                       className="flex h-44 items-end p-6"
                     >
                       <DialogHeader className="text-left">

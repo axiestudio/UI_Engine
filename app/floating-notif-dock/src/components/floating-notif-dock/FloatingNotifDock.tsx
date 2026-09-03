@@ -72,7 +72,7 @@ export function FloatingNotifDock({
   const groups: ("Today" | "Earlier")[] = ["Today", "Earlier"]
 
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <header className="">

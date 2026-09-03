@@ -178,7 +178,7 @@ export function GradeDesk({
   })
 
   return (
-    <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-dvh flex-col overflow-hidden bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — display-numeral voice: the cohort itself is the masthead */}
       <header className="flex flex-wrap items-end gap-x-4 gap-y-2 border-b px-5 py-3">

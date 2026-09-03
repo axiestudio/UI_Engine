@@ -135,7 +135,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
   const peak = throughput.reduce((a, p) => (p.imp > a.imp ? p : a), throughput[0])
 
   return (
-    <div className={cn("flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — mono eyebrow + odometer numeral, no 48px strip */}
       <header className="flex items-end justify-between gap-6 border-b px-6 pb-3 pt-4">
@@ -269,7 +269,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Copy proofs</span>
               <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{proofs.filter((l) => l.kind === "add").length}+ {proofs.filter((l) => l.kind === "del").length}− vs previous ink-jet proof</span>
             </div>
-            <div className="absolute right-3 top-1.5 z-10 flex gap-0.5 rounded-md border bg-background/90 p-0.5 shadow-sm backdrop-blur-sm">
+            <div className="absolute right-3 top-1.5 z-10 flex gap-0.5 rounded-md border bg-background p-0.5 shadow-sm">
               {(["a", "b"] as const).map((r: "a" | "b") => (
                 <Button
                   key={r}

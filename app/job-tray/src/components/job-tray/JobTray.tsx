@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { Loader2, CheckCircle2, ChevronDown, Terminal, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — long work must never trap the UI.
@@ -31,7 +32,7 @@ export function JobTray({ jobs, onCancel, onDismiss, className }: JobTrayProps) 
       <MotionConfig reducedMotion="user">
       <AnimatePresence>
         {open && (
-          <motion.ul role="log" aria-live="polite" aria-label="Background jobs" initial={{ opacity: 0, y: 8, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8 }} transition={{ type: "spring", stiffness: 320, damping: 28 }} className="max-h-[52vh] w-full overflow-y-auto rounded-xl border border-border/70 bg-popover p-2 shadow-xl">
+          <motion.ul role="log" aria-live="polite" aria-label="Background jobs" initial={{ opacity: 0, y: 8, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8 }} transition={{ type: "spring", stiffness: 320, damping: 28 }} className="max-h-72 w-full overflow-y-auto rounded-xl border border-border/70 bg-popover p-2 shadow-xl">
             {jobs.map((j) => (
               <li key={j.id} className="rounded-lg p-2.5 odd:bg-muted/40">
                 <div className="flex items-center gap-2.5">
@@ -42,7 +43,16 @@ export function JobTray({ jobs, onCancel, onDismiss, className }: JobTrayProps) 
           
     </div>
                 {j.status === "running" && <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-muted"><motion.div animate={{ width: `${j.progress ?? 0}%` }} transition={{ ease: "linear", duration: 0.4 }} className="h-full rounded-full bg-[hsl(var(--info))]" /></div>}
-                {j.log?.length ? <details className="mt-1.5"><summary className="flex cursor-pointer items-center gap-1 text-xs text-muted-foreground"><Terminal className="size-3" /> {j.status === "running" ? "tail follows" : "log"}</summary><pre className="mt-1 max-h-28 overflow-y-auto whitespace-pre-wrap rounded bg-muted/40 p-2 font-mono text-[11px] leading-relaxed text-muted-foreground">{j.log.join("\n")}</pre></details> : null}
+                {j.log?.length ? (
+                  <Collapsible className="mt-1.5">
+                    <CollapsibleTrigger asChild>
+                      <Button type="button" variant="ghost" className="flex h-auto items-center gap-1 rounded px-0 py-0.5 text-xs font-medium text-muted-foreground hover:bg-transparent hover:text-foreground [&>svg+svg]:transition-transform data-[state=open]:[&>svg+svg]:rotate-180"><Terminal className="size-3" aria-hidden /><span>{j.status === "running" ? "tail follows" : "log"}</span><ChevronDown className="size-3" aria-hidden /></Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <pre className="mt-1 max-h-28 overflow-y-auto whitespace-pre-wrap rounded bg-muted/40 p-2 font-mono text-[11px] leading-relaxed text-muted-foreground">{j.log.join("\n")}</pre>
+                    </CollapsibleContent>
+                  </Collapsible>
+                ) : null}
               </li>
             ))}
           </motion.ul>

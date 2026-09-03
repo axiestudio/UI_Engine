@@ -175,7 +175,7 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
   const lastUp = dayDelta >= 0
 
   return (
-    <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background", className)}>
       <MotionConfig reducedMotion="user">
         <div className="mx-auto w-full max-w-[920px] px-4 py-10 sm:px-6 sm:py-12">
           {/* ── hero: cash position ─────────────────────────────────────── */}

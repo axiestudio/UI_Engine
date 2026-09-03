@@ -74,7 +74,7 @@ export function StorageRingMeter({
   );
 
   return (
-    <div className={cn("flex items-center gap-6 font-sans", className)}>
+    <div className={cn("relative isolate flex items-center gap-6 overflow-hidden font-sans", className)}>
       <div className="relative size-[170px] shrink-0">
         {pct > 0.85 && (
           <motion.span

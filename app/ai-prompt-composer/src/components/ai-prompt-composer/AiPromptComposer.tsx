@@ -74,7 +74,7 @@ export function AiPromptComposer({ value, onChange, onSend, onSendText, status, 
   }
 
   return (
-    <div className={cn("transition-opacity", stream && "opacity-70", className)}>
+    <div className={cn("relative isolate transition-opacity", stream && "opacity-70", className)}>
       <MotionConfig reducedMotion="user">
         <PromptInputProvider initialInput={value}>
           <ControlledBridge value={value} onChange={onChange} />

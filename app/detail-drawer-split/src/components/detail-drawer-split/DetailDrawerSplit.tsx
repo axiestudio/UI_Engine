@@ -28,7 +28,7 @@ export function DetailDrawerSplit({ open, onClose, title, index, count, onPrev, 
   return (
     <AnimatePresence>
       {open && (
-        <motion.div role="dialog" aria-modal="false" aria-label="Record details" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: 32, opacity: 0 }} transition={{ type: "spring", stiffness: 320, damping: 34 }} className={cn("relative flex shrink-0 items-stretch border-l bg-card", className)} style={{ width: w + 12 }}>
+        <motion.div role="dialog" aria-modal="false" aria-label="Record details" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: 32, opacity: 0 }} transition={{ type: "spring", stiffness: 320, damping: 34 }}           className={cn("relative isolate flex shrink-0 items-stretch overflow-hidden border-l bg-card", className)} style={{ width: w + 12 }}>
           <div role="slider" aria-label="Drawer width" aria-valuenow={Math.round(w)} aria-valuemin={minWidth} aria-valuemax={maxWidth} tabIndex={0} onPointerDown={startDrag} onDoubleClick={() => setW(defaultWidth)} onKeyDown={(e) => { if (e.key === "ArrowLeft") setW((v) => Math.min(maxWidth, v + 24)); if (e.key === "ArrowRight") setW((v) => Math.max(minWidth, v - 24)) }} className="group absolute inset-y-0 left-0 z-10 w-3 cursor-col-resize focus-visible:outline-none">
             <span className="absolute inset-y-0 left-1 w-px bg-transparent transition-colors group-hover:bg-muted-foreground/40" />
             <span aria-hidden className="absolute top-1/2 left-0 grid -translate-y-1/2 place-items-center text-muted-foreground/60"><GripVertical className="size-3.5" /></span>

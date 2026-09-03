@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { AlarmClock, BellRing, PhoneForwarded, Search, Waypoints } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { Badge } from "@/components/ui/badge"
@@ -130,7 +131,7 @@ export function SupportDesk({
   const visible = rows.filter((r) => (onlyMine ? r.assignee === "You" : true) && (hideSolved ? r.status !== "solved" : true))
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Agent console</h2>
@@ -149,11 +150,11 @@ export function SupportDesk({
               <Search className="size-3.5" /> Search
             </header>
             <div className="grid gap-2 p-3">
-              <input
+              <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search tickets, people, tags…"
-                className="h-8 rounded-md border bg-background px-2.5 text-[12px] outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                className="h-8 rounded-md border bg-background px-2.5 text-[12px]"
               />
               <GroupedSearchResults
                 query={query}

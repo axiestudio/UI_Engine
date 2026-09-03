@@ -128,7 +128,7 @@ export function RadialGauge({
   return (
     <div
       className={cn(
-        "relative mx-auto rounded-md font-sans focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--app-focus))]",
+        "relative isolate mx-auto overflow-hidden rounded-md font-sans focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--app-focus))]",
         className
       )}
       role="meter"

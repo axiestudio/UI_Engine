@@ -119,7 +119,7 @@ export function AnalyticsDeck({ title = "Chair Economics — Q4", onExport, clas
       </header>
 
       {/* filter dock — sticky under the masthead, not a grid row */}
-      <div className="sticky top-0 z-20 border-b border-border/60 bg-card/85 px-5 py-3 backdrop-blur">
+      <div className="sticky top-0 z-20 border-b border-border/60 bg-card px-5 py-3">
         <div className="flex flex-wrap items-center gap-4">
           <FilterTokenBuilder
             tokens={tokens}

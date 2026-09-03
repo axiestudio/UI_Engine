@@ -69,7 +69,7 @@ export function GhostSuggestInput({ value, onChange, suggest, placeholder, label
   }
 
   return (
-    <div className={cn("relative font-sans", className)}>
+    <div className={cn("relative isolate overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
         <div className="relative">
           <Input

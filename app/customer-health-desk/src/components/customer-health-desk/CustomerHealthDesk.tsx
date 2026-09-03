@@ -3,6 +3,7 @@ import { motion, MotionConfig } from "motion/react"
 import { CalendarPlus, Download, LifeBuoy, TrendingDown, TrendingUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 import { DragNumberField } from "drag-number-field"
 import { RadialGauge } from "radial-gauge"
 import { ActivityHeatmap, type HeatCell } from "activity-heatmap"
@@ -332,7 +333,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
                   </Button>
                 ))}
               </div>
-              <textarea
+              <Textarea
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 placeholder={`Note for ${active.name} — what moved this week?`}

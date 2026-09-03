@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Plus, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 
@@ -100,7 +101,7 @@ export function SplitCheck({
   const hair = ink ? "border-background/15" : "border-border"
 
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView
         once
@@ -176,12 +177,12 @@ export function SplitCheck({
                   }}
                   className="mt-3 flex gap-2"
                 >
-                  <input
+                  <Input
                     value={draft}
                     onChange={(e) => setDraft(e.target.value)}
                     placeholder="Name — e.g. Maja"
                     aria-label="Add a person to the check"
-                    className="h-9 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="h-9 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm"
                   />
                   <Button variant="ghost"
                     type="submit"

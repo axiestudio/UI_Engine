@@ -13,7 +13,17 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "status-health-strip.es.js" : "status-health-strip.cjs.js"),
     },
-    rollupOptions: { external: ["clsx", "lucide-react", "motion", "motion/react", "react", "react-dom", "react/jsx-runtime", "tailwind-merge"] },
+    rollupOptions: { external: [
+      "clsx",
+      "lucide-react",
+      "motion",
+      "motion/react",
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "tailwind-merge",
+      "@radix-ui/react-select",
+    ] },
     cssCodeSplit: false,
   },
 })

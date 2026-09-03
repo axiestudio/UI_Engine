@@ -33,6 +33,11 @@
     --brand: 0 0% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --app-mood-dawn: 32 60% 88%;
+    --app-mood-ink: 220 12% 14%;
+    --app-mood-moss: 140 18% 38%;
+    --app-mood-clay: 22 35% 62%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

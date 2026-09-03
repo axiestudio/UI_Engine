@@ -71,7 +71,7 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, onResolve
     g ? g.items.push(p) : groups.push({ key: k, items: [p] })
   }
   return (
-    <div className={cn("relative font-sans", className)}>
+    <div className={cn("relative isolate overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div className="pointer-events-none">
         <div className="opacity-100 [&_*]:pointer-events-auto">{canvas}      

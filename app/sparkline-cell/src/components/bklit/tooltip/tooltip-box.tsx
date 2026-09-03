@@ -192,7 +192,7 @@ function TooltipBoxInner({
     panelStyle?.backgroundColor === undefined &&
       backgroundColor === TOOLTIP_BACKGROUND &&
       "bg-[var(--chart-tooltip-bg)]",
-    panelStyle?.backdropFilter === undefined && "backdrop-blur-md"
+    panelStyle?.backdropFilter === undefined && "border border-border/40"
   );
   const panelStyleResolved = {
     transformOrigin,

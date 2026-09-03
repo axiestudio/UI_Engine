@@ -29,7 +29,7 @@ export function CodeSnippetPanel({ code, language, title, copyText, className }:
   const lines = code.replace(/\n$/, "").split("\n")
   const copy = async () => { try { await navigator.clipboard.writeText(copyText ?? code); setCopied(true); setTimeout(() => setCopied(false), 1500) } catch {} }
   return (
-    <figure className={cn("overflow-hidden rounded-xl border border-border/70 bg-card font-sans", className)}>
+    <figure className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-card font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <figcaption className="flex items-center gap-2 border-b border-border/60 bg-muted/30 px-3 py-1.5">
         {title && <span className="truncate text-sm font-medium">{title}</span>}

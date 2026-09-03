@@ -88,7 +88,7 @@ export function UploadQueue({ files, onRetry, onRemove, className }: UploadQueue
   const done = files.filter((f) => f.status === "done")
   const up = files.find((f) => f.status === "uploading")
   return (
-    <div className={cn("rounded-xl border border-border/70 bg-card p-3 shadow-sm", className)}>
+    <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-card p-3 shadow-sm", className)}>
       <Toaster id={TOASTER_ID} position="top-right" richColors closeButton />
       <MotionConfig reducedMotion="user">
       <ul role="list" className="space-y-1">

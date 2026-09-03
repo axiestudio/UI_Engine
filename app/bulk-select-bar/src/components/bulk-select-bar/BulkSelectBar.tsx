@@ -10,6 +10,9 @@ import { cn } from "@/lib/utils"
 //           carrying the count, range math ("3 on this page · 2 elsewhere"),
 //           the action cluster, and a ghost-copy of the bar as it hands off
 //           to an undo snackbar on completion.
+// ISOLATION the bar is absolutely positioned relative to its parent (the engine
+//           showcase wraps presets in `relative isolate overflow-hidden`),
+//           so the bar never escapes the content pane.
 // A11Y     bar is a toolbar; actions real buttons; clear is "x N selected".
 
 export type BulkAction = { label: string; run: (ids: string[]) => void; tone?: "default" | "danger" }
@@ -23,7 +26,7 @@ export function BulkSelectBar({ selected, total, actions, onClear, className }: 
           role="toolbar" aria-label={`Bulk actions — ${selected.length} selected`}
           initial={{ y: 64, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 8, opacity: 0 }}
           transition={{ type: "spring", stiffness: 420, damping: 32 }}
-          className={cn("fixed bottom-5 left-1/2 z-[90] flex w-[min(94vw,660px)] -translate-x-1/2 items-center gap-3 rounded-xl border border-border/70 bg-popover/95 px-4 py-3 shadow-lg backdrop-blur", className)}
+          className={cn("absolute bottom-5 left-1/2 z-[90] flex w-[min(94%,660px)] -translate-x-1/2 items-center gap-3 rounded-xl border border-border/70 bg-popover px-4 py-3 shadow-lg", className)}
         >
           <span className="flex items-baseline gap-1.5">
             <motion.span key={selected.length} initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="font-display text-lg font-semibold tabular-nums text-primary">{selected.length}</motion.span>

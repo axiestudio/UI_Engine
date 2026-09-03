@@ -25,9 +25,15 @@ import { cn } from "@/lib/utils"
 //           autoUpdate so it springs as it hops between steps); the coach card
 //           rides above/below by flip, welded to the target with an arrow.
 // POSITIONING Floating UI only: useFloating on a virtual element that resolves
-//           the live target rect, middleware [offset → flip → shift(8) → arrow
-//           → (hide tracked)], whileElementsMounted: autoUpdate. The target is
-//           scrolled into view before anchoring. No fixed-px card offsets.
+//           the live target rect, strategy absolute, middleware
+//           [offset → flip → shift(8) → arrow → (hide tracked)], all clamped to
+//           the preset root as boundary, whileElementsMounted: autoUpdate. The
+//           target is scrolled into view before anchoring. No fixed-px offsets.
+// ISOLATION the dim layer and coach card live inside the preset root
+//           (absolute inset-0 within a positioned host — the engine showcase
+//           supplies `relative isolate overflow-hidden`); the card is portaled
+//           into that root, not document.body, so nothing escapes the content
+//           pane. hole coords are converted to root-local.
 // API      steps [{selector, title, body, placement?}] — host owns `step` or
 //          use built-in next/skip. Re-measures on resize/scroll.
 // A11Y     coach card is a labelled dialog; arrows navigate; Esc exits;
@@ -45,45 +51,59 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
   const step = stepProp ?? inner
   const arrowRef = React.useRef<SVGSVGElement>(null)
   const dialogRef = React.useRef<HTMLDivElement>(null)
+  const [rootNode, setRootNode] = React.useState<HTMLDivElement | null>(null)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const go = (n: number) => { if (stepProp === undefined) setInner(n); onStep?.(n) }
 
   const active = step < steps.length ? steps[step] : undefined
 
+  // live element rect (viewport coords), or null when the selector misses
+  const liveRect = () => (active ? document.querySelector(active.selector)?.getBoundingClientRect() ?? null : null)
+
   // the spotlight target resolved as a Floating UI virtual element — reads the
-  // live DOM rect on every positioning pass (autoUpdate drives it)
+  // live DOM rect on every positioning pass (autoUpdate drives it); it keeps
+  // viewport semantics, the library converts to the absolute strategy itself
   const reference = React.useMemo<ReferenceElement>(() => ({
     getBoundingClientRect: () => {
-      const el = active ? document.querySelector(active.selector) : null
-      if (!el) { const s = 0; return { x: s, y: s, width: 0, height: 0, top: s, left: s, bottom: s, right: s } }
-      const r = el.getBoundingClientRect()
+      const r = liveRect()
+      if (!r) { const s = 0; return { x: s, y: s, width: 0, height: 0, top: s, left: s, bottom: s, right: s } }
       return { x: r.x - PAD, y: r.y - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2, top: r.top - PAD, left: r.left - PAD, bottom: r.bottom + PAD, right: r.right + PAD }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [active])
 
   const { refs, floatingStyles, context, placement, middlewareData } = useFloating({
     open: !!active,
+    strategy: "absolute",
     // the `elements` option is typed for real nodes; the cast to Element is
     // floating-ui's documented escape hatch for virtual references
-    elements: { reference: reference as unknown as Element | null },
+    elements: { reference: reference as unknown as Element | null, floating: rootNode },
     placement: active?.placement ?? "bottom",
-    middleware: [offset(12), flip({ padding: 8 }), shift({ padding: 8 }), arrow({ element: arrowRef }), hide()],
+    middleware: [
+      offset(12),
+      flip({ padding: 8, boundary: rootNode ?? "clippingAncestors" }),
+      shift({ padding: 8, boundary: rootNode ?? "clippingAncestors" }),
+      arrow({ element: arrowRef }),
+      hide({ boundary: rootNode ?? "clippingAncestors" }),
+    ],
     whileElementsMounted: autoUpdate,
   })
 
-  // the hole is re-measured on every render; autoUpdate re-renders on each
-  // positioning pass (scroll/resize/target change), so it stays welded to the
-  // same rect the engine just positioned against — middlewareData updates too
+  // the hole is re-measured on every render — and converted into the root's own
+  // coordinate space, because the dim svg is a child of the root (positioned
+  // absolute over it), not of the viewport. autoUpdate re-renders on each
+  // positioning pass (scroll/resize/target change), so the hole stays welded to
+  // the exact rect the engine positioned against.
   const hidden = !!middlewareData.hide?.referenceHidden
   const holeRect: Rect | null = (() => {
-    if (!active) return null
-    const el = document.querySelector(active.selector)
-    if (!el) return null
-    const r = el.getBoundingClientRect()
-    return { x: r.x - PAD, y: r.y - PAD, w: r.width + PAD * 2, h: r.height + PAD * 2 }
+    const r = liveRect()
+    if (!r || !rootNode) return null
+    const o = rootNode.getBoundingClientRect()
+    return { x: r.x - o.left - PAD, y: r.y - o.top - PAD, w: r.width + PAD * 2, h: r.height + PAD * 2 }
   })()
 
-  // bring the target into the viewport, then let autoUpdate weld the card on
+  // bring the target into view (the content pane is the nearest scrollable
+  // ancestor inside the engine), then let autoUpdate weld the card on
   React.useEffect(() => {
     if (!active) return
     const el = document.querySelector(active.selector)
@@ -96,7 +116,7 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
 
   if (!active || !holeRect) return null
   return (
-    <div className={cn("fixed inset-0 z-[115]", className)} role="presentation">
+    <div ref={setRootNode} className={cn("absolute inset-0 z-[115] isolate overflow-hidden", className)} role="presentation">
       <svg className="absolute inset-0 size-full" aria-hidden>
         <defs>
           <mask id="tour-hole">
@@ -121,7 +141,7 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
           transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 210, damping: 26 }}
         />
       </svg>
-      <FloatingPortal>
+      <FloatingPortal element={rootNode}>
         <div
           ref={setFloatingRef}
           role="dialog"
@@ -130,7 +150,7 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
           tabIndex={-1}
           onKeyDown={(e) => { if (e.key === "Escape") onExit?.(); if (e.key === "ArrowRight") go(Math.min(steps.length - 1, step + 1)); if (e.key === "ArrowLeft") go(Math.max(0, step - 1)) }}
           style={floatingStyles}
-          className={cn("z-[116] w-[min(92vw,420px)] outline-none transition-opacity", hidden && "opacity-70")}
+          className={cn("w-[min(92%,420px)] outline-none transition-opacity", hidden && "opacity-70")}
         >
           <AnimatePresence mode="wait">
             <motion.div

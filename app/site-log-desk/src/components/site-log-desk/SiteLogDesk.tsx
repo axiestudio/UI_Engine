@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { ChevronDown, ChevronRight, HardHat, MapPin, NotebookPen, UploadCloud } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/watermelon/table"
 import { Checkbox } from "@/components/watermelon/checkbox"
@@ -130,7 +131,7 @@ export function SiteLogDesk({
   }
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Site daily log</h2>
@@ -223,12 +224,12 @@ export function SiteLogDesk({
               </AnimatePresence>
             </ul>
             <div className="flex gap-2 border-t p-3">
-              <input
+              <Input
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && addNote()}
                 placeholder="Log an event for the record…"
-                className="h-8 flex-1 rounded-md border bg-background px-2.5 text-[12px] outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                className="h-8 flex-1 rounded-md border bg-background px-2.5 text-[12px]"
               />
               <Button type="button" variant="ghost" onClick={addNote} className="flex h-8 items-center gap-1 rounded-md border bg-background px-2.5 text-[11px] font-semibold hover:bg-muted">
                 <NotebookPen className="size-3.5" /> Add

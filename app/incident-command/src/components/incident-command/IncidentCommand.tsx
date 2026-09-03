@@ -3,6 +3,7 @@ import { motion, MotionConfig } from "motion/react"
 import { RadioTower } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
 import { GlowEffect } from "@/components/primitives/glow-effect"
 import { StatusHealthStrip } from "status-health-strip"
 import { ChatThreadVirtual } from "chat-thread-virtual"
@@ -50,7 +51,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
   return (
     <div className={cn("relative isolate min-h-[600px] overflow-hidden rounded-2xl border bg-background font-sans", hot && "border-[hsl(var(--err)/0.6)]", className)}>
       <MotionConfig reducedMotion="user">
-      {hot && <GlowEffect colors={["hsl(0 80% 55%)", "hsl(0 60% 35%)"]} mode="pulse" blur="strong" />}
+      {hot && <GlowEffect colors={["hsl(var(--hot-1))", "hsl(var(--hot-2))"]} mode="pulse" blur="strong" />}
       <OfflineQueueBanner online={true} queued={0} />
       <StatusHealthStrip services={[
         { name: "Checkout API", state: hot ? "degraded" : "operational", region: "eu" }, { name: "Payments", state: hot ? "down" : "operational", region: "eu", note: hot ? "proxy rollback mid-flight" : undefined }, { name: "Board websockets", state: "operational", region: "eu" },
@@ -72,7 +73,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
         <aside className="flex flex-col items-center gap-4 rounded-xl border bg-card p-5">
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] self-start text-muted-foreground">SEVERITY (live)</span>
           <RadialGauge value={Math.round(sev)} label="SEVERITY" unit="" zones={[{ to: 0.55, color: "hsl(var(--ok))", label: "watch" }, { to: 0.8, color: "hsl(var(--warn))", label: "page" }, { to: 1, color: "hsl(var(--err))", label: "esc-1" }]} />
-          <input aria-label="Simulate severity" type="range" min={0} max={100} value={sev} onChange={(e) => setSev(+e.target.value)} className="w-44 accent-[hsl(var(--err))]" />
+          <Input aria-label="Simulate severity" type="range" min={0} max={100} value={sev} onChange={(e) => setSev(+e.target.value)} className="w-44 accent-[hsl(var(--err))]" />
           <div className="w-full rounded-lg border bg-[hsl(var(--app-code))] p-3 text-[11px] leading-relaxed text-muted-foreground">
             <b className="text-foreground">who's on:</b> you (ack), Klara SRE, dispatch-bot. Jobs roll bottom-right — the tray tail is live.
           </div>

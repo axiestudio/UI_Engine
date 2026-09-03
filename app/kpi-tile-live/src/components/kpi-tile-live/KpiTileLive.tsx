@@ -27,7 +27,7 @@ export function KpiTileLive({ label, value, prev, format, unit, danger, spark, s
   const prevText = prev === undefined ? undefined : format ? format(prev) : Math.round(prev).toLocaleString()
   const delta = prev === undefined ? 0 : value - prev
   return (
-    <div className={cn("relative overflow-hidden rounded-xl border border-border/70 bg-card p-5 transition-shadow shadow-sm", danger && "border-[hsl(var(--err))]/40", className)}>
+    <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-card p-5 transition-shadow shadow-sm", danger && "border-[hsl(var(--err))]/40", className)}>
       {danger && <motion.span aria-hidden animate={{ opacity: [0.4, 0.12, 0.4] }} transition={{ duration: 2, repeat: Infinity }} className="absolute inset-0 bg-[hsl(var(--err)/0.05)]" />}
       <p className="text-sm font-medium text-muted-foreground">{label}</p>
       <div className="mt-1.5 flex items-end gap-2.5">

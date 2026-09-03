@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { Input } from "@/components/ui/input"
 
 // ═══ APP-PRIMARY — Figma taught everyone to drag numbers; fields should too.
 // JOB      fine-tune a numeric value fast and precisely
@@ -45,7 +46,7 @@ export function DragNumberField({ label, value, onValueChange, step = 1, precisi
         style={{ cursor: draggable ? "ew-resize" : "col-resize", touchAction: "none" }}
       >
         <span aria-hidden className={cn("grid h-full w-7 place-items-center text-muted-foreground", "cursor-col-resize select-none")}>⇔</span>
-        <input
+        <Input
           aria-label={label ?? (unit ? `value in ${unit}` : "numeric value")}
           inputMode="decimal"
           value={text ?? fmt(value, precision)}
@@ -53,7 +54,7 @@ export function DragNumberField({ label, value, onValueChange, step = 1, precisi
           onBlur={() => setText(null)}
           onChange={(e) => { setText(e.target.value); const n = Number(e.target.value.replace(/[^0-9.\-]/g, "")); if (isFinite(n) && e.target.value.trim() !== "") commit(n) }}
           onKeyDown={(e) => { if (e.key === "ArrowUp") { e.preventDefault(); commit(value + step * (e.shiftKey ? 10 : 1)) } if (e.key === "ArrowDown") { e.preventDefault(); commit(value - step * (e.shiftKey ? 10 : 1)) } }}
-          className="h-full w-24 min-w-0 bg-transparent px-1 text-right font-mono text-[13px] tabular-nums outline-none"
+          className="h-full w-24 min-w-0 border-0 bg-transparent px-1 text-right font-mono text-[13px] tabular-nums shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
         />
         {unit && <span className="px-2 text-xs font-medium text-muted-foreground">{unit}</span>}
       </span>

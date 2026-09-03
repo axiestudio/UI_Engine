@@ -146,7 +146,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
   }
 
   return (
-    <div className={cn("relative flex flex-col overflow-hidden rounded-2xl border-2 border-foreground/85 bg-background font-sans text-foreground shadow-sm", className)}>
+    <div className={cn("relative isolate flex flex-col overflow-hidden rounded-2xl border-2 border-foreground/85 bg-background font-sans text-foreground shadow-sm", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — display numeral voice */}
       <header className="flex flex-wrap items-center gap-x-5 gap-y-2 border-b px-5 pb-2.5 pt-3.5">

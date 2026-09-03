@@ -28,7 +28,7 @@ export function InlineEditCell({ value, name, onSave, mono, width, className }: 
     catch { setState("rejected"); setDraft(committed.current) }
   }
   return (
-    <span className={cn("relative inline-flex items-center font-sans", className)} style={width ? { width } : undefined}>
+    <span className={cn("relative isolate inline-flex items-center overflow-hidden font-sans", className)} style={width ? { width } : undefined}>
       <MotionConfig reducedMotion="user">
       {editing ? (
         <motion.input

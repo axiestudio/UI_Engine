@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── BOARD TASK — one filling. Render one row per step; repeat freely. ───────
@@ -14,13 +15,14 @@ export type BoardTaskProps = {
 
 export function BoardTask({ label, hint, done, onToggle, className }: BoardTaskProps) {
   return (
-    <button
+    <Button
       type="button"
       role="checkbox"
       aria-checked={!!done}
       onClick={onToggle}
+      variant="ghost"
       className={cn(
-        "flex w-full items-center gap-3 border-b border-app-line/50 px-5 py-3.5 text-left transition-colors last:border-b-0 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+        "flex w-full items-center gap-3 border-b border-app-line/50 py-3.5 text-left transition-colors last:border-b-0 hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring rounded-none justify-start h-auto font-normal px-5",
         className,
       )}
     >
@@ -37,6 +39,6 @@ export function BoardTask({ label, hint, done, onToggle, className }: BoardTaskP
         <span className={cn("block truncate text-[13px] font-bold", done && "text-muted-foreground line-through decoration-border")}>{label}</span>
         {hint && <span className="block truncate text-[11px] font-medium text-muted-foreground">{hint}</span>}
       </span>
-    </button>
+    </Button>
   )
 }

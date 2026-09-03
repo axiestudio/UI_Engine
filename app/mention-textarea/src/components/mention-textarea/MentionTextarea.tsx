@@ -94,7 +94,7 @@ export function MentionTextarea({ value, onChange, mentions = [], commands = [],
   }
 
   return (
-    <div ref={(node) => { anchor.current = node; refs.setReference(node) }} className={cn("relative rounded-lg border border-border/70 bg-background shadow-sm transition-shadow focus-within:ring-2 focus-within:ring-ring", className)}>
+    <div ref={(node) => { anchor.current = node; refs.setReference(node) }} className={cn("relative isolate overflow-hidden rounded-lg border border-border/70 bg-background shadow-sm transition-shadow focus-within:ring-2 focus-within:ring-ring", className)}>
       <MotionConfig reducedMotion="user">
         <Textarea
           ref={ta} value={value} rows={3} placeholder={placeholder}

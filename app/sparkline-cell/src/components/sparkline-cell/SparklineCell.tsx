@@ -122,7 +122,7 @@ export function SparklineCell({
       }
 
   return (
-    <span className={cn("relative inline-block align-middle font-sans", className)}>
+    <span className={cn("relative isolate inline-block overflow-hidden align-middle font-sans", className)}>
       <div
         ref={containerRef}
         className="relative inline-flex items-center"

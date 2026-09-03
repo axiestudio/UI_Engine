@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
 import { CalendarClock } from "lucide-react"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — nobody can read raw cron. Everyone understands "next runs".
@@ -22,13 +23,13 @@ export function CronPreview({ expr, onChange, now = () => new Date(), className 
   const human = describe(parts)
   const nexts = useMemoFiveParts(parts, now())
   return (
-    <div className={cn("space-y-3 font-sans", className)}>
+    <div className={cn("relative isolate space-y-3 overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div className="flex flex-wrap gap-2" role="group" aria-label="Cron expression">
         {parts.map((p, i) => (
           <label key={i} className="flex flex-col gap-1">
             <span className="text-xs font-medium text-muted-foreground">{NAMES[i]}</span>
-            <input value={p} onChange={(e) => { const n = [...parts]; n[i] = e.target.value.replace(/\s/g, ""); onChange(n.join(" ").trim()) }} aria-label={NAMES[i]} className={cn("h-9 w-16 rounded-lg border border-border/70 bg-background px-2 text-center font-mono text-[13px] font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring", !fieldOk(p, [59, 23, 31, 12, 7][i]) && "border-[hsl(var(--err))] text-[hsl(var(--err))]")} />
+            <Input value={p} onChange={(e) => { const n = [...parts]; n[i] = e.target.value.replace(/\s/g, ""); onChange(n.join(" ").trim()) }} aria-label={NAMES[i]} className={cn("h-9 w-16 rounded-lg border-border/70 bg-background text-center font-mono text-[13px] font-medium", !fieldOk(p, [59, 23, 31, 12, 7][i]) && "border-[hsl(var(--err))] text-[hsl(var(--err))] focus-visible:ring-[hsl(var(--err))]/40")} />
           </label>
         ))}
           
