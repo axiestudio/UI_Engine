@@ -88,7 +88,7 @@ function SlotRow({ time, client, chairs: slotChairs, onBook }: { time: string; c
 
   return (
     <>
-      <button
+      <Button
         type="button"
         ref={refs.setReference}
         {...getReferenceProps()}
@@ -106,7 +106,7 @@ function SlotRow({ time, client, chairs: slotChairs, onBook }: { time: string; c
         <span className="font-mono text-[9px] font-black uppercase tracking-[0.18em] text-primary">
           {freeCount} chair{freeCount === 1 ? "" : "s"} free
         </span>
-      </button>
+      </Button>
 
       {open && (
         <FloatingPortal>
@@ -122,7 +122,7 @@ function SlotRow({ time, client, chairs: slotChairs, onBook }: { time: string; c
               {slotChairs.map((c) => (
                 <li key={c.chair} className="flex items-center justify-between gap-3 text-[12px] font-medium">
                   <span className="text-foreground">{c.chair}</span>
-                  <span className={cn("font-mono text-[11px] font-black", c.free ? "text-primary" : "text-muted-foreground opacity-50")}>
+                  <span className={cn("relative isolate overflow-hidden font-mono text-[11px] font-black", c.free ? "text-primary" : "text-muted-foreground opacity-50")}>
                     <span aria-hidden>{c.free ? "✓" : "–"}</span>
                     <span className="sr-only">{c.free ? "free" : "taken"}</span>
                   </span>

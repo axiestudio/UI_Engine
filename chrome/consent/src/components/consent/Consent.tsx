@@ -137,7 +137,7 @@ export function Consent({
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              "fixed bottom-0 z-50 p-4 sm:p-6 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]",
+              "absolute bottom-0 z-50 p-4 sm:p-6 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]",
               className,
             )}
           >
@@ -152,7 +152,7 @@ export function Consent({
                 aria-hidden
                 className={cn("pointer-events-none absolute inset-0", ink ? "text-background/30" : "text-foreground/20")}
               >
-                <span className="absolute left-2 top-2 size-2.5 border-l border-t border-current" />
+                <span className="relative isolate overflow-hidden absolute left-2 top-2 size-2.5 border-l border-t border-current" />
                 <span className="absolute right-2 top-2 size-2.5 border-r border-t border-current" />
                 <span className="absolute bottom-2 left-2 size-2.5 border-b border-l border-current" />
                 <span className="absolute bottom-2 right-2 size-2.5 border-b border-r border-current" />

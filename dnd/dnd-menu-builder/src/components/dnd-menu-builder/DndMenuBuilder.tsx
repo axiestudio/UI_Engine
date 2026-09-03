@@ -112,7 +112,7 @@ export function DndMenuBuilder({
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm ">
         <div className="flex items-center gap-3">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
@@ -191,6 +191,7 @@ function MenuRow({ item, onRemove }: { item: MenuItem; onRemove: (id: string) =>
   const { setNodeRef, attributes, listeners, transform, transition, isDragging } = useSortable({ id: item.id })
   return (
     <div ref={setNodeRef} style={{ transform: CSS.Transform.toString(transform), transition }} className={cn("flex items-center gap-3 rounded-xl border bg-card px-3 py-3", isDragging && "dnd-lift opacity-90")}>
+      {/* dnd-kit grip handle: listeners require a real <button> element, not the registry Button. */}
       <button type="button" {...attributes} {...listeners} className="cursor-grab touch-none text-muted-foreground active:cursor-grabbing" aria-label={`Reorder ${item.label}`}>
         <GripVertical className="h-4 w-4" />
       </button>

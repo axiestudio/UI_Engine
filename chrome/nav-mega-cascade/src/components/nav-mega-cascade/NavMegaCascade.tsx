@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Mega cascade — staggered mega menu with accessible triggers
 // ═══ EMOTION     composed, not dumped
@@ -67,7 +68,7 @@ export function NavMegaCascade({ brand = "Quiet Times Studio", items = DEFAULT_I
             {items.map((i) => {
               const isOpen = open === i.id
               return (
-                <button
+                <Button
                   key={i.id}
                   type="button"
                   aria-expanded={isOpen}
@@ -82,7 +83,7 @@ export function NavMegaCascade({ brand = "Quiet Times Studio", items = DEFAULT_I
                   )}
                 >
                   {i.label} {i.groups && <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", isOpen && "rotate-180")} aria-hidden />}
-                </button>
+                </Button>
               )
             })}
           </nav>

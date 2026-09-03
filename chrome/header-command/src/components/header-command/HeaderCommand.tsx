@@ -82,8 +82,8 @@ export function HeaderCommand({
   }, [links])
 
   return (
-    <header className={cn("sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl", className)}>
-      <div className="mx-auto flex h-14 w-full max-w-[1200px] items-center gap-6 px-4 sm:px-6">
+    <header className={cn("sticky top-0 z-50 border-b border-border bg-background/80 ", className)}>
+      <div className="relative isolate overflow-hidden mx-auto flex h-14 w-full max-w-[1200px] items-center gap-6 px-4 sm:px-6">
         <a href="#" className="flex shrink-0 items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
           {logo ?? (
             <span className="flex items-center gap-2.5">
@@ -109,7 +109,7 @@ export function HeaderCommand({
 
         <div className="ml-auto flex items-center gap-2">
           {/* the field-as-trigger */}
-          <button
+          <Button
             type="button"
             onClick={() => setOpen(true)}
             aria-label="Open search"
@@ -127,7 +127,7 @@ export function HeaderCommand({
             <kbd className="hidden items-center gap-0.5 rounded-md border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] font-bold text-muted-foreground shadow-sm md:inline-flex">
               {modKey}K
             </kbd>
-          </button>
+          </Button>
 
           {cta &&
             (cta.href ? (
@@ -143,7 +143,7 @@ export function HeaderCommand({
               </Button>
             ))}
 
-          <button
+          <Button
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -151,14 +151,14 @@ export function HeaderCommand({
             className="inline-flex size-9 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 lg:hidden"
           >
             {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* mobile sheet */}
       <div className={cn("overflow-hidden border-border transition-[max-height] duration-300 ease-out lg:hidden", mobileOpen ? "max-h-96 border-t" : "max-h-0 motion-reduce:transition-none")}>
         <div className="mx-auto max-w-[1200px] px-4 py-3 sm:px-6">
-          <button
+          <Button
             type="button"
             onClick={() => {
               setMobileOpen(false)
@@ -171,7 +171,7 @@ export function HeaderCommand({
               Search…
             </span>
             <kbd className="rounded-md border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] font-bold text-muted-foreground">{modKey}K</kbd>
-          </button>
+          </Button>
           {links.map((l) => (
             <a
               key={l.label}

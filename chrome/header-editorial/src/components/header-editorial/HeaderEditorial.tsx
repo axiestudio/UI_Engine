@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { ArrowUpRight, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type HeaderLink = { label: string; href: string }
@@ -52,10 +53,10 @@ export function HeaderEditorial({
     "group relative font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 
   return (
-    <header className={cn(sticky && "sticky top-0 z-50 bg-background/90 backdrop-blur-md", "relative", className)}>
+    <header className={cn(sticky && "sticky top-0 z-50 bg-background/90 ", "relative", className)}>
       {/* utility strip */}
       {(meta || metaRight) && (
-        <div className="border-b border-border/60 bg-secondary/40">
+        <div className="relative isolate overflow-hidden border-b border-border/60 bg-secondary/40">
           <div className="mx-auto flex h-9 w-full max-w-[1280px] items-center justify-between px-4 sm:px-6">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">{meta}</span>
             <span className="hidden items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground sm:flex">
@@ -104,7 +105,7 @@ export function HeaderEditorial({
           <a href="#" aria-label={brand} className="outline-none focus-visible:ring-2 focus-visible:ring-ring/50">
             {logo ?? <span className="font-display text-lg font-black uppercase tracking-[0.08em]">{brand}</span>}
           </a>
-          <button
+          <Button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -112,7 +113,7 @@ export function HeaderEditorial({
             className="inline-flex size-9 items-center justify-center border border-border text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
-          </button>
+          </Button>
         </div>
       </div>
 

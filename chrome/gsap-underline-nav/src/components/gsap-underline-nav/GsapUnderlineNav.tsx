@@ -1,6 +1,7 @@
 import * as React from "react"
 import gsap from "gsap"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         A nav that shows where you are by physically moving the mark.
 // ═══ EMOTION     A ruler sliding along the pill's bottom edge.
@@ -79,7 +80,7 @@ export function GsapUnderlineNav({
         </span>
         <span aria-hidden className="h-5 w-px shrink-0 bg-border" />
         {items.map((item, i) => (
-          <button
+          <Button
             key={item}
             type="button"
             ref={(el) => {
@@ -94,7 +95,7 @@ export function GsapUnderlineNav({
             )}
           >
             {item}
-          </button>
+          </Button>
         ))}
         <span
           ref={underlineRef}

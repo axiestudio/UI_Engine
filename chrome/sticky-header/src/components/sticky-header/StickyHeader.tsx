@@ -21,8 +21,8 @@ export function StickyHeader({ brand = "STUDIO", items = [{ id: "a", label: "Wor
   useMotionValueEvent(scrollY, "change", (y) => setCondensed(y > 24))
   return (
     <div className={cn("relative", className)}>
-      <header className={cn("sticky top-0 z-40 border-b transition-all duration-300", condensed ? "bg-background/80 py-2 backdrop-blur" : "bg-background py-4")}>
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 sm:px-8">
+      <header className={cn("sticky top-0 z-40 border-b transition-all duration-300", condensed ? "bg-background/80 py-2 " : "bg-background py-4")}>
+        <div className="relative isolate overflow-hidden mx-auto flex max-w-[1280px] items-center justify-between px-5 sm:px-8">
           <InView once variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
             <span className={cn("font-display font-black tracking-tight transition-all", condensed ? "text-base" : "text-xl")}>{brand}</span>
           </InView>

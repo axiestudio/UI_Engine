@@ -18,16 +18,25 @@ import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 
 // content data: brand palette
-const BASE_SWATCHES = [
-  { name: "Studio Teal", hex: "#0F766E" },
-  { name: "Amber Clay", hex: "#B45309" },
-  { name: "Violet Hour", hex: "#7C3AED" },
-  { name: "Rosewood", hex: "#BE185D" },
-  { name: "Salon Blue", hex: "#1D4ED8" },
-  { name: "Fern", hex: "#15803D" },
-  { name: "Signal Red", hex: "#DC2626" },
-  { name: "Brass", hex: "#CA8A04" },
-] as const
+type SwatchSpec = { name: string; token: string }
+
+const BASE_SWATCHES: SwatchSpec[] = [
+  { name: "Studio Teal", token: "shade-teal" },
+  { name: "Amber Clay", token: "shade-amber" },
+  { name: "Violet Hour", token: "shade-violet" },
+  { name: "Rosewood", token: "shade-rose" },
+  { name: "Salon Blue", token: "shade-blue" },
+  { name: "Fern", token: "shade-fern" },
+  { name: "Signal Red", token: "shade-red" },
+  { name: "Brass", token: "shade-brass" },
+]
+
+/** Resolve a CSS variable to its computed hsl() string at runtime (host browser only). */
+function readToken(token: string): string {
+  if (typeof window === "undefined") return "hsl(0 0% 50%)"
+  const v = getComputedStyle(document.documentElement).getPropertyValue(`--app-${token}`).trim()
+  return v ? `hsl(${v})` : "hsl(0 0% 50%)"
+}
 
 const WHITE = "#FFFFFF"
 const BLACK = "#141414"
@@ -71,14 +80,14 @@ function shadeScale(base: string): string[] {
 
 function ShadeSwatch({
   name,
-  hex,
+  token,
   index,
   total,
   open,
   onOpenChange,
 }: {
   name: string
-  hex: string
+  token: string
   index: number
   total: number
   open: boolean
@@ -87,12 +96,17 @@ function ShadeSwatch({
   const [copied, setCopied] = React.useState<string | null>(null)
   const copyTimer = React.useRef<number | null>(null)
   const reduced = React.useMemo(prefersReducedMotion, [])
+  const [baseHex, setBaseHex] = React.useState<string | null>(null)
 
   React.useEffect(() => {
     return () => {
       if (copyTimer.current) window.clearTimeout(copyTimer.current)
     }
   }, [])
+
+  React.useEffect(() => {
+    if (open) setBaseHex(hexToRgbHslToHex(token))
+  }, [open, token])
 
   const { refs, floatingStyles, context } = useFloating({
     open,
@@ -107,7 +121,7 @@ function ShadeSwatch({
     useRole(context, { role: "dialog" }),
   ])
 
-  const scale = React.useMemo(() => shadeScale(hex), [hex])
+  const scale = React.useMemo(() => (baseHex ? shadeScale(baseHex) : []), [baseHex])
 
   async function copyHex(value: string) {
     try {
@@ -127,19 +141,19 @@ function ShadeSwatch({
         {...getReferenceProps()}
         aria-expanded={open}
         aria-haspopup="dialog"
-        aria-label={`${name} ${hex} — open shade scale`}
-        title={`${name} · ${hex}`}
+        aria-label={`${name} — open shade scale`}
+        title={name}
         className={cn(
           "size-14 rounded-xl border border-border transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           open && "ring-2 ring-primary ring-offset-2 ring-offset-background",
         )}
-        style={{ backgroundColor: hex }}
+        style={{ backgroundColor: `hsl(var(--app-${token}))` }}
        h-auto />
       <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
       <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {name}
       </span>
-      {open && (
+      {open && baseHex && (
         <FloatingPortal>
           <motion.div
             ref={refs.setFloating}
@@ -152,7 +166,7 @@ function ShadeSwatch({
           >
             <div className="flex items-center justify-between px-1.5 pb-2 pt-1">
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px]">{name}</span>
-              <span className="font-mono text-[10px] font-bold text-muted-foreground">{hex}</span>
+              <span className="font-mono text-[10px] font-bold text-muted-foreground">{baseHex}</span>
             </div>
             <div className="space-y-0.5">
               {scale.map((value) => (
@@ -169,7 +183,7 @@ function ShadeSwatch({
                   {copied === value ? (
                     <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-primary">
                       <Check className="size-3" aria-hidden />
-                      Copied ✓
+                      Copied
                     </span>
                   ) : (
                     <span className="font-mono text-[10px] font-semibold text-muted-foreground">{value}</span>
@@ -187,6 +201,25 @@ function ShadeSwatch({
   )
 }
 
+/** Convert a CSS variable like "--app-shade-teal: 173 80% 26%" to a hex value. */
+function hexToRgbHslToHex(token: string): string {
+  const v = typeof window === "undefined" ? "" : getComputedStyle(document.documentElement).getPropertyValue(`--app-${token}`).trim()
+  const m = v.match(/(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)%\s+(\d+(?:\.\d+)?)%/)
+  if (!m) return "#000000"
+  const h = Number(m[1]), s = Number(m[2]) / 100, l = Number(m[3]) / 100
+  const c = (1 - Math.abs(2 * l - 1)) * s
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
+  const m2 = l - c / 2
+  let r = 0, g = 0, b = 0
+  if (h < 60) [r, g, b] = [c, x, 0]
+  else if (h < 120) [r, g, b] = [x, c, 0]
+  else if (h < 180) [r, g, b] = [0, c, x]
+  else if (h < 240) [r, g, b] = [0, x, c]
+  else if (h < 300) [r, g, b] = [x, 0, c]
+  else [r, g, b] = [c, 0, x]
+  return rgbToHex(Math.round((r + m2) * 255), Math.round((g + m2) * 255), Math.round((b + m2) * 255))
+}
+
 export type FloatingShadePickerProps = {
   eyebrow?: string
   title?: React.ReactNode
@@ -199,12 +232,12 @@ export type FloatingShadePickerProps = {
 export function FloatingShadePicker({
   eyebrow = "Brand System · Palette",
   title = "Shade picker",
-  subtitle = "Pick one of the eight studio bases — the popover mixes a five-step scale from the base hex live, ready to copy into any spec sheet.",
+  subtitle = "Pick one of the eight studio bases — the popover mixes a five-step scale from the base hue live, ready to copy into any spec sheet.",
   caption = "Quiet Times Studio — brand palette v2.1",
   tone = "paper",
   className,
 }: FloatingShadePickerProps) {
-  const [openHex, setOpenHex] = React.useState<string | null>(null)
+  const [openToken, setOpenToken] = React.useState<string | null>(null)
 
   return (
     <section className={cn("bg-background text-foreground", className)}>
@@ -219,13 +252,13 @@ export function FloatingShadePicker({
       <div className="mt-10 flex flex-wrap gap-x-4 gap-y-8">
         {BASE_SWATCHES.map((swatch, i) => (
           <ShadeSwatch
-            key={swatch.hex}
+            key={swatch.token}
             name={swatch.name}
-            hex={swatch.hex}
+            token={swatch.token}
             index={i}
             total={BASE_SWATCHES.length}
-            open={openHex === swatch.hex}
-            onOpenChange={(o) => setOpenHex(o ? swatch.hex : null)}
+            open={openToken === swatch.token}
+            onOpenChange={(o) => setOpenToken(o ? swatch.token : null)}
           />
         ))}
       </div>

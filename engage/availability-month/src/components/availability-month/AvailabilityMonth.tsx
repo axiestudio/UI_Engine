@@ -96,7 +96,7 @@ export function AvailabilityMonth({
 
       <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: reduce ? 0 : 0.1 }}>
         <div className="mt-10">
-          <div className={cn("mx-auto w-full max-w-[480px] overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
+          <div className={cn("relative isolate overflow-hidden mx-auto w-full max-w-[480px] overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
             <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
               <MonoLabel>Boka tid — Quiet Times Studio</MonoLabel>
               <span className="font-mono text-[11px] font-bold text-muted-foreground">Jönköping</span>

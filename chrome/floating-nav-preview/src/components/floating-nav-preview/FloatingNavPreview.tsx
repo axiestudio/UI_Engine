@@ -88,7 +88,7 @@ function NavLink({ page }: { page: NavPageDef }) {
         onClick={(e) => e.preventDefault()}
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="relative isolate overflow-hidden rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {page.label}
       </a>

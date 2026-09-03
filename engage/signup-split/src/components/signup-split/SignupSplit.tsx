@@ -68,7 +68,7 @@ export function SignupSplit({
       <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-10">
         <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true }}>
           <div>
-            <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.24em]", ink ? "text-background/60" : "text-muted-foreground")}>{eyebrow}</p>
+            <p className={cn("relative isolate overflow-hidden font-mono text-[11px] font-bold uppercase tracking-[0.24em]", ink ? "text-background/60" : "text-muted-foreground")}>{eyebrow}</p>
             <h2 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] sm:text-4xl">{title}</h2>
             <ul className="mt-6 space-y-3">
               {points.map((p) => (

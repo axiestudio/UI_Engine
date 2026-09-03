@@ -61,7 +61,7 @@ export function ElevatorFloors({
 
   if (!floors.length) {
     return (
-      <section className={cn("w-full bg-background px-4 py-16", className)}>
+      <section className={cn("relative isolate overflow-hidden w-full bg-background px-4 py-16", className)}>
         <p className="mx-auto max-w-[1120px] font-mono text-sm text-muted-foreground">No floors configured.</p>
       </section>
     )

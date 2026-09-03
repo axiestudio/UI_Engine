@@ -43,7 +43,7 @@ export function FooterNewsletter({
 
   return (
     <footer className={cn("relative isolate border-t", ink ? "bg-foreground text-background" : "bg-card", className)}>
-      <div className="mx-auto max-w-[1280px] px-5 py-12 sm:px-8">
+      <div className="relative isolate overflow-hidden mx-auto max-w-[1280px] px-5 py-12 sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>

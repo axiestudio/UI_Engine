@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { Menu, X } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Fullscreen menu — a full-viewport animated nav overlay.
 // ═══ EMOTION     A destination, not a dropdown.
@@ -37,13 +38,13 @@ export function NavFullscreen({ brand = "STUDIO", items = [
 
   return (
     <div className={cn("relative z-50", className)}>
-      <header className="sticky top-0 z-50 mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
+      <header className="relative isolate overflow-hidden sticky top-0 z-50 mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
         <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.6 }}>
           <span className="font-display text-lg font-black tracking-tight">{brand}</span>
         </InView>
-        <button type="button" onClick={() => setOpen(true)} aria-label="Open menu" className="flex h-10 w-10 items-center justify-center rounded-full border bg-card transition-colors hover:bg-accent">
+        <Button type="button" onClick={() => setOpen(true)} aria-label="Open menu" className="flex h-10 w-10 items-center justify-center rounded-full border bg-card transition-colors hover:bg-accent">
           <Menu className="h-5 w-5" />
-        </button>
+        </Button>
       </header>
 
       <AnimatePresence>
@@ -56,13 +57,13 @@ export function NavFullscreen({ brand = "STUDIO", items = [
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[60] flex flex-col bg-foreground text-background"
+            className="absolute inset-0 z-[60] flex flex-col bg-foreground text-background"
           >
             <div className="flex items-center justify-between px-5 py-4 sm:px-8">
               <span className="font-display text-lg font-black tracking-tight">{brand}</span>
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex h-10 w-10 items-center justify-center rounded-full border border-background/20 transition-colors hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background">
+              <Button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex h-10 w-10 items-center justify-center rounded-full border border-background/20 transition-colors hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background">
                 <X className="h-5 w-5" />
-              </button>
+              </Button>
             </div>
             <nav aria-label="Fullscreen" className="flex flex-1 flex-col justify-center gap-2 px-5 sm:px-8">
               {items.map((item, i) => (

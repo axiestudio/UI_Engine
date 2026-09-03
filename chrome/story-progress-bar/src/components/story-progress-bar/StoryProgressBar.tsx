@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 export type StorySlide = { src: string; caption: string }
 
@@ -61,7 +62,7 @@ export function StoryProgressBar({
 
   return (
     <section role="region" aria-label={title} className={cn("flex justify-center bg-background py-14 sm:py-20", className)}>
-      <h2 className="sr-only">{title}</h2>
+      <h2 className="relative isolate overflow-hidden sr-only">{title}</h2>
       <p className="sr-only">{subtitle}</p>
       <div
         onPointerDown={hold}
@@ -80,7 +81,7 @@ export function StoryProgressBar({
           ))}
         </div>
 
-        <button
+        <Button
           type="button"
           aria-label="Previous story"
           onClick={() => go(-1)}
@@ -90,8 +91,8 @@ export function StoryProgressBar({
             aria-hidden
             className="absolute left-3 top-1/2 size-7 -translate-y-1/2 rounded-full bg-foreground/85 p-1.5 text-background opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
           />
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           aria-label="Next story"
           onClick={() => go(1)}
@@ -101,7 +102,7 @@ export function StoryProgressBar({
             aria-hidden
             className="absolute right-3 top-1/2 size-7 -translate-y-1/2 rounded-full bg-foreground/85 p-1.5 text-background opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
           />
-        </button>
+        </Button>
 
         <div aria-hidden className="absolute inset-x-3 top-3 z-20 flex gap-1.5">
           {slides.map((_, i) => {

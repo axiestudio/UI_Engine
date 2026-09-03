@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "motion/react"
 import { Check, Frown, Heart, Meh, MessageSquare, X, type LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 
 // ═══ JOB         Catch the feeling while it's still in the chair.
 // ═══ EMOTION     A tab that never blinks, a form that says thank you and leaves.
@@ -64,7 +66,7 @@ export function FeedbackWidget({
 
   return (
     <div className={cn("relative isolate w-full bg-background py-16 text-foreground", ink && "bg-foreground text-background", className)}>
-      <div className="mx-auto w-full max-w-[720px] px-4 sm:px-6">
+      <div className="relative isolate overflow-hidden mx-auto w-full max-w-[720px] px-4 sm:px-6">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: EASE }}>
           <header className="relative max-w-3xl">
             {eyebrow && (
@@ -130,19 +132,19 @@ export function FeedbackWidget({
                             <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
                             Quiet Times Studio
                           </span>
-                          <button
+                          <Button
                             type="button"
                             onClick={() => setOpen(false)}
                             aria-label="Close feedback"
                             className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                           >
                             <X className="size-4" aria-hidden />
-                          </button>
+                          </Button>
                         </div>
 
                         <div role="group" aria-label="How's it going?" className="mt-3 flex gap-2">
                           {MOODS.map(({ id, label, icon: Icon }) => (
-                            <button
+                            <Button
                               key={id}
                               type="button"
                               aria-pressed={mood === id}
@@ -154,11 +156,11 @@ export function FeedbackWidget({
                             >
                               <Icon className="size-4" aria-hidden />
                               {label}
-                            </button>
+                            </Button>
                           ))}
                         </div>
 
-                        <textarea
+                        <Textarea
                           value={note}
                           onChange={(e) => setNote(e.target.value)}
                           rows={3}
@@ -167,20 +169,20 @@ export function FeedbackWidget({
                           className="mt-2 w-full rounded-md border border-border bg-background px-2.5 py-2 text-[13px] text-foreground placeholder:text-muted-foreground/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         />
 
-                        <button
+                        <Button
                           type="submit"
                           disabled={!mood}
                           className="mt-2 flex h-9 w-full items-center justify-center rounded-md bg-primary text-[13px] font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           Send
-                        </button>
+                        </Button>
                       </form>
                     )}
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              <button
+              <Button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
                 aria-expanded={open}
@@ -191,7 +193,7 @@ export function FeedbackWidget({
               >
                 <MessageSquare className="size-4" aria-hidden />
                 <span className="text-[13px] font-semibold">Feedback</span>
-              </button>
+              </Button>
             </div>
           </div>
 

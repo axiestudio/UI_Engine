@@ -81,7 +81,7 @@ export function BookingBar({
   return (
     <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-40px" }}>
-        <div className={cn("rounded-2xl border p-6 shadow-sm sm:p-7", ink ? "border-background/20 bg-background/5 backdrop-blur" : "border-border bg-card")}>
+        <div className={cn("relative isolate overflow-hidden rounded-2xl border p-6 shadow-sm sm:p-7", ink ? "border-background/20 bg-background/5 bg-background/90" : "border-border bg-card")}>
           <div className="flex items-center gap-3">
             <span className={cn("grid size-9 place-items-center rounded-xl ring-1", ink ? "bg-background/10 ring-background/15" : "bg-accent ring-border")}>
               <CalendarDays className="h-4 w-4" aria-hidden />

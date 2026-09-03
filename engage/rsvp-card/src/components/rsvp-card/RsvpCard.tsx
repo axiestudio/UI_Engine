@@ -87,7 +87,7 @@ export function RsvpCard({
               ink ? "border-background/15" : "border-border"
             )}
           >
-            <div className={cn("flex items-center justify-between gap-4 px-6 py-5", ink ? "border-b border-background/15" : "border-b border-border")}>
+            <div className={cn("relative isolate overflow-hidden flex items-center justify-between gap-4 px-6 py-5", ink ? "border-b border-background/15" : "border-b border-border")}>
               <div className="flex items-center gap-3.5">
                 <span className={cn("flex size-10 shrink-0 items-center justify-center rounded-xl border bg-muted", ink ? "border-background/15" : "border-border")}>
                   <CalendarDays className="size-[18px]" aria-hidden />

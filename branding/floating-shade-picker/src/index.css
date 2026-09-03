@@ -33,6 +33,15 @@
     --brand: 0 0% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --app-shade-teal: 173 80% 26%;
+    --app-shade-amber: 26 90% 37%;
+    --app-shade-violet: 262 89% 58%;
+    --app-shade-rose: 337 81% 47%;
+    --app-shade-blue: 224 76% 48%;
+    --app-shade-fern: 142 71% 33%;
+    --app-shade-red: 0 73% 50%;
+    --app-shade-brass: 43 95% 41%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

@@ -71,7 +71,7 @@ export function ActivityConstellation({
           <h2 className="mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] sm:text-[34px]">{title}</h2>
           <p className="mt-2 text-[13px] leading-6 text-background/65">{subtitle}</p>
         </div>
-        <div className="shrink-0 rounded-full border border-background/15 bg-background/10 px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-background/80 backdrop-blur">
+        <div className="shrink-0 rounded-full border border-background/15 bg-background/90 px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-foreground">
           {nodes.length} cities · {total.toLocaleString()} sessions / week
         </div>
       </div>
@@ -134,8 +134,8 @@ export function ActivityConstellation({
         ))}
 
         {/* legend */}
-        <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-background/10 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-background/70 backdrop-blur">
-          <span className="size-2 rounded-full bg-background shadow" aria-hidden /> Active presence
+        <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-foreground">
+          <span className="size-2 rounded-full bg-foreground" aria-hidden /> Active presence
         </div>
       </div>
 

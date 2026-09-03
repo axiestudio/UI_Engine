@@ -141,7 +141,7 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
           transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 210, damping: 26 }}
         />
       </svg>
-      <FloatingPortal element={rootNode}>
+      <FloatingPortal root={rootNode}>
         <div
           ref={setFloatingRef}
           role="dialog"

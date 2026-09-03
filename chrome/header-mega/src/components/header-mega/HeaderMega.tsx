@@ -80,8 +80,8 @@ export function HeaderMega({
       onMouseLeave={scheduleClose}
       onMouseEnter={cancelClose}
     >
-      <div className={cn("border-b bg-background/95 backdrop-blur transition-colors duration-300", open ? "border-foreground/20" : "border-border")}>
-        <div className="mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between gap-6 px-4 sm:px-6">
+      <div className={cn("border-b bg-background/95 transition-colors duration-300", open ? "border-foreground/20" : "border-border")}>
+        <div className="relative isolate overflow-hidden mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between gap-6 px-4 sm:px-6">
           <a href="#" className="flex shrink-0 items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
             {logo ?? (
               <span className="flex items-center gap-2.5">
@@ -146,7 +146,7 @@ export function HeaderMega({
               ))}
           </div>
 
-          <button
+          <Button
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -154,7 +154,7 @@ export function HeaderMega({
             className="inline-flex size-9 items-center justify-center border border-border transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 lg:hidden"
           >
             {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -244,7 +244,7 @@ export function HeaderMega({
                         {item.label}
                       </a>
                       {item.columns && (
-                        <button
+                        <Button
                           type="button"
                           aria-label={sectionOpen ? `Collapse ${item.label}` : `Expand ${item.label}`}
                           aria-expanded={sectionOpen}
@@ -252,7 +252,7 @@ export function HeaderMega({
                           className="inline-flex size-8 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
                         >
                           <ChevronDown className={cn("size-3.5 transition-transform duration-300", sectionOpen && "rotate-180")} aria-hidden />
-                        </button>
+                        </Button>
                       )}
                     </div>
                     <AnimatePresence initial={false}>

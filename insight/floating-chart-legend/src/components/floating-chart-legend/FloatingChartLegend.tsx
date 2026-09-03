@@ -16,6 +16,7 @@ import {
 } from "@floating-ui/react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -96,15 +97,16 @@ function LegendChip({
 
   return (
     <>
-      <button
+      <Button
         type="button"
+        variant="ghost"
         ref={refs.setReference}
         {...getReferenceProps()}
         onClick={onToggle}
         aria-pressed={!hidden}
         aria-haspopup="dialog"
         className={cn(
-          "inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-[11px] font-semibold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "inline-flex h-auto items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-[11px] font-semibold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           hidden && "border-dashed text-muted-foreground",
         )}
       >
@@ -114,7 +116,7 @@ function LegendChip({
           style={{ backgroundColor: seriesColor(series.key) }}
         />
         {series.label}
-      </button>
+      </Button>
       {open && (
         <FloatingPortal>
           <motion.div

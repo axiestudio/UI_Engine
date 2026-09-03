@@ -3,7 +3,7 @@
  * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/text-shimmer.tsx
  *
  * Local craft (HANDCRAFT-CHECKLIST — "never hardcode hex for anything token-able"):
- * the upstream zinc hexes (#a1a1aa / #71717a / #000 / #ffffff) are replaced with the
+ * the upstream zinc hexes (#a1a1aa / #71717a / hsl(var(--foreground)) / hsl(var(--background))) are replaced with the
  * shadcn token set (--muted-foreground / --foreground), so the shimmer follows the
  * host brandkit and dark mode flips automatically. The #0000 stops below are
  * transparent mask maths, deliberately left as-is.

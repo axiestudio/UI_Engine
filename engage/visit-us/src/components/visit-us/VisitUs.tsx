@@ -143,7 +143,7 @@ export function VisitUs({
   const today = todayIndex !== undefined ? todayIndex : defaultTodayIndex()
 
   return (
-    <section className={cn("w-full bg-background", className)} aria-labelledby={title ? "visit-us-title" : undefined}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background", className)} aria-labelledby={title ? "visit-us-title" : undefined}>
       <InView
         variants={{
           hidden: { opacity: 0, y: 16 },

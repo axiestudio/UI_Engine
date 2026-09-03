@@ -58,7 +58,7 @@ export function Ritual({ eyebrow = "The visit", title = "What actually happens",
   const draw = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 })
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-label={title}>
       <div className="mx-auto w-full max-w-[820px] px-4 py-16 sm:px-6 lg:py-24">
         <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
           <header className="mb-12 max-w-xl">

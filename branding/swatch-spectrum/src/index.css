@@ -33,6 +33,14 @@
     --brand: 0 0% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --app-swatch-ink: 0 0% 7%;
+    --app-swatch-paper: 60 22% 96%;
+    --app-swatch-signal: 16 79% 51%;
+    --app-swatch-moss: 104 15% 33%;
+    --app-swatch-stone: 38 4% 54%;
+    --app-swatch-on-dark: 0 0% 7%;
+    --app-swatch-on-light: 60 22% 96%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

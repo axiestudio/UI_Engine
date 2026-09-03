@@ -1,6 +1,8 @@
 /**
  * Vendored from Cult UI (MIT): code-block — tabbed code with copy.
  * Snapshot: UI/_registry/cult-ui/r/code-block.json
+ * Local patch (registry-first): backdrop-blur removed — glassmorphism
+ * not allowed in this workspace (Law 3). Uses solid bg-card instead.
  */
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Check, Copy } from "lucide-react"
@@ -195,12 +197,12 @@ export function CodeBlock({
           className={cn(
             "absolute top-2 right-2 z-10",
             "flex items-center gap-1.5 px-2 py-1.5 text-xs font-medium rounded-lg",
-            "text-zinc-500 dark:text-zinc-400",
-            "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm",
-            "border border-zinc-200/50 dark:border-zinc-800/50",
+            "text-muted-foreground",
+            "bg-card",
+            "border border-border",
             "opacity-70 group-hover:opacity-100",
-            "hover:bg-zinc-200/50 dark:hover:bg-zinc-700/70",
-            "hover:text-zinc-950 dark:hover:text-zinc-50",
+            "hover:bg-muted",
+            "hover:text-foreground",
             "transition-all duration-150",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
           )}

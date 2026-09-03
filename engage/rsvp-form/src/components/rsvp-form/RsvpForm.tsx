@@ -67,7 +67,7 @@ export function RsvpForm({
   return (
     <SectionShell tone={tone} width={760} grain={!ink} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-40px" }}>
-        <div className={cn("rounded-2xl border p-6 shadow-sm sm:p-7", ink ? "border-background/20 bg-background/5 backdrop-blur" : "border-border bg-card")}>
+        <div className={cn("relative isolate overflow-hidden rounded-2xl border p-6 shadow-sm sm:p-7", ink ? "border-background/20 bg-background/5 bg-background/90" : "border-border bg-card")}>
           <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.24em]", ink ? "text-background/60" : "text-muted-foreground")}>{eyebrow}</p>
           <h2 className="mt-2 font-display text-2xl font-black tracking-[-0.02em] sm:text-3xl">{title}</h2>
 

@@ -25,7 +25,7 @@ export function FooterSitemap({ brand = "STUDIO", tagline = "Sections for the wo
   const ink = tone === "ink"
   return (
     <footer className={cn("relative isolate", ink && "bg-foreground text-background", className)}>
-      <div className="mx-auto max-w-[1280px] px-5 py-16 sm:px-8">
+      <div className="relative isolate overflow-hidden mx-auto max-w-[1280px] px-5 py-16 sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
             <div>

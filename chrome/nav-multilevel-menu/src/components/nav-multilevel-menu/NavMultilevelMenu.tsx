@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Multilevel menu — accessible drill-down with keyboard support
 // ═══ EMOTION     organized depth
@@ -45,7 +46,7 @@ export function NavMultilevelMenu({ brand = "STUDIO", menu = DEFAULT_MENU, class
 
   return (
     <div className={cn("relative z-40", className)}>
-      <header className="flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
+      <header className="relative isolate overflow-hidden flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
         <a href="#" className="font-display text-lg font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {brand}
         </a>
@@ -55,7 +56,7 @@ export function NavMultilevelMenu({ brand = "STUDIO", menu = DEFAULT_MENU, class
             return (
               <div key={n.id} className="relative">
                 {n.children ? (
-                  <button
+                  <Button
                     type="button"
                     aria-expanded={isOpen}
                     aria-haspopup="menu"
@@ -70,7 +71,7 @@ export function NavMultilevelMenu({ brand = "STUDIO", menu = DEFAULT_MENU, class
                     className="rounded-md px-3 py-2 font-mono text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {n.label}
-                  </button>
+                  </Button>
                 ) : (
                   <a
                     href={n.href ?? "#"}

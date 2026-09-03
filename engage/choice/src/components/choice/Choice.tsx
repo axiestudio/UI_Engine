@@ -76,7 +76,7 @@ function Door({
 
       <span className="relative z-10 flex items-start justify-between gap-3">
         {o.tag && (
-          <span className={cn("rounded-full px-2 py-0.5 font-mono text-[9px] font-black uppercase tracking-[0.15em]", chosen ? "bg-background text-foreground" : "border bg-background/80 text-muted-foreground")}>
+          <span className={cn("relative isolate overflow-hidden rounded-full px-2 py-0.5 font-mono text-[9px] font-black uppercase tracking-[0.15em]", chosen ? "bg-background text-foreground" : "border bg-background/80 text-muted-foreground")}>
             {o.tag}
           </span>
         )}

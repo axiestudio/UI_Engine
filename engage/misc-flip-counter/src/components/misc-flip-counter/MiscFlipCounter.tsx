@@ -35,7 +35,7 @@ export function MiscFlipCounter({ eyebrow = "FINAL", value = 4281, suffix = "+",
   return (
     <SectionShell tone={tone} width={760} grain={!ink} rule="bottom" className={className}>
       <div className="text-center">
-        <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
+        <p className={cn("relative isolate overflow-hidden font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
         <p className="mt-4">
           <span ref={ref} className="inline-block font-display text-7xl font-black tabular-nums tracking-tight sm:text-8xl" aria-live="polite" aria-atomic>
             {shown.toLocaleString()}

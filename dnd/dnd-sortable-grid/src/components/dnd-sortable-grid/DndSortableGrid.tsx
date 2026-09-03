@@ -80,7 +80,7 @@ export function DndSortableGrid({
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm ">
         <div className="flex items-center gap-3">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
@@ -132,7 +132,7 @@ function GridCard({ tile, overlay = false }: { tile: GridTile; overlay?: boolean
         ) : (
           <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />
         )}
-        <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-lg bg-background/80 text-muted-foreground backdrop-blur">
+        <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-lg bg-background/80 text-muted-foreground ">
           <GripVertical className="h-4 w-4" />
         </span>
       </div>

@@ -6,6 +6,7 @@ import { Send } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { MonoLabel, SectionHead } from "@/components/primitives/handcraft"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Resolve a support thread before the kettle boils.
 // ═══ EMOTION     The calm desk at the front — one flick, one tap, done.
@@ -88,7 +89,7 @@ export function EmblaQuickReply({
   }
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("relative isolate overflow-hidden w-full", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} align="center" className="mx-auto" />
       </InView>
@@ -137,7 +138,7 @@ export function EmblaQuickReply({
                   {replies.map((reply) => {
                     const isUsed = used.includes(reply)
                     return (
-                      <button
+                      <Button
                         key={reply}
                         type="button"
                         disabled={isUsed}
@@ -151,7 +152,7 @@ export function EmblaQuickReply({
                         )}
                       >
                         {reply}
-                      </button>
+                      </Button>
                     )
                   })}
                 </div>

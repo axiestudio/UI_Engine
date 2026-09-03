@@ -19,8 +19,8 @@ export function NavScrollCollapse({ brand = "STUDIO", links = [{ id: "a", label:
   useMotionValueEvent(scrollY, "change", (y) => setCollapsed(y > 60))
   return (
     <div className={cn("relative", className)}>
-      <header className={cn("sticky top-0 z-40 border-b transition-all duration-300", collapsed ? "border-border bg-background/85 py-2 backdrop-blur" : "border-transparent py-6")}>
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 sm:px-8">
+      <header className={cn("sticky top-0 z-40 border-b transition-all duration-300", collapsed ? "border-border bg-background/85 py-2 " : "border-transparent py-6")}>
+        <div className="relative isolate overflow-hidden mx-auto flex max-w-[1280px] items-center justify-between px-5 sm:px-8">
           <span className={cn("font-display font-black tracking-tight transition-all", collapsed ? "text-base" : "text-2xl")}>{brand}</span>
           <nav className="flex items-center gap-5">
             {links.map((l) => <a key={l.id} href="#" className={cn("font-mono font-bold uppercase tracking-widest transition-all", collapsed ? "text-[10px]" : "text-[11px]", "text-muted-foreground hover:text-foreground")}>{l.label}</a>)}

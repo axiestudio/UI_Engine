@@ -29,8 +29,8 @@ export type Swatch = {
 }
 
 export type SwatchSpectrumProps = {
-  swatches?: Swatch[]
-  onCopy?: (s: Swatch) => void
+  swatches?: typeof SWATCH_DEFS
+  onCopy?: (s: typeof SWATCH_DEFS[number]) => void
   eyebrow?: string
   className?: string
 }
@@ -48,20 +48,39 @@ export function contrast(a: string, b: string) {
   return (l1 + 0.05) / (l2 + 0.05)
 }
 
-function readableInk(hex: string) {
-  return luminance(hex) > 0.35 ? "#121212" : "#FAFAF7"
+/** Resolve a token (e.g. "swatch-ink") to its computed hex equivalent. */
+function tokenToHex(token: string): string {
+  if (typeof window === "undefined") return "#000000"
+  const v = getComputedStyle(document.documentElement).getPropertyValue(`--app-${token}`).trim()
+  const m = v.match(/(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)%\s+(\d+(?:\.\d+)?)%/)
+  if (!m) return "#000000"
+  const h = Number(m[1]), s = Number(m[2]) / 100, l = Number(m[3]) / 100
+  const c = (1 - Math.abs(2 * l - 1)) * s
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
+  const m2 = l - c / 2
+  let r = 0, g = 0, b = 0
+  if (h < 60) [r, g, b] = [c, x, 0]
+  else if (h < 120) [r, g, b] = [x, c, 0]
+  else if (h < 180) [r, g, b] = [0, c, x]
+  else if (h < 240) [r, g, b] = [0, x, c]
+  else if (h < 300) [r, g, b] = [x, 0, c]
+  else [r, g, b] = [c, 0, x]
+  const to255 = (n: number) => Math.round((n + m2) * 255).toString(16).padStart(2, "0")
+  return `#${to255(r)}${to255(g)}${to255(b)}`.toUpperCase()
 }
 
-const SWATCHES = [
-  { name: "Ink", hex: "#121212", token: "--foreground" },
-  { name: "Paper", hex: "#FAFAF7", token: "--background", on: "#121212" },
-  { name: "Signal", hex: "#E8501E", token: "--brand" },
-  { name: "Moss", hex: "#4A5D43", token: "--accent", on: "#FAFAF7" },
-  { name: "Stone", hex: "#8E8B84", token: "--muted-foreground", on: "#121212" },
+type SwatchToken = "swatch-ink" | "swatch-paper" | "swatch-signal" | "swatch-moss" | "swatch-stone"
+
+const SWATCH_DEFS: { name: string; token: SwatchToken; label: string; onToken?: "swatch-on-dark" | "swatch-on-light" }[] = [
+  { name: "Ink", token: "swatch-ink", label: "--foreground" },
+  { name: "Paper", token: "swatch-paper", label: "--background", onToken: "swatch-on-dark" },
+  { name: "Signal", token: "swatch-signal", label: "--brand" },
+  { name: "Moss", token: "swatch-moss", label: "--accent", onToken: "swatch-on-light" },
+  { name: "Stone", token: "swatch-stone", label: "--muted-foreground", onToken: "swatch-on-dark" },
 ]
 
 export function SwatchSpectrum({
-  swatches = SWATCHES,
+  swatches = SWATCH_DEFS,
   onCopy,
   eyebrow = "PALETTE · TOKENS",
   className,
@@ -71,9 +90,9 @@ export function SwatchSpectrum({
   const timer = React.useRef<number | undefined>(undefined)
   React.useEffect(() => () => window.clearTimeout(timer.current), [])
 
-  const copy = async (s: Swatch) => {
+  const copy = async (s: typeof SWATCH_DEFS[number]) => {
     try {
-      await navigator.clipboard.writeText(s.hex)
+      await navigator.clipboard.writeText(tokenToHex(s.token))
     } catch {
       /* clipboard unavailable — verdict text still visible */
     }
@@ -98,17 +117,18 @@ export function SwatchSpectrum({
 
       <div className="mt-8 flex h-[400px] gap-1.5 rounded-xl" role="group" aria-label="Brand colors">
         {swatches.map((s) => {
-          const fg = s.on ?? readableInk(s.hex)
-          const ratio = contrast(s.hex, fg)
+          const hex = tokenToHex(s.token)
+          const fg = s.onToken ? `hsl(var(--app-${s.onToken}))` : (luminance(hex) > 0.35 ? `hsl(var(--app-swatch-on-dark))` : `hsl(var(--app-swatch-on-light))`)
+          const ratio = contrast(hex, fg)
           const pass = ratio >= 4.5
           return (
             <Button
               key={s.name}
               type="button"
               variant="ghost"
-              aria-label={`Copy ${s.name} ${s.hex}, contrast ${ratio.toFixed(1)} to 1. ${pass ? "Passes AA." : "Large text only."}`}
+              aria-label={`Copy ${s.name} ${hex}, contrast ${ratio.toFixed(1)} to 1. ${pass ? "Passes AA." : "Large text only."}`}
               onClick={() => void copy(s)}
-              style={{ backgroundColor: s.hex, color: fg, flexGrow: 1, flexBasis: 0 }}
+              style={{ backgroundColor: `hsl(var(--app-${s.token}))`, color: fg, flexGrow: 1, flexBasis: 0 }}
               className={cn(
                 "group relative flex h-auto min-w-14 cursor-pointer flex-col justify-between rounded-lg p-4 text-left outline-none",
                 "hover:grow-[2.4] focus-visible:grow-[2.4] focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-current",
@@ -124,8 +144,8 @@ export function SwatchSpectrum({
                 )}
               </span>
               <span className="flex flex-col gap-1">
-                <span className="text-2xl font-black leading-none tabular-nums">{s.hex.toUpperCase()}</span>
-                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] opacity-70">{s.token}</span>
+                <span className="text-2xl font-black leading-none tabular-nums">{hex.toUpperCase()}</span>
+                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] opacity-70">{s.label}</span>
                 <span className="mt-1 inline-flex w-fit items-center gap-1.5 rounded-full border border-current px-2 py-0.5 font-mono text-[8px] font-black uppercase tracking-[0.14em] opacity-[0.85]">
                   {ratio.toFixed(1)}:1 · {pass ? "AA" : "AA·LG"}
                   {copied === s.name ? " · copied" : ""}

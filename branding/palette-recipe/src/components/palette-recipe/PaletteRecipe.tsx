@@ -21,7 +21,7 @@ import { Separator } from "@/components/ui/separator"
 //   A11Y      percent measures readable, copy button announces, bars are
 //             aria-hidden decoration over text values
 
-export type Ingredient = { name: string; hex: string; parts: number }
+export type Ingredient = { name: string; token: string; rgb: [number, number, number]; parts: number }
 export type Recipe = { id: string; name: string; use: string; ingredients: Ingredient[] }
 /** @deprecated alias kept for the published package API */
 export type PaletteRecipe = Recipe
@@ -35,19 +35,19 @@ export type PaletteRecipeProps = {
 
 const DEFAULT_RECIPES: Recipe[] = [
   { id: "morning", name: "Morning Rush", use: "Primary CTA", ingredients: [
-    { name: "Paper", hex: "#FAF7F2", parts: 62 },
-    { name: "Signal Orange", hex: "#E8501E", parts: 30 },
-    { name: "Ink", hex: "#121212", parts: 8 },
+    { name: "Paper", token: "paper", rgb: [250, 247, 242], parts: 62 },
+    { name: "Signal Orange", token: "signal-orange", rgb: [232, 80, 30], parts: 30 },
+    { name: "Ink", token: "ink", rgb: [18, 18, 18], parts: 8 },
   ]},
   { id: "ledger", name: "Quiet Ledger", use: "Data surfaces", ingredients: [
-    { name: "Paper", hex: "#FAF7F2", parts: 78 },
-    { name: "Stone", hex: "#8E8B84", parts: 14 },
-    { name: "Ink", hex: "#121212", parts: 8 },
+    { name: "Paper", token: "paper", rgb: [250, 247, 242], parts: 78 },
+    { name: "Stone", token: "stone", rgb: [142, 139, 132], parts: 14 },
+    { name: "Ink", token: "ink", rgb: [18, 18, 18], parts: 8 },
   ]},
   { id: "grove", name: "Back Grove", use: "Success states", ingredients: [
-    { name: "Moss", hex: "#4A5D43", parts: 44 },
-    { name: "Paper", hex: "#FAF7F2", parts: 40 },
-    { name: "Ink", hex: "#121212", parts: 16 },
+    { name: "Moss", token: "moss", rgb: [74, 93, 67], parts: 44 },
+    { name: "Paper", token: "paper", rgb: [250, 247, 242], parts: 40 },
+    { name: "Ink", token: "ink", rgb: [18, 18, 18], parts: 16 },
   ]},
 ]
 
@@ -55,14 +55,11 @@ const DEFAULT_RECIPES: Recipe[] = [
 export function mix(ing: Ingredient[]): string {
   const total = ing.reduce((s, i) => s + i.parts, 0) || 1
   const rgb = ing.reduce(
-    ([r, g, b], i) => {
-      const h = i.hex.replace("#", "")
-      return [
-        r + parseInt(h.slice(0, 2), 16) * (i.parts / total),
-        g + parseInt(h.slice(2, 4), 16) * (i.parts / total),
-        b + parseInt(h.slice(4, 6), 16) * (i.parts / total),
-      ]
-    },
+    ([r, g, b], i) => [
+      r + i.rgb[0] * (i.parts / total),
+      g + i.rgb[1] * (i.parts / total),
+      b + i.rgb[2] * (i.parts / total),
+    ],
     [0, 0, 0]
   )
   return `#${rgb.map((c) => Math.round(c).toString(16).padStart(2, "0")).join("")}`.toUpperCase()
@@ -105,7 +102,7 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
                 <li key={ing.name}>
                   <div className="flex items-center justify-between font-mono text-[11px] font-bold uppercase tracking-[0.14em]">
                     <span className="flex items-center gap-2 text-foreground">
-                      <span aria-hidden className="size-3.5 rounded-full border" style={{ backgroundColor: ing.hex }} />
+                      <span aria-hidden className="size-3.5 rounded-full border" style={{ backgroundColor: `hsl(var(--app-${ing.token}))` }} />
                       {ing.name}
                     </span>
                     <span className="tabular-nums text-muted-foreground">{ing.parts} pt · {pct}%</span>
@@ -117,7 +114,7 @@ function RecipeCard({ recipe, index, total, onPick }: { recipe: Recipe; index: n
                       viewport={{ once: true }}
                       transition={reduced ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                       className="h-full rounded-full"
-                      style={{ backgroundColor: ing.hex }}
+                      style={{ backgroundColor: `hsl(var(--app-${ing.token}))` }}
                     />
                   </div>
                 </li>

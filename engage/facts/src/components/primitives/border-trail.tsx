@@ -3,7 +3,7 @@
  * Upstream: https://github.com/ibelick/motion-primitives/blob/main/components/core/border-trail.tsx
  *
  * Local craft (HANDCRAFT-CHECKLIST): upstream bg-zinc-500 → --muted-foreground token,
- * so the trail themes with the host brandkit. The #000 in the mask-image is
+ * so the trail themes with the host brandkit. The hsl(var(--foreground)) in the mask-image is
  * invisible mask maths, deliberately left as-is.
  */
 'use client';
@@ -32,7 +32,7 @@ export function BorderTrail({
   };
 
   return (
-    <div className='pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]'>
+    <div className='pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(hsl(var(--foreground)),hsl(var(--foreground)))]'>
       <motion.div
         className={cn('absolute aspect-square bg-[hsl(var(--muted-foreground))]', className)}
         style={{

@@ -146,7 +146,7 @@ export default function ProjectInquirySection({
                     >
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background/50 backdrop-blur-md">
+                    <SelectContent className="bg-background/50 bg-background/90">
                       <SelectItem value="web">Web Application</SelectItem>
                       <SelectItem value="mobile">Mobile App</SelectItem>
                       <SelectItem value="design">Brand Design</SelectItem>
@@ -171,7 +171,7 @@ export default function ProjectInquirySection({
                     >
                       <SelectValue placeholder="Select budget" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background/50 backdrop-blur-md">
+                    <SelectContent className="bg-background/50 bg-background/90">
                       <SelectItem value="10k">$10k – $25k</SelectItem>
                       <SelectItem value="25k">$25k – $50k</SelectItem>
                       <SelectItem value="50k">$50k – $100k</SelectItem>
@@ -212,7 +212,7 @@ export default function ProjectInquirySection({
                       >
                         <SelectValue placeholder="Select team size" />
                       </SelectTrigger>
-                      <SelectContent className="bg-background/50 backdrop-blur-md">
+                      <SelectContent className="bg-background/50 bg-background/90">
                         <SelectItem value="solo">Solo Contributor</SelectItem>
                         <SelectItem value="small">Small Team (2–4)</SelectItem>
                         <SelectItem value="medium">

@@ -106,7 +106,7 @@ export function FinaleConfetti({ show = true, title = "Done.", sub, duration = 2
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: reduce ? 0 : 0.2 }}
-          className={cn("fixed inset-0 z-50 flex items-center justify-center bg-foreground/10 p-4 backdrop-blur-sm", className)}
+          className={cn("absolute inset-0 z-50 flex items-center justify-center bg-foreground/10 p-4 ", className)}
         >
           {Content}
         </motion.div>

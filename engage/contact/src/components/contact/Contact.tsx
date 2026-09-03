@@ -70,7 +70,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function FieldShell({ f, error, count, children }: { f: ContactFieldDef; error?: string; count?: { n: number; max: number }; children: React.ReactNode }) {
   return (
-    <div className={cn("space-y-1.5", f.colSpan === 2 ? "sm:col-span-2" : f.colSpan === 1 ? "sm:col-span-1" : undefined)}>
+    <div className={cn("relative isolate overflow-hidden space-y-1.5", f.colSpan === 2 ? "sm:col-span-2" : f.colSpan === 1 ? "sm:col-span-1" : undefined)}>
       <Label htmlFor={`contact-${f.name}`} className="flex items-baseline gap-1 font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
         {f.label}
         {f.required && (

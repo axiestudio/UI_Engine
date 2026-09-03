@@ -118,7 +118,7 @@ export function Switchboard({
 
   if (!routes.length) {
     return (
-      <section className={cn("w-full bg-[hsl(var(--board))] px-4 py-16", className)}>
+      <section className={cn("relative isolate overflow-hidden w-full bg-[hsl(var(--board))] px-4 py-16", className)}>
         <p className="mx-auto max-w-[1120px] font-mono text-sm text-[hsl(var(--board-jack))]/60">No routes configured.</p>
       </section>
     )

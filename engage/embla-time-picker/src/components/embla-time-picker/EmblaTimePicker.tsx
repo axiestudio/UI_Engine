@@ -105,7 +105,7 @@ export function EmblaTimePicker({
       <InView once variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}>
         <figure className="mt-10">
           <div className="mx-auto max-w-[380px]">
-            <div className={cn("rounded-[18px] border bg-card p-6 shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
+            <div className={cn("relative isolate overflow-hidden rounded-[18px] border bg-card p-6 shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
               <div className="flex items-center justify-center gap-1">
                 <Wheel values={hours} value={hour} onChange={(h) => setT((t) => ({ ...t, hour: h }))} ariaLabel="Hours" />
                 <span aria-hidden className="font-display text-[22px] font-black text-muted-foreground/50">:</span>

@@ -185,7 +185,7 @@ export function Airlock({
           {/* pressure gauge */}
           <div
             aria-hidden
-            className="absolute left-1/2 top-3 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 font-mono text-[9px] font-black tracking-[0.2em] text-[hsl(var(--airlock-ink))] ring-1 ring-white/15 backdrop-blur"
+            className="absolute left-1/2 top-3 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 font-mono text-[9px] font-black tracking-[0.2em] text-[hsl(var(--airlock-ink))] ring-1 ring-white/15 bg-background/90"
           >
             <AlertTriangle className={cn("size-3", stage !== "idle" ? "text-[hsl(var(--warn))]" : "text-white/30")} />
             {stage === "idle" ? "CHAMBER — SEALED OUTER" : stage === "sealed" ? "EQUALIZING PRESSURE" : "GREEN — INNER CYCLE"}

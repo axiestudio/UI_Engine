@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
 import { ArrowUpRight, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type HeaderLink = { label: string; href: string }
@@ -46,7 +47,7 @@ export function HeaderMinimal({
     "group relative font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 
   return (
-    <header className={cn("fixed top-0 z-50 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", className)}>
+    <header className={cn("absolute top-0 z-50 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", className)}>
       <motion.div
         animate={{
           backgroundColor: scrolled ? "hsl(var(--background) / 0.82)" : "hsl(var(--background) / 0)",
@@ -54,7 +55,7 @@ export function HeaderMinimal({
           boxShadow: scrolled ? "0 8px 30px -12px hsl(0 0% 0% / 0.12)" : "0 0 0 0 hsl(0 0% 0% / 0)",
         }}
         transition={{ duration: reduce ? 0 : 0.35, ease: "easeOut" }}
-        className="border-b backdrop-blur-xl"
+        className="relative isolate overflow-hidden border-b "
       >
         <div className="mx-auto flex h-14 w-full max-w-[1100px] items-center justify-between px-4 sm:px-6">
           <a href="#" className="flex items-center gap-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2">
@@ -89,7 +90,7 @@ export function HeaderMinimal({
                 <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden />
               </a>
             )}
-            <button
+            <Button
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
@@ -97,7 +98,7 @@ export function HeaderMinimal({
               className="inline-flex size-8 items-center justify-center text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 md:hidden"
             >
               {open ? <X className="size-4" /> : <Menu className="size-4" />}
-            </button>
+            </Button>
           </div>
         </div>
 

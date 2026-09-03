@@ -32,12 +32,12 @@ export function NavTranslucent({
     <div className={cn("relative", className)}>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-colors",
+          "absolute inset-x-0 top-0 z-50 border-b transition-colors",
           reduce ? "duration-0" : "duration-300",
-          scrolled ? "border-border bg-background/80 backdrop-blur-xl" : "border-transparent bg-transparent"
+          scrolled ? "border-border bg-background/80 " : "border-transparent bg-transparent"
         )}
       >
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
+        <div className="relative isolate overflow-hidden mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
           <a href="#" className="font-display text-lg font-bold tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             {brand}
           </a>

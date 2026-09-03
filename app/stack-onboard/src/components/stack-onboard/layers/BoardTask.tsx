@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
 
 // ── BOARD TASK — one filling. Render one row per step; repeat freely. ───────
@@ -26,15 +26,7 @@ export function BoardTask({ label, hint, done, onToggle, className }: BoardTaskP
         className,
       )}
     >
-      <span
-        aria-hidden
-        className={cn(
-          "flex size-5 shrink-0 items-center justify-center rounded-md border transition-all",
-          done ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background",
-        )}
-      >
-        {done && <Check className="size-3" strokeWidth={3.5} />}
-      </span>
+      <Checkbox checked={!!done} tabIndex={-1} className="pointer-events-none size-5 shrink-0 rounded-md border-border bg-background data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" />
       <span className="min-w-0">
         <span className={cn("block truncate text-[13px] font-bold", done && "text-muted-foreground line-through decoration-border")}>{label}</span>
         {hint && <span className="block truncate text-[11px] font-medium text-muted-foreground">{hint}</span>}

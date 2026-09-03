@@ -36,7 +36,7 @@ const DEMO_FACTS_ITEMS = [ { label: "Parking", value: "Kvarnen, 40 m" }, { label
 export function Facts({ eyebrow = "Practicalities", title, items = DEMO_FACTS_ITEMS, singleRow = true, className }: FactsProps) {
   if (!items.length) return null
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title ?? eyebrow}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-label={title ?? eyebrow}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[1180px] px-4 py-14 sm:px-6 lg:px-8">
           {eyebrow && <p className="mb-6 font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{eyebrow}</p>}

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "motion/react"
 import { Search, CornerDownLeft } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 // ═══ JOB         Command search — accessible palette with dialog semantics
 // ═══ EMOTION     fast, keyboard-first
@@ -58,11 +60,11 @@ export function NavCommandSearch({
 
   return (
     <div className={cn("relative", className)}>
-      <header className="flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
+      <header className="relative isolate overflow-hidden flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
         <a href="#" className="font-display text-lg font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {brand}
         </a>
-        <button
+        <Button
           type="button"
           aria-label="Open search (⌘K)"
           aria-keyshortcuts="Meta+K"
@@ -70,7 +72,7 @@ export function NavCommandSearch({
           className="inline-flex items-center gap-2 rounded-md border bg-background px-3 py-2 text-sm text-muted-foreground shadow-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <Search className="h-4 w-4" aria-hidden /> Search <kbd className="ml-2 hidden rounded border bg-muted px-1.5 py-0.5 font-mono text-xs sm:inline-flex">⌘K</kbd>
-        </button>
+        </Button>
       </header>
       <div className="mx-auto max-w-2xl px-5 py-16 sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
@@ -85,7 +87,7 @@ export function NavCommandSearch({
             role="dialog"
             aria-modal="true"
             aria-label="Search"
-            className="fixed inset-0 z-50 flex items-start justify-center bg-foreground/10 p-4 pt-24 backdrop-blur-sm"
+            className="absolute inset-0 z-50 flex items-start justify-center bg-foreground/10 p-4 pt-24 "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -103,7 +105,7 @@ export function NavCommandSearch({
             >
               <div className="flex items-center gap-2 border-b px-4">
                 <Search className="h-4 w-4 text-muted-foreground" aria-hidden />
-                <input
+                <Input
                   ref={inputRef}
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
@@ -119,7 +121,7 @@ export function NavCommandSearch({
                   </p>
                 ) : (
                   results.map((r) => (
-                    <button
+                    <Button
                       key={r.id}
                       type="button"
                       role="option"
@@ -130,7 +132,7 @@ export function NavCommandSearch({
                       <span className="flex items-center gap-1 font-mono text-xs text-muted-foreground">
                         {r.group} <CornerDownLeft className="h-3 w-3" aria-hidden />
                       </span>
-                    </button>
+                    </Button>
                   ))
                 )}
               </div>

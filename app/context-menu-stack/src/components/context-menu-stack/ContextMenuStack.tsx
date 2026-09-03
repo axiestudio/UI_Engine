@@ -31,6 +31,9 @@ import { cn } from "@/lib/utils"
 //           built from the trigger rect, submenus on their parent item;
 //           autoUpdate + [offset → flip → shift(8) → hide]. No hand-rolled
 //           getBoundingClientRect math anywhere.
+// ISOLATION every panel portals into the preset root (never document.body) and
+//           flip/shift/hide are clamped to it, so stacked menus stay inside the
+//           content pane on every level.
 // API      provide `items` [{label|sep, run?, submenu?, shortcut?, danger?}] —
 //          the host element is wrapped; contextmenu event is fully handled.
 // A11Y     keyboard: Shift+F10 / Menu key opens at the element; arrows
@@ -42,6 +45,10 @@ export type ContextMenuStackProps = { items: MenuItem[]; children: React.ReactNo
 
 type PT = { x: number; y: number }
 type SubState = { idx: number; viaKey: boolean } | null
+
+// The preset root element: panels portal into it, and middleware clamp to it,
+// so no level of the stack can escape the content pane (Law: isolation).
+const MenuScope = React.createContext<HTMLElement | null>(null)
 
 function virtualAt(p: PT): ReferenceElement {
   return { getBoundingClientRect: () => ({ x: p.x, y: p.y, width: 0, height: 0, top: p.y, bottom: p.y, left: p.x, right: p.x }) }
@@ -104,7 +111,7 @@ function MenuChrome({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: reduce ? 0 : 0.14, ease: [0.16, 1, 0.3, 1] }}
       style={floatingStyles}
-      className="fixed z-[96] w-60 origin-top-left rounded-lg border border-border/70 bg-popover p-1 text-popover-foreground shadow-xl outline-none"
+      className="z-[96] w-60 origin-top-left rounded-lg border border-border/70 bg-popover p-1 text-popover-foreground shadow-xl outline-none"
       {...getFloatingProps({ ...(hoverFloatingProps as React.HTMLProps<HTMLElement>), onKeyDown: (e: React.KeyboardEvent) => {
         const it = items[activeIndex]
         if (e.key === "Escape" || (e.key === "ArrowLeft" && level > 0)) {
@@ -176,15 +183,16 @@ function FlyoutItem({
   reduce: boolean
 }) {
   const btnRef = React.useRef<HTMLButtonElement>(null)
+  const scope = React.useContext(MenuScope)
   const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange,
     placement: "right-start",
     middleware: [
       offset({ mainAxis: 0, crossAxis: 6 }),
-      // stacks must flip sides near the viewport edge
-      flip({ fallbackPlacements: ["left-start"], padding: 8 }),
-      shift({ padding: 8 }),
+      // stacks must flip sides near the content-pane edge
+      flip({ fallbackPlacements: ["left-start"], padding: 8, boundary: scope ?? "clippingAncestors" }),
+      shift({ padding: 8, boundary: scope ?? "clippingAncestors" }),
       hide(),
     ],
     whileElementsMounted: autoUpdate,
@@ -215,7 +223,7 @@ function FlyoutItem({
         <span className="flex-1 truncate">{item.label}</span>
         <ChevronRight className="size-3.5 opacity-60" aria-hidden />
       </Button>
-      <FloatingPortal>
+      <FloatingPortal root={scope}>
         {open && (
           <MenuChrome
             context={context}
@@ -239,6 +247,7 @@ function FlyoutItem({
 export function ContextMenuStack({ items, children, label = "Context menu", className }: ContextMenuStackProps) {
   const [pos, setPos] = React.useState<PT | null>(null)
   const wrapperRef = React.useRef<HTMLDivElement>(null)
+  const [scopeEl, setScopeEl] = React.useState<HTMLElement | null>(null)
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const openedByKeyboard = React.useRef(false)
   const closeAll = () => { setPos(null); wrapperRef.current?.focus() }
@@ -249,7 +258,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
     onOpenChange: (v) => { if (!v) closeAll() },
     elements: { reference: virtualRef as Element | null },
     placement: "bottom-start",
-    middleware: [offset(4), flip(), shift({ padding: 8 }), hide()],
+    middleware: [offset(4), flip({ boundary: scopeEl ?? "clippingAncestors" }), shift({ padding: 8, boundary: scopeEl ?? "clippingAncestors" }), hide()],
     whileElementsMounted: autoUpdate,
   })
 
@@ -257,7 +266,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
 
   return (
     <div
-      ref={wrapperRef}
+      ref={(el) => { wrapperRef.current = el; setScopeEl(el) }}
       className={cn("relative isolate overflow-hidden", className)}
       onContextMenu={(e) => { e.preventDefault(); open({ x: e.clientX, y: e.clientY }, false) }}
       onKeyDown={(e) => {
@@ -272,7 +281,8 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
       aria-expanded={pos !== null}
     >
       {children}
-      <FloatingPortal>
+      <MenuScope.Provider value={scopeEl}>
+      <FloatingPortal root={scopeEl}>
         {pos && (
           <MenuChrome
             context={context}
@@ -288,6 +298,7 @@ export function ContextMenuStack({ items, children, label = "Context menu", clas
           />
         )}
       </FloatingPortal>
+      </MenuScope.Provider>
     </div>
   )
 }

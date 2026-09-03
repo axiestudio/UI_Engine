@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 export type MegaPanelColumn = { title: string; links?: string[] }
 
@@ -49,7 +50,7 @@ export function NavMegaPanel({ brand = "STUDIO", items = DEFAULT_ITEMS, cta = "S
             {items.map((i) => {
               const isOpen = open === i.id
               return (
-                <button
+                <Button
                   key={i.id}
                   type="button"
                   aria-expanded={isOpen}
@@ -64,7 +65,7 @@ export function NavMegaPanel({ brand = "STUDIO", items = DEFAULT_ITEMS, cta = "S
                   )}
                 >
                   {i.label} {i.columns && <ChevronDown className="h-3.5 w-3.5" aria-hidden />}
-                </button>
+                </Button>
               )
             })}
           </nav>

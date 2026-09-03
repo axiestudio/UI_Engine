@@ -5,6 +5,7 @@ import { Spotlight } from "@/components/primitives/spotlight"
 import { TextEffect } from "@/components/primitives/text-effect"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { Input } from "@/components/ui/input"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type ErrorAction = {
@@ -156,7 +157,7 @@ export function ErrorState({
           >
             <div className="relative flex-1">
               <Search className={cn("pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2", ink ? "text-background/40" : "text-muted-foreground")} />
-              <input
+              <Input
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}

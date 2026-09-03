@@ -24,13 +24,13 @@ export type EmblaSwatchPickerProps = {
   className?: string
 }
 
-const FALLBACK_HEX = "#B45309"
+const FALLBACK_TOKEN = "shade-amber"
 
 export function EmblaSwatchPicker({
   eyebrow = "EMBLA · SWATCH PICKER",
   title = "Pick a colour, steal the hex.",
   subtitle = "Drag the loop or click a chip — the centred swatch leans in and its hex reads out below. Copy takes it straight to your clipboard.",
-  swatches = ["#B45309", "#0F766E", "#7C3AED", "#BE185D", "#1D4ED8", "#CA8A04", "#15803D", "#DC2626"],
+  swatches = ["shade-amber", "shade-teal", "shade-violet", "shade-rose", "shade-blue", "shade-brass", "shade-fern", "shade-red"],
   caption = "LOOP · CLICK OR DRAG · COPY TO CLIPBOARD",
   tone = "paper",
   className,
@@ -61,19 +61,20 @@ export function EmblaSwatchPicker({
     [],
   )
 
-  const hex = swatches[Math.min(active, swatches.length - 1)] ?? FALLBACK_HEX
+  const token = swatches[Math.min(active, swatches.length - 1)] ?? FALLBACK_TOKEN
+  const hex = `hsl(var(--app-${token}))`
 
   const copy = React.useCallback(() => {
     if (typeof navigator === "undefined" || !navigator.clipboard) return
     navigator.clipboard
-      .writeText(hex)
+      .writeText(token)
       .then(() => {
         setCopied(true)
         if (copyTimer.current !== null) window.clearTimeout(copyTimer.current)
         copyTimer.current = window.setTimeout(() => setCopied(false), 1500)
       })
       .catch(() => {})
-  }, [hex])
+  }, [token])
 
   return (
     <section className={cn("bg-background text-foreground", className)}>
@@ -101,7 +102,7 @@ export function EmblaSwatchPicker({
                       transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 22 }}
                       aria-label={`Select ${swatch}`}
                       aria-pressed={selected}
-                      style={{ backgroundColor: swatch }}
+                      style={{ backgroundColor: `hsl(var(--app-${swatch}))` }}
                       className={cn(
                         "size-16 rounded-full transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         selected
@@ -116,12 +117,12 @@ export function EmblaSwatchPicker({
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-3">
-            <p className="font-mono text-2xl font-bold tabular-nums tracking-tight">{hex}</p>
+            <p className="font-mono text-2xl font-bold tabular-nums tracking-tight">{token}</p>
             <Button
               type="button"
               variant="ghost"
               onClick={copy}
-              aria-label={copied ? "Copied" : `Copy ${hex}`}
+              aria-label={copied ? "Copied" : `Copy ${token}`}
               className="flex size-9 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copied ? <Check className="size-4 text-primary" strokeWidth={2.5} /> : <Copy className="size-4" />}

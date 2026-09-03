@@ -102,7 +102,7 @@ function ListItem({
       <NavigationMenuLink asChild>
         <a
           href={href}
-          className="group flex gap-3 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+          className="relative isolate overflow-hidden group flex gap-3 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
         >
           <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border bg-card shadow-xs transition-colors group-hover:bg-background">
             <Icon className="h-[16px] w-[16px] stroke-[2.2]" />
@@ -202,9 +202,9 @@ export function Header(props: HeaderProps = {}) {
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ type: "spring", stiffness: 300, damping: 30, mass: 0.8 }}
         className={cn(
-          "top-0 z-50 border-b backdrop-blur-xl",
+          "top-0 z-50 border-b ",
           position === "fixed"
-            ? "fixed left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)] w-auto"
+            ? "absolute left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)] w-auto"
             : "sticky w-full",
           scrolled
             ? "border-border bg-background/90 supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_0_0_hsl(var(--border)),0_8px_24px_-16px_hsl(var(--foreground)/0.16)]"
@@ -381,7 +381,7 @@ export function Header(props: HeaderProps = {}) {
 
                 <div className="flex-1 overflow-y-auto no-scrollbar px-3 py-4 sm:px-4">
                   {/* Mobile search */}
-                  <button
+                  <Button
                     onClick={() => {
                       setMobileOpen(false)
                       setTimeout(() => setSearchOpen(true), 200)
@@ -391,7 +391,7 @@ export function Header(props: HeaderProps = {}) {
                     <Search className="h-4 w-4" />
                     <span className="flex-1 text-sm">Search…</span>
                     <span className="rounded-md border bg-background px-1.5 py-0.5 font-mono text-xs font-bold">⌘K</span>
-                  </button>
+                  </Button>
 
                   <nav className="flex flex-col gap-1">
                     {NAV_ITEMS.map((item) =>

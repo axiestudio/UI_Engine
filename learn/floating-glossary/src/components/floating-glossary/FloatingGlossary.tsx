@@ -15,6 +15,7 @@ import {
 } from "@floating-ui/react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Explain the house's shorthand without leaving the page.
 // ═══ EMOTION     A patient editor whispering footnotes above the line.
@@ -72,18 +73,19 @@ function Term({ entry }: { entry: GlossaryEntry }) {
 
   return (
     <>
-      <button
+      <Button
         type="button"
+        variant="ghost"
         ref={refs.setReference}
         {...getReferenceProps()}
         aria-expanded={open}
         className={cn(
-          "cursor-help rounded-[2px] border-b border-dashed border-primary/60 font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "h-auto cursor-help rounded-[2px] border-b border-dashed border-primary/60 px-0 py-0 font-semibold text-foreground transition-colors hover:border-primary hover:bg-transparent hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           open && "border-primary text-primary",
         )}
       >
         {entry.term}
-      </button>
+      </Button>
       {open && (
         <FloatingPortal>
           <div ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()} className="z-50 w-64 rounded-xl border border-border bg-card p-3.5 shadow-[0_18px_44px_-16px_hsl(var(--foreground)/0.45)]">

@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type WizardStep = {
@@ -49,7 +50,7 @@ export function ProgressSteps({
 }: ProgressStepsProps) {
   if (!steps.length) return null
   return (
-    <ol className={cn("flex items-center", className)} aria-label="Progress">
+    <ol className={cn("relative isolate overflow-hidden flex items-center", className)} aria-label="Progress">
       {steps.map((s, i) => {
         const done = i < current
         const active = i === current
@@ -78,7 +79,7 @@ export function ProgressSteps({
         return (
           <li key={s.id} className="flex flex-1 items-center last:flex-none" aria-current={active ? "step" : undefined}>
             {onStepClick ? (
-              <button
+              <Button
                 type="button"
                 onClick={() => reachable && onStepClick(i)}
                 disabled={!(done || active) || (done && !backNavigation)}
@@ -86,7 +87,7 @@ export function ProgressSteps({
                 className="flex items-center"
               >
                 {inner}
-              </button>
+              </Button>
             ) : (
               <span className="flex items-center">{inner}</span>
             )}

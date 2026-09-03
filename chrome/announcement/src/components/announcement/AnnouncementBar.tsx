@@ -4,6 +4,7 @@ import { TextRoll } from "@/components/primitives/text-roll"
 import { TextLoop } from "@/components/primitives/text-loop"
 import { BorderTrail } from "@/components/primitives/border-trail"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type AnnouncementMessage = {
@@ -37,7 +38,7 @@ function renderMessage(m: AnnouncementMessage) {
   if (m.roll && m.roll.length === 2) {
     // TextRoll takes an two-word string: first word exits, second enters.
     const phrase = `${m.before ?? ""}${m.roll.join(" ")}${m.after ?? ""}`
-    return <TextRoll duration={0.55} className="font-mono text-[11px] font-bold uppercase tracking-widest sm:text-xs" children={phrase} />
+    return <TextRoll duration={0.55} className="relative isolate overflow-hidden font-mono text-[11px] font-bold uppercase tracking-widest sm:text-xs" children={phrase} />
   }
   return <span>{m.text ?? `${m.before ?? ""}${m.after ?? ""}`}</span>
 }
@@ -124,14 +125,14 @@ export function AnnouncementBar({
           </a>
         )}
       </div>
-      <button
+      <Button
         type="button"
         onClick={dismiss}
         aria-label={`Dismiss ${label.toLowerCase()}`}
         className={cn("absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full opacity-70 transition-opacity hover:opacity-100", ink ? "text-background hover:bg-background/10" : "text-foreground hover:bg-accent")}
       >
         <X className="h-3.5 w-3.5 stroke-[2.5]" />
-      </button>
+      </Button>
     </div>
   )
 }

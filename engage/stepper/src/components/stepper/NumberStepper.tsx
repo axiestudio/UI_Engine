@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type NumberStepperProps = {
@@ -91,16 +92,16 @@ export function NumberStepper({
   })
 
   return (
-    <div className={cn("inline-flex flex-col items-center gap-0.5", className)}>
+    <div className={cn("relative isolate overflow-hidden inline-flex flex-col items-center gap-0.5", className)}>
       {label && (
         <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
           {label}
         </span>
       )}
       <div className={cn("flex items-center gap-1 rounded-full border bg-card p-1 shadow-xs", disabled && "pointer-events-none opacity-50")}>
-        <button type="button" aria-label={`Decrease${label ? ` ${label.toLowerCase()}` : ""}`} disabled={current <= min} {...btnHandlers(-1)} className={cn("flex items-center justify-center rounded-full transition-colors hover:bg-accent active:scale-95 disabled:opacity-30", dims)}>
+        <Button type="button" aria-label={`Decrease${label ? ` ${label.toLowerCase()}` : ""}`} disabled={current <= min} {...btnHandlers(-1)} className={cn("flex items-center justify-center rounded-full transition-colors hover:bg-accent active:scale-95 disabled:opacity-30", dims)}>
           <Minus className="h-4 w-4" />
-        </button>
+        </Button>
         <input
           type="number"
           inputMode="numeric"
@@ -122,9 +123,9 @@ export function NumberStepper({
           }}
           className={cn("bg-transparent text-center font-display font-black tabular-nums tracking-tight text-foreground outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none", valCls)}
         />
-        <button type="button" aria-label={`Increase${label ? ` ${label.toLowerCase()}` : ""}`} disabled={current >= max} {...btnHandlers(1)} className={cn("flex items-center justify-center rounded-full transition-colors hover:bg-accent active:scale-95 disabled:opacity-30", dims)}>
+        <Button type="button" aria-label={`Increase${label ? ` ${label.toLowerCase()}` : ""}`} disabled={current >= max} {...btnHandlers(1)} className={cn("flex items-center justify-center rounded-full transition-colors hover:bg-accent active:scale-95 disabled:opacity-30", dims)}>
           <Plus className="h-4 w-4" />
-        </button>
+        </Button>
       </div>
       {unit && (
         <span aria-hidden className="font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">

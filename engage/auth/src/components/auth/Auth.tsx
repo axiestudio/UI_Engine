@@ -243,7 +243,7 @@ export function Auth({
               or
             </span>
           </div>
-          <div className={cn("grid gap-2", providers.length > 1 ? "sm:grid-cols-2" : "grid-cols-1")}>
+          <div className={cn("relative isolate overflow-hidden grid gap-2", providers.length > 1 ? "sm:grid-cols-2" : "grid-cols-1")}>
             {providers.map((p) => (
               <ProviderButton key={p.id} provider={p} />
             ))}

@@ -96,7 +96,7 @@ export function DndImageUploader({
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <SectionHead eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </InView>
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm backdrop-blur-sm">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card/50 px-4 py-3 shadow-sm ">
         <div className="flex items-center gap-3">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
@@ -168,9 +168,9 @@ function Thumb({ img, onRemove, overlay = false }: { img: UploadImage; onRemove:
       </div>
       <div {...attributes} {...listeners} className="absolute inset-x-0 bottom-0 flex cursor-grab touch-none items-center justify-between bg-gradient-to-t from-background/90 to-transparent px-2 pb-2 pt-6 active:cursor-grabbing">
         <span className="truncate font-mono text-[10px] font-bold text-foreground">{img.name ?? img.id}</span>
-        <button type="button" onClick={(e) => { e.stopPropagation(); onRemove(img.id) }} aria-label={`Remove ${img.name ?? img.id}`} className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-background/80 text-muted-foreground hover:text-destructive">
+        <Button type="button" variant="ghost" size="icon-xs" onClick={(e) => { e.stopPropagation(); onRemove(img.id) }} aria-label={`Remove ${img.name ?? img.id}`} className="h-6 w-6 shrink-0 bg-background/80 text-muted-foreground hover:text-destructive">
           <X className="h-3.5 w-3.5" />
-        </button>
+        </Button>
       </div>
     </div>
   )

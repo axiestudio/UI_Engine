@@ -52,7 +52,7 @@ export function Referral({
   return (
     <SectionShell tone={tone} width={760} grain={!ink} rule="bottom" className={className}>
       <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-40px" }}>
-        <div className={cn("rounded-2xl border p-8 text-center shadow-sm sm:p-8", ink ? "border-background/20 bg-background/5" : "border-border bg-card")}>
+        <div className={cn("relative isolate overflow-hidden rounded-2xl border p-8 text-center shadow-sm sm:p-8", ink ? "border-background/20 bg-background/5" : "border-border bg-card")}>
           <span className={cn("mx-auto flex h-12 w-12 items-center justify-center rounded-full ring-1", ink ? "bg-background/10 ring-background/15" : "bg-accent ring-border")}>
             <Users className="h-5 w-5" aria-hidden />
           </span>

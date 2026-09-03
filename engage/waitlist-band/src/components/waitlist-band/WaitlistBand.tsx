@@ -70,7 +70,7 @@ export function WaitlistBand({
     return (
       <SectionShell tone={tone} width={920} grain={!ink} rule="bottom" className={className}>
         <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
-          <div className={cn("rounded-2xl border p-8 text-center shadow-sm sm:p-10", ink ? "border-background/20 bg-background/5" : "border-border bg-card")} role="status" aria-live="polite">
+          <div className={cn("relative isolate overflow-hidden rounded-2xl border p-8 text-center shadow-sm sm:p-10", ink ? "border-background/20 bg-background/5" : "border-border bg-card")} role="status" aria-live="polite">
             <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/20">
               <Check className="h-5 w-5 text-emerald-600" aria-hidden />
             </span>

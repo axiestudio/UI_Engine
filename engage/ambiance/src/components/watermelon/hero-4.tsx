@@ -142,7 +142,7 @@ export function Hero4({
         </div>
       )}
 
-      <header className="relative z-30 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="relative z-30 w-full border-b bg-background/80 bg-background/90 supports-[backdrop-filter]:bg-background/60">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <a
             href="#"
@@ -197,7 +197,7 @@ export function Hero4({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur md:hidden"
+            className="absolute inset-0 z-50 bg-background/95 bg-background/90 md:hidden"
           >
             <motion.div
               initial={{ y: -12, opacity: 0 }}

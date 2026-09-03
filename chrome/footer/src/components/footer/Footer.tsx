@@ -73,7 +73,7 @@ function BrandMark({ name }: { name: string }) {
     .slice(0, 2)
     .toUpperCase()
   return (
-    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-foreground font-mono text-sm font-black text-background shadow-sm">
+    <span className="relative isolate overflow-hidden flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-foreground font-mono text-sm font-black text-background shadow-sm">
       {initials}
     </span>
   )
@@ -169,14 +169,14 @@ function ScrollTop() {
   if (!show) return null
   return (
     <Magnetic intensity={0.4} range={60}>
-      <button
+      <Button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll back to top"
-        className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border bg-background text-foreground shadow-lg transition-colors hover:bg-accent"
+        className="absolute bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border bg-background text-foreground shadow-lg transition-colors hover:bg-accent"
       >
         <ArrowUp className="h-4 w-4 stroke-[2.5]" />
-      </button>
+      </Button>
     </Magnetic>
   )
 }

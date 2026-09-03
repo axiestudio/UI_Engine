@@ -89,7 +89,7 @@ export function ChapterScrub({ title = "Lesson 04 — Shipping small", duration 
               <Play className="size-5 translate-x-px fill-current" aria-hidden />
             </Button>
           </div>
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-background/90 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.14em] text-foreground shadow-sm backdrop-blur">
+          <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.14em] text-foreground shadow-sm">
             <Clock3 className="size-3" aria-hidden /> {fmt(duration)}
           </span>
         </div>

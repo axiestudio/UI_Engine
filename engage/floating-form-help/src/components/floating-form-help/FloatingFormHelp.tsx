@@ -80,7 +80,7 @@ function HelpPopover({
 
   return (
     <>
-      <button
+      <Button
         type="button"
         ref={refs.setReference}
         {...getReferenceProps()}
@@ -89,8 +89,8 @@ function HelpPopover({
         aria-label={`Help — ${HELP_NOTES[field].title}`}
         className="inline-flex size-6 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <HelpCircle className="size-3.5" aria-hidden />
-      </button>
+        <HelpCircle className="relative isolate overflow-hidden size-3.5" aria-hidden />
+      </Button>
       {open && (
         <FloatingPortal>
           <motion.div

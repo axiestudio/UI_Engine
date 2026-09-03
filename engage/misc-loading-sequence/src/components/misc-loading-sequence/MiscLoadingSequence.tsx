@@ -46,7 +46,7 @@ export function MiscLoadingSequence({ eyebrow = "BOOT", steps = ["Resolving toke
               {pct}
               <span className="text-2xl font-bold text-muted-foreground">%</span>
             </p>
-            <p className={cn("font-mono text-[11px] font-bold uppercase tracking-widest", stepIdx === steps.length - 1 ? "text-emerald-600" : "text-muted-foreground")}>
+            <p className={cn("relative isolate overflow-hidden font-mono text-[11px] font-bold uppercase tracking-widest", stepIdx === steps.length - 1 ? "text-emerald-600" : "text-muted-foreground")}>
               {steps[stepIdx]}
               {stepIdx < steps.length - 1 ? "…" : " ✓"}
             </p>

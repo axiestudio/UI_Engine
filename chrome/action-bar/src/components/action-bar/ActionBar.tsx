@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Design language ──────────────────────────────────────────────────────────
 // JOB: on mobile, keep the ONE action (book / call / buy) inside the thumb
@@ -57,8 +58,8 @@ export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 
 
   const visible = shown && !retired
   const Btn = action.href
-    ? <a href={action.href} onClick={action.onClick} className="flex h-11 flex-1 items-center justify-center rounded-full bg-foreground px-5 font-display text-sm font-extrabold tracking-tight text-background active:scale-[0.98]">{action.label}</a>
-    : <button type="button" onClick={action.onClick} className="h-11 flex-1 rounded-full bg-foreground px-5 font-display text-sm font-extrabold tracking-tight text-background active:scale-[0.98]">{action.label}</button>
+    ? <a href={action.href} onClick={action.onClick} className="relative isolate overflow-hidden flex h-11 flex-1 items-center justify-center rounded-full bg-foreground px-5 font-display text-sm font-extrabold tracking-tight text-background active:scale-[0.98]">{action.label}</a>
+    : <Button type="button" onClick={action.onClick} className="h-11 flex-1 rounded-full bg-foreground px-5 font-display text-sm font-extrabold tracking-tight text-background active:scale-[0.98]">{action.label}</Button>
 
   return (
     <motion.div
@@ -66,10 +67,10 @@ export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 
       initial={false}
       animate={reduce ? { opacity: visible ? 1 : 0 } : { y: visible ? 0 : 72 }}
       transition={{ type: "spring", bounce: 0.28, duration: 0.55 }}
-      className={cn("fixed bottom-0 z-40 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none", className)}
+      className={cn("absolute bottom-0 z-40 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none", className)}
       style={{ paddingBottom: "max(env(safe-area-inset-bottom, 12px), 12px)" }}
     >
-      <div className="mx-auto flex w-full max-w-[560px] items-center gap-2 px-3 py-2.5 backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-[560px] items-center gap-2 px-3 py-2.5 ">
         <div className={cn("w-full rounded-[22px] border bg-card/95 p-2 shadow-[0_-8px_30px_-12px_rgba(0,0,0,0.35)] transition-opacity", visible ? "opacity-100" : "opacity-0")}>
           <div className="flex items-center gap-2">
             {aside &&
@@ -78,9 +79,9 @@ export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 
                   {aside.label}
                 </a>
               ) : (
-                <button type="button" onClick={aside.onClick} tabIndex={visible ? 0 : -1} className="h-11 shrink-0 rounded-full border px-4 text-sm font-bold tracking-tight">
+                <Button type="button" onClick={aside.onClick} tabIndex={visible ? 0 : -1} className="h-11 shrink-0 rounded-full border px-4 text-sm font-bold tracking-tight">
                   {aside.label}
-                </button>
+                </Button>
               ))}
             <div tabIndex={visible ? undefined : -1} className="contents">{Btn}</div>
           </div>

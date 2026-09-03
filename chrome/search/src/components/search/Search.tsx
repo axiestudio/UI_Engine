@@ -76,7 +76,7 @@ export function Search({
         type="button"
         variant="outline"
         onClick={() => setOpen(true)}
-        className="w-full justify-between gap-8 font-medium text-muted-foreground sm:w-64"
+        className="relative isolate overflow-hidden w-full justify-between gap-8 font-medium text-muted-foreground sm:w-64"
         aria-label={triggerLabel}
       >
         <span className="flex items-center gap-2">

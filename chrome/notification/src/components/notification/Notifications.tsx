@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { Bell, CheckCheck, X } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type NotificationKind = "info" | "success" | "warning" | "critical"
@@ -66,7 +67,7 @@ function Row({ n, dismissable, onRead, onDismiss, index }: { n: NotificationItem
     >
       <span aria-hidden className={cn("mt-1.5 h-2 w-2 shrink-0 rounded-full", KIND_DOT[kind], n.read && "opacity-35")} />
       <div
-        className="min-w-0 flex-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+        className="relative isolate overflow-hidden min-w-0 flex-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
         onClick={() => !n.read && onRead?.(n.id)}
         onKeyDown={(e) => {
           if (!n.read && (e.key === "Enter" || e.key === " ")) {
@@ -98,14 +99,14 @@ function Row({ n, dismissable, onRead, onDismiss, index }: { n: NotificationItem
         </div>
       </div>
       {dismissable && onDismiss && (
-        <button
+        <Button
           type="button"
           onClick={() => onDismiss(n.id)}
           aria-label={`Dismiss ${n.title}`}
           className="rounded-full p-1.5 text-muted-foreground opacity-0 transition-opacity hover:bg-accent hover:text-foreground focus-visible:opacity-100 group-hover:opacity-100"
         >
           <X className="h-3.5 w-3.5" />
-        </button>
+        </Button>
       )}
     </motion.li>
   )
@@ -156,14 +157,14 @@ export function Notifications({
             <div className="flex items-center gap-3">
               <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{unread.length ? unreadLabel(unread.length) : "0 unread"}</span>
               {onMarkAllRead !== undefined || unread.length > 0 ? (
-                <button
+                <Button
                   type="button"
                   onClick={readAll}
                   disabled={unread.length === 0}
                   className="inline-flex h-8 items-center gap-1 rounded-full border bg-card px-3 text-xs font-bold transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-40"
                 >
                   <CheckCheck className="h-3.5 w-3.5" /> {markAllLabel}
-                </button>
+                </Button>
               ) : null}
             </div>
           </header>

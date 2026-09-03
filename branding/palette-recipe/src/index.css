@@ -33,6 +33,12 @@
     --brand: 0 0% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --app-paper: 36 33% 97%;
+    --app-signal-orange: 16 79% 51%;
+    --app-ink: 0 0% 7%;
+    --app-stone: 38 4% 54%;
+    --app-moss: 104 15% 33%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

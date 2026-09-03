@@ -11,6 +11,7 @@ import {
   DrawerDescription,
 } from "@/components/watermelon/drawer"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type DrawerAction = {
@@ -70,7 +71,7 @@ export function Drawer({
         </DrawerTrigger>
       ) : (
         <DrawerTrigger
-          className="inline-flex h-10 items-center gap-2 rounded-full border bg-card px-4 text-sm font-bold tracking-tight shadow-xs transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
+          className="relative isolate overflow-hidden inline-flex h-10 items-center gap-2 rounded-full border bg-card px-4 text-sm font-bold tracking-tight shadow-xs transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
           aria-label={triggerLabel}
         >
           <Menu className="h-4 w-4" /> {triggerLabel}
@@ -101,9 +102,9 @@ export function Drawer({
                 {inner}
               </a>
             ) : (
-              <button key={key} type="button" onClick={item.onClick as (() => void) | undefined}>
+              <Button key={key} type="button" onClick={item.onClick as (() => void) | undefined}>
                 {inner}
-              </button>
+              </Button>
             )
           })}
           {children}
