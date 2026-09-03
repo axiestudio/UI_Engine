@@ -12,6 +12,45 @@ The goal is not to replace shadcn/ui. Instead:
 
 ---
 
+# Non-Negotiable Laws (always apply, above every other guidance)
+
+These four laws are absolute for anyone (human or agent) working in this
+workspace, together with `DESIGN_PRICIPLE.md`:
+
+## Law 1 — Only this matured library stack. No handcrafting. No custom.
+
+The stack in this file + `DESIGN_PRICIPLE.md` (the 23 selected libraries,
+mirrored in `UI/_registry/`, with the AI Elements and shadcn fallback snapshots
+as support) is **the only** source of UI infrastructure. Buttons, shells,
+motion, charts, carousels, tooltips, drawers, toasts, positioning, 3D — always
+from the registry. **Never handcraft. Never hand-roll. Never "custom."** If a
+need appears unmet, stop and surface the gap instead of building it manually.
+
+## Law 2 — Presets showcase inside the /engine content pane, fully isolated.
+
+`/home/stefan/component/engine` is a **sidebar | content** shell. A UI preset is
+displayed in the content area and the content area is 100% of its world: the
+preset must be **isolated within the content pane and never overlap the
+sidebar**. In practice: preset root is `relative isolate overflow-hidden`; no
+`position: fixed`, no `w-screen`/`100vw`, no viewport overlays or z-index games
+escaping into the shell; full-bleed means the content pane, not the browser
+viewport. Verify with the sidebar both expanded and collapsed.
+
+## Law 3 — Clean design is the priority: neutral color, neutral words.
+
+No extra colors beyond each preset's committed token palette; no flamboyant or
+gratuitous color. Copywriting is **neutral and factual** — descriptive labels,
+plain statements, no hype vocabulary, no shouting caps, no exclamation spam —
+in **both the UI presets and the engine showcase**.
+
+## Law 4 — Always use web search for 2026-current information.
+
+Library APIs, versions, and catalogs change. Before using or vendoring any
+library below, confirm the 2026-current package name, version, and API via web
+search. Never code from memory when the information is this recent.
+
+---
+
 # 1. Core UI
 
 ## shadcn/ui
@@ -536,3 +575,8 @@ The remaining libraries provide specialized functionality:
 - 3D → Three.js, React Three Fiber
 - Interactive animation → Rive
 - Animation assets → Lottie
+
+This list — together with the composition rules in `DESIGN_PRICIPLE.md` — IS
+the matured library stack. It is complete: everything in it is used through
+the snapshot registry (`UI/_registry/`), and per the Non-Negotiable Laws above,
+nothing outside it is ever handcrafted as a substitute.

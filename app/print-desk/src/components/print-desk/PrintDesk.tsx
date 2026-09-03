@@ -81,7 +81,8 @@ const STOCK_NOTES: Record<string, string> = {
   "170g silk": "House stock · PMS 485 cover ink holds ±2 ΔE on this grade.",
 }
 
-const RUN_HOURS = ["06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17"]
+// bklit's x-axis is temporal (Date domain → shortDateFmt) — feed real Dates.
+const RUN_HOURS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map((h) => new Date(2026, 1, 10, h, 0))
 
 /** Deterministic per-hour jitter in [-1, 1] seeded by the run signature. */
 function hourNoise(i: number, seed: number) {
@@ -106,7 +107,7 @@ function buildThroughput(target: number, varnish: Stage, seed: number) {
     if (failed && i >= RUN_HOURS.length - 2) rate = i === RUN_HOURS.length - 1 ? target * 0.16 : target * 0.38
     if (requeued && i >= RUN_HOURS.length - 1) rate = target * 0.82
     if (recoverAt >= 0 && i === recoverAt - 1) rate = target * 0.52
-    return { hour: `${h}:00`, imp: Math.round(rate), target }
+    return { hour: h, imp: Math.round(rate), target }
   })
 }
 
@@ -253,7 +254,7 @@ export function PrintDesk({ press = "Press 2 · 6-colour sheet-fed", shift = "B"
               </div>
               <div className="min-w-0">
                 <dt className="sr-only">Peak hour</dt>
-                <dd>peak {peak.imp.toLocaleString("sv-SE")} · {peak.hour}</dd>
+                <dd>peak {peak.imp.toLocaleString("sv-SE")} · {String(peak.hour).padStart(2, "0")}:00</dd>
               </div>
               <div className="ml-auto min-w-0">
                 <dt className="sr-only">Varnish state</dt>

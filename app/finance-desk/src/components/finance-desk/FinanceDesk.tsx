@@ -177,25 +177,17 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
   return (
     <section className={cn("relative w-full overflow-x-clip bg-background", className)}>
       <MotionConfig reducedMotion="user">
-        <div className="mx-auto w-full max-w-[920px] px-4 py-12 sm:px-6 sm:py-14">
-          {/* ── scene header ─────────────────────────────────────────────── */}
-          <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Finance · Month close</span>
-            <h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">Books, honest.</h2>
-            <p className="mt-2.5 max-w-xl text-sm leading-6 text-muted-foreground">
-              {period} behind {closer} — the cash position walks daily, the ledger edits in place, and nothing is ever hidden: reversals re-stamp themselves into the trail.
-            </p>
-          </InView>
-
+        <div className="mx-auto w-full max-w-[920px] px-4 py-10 sm:px-6 sm:py-12">
           {/* ── hero: cash position ─────────────────────────────────────── */}
-          <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+          <InView once variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
             <div className="flex flex-wrap items-start justify-between gap-3 px-6 pt-6">
               <div>
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Cash position · daily open / close</span>
-                <div className="mt-3 flex items-baseline gap-3">
-                  <span className="font-display text-4xl font-bold tracking-tight tabular-nums sm:text-5xl">{compactKr(last ? last.close : 0)}</span>
-                  <span className="font-mono text-sm font-bold text-muted-foreground">kr</span>
-                  <span className={cn("flex items-center gap-0.5 text-xs font-bold tabular-nums", lastUp ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>
+                <span className="text-sm text-muted-foreground">Cash position · daily open / close</span>
+                <div className="mt-2 flex items-baseline gap-3">
+                  <span className="text-4xl font-bold tracking-tight tabular-nums sm:text-5xl">{compactKr(last ? last.close : 0)}</span>
+                  <span className="text-sm text-muted-foreground">kr</span>
+                  <span className={cn("flex items-center gap-0.5 text-xs tabular-nums", lastUp ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>
                     {lastUp ? <ArrowUpRight className="size-3.5" aria-hidden /> : <ArrowDownRight className="size-3.5" aria-hidden />}
                     {compactKr(Math.abs(dayDelta))} today
                   </span>
@@ -251,29 +243,30 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                 ["low / high", `${compactKr(windowLow)} / ${compactKr(windowHigh)}`],
               ] as const).map(([k, v]) => (
                 <div key={k} className="px-4 sm:px-5">
-                  <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{k}</dt>
-                  <dd className="mt-1 font-mono text-sm font-bold tabular-nums">{v}</dd>
+                  <dt className="text-xs text-muted-foreground">{k}</dt>
+                  <dd className="mt-1 text-sm font-semibold tabular-nums">{v}</dd>
                 </div>
               ))}
             </dl>
           </div>
+          </InView>
 
           {/* ── money column + rail ──────────────────────────────────────── */}
           <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
             {/* ledger */}
-            <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)] lg:col-span-8">
+            <section className="overflow-hidden rounded-xl border border-border bg-card lg:col-span-8">
               <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 px-6 py-4">
-                <h3 className="flex items-center gap-2.5 text-sm font-bold tracking-tight">
+                <h3 className="text-sm font-semibold tracking-tight">
                   Ledger
-                  <Badge variant="secondary">{ledger.length} rows</Badge>
+                  <Badge variant="secondary" className="ml-2">{ledger.length} rows</Badge>
                 </h3>
                 <span className="text-xs text-muted-foreground">
-                  pending <span className="font-mono font-bold text-[hsl(var(--warn))]">{pendingSum.toLocaleString("sv-SE")}</span> kr · tap a memo to edit
+                  pending {pendingSum.toLocaleString("sv-SE")} kr · tap a memo to edit
                 </span>
               </header>
               <table className="w-full border-collapse text-sm">
                 <thead>
-                  <tr className="border-b border-border/60 bg-muted/20 text-left font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                  <tr className="border-b border-border/60 bg-muted/20 text-left text-xs text-muted-foreground">
                     <th className="px-6 py-2.5 font-semibold">Date</th>
                     <th className="px-3 py-2.5 font-semibold">Account</th>
                     <th className="px-3 py-2.5 font-semibold">Memo</th>
@@ -303,17 +296,17 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                           <span className="line-through">{e.memo}</span>
                         )}
                       </td>
-                      <td className={cn("px-3 py-2 text-right font-mono text-sm font-bold tabular-nums", e.amount < 0 ? "text-[hsl(var(--err))]" : "text-[hsl(var(--ok))]")}>
+                      <td className={cn("px-3 py-2 text-right text-sm tabular-nums", e.amount < 0 ? "text-[hsl(var(--err))]" : "text-foreground")}>
                         {e.amount.toLocaleString("sv-SE")}
                       </td>
                       <td className="px-4 py-2 text-right">
                         {e.state === "pending" && (
-                          <Button variant="ghost" size="sm" onClick={() => post(e.id)} className="h-8 px-3 text-xs font-bold text-[hsl(var(--info))]">
+                          <Button variant="ghost" size="sm" onClick={() => post(e.id)} className="h-8 px-3 text-xs">
                             Post
                           </Button>
                         )}
                         {e.state === "posted" && (
-                          <Button variant="ghost" size="sm" onClick={() => revert(e)} className="h-8 px-3 text-xs font-bold text-muted-foreground hover:text-[hsl(var(--err))]">
+                          <Button variant="ghost" size="sm" onClick={() => revert(e)} className="h-8 px-3 text-xs text-muted-foreground">
                             Revert
                           </Button>
                         )}
@@ -323,20 +316,20 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                 </tbody>
               </table>
               <div className="mt-auto flex items-baseline justify-between border-t border-border/60 bg-muted/20 px-6 py-4">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Closing balance · posted</span>
-                <span className="flex items-baseline gap-1.5 font-mono text-2xl font-black tabular-nums">
+                <span className="text-xs text-muted-foreground">Closing balance · posted</span>
+                <span className="flex items-baseline gap-1.5 text-2xl font-bold tabular-nums">
                   <SlidingNumber value={balance} />
-                  <span className="text-sm font-bold text-muted-foreground">kr</span>
+                  <span className="text-sm text-muted-foreground">kr</span>
                 </span>
               </div>
             </section>
 
             {/* rail */}
             <div className="flex min-w-0 flex-col gap-5 lg:col-span-4">
-              <section className="rounded-2xl border border-border bg-card p-5 shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+              <section className="rounded-xl border border-border bg-card p-5">
                 <header className="flex items-center justify-between">
-                  <h3 className="flex items-center gap-2 text-sm font-bold tracking-tight">
-                    <Flame className="size-4 text-[hsl(var(--warn))]" aria-hidden /> Burn rate
+                  <h3 className="flex items-center gap-2 text-sm font-semibold tracking-tight">
+                    <Flame className="size-4 text-muted-foreground" aria-hidden /> Burn rate
                   </h3>
                   <Badge variant="outline">plan</Badge>
                 </header>
@@ -370,10 +363,10 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                 </div>
               </section>
 
-              <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+              <section className="overflow-hidden rounded-xl border border-border bg-card">
                 <header className="flex items-center justify-between border-b border-border/60 px-5 py-3.5">
                   <h3 className="text-sm font-bold tracking-tight">Receipt drop</h3>
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{files.length} docs</span>
+                  <span className="text-xs text-muted-foreground">{files.length} docs</span>
                 </header>
                 <UploadQueue
                   files={files}
@@ -383,18 +376,18 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                 />
               </section>
 
-              <section className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
+              <section className="flex flex-1 flex-col overflow-hidden rounded-xl border border-border bg-card">
                 <header className="flex items-center justify-between border-b border-border/60 px-5 py-3.5">
                   <h3 className="text-sm font-bold tracking-tight">Audit trail</h3>
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{trail.length} events</span>
+                  <span className="text-xs text-muted-foreground">{trail.length} events</span>
                 </header>
                 <ul className="flex-1 divide-y divide-border/50">
                   <AnimatePresence initial={false}>
                     {[...trail].reverse().map((t) => (
                       <motion.li key={t.id} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2.5 px-5 py-2.5">
-                        <span className={cn("mt-1.5 size-1.5 shrink-0 rounded-full", t.honest ? "bg-[hsl(var(--ok))]" : "bg-muted-foreground/40")} />
-                        <span className="shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">{t.at}</span>
-                        <span className={cn("text-xs leading-[1.55]", t.honest ? "font-semibold text-[hsl(var(--ok))]" : "text-muted-foreground")}>
+                        <span className={cn("mt-1.5 size-1.5 shrink-0 rounded-full", t.honest ? "bg-foreground" : "bg-muted-foreground/40")} />
+                        <span className="shrink-0 text-[11px] tabular-nums text-muted-foreground">{t.at}</span>
+                        <span className={cn("text-xs leading-[1.55]", t.honest ? "text-foreground" : "text-muted-foreground")}>
                           {t.honest && <Undo2 className="mr-1 inline size-3" aria-hidden />}
                           {t.text}
                         </span>
@@ -402,14 +395,14 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                     ))}
                   </AnimatePresence>
                 </ul>
-                <p className="border-t border-border/60 px-5 py-3 text-xs leading-5 text-muted-foreground">Reversions re-stamp with operator and time — originals are never hidden.</p>
+                <p className="border-t border-border/60 px-5 py-3 text-xs leading-5 text-muted-foreground">Reversals keep the operator and time of the change.</p>
               </section>
             </div>
           </div>
 
           {/* ── close bar ─────────────────────────────────────────────────── */}
           <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 sm:px-6">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Month close</span>
+            <span className="text-xs text-muted-foreground">Month close</span>
             <span aria-live="polite" className="min-w-0 flex-1 truncate text-xs text-muted-foreground">
               {diffCount > 0
                 ? `${diffCount} memo edit${diffCount === 1 ? "" : "s"} staged — approve to close the diff trail`
@@ -427,11 +420,6 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
             </Button>
           </div>
 
-          {/* ── caption line ──────────────────────────────────────────────── */}
-          <p className="mx-auto mt-6 flex items-center justify-between border-t border-border/60 pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
-            <span>Cash position · Ledger · Trail</span>
-            <span aria-hidden>●</span>
-          </p>
         </div>
       </MotionConfig>
 

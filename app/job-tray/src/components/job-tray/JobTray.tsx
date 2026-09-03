@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion, AnimatePresence, MotionConfig } from "motion/react"
-import { Loader2, CheckCircle2, XCircle, ChevronDown, Terminal, X } from "lucide-react"
+import { Loader2, CheckCircle2, ChevronDown, Terminal, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -9,6 +9,10 @@ import { cn } from "@/lib/utils"
 // SIGNATURE a docked pill bottom-right; count pips merge into one tray that
 //           unfolds (spring accordion) into live rows with log tails and
 //           cancel-with-undo.
+// ISOLATION the tray anchors to its parent (absolute), not the viewport — the
+//           engine showcase wraps it in `relative isolate overflow-hidden`,
+//           so the preset never escapes the content pane. Consumers who want
+//           viewport-docked behavior wrap the preset themselves.
 // API      jobs [{id, label, status, progress?, log?[]}], onCancel(job) —
 //          the host runs the work; this is the window into it.
 // A11Y     tray role=log + aria-live polite for status flips; expand/collapse
@@ -23,7 +27,7 @@ export function JobTray({ jobs, onCancel, onDismiss, className }: JobTrayProps) 
   const active = jobs.find((j) => j.status === "running")
   if (!jobs.length) return null
   return (
-    <div className={cn("fixed bottom-4 right-4 z-[105] flex w-[340px] max-w-[calc(100vw-2rem)] flex-col items-end gap-2 font-sans", className)}>
+    <div className={cn("absolute bottom-4 right-4 z-[105] flex w-[340px] max-w-[calc(100%-2rem)] flex-col items-end gap-2 font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <AnimatePresence>
         {open && (

@@ -14,6 +14,47 @@ Our own work is primarily the **composition, styling, layout, visual direction, 
 
 ---
 
+# The Four Absolute Laws
+
+These laws sit above every principle in this file and every principle in
+`PRINCIPLE_READ_ME.md`. The two files together are **the matured library
+stack** — the single, complete source of all UI infrastructure (mirrored in
+`UI/_registry/` as the 23 selected libraries plus their support snapshots).
+
+## Law 1 — Use only the matured library stack. Never handcraft. Never custom.
+
+Anything a library in the stack provides — primitives, buttons, cards, shells,
+motion, carousels, tooltips, drawers, toasts, charts, positioning, 3D — must
+come from the stack. Hand-rolling a replacement, a "custom" version, or a
+parallel kit is forbidden without exception, even for convenience. When a
+requirement seems unmet, stop and surface the gap; composition, spacing,
+layout, and copy remain our only custom territory.
+
+## Law 2 — Presets are showcased inside the /engine content pane, 100% isolated.
+
+The engine (`/home/stefan/component/engine`) presents every UI preset in a
+**sidebar | content** layout. The content area is the preset's entire world: it
+must render fully inside it and must never overlap or escape into the sidebar
+or shell chrome. The preset root owns its containing block
+(`relative isolate overflow-hidden`); no `fixed` layout, no `w-screen`/`100vw`,
+no viewport-level overlays. "Full bleed" always means the content pane. Check
+both sidebar states (expanded and collapsed).
+
+## Law 3 — Clean design first: no flamboyant color, no flamboyant words.
+
+Clean is the priority aesthetic. Use only each preset's committed token
+palette — no extra or flashy colors. Copywriting is neutral and factual, in
+both UI presets and the engine showcase: descriptive language, no hype, no
+shouting caps, no exclamation spam.
+
+## Law 4 — Always use web search for 2026 information.
+
+Confirm 2026-current package names, versions, component APIs, and catalog
+contents via web search before using or vendoring a library. Do not rely on
+memory; the stack moves.
+
+---
+
 # 1. Use Existing Primitives
 
 We should avoid recreating common UI functionality when a mature library already provides it.
@@ -361,6 +402,9 @@ Before creating a new component, ask:
 
 Only build it ourselves when the existing solutions do not satisfy the design requirement.
 
+*(Per Law 1, this no longer means writing code by hand: if nothing in the
+matured stack satisfies the requirement, stop and surface the gap.)*
+
 ### Principle
 
 > **Reuse first. Compose second. Customize third. Rebuild last.**
@@ -485,6 +529,10 @@ The purpose is to make them feel like **one coherent design system**.
 # Core Principle
 
 > **Do not reinvent the building blocks. Build better experiences from them.**
+
+*The Four Absolute Laws above are the operational form of this principle:
+only the matured stack, isolated in the /engine content pane, clean and
+neutral in color and copy, verified against 2026-current information.*
 
 Use established libraries for functionality and implementation.
 
