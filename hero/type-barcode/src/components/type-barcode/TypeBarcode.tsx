@@ -15,7 +15,7 @@ export type TypeBarcodeProps = {
   className?: string
 }
 
-export function TypeBarcode({ eyebrow = "SCAN", word = "INDUSTRIAL", code = "0·4·1·2·9·9", className }: TypeBarcodeProps) {
+export function TypeBarcode({ eyebrow = "Scan", word = "Industrial", code = "0·4·1·2·9·9", className }: TypeBarcodeProps) {
   const bars = React.useMemo(() => Array.from({ length: 42 }).map(() => 1 + Math.floor(Math.random() * 5)), [])
   return (
     <section className={cn("relative isolate overflow-hidden py-24 sm:py-32", className)}>

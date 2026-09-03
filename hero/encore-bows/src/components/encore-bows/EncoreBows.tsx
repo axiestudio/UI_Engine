@@ -66,14 +66,14 @@ function BowCard({ i, m, reduce, start, spot }: { i: number; m: Performer; reduc
           style={{ transformOrigin: "50% 100%" }}
           animate={reduce ? undefined : { rotateX: [0, 0, 18, -4, 0], z: [0, 6, 14, 6, 0] }}
           transition={{ delay: (i * 0.18) + 0.75, duration: 1.6, ease: [0.5, 0, 0.5, 1] }}
-          className={cn("relative overflow-hidden rounded-lg border bg-white/5 backdrop-blur-[1px] transition-colors h-full", spot ? "border-[hsl(var(--encore))]" : "border-white/10 hover:border-white/30")}
+          className={cn("relative overflow-hidden rounded-lg border bg-foreground/30 transition-colors h-full", spot ? "border-[hsl(var(--encore))]" : "border-background/10 hover:border-background/30")}
         >
           <div className="relative aspect-[4/5] overflow-hidden">
             {m.img ? (
               <img src={m.img} alt={m.name} loading="lazy" className="h-full w-full object-cover grayscale-[35%] transition-all duration-500 group-hover:grayscale-0" />
             ) : (
-              <div className="grid h-full w-full place-items-center bg-gradient-to-b from-white/8 to-white/2">
-                <span className="font-display text-4xl font-black text-white/25">{m.name.split(" ").map((p) => p[0]).join("").slice(0, 2)}</span>
+              <div className="grid h-full w-full place-items-center bg-gradient-to-b from-background/8 to-background/2">
+                <span className="font-display text-4xl font-black text-background/25">{m.name.split(" ").map((p) => p[0]).join("").slice(0, 2)}</span>
               </div>
             )}
             <span aria-hidden className="absolute right-3 top-3 font-mono text-[10px] font-black tracking-[0.2em] text-white/45">{String(i + 1).padStart(2, "0")}</span>

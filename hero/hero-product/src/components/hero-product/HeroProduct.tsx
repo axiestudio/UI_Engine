@@ -220,10 +220,10 @@ export function HeroProduct({
               >
                 <div
                   className={cn(
-                    "absolute z-20 rounded-xl border px-4 py-3 text-left shadow-lg ring-1 ring-foreground/[0.06] backdrop-blur-md",
+                    "absolute z-20 rounded-xl border px-4 py-3 text-left shadow-lg ring-1 ring-foreground/[0.06]",
                     ink
-                      ? "border-background/15 bg-background/90 text-foreground"
-                      : "border-border/80 bg-background/90 text-foreground",
+                      ? "border-background/15 bg-background text-foreground"
+                      : "border-border/80 bg-background text-foreground",
                     chipPos[chip.corner ?? (i % 2 === 0 ? "tl" : "br")],
                     i % 2 === 0 ? "-rotate-2" : "rotate-2",
                   )}

@@ -4,6 +4,7 @@ import { Heart, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         A wishlist that never leaves the page — hearts first, tray second.
 // ═══ EMOTION     Pocketing something you will come back for.
@@ -156,15 +157,17 @@ export function WishlistDrawer({
                   transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   className="absolute inset-x-0 bottom-0 z-[2] rounded-t-[20px] border-t bg-card p-4 shadow-2xl"
                 >
-                  <button
+                  <Button
                     type="button"
+                    size="icon-sm"
+                    variant="ghost"
                     aria-label="Dismiss the wishlist tray"
                     onPointerDown={(e) => dragControls.start(e)}
                     onClick={() => setDismissed(true)}
-                    className="mx-auto flex h-5 w-16 cursor-grab touch-none items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:cursor-grabbing"
+                    className="mx-auto h-5 w-16 cursor-grab touch-none rounded-full active:cursor-grabbing"
                   >
                     <span aria-hidden className="h-1.5 w-10 rounded-full bg-muted-foreground/30" />
-                  </button>
+                  </Button>
 
                   <div className="mt-2 flex items-center gap-3">
                     <div className="flex min-w-0 flex-1 items-center">
@@ -184,21 +187,23 @@ export function WishlistDrawer({
                         {items.length} saved · {kr(items.reduce((sum, p) => sum + p.price, 0))}
                       </span>
                     </div>
-                    <button
-                      type="button"
+                    <Button
+                      size="sm"
                       aria-label={`Move ${items.length} saved items to the cart`}
-                      className="h-9 shrink-0 rounded-full bg-primary px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="h-9 shrink-0 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em]"
                     >
                       Move to cart
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       type="button"
+                      size="icon-sm"
+                      variant="ghost"
                       aria-label="Close the wishlist tray"
                       onClick={() => setDismissed(true)}
-                      className="grid size-8 shrink-0 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="text-muted-foreground hover:bg-muted"
                     >
                       <X className="size-4" aria-hidden />
-                    </button>
+                    </Button>
                   </div>
                 </motion.div>
               )}

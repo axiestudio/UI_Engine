@@ -4,6 +4,7 @@ import { Check, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Side-by-side spec truth without leaving the grid.
 // ═══ EMOTION     Laying two receipts next to each other on the counter.
@@ -128,16 +129,17 @@ export function CompareTray({
                             <p className="truncate text-sm font-semibold">{p.name}</p>
                             <p className="shrink-0 font-mono text-[11px] font-medium text-muted-foreground">{kr(p.price)}</p>
                           </div>
-                          <button
+                          <Button
                             type="button"
+                            size="sm"
                             aria-pressed={on}
                             disabled={locked}
                             title={on || !locked ? undefined : `Up to ${MAX_COMPARE} compare at once — remove one first`}
                             onClick={() => toggle(p.id)}
                             className={cn(
-                              "mt-auto inline-flex h-8 items-center justify-center gap-1.5 rounded-md border font-mono text-[10px] font-bold uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                              "mt-auto h-8 gap-1.5 rounded-md border font-mono text-[10px] font-bold uppercase tracking-[0.14em]",
                               on
-                                ? "border-foreground bg-foreground text-background"
+                                ? "border-foreground bg-foreground text-background hover:bg-foreground/90"
                                 : locked
                                   ? "cursor-not-allowed border-border/70 text-muted-foreground/50"
                                   : "border-border text-muted-foreground hover:border-muted-foreground/50 hover:text-foreground",
@@ -145,7 +147,7 @@ export function CompareTray({
                           >
                             {on ? <Check className="size-3.5" aria-hidden /> : <Plus className="size-3.5" aria-hidden />}
                             Compare
-                          </button>
+                          </Button>
                         </div>
                       </li>
                     )
@@ -173,14 +175,16 @@ export function CompareTray({
                     <span className="hidden truncate font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground/70 sm:block">
                       differing specs underlined
                     </span>
-                    <button
+                    <Button
                       type="button"
+                      size="sm"
+                      variant="outline"
                       aria-label="Clear the comparison"
                       onClick={() => setSelected(new Set())}
-                      className="ml-auto h-8 shrink-0 rounded-full border px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="ml-auto h-8 shrink-0 rounded-full px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground"
                     >
                       Clear
-                    </button>
+                    </Button>
                   </div>
 
                   <motion.ul layout className="mt-3 flex gap-3 overflow-x-auto pb-1">

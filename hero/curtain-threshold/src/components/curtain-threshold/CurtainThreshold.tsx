@@ -10,6 +10,7 @@ import { useCurtainGate } from "@/lib/curtain"
 // ═══ JOB         Peel the page open along a lit edge.
 // ═══ EMOTION     A slit of light widens into the room.
 // ═══ SIGNATURE   clip-path inset + a traveling border-trail light on the fracture.
+// ═══ ISOLATION   fixed inset-0 is the named behavior — whole-viewport curtain reveal.
 
 export type CurtainThresholdProps = {
   mode?: "overlay" | "stage"
@@ -155,7 +156,7 @@ function ThresholdScene({
                 type="button"
                 onClick={onEnter}
                 tabIndex={onEnterKey ? 0 : -1}
-                className="pointer-events-auto mt-8 h-11 rounded-full border border-[hsl(var(--curtain-glow)/0.25)] bg-[hsl(var(--curtain-glow)/0.06)] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-[hsl(var(--curtain-text))] backdrop-blur-sm transition-colors hover:border-[hsl(var(--curtain-glow)/0.5)] hover:bg-[hsl(var(--curtain-glow)/0.14)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--curtain-glow)/0.7)]"
+                className="pointer-events-auto mt-8 h-11 rounded-full border border-[hsl(var(--curtain-glow)/0.25)] bg-[hsl(var(--curtain-glow)/0.1)] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-[hsl(var(--curtain-text))] transition-colors hover:border-[hsl(var(--curtain-glow)/0.5)] hover:bg-[hsl(var(--curtain-glow)/0.18)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--curtain-glow)/0.7)]"
               >
                 {enterLabel}
               </Button>

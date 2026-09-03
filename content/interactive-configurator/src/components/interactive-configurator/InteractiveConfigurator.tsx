@@ -21,20 +21,30 @@ export type InteractiveConfiguratorProps = {
   className?: string
 }
 
+const SWATCH: Record<string, string> = {
+  oak: "hsl(var(--material-oak))",
+  walnut: "hsl(var(--material-walnut))",
+  ash: "hsl(var(--material-ash))",
+  oil: "hsl(var(--material-oil))",
+  soap: "hsl(var(--material-soap))",
+  black: "hsl(var(--material-black-stain))",
+  brass: "hsl(var(--material-brass))",
+  steel: "hsl(var(--material-steel))",
+}
 const DEFAULT_GROUPS = [
   { id: "wood", label: "Timber", options: [
-    { id: "oak", label: "White oak", price: 0, swatch: "#c9b18c" },
-    { id: "walnut", label: "Black walnut", price: 480, swatch: "#5d4a38" },
-    { id: "ash", label: "Ash", price: -120, swatch: "#e2d6bf" },
+    { id: "oak", label: "White oak", price: 0, swatch: SWATCH.oak },
+    { id: "walnut", label: "Black walnut", price: 480, swatch: SWATCH.walnut },
+    { id: "ash", label: "Ash", price: -120, swatch: SWATCH.ash },
   ]},
   { id: "finish", label: "Finish", options: [
-    { id: "oil", label: "Hardwax oil", price: 0, swatch: "#b99b72" },
-    { id: "soap", label: "White soap", price: 90, swatch: "#e8ddc9" },
-    { id: "black", label: "Black stain", price: 140, swatch: "#2f2b28" },
+    { id: "oil", label: "Hardwax oil", price: 0, swatch: SWATCH.oil },
+    { id: "soap", label: "White soap", price: 90, swatch: SWATCH.soap },
+    { id: "black", label: "Black stain", price: 140, swatch: SWATCH.black },
   ]},
   { id: "hardware", label: "Hardware", options: [
-    { id: "brass", label: "Unlacquered brass", price: 110, swatch: "#b08d57" },
-    { id: "steel", label: "Blackened steel", price: 0, swatch: "#3a3a3a" },
+    { id: "brass", label: "Unlacquered brass", price: 110, swatch: SWATCH.brass },
+    { id: "steel", label: "Blackened steel", price: 0, swatch: SWATCH.steel },
   ]},
 ]
 export function InteractiveConfigurator({ eyebrow = "CONFIGURE", title = "Make it yours.", basePrice = 120, groups = DEFAULT_GROUPS, currency = "€", className }: InteractiveConfiguratorProps) {

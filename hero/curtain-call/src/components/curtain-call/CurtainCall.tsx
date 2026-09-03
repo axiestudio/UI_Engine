@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils"
 //              engine's #0b0b0b / #232323 — never accidental color
 //   A11Y       keyboard scrub (Arrow/PageUp-Down/Space/Enter, global keydown);
 //              panels + seam + hint aria-hidden; reduced motion skips the gate
+//   ISOLATION  fixed inset-0 is the named behavior — whole-viewport curtain reveal.
 
 // Panels translate -104%/+104% of their OWN width (w = 52%) so both leave the
 // frame well before the sticky releases. Progress at which the scene unmounts.

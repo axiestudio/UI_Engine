@@ -15,7 +15,7 @@ export type MiscInteractiveBgProps = {
   className?: string
 }
 
-export function MiscInteractiveBg({ eyebrow = "FIELD", title = "A background that notices you.", subtitle = "Move the cursor — the specks scatter and settle.", count = 40, className }: MiscInteractiveBgProps) {
+export function MiscInteractiveBg({ eyebrow = "Field", title = "A background that notices you.", subtitle = "Move the cursor — the specks scatter and settle.", count = 40, className }: MiscInteractiveBgProps) {
   const [mouse, setMouse] = React.useState({ x: -999, y: -999 })
   const dots = React.useMemo(() => Array.from({ length: count }).map(() => ({
     x: Math.random() * 100, y: Math.random() * 100, size: 2 + Math.random() * 4, hue: Math.random() * 60,

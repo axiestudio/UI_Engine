@@ -75,7 +75,7 @@ export function ApertureHero({ img, kicker = "THROUGH THE LENS", title, sub, cta
         style={{ aspectRatio: "16/9" }}
       >
         {img && <motion.img src={img} alt="" style={{ x: sceneX, transformOrigin: `${focus.x}% ${focus.y}%` }} animate={{ scale: focus ? 1.05 : 1.05 }} className="absolute inset-0 h-full w-full object-cover" />}
-        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgb(0 0 0 / 0.62))" }} />
+        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, hsl(var(--foreground)/0.62))" }} />
 
         {/* iris */}
         <svg aria-hidden viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" className={cn("absolute inset-0 size-full", controlled && "transition-opacity")}>
@@ -98,7 +98,7 @@ export function ApertureHero({ img, kicker = "THROUGH THE LENS", title, sub, cta
           </span>
         </motion.span>
 
-        <span className="absolute left-4 top-4 z-10 rounded-sm bg-black/55 px-2.5 py-1 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-white/85 backdrop-blur-sm">ƒ/1.8 · 1/250 · ISO&nbsp;64</span>
+        <span className="absolute left-4 top-4 z-10 rounded-sm bg-foreground/55 px-2.5 py-1 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-background/85">ƒ/1.8 · 1/250 · ISO&nbsp;64</span>
 
         <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-center sm:p-10">
           <MonoLabel className="text-white/60">{kicker}</MonoLabel>

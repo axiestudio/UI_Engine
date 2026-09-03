@@ -15,6 +15,7 @@ import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 import type { ReferenceType } from "@floating-ui/react-dom"
 
 // ═══ JOB         Let the photo explain itself.
@@ -55,7 +56,7 @@ function Pin({ pin, index, tone }: { pin: PinNote; index: number; tone: "paper" 
 
   return (
     <>
-      <button
+      <Button
         ref={refs.setReference}
         {...getReferenceProps({
           onMouseEnter: () => setOpen(true),
@@ -67,13 +68,13 @@ function Pin({ pin, index, tone }: { pin: PinNote; index: number; tone: "paper" 
         aria-expanded={open}
         aria-label={`${index + 1} — ${pin.title}`}
         className={cn(
-          "absolute z-[2] flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 font-mono text-[10px] font-black shadow-lg transition-transform hover:scale-110 focus-visible:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "absolute z-[2] flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 font-mono text-[10px] font-black shadow-lg transition-transform hover:scale-110 focus-visible:scale-110 focus-visible:ring-2 focus-visible:ring-ring",
           open ? "border-primary bg-primary text-primary-foreground" : "border-background bg-foreground text-background",
         )}
         style={{ left: `${pin.x * 100}%`, top: `${pin.y * 100}%` }}
       >
         {index + 1}
-      </button>
+      </Button>
       {open && (
         <FloatingPortal>
           <div

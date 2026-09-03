@@ -85,7 +85,7 @@ export function ReceiptSlip({
           <div
             className={cn(
               "relative mx-auto w-full max-w-[420px] border bg-card",
-              ink ? "border-background/20 text-foreground" : "border-border text-foreground shadow-[0_32px_64px_-40px_hsl(0_0%_0%/0.35)]",
+              ink ? "border-background/20 text-foreground" : "border-border text-foreground shadow-[0_32px_64px_-40px_hsl(var(--foreground)/0.35)]",
             )}
           >
             {/* perforated top — punched notches */}

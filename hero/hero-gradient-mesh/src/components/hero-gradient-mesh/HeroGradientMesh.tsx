@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Gradient-mesh hero — a live, drifting mesh of color behind the type.
-// ═══ EMOTION     Fluid, modern, un-stoppable.
+// ═══ EMOTION     Fluid, modern, continuous.
 // ═══ SIGNATURE   Several blurred color blobs that drift on a slow loop.
 
 export type HeroGradientMeshProps = {

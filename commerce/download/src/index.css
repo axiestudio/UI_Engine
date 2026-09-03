@@ -40,6 +40,8 @@
     --warning-foreground: 25 30% 15%;
     --warning-muted: 38 92% 89%;
 
+    --shadow-color: 0 0% 0%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

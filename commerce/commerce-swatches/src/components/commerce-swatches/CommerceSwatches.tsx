@@ -20,11 +20,11 @@ export type CommerceSwatchesProps = {
 }
 
 const DEFAULT_SWATCHES: SwatchOption[] = [
-  { id: "finish-oat", label: "Oat", color: "#e6ddcb" },
-  { id: "finish-clay", label: "Clay", color: "#b0876a", price: 120 },
-  { id: "finish-sage", label: "Sage", color: "#9aa88f", price: 120 },
-  { id: "finish-slate", label: "Slate", color: "#6f7780" },
-  { id: "finish-ink", label: "Ink", color: "#2f2e2b" },
+  { id: "finish-oat", label: "Oat", color: "hsl(var(--swatch-oat))" },
+  { id: "finish-clay", label: "Clay", color: "hsl(var(--swatch-clay))", price: 120 },
+  { id: "finish-sage", label: "Sage", color: "hsl(var(--swatch-sage))", price: 120 },
+  { id: "finish-slate", label: "Slate", color: "hsl(var(--swatch-slate))" },
+  { id: "finish-ink", label: "Ink", color: "hsl(var(--swatch-ink))" },
 ]
 
 export function CommerceSwatches({ eyebrow = "FINISH", name = "Color options", basePrice = 240, swatches = DEFAULT_SWATCHES, className }: CommerceSwatchesProps) {
@@ -49,8 +49,8 @@ export function CommerceSwatches({ eyebrow = "FINISH", name = "Color options", b
             <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground">Pick a finish — the preview retints live.</p>
             <div className="mt-5 flex flex-wrap gap-2">
               {swatches.map((sw, i) => (
-                <button key={sw.id} type="button" onClick={() => setSel(i)} aria-label={sw.label}
-                  className={cn("relative h-11 w-11 rounded-full border ring-offset-2 transition-all", sel === i ? "ring-2 ring-foreground" : "hover:scale-105")}
+                <Button key={sw.id} type="button" size="icon" variant="ghost" onClick={() => setSel(i)} aria-label={sw.label}
+                  className={cn("relative h-11 w-11 rounded-full border p-0 ring-offset-2", sel === i ? "ring-2 ring-foreground" : "hover:scale-105")}
                   style={{ background: sw.color }} />
               ))}
             </div>

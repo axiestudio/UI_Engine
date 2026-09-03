@@ -63,7 +63,7 @@ function MemberCard({ m, tilt = true, showBios = false }: { m: TeamMember; tilt?
         {m.tags && m.tags.length > 0 && (
           <div className="absolute inset-x-3 bottom-3 flex flex-wrap gap-1.5">
             {m.tags.map((tag) => (
-              <span key={tag} className="rounded-full bg-background/90 px-2.5 py-1 font-mono text-[10px] font-bold tracking-wide text-foreground shadow-sm backdrop-blur">
+              <span key={tag} className="rounded-full bg-card px-2.5 py-1 font-mono text-[10px] font-bold tracking-wide text-foreground shadow-sm">
                 {tag}
               </span>
             ))}

@@ -157,14 +157,14 @@ export function DeviceResponsive({
               animate={{ width: w }}
               transition={dragging || reduce ? { duration: 0 } : { type: "spring", stiffness: 240, damping: 28 }}
               className={cn(
-                "relative overflow-hidden rounded-[16px] border bg-[#0b0b0b] shadow-[0_24px_56px_-26px_hsl(var(--foreground)/0.45),0_2px_0_0_hsl(var(--foreground)/0.3)]",
+                "relative overflow-hidden rounded-[16px] border bg-foreground shadow-[0_24px_56px_-26px_hsl(var(--foreground)/0.45),0_2px_0_0_hsl(var(--foreground)/0.3)]",
                 ink ? "border-background/15" : "border-border",
                 dragging && "cursor-ew-resize",
               )}
               style={{ maxWidth: "100%" }}
             >
               {/* compact chrome */}
-              <div className="border-b border-white/[0.07] bg-[#161616] px-3 py-2">
+              <div className="border-b border-white/[0.07] bg-foreground/90 px-3 py-2">
                 <div className="flex items-center gap-2">
                   <span aria-hidden className="flex gap-1.5">
                     <span className="size-2 rounded-full bg-white/60" />

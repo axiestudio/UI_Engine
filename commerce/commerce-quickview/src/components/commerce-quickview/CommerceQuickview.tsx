@@ -45,7 +45,7 @@ export function CommerceQuickview({ eyebrow = "SHOP", items = DEFAULT_ITEMS, cla
           <InView key={it.id} once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}>
             <Dialog>
               <DialogTrigger asChild>
-                <button type="button" className="group block w-full overflow-hidden rounded-2xl border bg-card text-left">
+                <Button type="button" variant="ghost" size="lg" className="block h-auto w-full overflow-hidden rounded-2xl border bg-card p-0 text-left hover:bg-card">
                   <div className="img-hover-wash aspect-[4/3] bg-muted">
                     {it.src ? <img src={it.src} alt={it.name} className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
                   </div>
@@ -53,7 +53,7 @@ export function CommerceQuickview({ eyebrow = "SHOP", items = DEFAULT_ITEMS, cla
                     <p className="font-display text-base font-bold">{it.name}</p>
                     <span className="font-display font-semibold">{it.price}</span>
                   </div>
-                </button>
+                </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-2xl">
                 <DialogHeader className="sr-only">

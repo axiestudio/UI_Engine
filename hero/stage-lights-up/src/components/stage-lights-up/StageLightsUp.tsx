@@ -41,7 +41,7 @@ export function StageLightsUp({ kicker = "HOUSE LIGHTS DOWN", title, sub, cta, c
             initial={reduce ? { opacity: 0 } : { opacity: 0, rotate: c.rotate[0], x: "-50%" }}
             animate={{ opacity: [0, 0.9, 0.9, 0], rotate: [c.rotate[0], c.rotate[1], 0, 0], x: "-50%" }}
             transition={reduce ? { duration: 0 } : { duration: 2.6, times: [0, 0.34, 0.72, 0.78], ease: [0.6, 0, 0.2, 1], delay: c.delay }}
-            className="absolute top-[-6%] block h-[130%] w-[34vw] max-w-[420px]"
+            className="absolute top-[-6%] block h-[130%] w-[clamp(200px,34vw,420px)]"
             style={{
               left: c.left,
               transformOrigin: "50% 0%",
@@ -61,7 +61,7 @@ export function StageLightsUp({ kicker = "HOUSE LIGHTS DOWN", title, sub, cta, c
         initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.6 }}
         animate={{ opacity: [0, 0.8, 0.8, 0.28], scale: [0.6, 1, 1, 1.15] }}
         transition={reduce ? { duration: 0.2 } : { duration: 2.8, times: [0, 0.34, 0.74, 1] }}
-        className="pointer-events-none absolute left-1/2 top-1/2 block size-[46vw] max-h-[480px] max-w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-[50%]"
+        className="pointer-events-none absolute left-1/2 top-1/2 block size-[clamp(280px,46vw,640px)] max-h-[480px] max-w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-[50%]"
         style={{ background: "radial-gradient(50% 50% at 50% 50%, hsl(var(--beam)/0.16), transparent 70%)" }}
       />
 
@@ -75,7 +75,7 @@ export function StageLightsUp({ kicker = "HOUSE LIGHTS DOWN", title, sub, cta, c
         <h1 className="mt-5 font-display text-[clamp(36px,7.5vw,72px)] font-black leading-[0.95] tracking-[-0.03em]" style={{ textShadow: "0 0 34px hsl(var(--beam)/0.22)" }}>{title}</h1>
         {sub && <p className="mt-5 max-w-xl text-[15px] font-medium leading-[1.7] text-white/65">{sub}</p>}
         {cta && (
-          <a href={cta.href ?? "#"} onClick={cta.onClick} className="mt-8 inline-flex h-12 items-center gap-2 rounded-full border border-[hsl(var(--beam)/0.4)] bg-[hsl(var(--beam)/0.06)] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.24em] backdrop-blur-sm transition-colors hover:bg-[hsl(var(--beam)/0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--beam))]">
+          <a href={cta.href ?? "#"} onClick={cta.onClick} className="mt-8 inline-flex h-12 items-center gap-2 rounded-full border border-[hsl(var(--beam)/0.4)] bg-[hsl(var(--beam)/0.06)] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.24em] transition-colors hover:bg-[hsl(var(--beam)/0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--beam))]">
             {cta.label}
           </a>
         )}

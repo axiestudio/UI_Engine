@@ -5,6 +5,7 @@ import { Magnetic } from "@/components/primitives/magnetic"
 import { BorderTrail } from "@/components/primitives/border-trail"
 import { TextEffect } from "@/components/primitives/text-effect"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import Noise from "@/components/primitives/noise"
 
@@ -135,7 +136,7 @@ export function Newsletter({
                   <span className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.2em]", ink ? "text-background/45" : "text-muted-foreground/70")}>
                     Email
                   </span>
-                  <input
+                  <Input
                     type="email"
                     required
                     value={email}
@@ -144,10 +145,10 @@ export function Newsletter({
                     autoComplete="email"
                     aria-label="Email address"
                     className={cn(
-                      "mt-1 w-full border-b bg-transparent pb-2 pt-1 font-mono text-sm font-semibold outline-none transition-colors placeholder:font-medium placeholder:opacity-50",
+                      "mt-1 h-auto w-full rounded-none border-x-0 border-b border-t-0 bg-transparent pb-2 pt-1 font-mono text-sm font-semibold focus-visible:ring-0",
                       ink
-                        ? "border-background/30 text-background focus:border-background/70"
-                        : "border-border text-foreground focus:border-foreground/70",
+                        ? "border-background/30 text-background focus-visible:border-background/70"
+                        : "border-border text-foreground focus-visible:border-foreground/70",
                     )}
                   />
                 </label>

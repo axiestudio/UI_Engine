@@ -92,7 +92,7 @@ export function Showcase({
     <span className="absolute border-current bottom-[-8px] right-[-8px] border-b border-r" style={{ width: 14, height: 14 }} />
   </span>
               <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.06 : 0.035) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
-              <Spotlight size={460} className={cn("blur-2xl", ink ? "bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12),transparent_75%)]" : "bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05),transparent_75%)]")} />
+              <Spotlight size={460} className={cn("blur-2xl", ink ? "bg-[radial-gradient(circle_at_center,hsl(var(--background)/0.12),transparent_75%)]" : "bg-[radial-gradient(circle_at_center,hsl(var(--foreground)/0.05),transparent_75%)]")} />
               <div className={cn("relative flex items-center gap-3 border-b px-4 py-3", ink ? "border-background/10 bg-background/5" : "border-border bg-muted/50")}>
                 <span className="flex gap-1.5" aria-hidden>
                   <i className={cn("size-2.5 rounded-full", ink ? "bg-background/30" : "bg-muted-foreground/30")} />
@@ -120,7 +120,7 @@ export function Showcase({
                 {/* sheen sweep on hover */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_42%,rgba(255,255,255,0.16)_50%,transparent_58%)] transition-transform [transition-duration:900ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%]"
+                  className="pointer-events-none absolute inset-0 -translate-x-[110%] bg-[linear-gradient(105deg,transparent_42%,hsl(var(--background)/0.16)_50%,transparent_58%)] transition-transform [transition-duration:900ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[110%]"
                 />
               </div>
             </div>

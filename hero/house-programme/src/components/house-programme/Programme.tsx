@@ -3,6 +3,7 @@ import { motion } from "motion/react"
 import { Scissors } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB      present a running order with typographic authority
 // ═══ EMOTION  the quiet pride of holding yesterday's programme
@@ -27,7 +28,7 @@ export type ProgrammeProps = {
 export function Programme({ house, season, acts, credits, stub, className }: ProgrammeProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   return (
-    <section className={cn("relative isolate w-full bg-[hsl(var(--paper))] px-4 py-20 text-[hsl(var(--playbill-ink))] sm:px-6 lg:px-8", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--paper))] px-4 py-20 text-[hsl(var(--playbill-ink))] sm:px-6 lg:px-8", className)}>
       <InView as="div" once variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.6 }}>
         <div className="mx-auto w-full max-w-[880px] border-y-4 border-double border-[hsl(var(--playbill-ink))]/60 py-8" style={{ borderColor: "currentColor" }}>
           <div className="flex items-baseline justify-between gap-6 border-b border-[hsl(var(--playbill-ink))]/25 pb-3">
@@ -63,15 +64,16 @@ export function Programme({ house, season, acts, credits, stub, className }: Pro
             <div aria-hidden className="absolute inset-x-0 top-[-14px] flex justify-between">
               {[0, 1].map((s) => <span key={s} className={cn("size-7 -translate-y-1/2 rounded-full", s ? "-right-3.5" : "-left-3.5")} style={{ background: "hsl(var(--background)/transparent)" }} />)}
             </div>
-            <button
+            <Button
               type="button"
               onClick={stub.onClick}
-              className="group relative block w-full overflow-hidden border-[3px] border-dashed border-[hsl(var(--playbill-ink))]/50 bg-[hsl(var(--paper-deep))] px-6 py-4 text-left transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--playbill-accent))]"
+              variant="outline"
+              className="group relative h-auto w-full overflow-hidden border-[3px] border-dashed border-[hsl(var(--playbill-ink))]/50 bg-[hsl(var(--paper-deep))] px-6 py-4 text-left transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--playbill-accent))]"
             >
               <Scissors aria-hidden className="absolute -left-2 -top-3 size-4 rotate-90 opacity-40 transition-transform duration-500 group-hover:-translate-y-6 group-hover:rotate-[160deg]" />
               <span className="block font-mono text-[10px] font-black uppercase tracking-[0.28em] text-[hsl(var(--playbill-accent))]">{stub.label}</span>
               {stub.sub && <span className="mt-1 block font-serif text-[15px] italic">{stub.sub}</span>}
-            </button>
+            </Button>
             <span aria-hidden className="pointer-events-none absolute -bottom-2 left-1/2 h-px w-[92%] -translate-x-1/2 rotate-[0.4deg] border-b border-dotted border-[hsl(var(--playbill-ink))]/40" />
           </div>
         )}

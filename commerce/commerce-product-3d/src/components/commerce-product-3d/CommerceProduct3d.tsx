@@ -62,7 +62,7 @@ export function CommerceProduct3d({ eyebrow = "PRODUCT", title = "Interactive pr
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Colorway</p>
               <div className="mt-2 flex gap-2">
                 {colorways.map((c) => (
-                  <button key={c.id} type="button" onClick={() => setActive(c.id)} aria-label={c.label} aria-pressed={active === c.id} className={cn("h-9 w-9 rounded-full border ring-offset-2 transition-shadow", active === c.id && "ring-2 ring-foreground")} style={{ background: c.swatch }} />
+                  <Button key={c.id} type="button" size="icon-sm" variant="outline" onClick={() => setActive(c.id)} aria-label={c.label} aria-pressed={active === c.id} className={cn("h-9 w-9 rounded-full border p-0 ring-offset-2", active === c.id && "ring-2 ring-foreground")} style={{ background: c.swatch }} />
                 ))}
               </div>
             </div>

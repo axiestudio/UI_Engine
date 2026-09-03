@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── FUND TIER — one backer tier. The filling: repeat one per reward. ────────
@@ -17,14 +18,16 @@ export type FundTierProps = {
 
 export function FundTier({ amount, name, perks, left, selected, onSelect, soldOut, className }: FundTierProps) {
   return (
-    <button
+    <Button
       type="button"
       role="radio"
+      variant="ghost"
+      size="lg"
       aria-checked={!!selected}
       disabled={soldOut}
       onClick={onSelect}
       className={cn(
-        "relative w-full border-t border-border/50 px-5 py-3.5 text-left transition-colors first:border-t-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+        "relative h-auto w-full justify-start border-t border-border/50 px-5 py-3.5 text-left first:border-t-0",
         soldOut && "cursor-not-allowed opacity-45",
         !soldOut && "hover:bg-muted/50",
         selected && "bg-primary/[0.06]",
@@ -51,6 +54,6 @@ export function FundTier({ amount, name, perks, left, selected, onSelect, soldOu
         )}
       </span>
       <span className="mt-1 block pl-[30px] text-[12px] font-medium leading-relaxed text-muted-foreground">{perks}</span>
-    </button>
+    </Button>
   )
 }

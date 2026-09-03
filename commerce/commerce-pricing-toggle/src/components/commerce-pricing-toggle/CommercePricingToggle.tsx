@@ -33,7 +33,7 @@ export function CommercePricingToggle({ eyebrow = "PRICING", title = "Flexible b
         <div className="mt-6 inline-flex rounded-full border p-1">
           {["monthly", "annual"].map((m) => {
             const isAnnual = m === "annual"
-            return <button key={m} type="button" onClick={() => setAnnual(isAnnual)} className={cn("rounded-full px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] transition-colors", annual === isAnnual ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground")}>{m}</button>
+            return <Button key={m} type="button" variant={annual === isAnnual ? "default" : "ghost"} size="sm" onClick={() => setAnnual(isAnnual)} className={cn("h-auto rounded-full px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em]", annual !== isAnnual && "text-muted-foreground hover:text-foreground")}>{m}</Button>
           })}
         </div>
       </InView>

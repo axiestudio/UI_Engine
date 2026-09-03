@@ -19,7 +19,7 @@ export type HeroSplitStackProps = {
 }
 
 export function HeroSplitStack({
-  eyebrow = "STACK",
+  eyebrow = "Stack",
   title = "Two halves, offset.",
   subtitle = "A split hero where the column heights stagger — the media half sits a beat lower than the copy.",
   actions = [{ label: "More", href: "#" }],

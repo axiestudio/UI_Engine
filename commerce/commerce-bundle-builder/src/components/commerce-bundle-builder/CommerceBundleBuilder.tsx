@@ -49,9 +49,9 @@ export function CommerceBundleBuilder({ eyebrow = "BUILD", title = "Build your b
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <button type="button" onClick={() => sub(p.id)} className="flex h-8 w-8 items-center justify-center rounded-lg border hover:bg-accent" aria-label="Decrease"><Minus className="h-4 w-4" /></button>
+                  <Button type="button" size="icon-sm" variant="outline" onClick={() => sub(p.id)} aria-label="Decrease"><Minus className="h-4 w-4" /></Button>
                   <span className="w-8 text-center font-mono text-sm font-bold tabular-nums">{counts[p.id] ?? 0}</span>
-                  <button type="button" onClick={() => add(p.id)} className="flex h-8 w-8 items-center justify-center rounded-lg border hover:bg-accent" aria-label="Increase"><Plus className="h-4 w-4" /></button>
+                  <Button type="button" size="icon-sm" variant="outline" onClick={() => add(p.id)} aria-label="Increase"><Plus className="h-4 w-4" /></Button>
                 </div>
                 {(counts[p.id] ?? 0) > 0 && <Check className="h-4 w-4 text-success" />}
               </div>

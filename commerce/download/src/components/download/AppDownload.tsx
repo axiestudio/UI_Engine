@@ -167,7 +167,7 @@ export function AppDownload({
             <div
               className={cn(
                 "relative w-[218px] rotate-[4deg] rounded-[2.2rem] border p-2.5 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[1deg] motion-reduce:transition-none",
-                ink ? "border-background/25 bg-background/[0.04]" : "border-border bg-card shadow-[0_48px_80px_-40px_hsl(0_0%_0%/0.35)]",
+                ink ? "border-background/25 bg-background/[0.04]" : "border-border bg-card shadow-[0_48px_80px_-40px_hsl(var(--shadow-color)/0.35)]",
               )}
             >
               <div className={cn("relative aspect-[9/18] overflow-hidden rounded-[1.6rem]", ink ? "bg-background/10" : "bg-secondary/70")}>
@@ -204,8 +204,8 @@ export function AppDownload({
             {/* QR stamp card — always reads as a paper sticker */}
             <div
               className={cn(
-                "absolute -bottom-2 right-0 rotate-[-3deg] rounded-2xl border p-3.5 text-foreground backdrop-blur transition-transform duration-500 group-hover:rotate-0 motion-reduce:transition-none sm:static",
-                ink ? "border-background/20 bg-background" : "border-border bg-card shadow-[0_24px_48px_-24px_hsl(0_0%_0%/0.3)]",
+                "absolute -bottom-2 right-0 rotate-[-3deg] rounded-2xl border p-3.5 text-foreground transition-transform duration-500 group-hover:rotate-0 motion-reduce:transition-none sm:static",
+                ink ? "border-background/20 bg-background" : "border-border bg-card shadow-[0_24px_48px_-24px_hsl(var(--shadow-color)/0.3)]",
               )}
             >
               <QrCells />

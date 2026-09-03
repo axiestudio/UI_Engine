@@ -18,7 +18,7 @@ export type HeroWordmarkRefractionProps = {
   className?: string
 }
 
-export function HeroWordmarkRefraction({ eyebrow = "REFRACT", word = "NORTHING", tagline = "A studio that bends material, type and light into intent.", actions = [{ label: "See the work", href: "#" }], tone = "paper", className }: HeroWordmarkRefractionProps) {
+export function HeroWordmarkRefraction({ eyebrow = "Refract", word = "NORTHING", tagline = "A studio that bends material, type and light into intent.", actions = [{ label: "See the work", href: "#" }], tone = "paper", className }: HeroWordmarkRefractionProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate flex min-h-[80vh] items-center overflow-hidden px-5 py-20 sm:px-8", ink && "bg-foreground text-background", className)}>

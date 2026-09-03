@@ -1,6 +1,7 @@
 import * as React from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type HeroSession = {
@@ -275,7 +276,7 @@ export function HeroScroll({
   const galleryImages = gallery
 
   return (
-    <div ref={containerRef} className={cn("relative bg-background", className)} style={{ height }}>
+    <div ref={containerRef} className={cn("relative isolate overflow-hidden bg-background", className)} style={{ height }}>
       {/* Sticky viewport */}
       <div
         className={cn(
@@ -365,7 +366,7 @@ export function HeroScroll({
         {/* ── Top chrome: eyebrow + frame counter / progress ─────────────── */}
         <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-3 px-4 py-4 sm:px-6 sm:py-5">
           <div className="flex items-center gap-2">
-            <span className="inline-flex h-7 items-center rounded-full border border-white/20 bg-black/30 px-3 font-mono text-[10px] font-bold tracking-[0.18em] text-white/85 backdrop-blur">
+            <span className="inline-flex h-7 items-center rounded-full border border-white/20 bg-black/60 px-3 font-mono text-[10px] font-bold tracking-[0.18em] text-white/85">
               SHOWCASE · SCROLL CINEMA
             </span>
             {showProgress && totalFrames > 0 && (
@@ -377,7 +378,7 @@ export function HeroScroll({
           {showFrameCounter && totalFrames > 0 && (
             <span
               aria-live="polite"
-              className="inline-flex h-7 items-center rounded-full border border-white/15 bg-black/35 px-3 font-mono text-[10px] font-bold tracking-widest text-white/80 backdrop-blur"
+              className="inline-flex h-7 items-center rounded-full border border-white/15 bg-black/65 px-3 font-mono text-[10px] font-bold tracking-widest text-white/80"
             >
               {loaded < totalFrames ? `${loaded}/${totalFrames}` : `${pct}%`}
             </span>
@@ -452,16 +453,17 @@ export function HeroScroll({
 
         {/* ── Bottom gallery rail (when gallery supplied) ─────────────────── */}
         {galleryImages && galleryImages.length > 0 && (
-          <div className="absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/40 backdrop-blur supports-[backdrop-filter]:bg-black/30">
+          <div className="absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/65">
             <div className="mx-auto flex max-w-[1200px] items-center gap-3 px-3 py-3 sm:px-4">
               <p className="hidden shrink-0 font-mono text-[10px] font-bold tracking-[0.2em] text-white/60 sm:block">GALLERY</p>
               <div className="no-scrollbar flex flex-1 items-center gap-2 overflow-x-auto scroll-smooth">
                 {galleryImages.map((g, idx) => (
-                  <button
+                  <Button
                     key={`${g.src}-${idx}`}
                     type="button"
+                    variant="ghost"
                     onClick={() => setLightbox(idx)}
-                    className="group relative h-[56px] w-[88px] shrink-0 overflow-hidden rounded-lg border border-white/15 bg-black/20 transition hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 sm:h-[60px] sm:w-[96px]"
+                    className="group relative h-[56px] w-[88px] shrink-0 overflow-hidden rounded-lg border border-white/15 bg-black/40 p-0 transition hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 sm:h-[60px] sm:w-[96px]"
                     aria-label={`Open ${g.title ?? g.alt ?? `image ${idx + 1}`} in gallery`}
                   >
                     <img
@@ -477,12 +479,12 @@ export function HeroScroll({
                         {g.title}
                       </span>
                     )}
-                  </button>
+                  </Button>
                 ))}
               </div>
               <a
                 href="#gallery"
-                className="hidden shrink-0 items-center rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 font-mono text-[10px] font-bold tracking-widest text-white/85 backdrop-blur transition hover:bg-white hover:text-black sm:inline-flex"
+                className="hidden shrink-0 items-center rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 font-mono text-[10px] font-bold tracking-widest text-white/85 transition hover:bg-white hover:text-black sm:inline-flex"
               >
                 VIEW ALL
               </a>
@@ -509,7 +511,7 @@ export function HeroScroll({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+            className="absolute inset-0 z-[90] flex items-center justify-center bg-black/90 p-4 sm:p-8"
             onClick={() => setLightbox(null)}
           >
             <motion.div
@@ -539,41 +541,47 @@ export function HeroScroll({
                   )}
                 </div>
                 <div className="flex items-center gap-2">
-                  <button
+                  <Button
                     type="button"
+                    variant="ghost"
+                    size="icon"
                     onClick={() => setLightbox((v) => (v === null ? null : Math.max(0, v - 1)))}
                     disabled={lightbox === 0}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition hover:bg-white hover:text-black disabled:opacity-30"
                     aria-label="Previous"
                   >
                     ‹
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
+                    variant="ghost"
+                    size="icon"
                     onClick={() => setLightbox((v) => (v === null ? null : Math.min((galleryImages?.length ?? 1) - 1, v + 1)))}
                     disabled={lightbox === (galleryImages.length - 1)}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition hover:bg-white hover:text-black disabled:opacity-30"
                     aria-label="Next"
                   >
                     ›
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
                     onClick={() => setLightbox(null)}
                     className="ml-1 inline-flex h-9 items-center rounded-full bg-white px-4 font-mono text-[11px] font-bold tracking-widest text-black transition hover:bg-white/90"
                   >
                     CLOSE
-                  </button>
+                  </Button>
                 </div>
               </div>
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="icon"
                 aria-label="Close gallery"
                 onClick={() => setLightbox(null)}
-                className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white/80 backdrop-blur transition hover:bg-white hover:text-black"
+                className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/80 text-white/80 transition hover:bg-white hover:text-black"
               >
                 ✕
-              </button>
+              </Button>
             </motion.div>
           </motion.div>
         )}

@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Check } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── Design language ──────────────────────────────────────────────────────────
@@ -63,13 +64,15 @@ export function Vault({
             {subtitle && <p className="mt-4 text-[15px] font-medium leading-relaxed text-muted-foreground">{subtitle}</p>}
             {cta &&
               (cta.href ? (
-                <a href={cta.href} onClick={cta.onClick} className="mt-8 inline-flex h-12 items-center rounded-full bg-foreground px-8 font-display text-sm font-semibold tracking-[-0.02em] text-background transition-transform hover:scale-[1.02] active:scale-[0.98]">
-                  {cta.label}
-                </a>
+                <Button asChild size="lg" className="mt-8 h-12 rounded-full px-8 font-display text-sm font-semibold tracking-[-0.02em] transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                  <a href={cta.href} onClick={cta.onClick}>
+                    {cta.label}
+                  </a>
+                </Button>
               ) : (
-                <button type="button" onClick={cta.onClick} className="mt-8 inline-flex h-12 items-center rounded-full bg-foreground px-8 font-display text-sm font-semibold tracking-[-0.02em] text-background transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                <Button type="button" size="lg" onClick={cta.onClick} className="mt-8 h-12 rounded-full px-8 font-display text-sm font-semibold tracking-[-0.02em] transition-transform hover:scale-[1.02] active:scale-[0.98]">
                   {cta.label}
-                </button>
+                </Button>
               ))}
           </div>
 

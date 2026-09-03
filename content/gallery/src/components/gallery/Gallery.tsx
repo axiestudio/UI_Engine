@@ -83,7 +83,7 @@ export function Gallery({
                 aria-label={p.title ?? p.alt}
               >
                 <MorphingDialogImage src={p.src} alt={p.alt} className="h-full w-full object-cover" />
-                <span className="pointer-events-none absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm backdrop-blur">
+                <span className="pointer-events-none absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background text-foreground shadow-sm">
                   <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
                 </span>
                 {(p.title || p.caption) && (

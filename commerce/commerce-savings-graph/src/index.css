@@ -115,6 +115,7 @@
   --chart-line-primary: hsl(222 47% 36%);
   --chart-line-secondary: hsl(212 88% 48%);
   --chart-crosshair: hsl(220 9% 46%);
+  --chart-accent-stroke: hsl(292 90% 73%);
   --chart-tooltip-bg: hsl(0 0% 100%);
   --chart-tooltip-fg: hsl(222 15% 14%);
   --chart-foreground: hsl(222 15% 14%);

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 // ═══ JOB         Open the page like venetian blinds.
 // ═══ EMOTION     A rhythm — slats part row by row.
 // ═══ SIGNATURE   N staggered horizontal slats rise in a cascade (read not a wipe).
+// ═══ ISOLATION   fixed inset-0 is the named behavior — whole-viewport curtain reveal.
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
 
@@ -218,7 +219,7 @@ function ShutterScene({
                 type="button"
                 onClick={onEnter}
                 tabIndex={onEnterKey ? 0 : -1}
-                className="pointer-events-auto mt-8 h-11 rounded-full border border-[hsl(var(--curtain-glow)/0.25)] bg-[hsl(var(--curtain-glow)/0.06)] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-[hsl(var(--curtain-text))] backdrop-blur-sm transition-colors hover:border-[hsl(var(--curtain-glow)/0.5)] hover:bg-[hsl(var(--curtain-glow)/0.14)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--curtain-glow)/0.7)]"
+                className="pointer-events-auto mt-8 h-11 rounded-full border border-[hsl(var(--curtain-glow)/0.25)] bg-[hsl(var(--curtain-glow)/0.1)] px-7 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-[hsl(var(--curtain-text))] transition-colors hover:border-[hsl(var(--curtain-glow)/0.5)] hover:bg-[hsl(var(--curtain-glow)/0.18)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--curtain-glow)/0.7)]"
               >
                 {enter.label}
               </Button>

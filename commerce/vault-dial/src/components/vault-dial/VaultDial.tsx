@@ -3,6 +3,7 @@ import { motion, useMotionValue, useTransform, animate } from "motion/react"
 import { LockKeyholeOpen, RotateCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB      make "unlocking a code/tier" feel like breaking into a vault
 // ═══ EMOTION  anticipation + the thunk of a bolt withdrawing
@@ -143,11 +144,13 @@ export function VaultDial({ eyebrow = "Secure vault", title, tiers = DEFAULT_TIE
           <ul className="mt-7 space-y-2">
             {tiers.map((t, i) => (
               <li key={t.label}>
-                <button
+                <Button
                   type="button"
+                  variant="outline"
+                  size="sm"
                   onClick={() => { if (!unlocked) snapTo(i) }}
                   className={cn(
-                    "flex w-full items-center justify-between rounded-md border px-4 py-3 text-left transition-all",
+                    "h-auto w-full justify-between rounded-md border px-4 py-3 text-left",
                     i === index && !unlocked && "border-brass bg-[hsl(var(--brass)/0.08)]",
                     i === index && unlocked && "border-white/20 bg-white/10",
                     i > index && !unlocked && "cursor-pointer opacity-45 hover:opacity-70",
@@ -157,7 +160,7 @@ export function VaultDial({ eyebrow = "Secure vault", title, tiers = DEFAULT_TIE
                 >
                   <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em]">{String(i).padStart(2, "0")} — {t.label}</span>
                   <span className="font-mono text-[11px] font-semibold">{!unlocked && i > 0 ? "••" : ""}</span>
-                </button>
+                </Button>
               </li>
             ))}
           </ul>
@@ -169,13 +172,15 @@ export function VaultDial({ eyebrow = "Secure vault", title, tiers = DEFAULT_TIE
               {tier?.hint && <p className="mt-2 text-sm font-medium text-white/60">{tier.hint}</p>}
               <div className="mt-3 flex items-center justify-between gap-4">
                 <code className="rounded bg-white/10 px-4 py-2 font-mono text-lg font-semibold tracking-[0.2em]">{tier?.code}</code>
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => { setUnlocked(false); snapTo(0) }}
-                  className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white/45 transition-colors hover:text-white"
+                  className="h-auto gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white/45 hover:text-white"
                 >
                   <RotateCcw className="size-3.5" /> {resetLabel}
-                </button>
+                </Button>
               </div>
             </div>
           </motion.div>

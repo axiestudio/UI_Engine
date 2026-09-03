@@ -25,13 +25,13 @@ export function TypeOutlineReveal({ eyebrow = "OUTLINE", word = "FOCUS", subtitl
         </InView>
         <div className="relative mt-6">
           {/* solid fill fading in */}
-          <motion.h1 aria-hidden className="absolute inset-0 font-display text-[19vw] font-black leading-[0.82] tracking-[-0.05em] text-foreground sm:text-[14vw]"
+          <motion.h1 aria-hidden className="absolute inset-0 font-display text-[clamp(64px,19vw,260px)] font-black leading-[0.82] tracking-[-0.05em] text-foreground"
             initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.4, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             {word}
           </motion.h1>
           {/* stroke wave on top */}
           <TextShimmerWave as="h1" duration={1.8} zDistance={26} xDistance={-1} yDistance={-4}
-            className={cn("relative font-display text-[19vw] font-black leading-[0.82] tracking-[-0.05em] text-transparent", "[-webkit-text-stroke:2px_hsl(var(--foreground))]")}>
+            className={cn("relative font-display text-[clamp(64px,19vw,260px)] font-black leading-[0.82] tracking-[-0.05em] text-transparent", "[-webkit-text-stroke:2px_hsl(var(--foreground))]")}>
             {word}
           </TextShimmerWave>
         </div>

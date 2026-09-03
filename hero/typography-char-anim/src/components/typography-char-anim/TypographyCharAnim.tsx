@@ -17,7 +17,7 @@ export type TypographyCharAnimProps = {
 }
 
 export function TypographyCharAnim({
-  eyebrow = "GLITCH",
+  eyebrow = "Glitch",
   title = "Scramble. Resolve. Arrive.",
   subtitle = "The headline starts as noise and settles into the message — a character-level reveal.",
   tone = "paper",

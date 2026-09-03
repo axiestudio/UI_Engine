@@ -75,7 +75,7 @@ export function CaseStudy({
     <span className="absolute border-current bottom-[9px] left-[9px] border-b border-l" style={{ width: 13, height: 13 }} />
     <span className="absolute border-current bottom-[9px] right-[9px] border-b border-r" style={{ width: 13, height: 13 }} />
   </span>}
-          {!ink && <Spotlight size={440} className="bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05),transparent_72%)] blur-2xl" />}
+          {!ink && <Spotlight size={440} className="bg-[radial-gradient(circle_at_center,hsl(var(--foreground)/0.05),transparent_72%)] blur-2xl" />}
 
           {/* the bleeding quote mark */}
           <span

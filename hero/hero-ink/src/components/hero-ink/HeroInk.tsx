@@ -196,7 +196,7 @@ export function HeroInk({
       </div>
 
       {/* coordinates strip — the "you are here" detail */}
-      <div className="absolute inset-x-0 bottom-0 border-t border-background/10 bg-foreground/60 backdrop-blur-sm">
+      <div className="absolute inset-x-0 bottom-0 border-t border-background/10 bg-foreground/85">
         <div className="mx-auto flex h-11 w-full max-w-[1100px] items-center justify-between gap-4 overflow-x-auto px-6 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-background/40 sm:px-10">
           {strip.map((s, i) => (
             <React.Fragment key={i}>

@@ -73,13 +73,13 @@ export function HeroFloatingCards({
             >
               {card.kind === "stat" ? (
                 <div>
-                  <TrendingUp className="h-5 w-5 text-emerald-500" />
+                  <TrendingUp className="h-5 w-5 text-primary" />
                   <p className="mt-2 font-display text-3xl font-black">{card.title}</p>
                   <p className="mt-1 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{card.value}</p>
                 </div>
               ) : (
                 <div className="max-w-[220px]">
-                  <div className="flex gap-0.5 text-amber-400">{Array.from({ length: 5 }).map((_, j) => <Star key={j} className="h-3.5 w-3.5 fill-current" />)}</div>
+                  <div className="flex gap-0.5 text-primary">{Array.from({ length: 5 }).map((_, j) => <Star key={j} className="h-3.5 w-3.5 fill-current" />)}</div>
                   <p className="mt-2 text-sm font-medium leading-relaxed">{card.title}</p>
                   <p className="mt-2 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{card.body}</p>
                 </div>

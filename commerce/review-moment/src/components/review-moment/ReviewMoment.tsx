@@ -70,19 +70,21 @@ export function ReviewMoment({
                     {([1, 2, 3, 4, 5] as const).map((n) => {
                       const on = lit >= n
                       return (
-                        <button
+                        <Button
                           key={n}
                           type="button"
                           role="radio"
-                          aria-checked={false} // ask panel renders only while unrated
+                          variant="ghost"
+                          size="icon"
+                          aria-checked={false}
                           aria-label={`${n} of 5 — ${MSGS[n - 1]}`}
                           onMouseEnter={() => setHover(n)}
                           onFocus={() => setHover(n)}
                           onClick={() => pick(n)}
-                          className="rounded-lg p-1.5 outline-none transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-ring active:scale-95"
+                          className="size-auto rounded-lg p-1.5 transition-transform hover:scale-110 active:scale-95"
                         >
                           <Star className={cn("h-8 w-8 transition-colors duration-150", on ? "fill-foreground text-foreground" : "text-border")} strokeWidth={1.75} />
-                        </button>
+                        </Button>
                       )
                     })}
                   </div>
@@ -113,9 +115,9 @@ export function ReviewMoment({
                         </Button>
                       )
                     )}
-                    <button type="button" onClick={() => setRating(0)} className="self-center text-xs font-bold text-muted-foreground underline-offset-4 hover:underline">
+                    <Button type="button" variant="link" size="sm" onClick={() => setRating(0)} className="self-center h-auto px-0 text-xs font-bold text-muted-foreground underline-offset-4 hover:underline">
                       Actually, take that back
-                    </button>
+                    </Button>
                   </div>
                 </motion.div>
               )}

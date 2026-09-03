@@ -24,7 +24,7 @@ export type MarqueeLightsProps = {
 
 const BULBS = 18
 
-export function MarqueeLights({ overline = "ONE NIGHT ONLY", big, under = "THE UI ENGINE PREMIERE", status = "soon", cta, className }: MarqueeLightsProps) {
+export function MarqueeLights({ overline = "One night only", big, under = "The UI engine premiere", status = "soon", cta, className }: MarqueeLightsProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const chaseSpeed = status === "live" ? 0.45 : 0.9
   const [seed] = React.useState(() => Array.from({ length: BULBS * 4 }, () => Math.random()))

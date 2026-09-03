@@ -49,7 +49,7 @@ export function HeroSplit({
               <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
                 {points.map((p) => (
                   <li key={p} className={cn("flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest", ink ? "text-background/60" : "text-muted-foreground")}>
-                    <Check className="h-3.5 w-3.5 text-emerald-500" /> {p}
+                    <Check className="h-3.5 w-3.5 text-primary" /> {p}
                   </li>
                 ))}
               </ul>

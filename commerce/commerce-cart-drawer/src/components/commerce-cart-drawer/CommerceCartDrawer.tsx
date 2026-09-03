@@ -69,10 +69,10 @@ export function CommerceCartDrawer({ eyebrow = "CART", title = "Your bag.", line
                       <p className="font-mono text-[11px] text-muted-foreground">€{l.price}</p>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <button type="button" onClick={() => setQty(l.id, l.qty - 1)} aria-label={`Decrease ${l.name} quantity`} className="flex h-7 w-7 items-center justify-center rounded-md border hover:bg-accent"><Minus className="h-3 w-3" aria-hidden /></button>
+                      <Button type="button" size="icon-xs" variant="outline" onClick={() => setQty(l.id, l.qty - 1)} aria-label={`Decrease ${l.name} quantity`} className="h-7 w-7"><Minus className="h-3 w-3" aria-hidden /></Button>
                       <span className="w-6 text-center font-mono text-sm tabular-nums" aria-live="polite">{l.qty}</span>
-                      <button type="button" onClick={() => setQty(l.id, l.qty + 1)} aria-label={`Increase ${l.name} quantity`} className="flex h-7 w-7 items-center justify-center rounded-md border hover:bg-accent"><Plus className="h-3 w-3" aria-hidden /></button>
-                      <button type="button" onClick={() => setQty(l.id, 0)} aria-label={`Remove ${l.name} from the bag`} className="ml-1 text-muted-foreground hover:text-destructive"><Trash2 className="h-4 w-4" aria-hidden /></button>
+                      <Button type="button" size="icon-xs" variant="outline" onClick={() => setQty(l.id, l.qty + 1)} aria-label={`Increase ${l.name} quantity`} className="h-7 w-7"><Plus className="h-3 w-3" aria-hidden /></Button>
+                      <Button type="button" size="icon-xs" variant="ghost" onClick={() => setQty(l.id, 0)} aria-label={`Remove ${l.name} from the bag`} className="ml-1 text-muted-foreground hover:text-destructive"><Trash2 className="h-4 w-4" aria-hidden /></Button>
                     </div>
                   </div>
                 ))}

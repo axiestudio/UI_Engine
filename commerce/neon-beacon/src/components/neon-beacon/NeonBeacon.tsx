@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { Grain, MonoLabel } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB      announce availability the way a storefront does — with tubes
 // ═══ EMOTION  rain outside, somebody's sign left on for you
@@ -64,18 +65,20 @@ export function NeonBeacon({ word, under, eyebrow, status: statusProp, onToggle,
         {eyebrow && <MonoLabel className="mt-2 text-white/35">{eyebrow}</MonoLabel>}
 
         {onToggle && (
-          <button
+          <Button
             type="button"
             role="switch"
+            variant="outline"
+            size="sm"
             aria-checked={status === "open"}
             aria-label="Neon status"
             onClick={() => { const next = status === "open" ? "closed" : "open"; if (statusProp === undefined) setInner(next); onToggle(next) }}
-            className={cn("group mt-7 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors", status === "open" ? "border-[hsl(var(--neon)/0.5)] text-neon" : "border-[hsl(var(--neon-alt)/0.5)] text-neon-alt")}
+            className={cn("group mt-7 h-auto gap-3 rounded-full px-5 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em]", status === "open" ? "border-[hsl(var(--neon)/0.5)] text-neon" : "border-[hsl(var(--neon-alt)/0.5)] text-neon-alt")}
           >
             <span className={cn("size-2 rounded-full transition-all", status === "open" ? "bg-neon shadow-sm" : "bg-neon-alt shadow-[0_0_10px_hsl(var(--neon-alt))]")} />
             {status === "open" ? "switch off" : "switch on"}
             <span className="sr-only"> — currently {status}</span>
-          </button>
+          </Button>
         )}
       </div>
       <Grain opacity={0.08} />

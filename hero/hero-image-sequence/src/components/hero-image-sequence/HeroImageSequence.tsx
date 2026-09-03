@@ -58,7 +58,7 @@ export function HeroImageSequence({
   }, [inView, srcs.length, spring, progress])
 
   return (
-    <section ref={ref} className="relative w-full bg-foreground" style={{ height: runway }}>
+    <section ref={ref} className="relative isolate w-full overflow-hidden bg-foreground" style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-end justify-center overflow-hidden">
         <div className="absolute inset-0">
           {srcs.map((s, i) => (

@@ -16,9 +16,9 @@ export type HeroScrollSceneProps = {
 }
 
 const DEFAULT_SCENES = [
-  { id: "s1", kicker: "01 · MORNING", title: "The room before the noise.", body: "North light, one bench, tools laid out the night before.", from: "#faf7f2", to: "#e8e2d6" },
-  { id: "s2", kicker: "02 · MIDDAY", title: "Chips fly, coffee cools.", body: "Two hours of honest noise. The radio stays off.", from: "#e8e2d6", to: "#cfc6b4" },
-  { id: "s3", kicker: "03 · EVENING", title: "Sweep, oil, sign off.", body: "Every piece is finished before the lights go down.", from: "#cfc6b4", to: "#2b2925" },
+  { id: "s1", kicker: "01 · MORNING", title: "The room before the noise.", body: "North light, one bench, tools laid out the night before.", from: "hsl(var(--background))", to: "hsl(var(--muted))" },
+  { id: "s2", kicker: "02 · MIDDAY", title: "Chips fly, coffee cools.", body: "Two hours of honest noise. The radio stays off.", from: "hsl(var(--muted))", to: "hsl(var(--secondary))" },
+  { id: "s3", kicker: "03 · EVENING", title: "Sweep, oil, sign off.", body: "Every piece is finished before the lights go down.", from: "hsl(var(--secondary))", to: "hsl(var(--foreground))" },
 ]
 export function HeroScrollScene({ eyebrow = "SCENE", scenes = DEFAULT_SCENES, className }: HeroScrollSceneProps) {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -28,7 +28,7 @@ export function HeroScrollScene({ eyebrow = "SCENE", scenes = DEFAULT_SCENES, cl
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => scrollYProgress.on("change", (v) => setIdx(Math.min(scenes.length - 1, Math.floor(v * scenes.length)))), [scrollYProgress, scenes.length])
   return (
-    <section ref={ref} className={cn("relative w-full bg-foreground text-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-foreground text-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
         <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 pb-4 sm:px-8">
           <MonoLabel className="text-background/55">{eyebrow}</MonoLabel>
@@ -36,7 +36,7 @@ export function HeroScrollScene({ eyebrow = "SCENE", scenes = DEFAULT_SCENES, cl
         </div>
         <motion.div style={{ x }} className="flex flex-nowrap">
           {scenes.map((s) => (
-            <div key={s.id} className="flex h-full min-w-[100vw] flex-col items-start justify-center px-5 sm:px-8">
+            <div key={s.id} className="flex h-full min-w-full flex-col items-start justify-center px-5 sm:px-8">
               <div className="mx-auto w-full max-w-[1120px]">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-background/50">{s.kicker}</p>
                 <h2 className="mt-3 font-display text-4xl font-black leading-[0.98] tracking-[-0.03em] sm:text-6xl">{s.title}</h2>

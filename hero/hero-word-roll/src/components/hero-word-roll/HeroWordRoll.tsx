@@ -24,7 +24,7 @@ export type HeroWordRollProps = {
 }
 
 export function HeroWordRoll({
-  eyebrow = "ROLL",
+  eyebrow = "Roll",
   lead = "Sections that",
   words = ["ship.", "scale.", "convert.", "endure."],
   tail = "fast.",

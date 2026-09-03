@@ -18,7 +18,7 @@ export type TypeStaggerHeadlineProps = {
   className?: string
 }
 
-export function TypeStaggerHeadline({ eyebrow = "STAGGER", word = "Meticulous.", per = "char", preset = "blur", subtitle = "Each unit arrives in sequence — a typographic reveal tuned for a hero.", tone = "paper", className }: TypeStaggerHeadlineProps) {
+export function TypeStaggerHeadline({ eyebrow = "Stagger", word = "Meticulous.", per = "char", preset = "blur", subtitle = "Each unit arrives in sequence — a typographic reveal tuned for a hero.", tone = "paper", className }: TypeStaggerHeadlineProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate overflow-hidden py-20 sm:py-28", ink && "bg-foreground text-background", className)}>

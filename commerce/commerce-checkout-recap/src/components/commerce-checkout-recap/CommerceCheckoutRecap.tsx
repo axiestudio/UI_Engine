@@ -3,6 +3,7 @@ import { ShoppingBag } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Checkout recap — a sticky order summary beside the payment form.
@@ -36,9 +37,9 @@ export function CommerceCheckoutRecap({ eyebrow = "CHECKOUT", title = "Almost th
             <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em]">{title}</h2>
             <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
               <div className="grid gap-3 sm:grid-cols-2">
-                <input placeholder="Card number" className="col-span-2 rounded-lg border bg-background px-3 py-2.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
-                <input placeholder="MM / YY" className="rounded-lg border bg-background px-3 py-2.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
-                <input placeholder="CVC" className="rounded-lg border bg-background px-3 py-2.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                <Input placeholder="Card number" className="col-span-2 h-auto rounded-lg px-3 py-2.5 text-sm" />
+                <Input placeholder="MM / YY" className="h-auto rounded-lg px-3 py-2.5 text-sm" />
+                <Input placeholder="CVC" className="h-auto rounded-lg px-3 py-2.5 text-sm" />
               </div>
               <Button type="submit" className="h-11 w-full rounded-full font-mono text-[11px] font-bold uppercase tracking-[0.12em]">{cta}</Button>
             </form>

@@ -3,10 +3,15 @@ import { motion, useTransform } from "motion/react"
 import type { MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
 import { useCurtainGate } from "@/lib/curtain"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Boot-sequence terminal intro.
 // ═══ EMOTION     "the machine is waking up"
 // ═══ SIGNATURE   Mono lines type in sequence; the last line opens the gate.
+// ═══ ISOLATION   mode="overlay" uses `fixed inset-0` as the named behavior —
+//                 full-viewport terminal that unmounts on completion (the gate
+//                 gates the page; once done, the overlay returns null). Documented
+//                 gap vs. Law 2; preserved by design intent.
 
 export type IntroTerminalProps = {
   mode?: "overlay" | "stage"
@@ -109,13 +114,15 @@ function TerminalScene({
           </div>
           <div className="mt-6 flex items-center justify-between">
             <p className="font-mono text-[11px] font-bold tracking-widest text-[hsl(var(--curtain-text)/0.5)]">{description}</p>
-            <button
+            <Button
               type="button"
               onClick={onEnter}
-              className="rounded-full border border-[hsl(var(--curtain-glow)/0.25)] bg-[hsl(var(--curtain-glow)/0.06)] px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-[hsl(var(--curtain-text))] transition-colors hover:border-[hsl(var(--curtain-glow)/0.5)] hover:bg-[hsl(var(--curtain-glow)/0.14)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--curtain-glow)/0.7)]"
+              variant="outline"
+              size="sm"
+              className="rounded-full border border-[hsl(var(--curtain-glow)/0.25)] bg-[hsl(var(--curtain-glow)/0.06)] px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-[hsl(var(--curtain-text))] hover:border-[hsl(var(--curtain-glow)/0.5)] hover:bg-[hsl(var(--curtain-glow)/0.14)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--curtain-glow)/0.7)]"
             >
               {title} →
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { InView } from "@/components/primitives/in-view"
 import { MonoLabel, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Sell the weekday lunch without a single photo.
@@ -144,14 +145,16 @@ export function EmblaWeekSpecials({
           {/* dot buttons — user drives, nothing auto-highlights */}
           <div className="mt-7 flex items-center justify-center gap-2.5">
             {specials.map((special, i) => (
-              <button
+              <Button
                 key={special.id}
                 type="button"
+                size="icon-sm"
+                variant="ghost"
                 aria-label={`${special.day} special`}
                 aria-current={i === selected ? "true" : undefined}
                 onClick={() => embla?.scrollTo(i)}
                 className={cn(
-                  "size-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "!size-2 rounded-full p-0",
                   i === selected
                     ? ink
                       ? "scale-110 bg-background"

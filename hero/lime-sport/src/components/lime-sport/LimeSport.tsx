@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { ArrowUpRight, ArrowDownRight, ChevronRight, Activity, Users } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -33,8 +34,8 @@ export function LimeSport({
   ],
   joinLabel = "Join →",
   tagline = "Fast",
-  lineA = "RUN HARDER.",
-  lineB = "RUN SMARTER.",
+  lineA = "Train harder.",
+  lineB = "Recover smarter.",
   intro = "A training club for runners who track everything and look at none of it. We do the data. You do the miles.",
   primaryCta = { label: "Start 30-day plan →" },
   secondaryCta = { label: "How it works" },
@@ -45,7 +46,7 @@ export function LimeSport({
   ticker = [
     "Tokyo 24°C — 12 runners out",
     "Berlin Marathon · 142 days",
-    "NEW PR · M. Okafor · 18:22 5K",
+    "New PR · M. Okafor · 18:22 5K",
     "Weekly club · Tue 6:30pm",
   ],
   className,
@@ -69,9 +70,9 @@ export function LimeSport({
             </a>
           ))}
         </nav>
-        <button type="button" className="font-sans text-[12px] font-bold uppercase tracking-[0.08em]" style={{ color: lime }}>
+        <Button type="button" variant="link" size="sm" className="font-sans text-[12px] font-bold uppercase tracking-[0.08em]" style={{ color: lime }}>
           {joinLabel}
-        </button>
+        </Button>
       </header>
 
       {/* huge display */}
@@ -94,14 +95,16 @@ export function LimeSport({
         </div>
         <div className="flex flex-row flex-wrap items-center gap-3 lg:justify-end">
           {primaryCta && (
-            <button
+            <Button
               type="button"
               onClick={primaryCta.onClick}
-              className="inline-flex h-12 items-center gap-2 border-2 px-6 font-sans text-[13px] font-bold uppercase tracking-[0.06em] transition-colors"
+              variant="outline"
+              size="lg"
+              className="h-12 border-2 px-6 font-sans text-[13px] font-bold uppercase tracking-[0.06em]"
               style={{ color: ink, background: lime, borderColor: lime }}
             >
               {primaryCta.label}
-            </button>
+            </Button>
           )}
           {secondaryCta && (
             <a href={secondaryCta.href ?? "#"} className="inline-flex h-12 items-center gap-2 px-3 font-sans text-[13px] font-bold uppercase tracking-[0.06em] text-foreground/80 underline decoration-2 underline-offset-4">
@@ -148,7 +151,6 @@ export function LimeSport({
         >
           {[...ticker, ...ticker].map((t, i) => (
             <span key={i} className="inline-flex items-center gap-2 font-sans text-[12px] font-bold uppercase tracking-[0.1em]" style={{ color: ink }}>
-              <span aria-hidden className="text-[10px]">◆</span>
               {t}
             </span>
           ))}

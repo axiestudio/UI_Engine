@@ -49,7 +49,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
             style={{
               width: compact ? 190 : 240, height: compact ? 190 : 240,
               background: "repeating-radial-gradient(circle at 50% 50%, hsl(var(--disc)) 0 2px, hsl(var(--groove)) 2px 3.2px)",
-              boxShadow: "inset 0 0 22px rgb(0 0 0 / 0.9), -6px 0 18px rgb(0 0 0 / 0.4)",
+              boxShadow: "inset 0 0 22px hsl(var(--foreground)/0.9), -6px 0 18px hsl(var(--foreground)/0.4)",
               animation: spinning && !reduce ? "vinyl-spin 4.5s linear infinite" : undefined,
             }}
           >
@@ -60,7 +60,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
           </motion.span>
           {/* sleeve on top of disc's left half */}
           <div
-            className="relative z-[1] overflow-hidden rounded-[3px] shadow-[8px_10px_24px_-10px_rgba(0,0,0,0.6)]"
+            className="relative z-[1] overflow-hidden rounded-[3px] shadow-[8px_10px_24px_-10px_hsl(var(--foreground)/0.6)]"
             style={{ width: compact ? 210 : 264, height: compact ? 210 : 264, background: "hsl(var(--sleeve))" }}
           >
             <span className="absolute inset-x-6 top-6 block h-[42%] rounded-sm" style={{ background: "linear-gradient(140deg, hsl(var(--sleeve-art)) 0%, hsl(var(--label)) 60%, hsl(var(--sleeve-art)) 100%)", opacity: 0.9 }} />

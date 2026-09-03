@@ -37,7 +37,7 @@ export function InteractiveTabsStickyNav({ eyebrow = "STICKY", title = "Tabs tha
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", false ? "text-background" : "text-foreground")}>{title}</h2>
   </header>
       </InView>
-      <div className="sticky top-16 z-30 mt-10 -mx-2 overflow-x-auto rounded-xl border bg-background/85 p-1 backdrop-blur">
+      <div className="sticky top-16 z-30 mt-10 -mx-2 overflow-x-auto rounded-xl border bg-card p-1">
         <div className="flex min-w-max gap-1">
           {tabs.map((t, i) => (
             <Button type='button' key={t.id} onClick={() => select(t.id)} className={cn("rounded-xl px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors", active === t.id ? "bg-foreground text-background" : "text-muted-foreground hover:bg-accent")} variant="default">

@@ -2,6 +2,7 @@ import * as React from "react"
 import { ArrowUpRight, BookOpen, CalendarCheck, CreditCard, LifeBuoy, Rocket, Search, Settings, ShieldCheck, Users } from "lucide-react"
 
 import { InView } from "@/components/primitives/in-view"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -78,7 +79,7 @@ export function HelpCenter({
         {onSearch && (
           <div className="relative mx-auto mt-8 max-w-md">
             <Search className={cn("pointer-events-none absolute left-0 top-1/2 size-4 -translate-y-1/2", ink ? "text-background/40" : "text-muted-foreground")} />
-            <input
+            <Input
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -88,10 +89,10 @@ export function HelpCenter({
               placeholder={searchPlaceholder}
               aria-label="Search help articles"
               className={cn(
-                "w-full border-b bg-transparent py-3 pl-8 pr-3 font-mono text-sm font-semibold outline-none transition-colors placeholder:font-medium placeholder:opacity-40",
+                "w-full rounded-none border-x-0 border-b bg-transparent py-3 pl-8 pr-3 font-mono text-sm font-semibold",
                 ink
-                  ? "border-background/30 text-background focus:border-background/70"
-                  : "border-border text-foreground focus:border-foreground/70",
+                  ? "border-background/30 text-background focus-visible:border-background/70 focus-visible:ring-0"
+                  : "border-border text-foreground focus-visible:border-foreground/70 focus-visible:ring-0",
               )}
             />
           </div>

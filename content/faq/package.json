@@ -32,6 +32,9 @@
     "watermelon-ui": [
       "https://registry.watermelon.sh/r/faq-2.json",
       "https://registry.watermelon.sh/r/accordion.json"
+    ],
+    "shadcn-ui": [
+      "https://ui.shadcn.com/r/styles/new-york-v4/input.json"
     ]
   },
   "scripts": {

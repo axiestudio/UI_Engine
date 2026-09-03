@@ -71,29 +71,33 @@ export function CommerceProductGallery({ eyebrow = "PRODUCT", name = "Product ga
                   </div>
                 ))}
               </div>
-              <button
+              <Button
                 type="button"
+                size="icon"
+                variant="secondary"
                 aria-label="Previous image"
                 onClick={() => embla?.scrollPrev()}
-                className="absolute left-3 top-1/2 z-10 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-background/85 text-foreground backdrop-blur transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="absolute left-3 top-1/2 z-10 size-9 -translate-y-1/2 rounded-full bg-popover text-foreground hover:bg-popover/90"
               >
                 <ChevronLeft className="size-4" aria-hidden />
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                size="icon"
+                variant="secondary"
                 aria-label="Next image"
                 onClick={() => embla?.scrollNext()}
-                className="absolute right-3 top-1/2 z-10 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-background/85 text-foreground backdrop-blur transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="absolute right-3 top-1/2 z-10 size-9 -translate-y-1/2 rounded-full bg-popover text-foreground hover:bg-popover/90"
               >
                 <ChevronRight className="size-4" aria-hidden />
-              </button>
+              </Button>
             </div>
             <div className="mt-3 flex items-center gap-2">
               {frames.map((f, i) => (
-                <button key={f.id} type="button" onClick={() => embla?.scrollTo(i)} aria-label={f.alt ?? `Frame ${i + 1}`} aria-current={i === selected ? "true" : undefined}
-                  className={cn("img-hover-wash h-16 w-20 overflow-hidden rounded-lg border transition-all", i === selected ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100")}>
+                <Button key={f.id} type="button" variant="ghost" size="sm" onClick={() => embla?.scrollTo(i)} aria-label={f.alt ?? `Frame ${i + 1}`} aria-current={i === selected ? "true" : undefined}
+                  className={cn("img-hover-wash h-16 w-20 overflow-hidden rounded-lg border p-0 transition-all", i === selected ? "ring-2 ring-foreground" : "opacity-70 hover:opacity-100")}>
                   {f.src ? <img src={f.src} alt="" className="h-full w-full object-cover" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
-                </button>
+                </Button>
               ))}
               <span aria-live="polite" className="ml-auto font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground tabular-nums">
                 {selected + 1} / {frames.length}

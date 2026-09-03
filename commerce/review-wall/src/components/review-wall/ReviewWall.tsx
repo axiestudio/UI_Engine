@@ -4,6 +4,7 @@ import { PenLine } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Let proof do the selling — and let a new voice join it.
 // ═══ EMOTION     The wall by the till where regulars pin their notes.
@@ -147,14 +148,16 @@ export function ReviewWall({
             </div>
 
             {!writing && (
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="sm"
                 onClick={() => setWriting(true)}
-                className="mt-7 inline-flex h-10 items-center gap-2 rounded-full border border-border px-5 text-[13px] font-semibold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="mt-7 h-10 gap-2 rounded-full px-5 text-[13px] font-semibold"
               >
                 <PenLine className="size-4" aria-hidden />
                 Write a review
-              </button>
+              </Button>
             )}
 
             <AnimatePresence initial={false}>
@@ -216,20 +219,23 @@ export function ReviewWall({
                         {draftRating ? `${draftRating}/5` : "Pick a rating"}
                       </p>
                       <div className="flex gap-2">
-                        <button
+                        <Button
                           type="button"
+                          variant="outline"
+                          size="sm"
                           onClick={() => setWriting(false)}
-                          className="h-9 rounded-full border border-border px-4 text-[12px] font-semibold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="h-9 rounded-full px-4 text-[12px] font-semibold"
                         >
                           Cancel
-                        </button>
-                        <button
+                        </Button>
+                        <Button
                           type="submit"
+                          size="sm"
                           disabled={draftRating === null}
-                          className="h-9 rounded-full bg-primary px-4 text-[12px] font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="h-9 rounded-full px-4 text-[12px] font-semibold disabled:opacity-40"
                         >
                           Post review
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>

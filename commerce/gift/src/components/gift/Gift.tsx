@@ -62,25 +62,27 @@ export function Gift({
 
   const front = (
     <div className="absolute inset-0 backface-hidden">
-      <button
-        type="button"
-        onClick={() => setFlipped((f) => !f)}
-        aria-pressed={flipped}
-        className="h-full w-full cursor-pointer text-left"
-        aria-label="Flip gift card to read the message"
-      >
-        <span className="flex h-full w-full flex-col rounded-xl border border-background/10 bg-gradient-to-br from-muted via-muted to-card p-5 text-background shadow-sm">
-          <span className="flex items-start justify-between">
-            <span className="font-display text-[15px] font-semibold tracking-[-0.02em]">{brand}</span>
-            <span aria-hidden className="rounded-md border border-background/25 px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-[0.2em] opacity-70">gift card</span>
+      <Button
+          type="button"
+          variant="ghost"
+          size="lg"
+          onClick={() => setFlipped((f) => !f)}
+          aria-pressed={flipped}
+          className="h-full w-full cursor-pointer justify-start text-left"
+          aria-label="Flip gift card to read the message"
+        >
+          <span className="flex h-full w-full flex-col rounded-xl border border-background/10 bg-gradient-to-br from-muted via-muted to-card p-5 text-background shadow-sm">
+            <span className="flex items-start justify-between">
+              <span className="font-display text-[15px] font-semibold tracking-[-0.02em]">{brand}</span>
+              <span aria-hidden className="rounded-md border border-background/25 px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-[0.2em] opacity-70">gift card</span>
+            </span>
+            <span className="mt-auto block font-display text-[38px] font-semibold leading-none tracking-[-0.02em]">{amount.toLocaleString()} kr</span>
+            <span className="mt-5 flex items-center justify-between font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-background/55">
+              <span>№ 00{String(amount).slice(-2)} · {new Date().getFullYear()}</span>
+              <span>{validNote ? "open end · never expires" : ""}</span>
+            </span>
           </span>
-          <span className="mt-auto block font-display text-[38px] font-semibold leading-none tracking-[-0.02em]er">{amount.toLocaleString()} kr</span>
-          <span className="mt-5 flex items-center justify-between font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-background/55">
-            <span>№ 00{String(amount).slice(-2)} · {new Date().getFullYear()}</span>
-            <span>{validNote ? "open end · never expires" : ""}</span>
-          </span>
-        </span>
-      </button>
+        </Button>
     </div>
   )
 
@@ -144,19 +146,21 @@ export function Gift({
 
             <div role="radiogroup" aria-label="Gift amount" className="mt-8 flex flex-wrap gap-2">
               {amounts.map((a) => (
-                <button
+                <Button
                   key={a}
                   type="button"
                   role="radio"
+                  variant="ghost"
+                  size="lg"
                   aria-checked={a === amount}
                   onClick={() => setAmount(a)}
                   className={cn(
-                    "h-11 min-w-[88px] rounded-full border px-4 font-display text-sm font-semibold tabular-nums tracking-[-0.02em] transition-all",
-                    a === amount ? "border-foreground bg-foreground text-background shadow-sm" : "bg-card hover:border-foreground/40"
+                    "h-11 min-w-[88px] rounded-full border px-4 font-display text-sm font-semibold tabular-nums tracking-[-0.02em]",
+                    a === amount ? "border-foreground bg-foreground text-background shadow-sm hover:bg-foreground/90" : "bg-card hover:border-foreground/40"
                   )}
                 >
                   {a.toLocaleString()} kr
-                </button>
+                </Button>
               ))}
             </div>
 

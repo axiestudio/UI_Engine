@@ -5,6 +5,7 @@ import { InView } from "@/components/primitives/in-view"
 import { Magnetic } from "@/components/primitives/magnetic"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export type FaqEntry = {
@@ -151,13 +152,13 @@ export function Faq({
             {searchable && (
               <div className="relative sm:ml-auto sm:w-[260px]">
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <input
+                <Input
                   type="search"
                   aria-label={searchPlaceholder}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={searchPlaceholder}
-                  className="h-10 w-full rounded-full border bg-card pl-9 pr-9 text-sm font-medium outline-none transition-shadow placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                  className="h-10 w-full rounded-full border bg-card pl-9 pr-9 font-medium"
                 />
                 {query && (
                   <Button type='button' aria-label="Clear search" onClick={() => setQuery("")} className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:bg-accent hover:text-foreground" variant="default">

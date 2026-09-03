@@ -80,7 +80,7 @@ export function PageTurn({ brand = "HOUSE PRESS", pages, index: indexProp, onInd
               animate={{ rotateY: -168, opacity: [1, 1, 0] }}
               transition={{ duration: 0.6, ease: [0.35, 0, 0.25, 1], times: [0, 0.82, 1] }}
               className="pointer-events-none absolute inset-y-[10px] right-[10px] z-[3] w-[calc(50%-10px)] origin-left"
-              style={{ transformStyle: "preserve-3d", background: "hsl(var(--page))", boxShadow: "inset -20px 0 30px -18px rgba(0,0,0,0.4)" }}
+              style={{ transformStyle: "preserve-3d", background: "hsl(var(--page))", boxShadow: "inset -20px 0 30px -18px hsl(var(--foreground)/0.4)" }}
             >
               <div className="flex h-full items-center justify-center px-8 text-center font-serif text-[16px] font-semibold" style={{ color: "hsl(var(--book-ink))" }}>
                 {cur.head ?? String(i + 1).padStart(2, "0")}
@@ -119,5 +119,5 @@ function StackEdge({ side, depth }: { side: "left" | "right"; depth: number }) {
 }
 
 function Spine({ side }: { side: "left" | "right" }) {
-  return <span aria-hidden className="absolute inset-y-0 z-[2] w-8" style={{ [side]: 0, background: `linear-gradient(${side === "left" ? "-90deg" : "90deg"}, transparent, rgb(0 0 0 / 0.22))` } as React.CSSProperties} />
+  return <span aria-hidden className="absolute inset-y-0 z-[2] w-8" style={{ [side]: 0, background: `linear-gradient(${side === "left" ? "-90deg" : "90deg"}, transparent, hsl(var(--foreground) / 0.22))` } as React.CSSProperties} />
 }

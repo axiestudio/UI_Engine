@@ -3,6 +3,7 @@ import { Camera, Headset, MessageSquare, ReceiptText, Smartphone } from "lucide-
 import { cn } from "@/lib/utils"
 import { Accent, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 
 export type PricingAddon = { id: string; label: string; price: number }
@@ -119,12 +120,13 @@ export function PricingAddons({
                 </dd>
               </div>
             </dl>
-            <button
+            <Button
               type="button"
-              className="mt-4 w-full rounded-lg bg-foreground py-2.5 text-sm font-bold text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              size="lg"
+              className="mt-4 w-full rounded-lg py-2.5 text-sm font-bold"
             >
               {cta}
-            </button>
+            </Button>
           </div>
         </div>
       </InView>

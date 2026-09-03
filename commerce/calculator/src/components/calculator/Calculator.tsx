@@ -2,6 +2,7 @@ import * as React from "react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { Slider } from "@/components/ui/slider"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Calculator — a purpose-built small calculator widget.
@@ -38,8 +39,8 @@ export function Calculator({ eyebrow = "QUOTE", title = "What will it cost?", un
           </div>
           <Slider id="calculator-qty" value={[qty]} min={min} max={max} step={1} aria-label={unit} onValueChange={([v]) => setQty(v ?? min)} className="mt-6" />
           <div className="mt-5 flex gap-2" role="group" aria-label="Billing cadence">
-            <button type="button" onClick={() => setAnnual(true)} aria-pressed={annual} className={cn("flex-1 rounded-lg px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors", annual ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")}>Annual −20%</button>
-            <button type="button" onClick={() => setAnnual(false)} aria-pressed={!annual} className={cn("flex-1 rounded-lg px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors", !annual ? "bg-foreground text-background" : ink ? "hover:bg-background/10" : "hover:bg-accent")}>Monthly</button>
+            <Button type="button" variant={annual ? "default" : "ghost"} onClick={() => setAnnual(true)} aria-pressed={annual} className={cn("flex-1 rounded-lg font-mono text-[10px] font-bold uppercase tracking-[0.12em]", !annual && (ink ? "hover:bg-background/10" : "hover:bg-accent"))}>Annual −20%</Button>
+            <Button type="button" variant={!annual ? "default" : "ghost"} onClick={() => setAnnual(false)} aria-pressed={!annual} className={cn("flex-1 rounded-lg font-mono text-[10px] font-bold uppercase tracking-[0.12em]", annual && (ink ? "hover:bg-background/10" : "hover:bg-accent"))}>Monthly</Button>
           </div>
         </div>
       </InView>

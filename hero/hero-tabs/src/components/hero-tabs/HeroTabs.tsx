@@ -18,7 +18,7 @@ export type HeroTabsProps = {
   className?: string
 }
 
-export function HeroTabs({ eyebrow = "FOUR WAYS", tabs = [], tone = "paper", className }: HeroTabsProps) {
+export function HeroTabs({ eyebrow = "Four ways", tabs = [], tone = "paper", className }: HeroTabsProps) {
   const ink = tone === "ink"
   const [active, setActive] = React.useState(0)
   const shown = tabs[Math.min(active, Math.max(tabs.length - 1, 0))]
@@ -33,17 +33,23 @@ export function HeroTabs({ eyebrow = "FOUR WAYS", tabs = [], tone = "paper", cla
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
             {tabs.map((t, i) => (
-              <button
+              <Button
                 key={t.id}
                 type="button"
                 onClick={() => setActive(i)}
+                variant={i === active ? "default" : "ghost"}
+                size="sm"
                 className={cn(
-                  "rounded-full px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors",
-                  i === active ? "bg-foreground text-background" : ink ? "text-background/55 hover:bg-background/10" : "text-muted-foreground hover:bg-accent",
+                  "rounded-full font-mono text-[11px] font-bold uppercase tracking-widest",
+                  i === active
+                    ? "bg-foreground text-background"
+                    : ink
+                      ? "text-background/55 hover:bg-background/10"
+                      : "text-muted-foreground hover:bg-accent",
                 )}
               >
                 {t.label}
-              </button>
+              </Button>
             ))}
           </div>
         </InView>

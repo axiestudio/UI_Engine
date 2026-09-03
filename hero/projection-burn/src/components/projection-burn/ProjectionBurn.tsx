@@ -27,7 +27,7 @@ export type ProjectionBurnProps = {
 const FLICKER = { opacity: [0.15, 0.95, 0.28, 1, 0.72, 1, 1] }
 const FLICKER_T = { duration: 1.5, times: [0, 0.18, 0.3, 0.44, 0.58, 0.74, 1] }
 
-export function ProjectionBurn({ slate = "ENGINE PRESENTS · REEL 01", title, sub, cta, beam = true, compact, className }: ProjectionBurnProps) {
+export function ProjectionBurn({ slate = "Engine presents · Reel 01", title, sub, cta, beam = true, compact, className }: ProjectionBurnProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   return (
     <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--booth))]", compact ? "py-12" : "py-24 sm:py-28", className)}>

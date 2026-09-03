@@ -2,6 +2,7 @@ import * as React from "react"
 import { Tag } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Promo ribbon — a horizontal promo with a code.
@@ -33,9 +34,9 @@ export function PromoRibbon({ text = "Launch week — everything 20% off.", code
               {deadline && <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">{deadline}</p>}
             </div>
           </div>
-          <button type="button" onClick={copy} className={cn("rounded-full border px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] transition-colors", ink ? "border-background/30" : "border-foreground/30")} aria-label="Copy promo code">
+          <Button type="button" variant="outline" size="sm" onClick={copy} className={cn("rounded-full px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em]", ink ? "border-background/30" : "border-foreground/30")} aria-label="Copy promo code">
             {copied ? "Copied ✓" : `Code · ${code}`}
-          </button>
+          </Button>
         </div>
       </InView>
     </SectionShell>

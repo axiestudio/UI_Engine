@@ -74,7 +74,7 @@ export function DeviceLaptop({
               viewport={{ once: true, margin: "-80px" }}
               transition={{ type: "spring", stiffness: 46, damping: 11, mass: 1.1, delay: 0.15 }}
               style={{ transformOrigin: "bottom", transformStyle: "preserve-3d" }}
-              className="relative z-[2] mx-auto w-full rounded-t-[18px] bg-black p-[10px] pb-[12px] shadow-[inset_0_0_0_2px_hsl(0_0%_100%/0.08)]"
+              className="relative z-[2] mx-auto w-full rounded-t-[18px] bg-black p-[10px] pb-[12px] shadow-[inset_0_0_0_2px_hsl(var(--background)/0.08)]"
             >
               {/* Eldora UI MacbookPro frame */}
               <MacbookPro className="pointer-events-none block h-auto w-full" />
@@ -96,7 +96,7 @@ export function DeviceLaptop({
                 {!reduce && (
                   <motion.span
                     aria-hidden
-                    className="pointer-events-none absolute inset-y-0 -left-1/3 z-[3] w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,hsl(0_0%_100%/0.1),transparent)]"
+                    className="pointer-events-none absolute inset-y-0 -left-1/3 z-[3] w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,hsl(var(--background)/0.1),transparent)]"
                     initial={{ x: "-20%" }}
                     whileInView={{ x: "420%" }}
                     viewport={{ once: true }}

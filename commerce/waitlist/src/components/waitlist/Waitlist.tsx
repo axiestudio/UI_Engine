@@ -5,6 +5,7 @@ import { GlowEffect } from "@/components/primitives/glow-effect"
 import { InView } from "@/components/primitives/in-view"
 import { TextEffect } from "@/components/primitives/text-effect"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -91,7 +92,7 @@ export function Waitlist({
         className={cn(
           "pointer-events-none absolute left-1/2 top-[46%] h-40 w-[140%] -translate-x-1/2 [background-image:radial-gradient(circle_at_1px_1px,var(--dot)_1px,transparent_0)] [background-size:20px_20px] opacity-[0.14] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black_20%,transparent_80%)]",
         )}
-        style={{ ["--dot" as string]: ink ? "hsl(0 0% 100%)" : "hsl(0 0% 9%)" }}
+        style={{ ["--dot" as string]: ink ? "hsl(var(--background))" : "hsl(var(--foreground))" }}
       />
 
       <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-24 text-center sm:px-6">
@@ -142,7 +143,7 @@ export function Waitlist({
             </div>
           ) : (
             <form onSubmit={submit} className="mt-10 flex w-full max-w-md flex-col gap-3 sm:flex-row">
-              <input
+              <Input
                 type="email"
                 required
                 value={email}

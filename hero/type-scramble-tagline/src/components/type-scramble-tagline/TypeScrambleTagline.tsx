@@ -16,7 +16,7 @@ export type TypeScrambleTaglineProps = {
   className?: string
 }
 
-export function TypeScrambleTagline({ eyebrow = "DECODE", kicker = "SHIP FASTER", tagline = "Sections composed as sentences, shipped as tokens.", className }: TypeScrambleTaglineProps) {
+export function TypeScrambleTagline({ eyebrow = "Decode", kicker = "Ship faster", tagline = "Sections composed as sentences, shipped as tokens.", className }: TypeScrambleTaglineProps) {
   return (
     <section className={cn("relative isolate overflow-hidden bg-foreground py-24 text-background sm:py-32", className)}>
       <div className="mx-auto max-w-3xl px-5 sm:px-8">

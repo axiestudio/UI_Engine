@@ -33,6 +33,15 @@
     --brand: 240 6% 14%;
     --brand-foreground: 0 0% 98%;
 
+    --material-oak: 35 39% 67%;
+    --material-walnut: 27 25% 29%;
+    --material-ash: 36 41% 86%;
+    --material-oil: 31 41% 58%;
+    --material-soap: 36 41% 85%;
+    --material-black-stain: 20 7% 17%;
+    --material-brass: 35 41% 52%;
+    --material-steel: 0 0% 23%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Inter", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;

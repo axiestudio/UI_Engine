@@ -3,6 +3,7 @@ import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Own the first five seconds of the visit.
 // ═══ EMOTION     The moment the door chime rings and the room smells of tea tree.
@@ -83,12 +84,14 @@ export function EmblaMastheadHero({
               <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-background">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-background/70">{slide.kicker}</p>
                 <h1 className="mt-4 max-w-3xl font-display text-4xl font-black leading-[1.04] tracking-tight sm:text-5xl lg:text-6xl">{slide.title}</h1>
-                <button
+                <Button
                   type="button"
-                  className="mt-8 rounded-full bg-background px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  variant="secondary"
+                  size="lg"
+                  className="mt-8 rounded-full px-6"
                 >
                   {slide.cta}
-                </button>
+                </Button>
               </div>
             </div>
           ))}
@@ -97,41 +100,47 @@ export function EmblaMastheadHero({
 
       {/* arrows + dots, over the scrim */}
       <div className="absolute inset-x-0 bottom-8 z-10 flex items-center justify-center gap-5 text-background">
-        <button
+        <Button
           type="button"
           onClick={() => embla?.scrollPrev()}
           aria-label="Previous slide"
-          className="flex size-10 items-center justify-center rounded-full border border-background/40 transition-colors hover:bg-background/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          variant="ghost"
+          size="icon"
+          className="size-10 rounded-full border border-background/40 text-background hover:bg-background/15"
         >
           <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
             <path d="M10 3 5 8l5 5" />
           </svg>
-        </button>
+        </Button>
         <div className="flex items-center gap-2">
           {slides.map((slide, i) => (
-            <button
+            <Button
               key={`dot-${slide.src}-${i}`}
               type="button"
+              variant="ghost"
+              size="icon"
               onClick={() => embla?.scrollTo(i)}
               aria-label={`Go to slide ${i + 1}`}
               aria-current={i === active}
               className={cn(
-                "size-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "size-2 rounded-full transition-all focus-visible:ring-2 focus-visible:ring-ring",
                 i === active ? "scale-125 bg-background" : "bg-background/40 hover:bg-background/70",
               )}
             />
           ))}
         </div>
-        <button
+        <Button
           type="button"
           onClick={() => embla?.scrollNext()}
           aria-label="Next slide"
-          className="flex size-10 items-center justify-center rounded-full border border-background/40 transition-colors hover:bg-background/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          variant="ghost"
+          size="icon"
+          className="size-10 rounded-full border border-background/40 text-background hover:bg-background/15"
         >
           <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
             <path d="m6 3 5 5-5 5" />
           </svg>
-        </button>
+        </Button>
       </div>
 
       {/* progress hairline */}

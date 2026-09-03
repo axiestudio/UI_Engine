@@ -61,12 +61,12 @@ export function HeroVideo({
 
       <div className="relative z-10 mx-auto max-w-3xl px-5 py-28 text-center sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-          <span className="inline-flex items-center rounded-full border border-white/15 bg-black/30 px-3 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-white/70 backdrop-blur">
+          <span className="inline-flex items-center rounded-full border border-background/15 bg-foreground/30 px-3 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-background/70">
             {eyebrow}
           </span>
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
-          <h1 className="mt-5 text-balance font-display text-5xl font-black leading-[0.95] tracking-[-0.035em] text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)] sm:text-7xl lg:text-8xl">{title}</h1>
+          <h1 className="mt-5 text-balance font-display text-5xl font-black leading-[0.95] tracking-[-0.035em] text-white sm:text-7xl lg:text-8xl">{title}</h1>
         </InView>
         <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}>
           <p className="mx-auto mt-6 max-w-xl text-pretty text-base font-medium leading-relaxed text-white/75 sm:text-lg">{subtitle}</p>
@@ -74,7 +74,7 @@ export function HeroVideo({
         <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {actions.map((a) => (
-              <Button key={a.label} size="lg" onClick={a.onClick} asChild={!a.onClick && !!a.href} className="h-11 rounded-full bg-white px-7 font-display text-sm font-extrabold tracking-tight text-foreground shadow-[0_8px_30px_rgba(0,0,0,0.22)] hover:bg-white/90">
+              <Button key={a.label} size="lg" onClick={a.onClick} asChild={!a.onClick && !!a.href} className="h-11 rounded-full bg-background px-7 font-display text-sm font-extrabold tracking-tight text-foreground shadow-sm hover:bg-background/90">
                 {a.onClick || !a.href ? a.label : <a href={a.href}>{a.label}</a>}
               </Button>
             ))}

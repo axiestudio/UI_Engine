@@ -3,6 +3,7 @@ import { Send } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 // ═══ JOB         Contact split — a form beside studio details.
@@ -48,8 +49,8 @@ export function ContactSplit({
           >
             <p className={cn("font-mono text-[11px] font-bold uppercase tracking-widest", ink ? "text-background/55" : "text-muted-foreground")}>{eyebrow}</p>
             <h2 className="font-display text-2xl font-bold">{title}</h2>
-            <Field ink={ink} label="Name"><input value={form.name} onChange={(e) => set("name", e.target.value)} className="w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" placeholder="Your name" /></Field>
-            <Field ink={ink} label="Email"><input type="email" value={form.email} onChange={(e) => set("email", e.target.value)} className="w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" placeholder="you@studio.com" /></Field>
+            <Field ink={ink} label="Name"><Input value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="Your name" /></Field>
+            <Field ink={ink} label="Email"><Input type="email" value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@studio.com" /></Field>
             <Field ink={ink} label="Message"><textarea rows={4} value={form.message} onChange={(e) => set("message", e.target.value)} className="w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring" placeholder="Tell us about the project" /></Field>
             <Button type="submit" className="h-11 w-full rounded-full font-mono text-[11px] font-bold uppercase tracking-widest"><Send className="h-4 w-4" /> {submitLabel}</Button>
           </form>

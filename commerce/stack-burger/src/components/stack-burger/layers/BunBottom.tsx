@@ -11,7 +11,7 @@ export type BunBottomProps = {
 export function BunBottom({ label = "Toasted base", className }: BunBottomProps) {
   return (
     <div className={cn("relative h-8 w-full", className)} title={label}>
-      <div className="absolute inset-x-1.5 top-0 h-7 rounded-b-[20px] rounded-t-[6px] bg-[#e0a350] shadow-[inset_0_5px_0_0_#c9883a]" />
+      <div className="absolute inset-x-1.5 top-0 h-7 rounded-b-[20px] rounded-t-[6px] bg-burger-bun-top shadow-[inset_0_5px_0_0_hsl(var(--burger-bun-shade))]" />
     </div>
   )
 }

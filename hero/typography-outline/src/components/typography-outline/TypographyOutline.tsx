@@ -16,8 +16,8 @@ export type TypographyOutlineProps = {
 }
 
 export function TypographyOutline({
-  eyebrow = "STATEMENT",
-  text = "MAXIMUM IMPACT",
+  eyebrow = "Statement",
+  text = "Maximum impact",
   subtitle = "Stroked type reads loud but stays light — a statement you can set over any imagery.",
   tone = "paper",
   className,

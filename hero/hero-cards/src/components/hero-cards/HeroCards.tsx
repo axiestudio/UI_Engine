@@ -210,7 +210,7 @@ export function HeroCards({
               <span
                 aria-hidden
                 className={cn(
-                  "absolute -right-3 -top-3 flex rotate-3 items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.14em] shadow-md backdrop-blur",
+                  "absolute -right-3 -top-3 flex rotate-3 items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.14em] shadow-md",
                   ink ? "border-background/20 bg-background text-foreground" : "border-border bg-background text-foreground",
                 )}
               >

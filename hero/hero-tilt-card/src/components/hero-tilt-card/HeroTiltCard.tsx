@@ -22,7 +22,7 @@ export type HeroTiltCardProps = {
 }
 
 export function HeroTiltCard({
-  eyebrow = "PHYSICAL",
+  eyebrow = "Physical",
   title = "A hero you can touch.",
   subtitle = "The product card tilts toward your cursor — a preview that feels like a physical object.",
   cta = { label: "Open the preview", href: "#" },
@@ -51,7 +51,7 @@ export function HeroTiltCard({
               <div className={cn("relative overflow-hidden rounded-[28px] border p-8 shadow-2xl", ink ? "border-background/20 bg-background/5" : "border-border bg-card")} style={{ transformStyle: "preserve-3d" }}>
                 <div className="flex items-center justify-between">
                   <span className={cn("font-mono text-[10px] font-bold uppercase tracking-widest", ink ? "text-background/50" : "text-muted-foreground")}>{card.label}</span>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background">✦</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background font-mono text-[10px] font-bold">→</span>
                 </div>
                 <p className="mt-8 font-display text-7xl font-black tracking-tight sm:text-8xl" style={{ transform: "translateZ(40px)" }}>{card.value}</p>
                 <div className="mt-8 aspect-[16/10] overflow-hidden rounded-2xl bg-muted" style={{ transform: "translateZ(24px)" }}>

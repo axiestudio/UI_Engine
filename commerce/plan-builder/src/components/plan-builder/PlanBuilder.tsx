@@ -3,6 +3,7 @@ import { ArrowRight, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { MonoLabel, Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 const BASES = [
   { id: "solo", name: "Solo", blurb: "One chair, one stylist", price: 249 },
@@ -92,14 +93,16 @@ export function PlanBuilder({
                 </div>
                 <div role="radiogroup" aria-label="Base plan" className="mt-3 grid grid-cols-2 gap-2.5">
                   {BASES.map((b) => (
-                    <button
+                    <Button
                       key={b.id}
                       type="button"
                       role="radio"
+                      variant="ghost"
+                      size="lg"
                       aria-checked={baseId === b.id}
                       onClick={() => setBaseId(b.id)}
                       className={cn(
-                        "rounded-xl border px-4 py-3.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        "h-auto rounded-xl border px-4 py-3.5 text-left",
                         baseId === b.id ? "border-primary bg-primary/[0.06]" : "border-border hover:border-foreground/30 hover:bg-muted/40"
                       )}
                     >
@@ -108,7 +111,7 @@ export function PlanBuilder({
                         <span className="font-mono text-[11px] font-bold tabular-nums text-muted-foreground">{b.price} kr</span>
                       </span>
                       <span className="mt-1 block text-[11px] font-medium text-muted-foreground">{b.blurb}</span>
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -120,20 +123,22 @@ export function PlanBuilder({
                 </div>
                 <div role="radiogroup" aria-label="Billing cadence" className={cn("flex rounded-full border bg-muted p-1", hair)}>
                   {(["monthly", "yearly"] as const).map((c) => (
-                    <button
+                    <Button
                       key={c}
                       type="button"
                       role="radio"
+                      variant="ghost"
+                      size="sm"
                       aria-checked={cadence === c}
                       onClick={() => setCadence(c)}
                       className={cn(
-                        "rounded-full px-4 py-1.5 font-display text-[12px] font-bold capitalize transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        "h-auto rounded-full px-4 py-1.5 font-display text-[12px] font-bold capitalize",
                         cadence === c ? "bg-background shadow-sm" : "text-muted-foreground hover:text-foreground"
                       )}
                     >
                       {c}
                       {c === "yearly" && <span className="ml-1.5 font-mono text-[10px] font-black tracking-tight text-primary">−20%</span>}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -147,14 +152,16 @@ export function PlanBuilder({
                   {EXTRAS.map((e) => {
                     const on = extras.includes(e.id)
                     return (
-                      <button
+                      <Button
                         key={e.id}
                         type="button"
                         role="checkbox"
+                        variant="ghost"
+                        size="lg"
                         aria-checked={on}
                         onClick={() => toggleExtra(e.id)}
                         className={cn(
-                          "flex w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                          "h-auto w-full justify-start gap-3 rounded-xl border px-3.5 py-3 text-left",
                           on ? "border-primary bg-primary/[0.06]" : "border-border hover:border-foreground/30 hover:bg-muted/40"
                         )}
                       >
@@ -172,7 +179,7 @@ export function PlanBuilder({
                           <span className="block text-[11px] font-medium text-muted-foreground">{e.blurb}</span>
                         </span>
                         <span className="font-mono text-[11px] font-bold tabular-nums text-muted-foreground">+{e.price} kr</span>
-                      </button>
+                      </Button>
                     )
                   })}
                 </div>
@@ -221,14 +228,15 @@ export function PlanBuilder({
                 </div>
               </div>
 
-              <button
+              <Button
                 type="button"
+                size="lg"
                 aria-label={`Continue with ${base.name}, ${total} kr per month`}
-                className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 font-display text-[13px] font-bold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="mt-5 h-auto w-full gap-2 rounded-full py-3 font-display text-[13px] font-bold"
               >
                 Continue with {base.name}
                 <ArrowRight className="size-4" aria-hidden />
-              </button>
+              </Button>
             </div>
           </div>
 

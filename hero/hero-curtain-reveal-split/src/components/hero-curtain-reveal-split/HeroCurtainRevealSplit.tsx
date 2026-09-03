@@ -23,7 +23,7 @@ export function HeroCurtainRevealSplit({ eyebrow = "OPENING", title = "Part to r
   const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
   const textY = useTransform(scrollYProgress, [0, 0.3], [0, -40])
   return (
-    <section ref={ref} className={cn("relative w-full bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         {/* revealed content */}
         <motion.div style={{ opacity: textOpacity, y: textY }} className="relative z-10 mx-auto max-w-2xl px-5 text-center sm:px-8">

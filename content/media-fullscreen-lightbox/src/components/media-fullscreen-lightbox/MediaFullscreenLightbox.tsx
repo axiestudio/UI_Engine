@@ -65,7 +65,7 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/92 backdrop-blur-sm"
+            className="absolute inset-0 z-[80] flex items-center justify-center bg-foreground/95"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setOpenIdx(null)}
           >

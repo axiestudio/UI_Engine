@@ -19,7 +19,7 @@ export type HeroTypeScaleProps = {
   className?: string
 }
 
-export function HeroTypeScale({ eyebrow = "SCALE", small = "make it", big = "BOLD.", subtitle = "One word scales until it carries the frame — a typographic reveal you can set per brand.", actions = [{ label: "Explore", href: "#" }], tone = "paper", className }: HeroTypeScaleProps) {
+export function HeroTypeScale({ eyebrow = "Scale", small = "make it", big = "Bold.", subtitle = "One word scales until it carries the frame — a typographic reveal you can set per brand.", actions = [{ label: "Explore", href: "#" }], tone = "paper", className }: HeroTypeScaleProps) {
   const ink = tone === "ink"
   return (
     <section className={cn("relative isolate overflow-hidden py-20 sm:py-28", ink && "bg-foreground text-background", className)}>

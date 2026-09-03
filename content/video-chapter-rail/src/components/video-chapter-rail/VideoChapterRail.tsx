@@ -104,7 +104,7 @@ export function VideoChapterRail({
             )} variant="default">
             {playing ? <Pause className="size-6 fill-current" aria-hidden /> : <Play className="size-6 translate-x-0.5 fill-current" aria-hidden />}
           </Button>
-          <p className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-border bg-background/85 px-3 py-1 font-mono text-[11px] font-bold tabular-nums text-foreground shadow-sm backdrop-blur">
+          <p className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-border bg-card px-3 py-1 font-mono text-[11px] font-bold tabular-nums text-foreground shadow-sm">
             {fmt(time)} <span className="text-muted-foreground">/ {fmt(duration)}</span>
           </p>
         </div>

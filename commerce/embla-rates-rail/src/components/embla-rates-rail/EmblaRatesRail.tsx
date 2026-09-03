@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react"
 import { cn } from "@/lib/utils"
 import { Ordinal, SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 // ═══ JOB         Make the rooms bookable from one horizontal rail.
 // ═══ EMOTION     Walking the corridor at Quiet Times and pointing: that one.
@@ -80,28 +81,32 @@ export function EmblaRatesRail({
           <div className="flex items-center justify-between">
             <Ordinal n={active + 1} total={rates.length} />
             <div className="flex items-center gap-2">
-              <button
+              <Button
                 type="button"
+                size="icon"
+                variant="outline"
                 onClick={() => embla?.scrollPrev()}
                 disabled={!canPrev}
                 aria-label="Previous rate"
-                className="flex size-10 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="size-10 rounded-full bg-background hover:bg-muted disabled:opacity-40"
               >
                 <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
                   <path d="M10 3 5 8l5 5" />
                 </svg>
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                size="icon"
+                variant="outline"
                 onClick={() => embla?.scrollNext()}
                 disabled={!canNext}
                 aria-label="Next rate"
-                className="flex size-10 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="size-10 rounded-full bg-background hover:bg-muted disabled:opacity-40"
               >
                 <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
                   <path d="m6 3 5 5-5 5" />
                 </svg>
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -128,12 +133,14 @@ export function EmblaRatesRail({
                           </li>
                         ))}
                       </ul>
-                      <button
+                      <Button
                         type="button"
-                        className="mt-4 w-full rounded-full border bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        variant="outline"
+                        size="sm"
+                        className="mt-4 w-full rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest"
                       >
                         Book
-                      </button>
+                      </Button>
                     </div>
                   </article>
                 </div>

@@ -5,6 +5,7 @@ import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 
 
 // ═══ JOB         Sell the collection as a film, not a grid.
@@ -94,42 +95,48 @@ export function EmblaLookbook({
 
           {/* controls */}
           <div className="mt-5 flex items-center justify-center gap-3">
-            <button
+            <Button
               type="button"
+              size="icon"
+              variant="outline"
               onClick={() => embla?.scrollPrev()}
               aria-label="Previous look"
-              className="flex size-10 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="size-10 rounded-full bg-background hover:bg-muted"
             >
               <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><path d="M10 3 5 8l5 5" /></svg>
-            </button>
+            </Button>
             {/* thumbnail rail */}
             <div className="overflow-hidden max-w-[62%]" ref={emblaThumbsRef}>
               <div className="flex gap-2 touch-pan-y">
                 {looks.map((look, i) => (
-                  <button
+                  <Button
                     key={look.src}
                     type="button"
+                    variant="ghost"
+                    size="icon"
                     onClick={() => embla?.scrollTo(i)}
                     aria-label={`Go to ${look.label ?? `look ${i + 1}`}`}
                     aria-current={i === active}
                     className={cn(
-                      "relative h-12 w-16 shrink-0 overflow-hidden rounded-lg border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      "relative h-12 w-16 shrink-0 overflow-hidden rounded-lg border p-0",
                       i === active ? "border-primary ring-1 ring-primary" : cn("opacity-50 hover:opacity-90", ink ? "border-background/20" : "border-border"),
                     )}
                   >
                     <img src={look.src} alt="" loading="lazy" className="h-full w-full object-cover" draggable={false} />
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
-            <button
+            <Button
               type="button"
+              size="icon"
+              variant="outline"
               onClick={() => embla?.scrollNext()}
               aria-label="Next look"
-              className="flex size-10 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="size-10 rounded-full bg-background hover:bg-muted"
             >
               <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><path d="m6 3 5 5-5 5" /></svg>
-            </button>
+            </Button>
           </div>
 
           {caption && (

@@ -36,7 +36,7 @@ export function StoryHorizontalJournal({ eyebrow = "JOURNAL", spreads = DEFAULT_
         </div>
         <motion.div style={{ x }} className="flex flex-nowrap">
           {spreads.map((s) => (
-            <div key={s.id} className="flex min-w-[100vw] items-center px-5 sm:px-8">
+            <div key={s.id} className="flex min-w-full items-center px-5 sm:px-8">
               <div className="mx-auto grid w-full max-w-[1120px] gap-8 sm:grid-cols-[0.9fr_1.1fr] sm:items-center">
                 <div>
                   <p className="font-display text-7xl font-bold opacity-10">{s.index}</p>

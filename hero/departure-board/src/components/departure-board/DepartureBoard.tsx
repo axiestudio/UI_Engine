@@ -27,7 +27,7 @@ export type DepartureBoardProps = {
 }
 
 export function DepartureBoard({
-  eyebrow = "LIVE BOARD",
+  eyebrow = "Live board",
   title,
   items,
   rowStagger = 160,

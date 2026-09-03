@@ -54,7 +54,7 @@ export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at w
               </Button>
             ))}
           </div>
-          <div className="absolute bottom-0 inset-x-0 bg-background/90 p-6 backdrop-blur">
+          <div className="absolute bottom-0 inset-x-0 bg-card p-6">
             {activePin && (
               <div className="flex items-center gap-4">
                 <span className="font-display text-2xl font-bold">{String(pins.findIndex((p) => p.id === activePin.id) + 1).padStart(2, "0")}</span>

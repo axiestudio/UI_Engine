@@ -286,8 +286,8 @@ export function ZigZag({
   return (
     <div
       ref={wrapRef}
-      className={cn("relative bg-background", !hideBorder && "border-t", className)}
-      style={{ height }}
+      className={cn("relative isolate w-full overflow-hidden bg-background", !hideBorder && "border-t", className)}
+      style={{ height, ["--vehicle-bg" as string]: "hsl(var(--foreground))", ["--vehicle-water" as string]: "hsl(var(--primary))" }}
     >
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Background */}
@@ -361,7 +361,7 @@ export function ZigZag({
                   className="absolute left-1/2 w-[92%] max-w-[360px] -translate-x-1/2 -translate-y-1/2"
                   style={{ top: layout.mobileTop, ...panelStyle(panel.anchor) }}
                 >
-                  <div className="rounded-xl bg-card/95 p-3 shadow ring-1 ring-border backdrop-blur">
+                  <div className="rounded-xl bg-card p-3 shadow ring-1 ring-border">
                     {panel.content ?? (
                       <>
                         {panel.kicker ? (
@@ -393,11 +393,11 @@ export function ZigZag({
             transition: "transform 0.06s linear",
           }}
         >
-          <div className="relative h-[340px] w-[250px] overflow-hidden rounded-[24px] bg-[#1d0d07] shadow-warm ring-1 ring-black/15 lg:h-[520px] lg:w-[380px] lg:rounded-[32px]">
+          <div className="relative h-[340px] w-[250px] overflow-hidden rounded-[24px] bg-[var(--vehicle-bg)] shadow-warm ring-1 ring-black/15 lg:h-[520px] lg:w-[380px] lg:rounded-[32px]">
             {/* water layers */}
             <div className="absolute inset-0 hero-gradient" />
             <div className="absolute inset-0 bg-grain opacity-30" />
-            <div className="absolute inset-0 opacity-[0.08]" style={{ background: "radial-gradient(ellipse at center, #3a9ad9 0%, transparent 68%)" }} />
+            <div className="absolute inset-0 opacity-[0.08]" style={{ background: "radial-gradient(ellipse at center, var(--vehicle-water) 0%, transparent 68%)" }} />
             {/* poster fallback */}
             {resolvedPoster ? (
               <img src={resolvedPoster} alt={alt} className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
@@ -419,7 +419,7 @@ export function ZigZag({
                 <div className="h-full bg-[var(--spice)]" style={{ width: `${progress * 100}%`, transition: "width 0.06s linear" }} />
               </div>
             ) : null}
-            <div className="absolute left-3 top-3 rounded-full bg-black/55 px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest text-white backdrop-blur ring-1 ring-white/15">
+            <div className="absolute left-3 top-3 rounded-full bg-black/55 px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest text-white ring-1 ring-white/15">
               VEHICLE • {combinedFrames.length ? `${vehicleLabel} • ${Math.round(progress * combinedFrames.length)}/${combinedFrames.length}` : sideLabel}
             </div>
             <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
@@ -440,7 +440,7 @@ export function ZigZag({
                 <span
                   key={i}
                   className="h-1.5 w-1.5 rounded-full"
-                  style={{ background: Math.abs(progress - a) < 0.07 ? "var(--spice)" : "rgba(0,0,0,0.18)" }}
+                  style={{ background: Math.abs(progress - a) < 0.07 ? "var(--spice)" : "hsl(var(--foreground) / 0.18)" }}
                 />
               )
             })}
@@ -454,7 +454,7 @@ export function ZigZag({
         ) : null}
 
         {showScrollHint ? (
-          <div className="absolute bottom-3 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full bg-card/90 px-3 py-1.5 text-xs shadow ring-1 ring-border backdrop-blur lg:flex">
+          <div className="absolute bottom-3 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full bg-card px-3 py-1.5 text-xs shadow ring-1 ring-border lg:flex">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--spice)]" />
             <span className="font-mono text-xs font-bold tracking-widest text-muted-foreground">SCROLL — VEHICLE TRAVELS ZIG-ZAG</span>
           </div>

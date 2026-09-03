@@ -35,7 +35,7 @@ export function CommercePlansToggle({ eyebrow = "PLANS", title = "Choose your bi
         <div className="mt-6 inline-flex rounded-full border bg-card p-1">
           {["monthly", "annual"].map((m) => {
             const isA = m === "annual"
-            return <button key={m} type="button" onClick={() => setAnnual(isA)} className={cn("rounded-full px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] transition-colors", annual === isA ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground")}>{m}</button>
+            return <Button key={m} type="button" variant={annual === isA ? "default" : "ghost"} size="sm" onClick={() => setAnnual(isA)} className={cn("h-auto rounded-full px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em]", annual !== isA && "text-muted-foreground hover:text-foreground")}>{m}</Button>
           })}
         </div>
       </InView>

@@ -180,7 +180,7 @@ export function renderPatternPreset(
         <PatternLines
           {...common}
           orientation={["diagonal"]}
-          stroke="#e879f9"
+          stroke="hsl(var(--chart-accent-stroke))"
           strokeWidth={strokeWidth}
         />
       );

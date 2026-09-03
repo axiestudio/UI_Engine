@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Stamp } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── Design language ──────────────────────────────────────────────────────────
@@ -79,11 +80,13 @@ export function Recap({
               const when = it.when ?? (i === 0 ? "tonight" : `day ${Math.min(i, 2) || 1}`)
               return (
                 <li key={it.id} className="border-b border-border last:border-b-0">
-                  <button
+                  <Button
                     type="button"
+                    variant="ghost"
+                    size="sm"
                     onClick={() => toggle(it.id)}
                     aria-pressed={isDone}
-                    className="group grid w-full grid-cols-[56px_1fr_auto] items-start gap-3 py-4 text-left sm:grid-cols-[84px_1fr_auto]"
+                    className="group grid h-auto w-full grid-cols-[56px_1fr_auto] items-start gap-3 py-4 text-left sm:grid-cols-[84px_1fr_auto]"
                   >
                     <span className="pt-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">{when}</span>
                     <span className="min-w-0">
@@ -105,7 +108,7 @@ export function Recap({
                         <svg viewBox="0 0 12 12" className="h-3 w-3"><path d="M2.5 6.5 5 9l4.5-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                       )}
                     </span>
-                  </button>
+                  </Button>
                 </li>
               )
             })}

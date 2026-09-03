@@ -34,11 +34,11 @@ export function HeroVideoScrub({ eyebrow = "SCRUB", title = "The film is in your
   const clipX = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
   return (
     <section ref={ref} className={cn("relative w-full bg-background", className)} style={{ height: runway }}>
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
-        <div className="relative h-[72vh] w-[90vw] max-w-[1200px] overflow-hidden rounded-[24px] bg-foreground">
+      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-4">
+        <div className="relative h-[72vh] w-full max-w-[1200px] overflow-hidden rounded-[24px] bg-foreground">
           <video ref={videoRef} className="h-full w-full object-cover" src={src} muted playsInline preload="auto" />
           <div className="pointer-events-none absolute inset-0 grid place-items-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur"><Play className="h-6 w-6 ml-0.5" /></span>
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-background/90 text-foreground shadow-md"><Play className="h-6 w-6 ml-0.5" /></span>
           </div>
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-background">
             <MonoLabel className="text-background/60">{eyebrow}</MonoLabel>

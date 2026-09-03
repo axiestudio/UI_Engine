@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "lime-sport.es.js" : "lime-sport.cjs.js"),
     },
-    rollupOptions: { external: ["react", "react-dom", "react/jsx-runtime", "motion", "motion/react", "class-variance-authority", "clsx", "tailwind-merge", "lucide-react"] },
+    rollupOptions: { external: ["react", "react-dom", "react/jsx-runtime", "motion", "motion/react", "class-variance-authority", "clsx", "tailwind-merge", "lucide-react", "radix-ui"] },
     cssCodeSplit: false,
   },
 })

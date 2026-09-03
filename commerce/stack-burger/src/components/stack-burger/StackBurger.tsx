@@ -2,6 +2,7 @@ import * as React from "react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionHead, SectionShell } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // The layer components — each one is its own import, exactly like the
@@ -118,24 +119,26 @@ export function StackBurger({
             {STACK_ORDER.map((id) => {
               const on = active.includes(id)
               return (
-                <button
+                <Button
                   key={id}
                   type="button"
+                  size="sm"
+                  variant="outline"
                   aria-pressed={on}
                   onClick={() => toggle(id)}
                   className={cn(
-                    "h-8 rounded-full border px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "h-8 rounded-full px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em]",
                     on
                       ? ink
-                        ? "border-background bg-background text-foreground"
-                        : "border-foreground bg-foreground text-background"
+                        ? "border-background bg-background text-foreground hover:bg-background/90"
+                        : "border-foreground bg-foreground text-background hover:bg-foreground/90"
                       : ink
                         ? "border-background/25 text-background/60 hover:border-background/50"
                         : "border-border text-muted-foreground hover:border-muted-foreground/60",
                   )}
                 >
                   {LAYERS[id].label}
-                </button>
+                </Button>
               )
             })}
           </div>

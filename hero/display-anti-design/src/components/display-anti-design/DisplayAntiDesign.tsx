@@ -2,6 +2,7 @@ import * as React from "react"
 import { ArrowUpRight, ShoppingBag } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { Grain } from "@/components/primitives/handcraft"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -60,9 +61,14 @@ export function DisplayAntiDesign({
             </a>
           ))}
         </nav>
-        <button type="button" className="inline-flex items-center gap-2 font-sans text-[12px] font-bold uppercase tracking-[0.08em] text-foreground">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="inline-flex items-center gap-2 font-sans text-[12px] font-bold uppercase tracking-[0.08em] text-foreground"
+        >
           <ShoppingBag className="size-4" /> {cartLabel}
-        </button>
+        </Button>
       </header>
 
       {/* oversized display */}
@@ -105,13 +111,15 @@ export function DisplayAntiDesign({
         </InView>
         <div className="flex flex-row flex-wrap items-start gap-3 lg:justify-end">
           {primaryCta && (
-            <button
+            <Button
               type="button"
               onClick={primaryCta.onClick}
-              className="inline-flex h-12 items-center gap-2 border-2 border-ink px-6 font-sans text-[13px] font-bold uppercase tracking-[0.06em] text-foreground transition-colors hover:bg-foreground hover:text-background"
+              variant="outline"
+              size="lg"
+              className="h-12 border-2 border-ink px-6 font-sans text-[13px] font-bold uppercase tracking-[0.06em] hover:bg-foreground hover:text-background"
             >
               {primaryCta.label}
-            </button>
+            </Button>
           )}
           {secondaryCta && (
             <a href={secondaryCta.href ?? "#"} className="inline-flex h-12 items-center gap-2 px-3 font-sans text-[13px] font-bold uppercase tracking-[0.06em] text-foreground/70 underline decoration-[2px] underline-offset-4 transition-colors hover:text-foreground">
