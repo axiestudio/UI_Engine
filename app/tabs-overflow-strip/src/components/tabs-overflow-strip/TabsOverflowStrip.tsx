@@ -71,7 +71,7 @@ export function TabsOverflowStrip({ tabs, value, onChange, onClose, onPin, class
           const active = t.id === value
           return (
             <div key={t.id} className="group relative flex shrink-0 items-center gap-1.5">
-              <Button type="button" variant="ghost" role="tab" aria-selected={active} onClick={() => onChange(t.id)} onMouseDown={(e) => { if (e.button === 1) { e.preventDefault(); onClose?.(t.id) } }} className={cn("flex min-w-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring", active ? "text-foreground" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground")}>
+              <Button type="button" variant="ghost" role="tab" aria-selected={active} onClick={() => onChange(t.id)} onMouseDown={(e) => { if (e.button === 1) { e.preventDefault(); onClose?.(t.id) } }} className={cn("flex min-w-0 items-center gap-1.5 min-h-11 rounded-md px-2.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring", active ? "text-foreground" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground")}>
                 {t.pinned && <Pin aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />}
                 <span className="max-w-[18ch] truncate">{t.label}</span>
                 {t.dirty && <span aria-hidden title="unsaved" className="size-1.5 shrink-0 rounded-full bg-[hsl(var(--warn))]" />}

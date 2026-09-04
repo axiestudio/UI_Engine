@@ -45,7 +45,7 @@ export function LightboxGallery({ eyebrow = "LIGHTBOX", title = "Look closer.", 
       <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {frames.map((f) => (
-            <Button type='button' key={f.id} onClick={() => setActiveId(f.id)} aria-label={f.alt} className="relative overflow-hidden rounded-xl border bg-muted focus-visible:ring-2 focus-visible:ring-ring" variant="default">
+            <Button type='button' key={f.id} onClick={() => setActiveId(f.id)} aria-label={f.alt} className="h-auto w-full p-0 relative overflow-hidden rounded-xl border bg-muted focus-visible:ring-2 focus-visible:ring-ring" variant="default">
               <Spotlight className="z-10" size={160} />
               {f.src ? <img src={f.src} alt={f.alt ?? ""} className={cn("aspect-square w-full object-cover transition-opacity", f.id === activeId ? "opacity-100" : "opacity-80")} loading="lazy" /> : <div className="aspect-square w-full bg-gradient-to-br from-secondary to-muted" />}
               <span className="pointer-events-none absolute right-2 top-2 z-20 rounded-full bg-black/50 px-2 py-0.5 font-mono text-[9px] font-bold text-white">{f.id === activeId ? "✓" : "+"}</span>

@@ -89,12 +89,12 @@ export function WishlistDrawer({
           {/* ── demo stage — the drawer lives inside, like a viewport screenshot ── */}
           <div
             className={cn(
-              "relative h-[560px] overflow-hidden rounded-xl border border-dashed",
+              "relative flex h-[560px] w-full flex-col overflow-hidden rounded-xl border border-dashed",
               ink ? "border-background/25 bg-background/5" : "border-border bg-muted/30",
             )}
           >
-            <div className="h-full overflow-y-auto">
-              <div className="p-4 pb-36 sm:p-6 sm:pb-36">
+            <div className="min-h-0 flex-1 overflow-y-auto">
+              <div className="p-4 pb-44 sm:p-6 sm:pb-44">
                 <div className="flex items-center justify-between gap-3">
                   <MonoLabel className={ink ? "text-background/55" : "text-muted-foreground"}>Quiet Times Studio — shop shelf</MonoLabel>
                   <span aria-live="polite" className="shrink-0 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
@@ -155,7 +155,7 @@ export function WishlistDrawer({
                   animate={reduce ? { opacity: 1 } : { y: 0 }}
                   exit={reduce ? { opacity: 0 } : { y: "112%" }}
                   transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  className="absolute inset-x-0 bottom-0 z-[2] rounded-t-[20px] border-t bg-card p-4 shadow-2xl"
+                  className="absolute inset-x-3 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 rounded-[20px] border bg-card p-4 shadow-2xl sm:inset-x-4"
                 >
                   <Button
                     type="button"

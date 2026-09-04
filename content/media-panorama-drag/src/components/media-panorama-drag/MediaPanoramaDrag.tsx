@@ -30,7 +30,7 @@ export function MediaPanoramaDrag({ eyebrow = "PANORAMA", caption = "DRAG TO PAN
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1280), ["--shell-w" as string]: `${(1280)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1280), ["--shell-w" as string]: `${(1280)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
@@ -44,8 +44,8 @@ export function MediaPanoramaDrag({ eyebrow = "PANORAMA", caption = "DRAG TO PAN
         >
           <motion.img src={src} alt="" draggable={false} className="absolute inset-y-0 left-0 h-full w-auto"
             style={{ x: dragX, maxWidth: "none" }} />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-          {caption && <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{caption}</span>}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
+          {caption && <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground shadow-sm">{caption}</span>}
         </div>
       </InView>
     

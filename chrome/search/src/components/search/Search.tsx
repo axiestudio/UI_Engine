@@ -71,7 +71,7 @@ export function Search({
   if (!total) return null
 
   return (
-    <div className={cn("relative isolate w-full", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden", className)}>
       <Button
         type="button"
         variant="outline"

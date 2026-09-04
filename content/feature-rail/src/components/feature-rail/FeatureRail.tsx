@@ -43,8 +43,8 @@ export function FeatureRail({ eyebrow = "RAIL", title = "Slide through the stack
   </header>
         </InView>
         <div className="hidden shrink-0 gap-2 sm:flex">
-          <Button type='button' onClick={() => scroll(-1)} aria-label="Scroll back" className="flex h-9 w-9 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent" size="icon" variant="default">←</Button>
-          <Button type='button' onClick={() => scroll(1)} aria-label="Scroll forward" className="flex h-9 w-9 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent" size="icon" variant="default">→</Button>
+          <Button type='button' onClick={() => scroll(-1)} aria-label="Scroll back" className="flex h-11 w-11 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent" size="icon" variant="default">←</Button>
+          <Button type='button' onClick={() => scroll(1)} aria-label="Scroll forward" className="flex h-11 w-11 items-center justify-center rounded-full border text-muted-foreground hover:bg-accent" size="icon" variant="default">→</Button>
         </div>
       </div>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

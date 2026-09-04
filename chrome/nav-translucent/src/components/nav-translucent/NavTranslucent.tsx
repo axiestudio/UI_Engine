@@ -46,13 +46,13 @@ export function NavTranslucent({
               <a
                 key={l.id}
                 href={l.href ?? "#"}
-                className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex min-h-11 items-center font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {l.label}
               </a>
             ))}
           </nav>
-          <Button asChild size="sm" className="rounded-md">
+          <Button asChild size="sm" className="h-11 rounded-md">
             <a href={ctaHref}>{cta}</a>
           </Button>
         </div>

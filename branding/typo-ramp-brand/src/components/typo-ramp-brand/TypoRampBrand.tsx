@@ -56,7 +56,7 @@ export function TypoRampBrand({
   }
 
   return (
-    <section className="bg-background text-foreground">
+    <section className="relative isolate overflow-hidden w-full bg-background text-foreground">
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="flex flex-wrap items-end justify-between gap-6">
                 <header className="">

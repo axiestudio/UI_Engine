@@ -211,7 +211,7 @@ export function SidebarAnimeGlass({
   }, [open])
 
   return (
-    <div className={cn("dark relative isolate w-full", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden", className)}>
       <div className="flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground">
         {/* Mobile backdrop */}
         {overlayMode && mobileOpen && (
@@ -219,7 +219,7 @@ export function SidebarAnimeGlass({
             type="button"
             aria-label="Close navigation"
             onClick={() => setMobileOpen(false)}
-            className="absolute inset-0 z-30 bg-foreground/40 backdrop-blur-[2px]"
+            className="absolute inset-0 z-30 bg-foreground/40"
           />
         )}
 

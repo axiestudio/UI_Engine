@@ -158,7 +158,7 @@ export function FitnessCoach({ block = "Hypertrophy — lower focus", week = "We
   const weeksDone = cells.reduce((a, c) => a + (c.count > 0 ? 1 : 0), 0)
 
   return (
-    <div className={cn("flex flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex w-full flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* console band — dark ink, split off the workspace below */}
       <header className="bg-foreground px-6 py-5 text-background">

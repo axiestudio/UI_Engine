@@ -56,8 +56,8 @@ export function HeaderPill({
         className={cn(
           "relative flex w-full max-w-fit items-center gap-1.5 rounded-full pl-3.5 pr-2 transition-[box-shadow,background-color,border-color] duration-500 motion-reduce:transition-none",
           scrolled
-            ? "border border-foreground/15 bg-background/90 shadow-[0_16px_48px_-16px_hsl(0_0%_0%/0.25)]"
-            : "border border-foreground/[0.08] bg-background/65 shadow-[0_4px_24px_-12px_hsl(0_0%_0%/0.12)]",
+            ? "border border-foreground/15 bg-background/90 shadow-[0_16px_48px_-16px_hsl(var(--foreground)/0.25)]"
+            : "border border-foreground/[0.08] bg-background/65 shadow-[0_4px_24px_-12px_hsl(var(--foreground)/0.12)]",
         )}
       >
         {/* brand */}
@@ -126,7 +126,7 @@ export function HeaderPill({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-x-0 top-[calc(100%+10px)] rounded-2xl border border-foreground/10 bg-background/95 p-2 shadow-[0_24px_64px_-24px_hsl(0_0%_0%/0.3)] md:hidden"
+              className="absolute inset-x-0 top-[calc(100%+10px)] rounded-2xl border border-foreground/10 bg-background/95 p-2 shadow-[0_24px_64px_-24px_hsl(var(--foreground)/0.3)] md:hidden"
             >
               <div className="flex flex-col divide-y divide-border/60">
                 {links.map((link, i) => (

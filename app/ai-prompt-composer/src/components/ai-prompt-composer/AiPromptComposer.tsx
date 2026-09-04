@@ -74,7 +74,7 @@ export function AiPromptComposer({ value, onChange, onSend, onSendText, status, 
   }
 
   return (
-    <div className={cn("relative isolate transition-opacity", stream && "opacity-70", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden transition-opacity", stream && "opacity-70", className)}>
       <MotionConfig reducedMotion="user">
         <PromptInputProvider initialInput={value}>
           <ControlledBridge value={value} onChange={onChange} />
@@ -135,7 +135,7 @@ export function AiPromptComposer({ value, onChange, onSend, onSendText, status, 
                   aria-label="Send prompt"
                   status={stream ? "streaming" : "ready"}
                   disabled={stream || empty}
-                  className={cn("rounded-full", !stream && !empty && (hot ? "bg-[hsl(var(--err))] text-white hover:bg-[hsl(var(--err))]" : ""))}
+                  className={cn("rounded-full", !stream && !empty && (hot ? "bg-[hsl(var(--err))] text-primary-foreground hover:bg-[hsl(var(--err))]" : ""))}
                 >
                   {stream ? <Loader size={14} className="motion-reduce:animate-none" /> : undefined}
                 </PromptInputSubmit>

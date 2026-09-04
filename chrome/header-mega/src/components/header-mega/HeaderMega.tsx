@@ -166,7 +166,7 @@ export function HeaderMega({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-x-0 top-full hidden border-b border-border bg-background shadow-[0_32px_64px_-32px_hsl(0_0%_0%/0.3)] lg:block"
+            className="absolute inset-x-0 top-full hidden border-b border-border bg-background shadow-[0_32px_64px_-32px_hsl(var(--foreground)/0.3)] lg:block"
             onMouseEnter={cancelClose}
           >
             <div className="mx-auto grid w-full max-w-[1200px] grid-cols-[1fr_300px] gap-10 px-4 py-9 sm:px-6">

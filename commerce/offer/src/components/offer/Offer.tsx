@@ -94,7 +94,7 @@ export function Offer({ badge = "Limited time", title = DEMO_OFFER_TITLE, descri
   }, [target, gone])
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={gone ? "Offer expired" : title}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={gone ? "Offer expired" : title}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[860px] px-4 py-14 sm:px-6">
           <div className="relative overflow-hidden rounded-xl border bg-foreground p-6 text-background shadow-sm sm:p-10">

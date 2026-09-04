@@ -32,7 +32,7 @@ export function ResourceList({ eyebrow = "RESOURCES", title = "Downloads & docs.
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <header className={cn("relative")}>
@@ -43,7 +43,7 @@ export function ResourceList({ eyebrow = "RESOURCES", title = "Downloads & docs.
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.06 }}>
         <div className="mt-6 flex flex-wrap gap-2">
           {types.map((t) => (
-            <Button type='button' key={t} onClick={() => setActive(t)} className={cn("rounded-full px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest transition-colors", t === active ? "bg-foreground text-background" : ink ? "text-background/60 hover:bg-background/10" : "text-muted-foreground hover:bg-accent")} variant="default">{t}</Button>
+            <Button type='button' key={t} onClick={() => setActive(t)} className={cn("rounded-full px-4 py-2.5 min-h-[44px] font-mono text-[10px] font-bold uppercase tracking-widest transition-colors", t === active ? "bg-foreground text-background" : ink ? "text-background/60 hover:bg-background/10" : "text-muted-foreground hover:bg-accent")} variant="default">{t}</Button>
           ))}
         </div>
         <div className={cn("mt-6 divide-y", ink ? "divide-background/15" : "divide-border")}>

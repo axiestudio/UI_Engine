@@ -30,7 +30,7 @@ export function ScrollScaleReveal({ eyebrow = "ZOOM", blocks = DEFAULT_BLOCKS, t
   const opacity = useTransform(scrollYProgress, [0, 0.9], [1, 0.6])
 
   return (
-    <section ref={ref} className={cn("relative w-full bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <motion.div style={{ scale, opacity }} className="mx-auto w-full max-w-4xl px-5 sm:px-8">
           <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

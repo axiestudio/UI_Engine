@@ -32,7 +32,7 @@ export function StoryScrubTimeline({ eyebrow = "EPOCHS", epochs = DEFAULT_EPOCHS
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn("relative", className))}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <div ref={ref} style={{ height: runway }} className="relative">
         <div className="sticky top-8 ml-4 flex h-[72vh] flex-col justify-center">

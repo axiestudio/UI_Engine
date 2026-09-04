@@ -100,7 +100,7 @@ export function DndPairing({
       </div>
       <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={pointerWithin} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
-        <div className="mt-8 grid grid-cols-2 gap-6">
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="space-y-3">
             {left.map((item) => {
               const placed = !!pairs[item.id]

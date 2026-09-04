@@ -44,7 +44,7 @@ export function MediaMorphingCarousel({ eyebrow = "MORPH", title = "One frame me
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <header className={cn("relative")}>
@@ -65,8 +65,8 @@ export function MediaMorphingCarousel({ eyebrow = "MORPH", title = "One frame me
                   animate={{ opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 1.06, clipPath: i === idx ? "inset(0 0 0 0)" : "inset(45% 0 45% 0)" }}
                   transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                {f.caption && <span className="absolute bottom-4 left-4 rounded-full bg-black/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{f.caption}</span>}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+                {f.caption && <span className="absolute bottom-4 left-4 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground shadow-sm">{f.caption}</span>}
               </div>
             ))}
           </div>

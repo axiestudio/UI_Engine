@@ -100,7 +100,7 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
           <div className="space-y-3 text-[13px]">
           <p className="text-muted-foreground">Record {editIndex + 1} — hairline edit rail, same data.</p>
           <div className="h-40 rounded-lg border border-border/60 bg-muted/40" /><div className="h-24 rounded-lg border border-border/60 bg-muted/40" />
-          <Button type="button" variant="ghost" className="mt-2 h-9 w-full rounded-md bg-[hsl(var(--err))] text-sm font-medium text-white" onClick={() => { push("anonymisation scheduled", "warn"); setDrawer(false) }}>anonymise account</Button>
+          <Button type="button" variant="ghost" className="mt-2 h-9 w-full rounded-md bg-[hsl(var(--err))] text-sm font-medium text-primary-foreground" onClick={() => { push("anonymisation scheduled", "warn"); setDrawer(false) }}>anonymise account</Button>
         </div>
       </DetailDrawerSplit>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((t) => t.filter((x) => x.id !== id))} />

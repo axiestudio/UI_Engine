@@ -74,7 +74,7 @@ export function DeviceLaptop({
               viewport={{ once: true, margin: "-80px" }}
               transition={{ type: "spring", stiffness: 46, damping: 11, mass: 1.1, delay: 0.15 }}
               style={{ transformOrigin: "bottom", transformStyle: "preserve-3d" }}
-              className="relative z-[2] mx-auto w-full rounded-t-[18px] bg-black p-[10px] pb-[12px] shadow-[inset_0_0_0_2px_hsl(var(--background)/0.08)]"
+              className="relative z-[2] mx-auto w-full rounded-t-[18px] bg-[hsl(var(--device-black))] p-[10px] pb-[12px] shadow-[inset_0_0_0_2px_hsl(var(--background)/0.08)]"
             >
               {/* Eldora UI MacbookPro frame */}
               <MacbookPro className="pointer-events-none block h-auto w-full" />
@@ -86,7 +86,7 @@ export function DeviceLaptop({
                 {/* screen wake */}
                 <motion.span
                   aria-hidden
-                  className="absolute inset-0 z-[2] bg-black"
+                  className="absolute inset-0 z-[2] bg-[hsl(var(--device-black))]"
                   initial={{ opacity: 1 }}
                   whileInView={{ opacity: 0 }}
                   viewport={{ once: true }}
@@ -104,7 +104,7 @@ export function DeviceLaptop({
                   />
                 )}
                 {/* camera notch */}
-                <span aria-hidden className="absolute left-1/2 top-0 z-[4] h-[9px] w-[86px] -translate-x-1/2 rounded-b-md bg-black" />
+                <span aria-hidden className="absolute left-1/2 top-0 z-[4] h-[9px] w-[86px] -translate-x-1/2 rounded-b-md bg-[hsl(var(--device-black))]" />
               </div>
             </motion.div>
 

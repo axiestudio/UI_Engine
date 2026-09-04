@@ -107,8 +107,8 @@ export function Ambiance({ kicker = "stepping inside", line, shots = DEMO_AMBIAN
                 className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
                 style={{ backgroundImage: "radial-gradient(hsl(var(--background)) 0.5px, transparent 0.6px)", backgroundSize: "3px 3px" }}
               />
-              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/45 to-transparent px-5 pb-4 pt-16 lg:hidden">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/85">{a.alt}</span>
+              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[hsl(var(--overlay-bg)/0.45)] to-transparent px-5 pb-4 pt-16 lg:hidden">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--overlay-fg)/0.85)]">{a.alt}</span>
               </figcaption>
             </div>
 

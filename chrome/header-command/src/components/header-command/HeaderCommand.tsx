@@ -115,9 +115,9 @@ export function HeaderCommand({
             aria-label="Open search"
             aria-keyshortcuts={hotkey ? "Meta+K Control+K" : undefined}
             className={cn(
-              "group inline-flex h-9 items-center gap-2 rounded-lg border border-input bg-secondary/50 text-muted-foreground transition-colors",
+              "group inline-flex h-11 items-center gap-2 rounded-lg border border-input bg-secondary/50 text-muted-foreground transition-colors",
               "hover:border-ring/40 hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
-              "w-9 justify-center md:w-56 md:justify-between md:px-3",
+              "w-11 justify-center md:w-56 md:justify-between md:px-3",
             )}
           >
             <span className="inline-flex items-center gap-2 text-[13px] font-medium">
@@ -131,14 +131,14 @@ export function HeaderCommand({
 
           {cta &&
             (cta.href ? (
-              <Button asChild size="sm" className="hidden rounded-full font-semibold shadow-sm sm:inline-flex">
+              <Button asChild size="sm" className="hidden h-11 rounded-full font-semibold shadow-sm sm:inline-flex">
                 <a href={cta.href} onClick={cta.onClick} className="group">
                   {cta.label}
                   <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none" />
                 </a>
               </Button>
             ) : (
-              <Button size="sm" onClick={cta.onClick} className="hidden rounded-full font-semibold shadow-sm sm:inline-flex">
+              <Button size="sm" onClick={cta.onClick} className="hidden h-11 rounded-full font-semibold shadow-sm sm:inline-flex">
                 {cta.label}
               </Button>
             ))}
@@ -148,7 +148,7 @@ export function HeaderCommand({
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((o) => !o)}
-            className="inline-flex size-9 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 lg:hidden"
           >
             {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
           </Button>
@@ -164,7 +164,7 @@ export function HeaderCommand({
               setMobileOpen(false)
               setOpen(true)
             }}
-            className="mb-2 flex w-full items-center justify-between rounded-lg border border-input bg-secondary/50 px-3 py-2.5 text-[13px] font-medium text-muted-foreground"
+            className="mb-2 flex h-11 w-full items-center justify-between rounded-lg border border-input bg-secondary/50 px-3 text-[13px] font-medium text-muted-foreground"
           >
             <span className="inline-flex items-center gap-2">
               <SearchIcon className="size-3.5" />
@@ -184,7 +184,7 @@ export function HeaderCommand({
             </a>
           ))}
           {cta && (
-            <Button size="sm" className="mt-2 w-full rounded-full font-semibold" onClick={cta.onClick} asChild={Boolean(cta.href)}>
+            <Button size="sm" className="mt-2 h-11 w-full rounded-full font-semibold" onClick={cta.onClick} asChild={Boolean(cta.href)}>
               {cta.href ? <a href={cta.href}>{cta.label}</a> : <span>{cta.label}</span>}
             </Button>
           )}

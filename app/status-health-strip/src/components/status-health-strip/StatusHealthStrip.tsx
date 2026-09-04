@@ -24,7 +24,7 @@ export function StatusHealthStrip({ services, region, onRegion, className }: Sta
   const shown = region ? services.filter((s) => s.region === region) : services
   const bad = shown.filter((s) => s.state !== "operational")
   return (
-    <div className={cn("relative isolate border-b bg-muted/40 font-sans", className)} role="status" aria-label="System health">
+    <div className={cn("relative isolate w-full overflow-hidden border-b bg-muted/40 font-sans", className)} role="status" aria-label="System health">
       <MotionConfig reducedMotion="user">
       <div className="mx-auto flex h-9 w-full max-w-[1200px] items-center gap-3 overflow-hidden px-4 text-xs">
         <span className="flex items-center gap-1.5 font-semibold uppercase tracking-wider text-muted-foreground">

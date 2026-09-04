@@ -26,7 +26,7 @@ const DEMO_OVERLAP_CARDS_CARDS = [ { id: "o1", title: "Design", body: "Editorial
 export function OverlapCards({ eyebrow = "LAYERS", title = "Cards that crest.", subtitle = "A row of cards overhangs the boundary between two bands.", cards = DEMO_OVERLAP_CARDS_CARDS, tone = "paper", className }: OverlapCardsProps) {
   const ink = tone === "ink"
   return (
-    <section className={cn("relative isolate bg-background pb-28", ink && "bg-foreground text-background", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background pb-28", ink && "bg-foreground text-background", className)}>
       <div className="absolute inset-0 -z-10 bg-muted/30" style={{ clipPath: "inset(0 0 45% 0)" }} />
       <div className="mx-auto max-w-[1280px] px-5 pt-16 sm:px-8 lg:pt-24">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

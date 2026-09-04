@@ -31,7 +31,7 @@ export function MergeConflictPanel({ conflicts, onResolve, className }: MergeCon
   const pending = conflicts.filter((c) => !done[c.id])
   const current = pending[0]
   return (
-    <div className={cn("font-sans", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div className="mb-3 flex items-center gap-2 text-sm font-medium">
         <GitMerge aria-hidden className="size-4" />

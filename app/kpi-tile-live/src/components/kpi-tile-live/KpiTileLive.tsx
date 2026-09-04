@@ -1,5 +1,4 @@
 import * as React from "react"
-import { motion, animate, useMotionValue } from "motion/react"
 import { ArrowDownRight, ArrowUpRight } from "lucide-react"
 import { Area, AreaChart, YAxis } from "recharts"
 import { cn } from "@/lib/utils"
@@ -24,11 +23,10 @@ export function KpiTileLive({ label, value, prev, format, unit, danger, spark, s
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const gradientId = `kpi-spark-${React.useId().replace(/[^a-zA-Z0-9_-]/g, "")}`
   const text = format ? format(value) : Math.round(value).toLocaleString()
-  const prevText = prev === undefined ? undefined : format ? format(prev) : Math.round(prev).toLocaleString()
   const delta = prev === undefined ? 0 : value - prev
   return (
     <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-card p-5 transition-shadow shadow-sm", danger && "border-[hsl(var(--err))]/40", className)}>
-      {danger && <motion.span aria-hidden animate={{ opacity: [0.4, 0.12, 0.4] }} transition={{ duration: 2, repeat: Infinity }} className="absolute inset-0 bg-[hsl(var(--err)/0.05)]" />}
+      {danger && <span aria-hidden className="absolute inset-0 bg-[hsl(var(--err)/0.05)]" />}
       <p className="text-sm font-medium text-muted-foreground">{label}</p>
       <div className="mt-1.5 flex items-end gap-2.5">
         <div aria-hidden className="flex tabular-nums">
@@ -37,18 +35,18 @@ export function KpiTileLive({ label, value, prev, format, unit, danger, spark, s
             if (!digit) return <span key={i} className="inline-block text-[30px] font-semibold leading-none tracking-tight">{ch}</span>
             return (
               <span key={i} aria-hidden className="relative inline-block h-[30px] w-[0.6ch] overflow-hidden">
-                <motion.span className="block text-[30px] font-semibold leading-[30px] tracking-tight" initial={false} animate={{ y: reduce ? `-${Number(ch) * 30}px` : `-${Number(ch) * 30}px` }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 18, mass: 0.6 }}>
+                <span className="block text-[30px] font-semibold leading-[30px] tracking-tight motion-safe:transition-transform motion-safe:duration-500" style={{ transform: `translateY(-${Number(ch) * 30}px)`, transitionDuration: reduce ? "0ms" : undefined }}>
                   {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => <span key={n} className="block h-[30px] leading-[30px] text-center tabular-nums">{n}</span>)}
-                </motion.span>
+                </span>
               </span>
             )
           })}
         </div>
         {unit && <span className="pb-0.5 text-sm font-medium text-muted-foreground">{unit}</span>}
         {prev !== undefined && delta !== 0 && (
-          <motion.span key={value} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className={cn("mb-1 flex items-center gap-0.5 rounded-full border border-border/60 px-1.5 py-0.5 text-xs font-medium tabular-nums", delta > 0 === !danger ? "bg-[hsl(var(--ok)/0.08)] text-[hsl(var(--ok))]" : "bg-[hsl(var(--err)/0.08)] text-[hsl(var(--err))]")}>
+          <span key={value} className={cn("mb-1 flex items-center gap-0.5 rounded-full border border-border/60 px-1.5 py-0.5 text-xs font-medium tabular-nums", delta > 0 === !danger ? "bg-[hsl(var(--ok)/0.08)] text-[hsl(var(--ok))]" : "bg-[hsl(var(--err)/0.08)] text-[hsl(var(--err))]")}>
             {delta > 0 ? <ArrowUpRight className="size-3" /> : <ArrowDownRight className="size-3" />}{Math.abs(delta) > 999 ? `${(Math.abs(delta) / 1000).toFixed(1)}k` : Math.round(Math.abs(delta))}
-          </motion.span>
+          </span>
         )}
       </div>
       <p className="sr-only" aria-live="polite">{label}: {text}{unit ? " " + unit : ""}</p>

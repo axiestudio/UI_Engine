@@ -92,7 +92,7 @@ export function ActivityFeed({
     >
       <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.06 : 0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
 
-      <div className="relative mx-auto w-full max-w-[860px] px-4 py-20 sm:px-6 sm:py-24">
+      <div className="relative mx-auto w-full max-w-[860px] px-5 py-20 sm:px-8 sm:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           {/* copy */}
           <div>

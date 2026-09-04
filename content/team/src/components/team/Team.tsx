@@ -83,7 +83,7 @@ function MemberCard({ m, tilt = true, showBios = false }: { m: TeamMember; tilt?
                   key={l.label}
                   href={l.href}
                   aria-label={`${l.label} — ${m.name}`}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border bg-background text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                 >
                   <Icon className="h-3.5 w-3.5" />
                 </a>
@@ -118,8 +118,8 @@ export function Team({ eyebrow = "The people", title = "Meet the team", subtitle
   const cols = Math.min(columns, members.length)
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className={cn("relative isolate w-full overflow-hidden min-h-[400px] bg-background text-foreground", className)} aria-label={title}>
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 lg:py-24">
         <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">

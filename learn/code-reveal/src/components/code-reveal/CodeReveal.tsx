@@ -56,7 +56,7 @@ export function CodeReveal({
   className,
 }: CodeRevealProps) {
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", className)}>
+    <section className={cn("relative isolate overflow-hidden min-h-[400px] w-full", className)}>
       <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8")} style={{ maxWidth: 920 }}>
         <InView
           once

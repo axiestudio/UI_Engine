@@ -40,7 +40,7 @@ export function HeroTabs({ eyebrow = "Four ways", tabs = [], tone = "paper", cla
                 variant={i === active ? "default" : "ghost"}
                 size="sm"
                 className={cn(
-                  "rounded-full font-mono text-[11px] font-bold uppercase tracking-widest",
+                  "h-11 rounded-full font-mono text-[11px] font-bold uppercase tracking-widest",
                   i === active
                     ? "bg-foreground text-background"
                     : ink

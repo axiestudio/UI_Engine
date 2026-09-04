@@ -122,9 +122,9 @@ export function Faq({
     .filter((i) => (query.trim() ? itemText(i).includes(query.trim().toLowerCase()) : true))
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-labelledby="faq-title">
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-labelledby="faq-title">
       <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
-        <div className="mx-auto w-full max-w-[880px] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[880px] px-5 py-16 sm:px-8 lg:px-8">
           <header className="max-w-2xl">
             {badge && (
               <span className="inline-flex items-center rounded-full border bg-card shadow-sm px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
@@ -142,14 +142,14 @@ export function Faq({
             {categories.length > 0 && (
               <div role="tablist" aria-label="FAQ categories" className="flex flex-wrap items-center gap-1.5">
                 <Button type='button' role="tab" aria-selected={category === null} onClick={() => setCategory(null)} className={cn(
-                    "rounded-full px-3.5 py-2 text-sm font-bold tracking-tight transition-colors",
+                    "h-11 rounded-full px-3.5 py-2 text-sm font-bold tracking-tight transition-colors",
                     category === null ? "bg-foreground text-background shadow-sm" : "text-muted-foreground hover:bg-accent hover:text-foreground"
                   )} variant="default">
                   All
                 </Button>
                 {categories.map((c) => (
                   <Button type='button' key={c} role="tab" aria-selected={category === c} onClick={() => setCategory(category === c ? null : c)} className={cn(
-                      "rounded-full px-3.5 py-2 text-sm font-bold tracking-tight transition-colors",
+                      "h-11 rounded-full px-3.5 py-2 text-sm font-bold tracking-tight transition-colors",
                       category === c ? "bg-foreground text-background shadow-sm" : "text-muted-foreground hover:bg-accent hover:text-foreground"
                     )} variant="default">
                     {c}
@@ -167,7 +167,7 @@ export function Faq({
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={searchPlaceholder}
-                  className="h-10 w-full rounded-full border bg-card pl-9 pr-9 font-medium"
+                  className="h-11 w-full rounded-full border bg-card pl-9 pr-9 font-medium"
                 />
                 {query && (
                   <Button type='button' aria-label="Clear search" onClick={() => setQuery("")} className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:bg-accent hover:text-foreground" variant="default">

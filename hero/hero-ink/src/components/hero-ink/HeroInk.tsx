@@ -77,7 +77,7 @@ export function HeroInk({
         <span className="absolute bottom-12 right-6 size-3.5 border-b border-r border-current" />
       </span>
 
-      <div className="relative mx-auto flex w-full max-w-[1020px] flex-col items-start px-6 py-28 sm:px-10 sm:py-32">
+      <div className="relative mx-auto flex w-full max-w-[1020px] flex-col items-start px-6 py-28 pb-44 sm:px-10 sm:py-32">
         {eyebrow && (
           <InView
             variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}

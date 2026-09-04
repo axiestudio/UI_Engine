@@ -90,7 +90,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
   }))
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] w-full flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* screen header */}
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
@@ -147,7 +147,8 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
             </header>
             <div className="grid gap-3 p-3 sm:grid-cols-[minmax(0,1fr)_200px]">
               <div>
-                <table className="w-full border-collapse text-[12px]">
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse text-[12px]">
                   <thead>
                     <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                       <th className="py-1.5 font-semibold">Tier</th>
@@ -161,6 +162,7 @@ export function RooftopOps({ venue = "Rooftop Astrakan", night = "Friday · 2026
                     <tr><td className="py-1 text-muted-foreground">voided tonight</td><td className="py-1 text-right font-mono tabular-nums">{voided ? 1 : 0}</td><td className="py-1 text-right font-mono tabular-nums">—</td></tr>
                   </tbody>
                 </table>
+                </div>
                 <p className="mt-2 text-[11px] text-muted-foreground">Tap-in reads the band NFC, checks the tier against the zone and opens the turnstile. Lost bands void at the reader, not the printer.</p>
               </div>
               {/* pass preview */}

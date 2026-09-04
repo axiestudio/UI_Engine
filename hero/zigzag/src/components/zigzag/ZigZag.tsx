@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 // 860vh wrapper (elongated via content, was 580vh), sticky 100svh viewport
 // vehicle travels invisible zig-zag LEFT→DOWN→RIGHT→DOWN… via KEYS + getPos
 // continuous scrub 0→1 maps wrapper scroll progress → frameIndex (platter→culture)
-// Inside tunnel: hero-gradient #1d0d07→#39150f + bg-grain + radial water + canvas
+// Inside tunnel: hero-gradient (--tunnel-deep→--tunnel-warm) + bg-grain + radial water + canvas
 // Panels: left|tunnel|right — desktop at 6%/58% opposite vehicle, mobile centered
 // No dashed path, only faint dots + progress bars.
 // Generic: pass `frames` (continuous) OR `platterFrames`+`cultureFrames`,
@@ -422,8 +422,8 @@ export function ZigZag({
             <div className="absolute left-3 top-3 rounded-full bg-black/55 px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest text-white ring-1 ring-white/15">
               VEHICLE • {combinedFrames.length ? `${vehicleLabel} • ${Math.round(progress * combinedFrames.length)}/${combinedFrames.length}` : sideLabel}
             </div>
-            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-              <span className="rounded-full bg-white/90 px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest text-foreground shadow">
+            <div className="absolute bottom-[max(0.75rem,env(safe-area-inset-bottom,0.75rem))] left-3 right-3 flex items-center justify-between">
+              <span className="rounded-full bg-background/90 px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest text-foreground shadow">
                 {sideLabel} • {Math.round(progress * 100)}%
               </span>
               <span className="hidden rounded-full bg-[var(--spice)] px-2.5 py-1 text-[10px] font-black tracking-widest text-white lg:inline">
@@ -454,7 +454,7 @@ export function ZigZag({
         ) : null}
 
         {showScrollHint ? (
-          <div className="absolute bottom-3 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full bg-card px-3 py-1.5 text-xs shadow ring-1 ring-border lg:flex">
+          <div className="absolute bottom-[max(0.75rem,env(safe-area-inset-bottom,0.75rem))] left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full bg-card px-3 py-1.5 text-xs shadow ring-1 ring-border lg:flex">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--spice)]" />
             <span className="font-mono text-xs font-bold tracking-widest text-muted-foreground">SCROLL — VEHICLE TRAVELS ZIG-ZAG</span>
           </div>

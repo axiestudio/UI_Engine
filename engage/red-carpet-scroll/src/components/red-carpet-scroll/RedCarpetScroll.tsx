@@ -51,7 +51,7 @@ export function RedCarpetScroll({
   const scaleY = useTransform(p, [0, 1], [0, 1])
 
   return (
-    <div ref={wrapRef} className={cn("relative isolate w-full", className)} style={controlled ? undefined : { height }}>
+    <div ref={wrapRef} className={cn("relative isolate w-full overflow-clip", className)} style={controlled ? undefined : { height }}>
       <div className={cn("relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6", controlled ? "py-16" : "sticky top-[6vh] h-[88vh] justify-start pt-16")}>
         {/* header copy sits at the head of the carpet */}
         <div className="relative z-10 text-center">

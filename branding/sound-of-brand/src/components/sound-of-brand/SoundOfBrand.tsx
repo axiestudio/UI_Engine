@@ -118,7 +118,7 @@ export function SoundOfBrand({
   }
 
   return (
-    <section className="bg-foreground text-background">
+    <section className="relative isolate overflow-hidden w-full bg-foreground text-background">
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="text-center">
         <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] justify-center text-background/55">{eyebrow}</span>

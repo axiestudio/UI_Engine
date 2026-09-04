@@ -114,7 +114,7 @@ export function FrontDeskHotel({ hotel = "Hotel Strand · night porter", stay: i
   }
 
   return (
-    <div className={cn("flex flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex w-full flex-col overflow-hidden border-y bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — plain voice with count chips */}
       <header className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b px-5 py-3">

@@ -36,7 +36,7 @@ const DEMO_PLACE_LANDMARK = "TR\u00c4DG\u00c5RDSGATAN 12"
 
 export function Place({ landmark = DEMO_PLACE_LANDMARK, separator = "·", story, facts = [], speed = "gentle", reverse = false, className }: PlaceProps) {
   return (
-    <section className={cn("relative w-full overflow-hidden bg-background text-foreground", className)} aria-label={`${landmark} — our address`}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={`${landmark} — our address`}>
       {/* ribbon landmark */}
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div aria-hidden className="border-y border-border py-3 sm:py-4">

@@ -75,7 +75,7 @@ export function ReceiptSlip({
     >
       <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.06 : 0.045) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
 
-      <div className="relative mx-auto w-full max-w-[820px] px-4 py-20 sm:px-6 sm:py-24">
+      <div className="relative mx-auto w-full max-w-[820px] px-5 py-20 sm:px-8 sm:py-24">
         <InView
           variants={{ hidden: { opacity: 0, y: 26, rotate: 1.5 }, visible: { opacity: 1, y: 0, rotate: 0 } }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}

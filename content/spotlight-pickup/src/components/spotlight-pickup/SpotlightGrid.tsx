@@ -41,10 +41,10 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
     : { background: "hsl(var(--stage))" }
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--stage))] px-4 py-20 text-white sm:px-6 lg:px-8", className)}>
-      <div className="mx-auto w-full max-w-[1120px]">
+    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--stage))] px-5 py-20 text-background sm:px-8 lg:px-8 lg:px-8", className)}>
+      <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div className="mb-9">
-          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-white/45")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
+          <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-background/55")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>
           {title && <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-[40px]">{title}</h2>}
         </div>
         <div
@@ -55,7 +55,7 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
           onTouchMove={(e) => move(e.touches[0].clientX, e.touches[0].clientY)}
           className="relative"
         >
-          <ul className={cn("grid grid-cols-2 gap-px border border-white/10 bg-white/10", columns === 3 && "sm:grid-cols-3", columns === 4 && "sm:grid-cols-4 md:grid-cols-4")}>
+          <ul className={cn("grid grid-cols-2 gap-px border border-background/15 bg-background/10", columns === 3 && "sm:grid-cols-3", columns === 4 && "sm:grid-cols-4 md:grid-cols-4")}>
             {items.map((it) => (
               <li key={it.label} className="group relative bg-[hsl(var(--stage-cell))]">
                 <div className="relative aspect-[4/5] overflow-hidden">
@@ -63,13 +63,13 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
                     <img src={it.img} alt={it.label} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
                   ) : (
                     <div className="flex h-full w-full items-end p-4" style={{ background: "repeating-linear-gradient(135deg, hsl(var(--stage-cell)), hsl(var(--stage-cell)) 12px, hsl(var(--stage)) 12px, hsl(var(--stage)) 24px)" }}>
-                      <span className="font-display text-2xl font-bold text-white/25">{it.label.slice(0, 18)}</span>
+                      <span className="font-display text-2xl font-bold text-background/40">{it.label.slice(0, 18)}</span>
                     </div>
                   )}
                 </div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4 pt-10">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/70 via-foreground/30 to-transparent p-4 pt-10">
                   <p className="font-display text-[15px] font-bold tracking-tight">{it.label}</p>
-                  {it.meta && <p className="mt-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">{it.meta}</p>}
+                  {it.meta && <p className="mt-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background/60">{it.meta}</p>}
                 </div>
                 <span className="sr-only">{it.label}{it.meta ? ` — ${it.meta}` : ""}</span>
               </li>
@@ -79,7 +79,7 @@ export function SpotlightGrid({ items, eyebrow = "THE LINEUP", title, columns = 
           {!reduce && (
             <div aria-hidden className="pointer-events-none absolute inset-0 transition-[background] duration-200" style={sheetStyle}>
               {pt && <span className="absolute grid size-2 -translate-x-1/2 -translate-y-1/2 place-items-center" style={{ left: pt.x, top: pt.y }}>
-                <span className="size-full rotate-45 border border-white/70" />
+                <span className="size-full rotate-45 border border-background/70" />
               </span>}
             </div>
           )}

@@ -39,7 +39,7 @@ export function SegmentedControl({ options, value, onChange, size = "md", classN
   return (
     <div ref={host} role="radiogroup" aria-label="View" onKeyDown={key} className={cn("relative isolate inline-flex overflow-hidden rounded-full border bg-muted/60 p-[3px] font-sans select-none", className)}>
       <MotionConfig reducedMotion="user">
-      <motion.span aria-hidden initial={false} animate={{ x: thumb.x, width: thumb.w }} transition={{ type: "spring", stiffness: 420, damping: 34 }} className="absolute top-[3px] bottom-[3px] rounded-full bg-card shadow-[0_1px_3px_rgba(0,0,0,0.18)]" style={{ left: 0 }} />
+      <motion.span aria-hidden initial={false} animate={{ x: thumb.x, width: thumb.w }} transition={{ type: "spring", stiffness: 420, damping: 34 }} className="absolute top-[3px] bottom-[3px] rounded-full bg-card shadow-[0_1px_3px_hsl(var(--foreground)/0.18)]" style={{ left: 0 }} />
       {options.map((o) => {
         const Icon = o.icon
         return (

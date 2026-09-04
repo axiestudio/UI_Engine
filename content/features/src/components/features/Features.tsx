@@ -95,14 +95,14 @@ function FeatureCard({ f, glow }: { f: FeatureItem; glow: boolean }) {
 // reproduces the same demo the engine desktop view shows.
 const DEMO_FEATURES_ITEMS = [ { id: "deep-tissue", title: "Deep tissue", description: "Focused pressure for chronic tension — neck, shoulders, lower back.", bullets: ["60 or 90 min", "Certified therapists"], icon: Hand, badge: "Most booked", action: { label: "Book this", href: "#contact" } }, { id: "sports", title: "Sports recovery", description: "Post-event flush and mobility work, timed to your training week.", bullets: ["Same-evening slots"], icon: CalendarCheck, action: { label: "Check schedule", href: "#" } }, { id: "wellness", title: "Wellness membership", description: "Monthly sessions with priority booking and guest discounts.", bullets: ["Cancel anytime", "25 yrs on the high street"], icon: ShieldCheck }, ]
 
-export function Features({ eyebrow, title, subtitle, items = DEMO_FEATURES_ITEMS, columns = 3, spotlight = true, tone = "paper", className }: FeaturesProps) {
+export function Features({ eyebrow = "Services", title = "Built around how you actually treat", subtitle, items = DEMO_FEATURES_ITEMS, columns = 3, spotlight = true, tone = "paper", className }: FeaturesProps) {
   if (!items.length) return null
   const cols = Math.min(columns, Math.max(1, items.length))
   const ink = tone === "ink"
 
   return (
-    <section className={cn("w-full text-foreground", ink ? "bg-foreground text-background" : "bg-background", className)} aria-label={title ?? "Features"}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className={cn("relative isolate w-full overflow-hidden min-h-[400px] text-foreground", ink ? "bg-foreground text-background" : "bg-background", className)} aria-label={title ?? "Features"}>
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 lg:px-8 lg:py-24">
         {(title || eyebrow) && (
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="mb-10 max-w-2xl">

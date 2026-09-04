@@ -95,7 +95,7 @@ export function DndTableCols({
       </div>
       <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
-        <div className="mt-8 overflow-hidden rounded-xl border bg-card shadow-sm">
+        <div className="mt-8 overflow-x-auto rounded-xl border bg-card shadow-sm">
           <SortableContext items={list.map((c) => c.id)} strategy={horizontalListSortingStrategy}>
             <div className="flex border-b bg-muted/40">
               {list.map((col, i) => (

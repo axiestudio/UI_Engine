@@ -90,7 +90,7 @@ export function AnnouncementBar({
     <div
       role="region"
       aria-label={label}
-      className={cn("relative overflow-hidden", ink ? "bg-foreground text-background" : "border-b bg-card text-foreground", className)}
+      className={cn("relative isolate w-full overflow-hidden", ink ? "bg-foreground text-background" : "border-b bg-card text-foreground", className)}
     >
       <BorderTrail className={ink ? "bg-background/40" : "bg-foreground/25"} size={90} />
       {/* corner ticks — placed like a printed ribbon, not a banner dump */}

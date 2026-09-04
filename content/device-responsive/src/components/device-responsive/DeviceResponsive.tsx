@@ -52,7 +52,7 @@ export function DeviceResponsive({
   const reduce = useReducedMotion()
   const stageRef = React.useRef<HTMLDivElement>(null)
   const [stageW, setStageW] = React.useState(1200)
-  const [w, setW] = React.useState(initialWidth)
+  const [w, setW] = React.useState(() => Math.min(initialWidth, 1200))
   const [dragging, setDragging] = React.useState(false)
   const [reelIdx, setReelIdx] = React.useState(-1)
 
@@ -164,18 +164,18 @@ export function DeviceResponsive({
               style={{ maxWidth: "100%" }}
             >
               {/* compact chrome */}
-              <div className="border-b border-white/[0.07] bg-foreground/90 px-3 py-2">
+              <div className="border-b border-background/[0.07] bg-foreground/90 px-3 py-2">
                 <div className="flex items-center gap-2">
                   <span aria-hidden className="flex gap-1.5">
-                    <span className="size-2 rounded-full bg-white/60" />
-                    <span className="size-2 rounded-full bg-white/40" />
-                    <span className="size-2 rounded-full bg-white/25" />
+                    <span className="size-2 rounded-full bg-background/60" />
+                    <span className="size-2 rounded-full bg-background/40" />
+                    <span className="size-2 rounded-full bg-background/25" />
                   </span>
-                  <span className="ml-2 flex h-5 min-w-0 items-center gap-1.5 rounded-full bg-white/[0.07] px-2.5 font-mono text-[9px] font-medium text-white/60">
+                  <span className="ml-2 flex h-5 min-w-0 items-center gap-1.5 rounded-full bg-background/[0.07] px-2.5 font-mono text-[9px] font-medium text-background/60">
                     <Lock className="size-2.5 shrink-0" aria-hidden />
                     <span className="truncate">{url}</span>
                   </span>
-                  <span className="ml-auto hidden font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-white/45 sm:block">
+                  <span className="ml-auto hidden font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-background/45 sm:block">
                     {label} · {w}PX
                   </span>
                 </div>
@@ -205,10 +205,10 @@ export function DeviceResponsive({
               onPointerCancel={endDrag}
               onKeyDown={onKeyDown}
               className={cn(
-                "absolute -right-3 z-[3] flex h-[calc(100%-38px)] w-7 cursor-ew-resize touch-none items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "absolute -right-3 z-[3] flex h-[calc(100%-38px)] w-11 cursor-ew-resize touch-none items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 dragging && "bg-primary/5",
               )}
-              style={{ top: 19, right: "auto", left: `calc(${w}px - 14px)` }}
+              style={{ top: 19, right: "auto", left: `calc(${Math.min(w, stageW)}px - 14px)` }}
             >
               <span
                 aria-hidden
@@ -234,7 +234,7 @@ export function DeviceResponsive({
             {/* filled span up to current width */}
             <motion.span
               className={cn("absolute inset-y-0 left-0", ink ? "bg-background/10" : "bg-primary/10")}
-              animate={{ width: w }}
+              animate={{ width: Math.min(w, stageW) }}
               transition={dragging || reduce ? { duration: 0 } : { type: "spring", stiffness: 240, damping: 28 }}
             />
             {BREAKPOINTS.map((bp) => (
@@ -259,7 +259,7 @@ export function DeviceResponsive({
             <span className="flex items-center gap-3">
               {reel && (
                 <Button type='button' onClick={runReel} className={cn(
-                    "inline-flex h-7 items-center gap-1.5 rounded-full border px-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "inline-flex h-11 items-center gap-1.5 rounded-full border px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     ink ? "border-background/25 text-background hover:bg-background/10" : "border-border text-foreground hover:bg-muted",
                   )} variant="default">
                   <Play className="size-2.5" aria-hidden />

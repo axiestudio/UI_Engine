@@ -81,10 +81,10 @@ export function Letter({
   }
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-label={title}>
       <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
-        <div className="mx-auto w-full max-w-[680px] px-4 py-16 sm:px-6 lg:py-24">
-          <div className="relative rounded-[24px] border border-border bg-card shadow-[0_24px_60px_-30px_rgba(0,0,0,0.4)]">
+        <div className="mx-auto w-full max-w-[680px] px-5 py-16 sm:px-8 lg:py-24">
+          <div className="relative rounded-[24px] border border-border bg-card shadow-[0_24px_60px_-30px_hsl(var(--foreground)/0.4)]">
             {/* stamp corner */}
             <span aria-hidden className="absolute -top-4 -right-3 flex h-14 w-14 rotate-[-8deg] items-center justify-center rounded-lg border-2 border-dashed border-foreground/30 bg-background text-foreground shadow-sm">
               <Stamp className="h-5 w-5 opacity-70" />

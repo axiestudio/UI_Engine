@@ -8,10 +8,7 @@ import { Button } from "@/components/ui/button"
 // ═══ JOB         Boot-sequence terminal intro.
 // ═══ EMOTION     "the machine is waking up"
 // ═══ SIGNATURE   Mono lines type in sequence; the last line opens the gate.
-// ═══ ISOLATION   mode="overlay" uses `fixed inset-0` as the named behavior —
-//                 full-viewport terminal that unmounts on completion (the gate
-//                 gates the page; once done, the overlay returns null). Documented
-//                 gap vs. Law 2; preserved by design intent.
+// ═══ ISOLATION   root-scoped: `absolute inset-0` inside `relative isolate overflow-hidden` — never `fixed`.
 
 export type IntroTerminalProps = {
   mode?: "overlay" | "stage"
@@ -56,7 +53,7 @@ export function IntroTerminal({
   return (
     <div
       ref={mode === "stage" ? stageRef : undefined}
-      className={cn(mode === "overlay" ? "fixed inset-0 z-[90]" : "relative isolate w-full", className)}
+      className={cn("relative isolate w-full overflow-hidden", mode === "overlay" && "min-h-[60vh]", className)}
       style={mode === "stage" ? { height: stageHeight } : undefined}
     >
       <div

@@ -41,8 +41,8 @@ export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at w
   </header>
       </InView>
       <InView once variants={{ hidden: { opacity: 0, scale: 0.98 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-        <div className="relative mt-10 overflow-hidden rounded-xl border bg-foreground">
-          <div className="relative aspect-[16/10]">
+        <div className="relative isolate flex min-h-[480px] w-full flex-col overflow-hidden rounded-xl border bg-foreground">
+          <div className="relative aspect-[16/10] w-full flex-1 pb-44">
             <img src={src} alt="" className="h-full w-full object-cover opacity-80" />
             <div className="absolute inset-0">
               <Spotlight className="h-full w-full" size={280} />
@@ -54,7 +54,7 @@ export function InteractiveFeatureDiagram({ eyebrow = "MAP", title = "Point at w
               </Button>
             ))}
           </div>
-          <div className="absolute bottom-0 inset-x-0 bg-card p-6">
+          <div className="absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 mx-4 rounded-xl bg-card p-6 shadow-lg sm:mx-6">
             {activePin && (
               <div className="flex items-center gap-4">
                 <span className="font-display text-2xl font-bold">{String(pins.findIndex((p) => p.id === activePin.id) + 1).padStart(2, "0")}</span>

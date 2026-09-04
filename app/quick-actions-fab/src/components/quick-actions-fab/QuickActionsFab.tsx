@@ -96,7 +96,7 @@ function ActionOrb({
   return (
     <>
       <motion.span
-        className="absolute bottom-20 right-7 z-20"
+        className="absolute bottom-7 right-5 z-20"
         initial={{ x: 0, y: 0, scale: 0.4, opacity: 0 }}
         animate={{ x: arc.x, y: arc.y, scale: 1, opacity: open ? 1 : 0, pointerEvents: open ? ("auto" as const) : ("none" as const) }}
         exit={{ x: 0, y: 0, scale: 0.4, opacity: 0 }}
@@ -162,13 +162,13 @@ export function QuickActionsFab({ eyebrow = "Board · October", actions = DEFAUL
   }
 
   return (
-    <div ref={stageRef} className={cn("relative isolate h-[420px] overflow-hidden rounded-xl border border-dashed bg-muted/20", className)}>
+    <div ref={stageRef} className={cn("relative isolate flex min-h-[420px] w-full flex-col overflow-hidden rounded-xl border border-dashed bg-muted/20", className)}>
       <div className="flex items-center justify-between border-b border-border bg-background/70 px-4 py-3">
         <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Quiet Times Studio · 18:42</span>
       </div>
 
-      <ul className="space-y-1.5 px-4 pt-4">
+      <ul className="space-y-1.5 px-4 pb-44 pt-4">
         {["09:00 · Maja — Chair 1", "10:30 · Jonas — Chair 3", "13:00 · Tove — Chair 1", "15:15 · Waldo — Chair 2"].map((row) => (
           <li key={row} className="flex items-center gap-2.5 text-[12px] font-medium text-muted-foreground">
             <span aria-hidden className="size-[5px] shrink-0 rotate-45 bg-foreground/40" />
@@ -198,6 +198,7 @@ export function QuickActionsFab({ eyebrow = "Board · October", actions = DEFAUL
         ))}
       </AnimatePresence>
 
+      <div className="pointer-events-none absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 flex justify-end px-4">
       <Button
         ref={fabRef}
         type="button"
@@ -206,12 +207,13 @@ export function QuickActionsFab({ eyebrow = "Board · October", actions = DEFAUL
         aria-label={open ? "Close quick actions" : "Quick actions"}
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          "absolute bottom-5 right-5 z-30 size-12 rounded-full bg-foreground p-0 text-background shadow-xl ring-offset-background transition-transform duration-200 hover:bg-foreground/90 hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "pointer-events-auto size-12 rounded-full bg-foreground p-0 text-background shadow-xl ring-offset-background transition-transform duration-200 hover:bg-foreground/90 hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           open && "rotate-45",
         )}
       >
         <Plus className="size-5" strokeWidth={2.5} aria-hidden />
       </Button>
+      </div>
       <Toaster id={TOASTER_ID} position="top-right" visibleToasts={2} />
     </div>
   )

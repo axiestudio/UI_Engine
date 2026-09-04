@@ -39,13 +39,13 @@ export function MarqueeLights({ overline = "One night only", big, under = "The U
           {Array.from({ length: 7 }, (_, i) => <Bulb key={`r${i}`} x="100%" y={`${(i + 0.5) * (100 / 7)}%`} i={i + BULBS * 3} reduce={reduce} speed={chaseSpeed} seed={seed[i + BULBS * 3]} />)}
         </ul>
         {/* marquee face */}
-        <div className="relative border-[6px] border-[hsl(var(--bulb-off)/0.4)] bg-[hsl(var(--marquee-face))] px-8 py-10 shadow-[inset_0_0_60px_rgba(0,0,0,0.35)] sm:px-16 sm:py-12">
+        <div className="relative border-[6px] border-[hsl(var(--bulb-off)/0.4)] bg-[hsl(var(--marquee-face))] px-8 py-10 shadow-[inset_0_0_60px_hsl(var(--foreground)/0.35)] sm:px-16 sm:py-12">
           <MonoLabel className="text-[hsl(var(--bulb))]">{overline}</MonoLabel>
           {big && <p className="mt-4 font-display text-[clamp(40px,9vw,84px)] font-black uppercase leading-[0.9] tracking-[-0.02em] text-[hsl(var(--marquee-ink))]" style={{ textShadow: "0 3px 0 hsl(var(--marquee-deep)), 0 0 24px hsl(var(--bulb)/0.35)" }}>{big}</p>}
           {under && <p className="mt-4 font-mono text-[11px] font-black uppercase tracking-[0.3em] text-[hsl(var(--bulb))]/90">{under}</p>}
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             {status && (
-              <span className={cn("inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-[10px] font-black uppercase tracking-[0.2em] ring-1", status === "live" ? "bg-black/25 text-[hsl(var(--bulb))] ring-[hsl(var(--bulb)/0.6)]" : status === "sold-out" ? "bg-black/30 text-white/60 ring-white/20" : "bg-black/20 text-white/80 ring-white/30")}>
+              <span className={cn("inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-[10px] font-black uppercase tracking-[0.2em] ring-1", status === "live" ? "bg-foreground/25 text-[hsl(var(--bulb))] ring-[hsl(var(--bulb)/0.6)]" : status === "sold-out" ? "bg-foreground/30 text-foreground/60 ring-foreground/20" : "bg-foreground/20 text-foreground/80 ring-foreground/30")}>
                 <span aria-hidden className={cn("size-1.5 rounded-full", status === "live" ? "animate-ping bg-[hsl(var(--bulb))]" : "bg-current opacity-70")} />
                 {status === "live" ? "Happening now" : status === "sold-out" ? "Sold out" : "Now booking"}
               </span>

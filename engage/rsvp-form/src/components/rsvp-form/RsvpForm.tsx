@@ -72,8 +72,8 @@ export function RsvpForm({
           <h2 className="mt-2 font-display text-2xl font-black tracking-[-0.02em] sm:text-3xl">{title}</h2>
 
           {status === "success" ? (
-            <div className="mt-6 flex items-start gap-3 rounded-xl bg-emerald-500/10 p-4 ring-1 ring-emerald-500/15" role="status" aria-live="polite">
-              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-emerald-600 text-white">
+            <div className="mt-6 flex items-start gap-3 rounded-xl bg-[hsl(var(--ok)/0.1)] p-4 ring-1 ring-[hsl(var(--ok)/0.15)]" role="status" aria-live="polite">
+              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--ok))] text-primary-foreground">
                 <Check className="h-4 w-4" aria-hidden />
               </span>
               <div>

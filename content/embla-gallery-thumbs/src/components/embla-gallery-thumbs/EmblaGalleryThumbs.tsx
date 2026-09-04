@@ -126,7 +126,7 @@ export function EmblaGalleryThumbs({
           <div className="mt-4 grid grid-cols-6 gap-2">
             {frames.map((frame, i) => (
               <Button type='button' key={frame.id} aria-label={`View image ${i + 1}: ${frame.alt}`} aria-current={i === selected ? "true" : undefined} onClick={() => embla?.scrollTo(i)} className={cn(
-                  "relative aspect-square overflow-hidden rounded-lg border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "h-auto w-full p-0 relative aspect-square overflow-hidden rounded-lg border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   i === selected ? "border-transparent opacity-100 ring-2 ring-primary" : "border-border opacity-70 hover:opacity-100",
                 )} variant="default">
                 <img src={frame.src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" draggable={false} />

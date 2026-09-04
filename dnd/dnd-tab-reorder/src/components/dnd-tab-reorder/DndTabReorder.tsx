@@ -90,7 +90,7 @@ export function DndTabReorder({
           <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Drag or keyboard — Tab → Space → Arrows</span>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => { setInternal(tabs); onChange?.(tabs); setAnnounce("Tabs reset") }} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+          <Button variant="outline" size="sm" onClick={() => { setInternal(tabs); onChange?.(tabs); setAnnounce("Tabs reset") }} className="h-9 rounded-full px-3 text-xs font-medium shadow-sm">
             Reset
           </Button>
           <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>

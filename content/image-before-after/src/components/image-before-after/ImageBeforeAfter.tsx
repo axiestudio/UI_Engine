@@ -52,8 +52,8 @@ export function ImageBeforeAfter({
             <ImageComparisonSlider className="bg-foreground">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-background text-xs font-bold shadow-lg">⇄</span>
             </ImageComparisonSlider>
-            <span className={cn("pointer-events-none absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white")}>{labelBefore}</span>
-            <span className={cn("pointer-events-none absolute right-4 top-4 rounded-full bg-black/60 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white")}>{labelAfter}</span>
+            <span className={cn("pointer-events-none absolute left-4 top-4 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground")}>{labelBefore}</span>
+            <span className={cn("pointer-events-none absolute right-4 top-4 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground")}>{labelAfter}</span>
           </ImageComparison>
         </div>
       </InView>

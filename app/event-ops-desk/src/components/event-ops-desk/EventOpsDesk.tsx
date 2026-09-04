@@ -90,7 +90,7 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
   }
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] w-full flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Event ops</h2>
@@ -98,7 +98,7 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
         <span className="flex items-center gap-1.5 rounded border border-[hsl(var(--warn)/0.5)] bg-[hsl(var(--warn)/0.08)] px-2 py-0.5 text-[11px] font-semibold text-[hsl(var(--warn))]">
           <Radio className="size-3.5" /> ch 3 down
         </span>
-        <Button type="button" variant="ghost" onClick={openDoors} disabled={isDoors} className={cn("ml-auto flex h-8 items-center gap-1.5 rounded-md px-3 text-[11px] font-semibold", isDoors ? "border bg-background text-muted-foreground disabled:opacity-60" : "bg-[hsl(var(--ok))] text-white hover:bg-[hsl(var(--ok)/0.9)]")}>
+        <Button type="button" variant="ghost" onClick={openDoors} disabled={isDoors} className={cn("ml-auto flex h-8 items-center gap-1.5 rounded-md px-3 text-[11px] font-semibold", isDoors ? "border bg-background text-muted-foreground disabled:opacity-60" : "bg-[hsl(var(--ok))] text-primary-foreground hover:bg-[hsl(var(--ok)/0.9)]")}>
           <DoorOpen className="size-3.5" /> {isDoors ? "Doors open" : "Open doors"}
         </Button>
       </header>
@@ -139,7 +139,8 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
               <Stamp className="size-3.5" /> issue selected
             </Button>
           </header>
-          <table className="w-full border-collapse text-[12px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12px]">
             <thead>
               <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                 <th className="w-8 px-2 py-1.5" />
@@ -178,6 +179,7 @@ export function EventOpsDesk({ venue = "Norrlandsplatsen · Hall A–D", doors =
               ))}
             </tbody>
           </table>
+          </div>
           <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Issuing unlocks when doors open · batches print to the Hall A printer</div>
         </section>
 

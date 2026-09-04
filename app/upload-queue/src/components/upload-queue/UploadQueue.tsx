@@ -116,7 +116,7 @@ export function UploadQueue({ files, onRetry, onRemove, className }: UploadQueue
       </ul>
       {files.length > 0 && (
         <div aria-live="polite" className="mt-2 flex items-center gap-2 border-t border-border/60 px-2 pt-2 text-xs font-medium text-muted-foreground">
-          {up && <Loader2 className="size-3 motion-safe:motion-safe:motion-safe:animate-spin" />}<span>{done.length}/{files.length} done</span>
+          {up && <Loader2 className="size-3 motion-safe:animate-spin" />}<span>{done.length}/{files.length} done</span>
           {up && <span className="ml-auto tabular-nums">{human(Math.max(0, ...[Math.round(up.size * (1 - (up.progress ?? 0) / 100))]))} remaining</span>}
           
     </div>

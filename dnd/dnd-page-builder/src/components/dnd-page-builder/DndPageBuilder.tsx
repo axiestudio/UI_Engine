@@ -129,7 +129,7 @@ export function DndPageBuilder({
           <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Advanced • Professional DnD</span>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => { setCanvas([]); onChange?.([]); setAnnounce("Canvas cleared") }} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+          <Button variant="outline" size="sm" onClick={() => { setCanvas([]); onChange?.([]); setAnnounce("Canvas cleared") }} className="h-9 rounded-full px-3 text-xs font-medium shadow-sm">
             Reset
           </Button>
           <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>
@@ -175,7 +175,7 @@ function CanvasDropArea({ canvas, onClear, children }: { canvas: PageBlock[]; on
       <div className="flex items-center justify-between">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Canvas — {canvas.length} blocks</p>
         {canvas.length > 0 && (
-          <Button variant="outline" size="sm" className="h-7 rounded-full font-mono text-[10px] font-semibold uppercase tracking-widest" onClick={onClear}>
+          <Button variant="outline" size="sm" className="h-9 rounded-full font-mono text-[10px] font-semibold uppercase tracking-widest" onClick={onClear}>
             Clear
           </Button>
         )}

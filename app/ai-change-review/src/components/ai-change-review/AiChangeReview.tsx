@@ -57,14 +57,14 @@ export function AiChangeReview({ hunks, onAccept, onReject, onAcceptAll, classNa
     toast(`${ids.length} left as-is`, { description: "Nothing was applied to those hunks.", duration: 3000, toasterId: TOASTER_ID })
   }
   return (
-    <div className={cn("overflow-hidden rounded-xl border bg-card font-sans", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden rounded-xl border bg-card font-sans", className)}>
       <MotionConfig reducedMotion="user">
         <header className="flex items-center gap-2 border-b border-border/60 bg-muted/40 px-4 py-3">
           <Sparkles aria-hidden className="size-4 text-[hsl(var(--pinned))]" />
           <p className="text-sm font-medium">Agent proposed {hunks.length} changes</p>
           <Badge variant="secondary" className="font-mono text-[10px]">{ins.length}/{hunks.length} accepted</Badge>
           <div className="ml-auto flex gap-1.5">
-            <Button type="button" size="sm" disabled={!pend.length} onClick={acceptAll} className="h-7 rounded-md bg-[hsl(var(--ok))] px-3 text-xs font-medium text-white hover:bg-[hsl(var(--ok))] hover:opacity-90 disabled:opacity-40">Accept all</Button>
+            <Button type="button" size="sm" disabled={!pend.length} onClick={acceptAll} className="h-7 rounded-md bg-[hsl(var(--ok))] px-3 text-xs font-medium text-primary-foreground hover:bg-[hsl(var(--ok))] hover:opacity-90 disabled:opacity-40">Accept all</Button>
             <Button type="button" size="sm" variant="outline" disabled={!pend.length && !ins.length} onClick={dismissRest} className="h-7 rounded-md px-3 text-xs font-medium text-muted-foreground disabled:opacity-40">Dismiss rest</Button>
           </div>
         </header>

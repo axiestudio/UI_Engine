@@ -34,6 +34,7 @@
     /* preset design tokens */
     --encore: 330 75% 52%;
     --encore-stage: 240 12% 8%;
+    --encore-foreground: 0 0% 100%;
   }
 
   .dark {

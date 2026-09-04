@@ -118,8 +118,8 @@ export function VideoDemo({
   const ink = tone === "ink"
 
   return (
-    <section className={cn(ink && "bg-foreground", "w-full", className)} aria-label={title}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section className={cn(ink && "bg-foreground", "relative isolate w-full overflow-hidden", className)} aria-label={title}>
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 sm:py-24">
         {(eyebrow || title || subtitle) && (
           <header className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
             {eyebrow && (
@@ -174,7 +174,7 @@ export function VideoDemo({
               </div>
               <div className="relative aspect-video w-full overflow-hidden bg-muted">
                 <img src={poster} alt={posterAlt} className="h-full w-full object-cover object-top" loading="lazy" />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden />
+                <span className="absolute inset-0 bg-gradient-to-t from-foreground/50 via-transparent to-transparent" aria-hidden />
                 <span className="absolute inset-0 flex items-center justify-center">
                   <span className={cn(
                     "flex size-16 items-center justify-center rounded-full shadow-xl transition-transform duration-300 group-hover:scale-110 sm:size-20",
@@ -195,7 +195,7 @@ export function VideoDemo({
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="!max-w-none w-[min(56rem,calc(100%-2rem))] gap-0 overflow-hidden border-none bg-black p-0">
+        <DialogContent className="!max-w-none w-[min(56rem,calc(100%-2rem))] gap-0 overflow-hidden border-none bg-foreground p-0">
           <DialogTitle className="sr-only">{title}</DialogTitle>
           <div className="aspect-video w-full">
             {direct ? (
@@ -211,7 +211,7 @@ export function VideoDemo({
             )}
           </div>
           <div className="flex justify-end px-4 py-3">
-            <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 hover:text-white" onClick={() => setOpen(false)}>
+            <Button variant="ghost" size="sm" className="text-background hover:bg-background/10 hover:text-background" onClick={() => setOpen(false)}>
               Close
             </Button>
           </div>

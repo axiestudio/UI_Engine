@@ -46,24 +46,24 @@ export function PageTurn({ brand = "HOUSE PRESS", pages = DEMO_PAGES, index: ind
   const flipKey = i
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--book-spine))] px-4 py-16 sm:px-6 lg:px-8", className)}
+    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--book-spine))] px-5 py-16 sm:px-8", className)}
       onKeyDown={(e) => { if (e.key === "ArrowRight") go(i + 1); if (e.key === "ArrowLeft") go(i - 1) }}
     >
       <div className="mx-auto w-full max-w-[1040px]">
         <div className="mb-6 flex items-end justify-between gap-4 text-[hsl(var(--page))]">
           <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "opacity-60")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{brand} · LEAF {String(i + 1).padStart(2, "0")} / {String(pages.length).padStart(2, "0")}</span>
           <div className="flex gap-2">
-            <Button type='button' aria-label="Previous page" onClick={() => go(i - 1)} disabled={i === 0} className="grid size-10 place-items-center rounded-full border border-white/25 disabled:opacity-30 hover:bg-white/10" variant="default">
+            <Button type='button' aria-label="Previous page" onClick={() => go(i - 1)} disabled={i === 0} className="grid size-11 place-items-center rounded-full border border-background/25 disabled:opacity-30 hover:bg-background/10" variant="default">
               <ChevronLeft className="size-5" />
             </Button>
-            <Button type='button' aria-label="Next page" onClick={() => go(i + 1)} disabled={i === pages.length - 1} className="grid size-10 place-items-center rounded-full border border-white/25 disabled:opacity-30 hover:bg-white/10" variant="default">
+            <Button type='button' aria-label="Next page" onClick={() => go(i + 1)} disabled={i === pages.length - 1} className="grid size-11 place-items-center rounded-full border border-background/25 disabled:opacity-30 hover:bg-background/10" variant="default">
               <ChevronRight className="size-5" />
             </Button>
           </div>
         </div>
 
         {/* the spread */}
-        <div className="relative mx-auto grid aspect-[16/10] w-full max-w-[960px] grid-cols-2 rounded-sm p-[10px] shadow-[0_40px_90px_-40px_black]" style={{ background: "hsl(var(--book-cover))", perspective: 2400 }}>
+        <div className="relative mx-auto grid aspect-auto w-full max-w-[960px] grid-cols-1 sm:aspect-[16/10] sm:grid-cols-2 rounded-sm p-[10px] shadow-[0_40px_90px_-40px_black]" style={{ background: "hsl(var(--book-cover))", perspective: 2400 }}>
           {/* left leaf: previous page content (settled) */}
           <div className="relative flex flex-col justify-center px-6 py-8 sm:px-10" style={{ background: "hsl(var(--page))" }}>
             <StackEdge side="left" depth={Math.min(5, i)} />
@@ -93,7 +93,7 @@ export function PageTurn({ brand = "HOUSE PRESS", pages = DEMO_PAGES, index: ind
               <div className="flex h-full items-center justify-center px-8 text-center font-serif text-[16px] font-semibold" style={{ color: "hsl(var(--book-ink))" }}>
                 {cur.head ?? String(i + 1).padStart(2, "0")}
               </div>
-              <span className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent" />
+              <span className="absolute inset-0 bg-gradient-to-r from-foreground/10 via-transparent to-transparent" />
             </motion.div>
           )}
         </div>
@@ -101,7 +101,7 @@ export function PageTurn({ brand = "HOUSE PRESS", pages = DEMO_PAGES, index: ind
         {/* dots */}
         <div className="mt-6 flex justify-center gap-2">
           {pages.map((_, d) => (
-            <Button type='button' key={d} aria-label={`Go to page ${d + 1}`} aria-current={d === i} onClick={() => go(d)} className={cn("h-1.5 rounded-full transition-all", d === i ? "w-7 bg-[hsl(var(--page))]" : "w-2 bg-white/25 hover:bg-white/45")} size="icon" variant="default"></Button>
+            <Button type='button' key={d} aria-label={`Go to page ${d + 1}`} aria-current={d === i} onClick={() => go(d)} className={cn("h-1.5 rounded-full transition-all", d === i ? "w-7 bg-[hsl(var(--page))]" : "w-2 bg-background/25 hover:bg-background/45")} size="icon" variant="default"></Button>
           ))}
         </div>
       </div>

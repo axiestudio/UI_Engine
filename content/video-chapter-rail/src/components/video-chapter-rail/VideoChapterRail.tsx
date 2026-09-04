@@ -71,7 +71,7 @@ export function VideoChapterRail({
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", cn(className))}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <InView>
           <header className={cn("relative")}>
@@ -115,7 +115,7 @@ export function VideoChapterRail({
           <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />Chapters</span>
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Drag or click</span>
         </div>
-        <div ref={emblaRef} className="mt-4 cursor-grab overflow-hidden active:cursor-grabbing">
+        <div ref={emblaRef} className="mt-4 cursor-grab overflow-x-auto overflow-hidden active:cursor-grabbing">
           <div className="flex gap-4">
             {chapters.map((c, i) => {
               const active = i === activeIndex

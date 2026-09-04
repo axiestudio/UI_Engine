@@ -61,8 +61,8 @@ export function LogoScrollMark({
   const isComplete = reduced ? true : controlled ? pct >= 0.995 : scrollDone
 
   return (
-    <div ref={ref} className={cn("relative", className)}>
-      <section className="bg-background text-foreground">
+    <div ref={ref} className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)}>
+      <section className="relative w-full">
         <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         {/* side progress rail, synced to the same spring as the strokes */}
         <span aria-hidden className="pointer-events-none absolute inset-y-16 right-6 hidden w-px bg-border sm:block">

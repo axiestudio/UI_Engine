@@ -51,8 +51,8 @@ export function InView({
     <MotionComponent
       ref={ref}
       initial='hidden'
-      onAnimationComplete={(def) => {
-        if (once && !isViewed && def === 'visible') setIsViewed(true)
+      onAnimationComplete={() => {
+        if (once && !isViewed) setIsViewed(true)
       }}
       animate={(isInView || isViewed) ? "visible" : "hidden"}
 

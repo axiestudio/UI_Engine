@@ -42,7 +42,7 @@ export function FilterTokenBuilder({ tokens, onChange, and, onAnd, fields = [], 
               )}
               <motion.span layout initial={{ scale: 0.7, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.7, opacity: 0 }} className="group flex items-center gap-1.5 py-1 pl-2.5 pr-1 text-[12px] font-medium shadow-sm" style={{ background: `color-mix(in srgb, ${col} 13%, white)`, color: col, borderRadius: 999, outline: `1px solid color-mix(in srgb, ${col} 32%, transparent)` }}>
                 {t.field}<span className="font-mono">{t.op}</span>“{t.value}”
-                <Button type="button" variant="ghost" aria-label={`Remove filter ${t.field} ${t.op} ${t.value}`} onClick={() => onChange(tokens.filter((_, x) => x !== i))} className="grid size-4 place-items-center rounded-full bg-black/10"><X className="size-2.5" /></Button>
+                <Button type="button" variant="ghost" aria-label={`Remove filter ${t.field} ${t.op} ${t.value}`} onClick={() => onChange(tokens.filter((_, x) => x !== i))} className="grid size-4 place-items-center rounded-full bg-foreground/10"><X className="size-2.5" /></Button>
               </motion.span>
             </React.Fragment>
           )

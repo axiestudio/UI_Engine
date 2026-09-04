@@ -5,13 +5,13 @@
   "type": "module",
   "main": "dist/sidebar-anime-glass.cjs.js",
   "module": "dist/sidebar-anime-glass.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/sidebar-anime-glass.es.js",
       "require": "./dist/sidebar-anime-glass.cjs.js"
     },

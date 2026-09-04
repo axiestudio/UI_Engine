@@ -73,7 +73,7 @@ export function GsapParallaxStrata({
   }, [reduce])
 
   return (
-    <section ref={sectionRef} className={cn("relative h-[130vh] w-full overflow-hidden bg-background", className)}>
+    <section ref={sectionRef} className={cn("relative isolate h-[130vh] w-full overflow-hidden bg-background", className)}>
       {STRATA.map((stratum, i) => (
         <div
           key={stratum.label}
@@ -92,7 +92,7 @@ export function GsapParallaxStrata({
       <Dots size={28} className="z-[6]" />
 
       {/* title block — its own, slowest stratum */}
-      <div ref={titleRef} className="absolute inset-0 z-10 flex items-center justify-center px-4 pb-[18vh]">
+      <div ref={titleRef} className="absolute inset-0 z-10 flex items-center justify-center px-5 pb-[18vh] sm:px-8 lg:px-12">
         <InView once variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
           <div className="flex flex-col items-center text-center">
             <MonoLabel className="justify-center">{kicker}</MonoLabel>

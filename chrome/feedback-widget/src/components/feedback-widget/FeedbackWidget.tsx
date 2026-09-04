@@ -65,7 +65,7 @@ export function FeedbackWidget({
   }
 
   return (
-    <div className={cn("relative isolate w-full bg-background py-16 text-foreground", ink && "bg-foreground text-background", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden bg-background py-16 text-foreground", ink && "bg-foreground text-background", className)}>
       <div className="relative isolate overflow-hidden mx-auto w-full max-w-[720px] px-4 sm:px-6">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: EASE }}>
           <header className="relative max-w-3xl">
@@ -102,7 +102,7 @@ export function FeedbackWidget({
               Nothing to configure — press the tab and tell us how it&rsquo;s going.
             </p>
 
-            <div className="absolute bottom-6 right-6">
+            <div className="absolute bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] right-6">
               <AnimatePresence>
                 {open && (
                   <motion.div

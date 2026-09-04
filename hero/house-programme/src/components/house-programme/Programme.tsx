@@ -62,7 +62,7 @@ export function Programme({ house, season, acts, credits, stub, className }: Pro
         {stub && (
           <div className="relative mx-auto mt-12 w-full max-w-[520px]">
             <div aria-hidden className="absolute inset-x-0 top-[-14px] flex justify-between">
-              {[0, 1].map((s) => <span key={s} className={cn("size-7 -translate-y-1/2 rounded-full", s ? "-right-3.5" : "-left-3.5")} style={{ background: "hsl(var(--background)/transparent)" }} />)}
+              {[0, 1].map((s) => <span key={s} className={cn("size-7 -translate-y-1/2 rounded-full bg-[hsl(var(--paper))]", s ? "-right-3.5" : "-left-3.5")} />)}
             </div>
             <Button
               type="button"

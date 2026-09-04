@@ -58,8 +58,8 @@ export function Gallery({
 }: GalleryProps) {
   if (!photos.length) return null
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-label={title}>
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 lg:px-8 lg:py-24">
         <div className={cn("mb-10 grid gap-8 lg:grid-cols-2 lg:items-end", !comparison && "grid-cols-1")}>
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="max-w-xl">
@@ -74,7 +74,7 @@ export function Gallery({
                 <ImageComparison className="aspect-[16/10] w-full overflow-hidden rounded-[20px] border shadow-sm">
                   <ImageComparisonImage src={comparison.before} alt={comparison.beforeAlt ?? "Before"} position="left" />
                   <ImageComparisonImage src={comparison.after} alt={comparison.afterAlt ?? "After"} position="right" />
-                  <ImageComparisonSlider className="bg-white" />
+                  <ImageComparisonSlider className="bg-background" />
                 </ImageComparison>
                 {comparison.label && <figcaption className="mt-2 font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{comparison.label}</figcaption>}
               </figure>

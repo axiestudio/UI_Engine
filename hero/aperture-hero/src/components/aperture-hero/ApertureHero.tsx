@@ -104,15 +104,15 @@ export function ApertureHero({ img, kicker = "THROUGH THE LENS", title, sub, cta
           <MonoLabel className="text-white/60">{kicker}</MonoLabel>
           <h1 className="mt-2 font-display text-[clamp(26px,5vw,52px)] font-black leading-[0.98] tracking-tight text-white">{title}</h1>
           {sub && <p className="mx-auto mt-2 max-w-md text-[13px] font-medium text-white/70 sm:text-[15px]">{sub}</p>}
-          {cta && <a href={cta.href ?? "#"} onClick={(e) => { e.stopPropagation(); cta.onClick?.() }} className="mt-5 inline-flex h-10 items-center gap-2 rounded-full bg-white px-6 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-black">{cta.label}</a>}
+          {cta && <a href={cta.href ?? "#"} onClick={(e) => { e.stopPropagation(); cta.onClick?.() }} className="mt-5 inline-flex h-11 items-center gap-2 rounded-full bg-background px-6 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-foreground">{cta.label}</a>}
         </div>
       </div>
     </div>
   )
 
-  if (controlled) return <div className={cn("w-full bg-[hsl(var(--lens))] p-4", className)}>{Frame}</div>
+  if (controlled) return <div className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--lens))] p-4", className)}>{Frame}</div>
   return (
-    <div ref={wrapRef} className={cn("relative isolate w-full bg-[hsl(var(--lens))]", className)} style={{ height }}>
+    <div ref={wrapRef} className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--lens))]", className)} style={{ height }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">{Frame}</div>
     </div>
   )

@@ -91,7 +91,7 @@ export function DndDropZone({
           <span className="hidden sm:inline text-xs font-medium text-muted-foreground">Advanced • Professional DnD</span>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => { setAssignments({}); onChange?.({}); setAnnounce("Assignments reset") }} className="h-7 rounded-full px-3 text-xs font-medium shadow-sm">
+          <Button variant="outline" size="sm" onClick={() => { setAssignments({}); onChange?.({}); setAnnounce("Assignments reset") }} className="h-9 rounded-full px-3 text-xs font-medium shadow-sm">
             Reset
           </Button>
           <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">A11y • Advanced</span>

@@ -370,7 +370,7 @@ export function HeroScroll({
               SHOWCASE · SCROLL CINEMA
             </span>
             {showProgress && totalFrames > 0 && (
-              <span className="hidden sm:inline-flex h-7 items-center rounded-full bg-white px-3 font-mono text-[10px] font-bold tracking-widest text-foreground shadow-sm">
+              <span className="hidden sm:inline-flex h-7 items-center rounded-full bg-background px-3 font-mono text-[10px] font-bold tracking-widest text-foreground shadow-sm">
                 {String(frameIndex + 1).padStart(2, "0")} / {String(totalFrames).padStart(2, "0")}
               </span>
             )}
@@ -417,7 +417,7 @@ export function HeroScroll({
                   {s.ctaLabel && (
                     <a
                       href={s.ctaHref ?? "#"}
-                      className="pointer-events-auto mt-7 inline-flex h-11 items-center rounded-full bg-white px-7 font-display text-sm font-extrabold tracking-tight text-foreground shadow-[0_8px_30px_rgba(0,0,0,0.22)] transition hover:bg-white/90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      className="pointer-events-auto mt-7 inline-flex h-11 items-center rounded-full bg-background px-7 font-display text-sm font-extrabold tracking-tight text-foreground shadow-[0_8px_30px_rgba(0,0,0,0.22)] transition hover:bg-background/90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {s.ctaLabel}
                     </a>
@@ -432,7 +432,7 @@ export function HeroScroll({
         {hint && (
           <div
             className={cn(
-              "pointer-events-none absolute bottom-[88px] left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 transition-opacity duration-500 sm:bottom-[96px]",
+              "pointer-events-none absolute bottom-[max(6rem,env(safe-area-inset-bottom,6rem))] left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 transition-opacity duration-500",
               hintOn ? "opacity-100" : "opacity-0"
             )}
             aria-hidden
@@ -451,9 +451,9 @@ export function HeroScroll({
           </div>
         )}
 
-        {/* ── Bottom gallery rail (when gallery supplied) ─────────────────── */}
+        {/* ── Bottom gallery rail (when gallery supplied) — floating chrome below copy ── */}
         {galleryImages && galleryImages.length > 0 && (
-          <div className="absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/65">
+          <div className="absolute inset-x-0 bottom-[max(0.75rem,env(safe-area-inset-bottom,0.75rem))] border-t border-white/10 bg-black/65">
             <div className="mx-auto flex max-w-[1200px] items-center gap-3 px-3 py-3 sm:px-4">
               <p className="hidden shrink-0 font-mono text-[10px] font-bold tracking-[0.2em] text-white/60 sm:block">GALLERY</p>
               <div className="no-scrollbar flex flex-1 items-center gap-2 overflow-x-auto scroll-smooth">

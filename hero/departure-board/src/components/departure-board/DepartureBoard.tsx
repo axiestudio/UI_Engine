@@ -87,7 +87,7 @@ function FlapWord({ value, tone }: { value: string; tone?: DepartureItem["tone"]
       fontSize={15}
       tileRadius={3}
       gap="3px"
-      tileColor="#101014"
+      tileColor="hsl(var(--solari-panel))"
       textColor={tone === "now" ? "hsl(var(--solari))" : "hsl(var(--solari-ink))"}
       className="w-fit"
     />

@@ -269,7 +269,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
               />
             </BarChart>
           </div>
-          <dl className="grid grid-cols-3 divide-x border-t px-0 py-2 text-[11px]">
+          <dl className="grid grid-cols-1 gap-3 border-t px-0 py-2 text-[11px] sm:grid-cols-3 sm:gap-4">
             {([
               ["best day", `${bestDay?.day} · ${compact(bestDay?.kr ?? 0)}`],
               ["avg / day", compact(Math.round(salesTotal / Math.max(1, sales.length)))],
@@ -319,7 +319,8 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
             </h3>
             <span className="text-[11px] text-muted-foreground">tap a price to edit · edits mark the drop dirty</span>
           </header>
-          <table className="w-full border-collapse text-[12px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12px]">
             <thead>
               <tr className="border-b bg-muted/20 text-left text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
                 <th className="px-4 py-1.5 font-semibold">SKU</th>
@@ -351,6 +352,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
               })}
             </tbody>
           </table>
+          </div>
           <div className="mt-auto border-t px-4 py-2">
             <ul className="space-y-0.5">
               <AnimatePresence initial={false}>

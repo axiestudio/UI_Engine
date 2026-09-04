@@ -36,13 +36,13 @@ const DEMO_QUOTE_FEATURE_AUTHOR = "Priya S."
 export function QuoteFeature({ quote = DEMO_QUOTE_FEATURE_QUOTE, author = DEMO_QUOTE_FEATURE_AUTHOR, role, alsoFrom = [], moreLink, interval = 3.5, className }: QuoteFeatureProps) {
   const voices = React.useMemo(() => [`${author}${role ? ` · ${role}` : ""}`, ...alsoFrom], [author, role, alsoFrom])
   return (
-    <section className={cn("relative w-full overflow-hidden bg-background text-foreground", className)} aria-label="A word from a guest">
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label="A word from a guest">
       <InView
         variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         viewOptions={{ once: true, margin: "-80px" }}
       >
-        <div className="relative mx-auto w-full max-w-[900px] px-4 py-24 sm:px-6 lg:py-32">
+        <div className="relative mx-auto w-full max-w-[900px] px-5 py-24 sm:px-8 lg:py-32">
           {/* architecture glyph */}
           <span aria-hidden className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none font-display text-[34vw] font-bold leading-none text-foreground/[0.05] sm:text-[220px] lg:text-[300px]">
             “

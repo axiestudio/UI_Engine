@@ -91,8 +91,8 @@ export function Compare({
   const highlightIndex = Math.max(0, products.findIndex((p) => p.highlight))
 
   return (
-    <section className={cn(ink && "bg-foreground", "w-full", className)} aria-label={title}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section className={cn("relative isolate overflow-hidden w-full", ink && "bg-foreground", className)} aria-label={title}>
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 sm:py-24 lg:px-8">
         {(eyebrow || title || subtitle) && (
           <header className="mb-10 max-w-2xl sm:mb-14">
             {eyebrow && (
@@ -201,7 +201,7 @@ export function Compare({
                       <TableCell key={p.name} className={cn("py-6 text-center", i === highlightIndex && (ink ? "bg-background/10" : "bg-secondary/70"))}>
                         {p.cta && (
                           <Button
-                            size="sm"
+                            size="default"
                             variant={i === highlightIndex ? "default" : "outline"}
                             className={cn(i === highlightIndex && ink && "bg-background text-foreground hover:bg-background/90", i !== highlightIndex && ink && "border-background/25 bg-transparent text-background hover:bg-background/10 hover:text-background")}
                             onClick={p.cta.onClick}

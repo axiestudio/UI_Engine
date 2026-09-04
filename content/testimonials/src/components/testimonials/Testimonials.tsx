@@ -195,9 +195,9 @@ export function Testimonials({
   const secondRow = items.length > 2 ? (sliderReverseSecondRow ? [...items].reverse() : items) : null
 
   return (
-    <section className={cn("w-full overflow-hidden bg-background text-foreground", className)} aria-label={title}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={title}>
       <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
-        <div className="mx-auto w-full max-w-[1280px] px-4 pt-16 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[1280px] px-5 pt-16 sm:px-8">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}
@@ -222,7 +222,7 @@ export function Testimonials({
         </div>
 
         {variant === "carousel" && (
-          <div className="mx-auto w-full max-w-[860px] px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-[860px] px-5 pb-16 sm:px-8">
             <div className="relative px-8 lg:px-12">
               <Carousel disableDrag={!!reduce}>
                 <CarouselContent>

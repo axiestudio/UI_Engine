@@ -143,7 +143,7 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
   let lastEmp = ""
 
   return (
-    <div className={cn("flex min-h-dvh flex-col bg-muted/30 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-dvh w-full flex-col overflow-hidden bg-muted/30 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — plain label voice, sits on the canvas */}
       <header className="flex flex-wrap items-center gap-x-3 gap-y-2 px-5 py-3">
@@ -193,7 +193,8 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
             </motion.div>
           )}
         </AnimatePresence>
-        <table className="w-full border-collapse text-[12px]">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-[12px]">
           <thead>
             <tr className="border-y bg-muted/40 text-left text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
               <th className="w-8 px-4 py-1.5">
@@ -258,6 +259,7 @@ export function AttendanceDesk({ rows = DEFAULT_ROWS, onApprove, className }: At
             )}
           </tbody>
         </table>
+        </div>
         <div className="border-t px-4 py-2 text-[11px] text-muted-foreground">Tap a punch time to correct it · edits stamp the audit trail with your supervisor ID</div>
       </section>
 

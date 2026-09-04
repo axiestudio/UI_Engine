@@ -121,15 +121,15 @@ export function SidebarGooeyFlow({
   }, [section])
 
   return (
-    <div className={cn("dark relative isolate w-full", className)}>
-      <div className="flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground [--color-1:hsl(0_0%_100%)] [--color-2:hsl(0_0%_80%)] [--color-3:hsl(0_0%_58%)] [--color-4:hsl(0_0%_92%)]">
+    <div className={cn("relative isolate w-full overflow-hidden", className)}>
+      <div className="flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground [--color-1:hsl(var(--primary))] [--color-2:hsl(var(--muted-foreground))] [--color-3:hsl(var(--accent-foreground))] [--color-4:hsl(var(--secondary-foreground))]">
         {/* Mobile backdrop */}
         {overlayMode && mobileOpen && (
           <button
             type="button"
             aria-label="Close navigation"
             onClick={() => setMobileOpen(false)}
-            className="absolute inset-0 z-30 bg-foreground/40 backdrop-blur-[2px]"
+            className="absolute inset-0 z-30 bg-foreground/40"
           />
         )}
 
@@ -184,7 +184,7 @@ export function SidebarGooeyFlow({
               sgf-plate hook aligns the effect-overlay font with the links
               so the active label doesn't double. */}
           <div
-            className="sgf-plate relative mx-3 mt-4 overflow-hidden rounded-xl border border-white/10 bg-[hsl(var(--background))] px-1 py-4 [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:px-2 [&_a]:text-[12px] [&_a]:font-bold"
+            className="sgf-plate relative mx-3 mt-4 overflow-hidden rounded-xl border border-border bg-[hsl(var(--background))] px-1 py-4 [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:px-2 [&_a]:text-[12px] [&_a]:font-bold"
             onClick={(e) => {
               const a = (e.target as HTMLElement).closest("a")
               if (!a) return

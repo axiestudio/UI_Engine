@@ -58,7 +58,7 @@ export function LogoConstellation({ variants = DEFAULTS, onSelect, eyebrow = "TH
   const minSize = variants.length ? Math.min(...variants.map((v) => v.size)) : 0
 
   return (
-    <section className="bg-background text-foreground">
+    <section className="relative isolate overflow-hidden w-full bg-background text-foreground">
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
             <header className="">
         {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}

@@ -103,7 +103,7 @@ function ratingRow(onRate: ((v: number) => void) | undefined, setRated: (n: numb
       <legend className="sr-only">Rate your visit</legend>
       {Array.from({ length: max }, (_, i) => i + 1).map((v) => (
         <label key={v} className="cursor-pointer">
-          <input type="radio" name="ovation" value={v} className="peer sr-only" checked={rated === v} />
+          <input type="radio" name="ovation" value={v} className="peer sr-only" checked={rated === v} readOnly={!onRate} />
           <span className={cn("grid size-11 place-items-center rounded-full border transition-all", rated !== null && v <= rated ? "border-ovation bg-ovation/15" : "border-white/20", "peer-focus-visible:ring-2 peer-focus-visible:ring-[hsl(var(--ovation))]", !reduce && "hover:scale-110")}>
             <Star className={cn("size-5", rated !== null && v <= rated ? "fill-[hsl(var(--ovation))] text-ovation" : "text-white/40")} />
           </span>

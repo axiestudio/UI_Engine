@@ -70,7 +70,7 @@ export function Newsletter({
   return (
     <section className={cn(ink ? "bg-foreground" : "bg-background", "relative isolate w-full overflow-hidden", className)} aria-label="Newsletter">
       <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((ink ? 0.07 : 0.04) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
-      <div className="mx-auto w-full max-w-[880px] px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto w-full max-w-[880px] px-5 py-20 sm:px-8 sm:py-28">
         <div
           className={cn(
             "relative grid gap-10 overflow-hidden border p-8 sm:grid-cols-[1.1fr_1fr] sm:gap-12 sm:p-12",

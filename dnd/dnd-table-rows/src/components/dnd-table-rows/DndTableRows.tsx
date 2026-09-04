@@ -97,8 +97,8 @@ export function DndTableRows({
       </div>
       <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announce}</div>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={({ active }) => setActiveId(String(active.id))} onDragCancel={() => setActiveId(null)} onDragEnd={onDragEnd}>
-        <div className="mt-8 overflow-hidden rounded-xl border bg-card shadow-sm">
-          <table className="w-full text-left text-sm">
+        <div className="mt-8 overflow-x-auto rounded-xl border bg-card shadow-sm">
+          <table className="w-full min-w-[560px] text-left text-sm">
             <thead>
               <tr className="border-b bg-muted/40">
                 <th className="w-12 px-3 py-3" />

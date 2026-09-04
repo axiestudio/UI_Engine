@@ -24,7 +24,7 @@ export function PipelineRunGraph({ run, stages, onRerunFailed, className }: Pipe
   React.useEffect(() => { logBox.current?.scrollTo(0, logBox.current.scrollHeight) }, [log?.log?.length])
   const failed = stages.some((s) => s.status === "fail")
   return (
-    <div className={cn("rounded-xl border border-border/70 bg-card p-4 shadow-sm", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden rounded-xl border border-border/70 bg-card p-4 shadow-sm", className)}>
       <MotionConfig reducedMotion="user">
       <div className="mb-4 flex items-center gap-2 text-sm">
         <span className="font-semibold">{run ? `RUN ${run}` : "RUN"}</span>

@@ -81,9 +81,9 @@ export function TablePreset({
     setSort((cur) => (cur?.key === key ? (cur.dir === "asc" ? { key, dir: "desc" } : null) : { key, dir: "asc" }))
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={title}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
-        <div className="mx-auto w-full max-w-[900px] px-4 py-16 sm:px-6">
+        <div className="mx-auto w-full max-w-[900px] px-5 py-16 sm:px-8">
           {(eyebrow || title) && (
             <header className="mb-8">
               {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}

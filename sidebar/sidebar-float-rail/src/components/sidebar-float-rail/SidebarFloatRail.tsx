@@ -91,7 +91,7 @@ function RailButton({ it, active, expanded, onSelect }: RailButtonProps) {
         aria-current={active ? "page" : undefined}
         onClick={onSelect}
         className={cn(
-          "relative size-10 shrink-0 text-muted-foreground",
+          "relative size-11 shrink-0 text-muted-foreground",
           active && "text-foreground",
         )}
       >
@@ -139,7 +139,7 @@ function ProfileRailButton({ expanded }: { expanded: boolean }) {
         variant="ghost"
         size="icon"
         aria-label="Account — Elin Sandberg, studio plan"
-        className="relative size-10 shrink-0"
+        className="relative size-11 shrink-0"
       >
         <Avatar className="size-7">
           <AvatarFallback className="text-[10px] font-bold">ES</AvatarFallback>
@@ -288,7 +288,7 @@ export function SidebarFloatRail({
           type="button"
           aria-label="Close navigation"
           onClick={() => setDrawerOpen(false)}
-          className="absolute inset-0 z-30 bg-foreground/40 backdrop-blur-[2px]"
+          className="absolute inset-0 z-30 bg-foreground/40"
         />
       )}
 
@@ -400,7 +400,7 @@ export function SidebarFloatRail({
             aria-label={effExpanded ? "Collapse sidebar" : "Expand sidebar"}
             aria-expanded={effExpanded}
             className={cn(
-              "mt-1.5 size-10 shrink-0 text-muted-foreground",
+              "mt-1.5 size-11 shrink-0 text-muted-foreground",
               overlayMode && "hidden",
             )}
           >

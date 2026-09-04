@@ -21,7 +21,7 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
   const [pending, setPending] = React.useState<Version | null>(null)
   const idx = hoverIdx ?? versions.length - 1
   return (
-    <div className={cn("rounded-xl border bg-card p-4 font-sans", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden rounded-xl border bg-card p-4 font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border/60 bg-muted/40">
         {versions.map((v, i) => (
@@ -30,7 +30,7 @@ export function UndoHistorySlider({ versions, head, render, onRestore, className
     </div>
         ))}
         {hoverIdx !== null && hoverIdx < versions.length - 1 && (
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute right-2 top-2 flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-white"><History className="size-3" /> previewing</motion.span>
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute right-2 top-2 flex items-center gap-1.5 rounded-full bg-foreground/80 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-background"><History className="size-3" /> previewing</motion.span>
         )}
       </div>
       <div className="relative mt-5 h-8">

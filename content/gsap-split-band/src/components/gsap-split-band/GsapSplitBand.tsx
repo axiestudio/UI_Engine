@@ -66,9 +66,9 @@ export function GsapSplitBand({
   }, [])
 
   return (
-    <section ref={rootRef} className={cn("relative overflow-hidden bg-foreground text-background", className)} aria-label="Statement band">
+    <section ref={rootRef} className={cn("relative isolate overflow-hidden w-full bg-foreground text-background", className)} aria-label="Statement band">
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.5 }}>
-        <div className="mx-auto w-full max-w-[920px] px-6 py-20 sm:py-28">
+        <div className="mx-auto w-full max-w-[920px] px-5 py-20 sm:px-8 sm:py-28">
           <p className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-background/50">
             <span aria-hidden className="size-1.5 rounded-full bg-primary" />
             {kicker}

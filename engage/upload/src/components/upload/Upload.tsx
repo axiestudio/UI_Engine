@@ -114,7 +114,7 @@ export function Upload({
 
   return (
     <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-label={title}>
-      <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
+      <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} once viewOptions={{ amount: 0, margin: "0px 0px -10% 0px" }}>
         <div className="mx-auto w-full max-w-[760px] px-4 py-16 sm:px-6">
           <header className="mb-6">
             {eyebrow && <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{eyebrow}</p>}

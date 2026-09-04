@@ -264,7 +264,8 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                   pending {pendingSum.toLocaleString("sv-SE")} kr · tap a memo to edit
                 </span>
               </header>
-              <table className="w-full border-collapse text-sm">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-border/60 bg-muted/20 text-left text-xs text-muted-foreground">
                     <th className="px-6 py-2.5 font-semibold">Date</th>
@@ -315,6 +316,7 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
                   ))}
                 </tbody>
               </table>
+              </div>
               <div className="mt-auto flex items-baseline justify-between border-t border-border/60 bg-muted/20 px-6 py-4">
                 <span className="text-xs text-muted-foreground">Closing balance · posted</span>
                 <span className="flex items-baseline gap-1.5 text-2xl font-bold tabular-nums">

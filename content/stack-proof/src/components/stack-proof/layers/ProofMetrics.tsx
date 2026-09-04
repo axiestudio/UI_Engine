@@ -12,7 +12,7 @@ export type ProofMetricsProps = {
 
 export function ProofMetrics({ items, className }: ProofMetricsProps) {
   return (
-    <dl className={cn("grid grid-cols-3 border-t border-border/60", className)}>
+    <dl className={cn("grid grid-cols-1 border-t sm:grid-cols-3 border-border/60", className)}>
       {items.map((m, i) => (
         <div key={m.label} className={cn("px-4 py-3.5", i > 0 && "border-l border-border/60")}>
           <dt className="order-2 mt-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{m.label}</dt>

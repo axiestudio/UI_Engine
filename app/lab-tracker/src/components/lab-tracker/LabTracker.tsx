@@ -172,7 +172,7 @@ export function LabTracker({ run = "RT-2408", samples = DEFAULT_SAMPLES, onResta
   }
 
   return (
-    <div className={cn("flex flex-col overflow-hidden bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex w-full flex-col overflow-hidden bg-background font-sans text-foreground", className)}>
       {/* bench system bar — health strip runs full-bleed at the very top */}
       <StatusHealthStrip services={services} region={region} onRegion={setRegion} />
 

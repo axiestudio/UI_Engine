@@ -38,7 +38,7 @@ export function GalleryRails({ eyebrow = "THE WALL", title, subtitle, works, onS
           {subtitle && <p className="mt-3 text-[15px] font-medium leading-relaxed opacity-70">{subtitle}</p>}
         </div>
 
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-x-6 gap-y-10 overflow-x-auto sm:grid-cols-2 lg:grid-cols-3">
           {works.map((w, i) => (
             <li key={w.title + i} className={cn(w.span === "wide" && "col-span-2")}>
               <motion.figure
@@ -49,18 +49,18 @@ export function GalleryRails({ eyebrow = "THE WALL", title, subtitle, works, onS
                 style={{ transformOrigin: "top center" }}
                 className="group relative"
               >
-                <div className="relative overflow-hidden border border-black/10 bg-white shadow-[0_14px_28px_-18px_rgba(0,0,0,0.45)] transition-transform duration-500 group-hover:-translate-y-1">
+                <div className="relative overflow-hidden border border-border bg-card shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.45)] transition-transform duration-500 group-hover:-translate-y-1">
                   {w.img ? (
                     <img src={w.img} alt={w.title} loading="lazy" className={cn("w-full object-cover", w.span === "tall" ? "aspect-[3/4]" : "aspect-[4/3]")} />
                   ) : (
                     <div className={cn("w-full bg-[hsl(var(--wall-deep))]", w.span === "tall" ? "aspect-[3/4]" : "aspect-[4/3]")} />
                   )}
                   {onSelect ? (
-                    <Button type='button' onClick={() => onSelect(w)} aria-label={`Open ${w.title}`} className="absolute inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[hsl(var(--plate))]" size="icon" variant="default"></Button>
+                    <Button type='button' onClick={() => onSelect(w)} aria-label={`Open ${w.title}`} className="size-full absolute inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[hsl(var(--plate))]" size="icon" variant="default"></Button>
                   ) : w.href ? (
                     <a href={w.href} className="absolute inset-0" aria-label={w.title} />
                   ) : null}
-                  <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-black/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100")}>
+                  <span aria-hidden className={cn("pointer-events-none absolute inset-0", "text-foreground/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100")}>
     <span className="absolute border-current top-[5px] left-[5px] border-t border-l" style={{ width: 9, height: 9 }} />
     <span className="absolute border-current top-[5px] right-[5px] border-t border-r" style={{ width: 9, height: 9 }} />
     <span className="absolute border-current bottom-[5px] left-[5px] border-b border-l" style={{ width: 9, height: 9 }} />

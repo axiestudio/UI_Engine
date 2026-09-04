@@ -229,7 +229,8 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Feature store</span>
             <Badge variant="secondary" className="font-mono text-[10px]">{served}/{features.length} served</Badge>
           </header>
-          <table className="w-full border-collapse text-[12px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12px]">
             <thead>
               <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                 <th className="px-3 py-1.5 font-semibold">Feature</th>
@@ -260,6 +261,7 @@ export function ModelMonitor({ model = "prod-recommender", version = "v2.14.3", 
               ))}
             </tbody>
           </table>
+          </div>
           <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Offline store: parquet on s3 · online: redis, ttl 24 h</div>
         </section>
 

@@ -33,6 +33,9 @@
     --brand: 0 0% 9%;
     --brand-foreground: 0 0% 98%;
 
+    --overlay-bg: 0 0% 7%;
+    --overlay-fg: 0 0% 98%;
+
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -58,6 +61,8 @@
     --ring: 0 0% 83%;
     --brand: 0 0% 98%;
     --brand-foreground: 0 0% 9%;
+    --overlay-bg: 0 0% 7%;
+    --overlay-fg: 0 0% 98%;
   }
 }
 

@@ -63,7 +63,7 @@ export function Recap({
   const allDone = items.length > 0 && items.every((i) => done.has(i.id))
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={title}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[720px] px-4 py-16 sm:px-6 lg:py-20">
           <header className="mb-8">

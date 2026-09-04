@@ -122,7 +122,7 @@ export function Choice({ question = DEMO_CHOICE_QUESTION, options = DEMO_CHOICE_
 
   return (
     <section className={cn("relative isolate w-full min-h-[400px] overflow-hidden bg-background text-foreground", className)} aria-labelledby={`${groupId}-title`}>
-      <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
+      <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} once viewOptions={{ amount: 0, margin: "0px 0px -10% 0px" }}>
         <div className="mx-auto w-full max-w-[1000px] px-4 py-16 sm:px-6 lg:py-20">
           <h2 id={`${groupId}-title`} className="max-w-xl font-display text-[26px] font-black leading-[1.1] tracking-tight sm:text-3xl">
             {question}

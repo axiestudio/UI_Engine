@@ -77,7 +77,7 @@ export function FloatingShareSheet({
   }
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("relative isolate overflow-hidden w-full", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
         <div className="flex flex-wrap items-center gap-4">
           <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{title}</span>
@@ -89,7 +89,7 @@ export function FloatingShareSheet({
               aria-haspopup="menu"
               aria-expanded={open}
               variant="outline"
-              className="h-9 gap-2 rounded-full px-4 text-[11px] font-black uppercase tracking-[0.14em]"
+              className="h-11 gap-2 rounded-full px-4 text-[11px] font-black uppercase tracking-[0.14em]"
             >
               {copied ? <Check className="size-3.5 text-primary" strokeWidth={3} aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
               {copied ? "Link copied" : label}
@@ -120,7 +120,7 @@ export function FloatingShareSheet({
                     role="menuitem"
                     variant="ghost"
                     onClick={() => { if (id === "copy") copy(); setOpen(false) }}
-                    className="h-auto w-full justify-start gap-2.5 rounded-lg px-2.5 py-2 text-left text-[13px] font-medium hover:bg-muted focus-visible:bg-muted"
+                    className="h-11 w-full justify-start gap-2.5 rounded-lg px-2.5 text-left text-[13px] font-medium hover:bg-muted focus-visible:bg-muted"
                   >
                     <Icon className="size-3.5 text-muted-foreground" aria-hidden />
                     {id === "copy" && copied ? "Copied ✓" : chLabel}

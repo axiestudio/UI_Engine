@@ -47,11 +47,11 @@ function Dot({ active }: { active?: boolean }) {
 
 // Self-demo defaults.
 const DEMO_TIMELINE_ITEMS: TimelineMilestone[] = [
-  { date: "2001", title: "Doors open", body: "The studio starts with two quiet rooms, evening hours, and a list of founding members who wanted somewhere unhurried to sit." },
-  { date: "2008", title: "Late openings", body: "Weeknight hours extend to 21:00. Members keep coming back because the chair is still theirs after the rush." },
-  { date: "2015", title: "Real-time booking", body: "The front desk swaps paper for a live calendar. Online, the door screen, and the studio software share one source of truth." },
-  { date: "2021", title: "Twenty years", body: "Twenty years in the same place. Same staff lead, same door, same commitment to a quiet hour." },
-  { date: "2026", title: "Next chapter", body: "Renovating the rear room into a soundproofed floor for executive sessions and traveling practitioners." },
+  { time: "2001", title: "Doors open", description: "The studio starts with two quiet rooms, evening hours, and a list of founding members who wanted somewhere unhurried to sit." },
+  { time: "2008", title: "Late openings", description: "Weeknight hours extend to 21:00. Members keep coming back because the chair is still theirs after the rush." },
+  { time: "2015", title: "Real-time booking", description: "The front desk swaps paper for a live calendar. Online, the door screen, and the studio software share one source of truth." },
+  { time: "2021", title: "Twenty years", description: "Twenty years in the same place. Same staff lead, same door, same commitment to a quiet hour." },
+  { time: "2026", title: "Next chapter", description: "Renovating the rear room into a soundproofed floor for executive sessions and traveling practitioners." },
 ]
 
 export function Timeline({ eyebrow = "History", title = "Our story", subtitle, items = DEMO_TIMELINE_ITEMS, layout = "center", trail = true, className }: TimelineProps) {
@@ -59,8 +59,8 @@ export function Timeline({ eyebrow = "History", title = "Our story", subtitle, i
   const center = layout === "center"
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title}>
-      <div className="mx-auto w-full max-w-[960px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={title}>
+      <div className="mx-auto w-full max-w-[960px] px-5 py-16 sm:px-8 lg:py-24">
         {(eyebrow || title) && (
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="mb-12 max-w-2xl">

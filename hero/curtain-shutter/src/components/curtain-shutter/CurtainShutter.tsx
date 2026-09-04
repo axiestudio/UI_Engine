@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 // ═══ JOB         Open the page like venetian blinds.
 // ═══ EMOTION     A rhythm — slats part row by row.
 // ═══ SIGNATURE   N staggered horizontal slats rise in a cascade (read not a wipe).
-// ═══ ISOLATION   fixed inset-0 is the named behavior — whole-viewport curtain reveal.
+// ═══ ISOLATION   root-scoped: `absolute inset-0` inside `relative isolate overflow-hidden` — never `fixed`.
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
 
@@ -121,7 +121,7 @@ export function CurtainShutter({
   return (
     <div
       ref={mode === "stage" ? stageRef : undefined}
-      className={cn(mode === "overlay" ? "fixed inset-0 z-[90]" : "relative isolate w-full", className)}
+      className={cn("relative isolate w-full overflow-hidden", mode === "overlay" && "min-h-[60vh]", className)}
       style={mode === "stage" ? { height: stageHeight } : undefined}
     >
       <div
@@ -230,7 +230,7 @@ function ShutterScene({
 
       <motion.div
         style={{ opacity: hintOpacity }}
-        className="pointer-events-none absolute inset-x-0 bottom-9 flex flex-col items-center gap-2 text-[hsl(var(--curtain-text)/0.7)]"
+        className="pointer-events-none absolute inset-x-0 bottom-[max(2.25rem,env(safe-area-inset-bottom,2.25rem))] z-10 flex flex-col items-center gap-2 text-[hsl(var(--curtain-text)/0.7)]"
       >
         <span className="font-mono text-[10px] font-bold tracking-[0.3em]">{hint}</span>
         <span className="flex h-9 w-6 items-start justify-center rounded-full border border-[hsl(var(--curtain-glow)/0.25)] p-1.5">

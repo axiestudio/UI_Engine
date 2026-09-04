@@ -49,7 +49,7 @@ export function RevealParallax({
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <div ref={ref} className="relative">
         <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
@@ -69,7 +69,7 @@ export function RevealParallax({
               <p className="font-mono text-[11px] font-bold tracking-[0.25em] text-muted-foreground">{eyebrow}</p>
               <h2 className="mt-3 font-display text-3xl font-bold leading-[0.98] tracking-[-0.03em] sm:text-5xl">{title}</h2>
               {subtitle && <p className={cn("mt-4 max-w-md text-sm font-medium leading-relaxed", ink ? "text-background/70" : "text-muted-foreground")}>{subtitle}</p>}
-              <dl className="mt-8 grid grid-cols-3 gap-3">
+              <dl className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {rows.map((r) => (
                   <div key={r.id} className="rounded-xl border p-4 text-center">
                     <dt className={cn("text-[11px] font-medium uppercase tracking-widest", ink ? "text-background/60" : "text-muted-foreground")}>{r.label}</dt>

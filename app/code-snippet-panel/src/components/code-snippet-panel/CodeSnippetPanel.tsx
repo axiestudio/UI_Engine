@@ -35,8 +35,8 @@ export function CodeSnippetPanel({ code, language, title, copyText, className }:
         {title && <span className="truncate text-sm font-medium">{title}</span>}
         <span className="rounded-full bg-accent px-2 py-0.5 font-mono text-[11px] font-medium text-accent-foreground">{lang}</span>
         <span className="ml-auto flex items-center gap-0.5">
-          <Button type="button" variant="ghost" aria-pressed={wrap} aria-label="Toggle line wrap" onClick={() => setWrap((w) => !w)} className={cn("grid size-7 place-items-center rounded text-muted-foreground hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></Button>
-          <Button type="button" variant="ghost" onClick={copy} className="flex h-7 items-center gap-1.5 rounded px-2 text-xs font-medium text-muted-foreground hover:bg-muted">
+          <Button type="button" variant="ghost" aria-pressed={wrap} aria-label="Toggle line wrap" onClick={() => setWrap((w) => !w)} className={cn("grid size-9 place-items-center rounded text-muted-foreground hover:bg-muted", wrap && "bg-accent")}><WrapText className="size-3.5" /></Button>
+          <Button type="button" variant="ghost" onClick={copy} className="flex h-9 items-center gap-1.5 rounded px-2 text-xs font-medium text-muted-foreground hover:bg-muted">
             <AnimatePresence mode="wait" initial={false}>
               {copied ? <motion.span key="c" initial={{ scale: 0.5 }} animate={{ scale: 1 }} exit={{ scale: 0.5 }} className="flex items-center gap-1.5 text-[hsl(var(--ok))]"><Check className="size-3.5" /> copied</motion.span> : <motion.span key="p" initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="flex items-center gap-1.5"><Copy className="size-3.5" /> copy</motion.span>}
             </AnimatePresence>

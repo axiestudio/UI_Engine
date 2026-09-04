@@ -43,7 +43,7 @@ export function CommerceProductGallery({ eyebrow = "PRODUCT", name = "Product ga
   }, [embla])
 
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} grain rule="bottom" className={cn("min-h-[400px]", className)}>
       <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
         <InView once variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div>

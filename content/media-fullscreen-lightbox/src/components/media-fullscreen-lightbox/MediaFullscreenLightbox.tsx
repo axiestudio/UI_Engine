@@ -46,7 +46,7 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <header className={cn("relative")}>
@@ -54,7 +54,7 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
     <h2 className={cn("font-display text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[44px] lg:text-[52px]", tone === 'ink' ? "text-background" : "text-foreground")}>{title}</h2>
   </header>
       </InView>
-      <div className="mt-10 grid grid-cols-3 gap-3 sm:grid-cols-6">
+      <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
         {frames.map((f, i) => (
           <Button type='button' key={f.id} onClick={() => setOpenIdx(i)} aria-label={f.alt} className="img-hover-wash aspect-square overflow-hidden rounded-xl border bg-muted" variant="default">
             {f.src ? <img src={f.src} alt={f.alt ?? ""} className="h-full w-full object-cover" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
@@ -69,8 +69,8 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setOpenIdx(null)}
           >
-            <Button type='button' onClick={() => setOpenIdx(null)} aria-label="Close" className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" variant="default"><X className="h-5 w-5" /></Button>
-            <Button type='button' onClick={(e) => { e.stopPropagation(); setOpenIdx((i) => (i === null ? i : (i - 1 + frames.length) % frames.length)) }} aria-label="Previous" className="absolute left-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" variant="default"><ChevronLeft className="h-5 w-5" /></Button>
+            <Button type='button' onClick={() => setOpenIdx(null)} aria-label="Close" className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-background/20 text-background hover:bg-background/10" variant="default"><X className="h-5 w-5" /></Button>
+            <Button type='button' onClick={(e) => { e.stopPropagation(); setOpenIdx((i) => (i === null ? i : (i - 1 + frames.length) % frames.length)) }} aria-label="Previous" className="absolute left-4 flex h-11 w-11 items-center justify-center rounded-full border border-background/20 text-background hover:bg-background/10" variant="default"><ChevronLeft className="h-5 w-5" /></Button>
             <motion.img
               key={open.id}
               src={open.src}
@@ -79,8 +79,8 @@ export function MediaFullscreenLightbox({ eyebrow = "LIGHTBOX", title = "Look, t
               initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.94, opacity: 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             />
-            <Button type='button' onClick={(e) => { e.stopPropagation(); setOpenIdx((i) => (i === null ? i : (i + 1) % frames.length)) }} aria-label="Next" className="absolute right-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10" variant="default"><ChevronRight className="h-5 w-5" /></Button>
-            <span className="pointer-events-none absolute bottom-5 font-mono text-[11px] font-bold uppercase tracking-widest text-white/60">{openIdxNum + 1} / {frames.length}</span>
+            <Button type='button' onClick={(e) => { e.stopPropagation(); setOpenIdx((i) => (i === null ? i : (i + 1) % frames.length)) }} aria-label="Next" className="absolute right-4 flex h-11 w-11 items-center justify-center rounded-full border border-background/20 text-background hover:bg-background/10" variant="default"><ChevronRight className="h-5 w-5" /></Button>
+            <span className="pointer-events-none absolute bottom-5 font-mono text-[11px] font-bold uppercase tracking-widest text-background/60">{openIdxNum + 1} / {frames.length}</span>
           </motion.div>
         )}
       </AnimatePresence>

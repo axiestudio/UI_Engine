@@ -69,14 +69,13 @@ export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 
     : <Button type="button" onClick={action.onClick} className="h-11 flex-1 rounded-full bg-foreground px-5 font-display text-sm font-extrabold tracking-tight text-background active:scale-[0.98]">{action.label}</Button>
 
   return (
-    <div className={cn("relative isolate overflow-hidden min-h-[520px] w-full", className)}>
+    <div className={cn("relative isolate flex min-h-[520px] w-full flex-col overflow-hidden", className)}>
     <motion.div
       aria-hidden={!visible}
       initial={false}
       animate={reduce ? { opacity: visible ? 1 : 0 } : { y: visible ? 0 : 72 }}
       transition={{ type: "spring", bounce: 0.28, duration: 0.55 }}
-      className={cn("absolute bottom-0 z-40 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none")}
-      style={{ paddingBottom: "max(env(safe-area-inset-bottom, 12px), 12px)" }}
+      className={cn("absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none")}
     >
       <div className="mx-auto flex w-full max-w-[560px] items-center gap-2 px-3 py-2.5 ">
         <div className={cn("w-full rounded-[22px] border bg-card/95 p-2 shadow-[0_-8px_30px_-12px_rgba(0,0,0,0.35)] transition-opacity", visible ? "opacity-100" : "opacity-0")}>

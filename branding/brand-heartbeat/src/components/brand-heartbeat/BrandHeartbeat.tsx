@@ -64,7 +64,7 @@ export function BrandHeartbeat({
   const liveValue = stat.value + (reduced ? 0 : beat * perBeat)
 
   return (
-    <section className={cn("bg-foreground text-background", cn("text-background", className))}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-foreground text-background", cn("text-background", className))}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
       <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-8">
         <div className="flex items-center gap-6">

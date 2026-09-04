@@ -23,7 +23,7 @@ export function ScrollParallaxStickyQuote({ eyebrow = "BELIEF", quote = "A site 
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <div ref={ref} className="relative overflow-hidden rounded-[28px] border bg-foreground">
         <motion.img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45" style={{ y, scale }} />

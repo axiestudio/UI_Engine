@@ -129,7 +129,7 @@ export function Consent({
   const rejectAll = () => decide(false)
 
   return (
-    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
+    <div className={cn("relative isolate flex min-h-[320px] w-full flex-col overflow-hidden", className)}>
       <AnimatePresence>
         {visible && (
           <motion.div
@@ -140,7 +140,7 @@ export function Consent({
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-0 z-30 p-4 sm:p-6 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]"
+            className="absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 p-4 sm:p-6"
           >
             <div
               className={cn(

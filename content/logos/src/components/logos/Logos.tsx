@@ -61,9 +61,9 @@ export function Logos({ label, logos = DEMO_LOGOS_LOGOS, variant = "marquee", sp
   if (!logos.length) return null
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={label ?? "Partners and mentions"}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-label={label ?? "Partners and mentions"}>
       <InView variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.5 }} viewOptions={{ once: true, margin: "-60px" }}>
-        <div className="mx-auto w-full max-w-[1280px] px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[1280px] px-5 py-12 sm:px-8 lg:px-8">
           {label && <p className="mb-6 text-center font-mono text-[11px] font-bold uppercase tracking-widest text-muted-foreground">{label}</p>}
 
           {variant === "marquee" && (

@@ -46,7 +46,7 @@ export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotat
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <header className={cn("relative")}>
@@ -70,7 +70,7 @@ export function MediaSlideshowMask({ eyebrow = "ROTATE", title = "A masked rotat
                   }}
                   transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 />
-                {f.caption && <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{f.caption}</span>}
+                {f.caption && <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground shadow-sm">{f.caption}</span>}
               </div>
             ))}
           </div>

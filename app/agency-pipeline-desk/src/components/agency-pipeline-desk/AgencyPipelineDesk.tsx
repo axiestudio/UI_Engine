@@ -84,7 +84,7 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
   const holdFromPrev = stageHover !== null && stageHover > 0 ? Math.round((PITCHES[stageHover].value / PITCHES[stageHover - 1].value) * 100) : null
 
   return (
-    <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-dvh w-full flex-col overflow-hidden bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — display masthead: the studio name carries the desk */}
       <header className="flex flex-wrap items-end gap-x-4 gap-y-2 border-b px-5 py-3">
@@ -162,7 +162,8 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
               <h3 className="font-display text-[13px] font-bold">Crew assignment <span className="font-mono text-[11px] font-normal tabular-nums text-muted-foreground">· {booked} booked</span></h3>
               <span className="font-mono text-[12px] tabular-nums text-muted-foreground">avg util {utilAvg}%</span>
             </div>
-            <table className="w-full border-collapse text-[12px]">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-[12px]">
               <thead>
                 <tr className="border-y bg-muted/40 text-left text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
                   <th className="w-8 px-3 py-1.5" />
@@ -186,6 +187,7 @@ export function AgencyPipelineDesk({ studio = "Zigzag Film", week = "week 34", o
                 ))}
               </tbody>
             </table>
+            </div>
             <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Tick to book onto SKY-104 for w34 · unticked seats release at 18:00</div>
           </section>
         </section>

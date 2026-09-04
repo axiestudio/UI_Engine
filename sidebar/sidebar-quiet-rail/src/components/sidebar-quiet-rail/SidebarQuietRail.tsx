@@ -180,7 +180,7 @@ export function SidebarQuietRail({
           type="button"
           aria-label="Close navigation"
           onClick={() => setMobileOpen(false)}
-          className="absolute inset-0 z-30 bg-foreground/40 backdrop-blur-[2px]"
+          className="absolute inset-0 z-30 bg-foreground/40"
         />
       )}
 

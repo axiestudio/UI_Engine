@@ -71,9 +71,9 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, onResolve
     g ? g.items.push(p) : groups.push({ key: k, items: [p] })
   }
   return (
-    <div className={cn("relative isolate overflow-hidden font-sans", className)}>
+    <div className={cn("relative isolate flex min-h-[420px] w-full flex-col overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
-      <div className="pointer-events-none">
+      <div className="pointer-events-none relative min-h-[320px] flex-1">
         <div className="opacity-100 [&_*]:pointer-events-auto">{canvas}      
           
     </div>
@@ -111,7 +111,7 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, onResolve
                 className={cn(
                   "absolute z-[5] -ml-3 -mt-7 grid size-7 place-items-center rounded-full rounded-bl-none p-0 text-[11px] font-semibold shadow-lg ring-2 ring-background",
                   n > 1 && !fanOpen && i > 0 && "hidden",
-                  fanOpen ? "bg-foreground text-background hover:bg-foreground hover:text-background" : i === 0 ? "bg-[hsl(var(--warn))] text-black hover:bg-[hsl(var(--warn))]" : "",
+                  fanOpen ? "bg-foreground text-background hover:bg-foreground hover:text-background" : i === 0 ? "bg-[hsl(var(--warn))] text-primary-foreground hover:bg-[hsl(var(--warn))]" : "",
                 )}
               >
                 <motion.button
@@ -160,9 +160,11 @@ export function AnnotationPinLayer({ canvas, pins, onAddPin, onRemove, onResolve
         </AnimatePresence>
       </div>
       {onAddPin && (
-        <Button type="button" variant="ghost" onClick={() => setAdding((a) => !a)} aria-pressed={adding} className={cn("absolute bottom-3 right-3 z-[7] flex h-10 items-center gap-2 rounded-full px-4 text-xs font-medium shadow-lg transition-colors", adding ? "bg-[hsl(var(--err))] text-white hover:bg-[hsl(var(--err))] hover:text-white" : "bg-foreground text-background hover:bg-foreground/90 hover:text-background")}>
+        <div className="pointer-events-none absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-[7] flex justify-end px-4">
+        <Button type="button" variant="ghost" onClick={() => setAdding((a) => !a)} aria-pressed={adding} className={cn("pointer-events-auto flex h-10 items-center gap-2 rounded-full px-4 text-xs font-medium shadow-lg transition-colors", adding ? "bg-[hsl(var(--err))] text-primary-foreground hover:bg-[hsl(var(--err))] hover:text-primary-foreground" : "bg-foreground text-background hover:bg-foreground/90 hover:text-background")}>
           <MessageSquarePlus className="size-4" /> {adding ? "click where · esc" : "annotate"}
         </Button>
+        </div>
       )}
           </MotionConfig>
     </div>

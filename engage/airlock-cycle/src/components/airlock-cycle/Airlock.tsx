@@ -242,7 +242,7 @@ export function Airlock({
                   type="submit"
                   disabled={busy || !isComplete}
                   aria-busy={busy}
-                  className="h-11 rounded-full bg-[hsl(var(--warn))] px-6 font-mono text-[11px] font-black uppercase tracking-[0.2em] text-black shadow-sm hover:bg-[hsl(var(--warn))]/90 focus-visible:ring-[hsl(var(--warn))] focus-visible:ring-offset-[hsl(var(--hull))]"
+                  className="h-11 rounded-full bg-[hsl(var(--warn))] px-6 font-mono text-[11px] font-black uppercase tracking-[0.2em] text-primary-foreground shadow-sm hover:bg-[hsl(var(--warn))]/90 focus-visible:ring-[hsl(var(--warn))] focus-visible:ring-offset-[hsl(var(--hull))]"
                 >
                   {busy ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <KeyRound className="size-4" aria-hidden />}
                   {busy ? "Cycling…" : "Cycle outer door"}

@@ -28,7 +28,21 @@ export function JobTray({ jobs, onCancel, onDismiss, className }: JobTrayProps) 
   const active = jobs.find((j) => j.status === "running")
   if (!jobs.length) return null
   return (
-    <div className={cn("absolute bottom-4 right-4 z-[105] flex w-[340px] max-w-[calc(100%-2rem)] flex-col items-end gap-2 font-sans", className)}>
+    <div className={cn("relative isolate flex min-h-[420px] w-full flex-col overflow-hidden font-sans", className)}>
+      <div className="mx-auto w-full max-w-[640px] flex-1 px-4 pb-44 pt-6 sm:px-6" aria-hidden>
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Background jobs</p>
+        <ul className="mt-3 space-y-1.5">
+          {jobs.slice(0, 4).map((j) => (
+            <li key={j.id} className="flex items-center gap-2.5 rounded-lg border bg-card px-3 py-2.5 text-[13px] font-medium text-muted-foreground">
+              <Pip status={j.status} />
+              <span className="min-w-0 flex-1 truncate">{j.label}</span>
+              <span className="font-mono text-[11px]">{j.status}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 flex justify-end px-4">
+        <div className="pointer-events-auto flex w-[340px] max-w-[calc(100%-2rem)] flex-col items-end gap-2">
       <MotionConfig reducedMotion="user">
       <AnimatePresence>
         {open && (
@@ -65,6 +79,8 @@ export function JobTray({ jobs, onCancel, onDismiss, className }: JobTrayProps) 
         <ChevronDown aria-hidden className={cn("size-4 text-muted-foreground transition-transform", open && "rotate-180")} />
       </Button>
           </MotionConfig>
+        </div>
+      </div>
     </div>
   )
 }

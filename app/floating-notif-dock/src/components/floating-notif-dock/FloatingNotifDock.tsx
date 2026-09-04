@@ -100,7 +100,7 @@ export function FloatingNotifDock({
                   {...getReferenceProps()}
                   aria-expanded={open}
                   aria-label={`Notifications, ${unread} unread`}
-                  className="relative flex size-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="relative flex size-11 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <Bell className="size-4" strokeWidth={2.25} aria-hidden />
                   {unread > 0 && (

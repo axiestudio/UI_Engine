@@ -81,7 +81,7 @@ export function EmblaMastheadHero({
             <div key={`${slide.src}-${i}`} className="relative min-w-0 shrink-0 grow-0 basis-[100%]">
               <img src={slide.src} alt="" draggable={false} className={cn("block w-full object-cover", height)} />
               <span aria-hidden className="absolute inset-0 bg-black/45" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-background">
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 pb-24 text-center text-background">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-background/70">{slide.kicker}</p>
                 <h1 className="mt-4 max-w-3xl font-display text-4xl font-black leading-[1.04] tracking-tight sm:text-5xl lg:text-6xl">{slide.title}</h1>
                 <Button
@@ -98,8 +98,8 @@ export function EmblaMastheadHero({
         </div>
       </div>
 
-      {/* arrows + dots, over the scrim */}
-      <div className="absolute inset-x-0 bottom-8 z-10 flex items-center justify-center gap-5 text-background">
+      {/* arrows + dots, over the scrim — floating chrome sits below copy with clearance */}
+      <div className="absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 flex items-center justify-center gap-5 px-4 text-background">
         <Button
           type="button"
           onClick={() => embla?.scrollPrev()}

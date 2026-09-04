@@ -154,7 +154,7 @@ export function Switchboard({
 
         <div
           ref={gridRef}
-          className="relative rounded-xl border-2 border-[hsl(var(--board-jack))]/20 bg-[hsl(var(--board-face))] p-5 pt-8 shadow-[0_20px_48px_-20px_rgba(0,0,0,0.35)] sm:p-6 sm:pt-8"
+          className="relative rounded-xl border-2 border-[hsl(var(--board-jack))]/20 bg-[hsl(var(--board-face))] p-5 pt-8 shadow-[0_20px_48px_-20px_hsl(var(--foreground)/0.35)] sm:p-6 sm:pt-8"
         >
           {/* the IN socket */}
           <span
@@ -178,7 +178,7 @@ export function Switchboard({
                 initial={{ pathLength: 0, opacity: 0.9 }}
                 animate={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                style={{ filter: "drop-shadow(0 3px 4px rgba(0,0,0,0.28))" }}
+                style={{ filter: "drop-shadow(0 3px 4px hsl(var(--foreground)/0.28))" }}
               />
             </svg>
           )}

@@ -234,7 +234,8 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
                   </MotionConfig>
                 ) : phase === "result" ? (
                   <div className="overflow-hidden rounded-md border">
-                    <table className="w-full border-collapse text-[12px]">
+                    <div className="overflow-x-auto">
+                      <table className="w-full border-collapse text-[12px]">
                       <caption className="sr-only">Query result: wear minutes by strap revision for {group?.label}</caption>
                       <thead>
                         <tr className="border-b bg-muted/30 text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
@@ -249,6 +250,7 @@ export function ResearchBench({ bench = "BENCH-07", researcher = "H. Osei", grou
                         <tr><td className="px-3 py-1 font-mono">v3.1</td><td className="px-2 py-1 text-right font-mono tabular-nums">638.2</td><td className="px-3 py-1 text-right font-mono tabular-nums">371</td></tr>
                       </tbody>
                     </table>
+                      </div>
                     <p className="border-t bg-muted/20 px-3 py-1.5 text-[11px] text-muted-foreground">3 rows · 2.1 s · scanned 2 784 / {group?.rows.toLocaleString("sv-SE")} rows · {group?.id}</p>
                   </div>
                 ) : (

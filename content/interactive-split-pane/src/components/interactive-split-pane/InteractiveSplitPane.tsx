@@ -65,7 +65,7 @@ export function InteractiveSplitPane({ eyebrow = "SPLIT", title = "Two ways at o
             </div>
           </div>
           {/* divider */}
-          <div className="absolute inset-y-0 z-20 w-1 cursor-ew-resize -translate-x-1/2 bg-foreground hover:bg-[hsl(var(--primary))]"
+          <div className="absolute inset-y-0 z-20 w-2 cursor-ew-resize -translate-x-1/2 bg-foreground hover:bg-[hsl(var(--primary))]"
             style={{ left: `${split}%` }}
             onPointerDown={(e) => { (e.target as Element).setPointerCapture?.(e.pointerId) }}>
             <span className="absolute left-1/2 top-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border bg-background text-[11px]">⇔</span>

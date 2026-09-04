@@ -46,7 +46,7 @@ export function BadgeForge({
   }
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", cn("bg-background", className))}>
+    <section className={cn("relative isolate overflow-hidden min-h-[400px] w-full", false && "bg-foreground", cn("bg-background", className))}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-24 sm:py-32 lg:py-36")} style={{ maxWidth: (760), ["--shell-w" as string]: `${(760)}px` }}>
 
       <div className="mx-auto flex max-w-[480px] flex-col items-center">

@@ -82,7 +82,7 @@ export function GsapKineticMarquee({
   )
 
   return (
-    <section ref={rootRef} className={cn("relative overflow-hidden bg-foreground py-12 sm:py-16", className)} aria-label={label}>
+    <section ref={rootRef} className={cn("relative isolate overflow-hidden w-full bg-foreground py-12 sm:py-16", className)} aria-label={label}>
       <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.6 }}>
         <Row text={lineA} refEl={rowA} />
         <Row text={lineB} outline refEl={rowB} ariaHidden />

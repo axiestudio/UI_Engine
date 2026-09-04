@@ -135,7 +135,7 @@ export function ArchiveStamp({ eras = DEFAULT_ERAS, onPress, className }: Archiv
   }
 
   return (
-    <section className="bg-foreground text-background">
+    <section className="relative isolate overflow-hidden w-full bg-foreground text-background">
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
 
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6">

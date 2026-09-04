@@ -47,7 +47,7 @@ export function VideoReveal({
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
         <header className={cn("relative")}>
     {eyebrow && <span className={cn("mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", false ? "text-background/55" : "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>}
@@ -65,10 +65,10 @@ export function VideoReveal({
           className="aspect-video w-full object-cover will-change-[clip-path]"
           src={src}
         />
-        <Button type='button' aria-label="Play" className="absolute inset-0 flex items-center justify-center text-white opacity-0" variant="default">
+        <Button type='button' aria-label="Play" className="absolute inset-0 flex items-center justify-center text-background opacity-0" variant="default">
           <Play className="h-10 w-10" />
         </Button>
-        {caption && <p className="pointer-events-none absolute inset-x-0 bottom-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">{caption}</p>}
+        {caption && <p className="pointer-events-none absolute inset-x-0 bottom-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-background/80">{caption}</p>}
       </div>
     
   </div>

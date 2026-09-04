@@ -14,11 +14,13 @@ import { cn } from "@/lib/utils"
 //   REVEAL     the peel rides the entire pinned span on a circInOut curve —
 //              slow start, heavy middle, gliding stop with both panels fully
 //              off-frame; at ≥0.995 the scene unmounts, zero curtain nodes left
-//   TOKENS     the stage is a deliberate dark band: --curtain* mirrors the
-//              engine's #0b0b0b / #232323 — never accidental color
+//   TOKENS     the stage is a deliberate dark band: --curtain/--curtain-lit
+//              tokens — never accidental color
 //   A11Y       keyboard scrub (Arrow/PageUp-Down/Space/Enter, global keydown);
 //              panels + seam + hint aria-hidden; reduced motion skips the gate
-//   ISOLATION  fixed inset-0 is the named behavior — whole-viewport curtain reveal.
+//   ISOLATION  root-scoped: the gate paints `absolute inset-0` inside a
+//              `relative isolate overflow-hidden` root — never `fixed`, so the
+//              reveal stays inside the engine content pane.
 
 // Panels translate -104%/+104% of their OWN width (w = 52%) so both leave the
 // frame well before the sticky releases. Progress at which the scene unmounts.
@@ -32,8 +34,8 @@ const circInOut = (raw: number) => {
   return t < 0.5 ? (1 - Math.sqrt(1 - 4 * t * t)) / 2 : (Math.sqrt(1 - (-2 * t + 2) ** 2) + 1) / 2
 }
 
-export type CurtainCallProps = {
-  /** `overlay` — fixed full-viewport gate that locks the page (engine behavior).
+  export type CurtainCallProps = {
+  /** `overlay` — root-scoped gate that fills the preset root (engine behavior).
    *  `stage`  — sticky h-screen theatre inside a stageHeight scroll wrapper; pass
    *  the hero it reveals as `children`. Page scroll is never captured. */
   mode?: "overlay" | "stage"
@@ -214,7 +216,7 @@ export function CurtainCall({
   const scrollHint = (
     <motion.div
       style={{ opacity: hintOpacity }}
-      className="pointer-events-none absolute inset-x-0 bottom-9 z-40 flex flex-col items-center gap-2 text-white/70"
+      className="pointer-events-none absolute inset-x-0 bottom-[max(2.25rem,env(safe-area-inset-bottom,2.25rem))] z-40 flex flex-col items-center gap-2 px-4 text-white/70"
     >
       <span className="font-mono text-[10px] font-bold tracking-[0.3em]">{hint}</span>
       <span className="flex h-9 w-6 items-start justify-center rounded-full border border-white/25 p-1.5">
@@ -231,7 +233,7 @@ export function CurtainCall({
     return (
       <div
         ref={stageRef}
-        className={cn("relative isolate w-full", className)}
+        className={cn("relative isolate w-full overflow-hidden", className)}
         style={{ height: stageHeight }}
       >
         <div className="sticky top-0 h-screen w-full overflow-hidden">
@@ -251,7 +253,7 @@ export function CurtainCall({
   }
 
   return (
-    <div className={cn("fixed inset-0 z-[95]", className)}>
+    <div className={cn("relative isolate min-h-[60vh] w-full overflow-hidden", className)}>
       {children ?? null}
       {!done && scene}
       {statement}

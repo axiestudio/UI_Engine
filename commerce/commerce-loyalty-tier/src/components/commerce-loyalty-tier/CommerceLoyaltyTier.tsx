@@ -25,7 +25,7 @@ export type CommerceLoyaltyTierProps = {
 
 export function CommerceLoyaltyTier({ eyebrow = "MEMBERSHIP", title = "Loyalty tiers", tiers = DEFAULT_TIERS, className }: CommerceLoyaltyTierProps) {
   return (
-    <SectionShell width={1120} grain rule="bottom" className={className}>
+    <SectionShell width={1120} grain rule="bottom" className={cn("min-h-[400px]", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
         <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">{title}</h2>

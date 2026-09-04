@@ -56,7 +56,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
             <span className="absolute inset-[30%] grid place-items-center rounded-full" style={{ background: "hsl(var(--label))" }}>
               <span className="size-2.5 rounded-full bg-background" />
             </span>
-            <span className="absolute inset-[30%] rounded-full border border-white/15 mix-blend-overlay" />
+            <span className="absolute inset-[30%] rounded-full border border-background/15 mix-blend-overlay" />
           </motion.span>
           {/* sleeve on top of disc's left half */}
           <div
@@ -65,10 +65,10 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
           >
             <span className="absolute inset-x-6 top-6 block h-[42%] rounded-sm" style={{ background: "linear-gradient(140deg, hsl(var(--sleeve-art)) 0%, hsl(var(--label)) 60%, hsl(var(--sleeve-art)) 100%)", opacity: 0.9 }} />
             <span className="absolute bottom-6 left-6 right-6 block font-mono text-[9px] font-bold uppercase leading-[1.6] tracking-[0.12em]" style={{ color: "hsl(var(--vinyl-ink))", opacity: 0.8 }}>{String(title).slice(0, 28)}</span>
-            <span className="absolute inset-y-0 left-0 w-[10px] bg-black/45" />
+            <span className="absolute inset-y-0 left-0 w-[10px] bg-foreground/45" />
             <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden"><Noise patternAlpha={Math.round((0.12) * 255)} patternSize={240} patternRefreshInterval={3} /></span>
             {/* sleeve opening where the disc exits */}
-            <span className="absolute right-0 top-[12%] bottom-[12%] w-[3px] bg-black/60" />
+            <span className="absolute right-0 top-[12%] bottom-[12%] w-[3px] bg-foreground/60" />
           </div>
         </div>
 

@@ -42,10 +42,10 @@ function Cell({ c, glow }: { c: BentoCell; glow: boolean }) {
   const body = c.image ? (
     <div className="relative flex h-full min-h-[240px] w-full flex-col justify-end overflow-hidden rounded-[inherit]">
       <img src={c.image} alt={c.imageAlt ?? ""} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
-      <div className="relative p-6 text-white">
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+      <div className="relative p-6 text-foreground">
         {c.title && <h3 className="font-display text-lg font-bold leading-snug tracking-tight">{c.title}</h3>}
-        {c.description && <p className="mt-1 text-sm font-medium text-white/85">{c.description}</p>}
+        {c.description && <p className="mt-1 text-sm font-medium text-muted-foreground">{c.description}</p>}
       </div>
     </div>
   ) : (
@@ -74,13 +74,13 @@ function Cell({ c, glow }: { c: BentoCell; glow: boolean }) {
 
 // Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
-const DEMO_BENTO_CELLS: BentoCell[] = [ { id: "studio", image: "/showcase/hero-poster.webp", title: "The studio", description: "Two quiet rooms, evening light.", span: { sm: 2, lg: 2 } }, { title: "Certified staff", description: "Every therapist, licensed and listed.", icon: ShieldCheck }, { title: "Late openings", description: "Book until 21:00 on weekdays.", icon: Clock }, { title: "25 years", description: "Same door since 2001.", tone: "ink", icon: Star }, { title: "Real-time booking", description: "Live availability from the front desk system.", icon: CalendarCheck, span: { lg: 2 } }, ]
+const DEMO_BENTO_CELLS: BentoCell[] = [ { id: "studio", title: "The studio", description: "Two quiet rooms, evening light.", span: { sm: 2, lg: 2 } }, { title: "Certified staff", description: "Every therapist, licensed and listed.", icon: ShieldCheck }, { title: "Late openings", description: "Book until 21:00 on weekdays.", icon: Clock }, { title: "25 years", description: "Same door since 2001.", tone: "ink", icon: Star }, { title: "Real-time booking", description: "Live availability from the front desk system.", icon: CalendarCheck, span: { lg: 2 } }, ]
 
-export function Bento({ eyebrow, title, subtitle, cells = DEMO_BENTO_CELLS, spotlight = true, className }: BentoProps) {
+export function Bento({ eyebrow = "Highlights", title = "What you get here", subtitle, cells = DEMO_BENTO_CELLS, spotlight = true, className }: BentoProps) {
   if (!cells.length) return null
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title ?? "Highlights"}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className={cn("relative isolate w-full overflow-hidden min-h-[400px] bg-background text-foreground", className)} aria-label={title ?? "Highlights"}>
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 lg:px-8 lg:py-24">
         {(title || eyebrow) && (
           <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
             <header className="mb-10 max-w-2xl">

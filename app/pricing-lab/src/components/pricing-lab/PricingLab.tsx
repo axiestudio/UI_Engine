@@ -202,7 +202,7 @@ export function PricingLab({
   const undoable = PROPOSALS.filter((p) => rejected.includes(p.id))
 
   return (
-    <div className={cn("relative isolate font-sans text-foreground", className)}>
+    <div className={cn("relative isolate overflow-hidden font-sans text-foreground", className)}>
       {/* ── header band: bare, hairline-ruled — the margin arc anchors it ── */}
       <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border/70 pb-5">
         <div className="min-w-0">

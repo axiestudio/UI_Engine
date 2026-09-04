@@ -15,7 +15,7 @@ function HoverVideo({ src }: { src: string }) {
   return (
     <div className="relative aspect-[16/10]" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       <video ref={ref} className="h-full w-full object-cover" src={src} loop muted playsInline preload="metadata" />
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-foreground/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-background/90 text-foreground"><Play className="h-5 w-5 ml-0.5" /></span>
       </div>
     </div>
@@ -46,7 +46,7 @@ export function MediaVideoFollow({ eyebrow = "PLAY", title = "Hover to preview."
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1280), ["--shell-w" as string]: `${(1280)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1280), ["--shell-w" as string]: `${(1280)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <header className={cn("relative")}>

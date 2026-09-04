@@ -95,8 +95,8 @@ export function BlogGrid({ eyebrow, title, subtitle, posts = DEMO_BLOG_POSTS, le
   const useLead = lead ?? posts.length >= 3
   const gridPosts = useLead ? posts.slice(1) : posts
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title ?? "Journal"}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-label={title ?? "Journal"}>
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 lg:px-8 lg:py-24">
         <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
           <header className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
@@ -111,7 +111,7 @@ export function BlogGrid({ eyebrow, title, subtitle, posts = DEMO_BLOG_POSTS, le
             )}
           </header>
 
-          <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {useLead && <PostCard key={posts[0].id ?? posts[0].title} post={posts[0]} lead shimmer={shimmerTitles} />}
             {gridPosts.map((p, i) => (
               <InView key={p.id ?? p.title} as="div" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, delay: Math.min(i * 0.05, 0.2), ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-30px" }} className="h-full">

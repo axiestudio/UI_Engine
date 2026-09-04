@@ -73,7 +73,7 @@ export function Poll({
   }
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={question}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={question}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[560px] px-4 py-14 sm:px-6">
           <div className="rounded-xl border bg-card p-6 shadow-sm">

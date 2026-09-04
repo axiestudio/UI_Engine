@@ -87,9 +87,9 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
 
   if (finished) {
     return (
-      <div className={cn("font-sans", className)} role="status" aria-live="polite">
+      <div className={cn("relative isolate w-full overflow-hidden font-sans", className)} role="status" aria-live="polite">
         <div className="mx-auto flex max-w-sm flex-col items-center gap-3 rounded-xl border border-[hsl(var(--ok)/0.4)] bg-[hsl(var(--ok)/0.06)] px-6 py-10 text-center">
-          <span className="grid size-10 place-items-center rounded-full bg-[hsl(var(--ok))] text-white"><Check className="size-5" aria-hidden /></span>
+          <span className="grid size-10 place-items-center rounded-full bg-[hsl(var(--ok))] text-primary-foreground"><Check className="size-5" aria-hidden /></span>
           <p className="font-display text-lg font-semibold tracking-tight">Sent and checked through.</p>
           <p className="text-sm text-muted-foreground">{steps.length} steps · {Object.keys(data).length} answers · nothing left required.</p>
           <Button type="button" variant="outline" size="sm" onClick={() => { setFinished(false); setI(steps.length - 1) }}>Edit answers</Button>
@@ -100,7 +100,7 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
   }
 
   return (
-    <div className={cn("font-sans", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
       <ol className="mb-6 flex items-center gap-0" aria-label="Form steps">
         {steps.map((s, x) => (
@@ -112,7 +112,7 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
               disabled={!doneThrough(x) && x !== i}
               className={cn("flex items-center gap-2 rounded-full py-1 pl-1 pr-2.5 text-xs font-medium transition-colors", x === i && "bg-accent text-accent-foreground", doneThrough(x) ? "text-[hsl(var(--ok))]" : "text-muted-foreground", !doneThrough(x) && x !== i && "opacity-50")}
             >
-              <motion.span layout className={cn("grid size-6 place-items-center rounded-full border-2 text-[11px] tabular-nums", x === i ? "border-[hsl(var(--app-focus))]" : doneThrough(x) ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-white" : "border-current")}>{doneThrough(x) ? <Check className="size-3.5" /> : x + 1}</motion.span>
+              <motion.span layout className={cn("grid size-6 place-items-center rounded-full border-2 text-[11px] tabular-nums", x === i ? "border-[hsl(var(--app-focus))]" : doneThrough(x) ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-primary-foreground" : "border-current")}>{doneThrough(x) ? <Check className="size-3.5" /> : x + 1}</motion.span>
               <span className="hidden sm:inline">{s.title}</span>
             </Button>
             {x < steps.length - 1 && <span className="relative mx-2 h-[2px] flex-1 overflow-hidden rounded bg-muted"><motion.span initial={false} animate={{ width: doneThrough(x) ? "100%" : "0%" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} className="block h-full bg-[hsl(var(--ok))]" /></span>}

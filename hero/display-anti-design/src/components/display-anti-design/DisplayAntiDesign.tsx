@@ -93,7 +93,7 @@ export function DisplayAntiDesign({
 
       {/* meta rail */}
       <div className="relative mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 px-5 sm:px-8 lg:px-12">
-        <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-sans text-[12px] font-bold uppercase tracking-[0.06em] text-white" style={{ background: "hsl(var(--accent))" }}>
+        <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-sans text-[12px] font-bold uppercase tracking-[0.06em] text-accent-foreground" style={{ background: "hsl(var(--accent))" }}>
           {pill}
         </span>
         <span className="font-mono text-[13px] font-bold tracking-[0.02em]">{metaDate}</span>

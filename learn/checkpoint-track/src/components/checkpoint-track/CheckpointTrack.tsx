@@ -31,7 +31,7 @@ export function CheckpointTrack({ steps = DEFAULT_STEPS, current = 2, onStepClic
   const pct = steps.length > 1 ? (current / (steps.length - 1)) * 100 : 0
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", className)}>
+    <section className={cn("relative isolate overflow-hidden min-h-[400px] w-full", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <div className="flex flex-wrap items-end justify-between gap-4">

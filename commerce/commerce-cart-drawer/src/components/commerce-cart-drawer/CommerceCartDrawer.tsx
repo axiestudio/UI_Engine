@@ -3,6 +3,7 @@ import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react"
 import { InView } from "@/components/primitives/in-view"
 import { SectionShell } from "@/components/primitives/handcraft"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import {
   Drawer,
   DrawerClose,
@@ -43,7 +44,7 @@ export function CommerceCartDrawer({ eyebrow = "CART", title = "Your bag.", line
   const count = lines.reduce((t, l) => t + l.qty, 0)
   const setQty = (id: string, q: number) => setLines((ls) => ls.map((l) => (l.id === id ? { ...l, qty: Math.max(0, q) } : l)).filter((l) => l.qty > 0))
   return (
-    <SectionShell width={920} grain rule="bottom" className={className}>
+    <SectionShell width={920} grain rule="bottom" className={cn("min-h-[400px]", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>
         <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em]">{title}</h2>

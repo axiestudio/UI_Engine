@@ -88,7 +88,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
   }
 
   return (
-    <div className={cn("flex flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex w-full flex-col overflow-hidden rounded-xl border bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* editorial masthead — the address is the title */}
       <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4">
@@ -184,7 +184,8 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Comp ledger</span>
             <span className="font-mono text-[10px] tabular-nums text-muted-foreground">{COMPS.length} sold nearby</span>
           </div>
-          <table className="w-full border-collapse text-[12px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12px]">
             <thead>
               <tr className="border-b text-left font-mono text-[10px] text-muted-foreground">
                 <th className="px-4 py-1.5 font-semibold">Comp</th>
@@ -217,6 +218,7 @@ export function ListingDesk({ address = "14 Marigold Ct", mls = "MLS-88213", onP
               </tr>
             </tbody>
           </table>
+          </div>
           <div className="flex items-baseline justify-between border-t px-4 py-2">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">kr / m²</span>
             <motion.span key={ppm} initial={{ scale: 1.12, opacity: 0.5 }} animate={{ scale: 1, opacity: 1 }} className="font-mono text-[13px] font-bold tabular-nums">{ppm.toLocaleString()}</motion.span>

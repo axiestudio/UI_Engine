@@ -118,7 +118,7 @@ function OverlayTile({ piece, overlay = false }: { piece: OverlayPiece; overlay?
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      style={piece.color ? { background: piece.color, color: "#fff" } : undefined}
+      style={piece.color ? { background: piece.color, color: "hsl(var(--primary-foreground))" } : undefined}
       className={cn(
         "flex cursor-grab touch-none items-center gap-2 rounded-xl border bg-card px-4 py-3 text-sm font-semibold tracking-tight active:cursor-grabbing",
         overlay && "dnd-lift",

@@ -53,7 +53,7 @@ export function Showcase({
 
   return (
     <section className={cn(ink && "bg-foreground", "relative isolate w-full overflow-hidden min-h-[400px]", className)} aria-label={title ?? "Product showcase"}>
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 sm:py-24 lg:px-8">
         {(eyebrow || title || subtitle) && (
           <header className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
             {eyebrow && (

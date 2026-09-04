@@ -55,7 +55,7 @@ export function Vault({
 }: VaultProps) {
   const reduce = useReducedMotion()
   return (
-    <section className={cn("w-full bg-muted/40 text-foreground", className)} aria-label={title}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-muted/40 text-foreground", className)} aria-label={title}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
         <div className="mx-auto grid w-full max-w-[1080px] gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:items-center lg:py-24">
           <div className="max-w-md">

@@ -27,7 +27,7 @@ export type EncoreBowsProps = {
 export function EncoreBows({ eyebrow = "THE CAST", title, members, bowDelay = 400, current, className }: EncoreBowsProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--encore-stage))] px-4 py-20 text-white sm:px-6 lg:px-8", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--encore-stage))] px-4 py-20 text-[hsl(var(--encore-foreground))] sm:px-6 lg:px-8", className)}>
       <Grain opacity={0.06} />
       <div className="relative mx-auto w-full max-w-[1120px]">
         <div className="mb-10 max-w-xl">
@@ -76,12 +76,12 @@ function BowCard({ i, m, reduce, start, spot }: { i: number; m: Performer; reduc
                 <span className="font-display text-4xl font-black text-background/25">{m.name.split(" ").map((p) => p[0]).join("").slice(0, 2)}</span>
               </div>
             )}
-            <span aria-hidden className="absolute right-3 top-3 font-mono text-[10px] font-black tracking-[0.2em] text-white/45">{String(i + 1).padStart(2, "0")}</span>
+            <span aria-hidden className="absolute right-3 top-3 font-mono text-[10px] font-black tracking-[0.2em] text-[hsl(var(--encore-foreground)/0.45)]">{String(i + 1).padStart(2, "0")}</span>
           </div>
           <div className="p-3.5">
             <p className="truncate font-display text-[15px] font-extrabold">{m.name}</p>
             <p className="mt-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[hsl(var(--encore))]/90">{m.role}</p>
-            {m.note && <p className="mt-1.5 line-clamp-2 text-[12px] font-medium leading-snug text-white/50">{m.note}</p>}
+              {m.note && <p className="mt-1.5 line-clamp-2 text-[12px] font-medium leading-snug text-[hsl(var(--encore-foreground)/0.5)]">{m.note}</p>}
           </div>
         </motion.div>
       </div>

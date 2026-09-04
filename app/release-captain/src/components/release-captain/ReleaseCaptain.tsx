@@ -182,7 +182,7 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
   const gateTone = shipped ? "ok" : gateOpen ? "ready" : "blocked"
 
   return (
-    <div className={cn("relative isolate font-sans text-foreground", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden font-sans text-foreground", className)}>
       {/* ── health strip: full-bleed rail above everything ─────────────────── */}
       <StatusHealthStrip services={services} region={region} onRegion={setRegion} />
 

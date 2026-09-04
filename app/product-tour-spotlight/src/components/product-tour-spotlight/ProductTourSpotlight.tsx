@@ -130,7 +130,7 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
             />
           </mask>
         </defs>
-        <rect width="100%" height="100%" fill="rgba(0,0,0,0.62)" mask="url(#tour-hole)" />
+        <rect width="100%" height="100%" fill="hsl(var(--foreground)/0.62)" mask="url(#tour-hole)" />
         <motion.rect
           rx={10}
           fill="none"
@@ -167,12 +167,12 @@ export function ProductTourSpotlight({ steps, step: stepProp, onStep, onExit, cl
                   <p className="text-xs text-muted-foreground">Step {step + 1} / {steps.length}</p>
                   <h4 className="mt-1.5 font-display text-base font-semibold tracking-tight">{active.title}</h4>
                 </div>
-                <Button type="button" variant="ghost" aria-label="Exit tour" onClick={onExit} className="grid size-7 place-items-center rounded-md text-muted-foreground hover:bg-muted"><X className="size-4" /></Button>
+                <Button type="button" variant="ghost" aria-label="Exit tour" onClick={onExit} className="grid size-11 place-items-center rounded-md text-muted-foreground hover:bg-muted"><X className="size-4" /></Button>
               </div>
               <div className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{active.body}</div>
               <div className="mt-5 flex items-center gap-2">
-                <Button type="button" variant="ghost" onClick={() => (step === steps.length - 1 ? onExit?.() : go(step + 1))} className="h-9 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm">{step === steps.length - 1 ? "Finish" : "Next"}</Button>
-                {step > 0 && <Button type="button" variant="ghost" onClick={() => go(step - 1)} className="h-9 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted">Back</Button>}
+                <Button type="button" variant="ghost" onClick={() => (step === steps.length - 1 ? onExit?.() : go(step + 1))} className="h-11 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm">{step === steps.length - 1 ? "Finish" : "Next"}</Button>
+                {step > 0 && <Button type="button" variant="ghost" onClick={() => go(step - 1)} className="h-11 rounded-md border border-border/70 bg-background px-3 text-sm font-medium hover:bg-muted">Back</Button>}
                 <Button type="button" variant="ghost" onClick={onExit} className="ml-auto text-sm font-medium text-muted-foreground hover:text-foreground">Skip tour</Button>
               </div>
             </motion.div>

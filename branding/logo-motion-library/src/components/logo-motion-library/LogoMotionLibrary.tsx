@@ -107,7 +107,7 @@ export function LogoMotionLibrary({ className, onMoveChange }: LogoMotionLibrary
   }
 
   return (
-    <section className="bg-background text-foreground">
+    <section className="relative isolate overflow-hidden w-full bg-background text-foreground">
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
             <header className="">
         <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">LOGO MOTION · THE SCORE</span>

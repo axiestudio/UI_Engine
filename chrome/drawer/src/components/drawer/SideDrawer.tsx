@@ -70,7 +70,7 @@ export function Drawer({
           {trigger}
         </DrawerTrigger>
       ) : (
-        <div className="relative isolate overflow-hidden flex min-h-[360px] w-full items-start justify-end p-4 sm:p-6">
+        <div className="relative isolate flex min-h-[360px] w-full items-start justify-end overflow-hidden p-4 sm:p-6">
           <DrawerTrigger
             className="relative isolate overflow-hidden inline-flex h-10 items-center gap-2 rounded-full border bg-card px-4 text-sm font-bold tracking-tight shadow-xs transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={triggerLabel}

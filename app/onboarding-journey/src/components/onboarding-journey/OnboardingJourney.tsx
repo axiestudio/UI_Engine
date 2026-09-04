@@ -131,7 +131,7 @@ export function OnboardingJourney({ hire = "Dana Kowalski", role = "Frontend eng
   const complete = files.filter((f: UploadFile) => f.status === "done").length
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] w-full flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       {/* screen header */}
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Onboarding</h2>
@@ -238,7 +238,7 @@ export function OnboardingJourney({ hire = "Dana Kowalski", role = "Frontend eng
               <Button type="button" variant="ghost"
                 onClick={() => note.trim() && push(`Note sent to ${buddy}`, "ok")}
                 disabled={!note.trim()}
-                className="mt-3 flex h-9 shrink-0 items-center justify-center gap-2 rounded-md bg-[hsl(var(--info))] text-[12px] font-bold uppercase tracking-[0.12em] text-white hover:bg-[hsl(var(--info)/0.9)] disabled:opacity-40"
+                className="mt-3 flex h-9 shrink-0 items-center justify-center gap-2 rounded-md bg-[hsl(var(--info))] text-[12px] font-bold uppercase tracking-[0.12em] text-primary-foreground hover:bg-[hsl(var(--info)/0.9)] disabled:opacity-40"
               >
                 <Send className="size-3.5" /> Send note
               </Button>

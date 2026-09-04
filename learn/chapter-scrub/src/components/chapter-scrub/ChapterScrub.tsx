@@ -74,7 +74,7 @@ export function ChapterScrub({ title = "Lesson 04 — Shipping small", duration 
   const activeChapter = [...chapters].reverse().find((c) => t >= c.at) ?? chapters[0]
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", className)}>
+    <section className={cn("relative isolate overflow-hidden min-h-[400px] w-full", className)}>
   <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 
       <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />VIDEO · CHAPTERS</span>

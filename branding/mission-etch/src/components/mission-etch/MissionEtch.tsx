@@ -75,7 +75,7 @@ export function MissionEtch({
 
   return (
     <div ref={ref}>
-      <section className="bg-background text-foreground">
+      <section className="relative isolate overflow-hidden w-full bg-background text-foreground">
         <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
         <div className="flex items-end justify-between gap-x-8 gap-y-4">
                     <header className="">

@@ -6,7 +6,7 @@
    Lovable source: oklch 97% .015 75 bg, 18% .025 40 fg, spice 55% .18 30, gold 72% .13 70
    Mapped to hsl for Tailwind + oklch spice/gold for hero.
    Fonts: Fraunces (display) + Inter (sans) + JetBrains Mono (mono)
-   Hero tunnel tokens: #1d0d07→#39150f gradient + grain + shadow-warm
+    Hero tunnel tokens: --tunnel-deep→--tunnel-warm gradient + grain + shadow-warm
    Use with: import "zigzag/styles.css" or copy :root vars to your globals.css
 ─────────────────────────────────────────────────────────────────────────── */
 @layer base {
@@ -34,6 +34,9 @@
 
     --brand: 18 82% 38%;
     --brand-foreground: 38 100% 97%;
+    /* hero tunnel — committed brandkit pair (was #1d0d07 / #39150f) */
+    --tunnel-deep: 20 45% 5%;
+    --tunnel-warm: 16 48% 12%;
     /* oklch for hero — exact Lovable */
     --spice: oklch(55% 0.18 30);
     --gold: oklch(72% 0.13 70);
@@ -63,6 +66,8 @@
     --ring: 38 90% 56%;
     --brand: 38 90% 56%;
     --brand-foreground: 18 25% 9%;
+    --tunnel-deep: 20 45% 5%;
+    --tunnel-warm: 16 48% 12%;
     --spice: oklch(55% 0.18 30);
     --gold: oklch(72% 0.13 70);
   }
@@ -110,9 +115,9 @@
   scrollbar-width: none;
 }
 
-/* Habesha hero tunnel tokens — keep exact #1d0d07→#39150f + grain + warm shadow */
+/* Habesha hero tunnel tokens — committed --tunnel-deep/--tunnel-warm + grain + warm shadow */
 .hero-gradient {
-  background: linear-gradient(135deg, #1d0d07, #39150f);
+  background: linear-gradient(135deg, hsl(var(--tunnel-deep)), hsl(var(--tunnel-warm)));
 }
 .bg-grain {
   background-image: radial-gradient(#321b130f 1px, #0000 1px);

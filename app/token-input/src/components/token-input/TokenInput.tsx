@@ -79,7 +79,7 @@ export function TokenInput({ value, onChange, placeholder = "Type, paste, or pre
   const pickSuggestion = (s: string) => { add(s) }
 
   return (
-    <div className={cn("relative isolate font-sans", className)} onClick={() => ref.current?.focus()}>
+    <div className={cn("relative isolate w-full overflow-hidden font-sans", className)} onClick={() => ref.current?.focus()}>
       <MotionConfig reducedMotion="user">
       <div className={cn("flex min-h-11 flex-wrap items-center gap-1.5 rounded-lg border bg-background px-2.5 py-1.5 cursor-text transition-shadow focus-within:ring-2 focus-within:ring-[hsl(var(--app-focus))]")}>
         <AnimatePresence initial={false}>

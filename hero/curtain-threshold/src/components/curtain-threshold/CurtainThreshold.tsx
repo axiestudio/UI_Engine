@@ -10,7 +10,7 @@ import { useCurtainGate } from "@/lib/curtain"
 // ═══ JOB         Peel the page open along a lit edge.
 // ═══ EMOTION     A slit of light widens into the room.
 // ═══ SIGNATURE   clip-path inset + a traveling border-trail light on the fracture.
-// ═══ ISOLATION   fixed inset-0 is the named behavior — whole-viewport curtain reveal.
+// ═══ ISOLATION   root-scoped: `absolute inset-0` inside `relative isolate overflow-hidden` — never `fixed`.
 
 export type CurtainThresholdProps = {
   mode?: "overlay" | "stage"
@@ -54,7 +54,7 @@ export function CurtainThreshold({
   return (
     <div
       ref={mode === "stage" ? stageRef : undefined}
-      className={cn(mode === "overlay" ? "fixed inset-0 z-[90]" : "relative isolate w-full", className)}
+      className={cn("relative isolate w-full overflow-hidden", mode === "overlay" && "min-h-[60vh]", className)}
       style={mode === "stage" ? { height: stageHeight } : undefined}
     >
       <div
@@ -167,7 +167,7 @@ function ThresholdScene({
 
       <motion.div
         style={{ opacity: hintOpacity }}
-        className="pointer-events-none absolute inset-x-0 bottom-9 flex flex-col items-center gap-2 text-[hsl(var(--curtain-text)/0.7)]"
+        className="pointer-events-none absolute inset-x-0 bottom-[max(2.25rem,env(safe-area-inset-bottom,2.25rem))] z-10 flex flex-col items-center gap-2 text-[hsl(var(--curtain-text)/0.7)]"
       >
         <span className="font-mono text-[10px] font-bold tracking-[0.3em]">{hint}</span>
         <span className="flex h-9 w-6 items-start justify-center rounded-full border border-[hsl(var(--curtain-glow)/0.25)] p-1.5">

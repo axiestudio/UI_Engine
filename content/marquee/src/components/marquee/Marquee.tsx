@@ -42,7 +42,7 @@ export function Marquee({
   return (
     <section
       className={cn(
-        "w-full overflow-hidden border-y",
+        "relative isolate overflow-hidden w-full border-y",
         ink ? "border-background/10 bg-foreground" : "border-border bg-background",
         className,
       )}

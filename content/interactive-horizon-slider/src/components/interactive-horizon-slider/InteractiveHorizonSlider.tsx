@@ -46,8 +46,8 @@ export function InteractiveHorizonSlider({
             <ImageComparisonSlider className="bg-foreground">
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-background text-sm font-bold shadow-lg">⇄</span>
             </ImageComparisonSlider>
-            <span className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{labelBefore}</span>
-            <span className="pointer-events-none absolute right-4 top-4 rounded-full bg-black/60 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{labelAfter}</span>
+            <span className="pointer-events-none absolute left-4 top-4 rounded-full bg-[hsl(var(--overlay-bg)/0.6)] px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--overlay-fg))]">{labelBefore}</span>
+            <span className="pointer-events-none absolute right-4 top-4 rounded-full bg-[hsl(var(--overlay-bg)/0.6)] px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--overlay-fg))]">{labelAfter}</span>
           </ImageComparison>
         </div>
         <p className="mt-3 text-right font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">DRAG THE HANDLE</p>

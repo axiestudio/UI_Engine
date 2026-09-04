@@ -49,8 +49,8 @@ export function StickyCookie({
   }
 
   return (
-    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
-      <div className="relative isolate overflow-hidden mx-auto max-w-3xl px-5 py-16 text-center sm:px-8">
+    <div className={cn("relative isolate flex min-h-[320px] w-full flex-col overflow-hidden", className)}>
+      <div className="relative isolate mx-auto w-full max-w-3xl flex-1 overflow-hidden px-5 pb-44 pt-16 text-center sm:px-8">
         <p className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground">Scroll — cookies at the foot</p>
       </div>
       <AnimatePresence>
@@ -62,7 +62,7 @@ export function StickyCookie({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: reduce ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-0 z-50 p-4 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]"
+            className="absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 p-4"
           >
             <div className="mx-auto flex max-w-[760px] flex-col items-center justify-between gap-4 rounded-xl border bg-card p-4 shadow-lg sm:flex-row">
               <p className="text-sm font-medium leading-relaxed text-foreground">{message}</p>

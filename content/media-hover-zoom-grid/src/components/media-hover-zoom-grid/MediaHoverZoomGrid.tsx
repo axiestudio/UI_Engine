@@ -30,7 +30,7 @@ export function MediaHoverZoomGrid({ eyebrow = "HOVER", title = "Get closer.", t
   return (
     <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1280), ["--shell-w" as string]: `${(1280)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1280), ["--shell-w" as string]: `${(1280)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <header className={cn("relative")}>
@@ -44,8 +44,8 @@ export function MediaHoverZoomGrid({ eyebrow = "HOVER", title = "Get closer.", t
             <figure className="group [perspective:1000px]">
               <div className="relative aspect-[3/4] overflow-hidden rounded-xl border bg-muted transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:rotate-[0.4deg]">
                 {t.src ? <img src={t.src} alt={t.alt ?? ""} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" /> : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                {t.title && <figcaption className="absolute bottom-3 left-3 translate-y-2 font-display text-sm font-bold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">{t.title}</figcaption>}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                {t.title && <figcaption className="absolute bottom-3 left-3 translate-y-2 font-display text-sm font-bold text-background opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">{t.title}</figcaption>}
               </div>
             </figure>
           </InView>

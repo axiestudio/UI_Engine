@@ -174,7 +174,8 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
                 </Button>
               ))}
             </div>
-            <table className="w-full border-collapse text-[12px]">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-[12px]">
               <thead className="sticky top-[46px] z-10 bg-card">
                 <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                   <th className="px-3 py-1.5 font-semibold">Table</th>
@@ -196,6 +197,7 @@ export function FohRestaurant({ room = "Salong A · Thursday service", cap: init
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </section>
 

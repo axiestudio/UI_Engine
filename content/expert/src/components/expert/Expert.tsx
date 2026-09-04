@@ -51,8 +51,8 @@ export function Expert({
   className,
 }: ExpertProps) {
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-labelledby="expert-name">
-      <div className="mx-auto w-full max-w-[1120px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-labelledby="expert-name">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 sm:px-8 lg:px-8 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           {/* sticky portrait column */}
           <div className="lg:sticky lg:top-[104px] lg:self-start">
@@ -72,11 +72,11 @@ export function Expert({
                   </span>
                 )}
               </div>
-              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent px-5 pb-5 pt-20">
-                <h2 id="expert-name" className="font-display text-2xl font-bold leading-tight tracking-tight text-white">
+              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent px-5 pb-5 pt-20">
+                <h2 id="expert-name" className="font-display text-2xl font-bold leading-tight tracking-tight text-foreground">
                   {name}
                 </h2>
-                <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/80">{role}</p>
+                <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{role}</p>
               </figcaption>
             </figure>
             {counter && (

@@ -135,7 +135,8 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
               ))}
             </div>
           </header>
-          <table className="w-full border-collapse text-[12px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12px]">
             <thead>
               <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                 <th className="w-8 px-2 py-1.5" />
@@ -169,6 +170,7 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
               ))}
             </tbody>
           </table>
+          </div>
           <div className="flex items-baseline justify-between border-t px-3 py-2.5">
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Counted total</span>
             <AnimatePresence mode="popLayout" initial={false}>

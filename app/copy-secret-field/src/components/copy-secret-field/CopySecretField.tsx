@@ -23,7 +23,7 @@ export function CopySecretField({ value, onRotate, rotating, label = "Secret", m
   const chars = show ? value.split("") : value.split("").map(() => "•")
 
   return (
-    <div className={cn("font-sans", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden font-sans", className)}>
       {label && <span className="mb-1 block text-sm font-medium text-muted-foreground">{label}</span>}
       <div className="relative flex h-10 items-center overflow-hidden rounded-lg border border-border/70 bg-background pr-[104px]">
         <motion.div aria-hidden initial={false} animate={{ filter: rotating ? "blur(5px)" : "blur(0)" }} transition={{ duration: 0.25 }} className={cn("flex-1 overflow-x-auto whitespace-nowrap px-3 text-[13px]", mono && "font-mono")}>

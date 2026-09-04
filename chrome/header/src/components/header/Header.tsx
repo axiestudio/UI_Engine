@@ -267,13 +267,13 @@ export function Header(props: HeaderProps = {}) {
                             {item.featured && (
                               <div className="flex w-[300px] flex-col justify-between rounded-xl bg-foreground p-5 text-background">
                                 <div>
-                                  <p className="font-mono text-[11px] font-bold tracking-widest text-white/60">FEATURED</p>
+                                  <p className="font-mono text-[11px] font-bold tracking-widest text-background/60">FEATURED</p>
                                   <h4 className="mt-2 font-display text-[15px] font-extrabold leading-tight">{item.featured.title}</h4>
-                                  <p className="mt-1.5 text-xs font-medium leading-relaxed text-white/70">{item.featured.description}</p>
+                                  <p className="mt-1.5 text-xs font-medium leading-relaxed text-background/70">{item.featured.description}</p>
                                 </div>
                                 <a
                                   href={item.featured.href}
-                                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
+                                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold text-background underline decoration-background/30 underline-offset-4 hover:decoration-background"
                                 >
                                   {item.featured.cta} <ArrowRight className="h-3 w-3" />
                                 </a>
@@ -449,9 +449,9 @@ export function Header(props: HeaderProps = {}) {
                   </nav>
 
                   <div className="mt-6 rounded-[20px] bg-foreground p-6 text-background">
-                    <p className="font-mono text-[11px] font-bold tracking-widest text-white/60">START BUILDING</p>
+                    <p className="font-mono text-[11px] font-bold tracking-widest text-background/60">START BUILDING</p>
                     <h4 className="mt-2 font-display text-[18px] font-extrabold leading-tight tracking-tight">Ship your next idea faster</h4>
-                    <p className="mt-1.5 text-sm font-medium leading-relaxed text-white/70">Free plan, no credit card required. Upgrade anytime.</p>
+                    <p className="mt-1.5 text-sm font-medium leading-relaxed text-background/70">Free plan, no credit card required. Upgrade anytime.</p>
                     <Button variant="secondary" className="mt-5 h-11 w-full rounded-full font-display text-[14px] font-extrabold tracking-tight">
                       Create account <ArrowRight className="ml-1 h-4 w-4 stroke-[2.5]" />
                     </Button>

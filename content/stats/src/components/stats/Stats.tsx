@@ -92,8 +92,8 @@ function StatTile({ item, tone, separators, index }: { item: StatItem; tone: "pa
 const DEMO_STATS_ITEMS = [ { value: 1839, label: "Verified reviews", suffix: "+", description: "Across Google, Trustpilot and Apple Maps", icon: MessagesSquare }, { value: 4.9, decimals: 1, label: "Average rating", suffix: "/5", icon: Star }, { value: 25, label: "Years on the high street", suffix: " yrs", icon: Clock }, { value: "9 in 10", label: "Would come back", icon: ThumbsUp }, ]
 
 export function Stats({
-  eyebrow,
-  title,
+  eyebrow = "By the numbers",
+  title = "Proof, not adjectives",
   subtitle,
   items = DEMO_STATS_ITEMS,
   tone = "ink",
@@ -106,9 +106,9 @@ export function Stats({
   const sep = separators ?? tone === "ink"
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden min-h-[400px]", tone === 'ink' && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[var(--shell-w)] -translate-x-1/2 border-x lg:block", tone === 'ink' ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       {(eyebrow || title || subtitle) && (
         <InView variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>

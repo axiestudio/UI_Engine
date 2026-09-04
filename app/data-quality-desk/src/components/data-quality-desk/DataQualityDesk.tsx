@@ -151,7 +151,7 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
   ]
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] w-full flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Data quality</h2>
@@ -206,7 +206,8 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
               <SquareCheckBig className="size-3.5" /> {sel.length === leafIds.length && leafIds.length > 0 ? "clear" : "select all"}
             </Button>
           </header>
-          <table className="w-full border-collapse text-[12px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12px]">
             <thead>
               <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                 <th className="w-8 px-2 py-1.5" />
@@ -259,6 +260,7 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
               })}
             </tbody>
           </table>
+          </div>
           <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Tap a name or email to correct it · merges keep the first record and attach history</div>
           <AnimatePresence>
             {sel.length > 0 && (

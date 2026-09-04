@@ -145,7 +145,7 @@ export function RsvpCard({
                           disabled={plusOne === 0}
                           onClick={() => bumpPlusOne(-1)}
                           className={cn(
-                            "size-8 rounded-full bg-background p-0 hover:bg-muted disabled:pointer-events-none disabled:opacity-40",
+                            "size-11 rounded-full bg-background p-0 hover:bg-muted disabled:pointer-events-none disabled:opacity-40",
                             ink ? "border-background/15" : "border-border",
                           )}
                         >
@@ -161,7 +161,7 @@ export function RsvpCard({
                           disabled={plusOne === 2}
                           onClick={() => bumpPlusOne(1)}
                           className={cn(
-                            "size-8 rounded-full bg-background p-0 hover:bg-muted disabled:pointer-events-none disabled:opacity-40",
+                            "size-11 rounded-full bg-background p-0 hover:bg-muted disabled:pointer-events-none disabled:opacity-40",
                             ink ? "border-background/15" : "border-border",
                           )}
                         >

@@ -114,7 +114,7 @@ export function SwatchSpectrum({
   }
 
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
       <div className="flex items-end justify-between gap-4">
                 <header className="">

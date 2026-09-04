@@ -32,6 +32,7 @@ export type StackCourseProps = {
   modules?: CourseModuleDef[]
   price?: string
   cta?: string
+  onEnroll?: () => void
   caption?: string
   tone?: "paper" | "ink"
   className?: string
@@ -51,6 +52,7 @@ export function StackCourse({
     { title: "The no-show autopsy", lessons: 4, duration: "47 min", state: "locked" },
     { title: "Ship your board", lessons: 3, duration: "38 min", state: "locked" },
   ],
+  onEnroll,
   price = "1 490 kr",
   cta = "Enroll now",
   caption = "FOUR LAYER COMPONENTS · REPEATABLE MODULES",
@@ -114,7 +116,7 @@ export function StackCourse({
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
               >
-                <CourseBase price={price} cta={cta} />
+                <CourseBase price={price} cta={cta} onEnroll={onEnroll} />
               </motion.div>
             </div>
           </div>

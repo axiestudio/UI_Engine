@@ -43,7 +43,7 @@ export function BenefitList({ eyebrow = "BENEFITS", title = "What you get.", ite
           <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
             {items.map((it) => (
               <li key={it} className={cn("flex items-start gap-3 text-sm font-medium leading-relaxed", ink ? "text-background/80" : "text-foreground")}>
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 {it}
               </li>
             ))}

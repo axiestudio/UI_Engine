@@ -75,7 +75,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
   const active = moods.find((m) => m.id === open) ?? null
 
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
                 <header className="">
@@ -100,7 +100,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
                     style={{ background: m.hex, color: ink === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))", borderRadius: petalRadius(i) }}
                     className={cn(
                       "group relative flex h-full w-full flex-col justify-end overflow-hidden rounded-2xl p-6 pl-8 text-left",
-                      "shadow-[0_18px_40px_-18px_rgb(0_0_0/0.45)] outline-none ring-offset-2 ring-offset-background",
+                      "shadow-[0_18px_40px_-18px_hsl(var(--foreground)/0.45)] outline-none ring-offset-2 ring-offset-background",
                       "focus-visible:ring-[3px] focus-visible:ring-ring/50"
                     )}
                   >

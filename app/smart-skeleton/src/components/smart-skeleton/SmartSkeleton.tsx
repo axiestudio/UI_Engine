@@ -17,7 +17,7 @@ export function SmartSkeleton({ loading, lines = 3, avatar, slowLabel = "Fetchin
   const [slow, setSlow] = React.useState(false)
   React.useEffect(() => { if (!loading) { setSlow(false); return } const t = setTimeout(() => setSlow(true), slowAfterMs); return () => clearTimeout(t) }, [loading, slowAfterMs])
   return (
-    <div className={cn("relative font-sans", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden font-sans", className)}>
       <motion.div aria-hidden={!loading} aria-busy={loading} aria-label={loading ? "Loading content" : undefined} animate={{ opacity: loading ? 1 : 0, y: loading ? 0 : -6 }} transition={{ duration: 0.3 }} className={cn(!loading && "pointer-events-none absolute inset-0")}>
         <div className="space-y-3">
           {avatar && (

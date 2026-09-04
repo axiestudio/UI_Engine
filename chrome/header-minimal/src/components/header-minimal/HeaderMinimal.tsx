@@ -53,7 +53,7 @@ export function HeaderMinimal({
         animate={{
           backgroundColor: scrolled ? "hsl(var(--background) / 0.82)" : "hsl(var(--background) / 0)",
           borderColor: scrolled ? "hsl(var(--border))" : "hsl(var(--border) / 0)",
-          boxShadow: scrolled ? "0 8px 30px -12px hsl(0 0% 0% / 0.12)" : "0 0 0 0 hsl(0 0% 0% / 0)",
+          boxShadow: scrolled ? "0 8px 30px -12px hsl(var(--foreground) / 0.12)" : "0 0 0 0 hsl(var(--foreground) / 0)",
         }}
         transition={{ duration: reduce ? 0 : 0.35, ease: "easeOut" }}
         className="relative isolate overflow-hidden border-b "

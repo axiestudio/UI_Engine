@@ -124,8 +124,8 @@ export function ContentCarousel({
   if (!slides.length) return null
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-roledescription="carousel" aria-label={title ?? "Highlights"}>
-        <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 lg:px-8">
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)} aria-roledescription="carousel" aria-label={title ?? "Highlights"}>
+        <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 lg:px-8">
           {(eyebrow || title) && (
             <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
               <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -135,10 +135,10 @@ export function ContentCarousel({
                 </div>
                 {showArrows && (
                   <div className="flex gap-2">
-                    <Button size="icon" variant="outline" onClick={() => emblaApi?.scrollPrev()} aria-label="Previous slide" className="rounded-full">
+                    <Button size="icon" variant="outline" onClick={() => emblaApi?.scrollPrev()} aria-label="Previous slide" className="h-11 w-11 rounded-full">
                       <ArrowLeft />
                     </Button>
-                    <Button size="icon" variant="outline" onClick={() => emblaApi?.scrollNext()} aria-label="Next slide" className="rounded-full">
+                    <Button size="icon" variant="outline" onClick={() => emblaApi?.scrollNext()} aria-label="Next slide" className="h-11 w-11 rounded-full">
                       <ArrowRight />
                     </Button>
                   </div>

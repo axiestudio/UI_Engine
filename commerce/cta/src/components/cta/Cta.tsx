@@ -78,7 +78,7 @@ export function Cta({
   )
 
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={typeof title === "string" ? title : "Call to action"}>
+    <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={typeof title === "string" ? title : "Call to action"}>
       <InView variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-80px" }}>
         <div className="mx-auto w-full max-w-[1120px] px-4 py-16 sm:px-6 lg:px-8">
           <div

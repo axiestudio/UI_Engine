@@ -42,7 +42,7 @@ const DEMO_STEPPER_STEPS = [{ id: "s", label: "Service", detail: "Deep tissue" }
 
 export function ProgressSteps({
   steps = DEMO_STEPPER_STEPS,
-  current,
+  current = 0,
   onStepClick,
   backNavigation = true,
   numbered = false,

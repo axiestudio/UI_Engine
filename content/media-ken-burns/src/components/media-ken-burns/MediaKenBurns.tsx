@@ -44,7 +44,7 @@ export function MediaKenBurns({ eyebrow = "MOTION", title = "A slow drift.", fra
   return (
     <section className={cn("relative isolate w-full overflow-hidden", false && "bg-foreground", className)}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", false ? "border-background/10" : "border-border")} />
-  <div className={cn("relative mx-auto w-full px-4 sm:px-6 lg:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
+  <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (1120), ["--shell-w" as string]: `${(1120)}px` }}>
 
       <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <header className={cn("relative")}>
@@ -66,8 +66,8 @@ export function MediaKenBurns({ eyebrow = "MOTION", title = "A slow drift.", fra
                     transition={{ duration: interval / 1000, ease: "linear" }}
                   />
                 ) : <div className="h-full w-full bg-gradient-to-br from-secondary to-muted" />}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                {fr.caption && <span className="absolute bottom-4 left-4 rounded-full bg-black/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">{fr.caption}</span>}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+                {fr.caption && <span className="absolute bottom-4 left-4 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground shadow-sm">{fr.caption}</span>}
               </div>
             ))}
           </div>

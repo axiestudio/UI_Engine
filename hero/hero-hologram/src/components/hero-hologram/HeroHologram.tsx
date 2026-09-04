@@ -27,7 +27,7 @@ export function HeroHologram({ eyebrow = "HOLO", word = "HALO", subtitle = "A gl
         style={{
           backgroundImage: "linear-gradient(to right, hsl(var(--primary)/0.5) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--primary)/0.5) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
-          maskImage: "radial-gradient(ellipse at center, #000 35%, transparent 75%)",
+          maskImage: "radial-gradient(ellipse at center, black 35%, transparent 75%)",
         }} />
       <div className="relative z-10 mx-auto max-w-3xl px-5 text-center sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

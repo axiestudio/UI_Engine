@@ -71,7 +71,7 @@ export function InkTrust({
   }
 
   return (
-    <section className="bg-foreground text-background">
+    <section className="relative isolate overflow-hidden w-full bg-foreground text-background">
       <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
 
       <div className="flex flex-wrap items-center justify-between gap-4">

@@ -59,7 +59,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
       <header className="flex flex-wrap items-center gap-3 border-b bg-card px-5 py-4">
         <RadioTower aria-hidden className={"size-4 " + (hot ? "motion-safe:motion-safe:motion-safe:animate-pulse text-[hsl(var(--err))]" : "text-[hsl(var(--warn))]")} />
         <h2 className="font-display text-lg font-black tracking-tight">{incident}</h2>
-        <Badge className={cn("ml-auto font-mono text-[9px]", hot ? "bg-[hsl(var(--err))] text-white" : "bg-[hsl(var(--warn)/0.15)] text-[hsl(var(--warn))] border border-current")}>SEV {hot ? 1 : 2} · ack 700s</Badge>
+        <Badge className={cn("ml-auto font-mono text-[9px]", hot ? "bg-[hsl(var(--err))] text-primary-foreground" : "bg-[hsl(var(--warn)/0.15)] text-[hsl(var(--warn))] border border-current")}>SEV {hot ? 1 : 2} · ack 700s</Badge>
       </header>
 
       <div className="grid gap-5 p-5 lg:grid-cols-[1fr_300px]">

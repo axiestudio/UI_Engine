@@ -173,7 +173,7 @@ function ScrollTop() {
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll back to top"
-        className="absolute bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border bg-background text-foreground shadow-lg transition-colors hover:bg-accent"
+        className="absolute bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border bg-background text-foreground shadow-lg transition-colors hover:bg-accent"
       >
         <ArrowUp className="h-4 w-4 stroke-[2.5]" />
       </Button>
@@ -216,7 +216,7 @@ export function Footer({
     : null
 
   return (
-    <footer className={cn("w-full border-t bg-background text-foreground", className)}>
+    <footer className={cn("relative isolate w-full overflow-hidden border-t bg-background text-foreground", className)}>
       <InView
         variants={{
           hidden: { opacity: 0, y: 16 },

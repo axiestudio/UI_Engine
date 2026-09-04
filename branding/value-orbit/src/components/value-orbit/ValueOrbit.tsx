@@ -53,7 +53,7 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
   const orbitFrozen = pinned != null || reduced
 
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="grid items-center gap-14 lg:grid-cols-[420px_1fr]">
         {/* orbit */}

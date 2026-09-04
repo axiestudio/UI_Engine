@@ -106,12 +106,12 @@ export function CompareTray({
           {/* ── demo stage — the tray lives inside, like a viewport screenshot ── */}
           <div
             className={cn(
-              "relative h-[520px] overflow-hidden rounded-xl border border-dashed",
+              "relative flex h-[520px] w-full flex-col overflow-hidden rounded-xl border border-dashed",
               ink ? "border-background/25 bg-background/5" : "border-border bg-muted/30",
             )}
           >
-            <div className="h-full overflow-y-auto">
-              <div className={cn("p-4 sm:p-6", open && "pb-56")}>
+            <div className="min-h-0 flex-1 overflow-y-auto">
+              <div className={cn("p-4 sm:p-6", open && "pb-64")}>
                 <div className="flex items-center justify-between gap-3">
                   <MonoLabel className={ink ? "text-background/55" : "text-muted-foreground"}>Quiet Times Studio — floor catalog</MonoLabel>
                   <span className="shrink-0 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Max {MAX_COMPARE}</span>
@@ -137,7 +137,7 @@ export function CompareTray({
                             title={on || !locked ? undefined : `Up to ${MAX_COMPARE} compare at once — remove one first`}
                             onClick={() => toggle(p.id)}
                             className={cn(
-                              "mt-auto h-8 gap-1.5 rounded-md border font-mono text-[10px] font-bold uppercase tracking-[0.14em]",
+                              "mt-auto h-10 gap-1.5 rounded-md border font-mono text-[10px] font-bold uppercase tracking-[0.14em]",
                               on
                                 ? "border-foreground bg-foreground text-background hover:bg-foreground/90"
                                 : locked
@@ -166,7 +166,7 @@ export function CompareTray({
                   animate={reduce ? { opacity: 1 } : { y: 0 }}
                   exit={reduce ? { opacity: 0 } : { y: "112%" }}
                   transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  className="absolute inset-x-0 bottom-0 z-[2] rounded-t-[20px] border-t bg-card p-4 shadow-2xl"
+                  className="absolute inset-x-3 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 rounded-[20px] border bg-card p-4 shadow-2xl sm:inset-x-4"
                 >
                   <div className="flex items-center gap-3">
                     <MonoLabel className="shrink-0 text-muted-foreground">
@@ -181,7 +181,7 @@ export function CompareTray({
                       variant="outline"
                       aria-label="Clear the comparison"
                       onClick={() => setSelected(new Set())}
-                      className="ml-auto h-8 shrink-0 rounded-full px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground"
+                      className="ml-auto h-10 shrink-0 rounded-full px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground"
                     >
                       Clear
                     </Button>

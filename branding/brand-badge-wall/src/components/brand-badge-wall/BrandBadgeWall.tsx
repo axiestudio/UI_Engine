@@ -119,7 +119,7 @@ export function BrandBadgeWall({
   className,
 }: BrandBadgeWallProps) {
   return (
-    <section className={cn("bg-background text-foreground", className)}>
+    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <header className="">
         {eyebrow != null && (          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>        )}

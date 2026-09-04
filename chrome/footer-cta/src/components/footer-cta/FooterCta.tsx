@@ -20,7 +20,7 @@ export type FooterCtaProps = {
 export function FooterCta({ eyebrow = "ONE MORE THING", title = "Let's build yours.", sub = "Start with a section. Ship the whole site.", cta = "Get in touch", tone = "paper", className }: FooterCtaProps) {
   const ink = tone === "ink"
   return (
-    <footer className={cn("relative isolate overflow-hidden", ink && "bg-foreground text-background", className)}>
+    <footer className={cn("relative isolate w-full overflow-hidden", ink && "bg-foreground text-background", className)}>
       <div className={cn("mx-auto max-w-[1280px] px-5 py-20 text-center sm:px-8")}>
         <InView once variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>

@@ -135,7 +135,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
           aria-label={`Step ${n} · ${label} · ${s === "done" ? "confirmed" : s === "current" ? "in progress" : "locked"}`}
           className={cn(
             "grid size-[18px] shrink-0 translate-y-[2px] place-items-center rounded-full border-2 font-mono text-[9px] font-bold tabular-nums",
-            s === "done" ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-white" : s === "current" ? "border-foreground text-foreground" : "border-muted-foreground/40 text-muted-foreground/60",
+            s === "done" ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-primary-foreground" : s === "current" ? "border-foreground text-foreground" : "border-muted-foreground/40 text-muted-foreground/60",
           )}
         >
           {s === "done" ? <Check aria-hidden className="size-2.5" /> : `0${n}`}
@@ -181,7 +181,8 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
               <Plus aria-hidden /> add line
             </Button>
           </div>
-          <table className="w-full border-collapse text-[12.5px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12.5px]">
             <thead>
               <tr className="border-b text-left text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
                 <th className="px-5 py-1.5 font-semibold">Item</th>
@@ -227,6 +228,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
               ))}
             </tbody>
           </table>
+          </div>
           <p className="border-t border-dashed px-5 py-2 text-[11px] text-muted-foreground">Tap a quantity to change it · voided lines stay on the ticket for the audit</p>
         </section>
 
@@ -255,7 +257,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
             </AnimatePresence>
             {active.length === 0 && <li className="py-3 text-[12px] text-muted-foreground">No active lines.</li>}
           </ul>
-          <dl className="mt-auto space-y-1.5 border-t-2 border-foreground/80 px-4 py-3 text-[12px]">
+          <dl className="mt-auto space-y-1.5 border-t-2 border-foreground/80 px-4 py-3 pb-44 text-[12px]">
             <div className="flex justify-between"><dt className="text-muted-foreground">Gross</dt><dd className="font-mono tabular-nums">{gross.toLocaleString()} kr</dd></div>
             {disc && (
               <div className="flex justify-between"><dt className="text-muted-foreground">Discount · {disc}</dt><dd className="font-mono tabular-nums text-[hsl(var(--ok))]">{(net - gross).toLocaleString()} kr</dd></div>
@@ -281,7 +283,7 @@ export function CheckoutDesk({ orderNo = ORDER_NO, openedBy = "Elin S.", lines =
                 transition={{ type: "spring", stiffness: 260, damping: 17 }}
                 role="status"
                 aria-label={`Payment authorised at ${approved.at}, total ${total.toLocaleString()} kr`}
-                className="absolute inset-x-3 bottom-3 z-10 overflow-hidden rounded-md border bg-background shadow-lg"
+                className="absolute inset-x-3 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 overflow-hidden rounded-md border bg-background shadow-lg"
               >
                 <div className="flex items-center justify-between border-b border-dashed bg-muted/40 px-3 py-1.5">
                   <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[hsl(var(--ok))]">Authorised · {approved.at}</span>

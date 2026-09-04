@@ -87,7 +87,7 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
     setTree((gs) => gs.map((g) => ({ ...g, lots: g.lots.map((l) => (l.id === lotId ? { ...l, price: v } : l)) })))
 
   return (
-    <div className={cn("flex min-h-[540px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-[540px] w-full flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
         <h2 className="text-[13px] font-bold">Farm stand</h2>
@@ -118,7 +118,8 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Product tree · {tree.reduce((a, g) => a + g.lots.length, 0)} lots</span>
             <span className="text-[11px] font-bold text-[hsl(var(--info))]">tap a price to edit</span>
           </header>
-          <table className="w-full border-collapse text-[12px]">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[12px]">
             <thead>
               <tr className="border-b text-left text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                 <th className="px-3 py-1.5 font-semibold">Lot</th>
@@ -175,6 +176,7 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
               ))}
             </tbody>
           </table>
+          </div>
           <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Reserved counts CSA boxes already promised for tomorrow's drop      
           
     </div>

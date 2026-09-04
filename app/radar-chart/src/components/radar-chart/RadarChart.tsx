@@ -87,7 +87,7 @@ export function RadarChart({
   return (
     <div
       className={cn(
-        "relative isolate flex flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground",
+        "relative isolate flex w-full flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground",
         className
       )}
     >

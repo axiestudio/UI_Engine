@@ -233,7 +233,7 @@ function StatusPill({ status, ink }: { status: ServiceStatus; ink: boolean }) {
   const map: Record<ServiceStatus, { label: string; cls: string }> = {
     operational: { label: "Operational", cls: ink ? "bg-background/10 text-background/70" : "bg-secondary text-muted-foreground" },
     degraded: { label: "Degraded", cls: "bg-destructive/15 text-destructive" },
-    outage: { label: "Outage", cls: "bg-destructive text-white" },
+    outage: { label: "Outage", cls: "bg-destructive text-primary-foreground" },
     maintenance: { label: "Maintenance", cls: ink ? "bg-background/15 text-background/80" : "bg-foreground/85 text-background" },
   }
   return (

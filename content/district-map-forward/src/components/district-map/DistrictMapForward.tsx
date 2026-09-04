@@ -197,7 +197,7 @@ export function DistrictMapForward({
   className,
 }: DistrictMapForwardProps) {
   return (
-    <div className={cn("group w-full overflow-hidden border-2 bg-background text-foreground", className)}>
+    <div className={cn("relative isolate overflow-hidden w-full group border-2 bg-background text-foreground", className)}>
       {/* header */}
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b-2 bg-card px-6 py-4 lg:px-10">
         <div className="inline-flex items-center gap-3">
@@ -239,7 +239,7 @@ export function DistrictMapForward({
           </div>
 
           {/* address field */}
-          <div className="flex items-center justify-between gap-4 border border-ink/70 bg-white px-4 py-3">
+          <div className="flex items-center justify-between gap-4 border border-ink/70 bg-card px-4 py-3">
             <div className="min-w-0">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-distmuted">{addressLabel}</p>
               <p className="mt-0.5 truncate text-[18px] font-bold text-foreground">{addressValue}</p>

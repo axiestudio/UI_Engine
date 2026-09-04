@@ -128,7 +128,7 @@ export function DateRangePresets({ value, onChange, presets = DEFAULTS, allowCom
               {(presets ?? []).map((p) => <Button type="button" variant="ghost" key={p.label} onClick={() => applyPreset(p.days)} className="block w-full rounded-md px-2.5 py-2 text-left text-sm font-medium hover:bg-accent">{p.label}</Button>)}
               {allowCompare && (
                 <Button type="button" variant="ghost" role="switch" aria-checked={compare} onClick={() => setCompare((c) => !c)} className="mt-1 flex w-full items-center justify-between gap-2 rounded-md border border-dashed px-2.5 py-2 text-left text-[11px] font-bold text-muted-foreground hover:bg-accent">
-                  Compare previous <span aria-hidden className={cn("relative h-4 w-7 rounded-full transition-colors", compare && "bg-primary")}><span className={cn("absolute top-0.5 size-3 rounded-full bg-white shadow transition-all", compare ? "left-3.5" : "left-0.5")} /></span>
+                  Compare previous <span aria-hidden className={cn("relative h-4 w-7 rounded-full transition-colors", compare && "bg-primary")}><span className={cn("absolute top-0.5 size-3 rounded-full bg-background shadow transition-all", compare ? "left-3.5" : "left-0.5")} /></span>
                 </Button>
               )}
             </div>

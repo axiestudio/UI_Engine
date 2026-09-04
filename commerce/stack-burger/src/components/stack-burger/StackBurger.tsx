@@ -127,7 +127,7 @@ export function StackBurger({
                   aria-pressed={on}
                   onClick={() => toggle(id)}
                   className={cn(
-                    "h-8 rounded-full px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em]",
+                    "h-10 rounded-full px-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em]",
                     on
                       ? ink
                         ? "border-background bg-background text-foreground hover:bg-background/90"

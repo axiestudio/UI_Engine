@@ -111,7 +111,7 @@ export function TravelDesk({
   const issuedCount = rows.filter((r) => r.passIssued).length
 
   return (
-    <div className={cn("flex min-h-dvh flex-col bg-background font-sans text-foreground", className)}>
+    <div className={cn("relative isolate flex min-h-dvh w-full flex-col overflow-hidden bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — mono masthead: the PNR is the identity */}
       <header className="flex flex-wrap items-end gap-x-5 gap-y-2 px-5 py-3">

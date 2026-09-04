@@ -110,7 +110,7 @@ export function EmblaStepsWizard({
   }
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden", className)}>
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <header className="mx-auto max-w-2xl text-center mx-auto">
           {eyebrow != null && (
@@ -182,7 +182,7 @@ export function EmblaStepsWizard({
                 variant="ghost"
                 onClick={() => embla?.scrollPrev()}
                 disabled={selected === 0}
-                className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-background px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex h-11 items-center gap-1.5 rounded-full border border-border bg-background px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <ChevronLeft className="size-3.5" aria-hidden />
                 Back
@@ -213,7 +213,7 @@ export function EmblaStepsWizard({
                   type="button"
                   variant="ghost"
                   onClick={advance}
-                  className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-background transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex h-11 items-center gap-1.5 rounded-full bg-foreground px-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-background transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {selected === last ? "Finish" : "Next"}
                   <ChevronRight className="size-3.5" aria-hidden />
