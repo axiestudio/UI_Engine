@@ -28,6 +28,8 @@ export type MoodCard = {
   note: string
   /** Token name without the --app- prefix, e.g. "mood-dawn". Resolves via bg-app-{token}. */
   token: string
+  /** Concrete fallback hex so the petal has visible colour even when --app-* tokens are unset. */
+  hex: string
   /** Force ink/paper text. Auto-derived by lightness when absent. */
   ink?: "light" | "dark"
 }
@@ -40,27 +42,27 @@ export type MoodPortalProps = {
   onOpen?: (m: MoodCard) => void
 }
 
-const MOOD_TOKENS = {
-  dawn: 88,
-  ink: 14,
-  moss: 38,
-  clay: 62,
-} as const
+const MOOD_PALETTE: Record<string, string> = {
+  dawn: "#F2D5A0",
+  ink: "#111111",
+  moss: "#4F7A4A",
+  clay: "#C68B5E",
+}
 
 const DEFAULT_MOODS: MoodCard[] = [
-  { id: "dawn", label: "Dawn studio", note: "First light through north glass — the brand before the noise.", token: "mood-dawn", ink: "dark" },
-  { id: "ink", label: "Wet ink", note: "Black ink pooling on cotton paper. Decisions, permanent.", token: "mood-ink" },
-  { id: "moss", label: "Moss wall", note: "The quiet green of work that compounds slowly.", token: "mood-moss" },
-  { id: "clay", label: "Raw clay", note: "Unfired, honest material. Every brand starts here.", token: "mood-clay", ink: "dark" },
+  { id: "dawn", label: "Dawn studio", note: "First light through north glass — the brand before the noise.", token: "mood-dawn", hex: MOOD_PALETTE.dawn, ink: "dark" },
+  { id: "ink", label: "Wet ink", note: "Black ink pooling on cotton paper. Decisions, permanent.", token: "mood-ink", hex: MOOD_PALETTE.ink },
+  { id: "moss", label: "Moss wall", note: "The quiet green of work that compounds slowly.", token: "mood-moss", hex: MOOD_PALETTE.moss },
+  { id: "clay", label: "Raw clay", note: "Unfired, honest material. Every brand starts here.", token: "mood-clay", hex: MOOD_PALETTE.clay, ink: "dark" },
 ]
 
-/** Derive light/dark ink from a token's lightness (committed in MOOD_TOKENS). */
-function derivedInk(token: MoodCard["token"], forced?: "light" | "dark"): "light" | "dark" {
+/** Derive light/dark ink from a hex (auto fallback when not forced). */
+function derivedInk(hex: string, forced?: "light" | "dark"): "light" | "dark" {
   if (forced) return forced
-  const key = token.replace(/^mood-/, "") as keyof typeof MOOD_TOKENS
-  const L = MOOD_TOKENS[key]
-  if (L == null) return "light"
-  return L > 55 ? "dark" : "light"
+  const h = hex.replace("#", "")
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255)
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b
+  return lum > 0.55 ? "dark" : "light"
 }
 
 function petalRadius(i: number) {
@@ -85,7 +87,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {moods.map((m, i) => {
-          const ink = derivedInk(m.token, m.ink)
+          const ink = derivedInk(m.hex, m.ink)
           return (
             <Tilt key={m.id} className="h-[300px]" rotationFactor={8}>
               <Dialog open={open === m.id} onOpenChange={(o) => { setOpen(o ? m.id : null); if (o) onOpen?.(m) }}>
@@ -95,9 +97,9 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
                     aria-label={`Open mood: ${m.label}`}
                     whileHover={reduced ? undefined : { scale: 1.02 }}
                     transition={{ duration: 0.25 }}
-                    style={{ background: `hsl(var(--app-${m.token}))`, color: ink === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))", borderRadius: petalRadius(i) }}
+                    style={{ background: m.hex, color: ink === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))", borderRadius: petalRadius(i) }}
                     className={cn(
-                      "group relative flex h-full w-full flex-col justify-end overflow-hidden rounded-2xl p-6 text-left",
+                      "group relative flex h-full w-full flex-col justify-end overflow-hidden rounded-2xl p-6 pl-8 text-left",
                       "shadow-[0_18px_40px_-18px_rgb(0_0_0/0.45)] outline-none ring-offset-2 ring-offset-background",
                       "focus-visible:ring-[3px] focus-visible:ring-ring/50"
                     )}
@@ -115,7 +117,7 @@ export function MoodPortal({ moods = DEFAULT_MOODS, eyebrow = "MOOD · THE FEEL 
                       animate={{ scale: 1, opacity: 1 }}
                       exit={reduced ? undefined : { scale: 0.72, opacity: 0 }}
                       transition={{ type: "spring", stiffness: 260, damping: 24 }}
-                      style={{ background: `hsl(var(--app-${active!.token}))`, color: derivedInk(active!.token, active!.ink) === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))" }}
+                      style={{ background: active!.hex, color: derivedInk(active!.hex, active!.ink) === "dark" ? "hsl(var(--foreground))" : "hsl(var(--background))" }}
                       className="flex h-44 items-end p-6"
                     >
                       <DialogHeader className="text-left">

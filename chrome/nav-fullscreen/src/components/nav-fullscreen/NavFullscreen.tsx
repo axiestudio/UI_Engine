@@ -37,7 +37,7 @@ export function NavFullscreen({ brand = "STUDIO", items = [
   }, [open])
 
   return (
-    <div className={cn("relative z-50", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[360px] w-full", className)}>
       <header className="relative isolate overflow-hidden sticky top-0 z-50 mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
         <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.6 }}>
           <span className="font-display text-lg font-black tracking-tight">{brand}</span>

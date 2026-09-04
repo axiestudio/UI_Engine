@@ -27,7 +27,7 @@ export type ApplauseMeterProps = {
   className?: string
 }
 
-export function ApplauseMeter({ value, max = 5, count, countLabel = "verified voices", eyebrow = "REVIEWS", label, onRate, className }: ApplauseMeterProps) {
+export function ApplauseMeter({ value = 4.8, max = 5, count = 1284, countLabel = "verified voices", eyebrow = "REVIEWS", label = "Guests at Quiet Times Studio, scored after every visit.", onRate, className }: ApplauseMeterProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const ratio = Math.max(0, Math.min(1, value / max))
   const [rated, setRated] = React.useState<number | null>(null)

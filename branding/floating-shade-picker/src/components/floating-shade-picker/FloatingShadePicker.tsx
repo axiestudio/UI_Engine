@@ -17,18 +17,19 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { InView } from "@/components/primitives/in-view"
 
-// content data: brand palette
-type SwatchSpec = { name: string; token: string }
+// content data: brand palette (concrete hex fallbacks so the preview has colour
+// even when --app-* tokens are unset in the host iframe)
+type SwatchSpec = { name: string; token: string; hex: string }
 
 const BASE_SWATCHES: SwatchSpec[] = [
-  { name: "Studio Teal", token: "shade-teal" },
-  { name: "Amber Clay", token: "shade-amber" },
-  { name: "Violet Hour", token: "shade-violet" },
-  { name: "Rosewood", token: "shade-rose" },
-  { name: "Salon Blue", token: "shade-blue" },
-  { name: "Fern", token: "shade-fern" },
-  { name: "Signal Red", token: "shade-red" },
-  { name: "Brass", token: "shade-brass" },
+  { name: "Studio Teal", token: "shade-teal", hex: "#2BA89F" },
+  { name: "Amber Clay", token: "shade-amber", hex: "#E8A04A" },
+  { name: "Violet Hour", token: "shade-violet", hex: "#7E5BD9" },
+  { name: "Rosewood", token: "shade-rose", hex: "#D26B86" },
+  { name: "Salon Blue", token: "shade-blue", hex: "#3A78D6" },
+  { name: "Fern", token: "shade-fern", hex: "#5C8A4F" },
+  { name: "Signal Red", token: "shade-red", hex: "#D84A3A" },
+  { name: "Brass", token: "shade-brass", hex: "#B58A3A" },
 ]
 
 /** Resolve a CSS variable to its computed hsl() string at runtime (host browser only). */
@@ -81,6 +82,7 @@ function shadeScale(base: string): string[] {
 function ShadeSwatch({
   name,
   token,
+  hex,
   index,
   total,
   open,
@@ -88,6 +90,7 @@ function ShadeSwatch({
 }: {
   name: string
   token: string
+  hex: string
   index: number
   total: number
   open: boolean
@@ -105,8 +108,12 @@ function ShadeSwatch({
   }, [])
 
   React.useEffect(() => {
-    if (open) setBaseHex(hexToRgbHslToHex(token))
-  }, [open, token])
+    if (open) {
+      const cssVar = typeof window !== "undefined" ? getComputedStyle(document.documentElement).getPropertyValue(`--app-${token}`).trim() : ""
+      const resolved = cssVar ? hexToRgbHslToHex(token) : hex
+      setBaseHex(resolved)
+    }
+  }, [open, token, hex])
 
   const { refs, floatingStyles, context } = useFloating({
     open,
@@ -147,7 +154,7 @@ function ShadeSwatch({
           "size-14 rounded-xl border border-border transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           open && "ring-2 ring-primary ring-offset-2 ring-offset-background",
         )}
-        style={{ backgroundColor: `hsl(var(--app-${token}))` }}
+        style={{ backgroundColor: hex }}
        h-auto />
       <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
       <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -255,6 +262,7 @@ export function FloatingShadePicker({
             key={swatch.token}
             name={swatch.name}
             token={swatch.token}
+            hex={swatch.hex}
             index={i}
             total={BASE_SWATCHES.length}
             open={openToken === swatch.token}

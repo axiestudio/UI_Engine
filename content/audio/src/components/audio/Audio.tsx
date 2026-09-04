@@ -28,18 +28,18 @@ const DEMO_AUDIO_SRC = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-
 
 export function Audio({
   eyebrow = "Listen",
-  title,
+  title = "Studio note",
   subtitle,
   src = DEMO_AUDIO_SRC,
   trackTitle = "Audio note",
-  artist,
+  artist = "Field recording",
   cover,
   coverAlt,
-  caption,
+  caption = "Three minutes from the cutting room floor.",
   className,
 }: AudioProps) {
   return (
-    <section className={cn("w-full bg-background text-foreground", className)} aria-label={title ?? trackTitle}>
+    <section className={cn("relative isolate w-full overflow-hidden min-h-[400px] bg-background text-foreground", className)} aria-label={title ?? trackTitle}>
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
         <div className="mx-auto w-full max-w-[680px] px-4 py-16 sm:px-6">
           {(eyebrow || title) && (

@@ -26,7 +26,7 @@ export type SignalFlagsProps = {
   className?: string
 }
 
-export function SignalFlags({ word, line = "The crew on shore has already seen your message.", eyebrow = "SIGNAL STATION — ALPHA", cta, className }: SignalFlagsProps) {
+export function SignalFlags({ word = "HELLO", line = "The crew on shore has already seen your message.", eyebrow = "SIGNAL STATION — ALPHA", cta, className }: SignalFlagsProps) {
   const _reduce = useReducedMotion()
   const reduce = !!_reduce
   const letters = word.toUpperCase().split("").slice(0, 10)

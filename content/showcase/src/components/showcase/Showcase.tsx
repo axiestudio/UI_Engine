@@ -30,11 +30,18 @@ export type ShowcaseProps = {
 
 // ── Showcase ─────────────────────────────────────────────────────────────────
 
+// Self-demo defaults: bare mount reproduces the same demo the engine shows.
+const DEMO_SHOTS: ShowcaseShot[] = [
+  { src: "/showcase/hero-poster.webp", alt: "Product overview", label: "Overview", caption: "The dashboard, calm at a glance." },
+  { src: "/showcase/gallery-01.webp", alt: "Detail view", label: "Detail", caption: "Drill into a single project." },
+  { src: "/showcase/gallery-02.webp", alt: "Settings", label: "Settings", caption: "Tokens and themes live in one panel." },
+]
+
 export function Showcase({
-  eyebrow,
-  title,
-  subtitle,
-  shots,
+  eyebrow = "Product",
+  title = "A workspace, on screen",
+  subtitle = "Three views of the same calm surface. Click a tab to peek inside.",
+  shots = DEMO_SHOTS,
   urlLabel = "app.example.com",
   tone = "ink",
   className,
@@ -45,7 +52,7 @@ export function Showcase({
   const shot = shots[Math.min(active, shots.length - 1)]
 
   return (
-    <section className={cn(ink && "bg-foreground", "w-full", className)} aria-label={title ?? "Product showcase"}>
+    <section className={cn(ink && "bg-foreground", "relative isolate w-full overflow-hidden min-h-[400px]", className)} aria-label={title ?? "Product showcase"}>
       <div className="mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         {(eyebrow || title || subtitle) && (
           <header className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">

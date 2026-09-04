@@ -53,7 +53,7 @@ export function HeaderEditorial({
     "group relative font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 
   return (
-    <header className={cn(sticky && "sticky top-0 z-50 bg-background/90 ", "relative", className)}>
+    <header className={cn(sticky && "sticky top-0 z-50 bg-background/90 ", "relative isolate w-full overflow-hidden", className)}>
       {/* utility strip */}
       {(meta || metaRight) && (
         <div className="relative isolate overflow-hidden border-b border-border/60 bg-secondary/40">

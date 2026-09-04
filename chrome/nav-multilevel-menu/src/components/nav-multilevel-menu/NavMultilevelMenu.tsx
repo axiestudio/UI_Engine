@@ -45,7 +45,7 @@ export function NavMultilevelMenu({ brand = "STUDIO", menu = DEFAULT_MENU, class
   }, [])
 
   return (
-    <div className={cn("relative z-40", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[360px] w-full", className)}>
       <header className="relative isolate overflow-hidden flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
         <a href="#" className="font-display text-lg font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {brand}

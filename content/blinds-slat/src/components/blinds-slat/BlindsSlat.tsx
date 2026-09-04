@@ -28,7 +28,20 @@ export type BlindsSlatProps = {
   className?: string
 }
 
-export function BlindsSlat({ before, after, slats = 12, height = "230vh", value, eyebrow = "THE TURN", caption, className }: BlindsSlatProps) {
+// Self-demo defaults: bare mount reproduces the same demo the engine shows.
+const DEMO_BEFORE = { src: "/showcase/blinds-before.webp", label: "Closed" } as const
+const DEMO_AFTER = { src: "/showcase/blinds-after.webp", label: "Open" } as const
+
+export function BlindsSlat({
+  before = DEMO_BEFORE,
+  after = DEMO_AFTER,
+  slats = 12,
+  height = "230vh",
+  value,
+  eyebrow = "THE TURN",
+  caption,
+  className,
+}: BlindsSlatProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const controlled = value !== undefined
   const wrapRef = React.useRef<HTMLDivElement>(null)
@@ -47,7 +60,7 @@ export function BlindsSlat({ before, after, slats = 12, height = "230vh", value,
   }, [reduce, controlled, mv])
 
   return (
-    <div ref={wrapRef} className={cn("relative isolate w-full", className)} style={controlled ? undefined : { height }}>
+    <div ref={wrapRef} className={cn("relative isolate w-full overflow-hidden min-h-[400px]", className)} style={controlled ? undefined : { height }}>
       <div className={controlled ? "w-full" : "sticky top-[8vh] w-full"}>
         <figure className="relative mx-auto w-full max-w-[980px] overflow-hidden rounded-lg border bg-card shadow-sm">
           {/* after: the revealed truth */}

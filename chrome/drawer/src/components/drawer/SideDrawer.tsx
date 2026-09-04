@@ -70,12 +70,14 @@ export function Drawer({
           {trigger}
         </DrawerTrigger>
       ) : (
-        <DrawerTrigger
-          className="relative isolate overflow-hidden inline-flex h-10 items-center gap-2 rounded-full border bg-card px-4 text-sm font-bold tracking-tight shadow-xs transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label={triggerLabel}
-        >
-          <Menu className="h-4 w-4" /> {triggerLabel}
-        </DrawerTrigger>
+        <div className="relative isolate overflow-hidden flex min-h-[360px] w-full items-start justify-end p-4 sm:p-6">
+          <DrawerTrigger
+            className="relative isolate overflow-hidden inline-flex h-10 items-center gap-2 rounded-full border bg-card px-4 text-sm font-bold tracking-tight shadow-xs transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={triggerLabel}
+          >
+            <Menu className="h-4 w-4" /> {triggerLabel}
+          </DrawerTrigger>
+        </div>
       )}
       <DrawerContent className={cn("border-border bg-background text-foreground", className)}>
         <DrawerClose className="absolute right-4 top-4 rounded-full border bg-card p-1.5 text-muted-foreground transition-colors hover:text-foreground">

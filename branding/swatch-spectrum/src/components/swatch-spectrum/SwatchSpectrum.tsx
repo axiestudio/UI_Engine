@@ -29,8 +29,8 @@ export type Swatch = {
 }
 
 export type SwatchSpectrumProps = {
-  swatches?: typeof SWATCH_DEFS
-  onCopy?: (s: typeof SWATCH_DEFS[number]) => void
+  swatches?: SwatchDef[]
+  onCopy?: (s: SwatchDef) => void
   eyebrow?: string
   className?: string
 }
@@ -71,12 +71,23 @@ function tokenToHex(token: string): string {
 
 type SwatchToken = "swatch-ink" | "swatch-paper" | "swatch-signal" | "swatch-moss" | "swatch-stone"
 
-const SWATCH_DEFS: { name: string; token: SwatchToken; label: string; onToken?: "swatch-on-dark" | "swatch-on-light" }[] = [
-  { name: "Ink", token: "swatch-ink", label: "--foreground" },
-  { name: "Paper", token: "swatch-paper", label: "--background", onToken: "swatch-on-dark" },
-  { name: "Signal", token: "swatch-signal", label: "--brand" },
-  { name: "Moss", token: "swatch-moss", label: "--accent", onToken: "swatch-on-light" },
-  { name: "Stone", token: "swatch-stone", label: "--muted-foreground", onToken: "swatch-on-dark" },
+export type SwatchDef = {
+  name: string
+  token: SwatchToken
+  label: string
+  /** Concrete fallback hex so the preview has visible colour even when --app-* tokens are unset. */
+  hex: string
+  onToken?: "swatch-on-dark" | "swatch-on-light"
+  /** Concrete fallback foreground hex so contrast still computes. */
+  onHex?: string
+}
+
+const SWATCH_DEFS: SwatchDef[] = [
+  { name: "Ink", token: "swatch-ink", label: "--foreground", hex: "#111111", onHex: "#FAFAF7" },
+  { name: "Paper", token: "swatch-paper", label: "--background", hex: "#FAFAF7", onHex: "#111111" },
+  { name: "Signal", token: "swatch-signal", label: "--brand", hex: "#E8502E", onHex: "#FAFAF7" },
+  { name: "Moss", token: "swatch-moss", label: "--accent", hex: "#4A5D43", onHex: "#FAFAF7" },
+  { name: "Stone", token: "swatch-stone", label: "--muted-foreground", hex: "#8E8B84", onHex: "#111111" },
 ]
 
 export function SwatchSpectrum({
@@ -117,8 +128,10 @@ export function SwatchSpectrum({
 
       <div className="mt-8 flex h-[400px] gap-1.5 rounded-xl" role="group" aria-label="Brand colors">
         {swatches.map((s) => {
-          const hex = tokenToHex(s.token)
-          const fg = s.onToken ? `hsl(var(--app-${s.onToken}))` : (luminance(hex) > 0.35 ? `hsl(var(--app-swatch-on-dark))` : `hsl(var(--app-swatch-on-light))`)
+          const cssVar = typeof window !== "undefined" ? getComputedStyle(document.documentElement).getPropertyValue(`--app-${s.token}`).trim() : ""
+          const hasVar = cssVar.length > 0
+          const hex = hasVar ? tokenToHex(s.token) : ("hex" in s && s.hex ? s.hex : tokenToHex(s.token))
+          const fg = s.onHex ?? (luminance(hex) > 0.35 ? "#111111" : "#FAFAF7")
           const ratio = contrast(hex, fg)
           const pass = ratio >= 4.5
           return (
@@ -128,7 +141,7 @@ export function SwatchSpectrum({
               variant="ghost"
               aria-label={`Copy ${s.name} ${hex}, contrast ${ratio.toFixed(1)} to 1. ${pass ? "Passes AA." : "Large text only."}`}
               onClick={() => void copy(s)}
-              style={{ backgroundColor: `hsl(var(--app-${s.token}))`, color: fg, flexGrow: 1, flexBasis: 0 }}
+              style={{ backgroundColor: hasVar ? `hsl(var(--app-${s.token}))` : hex, color: fg, flexGrow: 1, flexBasis: 0 }}
               className={cn(
                 "group relative flex h-auto min-w-14 cursor-pointer flex-col justify-between rounded-lg p-4 text-left outline-none",
                 "hover:grow-[2.4] focus-visible:grow-[2.4] focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-current",

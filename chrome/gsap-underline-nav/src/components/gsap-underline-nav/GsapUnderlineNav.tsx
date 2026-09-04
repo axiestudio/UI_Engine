@@ -68,7 +68,7 @@ export function GsapUnderlineNav({
   }
 
   return (
-    <div className={cn("flex w-full justify-center bg-background py-10", className)}>
+    <div className={cn("relative isolate overflow-hidden flex w-full justify-center bg-background py-10", className)}>
       <nav
         ref={pillRef}
         aria-label={brand}

@@ -27,7 +27,15 @@ export type PageTurnProps = {
   className?: string
 }
 
-export function PageTurn({ brand = "HOUSE PRESS", pages, index: indexProp, onIndex, className }: PageTurnProps) {
+// Self-demo defaults: bare mount reproduces the same demo the engine shows.
+const DEMO_PAGES: Page[] = [
+  { head: "Prologue", title: "A small press", body: <p>Founded at a kitchen table in 2019, House Press started as a single Risograph and a stubborn idea: print can be quiet, warm, and still.</p> },
+  { head: "Chapter I", title: "Paper that breathes", body: <p>Every book we bind uses a cotton-rich stock that softens the page turn. The first leaf always resists a little — that's the grain speaking.</p> },
+  { head: "Chapter II", title: "Ink, set by hand", body: <p>Our letterpress is older than most of the team. Setting type by hand is a discipline: kern, lock, proof, print. The press doesn't lie.</p> },
+  { head: "Epilogue", title: "Bound to last", body: <p>We sign every colophon. If a book falls apart, we fix it. If the binding fails inside ten years, we re-bind it free. That's the press's promise.</p> },
+]
+
+export function PageTurn({ brand = "HOUSE PRESS", pages = DEMO_PAGES, index: indexProp, onIndex, className }: PageTurnProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const [inner, setInner] = React.useState(0)
   const [dir, setDir] = React.useState<1 | -1>(1)

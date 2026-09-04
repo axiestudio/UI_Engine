@@ -3,7 +3,7 @@
  * Snapshot: UI/_registry/motion-primitives/components-core/in-view.tsx
  */
 'use client';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { motion, useInView } from 'motion/react';
 import type { Variant, Transition, UseInViewOptions } from 'motion/react';
@@ -42,14 +42,17 @@ export function InView({
 
   const [isViewed, setIsViewed] = useState(false)
 
-  const MotionComponent = motion[as as keyof typeof motion] as typeof as;
+  const MotionComponent = useMemo(
+    () => motion[as as keyof typeof motion] as typeof as,
+    [as]
+  );
 
   return (
     <MotionComponent
       ref={ref}
       initial='hidden'
-      onAnimationComplete={() => {
-        if (once) setIsViewed(true)
+      onAnimationComplete={(def) => {
+        if (once && !isViewed && def === 'visible') setIsViewed(true)
       }}
       animate={(isInView || isViewed) ? "visible" : "hidden"}
 

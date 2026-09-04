@@ -46,7 +46,12 @@ function TypedLine({ text, speed, onDone }: { text: string; speed: number; onDon
   return <motion.span>{shown}</motion.span>
 }
 
-export function TypewriterManifesto({ eyebrow = "TRANSMISSION", title, lines, speed = 22, screen = false, className }: TypewriterManifestoProps) {
+export function TypewriterManifesto({ eyebrow = "TRANSMISSION", title, lines = [
+  "We are still here, still small, still answer the phone.",
+  "We charge a fair rate and never push a treatment you do not need.",
+  "We clean the room between every visit, in front of you.",
+  "We remember your name.",
+], speed = 22, screen = false, className }: TypewriterManifestoProps) {
   const reduceMotion = useReducedMotion()
   const reduce = !!reduceMotion
   const [typedCount, setTypedCount] = React.useState(reduce ? lines.length : 0)

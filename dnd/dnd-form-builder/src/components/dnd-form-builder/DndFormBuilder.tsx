@@ -40,6 +40,12 @@ export type DndFormBuilderProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_DND_FORM_BUILDER_FIELDTYPES: { type: FieldType; label: string }[] = [ { type: "text", label: "Text field" }, { type: "email", label: "Email" }, { type: "tel", label: "Phone" }, { type: "textarea", label: "Paragraph" }, { type: "select", label: "Dropdown" }, { type: "switch", label: "Switch" }, ]
+const DEMO_DND_FORM_BUILDER_FIELDS: FormField[] = [
+  { id: "f-text", type: "text", label: "Full name" },
+  { id: "f-email", type: "email", label: "Email address" },
+  { id: "f-tel", type: "tel", label: "Phone" },
+  { id: "f-textarea", type: "textarea", label: "Notes" },
+]
 
 
 export function DndFormBuilder({
@@ -47,7 +53,7 @@ export function DndFormBuilder({
   title = "Build the form.",
   subtitle = "Drag field types onto the canvas, then reorder and remove them.",
   fieldTypes = DEMO_DND_FORM_BUILDER_FIELDTYPES,
-  initialFields = [],
+  initialFields = DEMO_DND_FORM_BUILDER_FIELDS,
   onChange,
   className,
 }: DndFormBuilderProps) {

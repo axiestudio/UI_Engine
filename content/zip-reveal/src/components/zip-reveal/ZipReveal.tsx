@@ -98,7 +98,7 @@ export function ZipReveal({ eyebrow = "UNSEALED ON ARRIVAL", label = "drop-01.zi
 
   if (controlled) return <div className={cn("py-2", className)}>{Parcel}</div>
   return (
-    <div ref={wrapRef} className={cn("relative isolate w-full", className)} style={{ height }}>
+    <div ref={wrapRef} className={cn("relative isolate w-full overflow-hidden min-h-[400px]", className)} style={{ height }}>
       <div className="sticky top-[10vh] mx-auto w-full max-w-[980px] px-6 py-10">{Parcel}</div>
     </div>
   )

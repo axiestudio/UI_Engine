@@ -37,7 +37,7 @@ const DEFAULT_LINES: CartLine[] = [
 ]
 
 export function CommerceCartDrawer({ eyebrow = "CART", title = "Your bag.", lines: initialLines = DEFAULT_LINES, checkoutLabel = "Checkout", className }: CommerceCartDrawerProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(true)
   const [lines, setLines] = React.useState(initialLines)
   const total = lines.reduce((t, l) => t + l.price * l.qty, 0)
   const count = lines.reduce((t, l) => t + l.qty, 0)

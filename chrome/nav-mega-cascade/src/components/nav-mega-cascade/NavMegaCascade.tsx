@@ -58,7 +58,7 @@ export function NavMegaCascade({ brand = "Quiet Times Studio", items = DEFAULT_I
   }, [])
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
       <header className="relative z-40 border-b bg-background">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
           <a href="#" className="font-display text-lg font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">

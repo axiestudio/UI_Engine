@@ -82,7 +82,7 @@ export function HeaderCommand({
   }, [links])
 
   return (
-    <header className={cn("sticky top-0 z-50 border-b border-border bg-background/80 ", className)}>
+    <header className={cn("relative isolate w-full overflow-hidden sticky top-0 z-50 border-b border-border bg-background/80 ", className)}>
       <div className="relative isolate overflow-hidden mx-auto flex h-14 w-full max-w-[1200px] items-center gap-6 px-4 sm:px-6">
         <a href="#" className="flex shrink-0 items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
           {logo ?? (

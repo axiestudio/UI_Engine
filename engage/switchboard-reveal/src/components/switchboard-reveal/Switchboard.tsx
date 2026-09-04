@@ -33,7 +33,11 @@ export function Switchboard({
   eyebrow = "THE SWITCHBOARD",
   title = "Who do you need?",
   intro,
-  routes,
+  routes = [
+    { id: "bookings", label: "Bookings", desc: "Move, change, cancel an appointment.", meta: "Front desk" },
+    { id: "membership", label: "Membership", desc: "Plans, billing, the regular rate card.", meta: "Accounts" },
+    { id: "press", label: "Press & collabs", desc: "Press kit, shoots, partnerships.", meta: "Studio" },
+  ],
   inLabel = "IN — YOUR CALL",
   connectedLabel = "Line connected",
   defaultValue,

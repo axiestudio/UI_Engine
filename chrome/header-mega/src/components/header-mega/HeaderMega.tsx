@@ -76,7 +76,7 @@ export function HeaderMega({
 
   return (
     <header
-      className={cn(sticky && "sticky top-0 z-50", "relative", className)}
+      className={cn(sticky && "sticky top-0 z-50", "relative isolate w-full overflow-hidden", className)}
       onMouseLeave={scheduleClose}
       onMouseEnter={cancelClose}
     >

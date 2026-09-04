@@ -39,6 +39,11 @@ export type DndMenuBuilderProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_DND_MENU_BUILDER_PALETTE = [ { id: "home", label: "Home", href: "/" }, { id: "services", label: "Services", href: "/services" }, { id: "pricing", label: "Pricing", href: "/pricing" }, { id: "journal", label: "Journal", href: "/journal" }, ]
+const DEMO_DND_MENU_BUILDER_ITEMS: MenuItem[] = [
+  { id: "m-home", label: "Home", href: "/" },
+  { id: "m-services", label: "Services", href: "/services" },
+  { id: "m-pricing", label: "Pricing", href: "/pricing" },
+]
 
 
 export function DndMenuBuilder({
@@ -46,7 +51,7 @@ export function DndMenuBuilder({
   title = "Build the menu.",
   subtitle = "Drag destinations onto the menu, then reorder or remove them.",
   palette = DEMO_DND_MENU_BUILDER_PALETTE,
-  initialItems = [],
+  initialItems = DEMO_DND_MENU_BUILDER_ITEMS,
   onChange,
   className,
 }: DndMenuBuilderProps) {

@@ -36,7 +36,7 @@ const DEFAULT_LINES = [
 ]
 
 export function IntroTerminal({
-  mode = "overlay",
+  mode = "stage",
   range = 900,
   lockScroll = true,
   skipOnReducedMotion = true,

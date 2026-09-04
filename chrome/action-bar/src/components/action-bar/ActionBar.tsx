@@ -44,7 +44,14 @@ export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 
     const unsub = shownProgress.on("change", (v) => {
       if (v === 1) setShown(true)
     })
-    return () => unsub()
+    // Showcase fallback: if the host never scrolls past the threshold (most
+    // previews render inside a viewport-sized iframe / small simulator),
+    // show the bar after a short beat so the demo isn't an empty stage.
+    const fallback = window.setTimeout(() => setShown(true), 600)
+    return () => {
+      unsub()
+      window.clearTimeout(fallback)
+    }
   }, [shownProgress])
 
   React.useEffect(() => {
@@ -62,12 +69,13 @@ export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 
     : <Button type="button" onClick={action.onClick} className="h-11 flex-1 rounded-full bg-foreground px-5 font-display text-sm font-extrabold tracking-tight text-background active:scale-[0.98]">{action.label}</Button>
 
   return (
+    <div className={cn("relative isolate overflow-hidden min-h-[520px] w-full", className)}>
     <motion.div
       aria-hidden={!visible}
       initial={false}
       animate={reduce ? { opacity: visible ? 1 : 0 } : { y: visible ? 0 : 72 }}
       transition={{ type: "spring", bounce: 0.28, duration: 0.55 }}
-      className={cn("absolute bottom-0 z-40 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none", className)}
+      className={cn("absolute bottom-0 z-40 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]", mobileOnly && "lg:hidden", visible ? "" : "pointer-events-none")}
       style={{ paddingBottom: "max(env(safe-area-inset-bottom, 12px), 12px)" }}
     >
       <div className="mx-auto flex w-full max-w-[560px] items-center gap-2 px-3 py-2.5 ">
@@ -89,5 +97,6 @@ export function ActionBar({ action = DEFAULT_ACTION, aside, note, appearAfter = 
         </div>
       </div>
     </motion.div>
+    </div>
   )
 }

@@ -24,7 +24,7 @@ export function NavProgress({ brand = "STUDIO", items = [{ id: "a", label: "Work
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 16))
 
   return (
-    <div className={cn("relative z-40", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
       <header className={cn("sticky top-0 z-40 transition-colors", scrolled ? "border-b bg-background/80 " : "border-b border-transparent")}>
         <div className="relative isolate overflow-hidden mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
           <InView once variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>

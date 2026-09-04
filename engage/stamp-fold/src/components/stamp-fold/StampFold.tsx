@@ -28,7 +28,10 @@ export type StampFoldProps = {
 export function StampFold({
   to = "The front desk",
   greeting = "Hello —",
-  lines,
+  lines = [
+    "Your booking is confirmed.",
+    "We'll send a reminder the day before.",
+  ],
   signoff = "See you soon,",
   signature = "A. Lindqvist",
   sealed: sealedProp,

@@ -49,7 +49,7 @@ export function StickyCookie({
   }
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
       <div className="relative isolate overflow-hidden mx-auto max-w-3xl px-5 py-16 text-center sm:px-8">
         <p className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground">Scroll — cookies at the foot</p>
       </div>

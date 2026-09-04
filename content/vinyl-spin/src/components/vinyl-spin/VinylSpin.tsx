@@ -36,7 +36,7 @@ export function VinylSpin({ artist = "SIDE A — STUDIO CUTS", title = "Slow hai
   const spinning = out
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-background", compact ? "px-5 py-10" : "px-6 py-20 sm:py-24", className)}>
+    <section className={cn("relative isolate w-full overflow-hidden min-h-[400px] bg-background", compact ? "px-5 py-10" : "px-6 py-20 sm:py-24", className)}>
       <div className={cn("mx-auto flex w-full max-w-[980px] items-center gap-8", compact ? "gap-6" : "gap-10 sm:gap-14", "flex-col sm:flex-row")}>
         {/* the deck */}
         <div className="relative shrink-0" aria-hidden

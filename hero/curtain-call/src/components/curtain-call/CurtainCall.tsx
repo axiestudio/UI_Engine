@@ -60,7 +60,7 @@ export type CurtainCallProps = {
 }
 
 export function CurtainCall({
-  mode = "overlay",
+  mode = "stage",
   children,
   logo,
   kicker = "UI ENGINE",

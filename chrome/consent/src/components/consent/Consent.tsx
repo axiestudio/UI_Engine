@@ -96,7 +96,11 @@ export function Consent({
   const ink = tone === "ink"
   const reduce = useReducedMotion()
   const [open, setOpen] = React.useState(false)
-  const [visible, setVisible] = React.useState(false)
+  const [visible, setVisible] = React.useState(() => {
+    if (storageKey === null) return true
+    if (typeof window === "undefined") return true
+    return !readStored(storageKey)
+  })
   const [enabled, setEnabled] = React.useState<Record<string, boolean>>(() =>
     Object.fromEntries(categories.map((c) => [c.id, c.required || (c.defaultEnabled ?? true)])),
   )
@@ -125,7 +129,7 @@ export function Consent({
   const rejectAll = () => decide(false)
 
   return (
-    <>
+    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
       <AnimatePresence>
         {visible && (
           <motion.div
@@ -136,10 +140,7 @@ export function Consent({
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className={cn(
-              "absolute bottom-0 z-50 p-4 sm:p-6 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]",
-              className,
-            )}
+            className="absolute bottom-0 z-30 p-4 sm:p-6 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]"
           >
             <div
               className={cn(
@@ -152,7 +153,7 @@ export function Consent({
                 aria-hidden
                 className={cn("pointer-events-none absolute inset-0", ink ? "text-background/30" : "text-foreground/20")}
               >
-                <span className="relative isolate overflow-hidden absolute left-2 top-2 size-2.5 border-l border-t border-current" />
+                <span className="absolute left-2 top-2 size-2.5 border-l border-t border-current" />
                 <span className="absolute right-2 top-2 size-2.5 border-r border-t border-current" />
                 <span className="absolute bottom-2 left-2 size-2.5 border-b border-l border-current" />
                 <span className="absolute bottom-2 right-2 size-2.5 border-b border-r border-current" />
@@ -229,6 +230,6 @@ export function Consent({
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   )
 }

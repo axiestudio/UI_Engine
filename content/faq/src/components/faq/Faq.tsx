@@ -69,11 +69,20 @@ function highlight(text: string, q: string): React.ReactNode {
 
 // ── FAQ ──────────────────────────────────────────────────────────────────────
 
+// Self-demo defaults.
+const DEMO_FAQ_ITEMS: FaqEntry[] = [
+  { id: "hours", question: "What are your hours?", answer: "Monday through Friday, 09:00 to 21:00. Saturdays, 10:00 to 18:00. The studio is closed on Sundays." },
+  { id: "book", question: "How do I book a chair?", answer: "Pick a slot in the calendar above. Confirmation arrives by email within a minute; the front desk sees the booking the moment it lands." },
+  { id: "cancel", question: "Can I cancel or reschedule?", answer: "Yes — up to four hours before the appointment. Inside the four-hour window the chair is held for you and the slot is forfeit." },
+  { id: "license", question: "Are your therapists licensed?", answer: "Every practitioner on the floor carries a current state license and is listed on the staff page with their credentials and specialties." },
+  { id: "walk-ins", question: "Do you take walk-ins?", answer: "When the calendar shows open chairs, yes. The same online calendar the studio uses is mirrored on the door screen, so you will not queue in vain." },
+]
+
 export function Faq({
   badge = "Support",
   title = "Frequently asked questions",
   subtitle,
-  items,
+  items = DEMO_FAQ_ITEMS,
   columns = 1,
   showCategories = true,
   searchable = true,

@@ -71,7 +71,7 @@ export function WishlistDrawer({
   const hair = ink ? "border-background/15" : "border-border"
 
   return (
-    <SectionShell tone={tone} width={1120} rule="bottom" className={className}>
+    <SectionShell tone={tone} width={1120} rule="bottom" className={cn("relative isolate min-h-[400px] overflow-hidden", className)}>
       <InView
         once
         variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}

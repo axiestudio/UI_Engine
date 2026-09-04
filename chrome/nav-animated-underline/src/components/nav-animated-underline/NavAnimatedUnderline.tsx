@@ -24,7 +24,7 @@ export function NavAnimatedUnderline({ brand = "STUDIO", links = DEFAULT_LINKS, 
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
       <header className="relative isolate overflow-hidden flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
         <a href="#" className="font-display text-lg font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {brand}

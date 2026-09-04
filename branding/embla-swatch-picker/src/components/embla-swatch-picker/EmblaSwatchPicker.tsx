@@ -17,11 +17,24 @@ export type EmblaSwatchPickerProps = {
   eyebrow?: string
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  /** content data: palette swatches */
-  swatches?: string[]
+  /** content data: palette swatches (string ids or full spec objects) */
+  swatches?: SwatchSpec[] | string[]
   caption?: string
   tone?: "paper" | "ink"
   className?: string
+}
+
+export type SwatchSpec = { name: string; hex: string; token: string }
+
+const FALLBACK_PALETTE: Record<string, string> = {
+  "shade-amber": "#E8A04A",
+  "shade-teal": "#2BA89F",
+  "shade-violet": "#7E5BD9",
+  "shade-rose": "#D26B86",
+  "shade-blue": "#3A78D6",
+  "shade-brass": "#B58A3A",
+  "shade-fern": "#5C8A4F",
+  "shade-red": "#D84A3A",
 }
 
 const FALLBACK_TOKEN = "shade-amber"
@@ -30,7 +43,16 @@ export function EmblaSwatchPicker({
   eyebrow = "EMBLA · SWATCH PICKER",
   title = "Pick a colour, steal the hex.",
   subtitle = "Drag the loop or click a chip — the centred swatch leans in and its hex reads out below. Copy takes it straight to your clipboard.",
-  swatches = ["shade-amber", "shade-teal", "shade-violet", "shade-rose", "shade-blue", "shade-brass", "shade-fern", "shade-red"],
+  swatches = [
+    { name: "shade-amber", hex: FALLBACK_PALETTE["shade-amber"], token: "shade-amber" },
+    { name: "shade-teal", hex: FALLBACK_PALETTE["shade-teal"], token: "shade-teal" },
+    { name: "shade-violet", hex: FALLBACK_PALETTE["shade-violet"], token: "shade-violet" },
+    { name: "shade-rose", hex: FALLBACK_PALETTE["shade-rose"], token: "shade-rose" },
+    { name: "shade-blue", hex: FALLBACK_PALETTE["shade-blue"], token: "shade-blue" },
+    { name: "shade-brass", hex: FALLBACK_PALETTE["shade-brass"], token: "shade-brass" },
+    { name: "shade-fern", hex: FALLBACK_PALETTE["shade-fern"], token: "shade-fern" },
+    { name: "shade-red", hex: FALLBACK_PALETTE["shade-red"], token: "shade-red" },
+  ],
   caption = "LOOP · CLICK OR DRAG · COPY TO CLIPBOARD",
   tone = "paper",
   className,
@@ -61,13 +83,16 @@ export function EmblaSwatchPicker({
     [],
   )
 
-  const token = swatches[Math.min(active, swatches.length - 1)] ?? FALLBACK_TOKEN
-  const hex = `hsl(var(--app-${token}))`
+  const normalized: SwatchSpec[] = swatches.map((s) =>
+    typeof s === "string" ? { name: s, token: s, hex: FALLBACK_PALETTE[s] ?? "#888888" } : s,
+  )
+  const token = normalized[Math.min(active, normalized.length - 1)] ?? FALLBACK_TOKEN
+  const hex = `hsl(var(--app-${token.token}))`
 
   const copy = React.useCallback(() => {
     if (typeof navigator === "undefined" || !navigator.clipboard) return
     navigator.clipboard
-      .writeText(token)
+      .writeText(token.hex)
       .then(() => {
         setCopied(true)
         if (copyTimer.current !== null) window.clearTimeout(copyTimer.current)
@@ -91,18 +116,18 @@ export function EmblaSwatchPicker({
         <div className="mt-10">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex touch-pan-y items-center py-2">
-              {swatches.map((swatch, i) => {
+              {normalized.map((swatch, i) => {
                 const selected = i === active
                 return (
-                  <div key={`${swatch}-${i}`} className="flex min-w-0 shrink-0 grow-0 basis-1/4 justify-center sm:basis-1/5">
+                  <div key={`${swatch.token}-${i}`} className="flex min-w-0 shrink-0 grow-0 basis-1/4 justify-center sm:basis-1/5">
                     <motion.button
                       type="button"
                       onClick={() => embla?.scrollTo(i)}
                       animate={{ scale: selected ? 1.15 : 1 }}
                       transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 22 }}
-                      aria-label={`Select ${swatch}`}
+                      aria-label={`Select ${swatch.name}`}
                       aria-pressed={selected}
-                      style={{ backgroundColor: `hsl(var(--app-${swatch}))` }}
+                      style={{ backgroundColor: swatch.hex }}
                       className={cn(
                         "size-16 rounded-full transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         selected
@@ -117,12 +142,12 @@ export function EmblaSwatchPicker({
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-3">
-            <p className="font-mono text-2xl font-bold tabular-nums tracking-tight">{token}</p>
+            <p className="font-mono text-2xl font-bold tabular-nums tracking-tight">{token.hex.toUpperCase()}</p>
             <Button
               type="button"
               variant="ghost"
               onClick={copy}
-              aria-label={copied ? "Copied" : `Copy ${token}`}
+              aria-label={copied ? "Copied" : `Copy ${token.hex}`}
               className="flex size-9 items-center justify-center rounded-full border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copied ? <Check className="size-4 text-primary" strokeWidth={2.5} /> : <Copy className="size-4" />}

@@ -61,7 +61,7 @@ export function StoryProgressBar({
   const release = () => setPaused(false)
 
   return (
-    <section role="region" aria-label={title} className={cn("flex justify-center bg-background py-14 sm:py-20", className)}>
+    <section role="region" aria-label={title} className={cn("relative isolate flex justify-center bg-background py-14 sm:py-20", className)}>
       <h2 className="relative isolate overflow-hidden sr-only">{title}</h2>
       <p className="sr-only">{subtitle}</p>
       <div

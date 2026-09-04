@@ -82,7 +82,7 @@ export function Ambiance({ kicker = "stepping inside", line, shots = DEMO_AMBIAN
     "low lamps, warm stone, the particular quiet of a place that has nothing to sell you in this minute"
 
   return (
-    <section ref={wrapRef} className={cn("relative w-full overflow-hidden bg-background text-foreground", className)} aria-label={kicker}>
+    <section ref={wrapRef} className={cn("relative isolate w-full min-h-[400px] overflow-hidden bg-background text-foreground", className)} aria-label={kicker}>
       <InView
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
         transition={{ duration: 0.7 }}

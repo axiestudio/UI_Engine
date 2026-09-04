@@ -20,7 +20,7 @@ export function NavContextDock({ brand = "Quiet Times Studio", className }: NavC
     { icon: User, label: "Account" },
   ]
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[420px] w-full", className)}>
       <header className="relative isolate overflow-hidden flex items-center justify-between border-b px-5 py-4 sm:px-8">
         <span className="font-display text-lg font-black tracking-tight">{brand}</span>
       </header>

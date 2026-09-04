@@ -28,7 +28,12 @@ export type CountdownFlareProps = {
 
 const pad = (n: number) => String(Math.max(0, n)).padStart(2, "0")
 
-export function CountdownFlare({ to, title = "Launch countdown", lead = "Offer begins at zero", firedLabel = "Offer live", compact, children, onFire, className }: CountdownFlareProps) {
+const DEFAULT_TO = (() => {
+  if (typeof window === "undefined") return Date.now() + 7 * 24 * 60 * 60 * 1000
+  return Date.now() + 7 * 24 * 60 * 60 * 1000
+})()
+
+export function CountdownFlare({ to = DEFAULT_TO, title = "Launch countdown", lead = "Offer begins at zero", firedLabel = "Offer live", compact, children, onFire, className }: CountdownFlareProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const target = typeof to === "number" ? to : Date.parse(to)
   const [now, setNow] = React.useState(() => Date.now())

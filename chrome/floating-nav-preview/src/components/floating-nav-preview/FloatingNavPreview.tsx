@@ -141,7 +141,7 @@ export type FloatingNavPreviewProps = {
 
 export function FloatingNavPreview({ brand = "Quiet Times", pages = DEFAULT_PAGES, className }: FloatingNavPreviewProps) {
   return (
-    <div className={cn("flex justify-center py-10", className)}>
+    <div className={cn("relative isolate flex justify-center py-10", className)}>
       <nav
         aria-label="Studio navigation"
         className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-2 shadow-sm"

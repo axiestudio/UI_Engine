@@ -45,7 +45,16 @@ function Dot({ active }: { active?: boolean }) {
 
 // ── Timeline ─────────────────────────────────────────────────────────────────
 
-export function Timeline({ eyebrow = "History", title = "Our story", subtitle, items, layout = "center", trail = true, className }: TimelineProps) {
+// Self-demo defaults.
+const DEMO_TIMELINE_ITEMS: TimelineMilestone[] = [
+  { date: "2001", title: "Doors open", body: "The studio starts with two quiet rooms, evening hours, and a list of founding members who wanted somewhere unhurried to sit." },
+  { date: "2008", title: "Late openings", body: "Weeknight hours extend to 21:00. Members keep coming back because the chair is still theirs after the rush." },
+  { date: "2015", title: "Real-time booking", body: "The front desk swaps paper for a live calendar. Online, the door screen, and the studio software share one source of truth." },
+  { date: "2021", title: "Twenty years", body: "Twenty years in the same place. Same staff lead, same door, same commitment to a quiet hour." },
+  { date: "2026", title: "Next chapter", body: "Renovating the rear room into a soundproofed floor for executive sessions and traveling practitioners." },
+]
+
+export function Timeline({ eyebrow = "History", title = "Our story", subtitle, items = DEMO_TIMELINE_ITEMS, layout = "center", trail = true, className }: TimelineProps) {
   if (!items.length) return null
   const center = layout === "center"
 

@@ -283,7 +283,7 @@ export function Auth({
 
   if (layout === "split") {
     return (
-      <section className={cn("grid min-h-svh w-full lg:grid-cols-2", className)} aria-label={heading}>
+      <section className={cn("relative isolate grid min-h-svh w-full overflow-hidden lg:grid-cols-2", className)} aria-label={heading}>
         {inner}
         <AsidePanel aside={aside ?? { title: heading, description: subline }} />
       </section>
@@ -291,7 +291,7 @@ export function Auth({
   }
 
   return (
-    <section className={cn("flex w-full justify-center px-4 py-16 sm:py-24", className)} aria-label={heading}>
+    <section className={cn("relative isolate flex min-h-[400px] w-full justify-center overflow-hidden px-4 py-16 sm:py-24", className)} aria-label={heading}>
       <Card className="border-none bg-transparent shadow-none">
         <CardContent className="p-0">{inner}</CardContent>
       </Card>

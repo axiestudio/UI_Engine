@@ -39,6 +39,12 @@ export type DndPageBuilderProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_DND_PAGE_BUILDER_PALETTE = [ { id: "hero", type: "hero", label: "Hero" }, { id: "features", type: "content", label: "Features" }, { id: "bento", type: "content", label: "Bento" }, { id: "pricing", type: "commerce", label: "Pricing" }, { id: "footer", type: "chrome", label: "Footer" }, ]
+const DEMO_DND_PAGE_BUILDER_BLOCKS: PageBlock[] = [
+  { id: "b-hero", type: "hero", label: "Hero" },
+  { id: "b-features", type: "content", label: "Features" },
+  { id: "b-pricing", type: "commerce", label: "Pricing" },
+  { id: "b-footer", type: "chrome", label: "Footer" },
+]
 
 
 export function DndPageBuilder({
@@ -46,7 +52,7 @@ export function DndPageBuilder({
   title = "Build the page.",
   subtitle = "Drag a block onto the canvas and reorder it. Remove anything you don't need.",
   palette = DEMO_DND_PAGE_BUILDER_PALETTE,
-  initialBlocks = [],
+  initialBlocks = DEMO_DND_PAGE_BUILDER_BLOCKS,
   onChange,
   className,
 }: DndPageBuilderProps) {

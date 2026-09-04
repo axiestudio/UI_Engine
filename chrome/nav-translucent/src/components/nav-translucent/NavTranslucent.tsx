@@ -29,7 +29,7 @@ export function NavTranslucent({
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 12))
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
       <header
         className={cn(
           "absolute inset-x-0 top-0 z-50 border-b transition-colors",

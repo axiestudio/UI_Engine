@@ -144,7 +144,7 @@ export function Airlock({
 
   return (
     <section
-      className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--hull))] px-4 py-16 sm:px-6 sm:py-20 lg:px-8", className)}
+      className={cn("relative isolate w-full min-h-[400px] overflow-hidden bg-[hsl(var(--hull))] px-4 py-16 sm:px-6 sm:py-20 lg:px-8", className)}
       aria-labelledby="airlock-title"
     >
       <div className="mx-auto grid w-full max-w-[1080px] items-center gap-10 lg:grid-cols-[1.05fr_460px]">

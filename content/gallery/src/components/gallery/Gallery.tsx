@@ -36,11 +36,21 @@ export type GalleryProps = {
   className?: string
 }
 
+// Self-demo defaults.
+const DEMO_GALLERY_PHOTOS: GalleryPhoto[] = [
+  { id: "p1", src: "/showcase/hero-poster.webp", alt: "Studio interior", title: "Studio interior", caption: "Two quiet rooms, evening light." },
+  { id: "p2", src: "/showcase/hero-poster.webp", alt: "Detail shot", title: "Detail shot", caption: "Brass hardware on the rear door." },
+  { id: "p3", src: "/showcase/hero-poster.webp", alt: "Charter session", title: "Charter session", caption: "Executive session, lights low." },
+  { id: "p4", src: "/showcase/hero-poster.webp", alt: "Materials", title: "Materials", caption: "The full kit, restocked weekly." },
+  { id: "p5", src: "/showcase/hero-poster.webp", alt: "Door", title: "Door", caption: "Same door since 2001." },
+  { id: "p6", src: "/showcase/hero-poster.webp", alt: "Calendar", title: "Calendar", caption: "Live availability on the door." },
+]
+
 export function Gallery({
   eyebrow = "Gallery",
   title = "A glance inside",
   subtitle,
-  photos,
+  photos = DEMO_GALLERY_PHOTOS,
   columns = 3,
   comparison,
   closeLabel = "Close gallery",

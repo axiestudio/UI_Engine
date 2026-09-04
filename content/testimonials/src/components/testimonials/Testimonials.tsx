@@ -166,11 +166,20 @@ function MarqueeRow({ items, duration, reverse, id }: { items: Testimonial[]; du
 
 // ── Testimonials ─────────────────────────────────────────────────────────────
 
+// Self-demo defaults.
+const DEMO_TESTIMONIALS_ITEMS: Testimonial[] = [
+  { author: "Maya Lin", role: "Studio member", initials: "ML", rating: 5, title: "Same chair, every week", body: "I keep the same Tuesday slot. The team knows my name and what I need before I sit down." },
+  { author: "Daniel Park", role: "Drop-in", initials: "DP", rating: 5, title: "Showed up at 19:40", body: "Late openings saved my deadline. Real availability, real staff — no 'we'll call you back'." },
+  { author: "Yara Hassan", role: "Charter client", initials: "YH", rating: 5, title: "Quiet room, every time", body: "For executive sessions, the floor stays silent. Twenty-five years of training shows in the details." },
+  { author: "Tomás Vela", role: "Studio member", initials: "TV", rating: 5, title: "Calendar matches reality", body: "Book online and the chair is yours. No re-confirming, no last-minute 'we moved you' emails." },
+  { author: "Renée Okafor", role: "Touring pro", initials: "RO", rating: 5, title: "Traveled well", body: "I bring a routine. They remember it. Same supplies, same prep, same outcome on the road." },
+]
+
 export function Testimonials({
   eyebrow = "Social proof",
   title = "What people say",
   intro,
-  items,
+  items = DEMO_TESTIMONIALS_ITEMS,
   summary,
   variant = "slider",
   sliderSpeed = 40,

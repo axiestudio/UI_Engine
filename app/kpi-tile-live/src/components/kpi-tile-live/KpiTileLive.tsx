@@ -62,7 +62,7 @@ export function KpiTileLive({ label, value, prev, format, unit, danger, spark, s
         return (
           <>
             <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 w-full opacity-[0.16]" style={{ height: sparkHeight }}>
-              <ChartContainer config={chartConfig} className="aspect-auto h-full w-full" initialDimension={{ width: 160, height: sparkHeight }}>
+              <ChartContainer config={chartConfig} className="aspect-auto h-full w-full">
                 <AreaChart data={data} margin={{ top: 2, right: 0, bottom: 0, left: 0 }}>
                   <defs>
                     <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">

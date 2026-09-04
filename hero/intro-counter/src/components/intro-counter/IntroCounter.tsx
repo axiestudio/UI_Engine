@@ -37,7 +37,7 @@ export type IntroCounterProps = {
 }
 
 export function IntroCounter({
-  mode = "overlay",
+  mode = "stage",
   logo,
   kicker = "UI ENGINE",
   title = "WELCOME",

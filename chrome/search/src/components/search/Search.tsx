@@ -71,19 +71,19 @@ export function Search({
   if (!total) return null
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("relative isolate w-full", className)}>
       <Button
         type="button"
         variant="outline"
         onClick={() => setOpen(true)}
-        className="relative isolate overflow-hidden w-full justify-between gap-8 font-medium text-muted-foreground sm:w-64"
+        className="relative isolate overflow-hidden h-11 w-full justify-between gap-8 rounded-xl border bg-card px-4 font-medium text-muted-foreground shadow-xs transition-colors hover:bg-accent sm:w-72"
         aria-label={triggerLabel}
       >
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-2.5">
           <SearchIcon className="size-4" />
-          {triggerLabel}
+          <span className="text-sm font-semibold tracking-tight text-foreground/80">{triggerLabel}</span>
         </span>
-        {hotkeyHint && <kbd className="pointer-events-none rounded-[3px] border px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-muted-foreground shadow-[1px_1px_0_0_currentColor]">⌘K</kbd>}
+        {hotkeyHint && <kbd className="pointer-events-none inline-flex items-center gap-0.5 rounded-md border bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-muted-foreground shadow-[1px_1px_0_0_currentColor]">⌘K</kbd>}
       </Button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>

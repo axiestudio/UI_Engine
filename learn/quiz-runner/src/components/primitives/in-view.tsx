@@ -5,6 +5,7 @@
  */
 'use client';
 // Local patch for workspace tsconfig (verbatimModuleSyntax): type-only imports only, no behavior change.
+import * as React from 'react'
 import { useRef, useState, type ReactNode } from 'react';
 import { motion, useInView, type Variant, type Transition, type UseInViewOptions,  } from 'motion/react';
 
@@ -41,14 +42,17 @@ export function InView({
 
   const [isViewed, setIsViewed] = useState(false)
 
-  const MotionComponent = motion[as as keyof typeof motion] as typeof as;
+  const MotionComponent = React.useMemo(
+    () => motion[as as keyof typeof motion] as typeof as,
+    [as]
+  );
 
   return (
     <MotionComponent
       ref={ref}
       initial='hidden'
-      onAnimationComplete={() => {
-        if (once) setIsViewed(true)
+      onAnimationComplete={(def) => {
+        if (once && !isViewed && def === 'visible') setIsViewed(true)
       }}
       animate={(isInView || isViewed) ? "visible" : "hidden"}
 
