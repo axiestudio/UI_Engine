@@ -73,14 +73,14 @@ export function Promise({ statement = DEMO_PROMISE_STATEMENT, facts = [], signat
                     <em key={i} className="not-italic underline decoration-2 underline-offset-8">{s.text}</em>
                   ) : (
                     <TextEffect key={i} per="word" preset="slide" delay={d} as="span" className="inline">
-                      {s.text.trim()}
+                      {s.text}
                     </TextEffect>
                   )
                 ) : reduce ? (
                   <React.Fragment key={i}>{s.text}</React.Fragment>
                 ) : (
                   <TextEffect key={i} per="word" preset="fade" delay={d} as="span" className="inline text-foreground/80">
-                    {s.text.trim()}
+                    {s.text}
                   </TextEffect>
                 )
               })

@@ -45,9 +45,15 @@ export function NavProgress({ brand = "STUDIO", items = [{ id: "a", label: "Work
           <span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />
           SCROLL TO DRIVE THE BAR
         </span>
-        {Array.from({ length: 5 }).map((_, i) => (
+        {[
+          "The rail at the top fills as you read \u2014 a quiet signal of how far you've come.",
+          "Long pages lose people halfway. A thin line keeps the end in sight.",
+          "No percentages, no popups. Progress stays in the periphery.",
+          "The bar eases with your scroll \u2014 fast flicks, slow settles.",
+          "Reach the bottom and the rail rests full. That's the whole trick.",
+        ].map((line, i) => (
           <p key={i} className="mx-auto max-w-2xl text-base font-medium leading-relaxed text-muted-foreground">
-            The progress rail at the top tracks how far you've scrolled through the page — a quiet orienting signal as you read.
+            {line}
           </p>
         ))}
       </div>

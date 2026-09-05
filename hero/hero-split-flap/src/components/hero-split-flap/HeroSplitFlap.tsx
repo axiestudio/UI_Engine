@@ -29,7 +29,7 @@ export function HeroSplitFlap({
     <section className={cn("relative isolate overflow-hidden py-20 sm:py-28", ink && "bg-foreground text-background", className)}>
       <div className="mx-auto max-w-3xl px-5 text-center sm:px-8" ref={ref}>
         <MonoLabel className={cn(ink ? "text-background/55" : "text-muted-foreground", "justify-center")}>{eyebrow}</MonoLabel>
-        <h1 className="mt-6 flex flex-wrap items-center justify-center gap-1.5">
+        <h1 className="mt-6 flex flex-wrap items-center justify-center gap-1.5" aria-label={word}>
           {word.split("").map((ch, i) => (
             <FlapTile key={i} ch={ch} fall={inView} delay={0.1 + i * 0.12} ink={ink} />
           ))}
@@ -43,11 +43,12 @@ export function HeroSplitFlap({
 function FlapTile({ ch, fall, delay, ink }: { ch: string; fall: boolean; delay: number; ink: boolean }) {
   return (
     <span
-      className={cn("relative inline-block font-display text-5xl font-black leading-none sm:text-7xl", ink ? "text-background" : "text-foreground")}
+      className={cn("relative inline-block h-[1em] font-display text-5xl font-black leading-none sm:text-7xl", ink ? "text-background" : "text-foreground")}
       style={{ perspective: 300 }}
+      aria-hidden
     >
       <motion.span
-        className="block overflow-hidden"
+        className="block h-[54%] overflow-hidden"
         style={{ transformOrigin: "center bottom" }}
         initial={false}
         animate={fall ? { rotateX: 0 } : { rotateX: -70 }}
@@ -56,13 +57,13 @@ function FlapTile({ ch, fall, delay, ink }: { ch: string; fall: boolean; delay: 
         {ch}
       </motion.span>
       <motion.span
-        className="absolute inset-x-0 top-[54%] block overflow-hidden"
+        className="absolute inset-x-0 top-[54%] block h-[46%] overflow-hidden"
         style={{ transformOrigin: "center top" }}
         initial={false}
         animate={fall ? { rotateX: 0 } : { rotateX: 70 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay }}
       >
-        {ch}
+        <span className="block -translate-y-[54%]" aria-hidden>{ch}</span>
       </motion.span>
     </span>
   )

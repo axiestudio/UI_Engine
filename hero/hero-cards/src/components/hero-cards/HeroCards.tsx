@@ -43,15 +43,20 @@ export type HeroCardsProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_HERO_CARDS_TITLE = "Reports that"
+const DEMO_HERO_CARDS_HIGHLIGHT = "read themselves."
+const DEMO_HERO_CARDS_EYEBROW = "Aurum in numbers"
+const DEMO_HERO_CARDS_SUBTITLE = "Live tiles for sessions, revenue and no-shows \u2014 exported to CSV, or just screenshotted into your Monday."
+const DEMO_HERO_CARDS_PRIMARY_ACTION = { label: "Open a free studio", href: "#" }
+const DEMO_HERO_CARDS_SECONDARY_ACTION = { label: "See sample report", href: "#" }
 
 
 export function HeroCards({
-  eyebrow,
+  eyebrow = DEMO_HERO_CARDS_EYEBROW,
   title = DEMO_HERO_CARDS_TITLE,
-  titleHighlight,
-  subtitle,
-  primaryAction,
-  secondaryAction,
+  titleHighlight = DEMO_HERO_CARDS_HIGHLIGHT,
+  subtitle = DEMO_HERO_CARDS_SUBTITLE,
+  primaryAction = DEMO_HERO_CARDS_PRIMARY_ACTION,
+  secondaryAction = DEMO_HERO_CARDS_SECONDARY_ACTION,
   cards,
   tone = "paper",
   className,

@@ -210,7 +210,7 @@ export function FinanceDesk({ period = "August 2026", closer = "Elin S.", entrie
             <div className="mt-2 px-3 pb-2 pt-2">
               <CandlestickChart
                 data={CASH_SERIES}
-                margin={{ top: 10, right: 14, bottom: 24, left: 48 }}
+                margin={{ top: 10, right: 14, bottom: 34, left: 48 }}
                 animationDuration={900}
                 aspectRatio="2.9 / 1"
                 candleGap={0.32}

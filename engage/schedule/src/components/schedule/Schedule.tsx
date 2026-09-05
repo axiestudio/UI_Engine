@@ -135,7 +135,7 @@ export function Schedule({
                       key={`${s.day}-${s.time}`}
                       value={String(i)}
                       className={cn(
-                        "flex h-auto w-full flex-col items-start rounded-xl border px-3 py-2.5 text-left shadow-none transition-all [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background data-[state=unchecked]:bg-background hover:bg-accent data-[state=checked]:hover:bg-foreground",
+                        "flex h-auto w-full aspect-auto flex-col items-start rounded-xl border px-3 py-2.5 text-left shadow-none transition-all [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background data-[state=unchecked]:bg-background hover:bg-accent data-[state=checked]:hover:bg-foreground",
                       )}
                     >
                       <span className="font-display text-sm font-extrabold tracking-tight">{s.time}</span>

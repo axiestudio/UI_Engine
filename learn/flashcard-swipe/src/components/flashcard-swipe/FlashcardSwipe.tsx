@@ -68,7 +68,7 @@ export function FlashcardSwipe({ cards = DEFAULT_CARDS, className, onSwipe }: Fl
               setOrder(cards.map((_, i) => i))
               setStudied(0)
               setFlipped(false)
-            }} className="inline-flex items-center gap-1.5 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
+            }} className="inline-flex items-center gap-1.5 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="outline">
             <RotateCcw className="size-3.5" aria-hidden /> Reset
           </Button>
         </div>

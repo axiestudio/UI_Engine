@@ -161,7 +161,7 @@ export function Notifications({
                   type="button"
                   onClick={readAll}
                   disabled={unread.length === 0}
-                  className="inline-flex h-8 items-center gap-1 rounded-full border bg-card px-3 text-xs font-bold transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-40"
+                  className="inline-flex h-8 items-center gap-1 rounded-full border bg-card px-3 text-xs font-bold text-card-foreground transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-40"
                 >
                   <CheckCheck className="h-3.5 w-3.5" /> {markAllLabel}
                 </Button>

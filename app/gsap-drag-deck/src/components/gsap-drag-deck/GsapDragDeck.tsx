@@ -173,9 +173,11 @@ export function GsapDragDeck({
                     {client.time}
                   </div>
                   <div className="mt-auto flex items-center justify-between border-t border-border/60 pt-3">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
-                      {reduce ? "Static stack" : "Drag to deal"}
-                    </span>
+                    {pos === 0 && (
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+                        {reduce ? "Static stack" : "Drag to deal"}
+                      </span>
+                    )}
                     {pos === 0 && (
                       <span aria-hidden className="font-mono text-[10px] font-bold text-primary">
                         →

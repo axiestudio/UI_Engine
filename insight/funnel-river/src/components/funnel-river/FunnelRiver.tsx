@@ -52,7 +52,7 @@ export function FunnelRiver({
 
           return (
             <div key={s.label} className="relative">
-              <Button type='button' aria-expanded={isOpen} aria-controls={`funnel-panel-${i}`} onClick={() => setOpen(isOpen ? null : i)} className="group relative block h-auto w-full text-left focus-visible:outline-none" variant="default">
+              <Button type='button' aria-expanded={isOpen} aria-controls={`funnel-panel-${i}`} onClick={() => setOpen(isOpen ? null : i)} className="group relative block h-auto w-full rounded-xl text-left focus-visible:outline-none" variant="ghost">
                 <motion.div
                   initial={reduce ? undefined : { opacity: 0, x: -8 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -68,7 +68,9 @@ export function FunnelRiver({
                     <span className="grid size-7 shrink-0 place-items-center rounded-lg border bg-muted font-mono text-[11px] font-semibold text-muted-foreground">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="truncate text-[14px] font-semibold leading-none text-foreground">{s.label}</span>
+                    {widthPct >= 45 ? (
+                      <span className="truncate text-[14px] font-semibold leading-none text-foreground" title={s.label}>{s.label}</span>
+                    ) : null}
                   </span>
 
                   <span className="flex shrink-0 items-center gap-3">
@@ -76,7 +78,7 @@ export function FunnelRiver({
                       <span className="block font-display text-[15px] font-semibold tabular-nums leading-none tracking-[-0.015em] text-foreground">
                         {s.count.toLocaleString()}
                       </span>
-                      {prev && (
+                      {prev && widthPct >= 45 && (
                         <span className="font-mono text-[11px] font-medium tabular-nums text-muted-foreground">
                           {Math.round((s.count / prev) * 100)}% kept
                           {drop !== null && drop > 0 ? ` · -${drop}%` : ""}
@@ -86,6 +88,12 @@ export function FunnelRiver({
                     <ChevronDown className={cn("size-4 shrink-0 text-muted-foreground transition-transform duration-200", isOpen && "rotate-180")} aria-hidden />
                   </span>
                 </motion.div>
+                {/* narrow stages: label lives outside the pill, on the track */}
+                {widthPct < 45 ? (
+                  <span className="pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-[14px] font-semibold leading-none text-foreground" style={{ left: `calc(${widthPct}% + 12px)` }}>
+                    {s.label}
+                  </span>
+                ) : null}
                 {/* subtle connector line when open */}
                 {isOpen && s.reasons?.length ? (
                   <span aria-hidden className="absolute left-6 top-full h-3 w-px bg-border" />
@@ -118,7 +126,7 @@ export function FunnelRiver({
               {/* faint track background showing full width reference */}
               <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 -z-10 hidden w-full items-center lg:flex">
                 <div className="h-px w-full bg-border/40" />
-                <span className="absolute right-0 font-mono text-[10px] font-medium tracking-wide text-muted-foreground/60">{pct.toFixed(0)}% of top</span>
+                {widthPct < 90 ? <span className="absolute right-0 font-mono text-[10px] font-medium tracking-wide text-muted-foreground/60">{pct.toFixed(0)}% of top</span> : null}
               </div>
             </div>
           )

@@ -1,4 +1,5 @@
 import * as React from "react"
+import { CalendarCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Noise from "@/components/primitives/noise"
 import { cn } from "@/lib/utils"
@@ -35,15 +36,19 @@ export type EmptyStateProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_EMPTY_STATE_TITLE = "No sessions yet"
+const DEMO_EMPTY_STATE_DESCRIPTION = "Your calendar is empty \u2014 create your first bookable session."
+const DEMO_EMPTY_STATE_PRIMARY_ACTION = { label: "Create session", href: "#" }
+const DEMO_EMPTY_STATE_SECONDARY_ACTION = { label: "Import from CSV" }
+const DEMO_EMPTY_STATE_TIPS = ["Pick your weekly availability first", "Connect payments to charge at booking"]
 
 
 export function EmptyState({
-  icon: Icon,
+  icon: Icon = CalendarCheck,
   title = DEMO_EMPTY_STATE_TITLE,
-  description,
-  primaryAction,
-  secondaryAction,
-  tips,
+  description = DEMO_EMPTY_STATE_DESCRIPTION,
+  primaryAction = DEMO_EMPTY_STATE_PRIMARY_ACTION,
+  secondaryAction = DEMO_EMPTY_STATE_SECONDARY_ACTION,
+  tips = DEMO_EMPTY_STATE_TIPS,
   tone = "paper",
   bordered = true,
   className,

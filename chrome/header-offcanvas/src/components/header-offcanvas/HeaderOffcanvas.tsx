@@ -76,7 +76,7 @@ export function HeaderOffcanvas({
               exit={{ opacity: 0 }}
               transition={{ duration: reduce ? 0 : 0.2 }}
               onClick={() => setOpen(false)}
-              className="absolute inset-0 z-40 bg-foreground/10 "
+              className="fixed inset-0 z-40 bg-foreground/10 "
             />
             <motion.div
               id="offcanvas-panel"
@@ -89,7 +89,7 @@ export function HeaderOffcanvas({
               animate={{ x: 0, opacity: 1 }}
               exit={reduce ? { opacity: 0 } : { x: 320 }}
               transition={reduce ? { duration: 0 } : { duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-y-0 right-0 z-50 flex w-72 flex-col border-l bg-card p-6 shadow-lg focus-visible:outline-none"
+              className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col border-l bg-card p-6 shadow-lg focus-visible:outline-none"
             >
               <div className="flex items-center justify-between">
                 <p className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground">Menu</p>

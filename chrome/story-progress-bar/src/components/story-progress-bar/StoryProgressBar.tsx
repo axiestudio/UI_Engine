@@ -126,7 +126,7 @@ export function StoryProgressBar({
           })}
         </div>
 
-        <span className="absolute left-3 top-7 z-20 rounded-full bg-foreground/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-background">
+        <span className="absolute left-3 top-10 z-20 rounded-full bg-foreground/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-background">
           {eyebrow}
         </span>
 

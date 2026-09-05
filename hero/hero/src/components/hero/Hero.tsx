@@ -85,17 +85,29 @@ function ProofRow({ proof, ink }: { proof: HeroProof; ink: boolean }) {
 // Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_HERO_TITLE = "Care that shows up."
+const DEMO_HERO_EYEBROW = "New"
+const DEMO_HERO_TITLE_HIGHLIGHT = "Exactly when it should."
+const DEMO_HERO_SUBTITLE = "Book a certified therapist in under a minute \u2014 real-time slots, no phone tag."
+const DEMO_HERO_PRIMARY_ACTION = { label: "Book a session", href: "#" }
+const DEMO_HERO_SECONDARY_ACTION = { label: "How it works", href: "#how" }
+const DEMO_HERO_PROOF = {
+  avatars: [{ initials: "AL" }, { initials: "MK" }, { initials: "JS" }, { initials: "TR" }],
+  rating: 4.9,
+  ratingLabel: "from 1,800+ sessions",
+}
 
 export function Hero({
-  eyebrow,
+  eyebrow = DEMO_HERO_EYEBROW,
   title = DEMO_HERO_TITLE,
-  titleHighlight,
-  subtitle,
-  primaryAction,
-  secondaryAction,
-  proof,
+  titleHighlight = DEMO_HERO_TITLE_HIGHLIGHT,
+  subtitle = DEMO_HERO_SUBTITLE,
+  primaryAction = DEMO_HERO_PRIMARY_ACTION,
+  secondaryAction = DEMO_HERO_SECONDARY_ACTION,
+  proof = DEMO_HERO_PROOF,
   layout = "split",
-  visual,
+  visual = (
+    <img src="/showcase/hero-poster.webp" alt="Studio preview" className="w-full rounded-[24px] border shadow-2xl" />
+  ),
   tone = "paper",
   className,
 }: HeroProps) {

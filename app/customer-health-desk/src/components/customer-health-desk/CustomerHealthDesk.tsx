@@ -202,7 +202,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
         <span className="ml-auto font-mono text-[11px] tabular-nums text-muted-foreground">{book.length} accounts</span>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-auto p-4 lg:grid-cols-12 lg:auto-rows-fr">
+      <div className="grid min-h-0 flex-1 grid-cols-1 items-start gap-4 overflow-auto p-4 lg:grid-cols-12 lg:auto-rows-fr">
         {/* hero — health-dimension radar + drag odometer */}
         <section className="col-span-1 flex flex-col overflow-hidden rounded-lg border bg-card shadow-sm lg:col-span-5 lg:row-span-2">
           <div className="flex min-h-0 flex-1 items-start justify-center p-2">
@@ -215,7 +215,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
               label="HEALTH SIGNAL"
               title={active.name}
               description={`Five health dimensions vs 30 days ago · ${delta >= 0 ? "up" : "down"} ${Math.abs(delta)} pts overall`}
-              className="w-full max-w-[330px] rounded-none border-0"
+              className="w-full max-w-[380px] rounded-none border-0"
             />
           </div>
           <div className="border-t p-3">
@@ -231,7 +231,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">18 wks</span>
           </header>
           <div className="px-1 pt-2">
-            <AreaChart data={trend} margin={{ top: 10, right: 12, bottom: 22, left: 28 }} style={{ height: 170 }}>
+            <AreaChart data={trend} margin={{ top: 10, right: 24, bottom: 30, left: 28 }} style={{ height: 170 }}>
               <Grid horizontal numTicksRows={3} vertical={false} />
               <Area dataKey="actives" fillOpacity={0.28} gradientToOpacity={0} />
               <XAxis numTicks={4} />
@@ -254,7 +254,7 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Quota</span>
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{seatPct}%</span>
           </header>
-          <div className="flex flex-1 items-center gap-3 p-3">
+          <div className="flex items-start gap-3 p-3">
             <RadialGauge value={active.seatsUsed} max={active.seatsBought} label="seats" unit={`/${active.seatsBought}`} precision={0} size={92} zones={[{ to: 70, color: "hsl(var(--ok))" }, { to: 90, color: "hsl(var(--warn))" }, { to: 100, color: "hsl(var(--err))" }]} className="shrink-0" />
             <div className="min-w-0 space-y-1 text-[12px]">
               <div className="flex justify-between gap-2"><span className="text-muted-foreground">used</span><span className="font-mono tabular-nums">{active.seatsUsed}</span></div>

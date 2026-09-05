@@ -636,7 +636,7 @@ function SegmentLabel({
     </span>
   );
   const labelEl = showLabels && (
-    <span className="truncate font-medium text-muted-foreground text-xs">
+    <span title={stage.label} className="truncate font-medium text-muted-foreground text-xs">
       {stage.label}
     </span>
   );
@@ -677,9 +677,10 @@ function SegmentLabel({
             <div className="flex flex-1 items-center justify-center">
               {pctEl}
             </div>
-            {/* min-width dropped: the cell shrinks with ellipsis in narrow rails
-                (analytics-deck col-span-4); full label stays in the li aria-label */}
-            <div className="flex w-[16%] min-w-0 items-center justify-start overflow-hidden pl-2">
+            {/* label cell takes a larger share than the value cell: stage names
+                run longer than numbers. Still min-w-0 + ellipsis for narrow
+                rails (analytics-deck col-span-4); full label in li aria-label */}
+            <div className="flex w-[24%] min-w-0 items-center justify-start overflow-hidden pl-2">
               {labelEl}
             </div>
           </>

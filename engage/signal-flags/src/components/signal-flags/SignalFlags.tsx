@@ -34,8 +34,8 @@ export function SignalFlags({ word = "HELLO", line = "The crew on shore has alre
   return (
     <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--sea))] px-4 py-20 text-[hsl(var(--flag-navy))] sm:px-6 lg:px-8", className)}>
       {/* horizon */}
-      <span aria-hidden className="absolute inset-x-0 bottom-0 h-[38%] bg-[hsl(var(--sea-deep))]/85 [mask-image:radial-gradient(120%_100%_at_50%_100%,black_55%,transparent)]" />
-      <span aria-hidden className="absolute inset-x-0 bottom-[36%] h-px bg-[hsl(var(--flag-navy))]/30" />
+      <span aria-hidden className="absolute inset-x-0 bottom-0 h-[64px] bg-[hsl(var(--sea-deep))]/85 [mask-image:radial-gradient(120%_100%_at_50%_100%,black_55%,transparent)]" />
+      <span aria-hidden className="absolute inset-x-0 bottom-[64px] h-px bg-[hsl(var(--flag-navy))]/30" />
       <div className="relative mx-auto flex w-full max-w-[980px] flex-col items-center text-center">
         <MonoLabel className="opacity-70">{eyebrow}</MonoLabel>
         {/* the semaphore row */}

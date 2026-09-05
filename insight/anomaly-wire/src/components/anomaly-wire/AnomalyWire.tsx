@@ -79,7 +79,7 @@ export function AnomalyWire({
               transition={{ duration: 0.4, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden rounded-xl border bg-card shadow-sm"
             >
-              <Button type='button' aria-expanded={isOpen} aria-controls={`anomaly-${a.id}`} onClick={() => setOpen(isOpen ? null : a.id)} className="flex h-auto w-full items-center gap-4 px-4 py-4 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-5" variant="default">
+              <Button type='button' aria-expanded={isOpen} aria-controls={`anomaly-${a.id}`} onClick={() => setOpen(isOpen ? null : a.id)} className="flex h-auto w-full items-center gap-4 px-4 py-4 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-5" variant="ghost">
                 <span className={cn("grid size-9 shrink-0 place-items-center rounded-full border", S.chip)}>
                   <Icon className="size-4" aria-hidden />
                 </span>

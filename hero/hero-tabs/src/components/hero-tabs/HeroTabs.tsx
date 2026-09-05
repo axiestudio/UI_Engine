@@ -18,7 +18,17 @@ export type HeroTabsProps = {
   className?: string
 }
 
-export function HeroTabs({ eyebrow = "Four ways", tabs = [], tone = "paper", className }: HeroTabsProps) {
+// Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
+// reproduces the same demo the engine desktop view shows.
+const DEMO_HERO_TABS_EYEBROW = "Four ways"
+const DEMO_HERO_TABS: HeroTabsTab[] = [
+  { id: "a", label: "Design", title: "Designed, not decorated.", description: "Every section is drawn by hand, not split from a template.", action: { label: "See the craft", href: "#" } },
+  { id: "b", label: "Motion", title: "Motion with intent.", description: "One signature move per section \u2014 never noise.", action: { label: "See the motion", href: "#" } },
+  { id: "c", label: "Tokens", title: "Tokens everywhere.", description: "Re-theme the whole library from one surface.", action: { label: "See the tokens", href: "#" } },
+  { id: "d", label: "Access", title: "Accessible by default.", description: "Reduced-motion and screen-reader aware from day one.", action: { label: "See the a11y", href: "#" } },
+]
+
+export function HeroTabs({ eyebrow = DEMO_HERO_TABS_EYEBROW, tabs = DEMO_HERO_TABS, tone = "paper", className }: HeroTabsProps) {
   const ink = tone === "ink"
   const [active, setActive] = React.useState(0)
   const shown = tabs[Math.min(active, Math.max(tabs.length - 1, 0))]

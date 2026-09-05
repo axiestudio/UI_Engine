@@ -65,7 +65,7 @@ export function BrandHeartbeat({
 
   return (
     <section className={cn("relative isolate overflow-hidden w-full bg-foreground text-background", cn("text-background", className))}>
-      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-8">
         <div className="flex items-center gap-6">
           {/* the mark tile: one thump per beat */}
@@ -107,7 +107,7 @@ export function BrandHeartbeat({
       </div>
 
       {/* ECG rail — redraws once per beat on a linear wipe */}
-      <div aria-hidden className="relative mt-10 h-16 overflow-hidden rounded-lg border border-background/15 bg-foreground/60">
+      <div aria-hidden className="relative mt-12 h-20 overflow-hidden rounded-xl border border-background/15 bg-foreground/60 sm:h-24">
         <svg viewBox="0 0 600 64" preserveAspectRatio="none" className="h-full w-full text-background/80">
           {reduced ? (
             <path d={ECG_D} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -126,6 +126,16 @@ export function BrandHeartbeat({
           )}
         </svg>
         <span className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-foreground to-transparent" />
+      </div>
+
+      {/* footer tally — closes the band so it reads complete in any mount */}
+      <div className="mt-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-background/15 pt-5">
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-background/45">
+          pulse · {clampedBpm} bpm · the line redraws every beat
+        </p>
+        <p aria-hidden className="font-mono text-[10px] font-bold uppercase tabular-nums tracking-[0.24em] text-background/45">
+          beat {String(reduced ? 0 : beat).padStart(3, "0")} · +{perBeat}/beat
+        </p>
       </div>
 
       <p className="sr-only" aria-live="polite">{reduced ? "Pulse paused for reduced motion." : ""}</p>

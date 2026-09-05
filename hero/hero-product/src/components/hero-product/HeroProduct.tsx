@@ -44,18 +44,29 @@ export type HeroProductProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_HERO_PRODUCT_TITLE = "Your whole studio,"
+const DEMO_HERO_PRODUCT_EYEBROW = "The dashboard"
+const DEMO_HERO_PRODUCT_TITLE_HIGHLIGHT = "one calm screen."
+const DEMO_HERO_PRODUCT_SUBTITLE = "Bookings, payments and reminders \u2014 synced in real time."
+const DEMO_HERO_PRODUCT_PRIMARY_ACTION = { label: "Start free", href: "#" }
+const DEMO_HERO_PRODUCT_SECONDARY_ACTION = { label: "Watch the tour", href: "#" }
+const DEMO_HERO_PRODUCT_SHOT = { src: "/showcase/hero-poster.webp", alt: "Dashboard" }
+const DEMO_HERO_PRODUCT_URL_LABEL = "app.aurum.studio"
+const DEMO_HERO_PRODUCT_CHIPS: ProductChip[] = [
+  { label: "No-show rate", value: "-40%", corner: "tl" },
+  { label: "Rebookings", value: "2x", corner: "br" },
+]
 
 
 export function HeroProduct({
-  eyebrow,
+  eyebrow = DEMO_HERO_PRODUCT_EYEBROW,
   title = DEMO_HERO_PRODUCT_TITLE,
-  titleHighlight,
-  subtitle,
-  primaryAction,
-  secondaryAction,
-  shot,
-  urlLabel = "app.example.com",
-  chips = [],
+  titleHighlight = DEMO_HERO_PRODUCT_TITLE_HIGHLIGHT,
+  subtitle = DEMO_HERO_PRODUCT_SUBTITLE,
+  primaryAction = DEMO_HERO_PRODUCT_PRIMARY_ACTION,
+  secondaryAction = DEMO_HERO_PRODUCT_SECONDARY_ACTION,
+  shot = DEMO_HERO_PRODUCT_SHOT,
+  urlLabel = DEMO_HERO_PRODUCT_URL_LABEL,
+  chips = DEMO_HERO_PRODUCT_CHIPS,
   tone = "ink",
   className,
 }: HeroProductProps) {

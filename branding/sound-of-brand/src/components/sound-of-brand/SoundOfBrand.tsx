@@ -121,7 +121,7 @@ export function SoundOfBrand({
     <section className="relative isolate overflow-hidden w-full bg-foreground text-background">
       <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <div className="text-center">
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] justify-center text-background/55">{eyebrow}</span>
+        <span className="block font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-background/55">{eyebrow}</span>
         <TextShimmerWave duration={1.6} className="mt-4 font-display text-3xl font-black tracking-tight sm:text-4xl">
           {tagline}
         </TextShimmerWave>
@@ -130,7 +130,7 @@ export function SoundOfBrand({
         </p>
       </div>
 
-      <div role="group" aria-label="Brand motif notes" className="mt-14 flex h-48 items-end justify-center gap-2 sm:gap-3">
+      <div role="group" aria-label="Brand motif notes" className="mt-14 flex h-52 items-end justify-center gap-2 sm:gap-3">
         {notes.map((n, i) => (
           <motion.button
             key={`${n.note}-${i}`}
@@ -157,7 +157,7 @@ export function SoundOfBrand({
         ))}
       </div>
 
-      <div className="mt-16 flex flex-wrap items-center justify-center gap-3">
+      <div className="mt-14 flex flex-wrap items-center justify-center gap-3">
         <Button
           type="button"
           onClick={playMotif}
@@ -169,6 +169,16 @@ export function SoundOfBrand({
         <Badge variant="outline" className="rounded-full border-background/30 bg-transparent font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-background/60">
           {notes.length} notes · C–E–G triad · square of {notes[0]?.note}–{notes[4]?.note}
         </Badge>
+      </div>
+
+      {/* footer meta — closes the band so it reads complete in any mount */}
+      <div className="mt-14 flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-background/15 pt-5">
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-background/45">
+          sonic identity · the motif is the brand's fingerprint
+        </p>
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-background/45">
+          {lastHeard ? `last heard · ${lastHeard}` : "sound is opt-in · nothing plays uninvited"}
+        </p>
       </div>
 
       <p aria-live="polite" className="sr-only">

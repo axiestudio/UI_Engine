@@ -32,7 +32,14 @@ export function NavScrollCollapse({ brand = "STUDIO", links = [{ id: "a", label:
           <h1 className="font-display text-4xl font-black">Scroll and the header folds.</h1>
           <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">The wordmark shrinks, the bar slims, and the whole thing gains a blur backdrop.</p>
         </InView>
-        {Array.from({ length: 6 }).map((_, i) => <p key={i} className="text-sm font-medium leading-relaxed text-muted-foreground">Content to scroll past — the header above condenses as you descend, then restores when you return to the top.</p>)}
+        {[
+          "Keep scrolling \u2014 the header above condenses as you descend.",
+          "The wordmark shrinks first, then the bar slims around it.",
+          "Links tighten their spacing to fit the smaller frame.",
+          "A blur backdrop fades in so content slides quietly underneath.",
+          "Scroll back up and everything restores to full height.",
+          "Small on the way down, generous at the top. That's the rule.",
+        ].map((line, i) => <p key={i} className="text-sm font-medium leading-relaxed text-muted-foreground">{line}</p>)}
       </div>
     </div>
   )

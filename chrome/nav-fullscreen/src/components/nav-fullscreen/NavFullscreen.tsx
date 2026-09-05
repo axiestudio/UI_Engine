@@ -57,7 +57,7 @@ export function NavFullscreen({ brand = "STUDIO", items = [
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 z-[60] flex flex-col bg-foreground text-background"
+            className="fixed inset-0 z-[60] flex flex-col bg-foreground text-background"
           >
             <div className="flex items-center justify-between px-5 py-4 sm:px-8">
               <span className="font-display text-lg font-black tracking-tight">{brand}</span>

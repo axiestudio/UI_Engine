@@ -65,7 +65,7 @@ export function IncidentCommand({ incident = "INC-226 — checkout latency climb
       <div className="grid gap-5 p-5 lg:grid-cols-[1fr_300px]">
         <div className="grid gap-5 sm:grid-rows-[minmax(0,1fr)_auto]">
           <div className="rounded-xl border bg-card p-1">
-            <ChatThreadVirtual messages={msgs.map((m) => ({ ...m }))} canEdit={() => false} />
+            <ChatThreadVirtual messages={msgs.map((m) => ({ ...m }))} canEdit={() => false} scene={false} />
           
     </div>
           <div className="rounded-xl border bg-card"><PipelineRunGraph run="rollback 226" stages={stages} onRerunFailed={() => setStages((s) => s.map((x) => x.status === "fail" ? { ...x, status: "running", log: ["manual retry"] } : x))} /></div>

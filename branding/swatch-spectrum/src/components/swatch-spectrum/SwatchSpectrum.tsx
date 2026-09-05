@@ -144,6 +144,9 @@ export function SwatchSpectrum({
               style={{ backgroundColor: hasVar ? `hsl(var(--app-${s.token}))` : hex, color: fg, flexGrow: 1, flexBasis: 0 }}
               className={cn(
                 "group relative flex h-auto min-w-14 cursor-pointer flex-col justify-between rounded-lg p-4 text-left outline-none",
+                // mobile: columns keep a hex-fitting width and the strip scrolls
+                // (flex squeeze lets the 24px hex paint over neighbouring swatches)
+                "max-sm:min-w-32 max-sm:shrink-0",
                 "hover:grow-[2.4] focus-visible:grow-[2.4] focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-current",
                 reduced ? "" : "transition-[flex-grow] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
               )}
@@ -157,7 +160,7 @@ export function SwatchSpectrum({
                 )}
               </span>
               <span className="flex flex-col gap-1">
-                <span className="text-2xl font-black leading-none tabular-nums">{hex.toUpperCase()}</span>
+                <span className="text-lg leading-none tabular-nums sm:text-2xl">{hex.toUpperCase()}</span>
                 <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] opacity-70">{s.label}</span>
                 <span className="mt-1 inline-flex w-fit items-center gap-1.5 rounded-full border border-current px-2 py-0.5 font-mono text-[8px] font-black uppercase tracking-[0.14em] opacity-[0.85]">
                   {ratio.toFixed(1)}:1 · {pass ? "AA" : "AA·LG"}

@@ -187,13 +187,20 @@ function ScrollTop() {
 // Self-demo defaults: bare mount (= tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_FOOTER_BRANDNAME = "Engine"
+const DEMO_FOOTER_TAGLINE = "Preset components that business sites customize \u2014 never fork, always theme."
+const DEMO_FOOTER_COLUMNS = [
+  { title: "Presets", links: [{ label: "Header", href: "#" }, { label: "Hero Scroll", href: "#" }, { label: "ZigZag", href: "#" }, { label: "Footer", href: "#", badge: "New" }] },
+  { title: "Docs", links: [{ label: "Installation", href: "#" }, { label: "Theming", href: "#" }, { label: "Motion", href: "#" }] },
+  { title: "Legal", links: [{ label: "Privacy", href: "#" }, { label: "Terms", href: "#" }] },
+]
+const DEMO_FOOTER_INFO = { title: "Visit", lines: ["Studio Gatan 12", "Mon\u2013Fri 09\u201318, Sun 11\u201316"] }
 
 export function Footer({
   brandName = DEMO_FOOTER_BRANDNAME,
-  tagline,
+  tagline = DEMO_FOOTER_TAGLINE,
   logo,
-  columns = [],
-  info,
+  columns = DEMO_FOOTER_COLUMNS,
+  info = DEMO_FOOTER_INFO,
   socials = [],
   newsletter,
   legal,

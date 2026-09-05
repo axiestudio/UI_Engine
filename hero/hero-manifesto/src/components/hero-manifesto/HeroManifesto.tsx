@@ -1,4 +1,5 @@
 import * as React from "react"
+import { motion } from "motion/react"
 import { ArrowRight } from "lucide-react"
 import { Grain } from "@/components/primitives/handcraft"
 import { InView } from "@/components/primitives/in-view"
@@ -54,9 +55,11 @@ export function HeroManifesto({
   const ink = tone === "ink"
   const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
   const lineReveal = (delay: number) => ({
-    variants: { hidden: { y: "115%" }, visible: { y: "0%" } },
+    // NOTE: the InView observer must sit on the UNCLIPPED mask (full line box).
+    // Observing the translated inner instead self-occludes: 115% y inside
+    // overflow-hidden intersects zero, so it never fires (deadlock).
+    viewport: { once: true, margin: "-80px" as const },
     transition: { duration: 0.85, delay, ease: ease as [number, number, number, number] },
-    viewOptions: { once: true, margin: "-80px" as const },
   })
 
   return (
@@ -97,10 +100,19 @@ export function HeroManifesto({
             ink ? "text-background" : "text-foreground",
           )}
         >
-          {[0, 1, 2].map((i) => (
-            <span key={i} aria-hidden={false} className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
-              <InView {...lineReveal(0.12 + i * 0.14)}>
-                <span
+          {[0, 1, 2].map((i) => {
+            const { viewport, transition } = lineReveal(0.12 + i * 0.14)
+            return (
+              <motion.span
+                key={i}
+                aria-hidden={false}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                className="block overflow-hidden pb-[0.08em] -mb-[0.08em]"
+              >
+                <motion.span
+                  variants={{ hidden: { y: "115%" }, visible: { y: "0%", transition } }}
                   className={cn(
                     "block text-[clamp(2.4rem,6.5vw,5.6rem)]",
                     i === 1 && "pl-[0.9em] text-left font-serif font-medium italic tracking-[-0.02em] sm:pl-[1.4em]",
@@ -109,10 +121,10 @@ export function HeroManifesto({
                   style={i === 1 ? { fontFamily: "Georgia, 'Times New Roman', serif" } : undefined}
                 >
                   {lines[i]}
-                </span>
-              </InView>
-            </span>
-          ))}
+                </motion.span>
+              </motion.span>
+            )
+          })}
         </h1>
 
         {subtitle && (

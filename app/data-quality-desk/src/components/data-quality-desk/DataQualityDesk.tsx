@@ -165,7 +165,7 @@ export function DataQualityDesk({ ledger = "CRM mirror · prod-1", syncedAt = "0
         </Button>
       </header>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[260px_minmax(0,1fr)_230px]">
+      <div className="grid min-h-0 flex-1 grid-cols-1 items-start gap-4 p-4 lg:grid-cols-[260px_minmax(0,1fr)_230px]">
         {/* scope rail */}
         <aside className="flex flex-col gap-4">
           <section className="overflow-hidden rounded-lg border bg-card">

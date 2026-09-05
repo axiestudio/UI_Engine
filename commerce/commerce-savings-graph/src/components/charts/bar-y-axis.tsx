@@ -84,8 +84,42 @@ const BarYAxisInner = memo(function BarYAxisInner({
   maxLabels = 20,
   container,
 }: BarYAxisProps & { container: HTMLDivElement }) {
-  const { margin, barScale, bandWidth, barXAccessor, data, hoveredBarIndex } =
+  const { margin, barScale, bandWidth, barXAccessor, data, hoveredBarIndex, orientation, yScale } =
     useChart();
+
+  // Vertical (column) charts put their category labels on the X axis; the
+  // Y axis shows the VALUE scale. Mapping categories through the band scale
+  // here would scatter labels diagonally down the left gutter (bandScale
+  // outputs horizontal x positions for vertical charts). Render value ticks
+  // aligned to the gridlines instead.
+  if (orientation !== "horizontal") {
+    const ticks = yScale ? yScale.ticks(5) : [];
+    return createPortal(
+      <div
+        className="pointer-events-none absolute top-0 bottom-0"
+        style={{
+          left: 0,
+          width: margin.left,
+        }}
+      >
+        {ticks.map((v) => (
+          <div
+            key={v}
+            className="absolute right-0 flex items-center justify-end pr-2"
+            style={{ top: (yScale?.(v) ?? 0) + margin.top - 8, height: 16 }}
+          >
+            <span
+              className="whitespace-nowrap text-right text-xs tabular-nums"
+              style={{ color: "var(--chart-label, var(--color-zinc-500))" }}
+            >
+              {v >= 1000 ? `${Math.round(v / 100) / 10}k` : v}
+            </span>
+          </div>
+        ))}
+      </div>,
+      container
+    );
+  }
 
   // Generate labels for each bar
   const labelsToShow = useMemo(() => {

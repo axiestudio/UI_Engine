@@ -181,18 +181,18 @@ export function GradeDesk({
     <div className={cn("relative isolate flex min-h-dvh flex-col overflow-hidden bg-background font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
       {/* header — display-numeral voice: the cohort itself is the masthead */}
-      <header className="flex flex-wrap items-end gap-x-4 gap-y-2 border-b px-5 py-3">
+      <header className="flex flex-wrap items-end gap-x-4 gap-y-2 border-b px-4 py-3 sm:px-5">
         <motion.h2
           key={cohort}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          className="font-display text-[40px] font-black leading-none tracking-[-0.04em]"
+          className="font-display text-4xl font-black leading-none tracking-[-0.04em] sm:text-[40px]"
         >
           {cohort}
         </motion.h2>
         <div className="pb-1">
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Marking desk</span>
-          <p className="text-[13px] font-semibold">{course} <span className="font-normal text-muted-foreground">· {term}</span></p>
+          <p className="text-[13px] font-semibold">{course} <span className="hidden font-normal text-muted-foreground min-[420px]:inline">· {term}</span></p>
           
     </div>
         <span className="mb-1 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold tabular-nums">
@@ -206,7 +206,7 @@ export function GradeDesk({
       </header>
 
       {/* cohort KPI strip — uneven spans on a 12-col band */}
-      <div className="grid grid-cols-2 gap-3 border-b px-5 py-4 lg:grid-cols-12" role="list" aria-label={`Cohort ${cohort} KPIs`}>
+      <div className="grid grid-cols-2 gap-3 border-b px-4 py-3 sm:px-5 sm:py-4 lg:grid-cols-12" role="list" aria-label={`Cohort ${cohort} KPIs`}>
         <KpiTileLive
           className="col-span-2 lg:col-span-4"
           label={`Mean grade · ${cohort}`}
@@ -224,11 +224,11 @@ export function GradeDesk({
 
       <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12">
         {/* left rail — dashed cohort config + publish ledger */}
-        <aside className="flex flex-col gap-5 border-b p-5 lg:col-span-3 lg:border-b-0 lg:border-r">
+        <aside className="flex flex-col gap-4 border-b p-4 sm:gap-5 sm:p-5 lg:col-span-3 lg:border-b-0 lg:border-r">
           <section aria-label="Class switcher" className="rounded-lg border border-dashed bg-background p-3">
             <div className="mb-2 flex items-baseline justify-between">
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px] text-muted-foreground">Class</span>
-              <span className="font-mono text-[10px] text-muted-foreground">recomputes all panels</span>
+              <span className="hidden font-mono text-[10px] text-muted-foreground sm:inline">recomputes all panels</span>
             </div>
             <SegmentedControl
               size="sm"
@@ -237,7 +237,7 @@ export function GradeDesk({
               onChange={(v: string) => { setCohort(v); setSelected(new Set()); setPublished(null) }}
               options={COHORT_IDS.map((c) => ({ value: c, label: c }))}
             />
-            <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+            <p className="mt-2 hidden text-[11px] leading-relaxed text-muted-foreground sm:block">
               Roster, KPIs, submission heat and the grade distribution all reseed with the class.
             </p>
           </section>
@@ -268,7 +268,7 @@ export function GradeDesk({
                   PUBLISHED · {published.at} to guardians
                 </motion.p>
               ) : (
-                <motion.p key="hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
+                <motion.p key="hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-3 hidden text-[11px] leading-relaxed text-muted-foreground sm:block">
                   {unmarked.length > 0
                     ? `${unmarked.length} essays unmarked — publishing is blocked until the set is complete.`
                     : "Set complete. Publishing notifies guardians by email."}

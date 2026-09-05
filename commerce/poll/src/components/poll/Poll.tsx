@@ -52,6 +52,12 @@ export function Poll({
   const [choice, setChoice] = React.useState<string | null>(null)
   const [pending, setPending] = React.useState(false)
   const [errored, setErrored] = React.useState(false)
+  // Self-demo default: bare mounts (showcase/frames) vote locally so the
+  // button never leaks a "wire onVote" dev hint; hosts pass onVote proper.
+  const demoVote = React.useCallback(async () => {
+    await new Promise((r) => setTimeout(r, 450))
+  }, [])
+  const handleVote = onVote ?? demoVote
   const showResults = voted || !!choice
   const total = options.reduce((s, o) => s + o.votes + (voted && o.id === choice ? 1 : 0), 0)
   const sorted = [...options].sort((a, b) => b.votes + (voted && b.id === choice ? 1 : 0) - (a.votes + (voted && a.id === choice ? 1 : 0)))
@@ -59,11 +65,10 @@ export function Poll({
   const vote = async (id: string) => {
     if (voted || pending) return
     setChoice(id)
-    if (!onVote) return
     setErrored(false)
     setPending(true)
     try {
-      await onVote(id)
+      await handleVote(id)
     } catch {
       setErrored(true)
       setChoice(null)
@@ -130,7 +135,7 @@ export function Poll({
 
               {!voted && (
                 <Button type="submit" disabled={!choice || pending} className="mt-2 h-10 self-start rounded-full px-6 font-display text-sm font-semibold tracking-[-0.02em]" aria-busy={pending}>
-                  {pending ? "Sending…" : voted ? thanksLabel : onVote ? voteLabel : `${voteLabel} (wire onVote)`}
+                  {pending ? "Sending…" : voted ? thanksLabel : voteLabel}
                 </Button>
               )}
               {errored && <p role="alert" className="text-xs font-semibold text-destructive">Vote failed — try again.</p>}

@@ -200,7 +200,7 @@ export function AvailabilityMonth({
                         <RadioGroupItem
                           key={s}
                           value={s}
-                          className="h-9 rounded-md border px-3 font-mono text-[12px] font-bold tabular-nums shadow-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=unchecked]:border-border data-[state=unchecked]:bg-background hover:bg-muted"
+                          className="h-9 w-auto aspect-auto rounded-md border px-3 font-mono text-[12px] font-bold tabular-nums shadow-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=unchecked]:border-border data-[state=unchecked]:bg-background hover:bg-muted"
                         >
                           {s}
                         </RadioGroupItem>

@@ -37,17 +37,23 @@ export type HeroTickerProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_HERO_TICKER_ROTATING = ["booking pages", "client apps", "gift cards", "intake forms"]
+const DEMO_HERO_TICKER_EYEBROW = "Aurum platform"
+const DEMO_HERO_TICKER_TAIL = "in minutes."
+const DEMO_HERO_TICKER_SUBTITLE = "Start from a template or compose your own \u2014 everything ships responsive, accessible and on-brand."
+const DEMO_HERO_TICKER_PRIMARY_ACTION = { label: "Start building", href: "#" }
+const DEMO_HERO_TICKER_SECONDARY_ACTION = { label: "See examples", href: "#" }
+const DEMO_HERO_TICKER_TICKER = ["No code required", "Own your data", "WCAG AA", "Loves reduced motion", "Real-time sync"]
 
 
 export function HeroTicker({
-  eyebrow,
+  eyebrow = DEMO_HERO_TICKER_EYEBROW,
   title = "Build",
   rotating = DEMO_HERO_TICKER_ROTATING,
-  titleTail,
-  subtitle,
-  primaryAction,
-  secondaryAction,
-  ticker = [],
+  titleTail = DEMO_HERO_TICKER_TAIL,
+  subtitle = DEMO_HERO_TICKER_SUBTITLE,
+  primaryAction = DEMO_HERO_TICKER_PRIMARY_ACTION,
+  secondaryAction = DEMO_HERO_TICKER_SECONDARY_ACTION,
+  ticker = DEMO_HERO_TICKER_TICKER,
   tone = "paper",
   className,
 }: HeroTickerProps) {

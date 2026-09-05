@@ -83,6 +83,7 @@ export function GsapUnderlineNav({
           <Button
             key={item}
             type="button"
+            variant="ghost"
             ref={(el) => {
               btnRefs.current[i] = el
             }}

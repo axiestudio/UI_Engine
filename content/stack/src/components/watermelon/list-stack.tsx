@@ -58,7 +58,7 @@ export const ListStack: FC<ListStackProps> = ({ items = ITEMS }) => {
   return (
     <div className="h- w-full font-sans">
       <div className="flex h-[400px] w-full flex-col items-center justify-center">
-        <div className="relative flex h-full w-full flex-col items-center justify-center perspective-[1000px]">
+        <div className="relative flex h-full w-full flex-col items-center justify-center perspective-[1000px] [transform-style:preserve-3d]">
           {items.map((item, i) => {
             return (
               <motion.div

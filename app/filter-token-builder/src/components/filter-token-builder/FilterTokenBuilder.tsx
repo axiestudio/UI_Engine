@@ -17,7 +17,7 @@ export type FilterToken = { field: string; op: "=" | "≠" | ":"; value: string 
 export type FilterTokenBuilderProps = { tokens: FilterToken[]; onChange: (t: FilterToken[]) => void; and: boolean; onAnd: (v: boolean) => void; fields?: string[]; placeholder?: string; className?: string }
 const PALETTE = ["hsl(var(--info))", "hsl(var(--pinned))", "hsl(var(--ok))", "hsl(var(--warn))"]
 
-export function FilterTokenBuilder({ tokens, onChange, and, onAnd, fields = [], placeholder = "field=value, type ⇥ to autocomplete", className }: FilterTokenBuilderProps) {
+export function FilterTokenBuilder({ tokens, onChange, and, onAnd, fields = [], placeholder = "Add a filter…", className }: FilterTokenBuilderProps) {
   const [text, setText] = React.useState("")
   const commit = (raw?: string) => {
     const m = (raw ?? text).trim().match(/^([\w.-]+)\s*(=|≠|!=|:)\s*(.+)$/)
@@ -47,11 +47,11 @@ export function FilterTokenBuilder({ tokens, onChange, and, onAnd, fields = [], 
             </React.Fragment>
           )
         })}
-        <Input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === "," ) { e.preventDefault(); commit() } else if (e.key === "Backspace" && !text && tokens.length) { const last = tokens[tokens.length - 1]; setText(`${last.field}${last.op === "≠" ? "!=" : last.op}${last.value}`); onChange(tokens.slice(0, -1)) } }} placeholder={placeholder} className="h-8 min-w-[160px] flex-1 rounded-md border-0 bg-transparent px-1 text-[13px] shadow-none focus-visible:ring-0 focus-visible:ring-offset-0" aria-label="Add filter" list={fields.length ? "filter-fields" : undefined} aria-describedby="filter-readout" />
+        <Input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === "," ) { e.preventDefault(); commit() } else if (e.key === "Backspace" && !text && tokens.length) { const last = tokens[tokens.length - 1]; setText(`${last.field}${last.op === "≠" ? "!=" : last.op}${last.value}`); onChange(tokens.slice(0, -1)) } }} placeholder={placeholder} className="h-8 min-w-28 flex-1 rounded-md border-0 bg-transparent px-1 text-[13px] shadow-none focus-visible:ring-0 focus-visible:ring-offset-0" aria-label="Add filter" list={fields.length ? "filter-fields" : undefined} aria-describedby="filter-readout" />
           
     </div>
       {fields.length > 0 && <datalist id="filter-fields">{fields.map((f) => <option key={f} value={f + "="} />)}</datalist>}
-      <p id="filter-readout" className="mt-1.5 truncate text-xs text-muted-foreground">{tokens.length ? tokens.map((t) => `${t.field}${t.op}${t.value}`).join(and ? " and " : " or ") : "no filters — showing everything"}</p>
+      <p id="filter-readout" className="sr-only">{tokens.length ? tokens.map((t) => `${t.field}${t.op}${t.value}`).join(and ? " and " : " or ") : "no filters — showing everything"}</p>
           </MotionConfig>
     </div>
   )

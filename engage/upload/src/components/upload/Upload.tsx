@@ -42,6 +42,13 @@ export function Upload({
   const [entries, setEntries] = React.useState<FileEntry[]>([])
   const [status, setStatus] = React.useState<"idle" | "busy" | "done" | "partial" | "err">("idle")
   const [hint, setHint] = React.useState<string | null>(null)
+  // Self-demo default: bare mounts (showcase/frames) simulate an upload so the
+  // action never leaks a "wire onUpload" dev hint; hosts pass onUpload proper.
+  const demoUpload = React.useCallback(async () => {
+    await new Promise((r) => setTimeout(r, 900))
+    return [] as string[]
+  }, [])
+  const handleUpload = onUpload ?? demoUpload
 
   const addFiles = (incoming: File[]) => {
     if (!incoming.length) return
@@ -80,12 +87,12 @@ export function Upload({
   }
 
   const submit = async () => {
-    if (!entries.length || !onUpload) return
+    if (!entries.length) return
     setStatus("busy")
     const ids = new Map(entries.map((e) => [e.file, e.id]))
     setEntries((cur) => cur.map((e) => ({ ...e, state: "uploading", progress: 0 })))
     try {
-      const failed = (await onUpload(entries.map((e) => e.file))) ?? []
+      const failed = (await handleUpload(entries.map((e) => e.file))) ?? []
       const failedSet = new Set(failed)
       setEntries((cur) =>
         cur.map((e) => ({
@@ -138,7 +145,7 @@ export function Upload({
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <Button
               onClick={submit}
-              disabled={!entries.length || status === "busy" || !onUpload}
+              disabled={!entries.length || status === "busy"}
               className="h-11 rounded-full px-7 font-display text-sm font-extrabold tracking-tight"
               aria-busy={status === "busy"}
             >
@@ -153,9 +160,6 @@ export function Upload({
             {status === "partial" && <p role="status" className="text-sm font-bold text-amber-600">Some files failed — retry them.</p>}
             {(hint || status === "err") && <p role="alert" className="text-sm font-semibold text-destructive">{hint ?? "Upload failed — try again."}</p>}
           </div>
-          {!onUpload && (
-            <p className="mt-3 text-[11px] font-medium text-muted-foreground">Wire `onUpload` to enable the upload action — the dropzone collects files meanwhile.</p>
-          )}
         </div>
       </InView>
     </section>

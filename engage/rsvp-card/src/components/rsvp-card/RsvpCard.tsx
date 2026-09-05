@@ -113,14 +113,14 @@ export function RsvpCard({
               >
                 <RadioGroupItem
                   value="yes"
-                  className="flex h-auto w-full flex-col items-start rounded-xl border px-4 py-3.5 text-left shadow-none transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary/[0.06] data-[state=unchecked]:border-border hover:border-foreground/30 hover:bg-muted/40"
+                  className="aspect-auto flex h-auto w-full flex-col items-start rounded-xl border px-4 py-3.5 text-left shadow-none transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary/[0.06] data-[state=unchecked]:border-border hover:border-foreground/30 hover:bg-muted/40"
                 >
                   <span className="block font-display text-[14px] font-bold">Joyfully yes</span>
                   <span className="mt-0.5 block text-[11px] font-medium text-muted-foreground">Hold a chair for me</span>
                 </RadioGroupItem>
                 <RadioGroupItem
                   value="no"
-                  className="flex h-auto w-full flex-col items-start rounded-xl border px-4 py-3.5 text-left shadow-none transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary/[0.06] data-[state=unchecked]:border-border hover:border-foreground/30 hover:bg-muted/40"
+                  className="aspect-auto flex h-auto w-full flex-col items-start rounded-xl border px-4 py-3.5 text-left shadow-none transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary/[0.06] data-[state=unchecked]:border-border hover:border-foreground/30 hover:bg-muted/40"
                 >
                   <span className="block font-display text-[14px] font-bold">Regretfully no</span>
                   <span className="mt-0.5 block text-[11px] font-medium text-muted-foreground">Release my seat</span>
@@ -182,7 +182,7 @@ export function RsvpCard({
                           <RadioGroupItem
                             key={m}
                             value={m}
-                            className="h-auto w-auto rounded-full border px-3 py-1 text-[11px] font-bold shadow-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=unchecked]:border-border data-[state=unchecked]:text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                            className="aspect-auto h-auto w-auto rounded-full border px-3 py-1 text-[11px] font-bold shadow-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=unchecked]:border-border data-[state=unchecked]:text-muted-foreground hover:border-foreground/30 hover:text-foreground"
                           >
                             {m}
                           </RadioGroupItem>

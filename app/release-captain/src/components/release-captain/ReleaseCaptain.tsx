@@ -187,7 +187,7 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
       <StatusHealthStrip services={services} region={region} onRegion={setRegion} />
 
       {/* ── header band: headline left, gated ship control right ───────────── */}
-      <header className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b border-border/70 py-5">
+      <header className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b border-border/70 py-4 sm:py-5">
         <div className="min-w-0">
           <p className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
             <GitBranch aria-hidden className="size-3.5" /> ship control · {tag} · a3f19c2
@@ -205,7 +205,7 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
               {shipped ? `${tag} shipped` : shipping ? "rolling out…" : `Ship ${tag}`}
             </Button>
           </div>
-          <p id="ship-gate-status" aria-live="polite" className="text-right text-xs text-muted-foreground">
+          <p id="ship-gate-status" aria-live="polite" className="text-left text-[11px] leading-relaxed text-muted-foreground sm:text-right sm:text-xs">
             {shipped
               ? `${tag} is live — health strip watches the rollout.`
               : shipping
@@ -218,9 +218,10 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
       </header>
 
       {/* ── 12-col desk ────────────────────────────────────────────────────── */}
-      <div className="mt-5 grid grid-cols-12 gap-5">
-        {/* run graph — solid card, trail while stages roll */}
-        <section aria-label="Run graph" className={cn("relative col-span-12 lg:col-span-7", running && "rounded-xl")}>
+      <div className="mt-4 grid grid-cols-12 items-start gap-4 sm:mt-5 sm:gap-5">
+        {/* left: run graph over install snippet — the acting column */}
+        <div className="col-span-12 space-y-5 lg:col-span-7">
+        <section aria-label="Run graph" className={cn("relative", running && "rounded-xl")}>
           {running && !reduce && <BorderTrail className="bg-[hsl(var(--info))] rounded-xl" size={44} />}
           <div className={cn("rounded-xl border border-border/70 bg-card p-4 shadow-sm", !running && "h-full")}>
             <header className="mb-3 flex items-baseline justify-between px-1">
@@ -233,12 +234,14 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
           </div>
         </section>
 
-        {/* right rail: install snippet (bare) over maintenance window (dashed) */}
+        <section aria-label="Install snippet">
+          <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Install</p>
+          <CodeSnippetPanel code={INSTALL_SNIPPET} language="bash" title="registry install" />
+        </section>
+        </div>
+
+        {/* right rail: maintenance window (dashed) */}
         <div className="col-span-12 space-y-5 lg:col-span-5">
-          <section aria-label="Install snippet">
-            <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Install</p>
-            <CodeSnippetPanel code={INSTALL_SNIPPET} language="bash" title="registry install" />
-          </section>
 
           <section aria-label="Maintenance window" className="rounded-xl border border-dashed border-border bg-card/50 p-4">
             <header className="mb-3 flex items-center justify-between">

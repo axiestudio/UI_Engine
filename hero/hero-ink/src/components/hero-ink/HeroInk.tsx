@@ -35,16 +35,23 @@ export type HeroInkProps = {
 // Self-demo defaults: a bare mount (tablet/mobile device frames, library consumers)
 // reproduces the same demo the engine desktop view shows.
 const DEMO_HERO_INK_TITLE = "The quiet way"
+const DEMO_HERO_INK_EYEBROW = "Aurum \u2014 private beta"
+const DEMO_HERO_INK_TITLE_HIGHLIGHT = "to run a loud business."
+const DEMO_HERO_INK_SUBTITLE =
+  "One login for bookings, clients and payments. Built for studios that answer with care, not automation."
+const DEMO_HERO_INK_PRIMARY_ACTION = { label: "Request access", href: "#" }
+const DEMO_HERO_INK_SECONDARY_ACTION = { label: "Talk to us", href: "#" }
+const DEMO_HERO_INK_PROOF = { avatars: [{ initials: "AL" }, { initials: "MK" }, { initials: "TR" }], label: "240 studios in the beta" }
 
 
 export function HeroInk({
-  eyebrow,
+  eyebrow = DEMO_HERO_INK_EYEBROW,
   title = DEMO_HERO_INK_TITLE,
-  titleHighlight,
-  subtitle,
-  primaryAction,
-  secondaryAction,
-  proof,
+  titleHighlight = DEMO_HERO_INK_TITLE_HIGHLIGHT,
+  subtitle = DEMO_HERO_INK_SUBTITLE,
+  primaryAction = DEMO_HERO_INK_PRIMARY_ACTION,
+  secondaryAction = DEMO_HERO_INK_SECONDARY_ACTION,
+  proof = DEMO_HERO_INK_PROOF,
   strip = ["no credit card", "5-minute setup", "cancel anytime"],
   fullPage = true,
   className,

@@ -39,12 +39,12 @@ export function Place({ landmark = DEMO_PLACE_LANDMARK, separator = "·", story,
     <section className={cn("relative isolate w-full overflow-hidden bg-background text-foreground", className)} aria-label={`${landmark} — our address`}>
       {/* ribbon landmark */}
       <InView variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} viewOptions={{ once: true, margin: "-60px" }}>
-        <div aria-hidden className="border-y border-border py-3 sm:py-4">
+        <div aria-hidden className="border-y border-border py-5 sm:py-6">
           <Marquee reverse={reverse} pauseOnHover speed={speed === "gentle" ? "slow" : speed === "walking" ? "normal" : "fast"}>
             {Array.from({ length: 4 }, (_, i) => (
               <span
                 key={i}
-                className="font-display text-[13vw] font-black leading-[0.85] tracking-[-0.05em] whitespace-nowrap text-foreground/90 sm:text-[9vw] lg:text-[120px]"
+                className="font-display text-[13vw] font-black leading-[0.95] tracking-[-0.05em] whitespace-nowrap text-foreground/90 sm:text-[9vw] lg:text-[120px]"
               >
                 {landmark} <span className="mx-6 text-foreground/25 sm:mx-10">{separator}</span>
               </span>

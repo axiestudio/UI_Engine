@@ -42,7 +42,7 @@ export function InteractiveAccordionMedia({ eyebrow = "KNOW", title = "Pick a ch
           {rows.map((r, i) => {
             const open = r.id === openId
             return (
-              <Button type='button' key={r.id} onClick={() => setOpenId(r.id)} className="block h-auto w-full py-4 text-left" variant="default">
+              <Button type='button' key={r.id} onClick={() => setOpenId(r.id)} className="block h-auto w-full py-4 text-left" variant="ghost">
                 <div className="flex items-center justify-between gap-4">
                   <span className="flex items-center gap-3">
                     <span className="font-mono text-[10px] font-bold text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>

@@ -91,33 +91,35 @@ export function ForecastHorizon({
           {/* history solid */}
           <path d={histPath} fill="none" stroke="hsl(var(--foreground))" strokeWidth="2.2" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
 
-          {/* forecast dashed — redraws with months prop, motion only on enter */}
+          {/* forecast dashed — redraws with months prop (opacity flourish; pathLength draw-on
+              would fight the non-uniform preserveAspectRatio stretch and corrupt the dash) */}
           <motion.path
             key={months}
             d={fcPath}
             fill="none"
             stroke="hsl(var(--foreground))"
             strokeWidth="1.8"
-            strokeDasharray="6 4"
+            strokeDasharray="1.4 1"
             vectorEffect="non-scaling-stroke"
             strokeLinecap="round"
             strokeLinejoin="round"
-            opacity="0.85"
-            initial={reduce ? undefined : { pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            initial={reduce ? undefined : { opacity: 0 }}
+            animate={{ opacity: 0.85 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           />
 
           {/* seam node */}
-          <circle
-            cx={xy(history[history.length - 1], history.length - 1)[0]}
-            cy={xy(history[history.length - 1], history.length - 1)[1]}
-            r="2.8"
-            fill="hsl(var(--background))"
-            stroke="hsl(var(--foreground))"
-            strokeWidth="1.8"
-          />
         </svg>
+
+        {/* seam node — HTML dot (SVG circle would stretch under preserveAspectRatio="none") */}
+        <span
+          aria-hidden
+          className="absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-foreground bg-background shadow-sm"
+          style={{
+            left: `calc(1rem + (100% - 2rem) * ${((history.length - 1) / (all.length - 1)).toFixed(4)})`,
+            top: `calc(1rem + (100% - 2rem) * ${(xy(history[history.length - 1], history.length - 1)[1] / 100).toFixed(4)})`,
+          }}
+        />
 
         {/* today marker */}
         <span aria-hidden className="absolute inset-y-4 w-px bg-border" style={{ left: `${((history.length - 1) / (all.length - 1)) * 100}%` }} />

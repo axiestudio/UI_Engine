@@ -94,7 +94,7 @@ export function StampFold({
             className="absolute inset-x-0 bottom-0 z-[1] h-1/2 rounded-b-sm border-t bg-[hsl(var(--letter-paper))] shadow-[0_-14px_24px_-16px_rgba(0,0,0,0.3)]"
           >
             <div className="flex h-full items-end justify-center pb-4">
-              <span className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--letter-soft))] transition-opacity duration-300", folded ? "opacity-40 rotate-180" : "opacity-0")}>confirmed</span>
+              <span className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--letter-soft))] transition-opacity duration-300", folded ? "opacity-40 -scale-x-100 rotate-180" : "opacity-0")}>confirmed</span>
             </div>
           </motion.div>
 

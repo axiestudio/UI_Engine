@@ -43,7 +43,7 @@ export function FaqMinimal({ eyebrow = "FAQ", title = "Quick answers.", items = 
             const open = openId === q.id
             return (
               <div key={q.id}>
-                <Button type='button' onClick={() => setOpenId(open ? null : q.id)} aria-expanded={open} className="flex h-auto w-full items-baseline justify-between py-4 text-left" variant="default">
+                <Button type='button' onClick={() => setOpenId(open ? null : q.id)} aria-expanded={open} className="flex h-auto w-full items-baseline justify-between py-4 text-left" variant="ghost">
                   <span className={cn("font-display text-base font-bold", ink ? "text-background" : "text-foreground")}>{q.question}</span>
                   <span className={cn("ml-4 font-mono text-sm", ink ? "text-background/50" : "text-muted-foreground")}>{open ? "–" : "+"}</span>
                 </Button>

@@ -256,7 +256,7 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
         </section>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-12">
+      <div className="grid min-h-0 flex-1 grid-cols-1 items-start gap-4 p-4 lg:grid-cols-12">
         {/* aisle rail — lazy tree + bare count rules */}
         <aside className="flex min-h-0 flex-col gap-4 lg:col-span-3">
           <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border bg-card">
@@ -301,8 +301,8 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
                       <Checkbox checked={selected.has(s.id)} onCheckedChange={(v) => toggleSel(s.id, v === true)} aria-label={`Select ${s.name}`} />
                     </td>
                     <td className="px-3 py-1">
-                      <span className="font-medium">{s.name}</span>
-                      <span className="ml-2 font-mono text-[11px] tabular-nums text-muted-foreground">{s.sku}</span>
+                      <span className="block font-medium leading-snug">{s.name}</span>
+                      <span className="block font-mono text-[11px] tabular-nums text-muted-foreground">{s.sku}</span>
                     </td>
                     <td className={cn("px-2 py-1 text-[11px] font-semibold uppercase", zoneTone[s.zone])}>{s.zone}</td>
                     <td className={cn("px-2 py-1 text-right font-mono tabular-nums", s.onHand < 25 && "text-[hsl(var(--warn))]")}>{s.onHand}</td>

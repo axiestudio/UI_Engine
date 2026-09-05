@@ -67,7 +67,7 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
             </span>
             <span className="font-mono text-[11px] font-semibold text-muted-foreground">streak {streak}</span>
           </span>
-          <Button type='button' onClick={reset} className="inline-flex items-center gap-1 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
+          <Button type='button' onClick={reset} className="inline-flex items-center gap-1 rounded-md border bg-background px-3 py-1.5 font-mono text-xs font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="outline">
             <RotateCcw className="size-3.5" aria-hidden /> Reset
           </Button>
         </div>
@@ -111,7 +111,7 @@ export function QuizFlipDeck({ cards = DEFAULT_CARDS, className, onAnswer }: Qui
                     <Button type='button' onClick={() => {
                         answer(false)
                         next()
-                      }} className="rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="default">
+                      }} className="rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" variant="outline">
                       Again
                     </Button>
                     <Button type='button' onClick={() => {

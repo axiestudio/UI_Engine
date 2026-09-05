@@ -28,7 +28,9 @@
       "infinite-slider",
       "text-shimmer"
     ],
-    "watermelon-ui": [],
+    "watermelon-ui": [
+      "https://registry.watermelon.sh/r/button.json"
+    ],
     "shadcn-ui": [
       "https://ui.shadcn.com/r/styles/new-york-v4/badge.json"
     ]
@@ -39,6 +41,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@radix-ui/react-slot": "^1.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.34.0",

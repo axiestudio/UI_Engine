@@ -43,8 +43,7 @@ export function HeroWordRoll({
         <InView once variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
           <h1 className="mt-5 font-display text-5xl font-black leading-[0.98] tracking-[-0.035em] sm:text-7xl">
             {lead}{" "}
-            <span className={cn("inline-block text-transparent", ink ? "bg-clip-text" : "bg-clip-text")}
-              style={{ backgroundImage: `linear-gradient(105deg, hsl(var(--primary)), hsl(var(--accent)))` }}>
+            <span className={cn("inline-block", ink ? "text-background" : "text-foreground")}>
               <TextLoop
                 interval={2.6}
                 className="inline-block"

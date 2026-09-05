@@ -26,13 +26,45 @@ import { useStickToBottomContext } from "use-stick-to-bottom"
 // A11Y     log role + polite live region; timestamps are time elements.
 
 export type Msg = { id: string; me?: boolean; author?: string; at: string; text: string; streaming?: boolean; reactions?: string[]; quote?: string }
-export type ChatThreadVirtualProps = { messages: Msg[]; canEdit?: (m: Msg) => boolean; onEdit?: (id: string, text: string) => void; reeditWindowSec?: number; className?: string }
+export type ChatThreadVirtualProps = { messages: Msg[]; canEdit?: (m: Msg) => boolean; onEdit?: (id: string, text: string) => void; reeditWindowSec?: number; className?: string;
+  /**
+   * `true` (default) renders the full marketing scene. `false` renders the
+   * bare thread card for embedding inside host consoles that already own
+   * the header — e.g. incident-command's support channel panel.
+   */
+  scene?: boolean
+}
 
-export function ChatThreadVirtual({ messages, canEdit, onEdit, reeditWindowSec = 90, className }: ChatThreadVirtualProps) {
+export function ChatThreadVirtual({ messages, canEdit, onEdit, reeditWindowSec = 90, className, scene = true }: ChatThreadVirtualProps) {
   const [count, setCount] = React.useState(messages.length)
   React.useEffect(() => { if (messages.length > count) setCount(messages.length) }, [messages.length, count])
   const channel = messages.find((m) => !m.me)?.author ?? "live thread"
   const own = messages.filter((m) => m.me).length
+  const thread = (
+    <>
+      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 px-6 py-4">
+        <h3 className="text-sm font-bold tracking-tight">{channel}</h3>
+        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+          {own} of yours · follow the tail
+        </span>
+      </header>
+      <Conversation className="h-[430px]" aria-live="polite">
+        {messages.length === 0 ? (
+          <ConversationEmptyState title="The channel is quiet" description="Newest traffic will land here." />
+        ) : (
+          <ConversationContent className="gap-1.5 px-5 py-4">
+            <Thread messages={messages} canEdit={canEdit} onEdit={onEdit} reeditSec={reeditWindowSec} />
+          </ConversationContent>
+        )}
+        <NewRepliesPill messages={messages} />
+      </Conversation>
+      <p className="sr-only" aria-live="polite">{count} messages in the thread.</p>
+    </>
+  )
+
+  // Bare embed: host console owns header + card chrome, preset contributes the thread.
+  if (!scene) return <div className={cn("w-full", className)}>{thread}</div>
+
   return (
     <section className={cn("relative isolate w-full overflow-hidden bg-background", className)}>
       <MotionConfig reducedMotion="user">
@@ -48,23 +80,7 @@ export function ChatThreadVirtual({ messages, canEdit, onEdit, reeditWindowSec =
 
           {/* ── hero card: the scroller ──────────────────────────────── */}
           <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)]">
-            <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 px-6 py-4">
-              <h3 className="text-sm font-bold tracking-tight">{channel}</h3>
-              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
-                {own} of yours · follow the tail
-              </span>
-            </header>
-            <Conversation className="h-[430px]" aria-live="polite">
-              {messages.length === 0 ? (
-                <ConversationEmptyState title="The channel is quiet" description="Newest traffic will land here." />
-              ) : (
-                <ConversationContent className="gap-1.5 px-5 py-4">
-                  <Thread messages={messages} canEdit={canEdit} onEdit={onEdit} reeditSec={reeditWindowSec} />
-                </ConversationContent>
-              )}
-              <NewRepliesPill messages={messages} />
-            </Conversation>
-            <p className="sr-only" aria-live="polite">{count} messages in the thread.</p>
+            {thread}
           </div>
 
           {/* ── caption line ─────────────────────────────────────────── */}

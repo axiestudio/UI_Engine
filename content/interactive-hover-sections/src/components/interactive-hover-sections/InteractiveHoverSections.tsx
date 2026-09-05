@@ -36,7 +36,7 @@ export function InteractiveHoverSections({ eyebrow = "INDEX", rows = DEFAULT_ROW
           <div className="space-y-2">
             <p className={cn("font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
             {rows.map((r, i) => (
-              <Button type='button' key={r.id} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} className={cn("block h-auto w-full border-b py-4 text-left transition-all", i === active ? "opacity-100" : ink ? "opacity-40" : "opacity-50")} variant="default">
+              <Button type='button' key={r.id} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} className={cn("block h-auto w-full border-b py-4 text-left transition-all", i === active ? "opacity-100" : ink ? "opacity-40" : "opacity-50")} variant="ghost">
                 <span className="flex items-baseline gap-3">
                   <span className="font-mono text-[10px] font-bold">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-display text-2xl font-bold sm:text-3xl">{r.title}</span>

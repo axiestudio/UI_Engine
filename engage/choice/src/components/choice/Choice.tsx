@@ -55,7 +55,7 @@ function Door({
       value={o.id}
       onClick={onSelect}
       className={cn(
-        "group relative flex h-auto w-auto min-h-[220px] flex-1 shrink flex-col overflow-hidden rounded-2xl border p-5 text-left shadow-sm transition-[flex-grow,border-color,background-color,box-shadow,transform] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[300px]",
+        "group relative flex h-auto w-auto aspect-auto min-h-[220px] flex-1 shrink flex-col overflow-hidden rounded-2xl border p-5 text-left shadow-sm transition-[flex-grow,border-color,background-color,box-shadow,transform] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[300px]",
         chosen
           ? "border-foreground bg-card shadow-md ring-1 ring-foreground/10"
           : "border-border bg-card/40 hover:border-foreground/30 hover:bg-card/60 hover:shadow-sm",

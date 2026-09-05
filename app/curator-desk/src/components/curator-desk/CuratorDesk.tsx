@@ -133,7 +133,7 @@ export function CuratorDesk({ exhibition = "New light · autumn hang", onPrintLa
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{works.length} works · {pins.length} label pins</span>
           </header>
           <AnnotationPinLayer
-            className="h-full min-h-[300px]"
+            className="min-h-[300px]"
             pins={pins}
             onRemove={(id) => setPins((ps) => ps.filter((p) => p.id !== id))}
             onAddPin={({ x, y }) => setPins((ps) => [...ps, { id: "p" + Date.now(), x, y, author: "label · draft", text: "New label draft — fill artist, title, year, medium, lender" }])}

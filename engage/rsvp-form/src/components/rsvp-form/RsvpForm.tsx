@@ -154,7 +154,7 @@ export function RsvpForm({
                       key={o}
                       value={o}
                       className={cn(
-                        "h-9 rounded-full border px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest shadow-none transition-colors [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background",
+                        "h-9 w-auto aspect-auto rounded-full border px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest shadow-none transition-colors [&_[data-slot=radio-group-indicator]]:hidden data-[state=checked]:border-foreground data-[state=checked]:bg-foreground data-[state=checked]:text-background",
                         !ink && "border-border bg-background hover:bg-accent hover:text-accent-foreground data-[state=unchecked]:text-foreground",
                         ink && "border-background/20 bg-transparent data-[state=unchecked]:text-background hover:bg-background/10",
                       )}

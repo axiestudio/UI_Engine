@@ -71,6 +71,7 @@ export function NavMegaCascade({ brand = "Quiet Times Studio", items = DEFAULT_I
                 <Button
                   key={i.id}
                   type="button"
+                  variant="ghost"
                   aria-expanded={isOpen}
                   aria-haspopup="menu"
                   aria-controls={i.groups ? `cascade-${i.id}` : undefined}

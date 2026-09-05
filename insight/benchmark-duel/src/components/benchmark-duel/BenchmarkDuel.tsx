@@ -85,7 +85,7 @@ export function BenchmarkDuel({
         </div>
       </div>
 
-      <p className="mt-3 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">Scale 0–{max} · Values are live props, bars animate once on enter.</p>
+      <p className="mt-3 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">Scale 0–{max} · Compared on the same unit.</p>
     
   </div>
 </section>
