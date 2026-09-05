@@ -4,7 +4,7 @@ import { Inbox, Send } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Checkbox } from "@/components/watermelon/checkbox"
 import { Button } from "@/components/ui/button"
-import { BarChart, Bar, Grid, BarXAxis, BarYAxis, ChartTooltip } from "@/components/bklit"
+import { BarChart, Bar, Grid, BarXAxis, YAxis, ChartTooltip } from "@/components/bklit"
 import { SegmentedControl } from "segmented-control"
 import { KpiTileLive } from "kpi-tile-live"
 import { ActivityHeatmap, type HeatCell } from "activity-heatmap"
@@ -286,7 +286,7 @@ export function GradeDesk({
               <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{cohort}</span>
             </div>
             <div className="mt-2">
-              <ActivityHeatmap cells={heatCells} weeks={10} weekStartDay={1} showTooltip showLegend />
+              <ActivityHeatmap cells={heatCells} weeks={10} weekStartDay={1} showTooltip showLegend scene={false} unit="submissions" />
             </div>
           </div>
 
@@ -361,11 +361,11 @@ export function GradeDesk({
                 xDataKey="grade"
                 aspectRatio="8 / 3"
                 animationDuration={700}
-                margin={{ top: 6, right: 4, bottom: 20, left: 24 }}
+                margin={{ top: 6, right: 4, bottom: 30, left: 24 }}
               >
                 <Grid horizontal numTicksRows={3} vertical={false} />
                 <Bar dataKey="count" fill="var(--chart-1)" lineCap={2} yAxisId="left" />
-                <BarYAxis />
+                <YAxis numTicks={2} />
                 <BarXAxis maxLabels={5} />
                 <ChartTooltip rows={(p: Record<string, unknown>) => [{ color: "var(--chart-1)", label: `${String(p.grade)} essays`, value: Number(p.count ?? 0) }]} />
               </BarChart>

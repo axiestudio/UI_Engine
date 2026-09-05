@@ -253,7 +253,7 @@ export function PayrollReview({ period = "2026-05", runBy = "E. Sjöberg", lines
                 max={budget}
                 size={140}
                 label="committed"
-                unit="of 4.6 M"
+                unit="%"
                 precision={1}
                 zones={[
                   { to: 0.85, color: "hsl(var(--ok))", label: "on budget" },

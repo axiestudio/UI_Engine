@@ -24,7 +24,7 @@ export function PermissionMatrix({ perms, roles, value, onSet, readOnly, classNa
   return (
     <div className={cn("relative isolate overflow-x-auto rounded-lg border font-sans", className)}>
       <MotionConfig reducedMotion="user">
-      <table className="w-full border-collapse text-sm">
+      <table className="w-full min-w-[340px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-border/60 bg-muted/50">
             <th scope="col" className="w-52 p-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Permission</th>

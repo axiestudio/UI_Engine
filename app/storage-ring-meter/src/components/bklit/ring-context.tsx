@@ -12,12 +12,13 @@ import {
 } from "react";
 
 // CSS variable references for ring chart theming
+// Adapted: --border is a bare HSL triplet in the APP SYSTEM theme — wrap for paint use
 export const ringCssVars = {
   background: "var(--chart-background)",
   foreground: "var(--chart-foreground)",
   foregroundMuted: "var(--chart-foreground-muted)",
   label: "var(--chart-label)",
-  ringBackground: "var(--border)",
+  ringBackground: "hsl(var(--border))",
   // Default ring colors from chart palette
   ring1: "var(--chart-1)",
   ring2: "var(--chart-2)",

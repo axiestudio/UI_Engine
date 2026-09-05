@@ -97,9 +97,9 @@ export function InkTrust({
         )}
       </InView>
 
-      <div className="mt-12 flex items-center gap-4">
+      <div className="mt-12 flex flex-wrap items-center gap-4">
         <Separator className="w-14 shrink-0 bg-background/40" />
-        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-background/60">
+        <span className="min-w-0 break-words font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-background/60">
           {signoff}
         </span>
       </div>

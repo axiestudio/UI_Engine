@@ -126,7 +126,7 @@ export function SwatchSpectrum({
         </Badge>
       </div>
 
-      <div className="mt-8 flex h-[400px] gap-1.5 rounded-xl" role="group" aria-label="Brand colors">
+      <div className="mt-8 flex h-[400px] min-w-0 gap-1.5 overflow-x-auto rounded-xl pb-1" role="group" aria-label="Brand colors">
         {swatches.map((s) => {
           const cssVar = typeof window !== "undefined" ? getComputedStyle(document.documentElement).getPropertyValue(`--app-${s.token}`).trim() : ""
           const hasVar = cssVar.length > 0

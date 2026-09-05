@@ -290,7 +290,7 @@ export function StudioBoard({
                 <div
                   key={r.id}
                   className={cn(
-                    "grid grid-cols-[64px_minmax(0,1fr)_minmax(0,1fr)_44px_112px] items-center gap-2 border-b border-background/10 px-3 py-2 last:border-0",
+                    "grid grid-cols-[64px_minmax(0,1fr)_minmax(0,1fr)_44px_158px] items-center gap-2 border-b border-background/10 px-3 py-2 last:border-0",
                     on && "bg-background/10",
                     r.status === "cancelled" && "opacity-50",
                   )}

@@ -69,7 +69,7 @@ export function QuadrantScope({
           {/* quadrants */}
           {QUADRANTS.map((q, qi) => (
             <Button type='button' key={q.id} aria-label={`Quadrant ${q.label}: ${q.note}`} onMouseEnter={() => setActive(qi)} onFocus={() => setActive(qi)} onMouseLeave={() => setActive(null)} className={cn(
-                "absolute grid h-1/2 w-1/2 place-items-start p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                "absolute h-1/2 w-1/2 rounded-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 qi === 0 && "right-0 top-0 rounded-tr-xl",
                 qi === 1 && "left-0 top-0 rounded-tl-xl",
                 qi === 2 && "bottom-0 left-0 rounded-bl-xl",
@@ -78,7 +78,7 @@ export function QuadrantScope({
               )} variant="default">
               <span
                 className={cn(
-                  "rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] shadow-sm transition-colors",
+                  "absolute left-3 top-3 rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] shadow-sm transition-colors",
                   active === qi ? "border-foreground bg-foreground text-background" : "border-border bg-background text-muted-foreground",
                 )}
               >
@@ -125,8 +125,8 @@ export function QuadrantScope({
         <div className="flex flex-col gap-3">
           {QUADRANTS.map((q, qi) => (
             <Button type='button' key={q.id} onMouseEnter={() => setActive(qi)} onFocus={() => setActive(qi)} onMouseLeave={() => setActive(null)} onBlur={() => setActive(null)} className={cn(
-                "rounded-xl border p-4 text-left shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                active === qi ? "border-foreground bg-foreground text-background" : "border-border bg-card hover:border-foreground/20",
+                "h-auto min-h-0 flex-col items-start rounded-xl border p-4 text-left shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                active === qi ? "border-foreground bg-foreground text-background" : "border-border bg-card text-foreground hover:border-foreground/20",
               )} variant="default">
               <span className="font-display text-[13px] font-semibold uppercase tracking-[0.04em]">{q.label}</span>
               <span className={cn("mt-1 block font-mono text-[11px] font-medium", active === qi ? "text-background/70" : "text-muted-foreground")}>{q.note}</span>

@@ -37,8 +37,6 @@ const DEFAULTS: DateRangePresetsProps["presets"] = [{ label: "Today", days: 1 },
 const iso = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
 const same = (a: Date, b: Date) => iso(a) === iso(b)
 const midnight = (d: Date) => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x }
-// business-day count for the header readout (Mon–Fri)
-const businessDays = (a: Date, b: Date) => { let n = 0; const d = new Date(a); while (d <= b) { const w = d.getDay(); if (w > 0 && w < 6) n++; d.setDate(d.getDate() + 1) } return n }
 
 export function DateRangePresets({ value, onChange, presets = DEFAULTS, allowCompare, className }: DateRangePresetsProps) {
   const [open, setOpen] = React.useState(false)
@@ -106,10 +104,10 @@ export function DateRangePresets({ value, onChange, presets = DEFAULTS, allowCom
 
   return (
     <div className={cn("relative inline-block font-sans", className)}>
-      <Button type="button" ref={refs.setReference} variant="ghost" {...getReferenceProps()} className={cn("flex h-9 items-center gap-2 rounded-md border border-border/70 bg-background px-3 text-sm font-medium shadow-sm hover:bg-muted/60", open && "bg-muted/60")}>
-        <CalendarDays aria-hidden className="size-4 text-muted-foreground" />
-        {value ? `${value.from.toLocaleDateString()} → ${value.to.toLocaleDateString()}` : "Pick a range"}
-        {value && <span className="text-xs text-muted-foreground">{Math.round((+new Date(value.to).setHours(23, 59, 59, 999) - +midnight(value.from)) / 86400000) + 1}d · {businessDays(midnight(value.from), midnight(value.to))} business</span>}
+      <Button type="button" ref={refs.setReference} variant="ghost" {...getReferenceProps()} className={cn("flex h-9 max-w-full items-center gap-2 rounded-md border border-border/70 bg-background px-3 text-sm font-medium shadow-sm hover:bg-muted/60", open && "bg-muted/60")}>
+        <CalendarDays aria-hidden className="size-4 shrink-0 text-muted-foreground" />
+        <span className="min-w-0 truncate">{value ? `${value.from.toLocaleDateString()} → ${value.to.toLocaleDateString()}` : "Pick a range"}</span>
+        {value && <span className="shrink-0 whitespace-nowrap text-xs text-muted-foreground">{Math.round((+new Date(value.to).setHours(23, 59, 59, 999) - +midnight(value.from)) / 86400000) + 1}d</span>}
       </Button>
       {value && <Button type="button" variant="ghost" aria-label="Clear range" onClick={() => { onChange(null); setPicking(null) }} className="absolute -right-7 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:bg-muted"><X className="size-3.5" /></Button>}
       <FloatingPortal>

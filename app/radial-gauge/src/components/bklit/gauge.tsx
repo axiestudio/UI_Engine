@@ -416,7 +416,15 @@ function GaugeArcInner(props: GaugeInnerProps) {
           className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center"
           style={{ paddingTop: size * 0.08 }}
         >
-          <div className="@container/chart-center size-full min-w-0">
+          {/* container = the donut hole (innerRadius ≈ 0.28 × size), matching
+              RingCenter's model: the cqw type below scales to the hole, not the
+              full box — otherwise the value paints over the notch band.
+              container-type is set inline: Tailwind 3 core has no @container
+              utility, and without a context cqw resolves to the viewport. */}
+          <div
+            className="@container/chart-center flex flex-col items-center overflow-hidden text-center"
+            style={{ width: size * 0.56, containerType: "inline-size" }}
+          >
             <ChartStatFlow
               formatOptions={formatOptions}
               label={defaultLabel}
@@ -424,7 +432,7 @@ function GaugeArcInner(props: GaugeInnerProps) {
               prefix={prefix}
               suffix={suffix}
               value={centerValue}
-              valueClassName="font-bold tabular-nums leading-none text-[clamp(0.75rem,22cqw,1.875rem)]"
+              valueClassName="font-bold tabular-nums leading-none text-[clamp(0.75rem,22cqw,1.875rem)] whitespace-nowrap"
             />
           </div>
         </div>

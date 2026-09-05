@@ -81,7 +81,7 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
         <aside className="space-y-4">
           <Card>
             <CardContent className="p-4">
-              <StorageRingMeter quota={4 * 1073741824} segments={[
+              <StorageRingMeter ringSize={126} quota={4 * 1073741824} segments={[
                 { label: "Reference photos", bytes: 1_610_612_736 }, { label: "Colour formulas", bytes: 322_122_547 }, { label: "Voice notes", bytes: 107_374_182 },
               ]} label="CLIENT VAULT" resetNote="archive 12/31" />
             </CardContent>

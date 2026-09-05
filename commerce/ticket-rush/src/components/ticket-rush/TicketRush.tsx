@@ -25,7 +25,7 @@ export type TicketRushProps = {
   className?: string
 }
 
-export function TicketRush({ stock, sold = 0, eyebrow = "Today's release", title, label = "remaining", cta, onSoldOut, className }: TicketRushProps) {
+export function TicketRush({ stock = 240, sold = 137, eyebrow = "Today's release", title = "Main hall \u00b7 first release", label = "remaining", cta = { label: "Get tickets", href: "#" }, onSoldOut, className }: TicketRushProps) {
   const reduce = React.useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
   const remaining = Math.max(0, stock - sold)
   const prev = React.useRef(remaining)

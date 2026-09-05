@@ -202,7 +202,8 @@ export function PricingLab({
   const undoable = PROPOSALS.filter((p) => rejected.includes(p.id))
 
   return (
-    <div className={cn("relative isolate overflow-hidden font-sans text-foreground", className)}>
+    <div className={cn("relative isolate w-full overflow-hidden bg-background font-sans text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[920px] px-4 py-8 sm:px-6 sm:py-10">
       {/* ── header band: bare, hairline-ruled — the margin arc anchors it ── */}
       <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border/70 pb-5">
         <div className="min-w-0">
@@ -240,15 +241,15 @@ export function PricingLab({
             <p className="font-mono text-[11px] font-medium text-muted-foreground">drag · scroll · type</p>
           </header>
           <div className="space-y-5 px-5 py-4">
-            <div className="grid items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+            <div className="grid min-w-0 grid-cols-1 gap-2">
               <DragNumberField label="Base price" value={eff.base} onValueChange={set("base")} step={0.5} precision={2} min={9} max={99} unit="$" />
               <RadialGauge orientation="linear" size={200} notches={28} showCenterValue={false} label="net / seat" value={net} min={0} max={110} precision={2} unit="" zones={[{ to: 0.36, color: "hsl(var(--err))", label: "under water" }, { to: 0.64, color: "hsl(var(--warn))", label: "thin" }, { to: 1, color: "hsl(var(--ok))", label: "priced" }]} />
             </div>
-            <div className="grid items-center gap-3 border-t border-border/50 pt-5 sm:grid-cols-[minmax(0,1fr)_auto]">
+            <div className="grid min-w-0 grid-cols-1 gap-2 border-t border-border/50 pt-5">
               <DragNumberField label="Launch discount" value={eff.discount} onValueChange={set("discount")} step={1} precision={0} min={0} max={60} unit="%" />
               <RadialGauge orientation="linear" size={200} notches={28} showCenterValue={false} label="headroom" value={100 - eff.discount} min={0} max={100} precision={0} unit="" zones={[{ to: 0.4, color: "hsl(var(--err))", label: "giving it away" }, { to: 0.7, color: "hsl(var(--warn))", label: "deep" }, { to: 1, color: "hsl(var(--ok))", label: "room" }]} />
             </div>
-            <div className="grid items-center gap-3 border-t border-border/50 pt-5 sm:grid-cols-[minmax(0,1fr)_auto]">
+            <div className="grid min-w-0 grid-cols-1 gap-2 border-t border-border/50 pt-5">
               <div className="space-y-1.5">
                 <DragNumberField label="Seat tier" value={eff.tier} onValueChange={set("tier")} step={1} precision={0} min={1} max={3} />
                 <p className="text-xs text-muted-foreground">tier {eff.tier} · {TIER_NAMES[ti]} · {seats.toLocaleString()} seats · {usd(cost)} cost</p>
@@ -278,10 +279,10 @@ export function PricingLab({
                   <AnimatedNumber value={projected} />
                 </p>
               </div>
-              <div className="ml-auto grid w-full max-w-md grid-cols-3 gap-3">
-                <KpiTileLive label="Net MRR" value={mrr} format={(v) => "$" + Math.round(v).toLocaleString()} spark={curve.map((c) => c.rev)} sparkColor="var(--chart-line-primary)" sparkHeight={22} />
-                <KpiTileLive label="Margin" value={marginPct} format={(v) => v.toFixed(1) + "%"} danger={marginZone === "err"} spark={curve.map((c) => ((c.rev * (1 - eff.discount / 100) - cost * seats) / Math.max(1, c.rev)) * 100)} sparkColor="var(--chart-line-secondary)" sparkHeight={22} />
-                <KpiTileLive label="Seats" value={seats} format={(v) => Math.round(v).toLocaleString()} spark={[seats, seats, seats, seats, seats, seats]} sparkColor="var(--chart-crosshair)" sparkHeight={22} />
+              <div className="ml-auto grid w-full max-w-md grid-cols-1 gap-2 min-[480px]:grid-cols-3 sm:gap-3">
+                <KpiTileLive label="Net MRR" value={mrr} format={(v) => "$" + Math.round(v).toLocaleString()} spark={curve.map((c) => c.rev)} sparkColor="var(--chart-line-primary)" sparkHeight={22} className="min-w-0" />
+                <KpiTileLive label="Margin" value={marginPct} format={(v) => v.toFixed(1) + "%"} danger={marginZone === "err"} spark={curve.map((c) => ((c.rev * (1 - eff.discount / 100) - cost * seats) / Math.max(1, c.rev)) * 100)} sparkColor="var(--chart-line-secondary)" sparkHeight={22} className="min-w-0" />
+                <KpiTileLive label="Seats" value={seats} format={(v) => Math.round(v).toLocaleString()} spark={[seats, seats, seats, seats, seats, seats]} sparkColor="var(--chart-crosshair)" sparkHeight={22} className="min-w-0" />
               </div>
             </div>
           </section>
@@ -293,7 +294,7 @@ export function PricingLab({
                 12-mo projection · {TIER_NAMES[ti]} · {eff.discount}% off
               </p>
             </header>
-            <AreaChart data={curve} margin={{ top: 12, right: 14, bottom: 26, left: 2 }} style={{ aspectRatio: "auto", height: 236 }}>
+            <AreaChart data={curve} margin={{ top: 12, right: 14, bottom: 26, left: 18 }} style={{ aspectRatio: "auto", height: 236 }}>
               <Grid horizontal numTicksRows={4} />
               <Area dataKey="rev" fill="var(--chart-line-primary)" stroke="var(--chart-line-primary)" />
               <XAxis numTicks={6} />
@@ -405,6 +406,7 @@ export function PricingLab({
             )}
           </div>
         </section>
+      </div>
       </div>
     </div>
   )

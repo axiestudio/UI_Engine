@@ -108,7 +108,7 @@ export function FarmStandDesk({ marketDay = "Sat · stall 4–7", photos = DEFAU
             <UploadQueue files={files} onRetry={(id: string) => { setFiles((fs) => fs.map((f) => (f.id === id ? { ...f, status: "uploading", progress: 5, tries: (f.tries ?? 1) + 1, error: undefined } : f))); push("retrying from the stall hotspot", "info") }} onRemove={(id: string) => setFiles((fs) => fs.filter((f) => f.id !== id))} className="border-0" />
           </section>
           <section className="rounded-lg border bg-card p-3">
-            <FunnelStageBars stages={funnel} eyebrow="CSA spring share" topLabel="member journey" />
+            <FunnelStageBars stages={funnel} eyebrow="CSA spring share" topLabel="member journey" orientation="vertical" />
           </section>
         </aside>
 

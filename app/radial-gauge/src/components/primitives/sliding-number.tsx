@@ -94,7 +94,7 @@ export function SlidingNumber({
   );
 
   return (
-    <div className='flex items-center'>
+    <span className='inline-flex items-center'>
       {value < 0 && '-'}
       {integerDigits.map((_, index) => (
         <Digit
@@ -115,6 +115,6 @@ export function SlidingNumber({
           ))}
         </>
       )}
-    </div>
+    </span>
   );
 }

@@ -214,7 +214,7 @@ export function AgentConsoleDesk({ session = "OPS-4417", model: defaultModel = "
             <p className="border-t px-3 py-2 text-[11px] text-muted-foreground">Auto-compaction compiles the transcript at 90% of window. Ring is live — it moves as the model answers stream in.</p>
           </section>
 
-          <section className="min-h-0 flex-1 overflow-hidden rounded-lg border bg-card">
+          <section className="relative min-h-0 flex-1 overflow-hidden rounded-lg border bg-card">
             <header className="flex h-9 items-center justify-between border-b bg-muted/30 px-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Agent jobs</span>
               <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{jobs.filter((j) => j.status !== "done" && j.status !== "error").length} open</span>

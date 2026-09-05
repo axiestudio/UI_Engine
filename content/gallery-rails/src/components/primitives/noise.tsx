@@ -2,6 +2,9 @@
  * Vendored from React Bits (MIT): Noise
  * Registry item: Noise-TS-TW. Snapshot: UI/_registry/react-bits/r/Noise-TS-TW.json
  * Upstream: https://reactbits.dev/r/Noise-TS-TW.json
+ * Adapted (Law 2 isolation): canvas fills the preset root (inset-0/h-full/w-full)
+ * instead of viewport-width units so grain never bleeds into the
+ * engine sidebar in the device-frame showcase.
  */
 import React, { useRef, useEffect } from 'react';
 
@@ -39,8 +42,8 @@ const Noise: React.FC<NoiseProps> = ({
       canvas.width = canvasSize;
       canvas.height = canvasSize;
 
-      canvas.style.width = '100vw';
-      canvas.style.height = '100vh';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
     };
 
     const drawGrain = () => {
@@ -78,7 +81,7 @@ const Noise: React.FC<NoiseProps> = ({
 
   return (
     <canvas
-      className="pointer-events-none absolute top-0 left-0 h-screen w-screen"
+      className="pointer-events-none absolute inset-0 h-full w-full"
       ref={grainRef}
       style={{
         imageRendering: 'pixelated'

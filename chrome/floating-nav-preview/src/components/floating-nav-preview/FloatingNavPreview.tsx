@@ -141,20 +141,42 @@ export type FloatingNavPreviewProps = {
 
 export function FloatingNavPreview({ brand = "Quiet Times", pages = DEFAULT_PAGES, className }: FloatingNavPreviewProps) {
   return (
-    <div className={cn("relative isolate flex w-full justify-center overflow-hidden py-10", className)}>
-      <nav
-        aria-label="Studio navigation"
-        className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-2 shadow-sm"
-      >
-        <span className="flex items-center gap-2 pl-2 pr-2">
-          <span aria-hidden className="size-2.5 rounded-full bg-primary" />
-          <span className="text-[13px] font-semibold tracking-tight text-foreground">{brand}</span>
-        </span>
-        <span aria-hidden className="mx-1 h-5 w-px bg-border" />
-        {pages.map((page) => (
-          <NavLink key={page.label} page={page} />
-        ))}
-      </nav>
+    // floating nav belongs at the BOTTOM of the stage — a short framed intro
+    // above, then the dock pinned to the container floor (absolute, never fixed:
+    // it must stay inside the preset root)
+    <div
+      className={cn(
+        "relative isolate flex min-h-[420px] w-full flex-col overflow-hidden",
+        className
+      )}
+    >
+      <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+          Site navigation
+        </p>
+        <p className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-foreground">
+          A whole site in one quiet pill.
+        </p>
+        <p className="mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
+          Hover a section for its page preview — the dock follows along the
+          bottom edge.
+        </p>
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
+        <nav
+          aria-label="Studio navigation"
+          className="pointer-events-auto inline-flex items-center gap-1 rounded-full border bg-card px-2 py-2 shadow-sm"
+        >
+          <span className="flex items-center gap-2 pl-2 pr-2">
+            <span aria-hidden className="size-2.5 rounded-full bg-primary" />
+            <span className="text-[13px] font-semibold tracking-tight text-foreground">{brand}</span>
+          </span>
+          <span aria-hidden className="mx-1 h-5 w-px bg-border" />
+          {pages.map((page) => (
+            <NavLink key={page.label} page={page} />
+          ))}
+        </nav>
+      </div>
     </div>
   )
 }

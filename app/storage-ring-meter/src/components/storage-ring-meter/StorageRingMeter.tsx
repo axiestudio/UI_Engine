@@ -23,6 +23,9 @@ export type StorageRingMeterProps = {
   quota: number;
   label?: string;
   resetNote?: string;
+  /** ring diameter in px (default 170) — shrink for narrow side panels so the
+   *  legend keeps readable label width */
+  ringSize?: number;
   className?: string;
 };
 
@@ -46,6 +49,7 @@ export function StorageRingMeter({
   quota,
   label = "STORAGE USED",
   resetNote,
+  ringSize = 170,
   className,
 }: StorageRingMeterProps) {
   const reduce = useReducedMotion();
@@ -75,7 +79,7 @@ export function StorageRingMeter({
 
   return (
     <div className={cn("relative isolate flex items-center gap-6 overflow-hidden font-sans", className)}>
-      <div className="relative size-[170px] shrink-0">
+      <div className="relative shrink-0" style={{ width: ringSize, height: ringSize }}>
         {pct > 0.85 && (
           <motion.span
             aria-hidden
@@ -91,7 +95,7 @@ export function StorageRingMeter({
           hoveredIndex={hi}
           onHoverChange={setHi}
           ringGap={4}
-          size={170}
+          size={ringSize}
           strokeWidth={10}
         >
           <Ring color={undefined} index={0} />

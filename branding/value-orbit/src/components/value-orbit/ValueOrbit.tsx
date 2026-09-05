@@ -55,9 +55,9 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
   return (
     <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)}>
       <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-      <div className="grid items-center gap-14 lg:grid-cols-[420px_1fr]">
+      <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[420px_1fr]">
         {/* orbit */}
-        <div className="relative mx-auto aspect-square w-full max-w-[420px]" role="group" aria-label="Core values orbit">
+        <div className="relative mx-auto aspect-square w-full min-w-0 max-w-[420px]" role="group" aria-label="Core values orbit">
           <span aria-hidden className="absolute inset-[12%] rounded-full border border-dashed border-border" />
           <span aria-hidden className="absolute inset-[30%] rounded-full border border-border/60" />
           <div className="absolute inset-0 grid place-items-center">
@@ -72,8 +72,8 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
           </div>
           {values.map((v, i) => {
             const angle = (i / values.length) * Math.PI * 2 - Math.PI / 2
-            const x = 50 + Math.cos(angle) * 42
-            const y = 50 + Math.sin(angle) * 42
+            const x = 50 + Math.cos(angle) * 40
+            const y = 50 + Math.sin(angle) * 40
             return (
               <motion.div
                 key={v.word}
@@ -103,7 +103,7 @@ export function ValueOrbit({ values = DEFAULT_VALUES, eyebrow = "VALUES · IN OR
         </div>
 
         {/* ledger */}
-        <div>
+        <div className="min-w-0">
                     <header className="">
             {eyebrow != null && (              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>            )}
             <h2 className="mt-2 tracking-tight text-3xl font-bold tracking-tight sm:text-4xl text-foreground">{<>Five words we <em className="font-serif italic font-medium">actually</em> pay for.</>}</h2>

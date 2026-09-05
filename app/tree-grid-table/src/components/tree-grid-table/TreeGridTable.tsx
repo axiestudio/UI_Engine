@@ -13,9 +13,12 @@ import { InView } from "@/components/primitives/in-view"
 // A11Y     nested lists with aria-expanded/owns; keyboard ←/→ fold + unfold.
 
 export type TreeNode = { id: string; label: string; meta?: string; children?: TreeNode[] }
-export type TreeGridTableProps = { nodes: TreeNode[]; loadChildren?: (n: TreeNode) => Promise<TreeNode[]>; defaultOpen?: string[]; className?: string }
+export type TreeGridTableProps = { nodes: TreeNode[]; loadChildren?: (n: TreeNode) => Promise<TreeNode[]>; defaultOpen?: string[]; className?: string;
+  /** bare: drop the marketing hero/footer and paddings — embed the tree itself
+   *  inside app panels where the surrounding screen carries its own header */
+  bare?: boolean }
 
-export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className }: TreeGridTableProps) {
+export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className, bare = false }: TreeGridTableProps) {
   const [open, setOpen] = React.useState<Set<string>>(new Set(defaultOpen))
   const [loading, setLoading] = React.useState<Set<string>>(new Set())
   const [kids, setKids] = React.useState<Record<string, TreeNode[]>>({})
@@ -59,6 +62,15 @@ export function TreeGridTable({ nodes, loadChildren, defaultOpen = [], className
         )}
               </MotionConfig>
       </li>
+    )
+  }
+  if (bare) {
+    return (
+      <section className={cn("relative w-full", className)}>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
+          <ul role="tree" className="divide-y divide-border/60 py-1">{nodes.map((n) => <Row key={n.id} n={n} depth={0} />)}</ul>
+        </div>
+      </section>
     )
   }
   return (

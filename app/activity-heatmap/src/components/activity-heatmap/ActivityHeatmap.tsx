@@ -40,6 +40,16 @@ export type ActivityHeatmapProps = {
   showLegend?: boolean
   weekStartDay?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   colorScale?: (level: number) => string
+  /** Unit noun for the total + tooltip (default "events"). Hosts pass their
+   *  own domain word, e.g. merch-console passes "orders". */
+  unit?: string
+  /**
+   * `true` (default) renders the full marketing scene: eyebrow + headline +
+   * hero card + caption. `false` renders the bare data visual (total row +
+   * grid + legend) for embedding inside host cards that already own the
+   * header — e.g. merch-console's "Order heat" section.
+   */
+  scene?: boolean
 }
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
@@ -52,6 +62,8 @@ export function ActivityHeatmap({
   showLegend = true,
   weekStartDay = 0,
   colorScale,
+  scene = true,
+  unit = "events",
 }: ActivityHeatmapProps) {
   // `weeks` is kept for API compat; columns were always derived from cells
   // length (ceil(len/7)) and that stays the source of truth.
@@ -110,6 +122,46 @@ export function ActivityHeatmap({
     }))
   }, [cells])
 
+  const visual = (
+    <>
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <p className="font-display text-2xl font-bold tracking-tight tabular-nums">
+          {total.toLocaleString()} <span className="text-sm font-bold text-muted-foreground">{unit}</span>
+        </p>
+        <Badge variant="secondary">best streak {streak}d</Badge>
+      </div>
+
+      <div className="mt-6" role="img" aria-label={`Activity heatmap: ${total.toLocaleString()} ${unit} across ${cols} weeks, best streak ${streak} days.`}>
+        <HeatmapChart
+          data={columns}
+          gap={3}
+          margin={{ top: 4, right: 4, bottom: 0, left: 34 }}
+          animationDuration={1100}
+          enterTransition={{ type: "tween", duration: 0.4, ease: HEATMAP_DEFAULT_ENTER_EASE }}
+          levelColors={levelColors}
+          colorScale={fillScale}
+          fillScale={fillScale}
+          weekStartDay={weekStartDay}
+        >
+          <HeatmapCells cornerRadius={2} hoverScope="column" hideGhostCells={false} />
+          <HeatmapYAxis />
+          <HeatmapSeparator every={4} spacing={0} stroke="var(--chart-grid)" />
+          {showTooltip ? (
+            <HeatmapTooltip formatLabel={(count) => `${count.toLocaleString()} ${unit}`} />
+          ) : null}
+        </HeatmapChart>
+      </div>
+
+      {showLegend ? <HeatmapLegend levelStyles={levelStyles} interactive={false} className="mt-5" /> : null}
+      <p className="sr-only">
+        {`Activity over the last ${cols} weeks: ${total.toLocaleString()} ${unit} total, best streak ${streak} day${streak === 1 ? "" : "s"}. Use a pointer to read the exact date and count per day.`}
+      </p>
+    </>
+  )
+
+  // Bare embed: host card owns header + chrome, preset contributes data only.
+  if (!scene) return <div className={cn("w-full", className)}>{visual}</div>
+
   return (
     <section className={cn("relative isolate w-full overflow-hidden bg-background", className)}>
       <div className="mx-auto w-full max-w-[720px] px-4 py-12 sm:px-6 sm:py-14">
@@ -124,38 +176,7 @@ export function ActivityHeatmap({
 
         {/* ── hero card ──────────────────────────────────────────────── */}
         <div className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-[0_24px_48px_-32px_hsl(var(--foreground)/0.5)] sm:p-7">
-          <div className="flex flex-wrap items-baseline justify-between gap-3">
-            <p className="font-display text-2xl font-bold tracking-tight tabular-nums">
-              {total.toLocaleString()} <span className="text-sm font-bold text-muted-foreground">events</span>
-            </p>
-            <Badge variant="secondary">best streak {streak}d</Badge>
-          </div>
-
-          <div className="mt-6" role="img" aria-label={`Activity heatmap: ${total.toLocaleString()} events across ${cols} weeks, best streak ${streak} days.`}>
-            <HeatmapChart
-              data={columns}
-              gap={3}
-              margin={{ top: 4, right: 4, bottom: 0, left: 34 }}
-              animationDuration={1100}
-              enterTransition={{ type: "tween", duration: 0.4, ease: HEATMAP_DEFAULT_ENTER_EASE }}
-              levelColors={levelColors}
-              colorScale={fillScale}
-              fillScale={fillScale}
-              weekStartDay={weekStartDay}
-            >
-              <HeatmapCells cornerRadius={2} hoverScope="column" hideGhostCells={false} />
-              <HeatmapYAxis />
-              <HeatmapSeparator every={4} spacing={0} stroke="var(--chart-grid)" />
-              {showTooltip ? (
-                <HeatmapTooltip formatLabel={(count) => `${count.toLocaleString()} events`} />
-              ) : null}
-            </HeatmapChart>
-          </div>
-
-          {showLegend ? <HeatmapLegend levelStyles={levelStyles} interactive={false} className="mt-5" /> : null}
-          <p className="sr-only">
-            {`Activity over the last ${cols} weeks: ${total.toLocaleString()} events total, best streak ${streak} day${streak === 1 ? "" : "s"}. Use a pointer to read the exact date and count per day.`}
-          </p>
+          {visual}
         </div>
 
         {/* ── caption line ───────────────────────────────────────────── */}
@@ -167,3 +188,5 @@ export function ActivityHeatmap({
     </section>
   )
 }
+
+/** TESTANCHOR scene=false — bare embed used by merch-console order heat. */

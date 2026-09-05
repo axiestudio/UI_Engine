@@ -194,7 +194,7 @@ export function AnalyticsDeck({ title = "Chair Economics — Q4", onExport, clas
               <div className="min-h-0 flex-1 px-2 pb-1 pt-2">
                 <AreaChart
                   data={trend}
-                  margin={{ top: 16, right: 18, bottom: 30, left: 4 }}
+                  margin={{ top: 16, right: 18, bottom: 30, left: 44 }}
                   revealSignature={key + String(deck)}
                   status={loading ? "loading" : "ready"}
                   loadingLabel="re-running the deck"

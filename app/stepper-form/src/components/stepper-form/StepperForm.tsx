@@ -102,9 +102,9 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
   return (
     <div className={cn("relative isolate w-full overflow-hidden font-sans", className)}>
       <MotionConfig reducedMotion="user">
-      <ol className="mb-6 flex items-center gap-0" aria-label="Form steps">
+      <ol className="mb-6 flex flex-wrap items-center gap-y-1" aria-label="Form steps">
         {steps.map((s, x) => (
-          <li key={s.title} className="flex flex-1 items-center last:flex-none">
+          <li key={s.title} className="flex min-w-[110px] flex-1 items-center last:flex-none">
             <Button variant="ghost"
               type="button"
               onClick={() => { if (doneThrough(x) || x === i) { setErrors({}); setI(x) } }}
@@ -113,7 +113,7 @@ export function StepperForm({ steps, onSubmit, submitLabel = "Finish", className
               className={cn("flex items-center gap-2 rounded-full py-1 pl-1 pr-2.5 text-xs font-medium transition-colors", x === i && "bg-accent text-accent-foreground", doneThrough(x) ? "text-[hsl(var(--ok))]" : "text-muted-foreground", !doneThrough(x) && x !== i && "opacity-50")}
             >
               <motion.span layout className={cn("grid size-6 place-items-center rounded-full border-2 text-[11px] tabular-nums", x === i ? "border-[hsl(var(--app-focus))]" : doneThrough(x) ? "border-[hsl(var(--ok))] bg-[hsl(var(--ok))] text-primary-foreground" : "border-current")}>{doneThrough(x) ? <Check className="size-3.5" /> : x + 1}</motion.span>
-              <span className="hidden sm:inline">{s.title}</span>
+              <span className="hidden min-w-0 truncate sm:inline">{s.title}</span>
             </Button>
             {x < steps.length - 1 && <span className="relative mx-2 h-[2px] flex-1 overflow-hidden rounded bg-muted"><motion.span initial={false} animate={{ width: doneThrough(x) ? "100%" : "0%" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} className="block h-full bg-[hsl(var(--ok))]" /></span>}
           </li>

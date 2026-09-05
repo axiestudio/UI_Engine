@@ -9,7 +9,7 @@ import { CronPreview } from "cron-preview"
 import { MentionTextarea } from "mention-textarea"
 import { ActivityHeatmap } from "activity-heatmap"
 import { InboxSnoozeCenter, type InboxItem } from "inbox-snooze-center"
-import { BarChart, Bar, Grid, BarXAxis, BarYAxis, ChartTooltip } from "@/components/bklit"
+import { BarChart, Bar, Grid, BarXAxis, ChartTooltip } from "@/components/bklit"
 
 // COMPOSITE SCREEN · SOCIAL SCHEDULER
 // composed of: cron-preview (posting cadence + next runs), mention-textarea
@@ -227,7 +227,8 @@ export function SocialScheduler({
               <Grid horizontal numTicksRows={4} vertical={false} />
               <Bar dataKey="used" fill={USED_COLOR} lineCap={2} yAxisId="left" />
               <Bar dataKey="queued" fill={QUEUED_COLOR} lineCap={2} yAxisId="left" />
-              <BarYAxis />
+              {/* categories live on BarXAxis — a categorical BarYAxis here would
+                  duplicate every label and overhang past the card edge */}
               <BarXAxis maxLabels={8} />
               <ChartTooltip
                 rows={(p) => [

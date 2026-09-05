@@ -194,10 +194,10 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
   return (
     <div className={cn("relative isolate flex min-h-[560px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
+      <header className="flex min-h-12 shrink-0 flex-wrap items-center gap-x-3 gap-y-2 border-b bg-background px-4 py-2">
         <h2 className="text-[13px] font-bold">Store backend</h2>
-        <span className="text-[12px] text-muted-foreground">{store}</span>
-        <span className="text-[12px] text-muted-foreground">· payout Friday</span>
+        <span className="hidden text-[12px] text-muted-foreground min-[420px]:inline">{store}</span>
+        <span className="hidden text-[12px] text-muted-foreground sm:inline">· payout Friday</span>
         <div className="ml-auto flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={newDrop}>
             <Plus className="size-3.5" /> New drop
@@ -213,7 +213,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
         <TabsOverflowStrip tabs={tabs} value={active} onChange={setActive} onPin={(id: string) => setTabs((ts) => ts.map((t) => (t.id === id ? { ...t, pinned: !t.pinned } : t)))} />
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-12">
+      <div className="grid min-h-0 flex-1 grid-cols-1 items-start gap-4 p-4 lg:grid-cols-12">
         {/* ── KPI strip · deliberately uneven spans ──────────────────────── */}
         <KpiTileLive
           className="lg:col-span-5"
@@ -263,7 +263,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
             <BarChart data={sales} xDataKey="day" margin={{ top: 10, right: 12, bottom: 26, left: 8 }} animationDuration={900} aspectRatio="2.7 / 1" barGap={0.36}>
               <Grid horizontal numTicksRows={4} strokeDasharray="3,5" strokeOpacity={0.8} />
               <Bar dataKey="kr" fill="var(--chart-line-primary)" lineCap="round" minBarHeight={2} />
-              <BarXAxis maxLabels={10} />
+              <BarXAxis maxLabels={5} />
               <ChartTooltip
                 rows={(p) => [{ color: "var(--chart-2)", label: "sales", value: `${Number(p.kr).toLocaleString("sv-SE")} kr` }]}
               />
@@ -341,7 +341,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
                     </td>
                     <td className="px-2 py-1 text-right">
                       <div className="flex justify-end">
-                        <InlineEditCell value={String(live)} name={`${s.name} price`} mono width={56} onSave={async (v: string) => savePrice(s, v)} />
+                        <InlineEditCell value={String(live)} name={`${s.name} price`} mono width={88} onSave={async (v: string) => savePrice(s, v)} />
                       </div>
                     </td>
                     <td className={cn("px-2 py-1 text-right font-mono tabular-nums", s.stock === 0 && "font-bold text-[hsl(var(--err))]")}>{s.stock}</td>
@@ -376,7 +376,7 @@ export function MerchConsole({ store = "heatwear.se", onPayout, className }: Mer
             <span className="font-mono text-[11px] font-bold tabular-nums">{gross24.toLocaleString("sv-SE")} kr / 24 h</span>
           </div>
           <div className="p-3 pt-1">
-            <ActivityHeatmap cells={heat} weeks={8} showTooltip showLegend weekStartDay={1} colorScale={heatColor} />
+            <ActivityHeatmap cells={heat} weeks={8} showTooltip showLegend weekStartDay={1} colorScale={heatColor} scene={false} unit="orders" />
           </div>
         </section>
 

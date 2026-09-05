@@ -107,7 +107,7 @@ export function GivingCircle({ campaign = "Autumn appeal", window: initialWindow
         {/* funnel + window */}
         <aside className="flex flex-col gap-4">
           <section className="rounded-lg border bg-card p-3">
-            <FunnelStageBars stages={DEFAULT_FUNNEL} eyebrow={`${campaign} · 6 weeks`} topLabel="gift journey" />
+            <FunnelStageBars stages={DEFAULT_FUNNEL} eyebrow={`${campaign} · 6 weeks`} topLabel="gift journey" orientation="vertical" />
           </section>
           <section className="overflow-hidden rounded-lg border bg-card">
             <header className="h-9 border-b bg-muted/30 px-3 pt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Gift window</header>

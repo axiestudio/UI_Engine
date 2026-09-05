@@ -134,6 +134,7 @@ export function RadarChart({
             <Button
               key={s.key}
               type="button"
+              variant="ghost"
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
               onFocus={() => setHoveredIndex(i)}

@@ -265,7 +265,7 @@ export function InventoryWarroom({ warehouse = "WH-2 · Solna", skus = DEFAULT_S
               <span className="font-mono text-[10px] uppercase text-muted-foreground">lazy</span>
             </header>
             <div className="min-h-0 flex-1 overflow-auto p-2">
-              <TreeGridTable nodes={tree} loadChildren={loadChildren} defaultOpen={["aisle-a"]} />
+              <TreeGridTable bare nodes={tree} loadChildren={loadChildren} defaultOpen={["aisle-a"]} />
             </div>
             <div className="border-t px-3 py-2 text-[11px] text-muted-foreground">Bins load on expand · counts reconcile nightly at 02:00.</div>
           </section>

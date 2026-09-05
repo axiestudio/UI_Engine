@@ -80,7 +80,7 @@ export function RingCenter({
           "flex items-center justify-center",
           className
         )}
-        style={{ width: centerSize, height: centerSize }}
+        style={{ width: centerSize, height: centerSize, containerType: "inline-size" }}
       >
         {children({
           value: displayValue,
@@ -98,10 +98,12 @@ export function RingCenter({
     <div
       className={cn(
         chartCenterContainerClassName,
-        "flex flex-col items-center justify-center text-center",
+        "flex flex-col items-center justify-center overflow-hidden text-center",
         className
       )}
-      style={{ width: centerSize, height: centerSize }}
+      // container-type set inline: Tailwind 3 core has no @container utility,
+      // and the cqw-clamped value type needs a real containment context
+      style={{ width: centerSize, height: centerSize, containerType: "inline-size" }}
     >
       <ChartStatFlow
         formatOptions={formatOptions}

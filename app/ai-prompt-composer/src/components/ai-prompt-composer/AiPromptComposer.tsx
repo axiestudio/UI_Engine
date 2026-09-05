@@ -109,6 +109,7 @@ export function AiPromptComposer({ value, onChange, onSend, onSendText, status, 
                 {models.length > 0 && (
                   <PromptInputButton
                     type="button"
+                    size="sm"
                     onClick={cycleModel}
                     aria-label={`Model ${models.find((m) => m.id === model)?.label ?? model}. Click to switch.`}
                     className="h-8 gap-1.5 rounded-full border border-border/70 px-3 text-xs font-medium"

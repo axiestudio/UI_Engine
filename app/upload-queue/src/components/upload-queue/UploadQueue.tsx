@@ -96,9 +96,9 @@ export function UploadQueue({ files, onRetry, onRemove, className }: UploadQueue
           {files.map((f) => {
             const Icon = iconFor(f.name)
             return (
-              <motion.li layout role="listitem" key={f.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -12 }} transition={{ duration: 0.22 }} className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-muted/40">
+              <motion.li layout role="listitem" key={f.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -12 }} transition={{ duration: 0.22 }} className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-lg px-2 py-2 hover:bg-muted/40">
                 <Ring state={f} />
-                <span className="min-w-0 flex-1">
+                <span className="min-w-0 flex-1 basis-36">
                   <span className="flex items-center gap-1.5"><Icon aria-hidden className="size-3.5 shrink-0 text-muted-foreground" /><span className="truncate text-[13px] font-medium">{f.name}</span></span>
                   <span className="mt-0.5 block text-xs text-muted-foreground">
                     {f.status === "uploading" && <>{human(f.size)} · {Math.round(f.progress ?? 0)}%</>}
@@ -107,8 +107,8 @@ export function UploadQueue({ files, onRetry, onRemove, className }: UploadQueue
                     {f.status === "error" && (f.error ?? "failed")}
                   </span>
                 </span>
-                {f.status === "error" && onRetry && <Button type="button" variant="ghost" onClick={() => retry(f)} className="flex items-center gap-1 rounded-full border border-[hsl(var(--warn)/0.5)] px-2.5 py-1 font-mono text-[11px] font-medium text-[hsl(var(--warn))]"><RotateCw className="size-3" /> retry{(f.tries ?? 1) > 1 ? ` ×${f.tries}` : ""}</Button>}
-                {(f.status === "done" || f.status === "error") && onRemove && <Button type="button" variant="ghost" aria-label={`Remove ${f.name}`} onClick={() => onRemove(f.id)} className="grid size-6 place-items-center rounded hover:bg-muted"><X className="size-3.5" /></Button>}
+                {f.status === "error" && onRetry && <Button type="button" variant="ghost" onClick={() => retry(f)} className="flex shrink-0 items-center gap-1 rounded-full border border-[hsl(var(--warn)/0.5)] px-2.5 py-1 font-mono text-[11px] font-medium text-[hsl(var(--warn))]"><RotateCw className="size-3" /> retry{(f.tries ?? 1) > 1 ? ` ×${f.tries}` : ""}</Button>}
+                {(f.status === "done" || f.status === "error") && onRemove && <Button type="button" variant="ghost" aria-label={`Remove ${f.name}`} onClick={() => onRemove(f.id)} className="grid size-6 shrink-0 place-items-center rounded hover:bg-muted"><X className="size-3.5" /></Button>}
               </motion.li>
             )
           })}

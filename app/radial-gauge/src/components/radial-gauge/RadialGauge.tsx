@@ -106,7 +106,7 @@ export function RadialGauge({
   const gauge = (
     <Gauge
       centerValue={showCenterValue ? flowValue : undefined}
-      defaultLabel={gaugeLabel}
+      defaultLabel=""
       endAngle={405}
       formatOptions={{
         maximumFractionDigits: precision,
@@ -116,7 +116,9 @@ export function RadialGauge({
       orientation={orientation}
       spacing={25}
       startAngle={135}
-      suffix={unit}
+      // multi-char units ("tok", "rpm") overflow small donut holes — they stay
+      // in the caption below; % / single-char units always fit
+      suffix={unit.length <= 1 || size >= 150 ? unit : ""}
       totalNotches={notches}
       useGradient={false}
       value={centerPercent}
@@ -128,7 +130,7 @@ export function RadialGauge({
   return (
     <div
       className={cn(
-        "relative isolate mx-auto overflow-hidden rounded-md font-sans focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--app-focus))]",
+        "relative isolate mx-auto flex flex-col items-center font-sans focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--app-focus))]",
         className
       )}
       role="meter"
@@ -138,15 +140,20 @@ export function RadialGauge({
       aria-valuetext={`${value}${unit} ${activeZone.label ? `- ${activeZone.label}` : ""}`}
       tabIndex={0}
     >
-      {gauge}
-      <div className="absolute inset-x-0 -bottom-1 text-center">
-        <p className="mt-1 text-xs font-medium text-muted-foreground">
-          {gaugeLabel} · {unit} ·{" "}
+      {/* arc block — clipped here so the notch sweep never paints past the meter */}
+      <div className="relative overflow-hidden">
+        {gauge}
+      </div>
+      {/* caption in flow below the arc — never overlaps the notches, never clips */}
+      <p className="mt-1 text-center text-xs font-medium text-muted-foreground">
+        {[gaugeLabel, unit].filter(Boolean).join(" ")}
+        {(activeZone.label || norm >= 1) && (gaugeLabel || unit) ? " · " : ""}
+        {activeZone.label || norm >= 1 ? (
           <span style={{ color: activeZone.color }} className="font-semibold">
             {activeZone.label ?? (norm >= 1 ? "max" : "")}
           </span>
-        </p>
-      </div>
+        ) : null}
+      </p>
     </div>
   );
 }

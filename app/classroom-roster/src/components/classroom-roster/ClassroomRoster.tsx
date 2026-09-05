@@ -76,8 +76,9 @@ export function ClassroomRoster({ course = "Swedish 8–9", term = "HT26", stude
   const groups: GroupList<Student>[] = GROUPS.map((g) => ({
     key: g.key,
     header: (
-      <span className="flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-        {g.label}<span className="font-mono normal-case tracking-normal">{g.room}</span>
+      <span className="flex min-w-0 items-center justify-between gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+        <span className="min-w-0 truncate">{g.label}</span>
+        <span className="shrink-0 font-mono normal-case tracking-normal">{g.room}</span>
       </span>
     ),
     rows: g.memberIds.map((id) => roster.find((s) => s.id === id)).filter((s): s is Student => Boolean(s)),

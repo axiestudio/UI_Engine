@@ -42,7 +42,8 @@ function formatStatValue(
 
 export interface ChartStatFlowProps {
   value: number;
-  label: string;
+  /** Center label — omit or pass "" to render the value only */
+  label?: string;
   formatOptions?: ChartStatFlowFormat;
   prefix?: string;
   suffix?: string;
@@ -102,9 +103,11 @@ export function ChartStatFlow({
         )}
         {suffix ? <span>{suffix}</span> : null}
       </span>
-      <span className={cn("mt-0.5 text-chart-label", labelClassName)}>
-        {label}
-      </span>
+      {label ? (
+        <span className={cn("mt-0.5 text-chart-label", labelClassName)}>
+          {label}
+        </span>
+      ) : null}
     </>
   );
 }

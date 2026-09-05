@@ -16,6 +16,13 @@ import {
   useTypeahead,
 } from "@floating-ui/react"
 import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { cn } from "@/lib/utils"
 
 // ═══ APP-PRIMARY — every editor-class webapp needs honest tabs.
@@ -28,6 +35,12 @@ import { cn } from "@/lib/utils"
 //           middleware [offset → flip → shift(8) → hide], autoUpdate. The
 //           width measuring is tab logic (ResizeObserver), allowed to stay —
 //           only the popup anchoring moved to the engine.
+// MOBILE     below sm the strip collapses to a registry shadcn Select:
+//           press the trigger → native-feeling menu lists every tab → pick
+//           one and its dedicated panel renders. Same controlled `value` +
+//           `onChange`, so hosts (customer-360, editors) behave identically.
+//           Pin/close affordances stay on the sm+ strip (a Select row cannot
+//           host icon buttons per option without breaking the menu pattern).
 // API      controlled `value` + `onChange`/`onClose`/`onPin` — your store owns it.
 // A11Y     tabs role list; overflow menu is role=menu with roving focus
 //          (useListNavigation) + typeahead; close buttons labelled.
@@ -65,7 +78,27 @@ export function TabsOverflowStrip({ tabs, value, onChange, onClose, onPin, class
 
   return (
     <div className={cn("relative isolate flex items-stretch overflow-hidden border-b border-border", className)}>
-      <div className="relative flex min-w-0 flex-1">
+      {/* mobile: shadcn Select — one press lists every tab */}
+      <div className="flex min-w-0 flex-1 items-center gap-2 px-2 py-1.5 sm:hidden">
+        <Select value={value} onValueChange={(id) => onChange(id)}>
+          <SelectTrigger aria-label="Open record" className="min-h-11 w-full font-medium">
+            <SelectValue placeholder="Pick a record" />
+          </SelectTrigger>
+          <SelectContent>
+            {tabs.map((t) => (
+              <SelectItem key={t.id} value={t.id}>
+                <span className="flex items-center gap-1.5">
+                  {t.pinned && <Pin aria-hidden className="size-3.5 text-muted-foreground" />}
+                  <span className="truncate">{t.label}</span>
+                  {t.dirty && <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-[hsl(var(--warn))]" />}
+                </span>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      {/* sm+: the measured strip + chevron overflow menu (unchanged) */}
+      <div className="relative hidden min-w-0 flex-1 sm:flex">
       <div ref={strip} role="tablist" aria-label="Open records" tabIndex={0} onKeyDown={key} onWheel={(e) => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) strip.current?.scrollBy({ left: e.deltaX }) }} className="flex flex-1 items-stretch gap-0.5 overflow-x-auto px-2 no-scrollbar">
         {visible.map((t) => {
           const active = t.id === value
@@ -86,7 +119,11 @@ export function TabsOverflowStrip({ tabs, value, onChange, onClose, onPin, class
       </div>
       {shady && <span aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent" />}
       </div>
-      {overflow.length > 0 && <OverflowMenu items={overflow} onPick={(id) => onChange(id)} />}
+      {overflow.length > 0 && (
+        <div className="hidden sm:contents">
+          <OverflowMenu items={overflow} onPick={(id) => onChange(id)} />
+        </div>
+      )}
     </div>
   )
 }
