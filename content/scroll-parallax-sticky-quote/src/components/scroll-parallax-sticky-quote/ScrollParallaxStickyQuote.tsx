@@ -28,7 +28,7 @@ export function ScrollParallaxStickyQuote({ eyebrow = "BELIEF", quote = "A site 
       <div ref={ref} className="relative overflow-hidden rounded-[28px] border bg-foreground">
         <motion.img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45" style={{ y, scale }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/40" />
-        <div className="relative z-10 flex min-h-[70vh] flex-col items-center justify-center px-6 py-20 text-center text-background">
+        <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-20 text-center text-background">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-background/60">{eyebrow}</p>
           <blockquote className="mt-6 max-w-3xl">
             <p className="font-display text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-5xl lg:text-6xl">“{quote}”</p>

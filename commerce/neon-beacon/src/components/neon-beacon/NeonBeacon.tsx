@@ -32,7 +32,7 @@ export function NeonBeacon({ word, under, eyebrow, status: statusProp, onToggle,
   const letters = (word ?? (status === "open" ? "OPEN" : "CLOSED")).toUpperCase().split("")
   const col = status === "open" ? "hsl(var(--neon))" : "hsl(var(--neon-alt))"
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-brick", compact ? "px-5 py-10" : "px-6 py-20 sm:py-24", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-brick", compact ? "px-5 py-10" : "px-6 py-20 sm:py-24", className)}>
       {/* brick courses */}
       <span aria-hidden className="absolute inset-0 opacity-[0.16]" style={{ backgroundImage: "repeating-linear-gradient(0deg, hsl(var(--brick-line)) 0 1px, transparent 1px 16px), repeating-linear-gradient(90deg, hsl(var(--brick-line)) 0 1px, transparent 1px 40px)" }} />
       <div className={cn("relative mx-auto text-center", compact ? "max-w-[420px]" : "max-w-[760px]")}>

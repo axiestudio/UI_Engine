@@ -44,8 +44,8 @@ export function HeaderOffcanvas({
   }, [open])
 
   return (
-    <div className={cn("relative isolate overflow-hidden min-h-[320px] w-full", className)}>
-      <header className="relative isolate overflow-hidden flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
+    <div className={cn("relative isolate flex min-h-screen w-full flex-col overflow-hidden bg-background", className)}>
+      <header className="relative z-20 flex items-center justify-between border-b bg-background px-5 py-4 sm:px-8">
         <a href="#" className="font-display text-lg font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {brand}
         </a>
@@ -66,6 +66,16 @@ export function HeaderOffcanvas({
         </div>
       </header>
 
+      {/* page underlay pushes content below the header so the panel
+          has somewhere to slide in from; min-h-screen keeps the
+          1:1 mobile fill so no white gap shows at the bottom. */}
+      <main className="flex-1 px-5 py-10 sm:px-8">
+        <p className="max-w-sm text-sm leading-6 text-muted-foreground">
+          Press the menu button to open the side navigation. The panel slides
+          in from the right and stays inside the device viewport.
+        </p>
+      </main>
+
       <AnimatePresence>
         {open && (
           <>
@@ -76,7 +86,7 @@ export function HeaderOffcanvas({
               exit={{ opacity: 0 }}
               transition={{ duration: reduce ? 0 : 0.2 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-40 bg-foreground/10 "
+              className="absolute inset-0 z-30 bg-foreground/15"
             />
             <motion.div
               id="offcanvas-panel"
@@ -85,11 +95,11 @@ export function HeaderOffcanvas({
               role="dialog"
               aria-modal="true"
               aria-label="Navigation menu"
-              initial={reduce ? { x: 0, opacity: 0 } : { x: 320 }}
+              initial={reduce ? { x: 0, opacity: 0 } : { x: "100%" }}
               animate={{ x: 0, opacity: 1 }}
-              exit={reduce ? { opacity: 0 } : { x: 320 }}
+              exit={reduce ? { opacity: 0 } : { x: "100%" }}
               transition={reduce ? { duration: 0 } : { duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col border-l bg-card p-6 shadow-lg focus-visible:outline-none"
+              className="absolute inset-y-0 right-0 z-40 flex w-72 max-w-[85%] flex-col border-l bg-card p-6 shadow-lg focus-visible:outline-none"
             >
               <div className="flex items-center justify-between">
                 <p className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground">Menu</p>

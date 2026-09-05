@@ -52,23 +52,20 @@ export function Customer360({ name = "M. Ahlberg", since = "client since 2021", 
   return (
     <div className={cn("relative isolate overflow-hidden rounded-xl border border-border/70 bg-background", className)}>
       {/* identity header */}
-      <div className="flex flex-wrap items-center gap-4 border-b border-border/60 bg-card px-5 py-4">
-        <Avatar className="size-12 ring-2 ring-ring/20 ring-offset-background">
-          <AvatarFallback className="bg-accent text-[13px] font-semibold">{name.split(/[ .]/).map((w) => w[0]).join("").slice(0, 2).toUpperCase()}</AvatarFallback>
+      <div className="flex shrink-0 items-center gap-3 border-b border-border/60 bg-card px-4 py-3 sm:px-5 sm:py-4">
+        <Avatar className="size-10 shrink-0 ring-2 ring-ring/20 ring-offset-background sm:size-12">
+          <AvatarFallback className="bg-accent text-[12px] font-semibold sm:text-[13px]">{name.split(/[ .]/).map((w) => w[0]).join("").slice(0, 2).toUpperCase()}</AvatarFallback>
         </Avatar>
-        <div className="min-w-0">
-          <motion.h2 animate={{ textShadow: toasts.length ? "0 0 24px hsl(var(--ring)/0.5)" : "none" }} className="font-display text-lg font-semibold tracking-tight">{name}</motion.h2>
-          <p className="text-xs text-muted-foreground">{since} · {chair}</p>
-          
-    </div>
-        <div className="ml-auto flex items-center gap-2">
-          <Badge variant="secondary" className="gap-1 text-xs"><Wallet className="size-3" aria-hidden /> 12 visits · 4.9★</Badge>
+        <div className="min-w-0 flex-1">
+          <motion.h2 animate={{ textShadow: toasts.length ? "0 0 24px hsl(var(--ring)/0.5)" : "none" }} className="truncate font-display text-base font-semibold tracking-tight sm:text-lg">{name}</motion.h2>
+          <p className="truncate text-[11px] text-muted-foreground sm:text-xs">{since} · {chair}</p>
         </div>
+        <Badge variant="secondary" className="hidden shrink-0 gap-1 text-[11px] sm:inline-flex"><Wallet className="size-3" aria-hidden /> 12 visits · 4.9★</Badge>
       </div>
 
       <TabsOverflowStrip tabs={TABS} value={tab} onChange={setTab} onClose={(id) => push(`detached ${id}`)} onPin={(id) => push(id + " pinned", "ok")} />
 
-      <div className="grid gap-5 p-5 lg:grid-cols-[1fr_320px]">
+      <div className="grid min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[1fr_320px]">
         <div className="rounded-xl border border-border/70 bg-card p-5">
           <p className="mb-4 text-sm font-medium text-muted-foreground">{tab.toUpperCase()} — {tab === "history" ? "every edit, with receipt" : "the long view"}</p>
           {tab === "history" ? (

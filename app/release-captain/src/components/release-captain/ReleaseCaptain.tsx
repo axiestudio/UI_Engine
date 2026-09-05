@@ -133,9 +133,9 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
   const blockers: string[] = []
   if (!shipped) {
     if (running) blockers.push("run in progress")
-    else if (!allPass) blockers.push(`${failed.length} failed stage${failed.length > 1 ? "s" : ""} — rerun failed first`)
-    if (!applied) blockers.push("config diff not approved")
-    if (!locked) blockers.push("maintenance window not locked")
+    else if (!allPass) blockers.push(`rerun ${failed.length} failed stage${failed.length > 1 ? "s" : ""}`)
+    if (!applied) blockers.push("diff not approved")
+    if (!locked) blockers.push("window not locked")
   }
   const gateOpen = shipped || blockers.length === 0
 
@@ -182,45 +182,35 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
   const gateTone = shipped ? "ok" : gateOpen ? "ready" : "blocked"
 
   return (
-    <div className={cn("relative isolate w-full overflow-hidden font-sans text-foreground", className)}>
-      {/* ── health strip: full-bleed rail above everything ─────────────────── */}
+    <div className={cn("relative isolate flex min-h-[620px] w-full flex-col overflow-hidden font-sans text-foreground", className)}>
       <StatusHealthStrip services={services} region={region} onRegion={setRegion} />
 
-      {/* ── header band: headline left, gated ship control right ───────────── */}
-      <header className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b border-border/70 py-4 sm:py-5">
+      <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b border-border/70 px-4 py-3 sm:px-5 sm:py-4">
         <div className="min-w-0">
-          <p className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-            <GitBranch aria-hidden className="size-3.5" /> ship control · {tag} · a3f19c2
+          <p className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground sm:text-[11px]">
+            <GitBranch aria-hidden className="size-3.5" /> ship · {tag} · a3f19c2
           </p>
-          <h2 className="mt-1 font-display text-3xl font-bold tracking-tight">Release captain</h2>
+          <h2 className="mt-0.5 font-display text-xl font-bold tracking-tight sm:text-2xl">Release captain</h2>
         </div>
-        <div className="flex flex-col items-end gap-1.5">
+        <div className="flex min-w-0 flex-col items-end gap-1">
           <div className="flex items-center gap-2">
             <Badge variant={shipped ? "default" : gateOpen ? "secondary" : "outline"} className="gap-1.5">
               <ShieldCheck aria-hidden className="size-3.5" />
-              {shipped ? "shipped" : gateOpen ? "gate open" : "gate blocked"}
+              {shipped ? "shipped" : gateOpen ? "gate open" : "blocked"}
             </Badge>
-            <Button size="lg" disabled={!gateOpen || shipping} aria-describedby="ship-gate-status" onClick={ship}>
+            <Button size="sm" disabled={!gateOpen || shipping} aria-describedby="ship-gate-status" onClick={ship} className="sm:h-9 sm:px-4">
               {shipping ? <RotateCcw aria-hidden className="animate-spin" /> : <Rocket aria-hidden />}
               {shipped ? `${tag} shipped` : shipping ? "rolling out…" : `Ship ${tag}`}
             </Button>
           </div>
-          <p id="ship-gate-status" aria-live="polite" className="text-left text-[11px] leading-relaxed text-muted-foreground sm:text-right sm:text-xs">
-            {shipped
-              ? `${tag} is live — health strip watches the rollout.`
-              : shipping
-                ? "Rolling out through the stage graph…"
-                : blockers.length > 0
-                  ? `Blocked: ${blockers.join(" · ")}`
-                  : "All clear — run green, diff approved, window locked."}
+          <p id="ship-gate-status" aria-live="polite" className="hidden max-w-[44ch] text-right text-[10px] leading-snug text-muted-foreground sm:block sm:text-[11px]">
+            {shipped ? `${tag} is live.` : shipping ? "Rolling out…" : blockers.length ? `Blocked: ${blockers.join(" · ")}` : "All clear."}
           </p>
         </div>
       </header>
 
-      {/* ── 12-col desk ────────────────────────────────────────────────────── */}
-      <div className="mt-4 grid grid-cols-12 items-start gap-4 sm:mt-5 sm:gap-5">
-        {/* left: run graph over install snippet — the acting column */}
-        <div className="col-span-12 space-y-5 lg:col-span-7">
+      <div className="grid min-w-0 grid-cols-12 items-start gap-4 px-4 py-4 sm:gap-5 sm:px-5 sm:py-5">
+        <div className="col-span-12 min-w-0 space-y-5 lg:col-span-7">
         <section aria-label="Run graph" className={cn("relative", running && "rounded-xl")}>
           {running && !reduce && <BorderTrail className="bg-[hsl(var(--info))] rounded-xl" size={44} />}
           <div className={cn("rounded-xl border border-border/70 bg-card p-4 shadow-sm", !running && "h-full")}>
@@ -240,8 +230,7 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
         </section>
         </div>
 
-        {/* right rail: maintenance window (dashed) */}
-        <div className="col-span-12 space-y-5 lg:col-span-5">
+        <div className="col-span-12 min-w-0 space-y-5 lg:col-span-5">
 
           <section aria-label="Maintenance window" className="rounded-xl border border-dashed border-border bg-card/50 p-4">
             <header className="mb-3 flex items-center justify-between">
@@ -266,11 +255,10 @@ export function ReleaseCaptain({ tag = "v2.14.0", className }: ReleaseCaptainPro
           </section>
         </div>
 
-        {/* config diff — full-bleed band with its own voice */}
-        <section aria-label="Config diff" className="col-span-12">
+        <section aria-label="Config diff" className="col-span-12 min-w-0">
           <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-            <h3 className="font-display text-lg font-semibold">Config diff</h3>
-            <p className="text-sm text-muted-foreground">current → next · approve to fold into the rollout</p>
+            <h3 className="font-display text-base font-semibold sm:text-lg">Config diff</h3>
+            <p className="hidden text-xs text-muted-foreground sm:inline sm:text-sm">current → next</p>
             <div className="ml-auto flex items-center gap-2">
               {applied && (
                 <motion.span

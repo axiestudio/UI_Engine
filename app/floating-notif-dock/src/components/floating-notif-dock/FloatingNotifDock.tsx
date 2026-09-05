@@ -9,6 +9,7 @@ import {
   flip,
   shift,
   offset,
+  size,
   autoUpdate,
 } from "@floating-ui/react"
 import { Bell } from "lucide-react"
@@ -48,7 +49,7 @@ export function FloatingNotifDock({
   title = "The day's news, one bell away.",
   subtitle = "Reception chrome, docked bell. Open it for grouped notices, mark them all read and watch the badge drop — outside click puts it away.",
   items = DEFAULT_ITEMS,
-  caption = "BOTTOM-END ANCHOR · ROLE DIALOG · OUTSIDE DISMISS",
+  caption = "BOTTOM ANCHOR · DIALOG · OUTSIDE DISMISS",
   tone = "ink",
   className,
 }: FloatingNotifDockProps) {
@@ -62,7 +63,19 @@ export function FloatingNotifDock({
     open,
     onOpenChange: setOpen,
     placement: "bottom-end",
-    middleware: [offset(10), flip(), shift({ padding: 8 })],
+    middleware: [
+      offset(10),
+      flip(),
+      shift({ padding: 8 }),
+      // cap the panel to the space the anchor actually leaves so the
+      // scrollable list region (min-h-0 flex-1) engages on short viewports
+      size({
+        padding: 8,
+        apply({ availableHeight, elements }) {
+          Object.assign(elements.floating.style, { maxHeight: `${Math.max(160, availableHeight)}px` })
+        },
+      }),
+    ],
     whileElementsMounted: autoUpdate,
   })
   const { getReferenceProps, getFloatingProps } = useInteractions([useClick(context), useDismiss(context), useRole(context, { role: "dialog" })])
@@ -72,8 +85,8 @@ export function FloatingNotifDock({
   const groups: ("Today" | "Earlier")[] = ["Today", "Earlier"]
 
   return (
-    <section className={cn("relative isolate overflow-hidden bg-background text-foreground", className)}>
-      <div className="mx-auto w-full max-w-[760px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col overflow-hidden bg-background text-foreground", className)}>
+      <div className="mx-auto flex w-full max-w-[760px] flex-1 flex-col justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <header className="">
           {eyebrow != null && (
@@ -87,12 +100,12 @@ export function FloatingNotifDock({
       </InView>
 
       <InView once variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: reduce ? 0 : 0.1 }}>
-        <div className="mt-10">
-          <div className={cn("mx-auto w-full max-w-md overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
-            <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Quiet Times · Reception</span>
-              <div className="flex items-center gap-4">
-                <span className="font-mono text-[11px] font-bold text-muted-foreground">09:12</span>
+          <div className="mt-10">
+          <div className={cn("relative z-10 mx-auto w-full max-w-md overflow-hidden rounded-[16px] border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]", ink ? "border-background/15" : "border-border")}>
+            <div className="relative z-10 flex items-center justify-between gap-3 border-b border-border bg-card px-5 py-3.5">
+              <span className="min-w-0 flex-1 truncate font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Quiet Times · Reception</span>
+              <div className="flex shrink-0 items-center gap-3">
+                <span className="font-mono text-[11px] font-bold tabular-nums text-muted-foreground">09:12</span>
                 <Button
                   type="button"
                   variant="ghost"
@@ -100,11 +113,11 @@ export function FloatingNotifDock({
                   {...getReferenceProps()}
                   aria-expanded={open}
                   aria-label={`Notifications, ${unread} unread`}
-                  className="relative flex size-11 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="relative z-20 flex size-11 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <Bell className="size-4" strokeWidth={2.25} aria-hidden />
                   {unread > 0 && (
-                    <span aria-hidden className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-primary font-mono text-[9px] font-black text-background">
+                    <span aria-hidden className="absolute -right-1 -top-1 z-30 flex size-4 items-center justify-center rounded-full bg-primary font-mono text-[9px] font-black text-primary-foreground">
                       {unread}
                     </span>
                   )}
@@ -127,9 +140,9 @@ export function FloatingNotifDock({
           </div>
 
           {caption && (
-            <p className="mx-auto mt-8 flex w-full max-w-md items-center justify-between border-t pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
-              <span>{caption}</span>
-              <span aria-hidden>●</span>
+            <p className="mx-auto mt-8 flex w-full max-w-md items-center justify-between gap-3 border-t pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+              <span className="min-w-0">{caption}</span>
+              <span aria-hidden className="shrink-0">●</span>
             </p>
           )}
         </div>
@@ -139,10 +152,10 @@ export function FloatingNotifDock({
         <FloatingPortal>
           <div
             ref={refs.setFloating}
-            style={floatingStyles}
+            style={{ ...floatingStyles, zIndex: 60 }}
             {...getFloatingProps()}
             aria-label="Notifications"
-            className="z-50 w-80 rounded-2xl border border-border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]"
+            className="isolate flex max-h-[calc(100dvh-2rem)] w-[min(20rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_52px_-30px_hsl(var(--foreground)/0.45)]"
           >
             <div className="flex items-center justify-between border-b border-border px-4 py-3">
               <p className="font-mono text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">Notifications</p>
@@ -156,6 +169,7 @@ export function FloatingNotifDock({
               </Button>
             </div>
 
+            <div className="min-h-0 flex-1 overflow-y-auto">
             {groups.map((group) => {
               const groupItems = items.filter((i) => i.group === group)
               if (groupItems.length === 0) return null
@@ -172,7 +186,7 @@ export function FloatingNotifDock({
                             variant="ghost"
                             onClick={() => markOne(item.id)}
                             className={cn(
-                              "flex w-full items-start gap-3 rounded-lg px-2 py-2.5 text-left transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+                              "flex h-auto min-h-0 w-full items-start gap-3 whitespace-normal rounded-lg px-2 py-2.5 text-left normal-case transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
                               isRead && "opacity-60",
                             )}
                           >
@@ -180,9 +194,9 @@ export function FloatingNotifDock({
                               aria-hidden
                               className={cn("mt-1.5 size-2 shrink-0 rounded-full bg-primary", item.kind === "warn" ? "opacity-70" : item.kind === "info" ? "opacity-40" : undefined, isRead && "opacity-25")}
                             />
-                            <span className="min-w-0">
-                              <span className="block truncate text-[13px] font-semibold text-foreground">{item.title}</span>
-                              <span className="mt-0.5 block text-[12px] font-medium leading-snug text-muted-foreground">{item.body}</span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block break-words text-[13px] font-semibold leading-snug text-foreground">{item.title}</span>
+                              <span className="mt-0.5 block break-words text-[12px] font-medium leading-snug text-muted-foreground">{item.body}</span>
                               <span className="mt-1 block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{item.time}</span>
                             </span>
                           </Button>
@@ -193,6 +207,7 @@ export function FloatingNotifDock({
                 </div>
               )
             })}
+            </div>
 
             <p className="border-t border-border px-4 py-2.5 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
               {unread} unread · quiettimes.example

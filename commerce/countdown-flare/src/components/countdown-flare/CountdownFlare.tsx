@@ -57,7 +57,7 @@ export function CountdownFlare({ to = DEFAULT_TO, title = "Launch countdown", le
   const units: [string, string][] = d > 0 ? [["days", pad(d)], ["hrs", pad(h)], ["min", pad(m)], ["sec", pad(s)]] : [["hours", pad(h)], ["minutes", pad(m)], ["seconds", pad(s)]]
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-flare-bg text-white", compact ? "py-10" : "py-20 sm:py-24", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-flare-bg text-white", compact ? "py-10" : "py-20 sm:py-24", className)}>
       {/* horizon */}
       <motion.span aria-hidden animate={fired && !reduce ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0.35 }} transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }} className="absolute inset-x-0 bottom-0 block h-40 bg-gradient-to-t from-[hsl(var(--flare-hot)/0.5)] via-[hsl(var(--flare-hot)/0.12)] to-transparent" />
       <AnimatePresence>

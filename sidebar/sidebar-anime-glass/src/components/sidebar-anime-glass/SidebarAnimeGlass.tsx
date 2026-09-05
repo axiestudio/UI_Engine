@@ -212,7 +212,7 @@ export function SidebarAnimeGlass({
 
   return (
     <div className={cn("relative isolate w-full overflow-hidden", className)}>
-      <div className="flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground">
+      <div className="flex w-full min-h-screen overflow-hidden rounded-2xl border bg-background font-sans text-foreground">
         {/* Mobile backdrop */}
         {overlayMode && mobileOpen && (
           <button

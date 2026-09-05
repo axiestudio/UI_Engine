@@ -122,7 +122,7 @@ export function SidebarGooeyFlow({
 
   return (
     <div className={cn("relative isolate w-full overflow-hidden", className)}>
-      <div className="flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground [--color-1:hsl(var(--primary))] [--color-2:hsl(var(--muted-foreground))] [--color-3:hsl(var(--accent-foreground))] [--color-4:hsl(var(--secondary-foreground))]">
+      <div className="flex w-full min-h-screen overflow-hidden rounded-2xl border bg-background font-sans text-foreground [--color-1:hsl(var(--primary))] [--color-2:hsl(var(--muted-foreground))] [--color-3:hsl(var(--accent-foreground))] [--color-4:hsl(var(--secondary-foreground))]">
         {/* Mobile backdrop */}
         {overlayMode && mobileOpen && (
           <button
@@ -177,14 +177,14 @@ export function SidebarGooeyFlow({
             )}
           </div>
 
-          {/* Gooey section switcher — its lighten-blend filter needs a dark
-              plate so the white text reads; --color-* vars feed the
-              particles. The pill switches sections via captured click
-              (single source of truth with the section state). The
-              sgf-plate hook aligns the effect-overlay font with the links
-              so the active label doesn't double. */}
+          {/* Gooey section switcher — the vendored react-bits design wants a
+              DARK plate (white inactive labels, white goo pill, black active
+              label) and a HORIZONTAL row. Never squeeze it into a vertical
+              light list: the real labels are white and vanish, leaving only
+              the stacked effect-clone readable. --color-* vars feed the
+              particles; click delegation switches sections. */}
           <div
-            className="sgf-plate relative mx-3 mt-4 overflow-hidden rounded-xl border border-border bg-[hsl(var(--background))] px-1 py-4 [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:px-2 [&_a]:text-[12px] [&_a]:font-bold"
+            className="sgf-plate relative mx-3 mt-4 overflow-hidden rounded-xl border border-border bg-[hsl(var(--background))] px-1 py-4 [&_a]:text-[12px] [&_a]:font-bold [&_a]:py-[0.55em] [&_.effect.text]:text-[12px] [&_.effect.text]:font-bold [&_.effect.text]:tracking-normal [&_ul]:gap-2 [&_ul]:px-2 [&_ul>li:not(.active)]:text-white"
             onClick={(e) => {
               const a = (e.target as HTMLElement).closest("a")
               if (!a) return
@@ -193,6 +193,7 @@ export function SidebarGooeyFlow({
               if (hit) setSection(hit.id)
             }}
           >
+            <div className="rounded-lg bg-foreground py-1">
             <GooeyNav
               items={SECTIONS.map((s) => ({ label: s.label, href: `#${s.id}` }))}
               initialActiveIndex={0}
@@ -202,6 +203,7 @@ export function SidebarGooeyFlow({
               colors={[1, 2, 3, 1, 2]}
               animationTime={500}
             />
+            </div>
           </div>
 
           <div className="space-y-2 px-4 pb-5 pt-4">

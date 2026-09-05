@@ -79,10 +79,10 @@ function Tile({ kpi, index, total }: { kpi: Kpi; index: number; total: number })
 
         <h3 className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">{kpi.label}</h3>
 
-        <p className="mt-2 font-display text-[34px] font-semibold tabular-nums leading-none tracking-[-0.025em] text-foreground">
-          <span className="align-baseline text-[20px] font-medium text-muted-foreground">{kpi.prefix}</span>
+        <p className="mt-2 flex items-baseline gap-1 font-display text-[34px] font-semibold tabular-nums leading-none tracking-[-0.025em] text-foreground">
+          <span className="text-[20px] font-medium text-muted-foreground">{kpi.prefix}</span>
           <SlidingNumber value={kpi.value} />
-          <span className="ml-1 align-baseline text-[18px] font-medium tracking-normal text-muted-foreground">{kpi.suffix}</span>
+          <span className="text-[18px] font-medium tracking-normal text-muted-foreground">{kpi.suffix}</span>
         </p>
 
         <div className="mt-auto pt-2">

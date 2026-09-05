@@ -52,11 +52,11 @@ export function CrewAdmin({ className }: CrewAdminProps) {
 
   return (
     <div className={cn("relative isolate overflow-hidden rounded-2xl border bg-background font-sans", className)}>
-      <header className="flex flex-wrap items-center gap-3 border-b bg-card px-5 py-4">
-        <h2 className="font-display text-lg font-black tracking-tight">Crew & access</h2>
-        <Badge variant="secondary" className="font-mono text-[9px]">{CREW.length} on the books</Badge>
+      <header className="flex shrink-0 items-center gap-3 border-b bg-card px-4 py-3 sm:px-5 sm:py-4">
+        <h2 className="truncate font-display text-base font-black tracking-tight sm:text-lg">Crew &amp; access</h2>
+        <Badge variant="secondary" className="hidden shrink-0 font-mono text-[9px] sm:inline-flex">{CREW.length} on the books</Badge>
         <Dialog>
-          <DialogTrigger className="ml-auto h-8 rounded-md border px-3 text-[10px] font-black uppercase tracking-[0.14em] hover:bg-muted">role matrix →</DialogTrigger>
+          <DialogTrigger className="ml-auto h-8 shrink-0 rounded-md border px-3 font-mono text-[10px] font-black uppercase tracking-[0.14em] hover:bg-muted">role matrix →</DialogTrigger>
           <DialogContent className="max-h-[80vh] overflow-y-auto">
             <DialogHeader><DialogTitle>Who may do what</DialogTitle></DialogHeader>
             <PermissionMatrix perms={perms} roles={roles} value={matrix} onSet={(p, r, v) => setMatrix((m) => ({ ...m, [r]: { ...m[r], [p]: v } }))} />
@@ -65,25 +65,25 @@ export function CrewAdmin({ className }: CrewAdminProps) {
         </Dialog>
       </header>
 
-      <div className="grid gap-6 p-5 lg:grid-cols-[1fr_300px]">
-        <div>
+      <div className="grid min-w-0 gap-6 p-4 sm:p-5 lg:grid-cols-[1fr_300px]">
+        <div className="min-w-0">
           <Card>
-            <CardContent className="p-0">
+            <CardContent className="min-w-0 overflow-x-auto p-0">
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-10"><span className="sr-only">select</span><Checkbox checked={sel.length === CREW.length} onCheckedChange={(c: boolean) => setSel(c ? CREW.map((x) => x.id) : [])} aria-label="select all" /></TableHead>
-                    <TableHead>Crew</TableHead><TableHead>Role</TableHead><TableHead>Tags</TableHead><TableHead>Onboarded</TableHead>
+                    <TableHead>Crew</TableHead><TableHead>Role</TableHead><TableHead className="hidden sm:table-cell">Tags</TableHead><TableHead className="hidden md:table-cell">Onboarded</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {CREW.map((c) => (
                     <TableRow key={c.id}>
                       <TableCell><Checkbox checked={sel.includes(c.id)} onCheckedChange={(v: boolean) => setSel((s) => v ? [...s, c.id] : s.filter((x) => x !== c.id))} aria-label={`select ${c.name}`} /></TableCell>
-                      <TableCell><span className="flex items-center gap-2.5"><Avatar className="size-8"><AvatarFallback className="text-[9px] font-black">{c.name.split(" ").map((w) => w[0]).join("")}</AvatarFallback></Avatar><span className="text-[13px] font-bold">{c.name}</span></span></TableCell>
-                      <TableCell className="text-[12px] text-muted-foreground">{c.role}</TableCell>
-                      <TableCell className="space-x-1">{c.tags.map((t) => <Badge key={t} variant="outline" className="font-mono text-[8px] uppercase">{t}</Badge>)}</TableCell>
-                      <TableCell className="font-mono text-[11px] tabular-nums text-muted-foreground">{c.onboarded}</TableCell>
+                      <TableCell className="min-w-[160px]"><span className="flex items-center gap-2.5"><Avatar className="size-8"><AvatarFallback className="text-[9px] font-black">{c.name.split(" ").map((w) => w[0]).join("")}</AvatarFallback></Avatar><span className="truncate text-[13px] font-bold">{c.name}</span></span></TableCell>
+                      <TableCell className="truncate text-[12px] text-muted-foreground">{c.role}</TableCell>
+                      <TableCell className="hidden max-w-[160px] flex-wrap gap-1 sm:table-cell">{c.tags.map((t) => <Badge key={t} variant="outline" className="font-mono text-[8px] uppercase">{t}</Badge>)}</TableCell>
+                      <TableCell className="hidden font-mono text-[11px] tabular-nums text-muted-foreground md:table-cell">{c.onboarded}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

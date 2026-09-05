@@ -26,7 +26,7 @@ export function HeroPullQuoteCinematic({
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.85, 1.06])
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.6])
   return (
-    <section ref={ref} className={cn("relative isolate flex min-h-[90vh] items-center overflow-hidden bg-foreground text-background", className)}>
+    <section ref={ref} className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-foreground text-background", className)}>
       <Grain opacity={0.07} />
       <motion.div style={{ scale, opacity }} className="mx-auto max-w-4xl px-5 py-24 text-center sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

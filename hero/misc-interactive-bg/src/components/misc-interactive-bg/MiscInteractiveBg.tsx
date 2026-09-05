@@ -21,7 +21,7 @@ export function MiscInteractiveBg({ eyebrow = "Field", title = "A background tha
     x: Math.random() * 100, y: Math.random() * 100, size: 2 + Math.random() * 4, hue: Math.random() * 60,
   })), [count])
   return (
-    <section className={cn("relative isolate flex min-h-[80vh] items-center justify-center overflow-hidden bg-foreground text-background", className)}
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-foreground text-background", className)}
       onPointerMove={(e) => setMouse({ x: e.clientX, y: e.clientY })} onPointerLeave={() => setMouse({ x: -999, y: -999 })}>
       <div className="absolute inset-0">
         {dots.map((d, i) => {

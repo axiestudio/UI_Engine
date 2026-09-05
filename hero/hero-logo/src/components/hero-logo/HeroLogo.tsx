@@ -27,7 +27,7 @@ export function HeroLogo({
 }: HeroLogoProps) {
   const ink = tone === "ink"
   return (
-    <section className={cn("relative isolate flex min-h-[70vh] items-center justify-center overflow-hidden", ink && "bg-foreground text-background", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden", ink && "bg-foreground text-background", className)}>
       <Grain opacity={ink ? 0.07 : 0.04} />
       <div className="mx-auto max-w-4xl px-5 py-20 text-center sm:px-8">
         <InView once variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

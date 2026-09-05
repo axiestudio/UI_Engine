@@ -137,7 +137,7 @@ export function SparklineLedger({
           </table>
         </div>
         <div className="border-t bg-muted/20 px-4 py-2.5 font-mono text-[11px] font-medium tracking-wide text-muted-foreground">
-          Hover or focus a row to highlight its sparkline · Values are live props
+          Hover or focus a row to highlight its sparkline · Week-over-week change
         </div>
       </div>
     

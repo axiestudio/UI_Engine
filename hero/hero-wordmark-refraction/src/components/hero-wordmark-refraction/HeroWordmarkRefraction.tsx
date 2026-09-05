@@ -21,7 +21,7 @@ export type HeroWordmarkRefractionProps = {
 export function HeroWordmarkRefraction({ eyebrow = "Refract", word = "NORTHING", tagline = "A studio that bends material, type and light into intent.", actions = [{ label: "See the work", href: "#" }], tone = "paper", className }: HeroWordmarkRefractionProps) {
   const ink = tone === "ink"
   return (
-    <section className={cn("relative isolate flex min-h-[80vh] items-center overflow-hidden px-5 py-20 sm:px-8", ink && "bg-foreground text-background", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-5 py-20 sm:px-8", ink && "bg-foreground text-background", className)}>
       <div className="mx-auto w-full max-w-5xl">
         <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <MonoLabel className={ink ? "text-background/55" : "text-muted-foreground"}>{eyebrow}</MonoLabel>

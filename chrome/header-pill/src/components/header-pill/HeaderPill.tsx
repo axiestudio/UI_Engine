@@ -47,8 +47,8 @@ export function HeaderPill({
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24))
 
   return (
-    <div className={cn("relative isolate overflow-hidden min-h-[180px] w-full bg-background", className)}>
-    <header className="absolute top-4 z-50 flex justify-center px-4 left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)]">
+    <div className={cn("relative isolate flex min-h-screen w-full flex-col overflow-hidden bg-background", className)}>
+    <header className="sticky top-0 z-50 flex justify-center bg-background/60 px-4 pt-4 backdrop-blur-sm [left:var(--fixed-inset-left,0px)] [right:var(--fixed-inset-right,0px)]">
       <motion.div
         layout
         animate={{ paddingTop: scrolled ? 7 : 10, paddingBottom: scrolled ? 7 : 10 }}

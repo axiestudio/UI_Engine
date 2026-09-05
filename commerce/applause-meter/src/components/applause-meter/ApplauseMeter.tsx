@@ -36,7 +36,7 @@ export function ApplauseMeter({ value = 4.8, max = 5, count = 1284, countLabel =
   const target = rated ?? value
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-ovation-stage px-4 py-16 text-white sm:px-6 lg:px-8", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col justify-center overflow-hidden bg-ovation-stage px-4 py-16 text-white sm:px-6 lg:px-8", className)}>
       {/* warm floor glow proportional to the score */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-56" style={{ background: `radial-gradient(60% 100% at 50% 100%, hsl(var(--ovation)/${0.16 + ratio * 0.24}), transparent)` }} />
       <div className="relative mx-auto grid w-full max-w-[980px] items-center gap-10 lg:grid-cols-[1fr_auto]">
@@ -49,7 +49,7 @@ export function ApplauseMeter({ value = 4.8, max = 5, count = 1284, countLabel =
           <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white/45">
             {count !== undefined && <>{count.toLocaleString()} {countLabel}</>} {standing && <span className="ml-3 inline-flex items-center gap-1.5 text-ovation" aria-hidden><Star className="size-3 fill-current" /> Average rating</span>}
           </p>
-          <Bars ratio={ratio / (value ? target / value : 1) || 1} live={Math.max(ratio, (target ?? 0) / max)} reduce={reduce} />
+          <Bars ratio={Math.min(1, Math.max(0, ratio / (value ? target / value : 1) || 1))} live={Math.min(1, Math.max(ratio, (target ?? 0) / max))} reduce={reduce} />
           {ratingRow(onRate, setRated, rated, max, reduce)}
         </div>
         <OvationMeter ratio={target / max} reduce={reduce} />
@@ -61,7 +61,7 @@ export function ApplauseMeter({ value = 4.8, max = 5, count = 1284, countLabel =
 function Bars({ ratio, live, reduce }: { ratio: number; live: number; reduce: boolean }) {
   const heights = [0.45, 0.75, 0.55, 0.9, 0.65, 1, 0.72, 0.58, 0.84, 0.5, 0.68, 0.4]
   return (
-    <div className="mt-7 flex h-16 items-end gap-[6px]" aria-hidden>
+    <div className="mt-7 flex h-16 items-end gap-[6px] overflow-hidden" aria-hidden>
       {heights.map((h, i) => {
         const toward = Math.sin(i / heights.length * Math.PI) // center-weighted
         const hh = reduce ? h * ratio : h * (0.25 + toward * 0.75) * live

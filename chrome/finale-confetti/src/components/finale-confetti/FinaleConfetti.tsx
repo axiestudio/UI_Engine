@@ -90,7 +90,7 @@ export function FinaleConfetti({ show = true, title = "Done.", sub, duration = 2
 
   if (variant === "band") {
     return (
-      <section className={cn("relative isolate flex min-h-[320px] w-full items-center justify-center overflow-hidden bg-muted px-4 py-16", className)} aria-live="polite">
+      <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-muted px-4 py-16", className)} aria-live="polite">
         {Content}
       </section>
     )

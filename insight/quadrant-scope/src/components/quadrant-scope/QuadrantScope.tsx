@@ -131,7 +131,7 @@ export function QuadrantScope({
               <span className="font-display text-[13px] font-semibold uppercase tracking-[0.04em]">{q.label}</span>
               <span className={cn("mt-1 block font-mono text-[11px] font-medium", active === qi ? "text-background/70" : "text-muted-foreground")}>{q.note}</span>
               <span className={cn("mt-2 inline-flex rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold tabular-nums", active === qi ? "bg-background/15 text-background" : "bg-muted text-muted-foreground")}>
-                {items.filter((it) => quadrantOf(it) === qi).length} players
+                {items.filter((it) => quadrantOf(it) === qi).length} {items.filter((it) => quadrantOf(it) === qi).length === 1 ? "player" : "players"}
               </span>
             </Button>
           ))}

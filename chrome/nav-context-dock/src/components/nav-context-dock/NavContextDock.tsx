@@ -20,15 +20,15 @@ export function NavContextDock({ brand = "Quiet Times Studio", className }: NavC
     { icon: User, label: "Account" },
   ]
   return (
-    <div className={cn("relative isolate flex min-h-[560px] w-full flex-col overflow-hidden", className)}>
+    <div className={cn("relative isolate flex min-h-screen w-full flex-col overflow-hidden", className)}>
       <header className="flex items-center justify-between border-b px-5 py-4 sm:px-8">
         <span className="font-display text-lg font-black tracking-tight">{brand}</span>
       </header>
-      <div className="mx-auto w-full max-w-2xl flex-1 px-5 pb-44 pt-16 sm:px-8">
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center px-5 pb-40 pt-16 sm:px-8">
         <h1 className="font-display text-3xl font-black">A dock for the whole site.</h1>
         <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">A floating dock pinned to the bottom — icons magnify as your cursor approaches, like a dock should.</p>
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] z-10 flex justify-center px-4">
+      <div className="pointer-events-none absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom,1rem))] z-30 flex justify-center px-4">
         <div className="pointer-events-auto max-w-full">
           <Dock className="items-end gap-3 rounded-2xl border bg-card/90 p-3 shadow-2xl ">
             {items.map((it) => (

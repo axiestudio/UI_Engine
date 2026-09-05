@@ -155,53 +155,62 @@ function ShadeSwatch({
           open && "ring-2 ring-primary ring-offset-2 ring-offset-background",
         )}
         style={{ backgroundColor: hex }}
-       h-auto />
+      />
       <span className="font-mono text-[11px] font-semibold tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}<span className="opacity-50"> / {String(total).padStart(2, "0")}</span></span>
       <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {name}
       </span>
       {open && baseHex && (
         <FloatingPortal>
-          <motion.div
+          {/*
+            Outer <div> owns the floating-ui transform (positioning).
+            Inner <motion.div> animates the entry only. Splitting them
+            prevents motion from clobbering `floatingStyles` and the
+            popover landing at the wrong spot.
+          */}
+          <div
             ref={refs.setFloating}
             style={floatingStyles}
             {...getFloatingProps()}
-            initial={reduced ? false : { opacity: 0, y: 6, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.24, ease: EASE }}
             className="z-50 w-56 rounded-xl border bg-card p-2 shadow-xl"
           >
-            <div className="flex items-center justify-between px-1.5 pb-2 pt-1">
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[10px]">{name}</span>
-              <span className="font-mono text-[10px] font-bold text-muted-foreground">{baseHex}</span>
-            </div>
-            <div className="space-y-0.5">
-              {scale.map((value) => (
-                <Button variant="ghost"
-                  key={value}
-                  onClick={() => copyHex(value)}
-                  className="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <span
-                    aria-hidden
-                    className="h-5 flex-1 rounded-md border border-border"
-                    style={{ backgroundColor: value }}
-                  />
-                  {copied === value ? (
-                    <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-primary">
-                      <Check className="size-3" aria-hidden />
-                      Copied
-                    </span>
-                  ) : (
-                    <span className="font-mono text-[10px] font-semibold text-muted-foreground">{value}</span>
-                  )}
-                </Button>
-              ))}
-            </div>
-            <p aria-live="polite" className="sr-only">
-              {copied ? `${copied} copied to clipboard` : ""}
-            </p>
-          </motion.div>
+            <motion.div
+              initial={reduced ? false : { opacity: 0, y: 6, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.24, ease: EASE }}
+            >
+              <div className="flex items-center justify-between px-1.5 pb-2 pt-1">
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{name}</span>
+                <span className="font-mono text-[10px] font-bold text-muted-foreground">{baseHex}</span>
+              </div>
+              <div className="space-y-0.5">
+                {scale.map((value) => (
+                  <Button variant="ghost"
+                    key={value}
+                    onClick={() => copyHex(value)}
+                    className="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <span
+                      aria-hidden
+                      className="h-5 flex-1 rounded-md border border-border"
+                      style={{ backgroundColor: value }}
+                    />
+                    {copied === value ? (
+                      <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-primary">
+                        <Check className="size-3" aria-hidden />
+                        Copied
+                      </span>
+                    ) : (
+                      <span className="font-mono text-[10px] font-semibold text-muted-foreground">{value}</span>
+                    )}
+                  </Button>
+                ))}
+              </div>
+              <p aria-live="polite" className="sr-only">
+                {copied ? `${copied} copied to clipboard` : ""}
+              </p>
+            </motion.div>
+          </div>
         </FloatingPortal>
       )}
     </div>
@@ -247,8 +256,8 @@ export function FloatingShadePicker({
   const [openToken, setOpenToken] = React.useState<string | null>(null)
 
   return (
-    <section className={cn("relative isolate overflow-hidden w-full bg-background text-foreground", className)}>
-      <div className="mx-auto w-full max-w-[920px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground", className)}>
+      <div className="mx-auto w-full max-w-[920px] px-4 py-16 sm:px-6 sm:py-20">
       <InView once variants={REVEAL} transition={{ duration: 0.8, ease: EASE }}>
                 <header className="">
           {eyebrow != null && (            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{eyebrow}</span>          )}

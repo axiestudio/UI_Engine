@@ -36,7 +36,7 @@ export function TicketRush({ stock = 240, sold = 137, eyebrow = "Today's release
   const digits = String(remaining).padStart(3, "0").split("")
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-rush px-4 py-16 text-white sm:px-6 lg:px-8", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-rush px-4 py-16 text-white sm:px-6 lg:px-8", className)}>
       {/* glass sheen */}
       <span aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,hsl(var(--torch,0_0%_100%)/0.04)_0%,transparent_30%,transparent_75%,hsl(var(--torch,0_0%_100%)/0.02)_100%)]" />
       <div className="relative mx-auto flex w-full max-w-[980px] flex-wrap items-center justify-between gap-8">

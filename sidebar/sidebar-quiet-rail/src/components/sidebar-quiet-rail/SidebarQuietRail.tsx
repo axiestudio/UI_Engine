@@ -170,7 +170,7 @@ export function SidebarQuietRail({
   return (
     <div
       className={cn(
-        "relative isolate flex w-full min-h-[560px] overflow-hidden rounded-2xl border bg-background font-sans text-foreground",
+        "relative isolate flex w-full min-h-screen overflow-hidden rounded-2xl border bg-background font-sans text-foreground",
         className,
       )}
     >

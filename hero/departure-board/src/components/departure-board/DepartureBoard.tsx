@@ -49,7 +49,7 @@ export function DepartureBoard({
   }, [signature, reduce])
 
   return (
-    <section className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--solari-panel))] font-mono text-[hsl(var(--solari-ink))] px-[clamp(16px,4vw,48px)] py-[clamp(32px,6vw,64px)]", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col overflow-hidden bg-[hsl(var(--solari-panel))] font-mono text-[hsl(var(--solari-ink))] px-[clamp(16px,4vw,48px)] py-[clamp(32px,6vw,64px)]", className)}>
       <div className="mb-7 flex flex-wrap items-end justify-between gap-3">
         <MonoLabel className="text-[hsl(var(--solari))]">{eyebrow}</MonoLabel>
         {title && <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white/45">{title}</span>}

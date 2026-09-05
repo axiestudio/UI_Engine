@@ -118,8 +118,8 @@ export function VideoDemo({
   const ink = tone === "ink"
 
   return (
-    <section className={cn(ink && "bg-foreground", "relative isolate w-full overflow-hidden", className)} aria-label={title}>
-      <div className="mx-auto w-full max-w-[1280px] px-5 py-16 sm:px-8 sm:py-24">
+    <section className={cn(ink && "bg-foreground", "relative isolate flex min-h-screen w-full flex-col overflow-hidden", className)} aria-label={title}>
+      <div className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col justify-center px-5 py-16 sm:px-8 sm:py-24">
         {(eyebrow || title || subtitle) && (
           <header className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
             {eyebrow && (

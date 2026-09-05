@@ -29,7 +29,7 @@ export function HeroVideo({
   className,
 }: HeroVideoProps) {
   return (
-    <section className={cn("relative isolate flex min-h-[92vh] items-center justify-center overflow-hidden bg-foreground text-background", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-foreground text-background", className)}>
       <div className="absolute inset-0 -z-10 bg-foreground">
         {/* poster underneath — never a blank frame */}
         {poster && (

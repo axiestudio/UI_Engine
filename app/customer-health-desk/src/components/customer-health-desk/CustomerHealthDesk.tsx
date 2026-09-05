@@ -165,22 +165,19 @@ export function CustomerHealthDesk({ accounts = DEFAULT_ACCOUNTS, onBookCheckIn,
     <div className={cn("relative isolate flex min-h-[620px] flex-col overflow-hidden rounded-xl border bg-muted/20 font-sans text-foreground", className)}>
       <MotionConfig reducedMotion="user">
 
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b bg-background px-4">
-        <h2 className="text-[13px] font-bold">Customer health</h2>
-        <span className="text-[12px] text-muted-foreground">{active.name}</span>
-        <span className="text-[12px] text-muted-foreground">· {active.tier} · ARR {active.arr.toLocaleString()} kr</span>
-        <span className={cn("ml-2 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-semibold", delta >= 0 ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>
-          {delta >= 0 ? <TrendingUp className="size-3" /> : <TrendingDown className="size-3" />} {delta >= 0 ? "+" : ""}{delta} vs Jun
+      <header className="flex h-12 shrink-0 items-center gap-2 border-b bg-background px-3 sm:gap-3 sm:px-4">
+        <h2 className="shrink-0 text-[13px] font-bold">Customer health</h2>
+        <span className="hidden min-w-0 truncate text-[12px] text-muted-foreground sm:inline">{active.name}</span>
+        <span className="hidden min-w-0 truncate text-[12px] text-muted-foreground md:inline">· {active.tier} · ARR {active.arr.toLocaleString()} kr</span>
+        <span className={cn("ml-auto inline-flex shrink-0 items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-semibold", delta >= 0 ? "text-[hsl(var(--ok))]" : "text-[hsl(var(--err))]")}>
+          {delta >= 0 ? <TrendingUp className="size-3" /> : <TrendingDown className="size-3" />} {delta >= 0 ? "+" : ""}{delta}
         </span>
-        <div className="ml-auto flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => onBookCheckIn?.(active)}>
-            <CalendarPlus className="size-3.5" /> Book check-in
-          </Button>
-          <Button variant="outline" size="sm" onClick={exportBook}>
-            <Download className="size-3.5" /> Export book
-          </Button>
-          
-    </div>
+        <Button variant="outline" size="sm" onClick={() => onBookCheckIn?.(active)} className="hidden shrink-0 sm:inline-flex">
+          <CalendarPlus className="size-3.5" /> <span className="hidden sm:inline">Book check-in</span>
+        </Button>
+        <Button variant="outline" size="sm" onClick={exportBook} className="shrink-0">
+          <Download className="size-3.5" /> <span className="hidden sm:inline">Export</span>
+        </Button>
       </header>
 
       {/* book of business — switcher band */}

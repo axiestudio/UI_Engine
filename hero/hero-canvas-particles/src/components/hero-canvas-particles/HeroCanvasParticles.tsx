@@ -27,7 +27,7 @@ export function HeroCanvasParticles({ eyebrow = "FIELD", title = "A constellatio
     x: Math.random(), y: Math.random(), vx: (Math.random() - 0.5) * 0.0016, vy: (Math.random() - 0.5) * 0.0016, r: 1.4 + Math.random() * 2,
   })), [count])
   return (
-    <section className={cn("relative isolate flex min-h-[86vh] items-center justify-center overflow-hidden bg-foreground text-background", className)}
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-foreground text-background", className)}
       onPointerMove={(e) => { const r = wrap.current?.getBoundingClientRect(); if (r) { mouse.current.x = (e.clientX - r.left) / r.width; mouse.current.y = (e.clientY - r.top) / r.height } }}>
       <div ref={wrap} className="absolute inset-0">
         <Field dots={dots} mouse={mouse} />

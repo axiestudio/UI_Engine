@@ -141,16 +141,32 @@ export type FloatingNavPreviewProps = {
 
 export function FloatingNavPreview({ brand = "Quiet Times", pages = DEFAULT_PAGES, className }: FloatingNavPreviewProps) {
   return (
-    // floating nav belongs at the BOTTOM of the stage — a short framed intro
-    // above, then the dock pinned to the container floor (absolute, never fixed:
-    // it must stay inside the preset root)
+    // floating nav belongs at the TOP of the stage — dock pinned to the
+    // container ceiling (absolute, never fixed: it must stay inside the
+    // preset root). Root is min-h-screen so the iframe viewport is filled
+    // 1:1 with no trailing gap.
     <div
       className={cn(
-        "relative isolate flex min-h-[420px] w-full flex-col overflow-hidden",
+        "relative isolate flex min-h-screen w-full flex-col overflow-hidden",
         className
       )}
     >
-      <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
+      <div className="pointer-events-none absolute inset-x-0 top-[max(1rem,env(safe-area-inset-top,1rem))] z-20 flex justify-center px-3">
+        <nav
+          aria-label="Studio navigation"
+          className="pointer-events-auto inline-flex max-w-full flex-nowrap items-center justify-center gap-0.5 rounded-full border bg-card px-2 py-2 shadow-sm sm:gap-1 sm:px-2 sm:py-2"
+        >
+          <span className="flex items-center gap-2 pl-1 pr-1 sm:pl-2 sm:pr-2">
+            <span aria-hidden className="size-2.5 rounded-full bg-primary" />
+            <span className="hidden text-[13px] font-semibold tracking-tight text-foreground max-[540px]:hidden sm:inline">{brand}</span>
+          </span>
+          <span aria-hidden className="mx-1 h-5 w-px shrink-0 bg-border" />
+          {pages.map((page) => (
+            <NavLink key={page.label} page={page} />
+          ))}
+        </nav>
+      </div>
+      <div className="flex flex-1 flex-col items-center justify-center px-6 pt-28 text-center">
         <p className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
           Site navigation
         </p>
@@ -158,24 +174,9 @@ export function FloatingNavPreview({ brand = "Quiet Times", pages = DEFAULT_PAGE
           A whole site in one quiet pill.
         </p>
         <p className="mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
-          Hover a section for its page preview — the dock follows along the
-          bottom edge.
+          Hover a section for its page preview — the dock stays pinned to the
+          top edge.
         </p>
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
-        <nav
-          aria-label="Studio navigation"
-          className="pointer-events-auto inline-flex items-center gap-1 rounded-full border bg-card px-2 py-2 shadow-sm"
-        >
-          <span className="flex items-center gap-2 pl-2 pr-2">
-            <span aria-hidden className="size-2.5 rounded-full bg-primary" />
-            <span className="text-[13px] font-semibold tracking-tight text-foreground">{brand}</span>
-          </span>
-          <span aria-hidden className="mx-1 h-5 w-px bg-border" />
-          {pages.map((page) => (
-            <NavLink key={page.label} page={page} />
-          ))}
-        </nav>
       </div>
     </div>
   )

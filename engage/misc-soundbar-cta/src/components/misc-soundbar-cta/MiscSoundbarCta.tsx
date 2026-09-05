@@ -30,7 +30,7 @@ export function MiscSoundbarCta({ eyebrow = "LISTEN", title = "Press play on the
   const [isPlaying, setIsPlaying] = React.useState(!reduce)
   const heights = React.useMemo(() => Array.from({ length: bars }).map((_, i) => barHeight(i)), [bars])
   return (
-    <section className={cn("relative isolate overflow-hidden bg-foreground py-20 text-background sm:py-28", className)}>
+    <section className={cn("relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-foreground py-20 text-background sm:py-28", className)}>
       <div className="mx-auto max-w-2xl px-5 text-center sm:px-8">
         <InView once variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-background/55">{eyebrow}</p>
