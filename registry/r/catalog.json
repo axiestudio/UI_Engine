@@ -4,7 +4,7 @@
  "title": "UI Engine — pre-built website sections",
  "homepage": "https://ui-engine.pages.dev/",
  "updated": "2026-09-06",
- "count": 448,
+ "count": 430,
  "install": "npx shadcn@latest add https://ui-engine.pages.dev/r/<name>.json",
  "items": [
   {
@@ -111,13 +111,6 @@
    "category": "content",
    "description": "Website preset — award-strip",
    "url": "https://ui-engine.pages.dev/r/award-strip.json"
-  },
-  {
-   "name": "badge-forge",
-   "title": "Badge Forge",
-   "category": "learn",
-   "description": "Certification badge with metallic shine sweep and ribbon draw",
-   "url": "https://ui-engine.pages.dev/r/badge-forge.json"
   },
   {
    "name": "benchmark-duel",
@@ -274,20 +267,6 @@
    "url": "https://ui-engine.pages.dev/r/changelog.json"
   },
   {
-   "name": "chapter-scrub",
-   "title": "Chapter Scrub",
-   "category": "learn",
-   "description": "Video frame with chapter tick scrubber and preview labels",
-   "url": "https://ui-engine.pages.dev/r/chapter-scrub.json"
-  },
-  {
-   "name": "checkpoint-track",
-   "title": "Checkpoint Track",
-   "category": "learn",
-   "description": "Horizontal stepper track with stamped checkpoints per completed step",
-   "url": "https://ui-engine.pages.dev/r/checkpoint-track.json"
-  },
-  {
    "name": "choice",
    "title": "Choice",
    "category": "engage",
@@ -300,13 +279,6 @@
    "category": "branding",
    "description": "Co-brand lockup builder drag two marks get approved lockups",
    "url": "https://ui-engine.pages.dev/r/co-brand-lockup.json"
-  },
-  {
-   "name": "code-reveal",
-   "title": "Code Reveal",
-   "category": "learn",
-   "description": "Typed code block with line numbers caret and copy plate",
-   "url": "https://ui-engine.pages.dev/r/code-reveal.json"
   },
   {
    "name": "cohort-waves",
@@ -400,13 +372,6 @@
    "url": "https://ui-engine.pages.dev/r/commerce-swatches.json"
   },
   {
-   "name": "commit-plate",
-   "title": "Commit Plate",
-   "category": "learn",
-   "description": "Goal input that stamps a COMMITTED plate with ink ring on submit",
-   "url": "https://ui-engine.pages.dev/r/commit-plate.json"
-  },
-  {
    "name": "compare",
    "title": "Compare",
    "category": "content",
@@ -454,13 +419,6 @@
    "category": "commerce",
    "description": "Professional call-to-action band preset — ink panel, shimmer heading, magnetic + border-trail buttons (Watermelon UI + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/cta.json"
-  },
-  {
-   "name": "curriculum-rail",
-   "title": "Curriculum Rail",
-   "category": "learn",
-   "description": "Course curriculum accordion with self-drawing connector and progress",
-   "url": "https://ui-engine.pages.dev/r/curriculum-rail.json"
   },
   {
    "name": "curtain-call",
@@ -736,13 +694,6 @@
    "url": "https://ui-engine.pages.dev/r/dnd-upload-sort.json"
   },
   {
-   "name": "doc-outline-reader",
-   "title": "Doc Outline Reader",
-   "category": "learn",
-   "description": "Article reader with sticky TOC scrollspy and reading progress",
-   "url": "https://ui-engine.pages.dev/r/doc-outline-reader.json"
-  },
-  {
    "name": "download",
    "title": "Download",
    "category": "commerce",
@@ -946,13 +897,6 @@
    "url": "https://ui-engine.pages.dev/r/finale-confetti.json"
   },
   {
-   "name": "flashcard-swipe",
-   "title": "Flashcard Swipe",
-   "category": "learn",
-   "description": "Swipeable flashcard deck that reshuffles as you study",
-   "url": "https://ui-engine.pages.dev/r/flashcard-swipe.json"
-  },
-  {
    "name": "floating-avatar-cards",
    "title": "Floating: Avatar Cards",
    "category": "content",
@@ -972,13 +916,6 @@
    "category": "engage",
    "description": "Form fields with arrowed help bubbles",
    "url": "https://ui-engine.pages.dev/r/floating-form-help.json"
-  },
-  {
-   "name": "floating-glossary",
-   "title": "Floating: Glossary",
-   "category": "learn",
-   "description": "Reading passage with dotted terms opening definition popovers",
-   "url": "https://ui-engine.pages.dev/r/floating-glossary.json"
   },
   {
    "name": "floating-nav-preview",
@@ -1093,13 +1030,6 @@
    "url": "https://ui-engine.pages.dev/r/gift.json"
   },
   {
-   "name": "glossary-morph",
-   "title": "Glossary Morph",
-   "category": "learn",
-   "description": "Inline underlined terms that open morphing popovers with definitions",
-   "url": "https://ui-engine.pages.dev/r/glossary-morph.json"
-  },
-  {
    "name": "gradient-text",
    "title": "Type: Gradient Text",
    "category": "hero",
@@ -1126,13 +1056,6 @@
    "category": "content",
    "description": "Flingable card deck with Draggable and Inertia",
    "url": "https://ui-engine.pages.dev/r/gsap-drag-deck.json"
-  },
-  {
-   "name": "gsap-flash-cards",
-   "title": "GSAP: Flash Cards",
-   "category": "learn",
-   "description": "3D flip flash cards with staggered deck intro",
-   "url": "https://ui-engine.pages.dev/r/gsap-flash-cards.json"
   },
   {
    "name": "gsap-flip-grid",
@@ -1835,13 +1758,6 @@
    "url": "https://ui-engine.pages.dev/r/masonry-gallery.json"
   },
   {
-   "name": "match-pair-wire",
-   "title": "Match Pair Wire",
-   "category": "learn",
-   "description": "Match two columns and connection wires draw between pairs",
-   "url": "https://ui-engine.pages.dev/r/match-pair-wire.json"
-  },
-  {
    "name": "media-360-viewer",
    "title": "Media: 360 Viewer",
    "category": "content",
@@ -1931,13 +1847,6 @@
    "category": "content",
    "description": "Advanced website preset — media-video-hover-mask",
    "url": "https://ui-engine.pages.dev/r/media-video-hover-mask.json"
-  },
-  {
-   "name": "mentor-fan",
-   "title": "Mentor Fan",
-   "category": "learn",
-   "description": "Instructor cards fan out on hover with availability dots",
-   "url": "https://ui-engine.pages.dev/r/mentor-fan.json"
   },
   {
    "name": "menu",
@@ -2269,20 +2178,6 @@
    "url": "https://ui-engine.pages.dev/r/quadrant-scope.json"
   },
   {
-   "name": "quiz-flip-deck",
-   "title": "Quiz Flip Deck",
-   "category": "learn",
-   "description": "Question cards flip to answers with tally streak counter",
-   "url": "https://ui-engine.pages.dev/r/quiz-flip-deck.json"
-  },
-  {
-   "name": "quiz-runner",
-   "title": "Quiz Runner",
-   "category": "learn",
-   "description": "Quiz flow with progress, per-question feedback and result dial",
-   "url": "https://ui-engine.pages.dev/r/quiz-runner.json"
-  },
-  {
    "name": "quote-feature",
    "title": "Quote",
    "category": "content",
@@ -2612,13 +2507,6 @@
    "url": "https://ui-engine.pages.dev/r/signup-split.json"
   },
   {
-   "name": "skill-tree-rail",
-   "title": "Skill Tree Rail",
-   "category": "learn",
-   "description": "Skill roadmap rail with locked nodes that pulse-unlock in a chain",
-   "url": "https://ui-engine.pages.dev/r/skill-tree-rail.json"
-  },
-  {
    "name": "sound-of-brand",
    "title": "Sound Of Brand",
    "category": "branding",
@@ -2659,13 +2547,6 @@
    "category": "commerce",
    "description": "Interactive layer builder — every ingredient is its own component; the composed stack assembles them",
    "url": "https://ui-engine.pages.dev/r/stack-burger.json"
-  },
-  {
-   "name": "stack-course",
-   "title": "Stack: Course",
-   "category": "learn",
-   "description": "Composable course card — head, meta band, repeatable module rows and enroll base as separate layers",
-   "url": "https://ui-engine.pages.dev/r/stack-course.json"
   },
   {
    "name": "stack-event",
@@ -2827,13 +2708,6 @@
    "category": "content",
    "description": "Website preset — story-split",
    "url": "https://ui-engine.pages.dev/r/story-split.json"
-  },
-  {
-   "name": "streak-strip",
-   "title": "Streak Strip",
-   "category": "learn",
-   "description": "Learning streak band with odometer counters and ticked day row",
-   "url": "https://ui-engine.pages.dev/r/streak-strip.json"
   },
   {
    "name": "swatch-spectrum",

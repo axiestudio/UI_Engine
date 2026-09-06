@@ -1,8 +1,8 @@
 # UI workspace
 
-448 preset packages, organized by role in the page — `UI/<category>/<preset>/`
-(package names unchanged; import by name). The engine sidebar shows 449 presets
-(448 + home); **all 448 ship to the shadcn registry** (see Install below).
+430 preset packages, organized by role in the page — `UI/<category>/<preset>/`
+(package names unchanged; import by name). The engine sidebar shows 431 presets
+(430 + home); **all 430 ship to the shadcn registry** (see Install below).
 
 | Category | Count | Role / "when do I use it" |
 |---|---|---|
@@ -14,7 +14,6 @@
 | `dnd/` | 24 | Drag & drop systems: kanban, sortable lists/grids/trees, form & page builders (dnd-kit) |
 | `branding/` | 25 | Brand & identity surfaces: logo systems, palette tools, tone/voice strips |
 | `insight/` | 19 | Analytics & observation decks |
-| `learn/` | 18 | Educational & course surfaces |
 | `sidebar/` | 5 | Sidebar systems: quiet rail, cinema nav, gooey switcher, float rail, glass launcher — each a full `rail + content` showcase surface; built-in mobile (off-canvas below `md`, float-rail clamps to its 72px strip), `mobile={false}` pins the desktop rail so hosts can mount it in their own sheet |
 
 Authoritative map: [`CATEGORIES.json`](./CATEGORIES.json) (read by the engine sidebar grouping and `scripts/create-preset.py --cat`).

@@ -94,12 +94,6 @@
       "category": "content"
     },
     {
-      "name": "badge-forge",
-      "title": "Badge Forge",
-      "description": "Certification badge with metallic shine sweep and ribbon draw Companion styles: @import \"@/components/badge-forge/badge-forge.css\".",
-      "category": "learn"
-    },
-    {
       "name": "benchmark-duel",
       "title": "Benchmark Duel",
       "description": "You versus industry tug-of-war benchmark bar with tension knot Companion styles: @import \"@/components/benchmark-duel/benchmark-duel.css\".",
@@ -232,18 +226,6 @@
       "category": "content"
     },
     {
-      "name": "chapter-scrub",
-      "title": "Chapter Scrub",
-      "description": "Video frame with chapter tick scrubber and preview labels Companion styles: @import \"@/components/chapter-scrub/chapter-scrub.css\".",
-      "category": "learn"
-    },
-    {
-      "name": "checkpoint-track",
-      "title": "Checkpoint Track",
-      "description": "Horizontal stepper track with stamped checkpoints per completed step Companion styles: @import \"@/components/checkpoint-track/checkpoint-track.css\".",
-      "category": "learn"
-    },
-    {
       "name": "choice",
       "title": "Choice",
       "description": "Two-door decision — the chosen panel takes the width; the question is the design (Motion-Primitives layout magic) Companion styles: @import \"@/components/choice/choice.css\".",
@@ -254,12 +236,6 @@
       "title": "Co Brand Lockup",
       "description": "Co-brand lockup builder drag two marks get approved lockups Companion styles: @import \"@/components/co-brand-lockup/co-brand-lockup.css\".",
       "category": "branding"
-    },
-    {
-      "name": "code-reveal",
-      "title": "Code Reveal",
-      "description": "Typed code block with line numbers caret and copy plate Companion styles: @import \"@/components/code-reveal/code-reveal.css\".",
-      "category": "learn"
     },
     {
       "name": "cohort-waves",
@@ -340,12 +316,6 @@
       "category": "commerce"
     },
     {
-      "name": "commit-plate",
-      "title": "Commit Plate",
-      "description": "Goal input that stamps a COMMITTED plate with ink ring on submit Companion styles: @import \"@/components/commit-plate/commit-plate.css\".",
-      "category": "learn"
-    },
-    {
       "name": "compare",
       "title": "Compare",
       "description": "Feature comparison table — highlighted own-column versus alternatives with check/cross matrix (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/compare/compare.css\".",
@@ -386,12 +356,6 @@
       "title": "CTA",
       "description": "Professional call-to-action band preset — ink panel, shimmer heading, magnetic + border-trail buttons (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/cta/cta.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "curriculum-rail",
-      "title": "Curriculum Rail",
-      "description": "Course curriculum accordion with self-drawing connector and progress Companion styles: @import \"@/components/curriculum-rail/curriculum-rail.css\".",
-      "category": "learn"
     },
     {
       "name": "curtain-call",
@@ -628,12 +592,6 @@
       "category": "dnd"
     },
     {
-      "name": "doc-outline-reader",
-      "title": "Doc Outline Reader",
-      "description": "Article reader with sticky TOC scrollspy and reading progress Companion styles: @import \"@/components/doc-outline-reader/doc-outline-reader.css\".",
-      "category": "learn"
-    },
-    {
       "name": "download",
       "title": "Download",
       "description": "App download section — CSS-built phone with live mini-screen, QR stamp card, store badges (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/download/download.css\".",
@@ -808,12 +766,6 @@
       "category": "chrome"
     },
     {
-      "name": "flashcard-swipe",
-      "title": "Flashcard Swipe",
-      "description": "Swipeable flashcard deck that reshuffles as you study Companion styles: @import \"@/components/flashcard-swipe/flashcard-swipe.css\".",
-      "category": "learn"
-    },
-    {
       "name": "floating-avatar-cards",
       "title": "Floating: Avatar Cards",
       "description": "Avatar cluster where hover opens member cards Companion styles: @import \"@/components/floating-avatar-cards/floating-avatar-cards.css\".",
@@ -830,12 +782,6 @@
       "title": "Floating: Form Help",
       "description": "Form fields with arrowed help bubbles Companion styles: @import \"@/components/floating-form-help/floating-form-help.css\".",
       "category": "engage"
-    },
-    {
-      "name": "floating-glossary",
-      "title": "Floating: Glossary",
-      "description": "Reading passage with dotted terms opening definition popovers Companion styles: @import \"@/components/floating-glossary/floating-glossary.css\".",
-      "category": "learn"
     },
     {
       "name": "floating-nav-preview",
@@ -934,12 +880,6 @@
       "category": "commerce"
     },
     {
-      "name": "glossary-morph",
-      "title": "Glossary Morph",
-      "description": "Inline underlined terms that open morphing popovers with definitions Companion styles: @import \"@/components/glossary-morph/glossary-morph.css\".",
-      "category": "learn"
-    },
-    {
       "name": "gradient-text",
       "title": "Type: Gradient Text",
       "description": "Gradient & highlighted text — oversized gradient editorial headline Companion styles: @import \"@/components/gradient-text/gradient-text.css\".",
@@ -962,12 +902,6 @@
       "title": "GSAP: Drag Deck",
       "description": "Flingable card deck with Draggable and Inertia Companion styles: @import \"@/components/gsap-drag-deck/gsap-drag-deck.css\".",
       "category": "content"
-    },
-    {
-      "name": "gsap-flash-cards",
-      "title": "GSAP: Flash Cards",
-      "description": "3D flip flash cards with staggered deck intro Companion styles: @import \"@/components/gsap-flash-cards/gsap-flash-cards.css\".",
-      "category": "learn"
     },
     {
       "name": "gsap-flip-grid",
@@ -1570,12 +1504,6 @@
       "category": "content"
     },
     {
-      "name": "match-pair-wire",
-      "title": "Match Pair Wire",
-      "description": "Match two columns and connection wires draw between pairs Companion styles: @import \"@/components/match-pair-wire/match-pair-wire.css\".",
-      "category": "learn"
-    },
-    {
       "name": "media-360-viewer",
       "title": "Media: 360 Viewer",
       "description": "Advanced website preset — media-360-viewer Companion styles: @import \"@/components/media-360-viewer/media-360-viewer.css\".",
@@ -1652,12 +1580,6 @@
       "title": "Media Video Hover Mask",
       "description": "Advanced website preset — media-video-hover-mask Companion styles: @import \"@/components/media-video-hover-mask/media-video-hover-mask.css\".",
       "category": "content"
-    },
-    {
-      "name": "mentor-fan",
-      "title": "Mentor Fan",
-      "description": "Instructor cards fan out on hover with availability dots Companion styles: @import \"@/components/mentor-fan/mentor-fan.css\".",
-      "category": "learn"
     },
     {
       "name": "menu",
@@ -1942,18 +1864,6 @@
       "category": "insight"
     },
     {
-      "name": "quiz-flip-deck",
-      "title": "Quiz Flip Deck",
-      "description": "Question cards flip to answers with tally streak counter Companion styles: @import \"@/components/quiz-flip-deck/quiz-flip-deck.css\".",
-      "category": "learn"
-    },
-    {
-      "name": "quiz-runner",
-      "title": "Quiz Runner",
-      "description": "Quiz flow with progress, per-question feedback and result dial Companion styles: @import \"@/components/quiz-runner/quiz-runner.css\".",
-      "category": "learn"
-    },
-    {
       "name": "quote-feature",
       "title": "Quote",
       "description": "One real sentence, given the whole room — quote mark as architecture (Watermelon testimonial base + Motion-Primitives) Companion styles: @import \"@/components/quote-feature/quote-feature.css\".",
@@ -2236,12 +2146,6 @@
       "category": "engage"
     },
     {
-      "name": "skill-tree-rail",
-      "title": "Skill Tree Rail",
-      "description": "Skill roadmap rail with locked nodes that pulse-unlock in a chain Companion styles: @import \"@/components/skill-tree-rail/skill-tree-rail.css\".",
-      "category": "learn"
-    },
-    {
       "name": "sound-of-brand",
       "title": "Sound Of Brand",
       "description": "Sonic identity card waveform motif notes brand voice taglines with shimmer Companion styles: @import \"@/components/sound-of-brand/sound-of-brand.css\".",
@@ -2276,12 +2180,6 @@
       "title": "Stack: Burger Builder",
       "description": "Interactive layer builder — every ingredient is its own component; the composed stack assembles them Companion styles: @import \"@/components/stack-burger/stack-burger.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "stack-course",
-      "title": "Stack: Course",
-      "description": "Composable course card — head, meta band, repeatable module rows and enroll base as separate layers Companion styles: @import \"@/components/stack-course/stack-course.css\".",
-      "category": "learn"
     },
     {
       "name": "stack-event",
@@ -2420,12 +2318,6 @@
       "title": "Section: Story",
       "description": "Website preset — story-split Companion styles: @import \"@/components/story-split/story-split.css\".",
       "category": "content"
-    },
-    {
-      "name": "streak-strip",
-      "title": "Streak Strip",
-      "description": "Learning streak band with odometer counters and ticked day row Companion styles: @import \"@/components/streak-strip/streak-strip.css\".",
-      "category": "learn"
     },
     {
       "name": "swatch-spectrum",

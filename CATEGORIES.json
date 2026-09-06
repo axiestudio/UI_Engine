@@ -440,26 +440,6 @@
     "status-page",
     "metrics-headline"
   ],
-  "learn": [
-    "badge-forge",
-    "chapter-scrub",
-    "checkpoint-track",
-    "code-reveal",
-    "commit-plate",
-    "curriculum-rail",
-    "flashcard-swipe",
-    "glossary-morph",
-    "match-pair-wire",
-    "mentor-fan",
-    "quiz-flip-deck",
-    "skill-tree-rail",
-    "streak-strip",
-    "stack-course",
-    "floating-glossary",
-    "gsap-flash-cards",
-    "doc-outline-reader",
-    "quiz-runner"
-  ],
   "sidebar": [
     "sidebar-quiet-rail",
     "sidebar-gsap-cinema",

@@ -1,6 +1,6 @@
 # UI Engine registry — full item list
 
-> 448 pre-built website sections, installable with `npx shadcn@latest add https://ui-engine.pages.dev/r/<name>.json`. Canonical machine catalog: https://ui-engine.pages.dev/r/catalog.json
+> 430 pre-built website sections, installable with `npx shadcn@latest add https://ui-engine.pages.dev/r/<name>.json`. Canonical machine catalog: https://ui-engine.pages.dev/r/catalog.json
 
 ## branding
 
@@ -450,27 +450,6 @@
 - [stat-quote-fusion]( https://ui-engine.pages.dev/r/stat-quote-fusion.json ): Stat Quote Fusion
 - [status-page]( https://ui-engine.pages.dev/r/status-page.json ): Status Page
 - [trend-scrub]( https://ui-engine.pages.dev/r/trend-scrub.json ): Trend Scrub
-
-## learn
-
-- [badge-forge]( https://ui-engine.pages.dev/r/badge-forge.json ): Badge Forge
-- [chapter-scrub]( https://ui-engine.pages.dev/r/chapter-scrub.json ): Chapter Scrub
-- [checkpoint-track]( https://ui-engine.pages.dev/r/checkpoint-track.json ): Checkpoint Track
-- [code-reveal]( https://ui-engine.pages.dev/r/code-reveal.json ): Code Reveal
-- [commit-plate]( https://ui-engine.pages.dev/r/commit-plate.json ): Commit Plate
-- [curriculum-rail]( https://ui-engine.pages.dev/r/curriculum-rail.json ): Curriculum Rail
-- [doc-outline-reader]( https://ui-engine.pages.dev/r/doc-outline-reader.json ): Doc Outline Reader
-- [flashcard-swipe]( https://ui-engine.pages.dev/r/flashcard-swipe.json ): Flashcard Swipe
-- [floating-glossary]( https://ui-engine.pages.dev/r/floating-glossary.json ): Floating: Glossary
-- [glossary-morph]( https://ui-engine.pages.dev/r/glossary-morph.json ): Glossary Morph
-- [gsap-flash-cards]( https://ui-engine.pages.dev/r/gsap-flash-cards.json ): GSAP: Flash Cards
-- [match-pair-wire]( https://ui-engine.pages.dev/r/match-pair-wire.json ): Match Pair Wire
-- [mentor-fan]( https://ui-engine.pages.dev/r/mentor-fan.json ): Mentor Fan
-- [quiz-flip-deck]( https://ui-engine.pages.dev/r/quiz-flip-deck.json ): Quiz Flip Deck
-- [quiz-runner]( https://ui-engine.pages.dev/r/quiz-runner.json ): Quiz Runner
-- [skill-tree-rail]( https://ui-engine.pages.dev/r/skill-tree-rail.json ): Skill Tree Rail
-- [stack-course]( https://ui-engine.pages.dev/r/stack-course.json ): Stack: Course
-- [streak-strip]( https://ui-engine.pages.dev/r/streak-strip.json ): Streak Strip
 
 ## sidebar
 
