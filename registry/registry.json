@@ -22,42 +22,6 @@
       "category": "insight"
     },
     {
-      "name": "activity-heatmap",
-      "title": "Activity Heatmap",
-      "description": "GitHub-style activity heatmap — Bklit HeatmapChart pattern: fluid week columns, level scale tokens, bloom entrance, tooltip + legend",
-      "category": "app"
-    },
-    {
-      "name": "agency-pipeline-desk",
-      "title": "Agency Pipeline Desk",
-      "description": "Studio ops: pitch funnel, production run graph, crew assignment, client welcome passes, render job tray",
-      "category": "app"
-    },
-    {
-      "name": "agent-console-desk",
-      "title": "Agent Console Desk",
-      "description": "AI ops cockpit: composer with token ring, streamed answers barw with cites, change-approval hunks, agent job tray",
-      "category": "app"
-    },
-    {
-      "name": "ai-answer-toolbar",
-      "title": "AI Answer Bar",
-      "description": "Answer action bar — thumbs morph, copy, regenerate spin cycle, token source note",
-      "category": "app"
-    },
-    {
-      "name": "ai-change-review",
-      "title": "AI Change Review",
-      "description": "Agent-proposed change review — per-hunk accept/reject cards with counts, undo window, and honest live totals Companion styles: @import \"@/components/ai-change-review/ai-change-review.css\".",
-      "category": "app"
-    },
-    {
-      "name": "ai-prompt-composer",
-      "title": "AI Composer",
-      "description": "AI composer — token meter, variant seeds, streaming caret, model chip switch",
-      "category": "app"
-    },
-    {
       "name": "airlock-cycle",
       "title": "Airlock 2FA",
       "description": "Two-door airlock auth cycle — inner door opens only after outer seals",
@@ -70,22 +34,10 @@
       "category": "engage"
     },
     {
-      "name": "analytics-deck",
-      "title": "Analytics Deck",
-      "description": "BI deck: range + token filters drive odometer KPIs, funnel, heatmap; versions rail scrubs saved cuts; sections skeleton-until-fetch",
-      "category": "app"
-    },
-    {
       "name": "animated-headline",
       "title": "Type: Animated Headline",
       "description": "Animated headline — per-word / per-char reveal via TextEffect Companion styles: @import \"@/components/animated-headline/animated-headline.css\".",
       "category": "hero"
-    },
-    {
-      "name": "annotation-pin-layer",
-      "title": "Annotation Pins",
-      "description": "Pins on media — timed annotations, collision fanning, composer popover",
-      "category": "app"
     },
     {
       "name": "announcement",
@@ -112,28 +64,10 @@
       "category": "commerce"
     },
     {
-      "name": "appointment-desk",
-      "title": "Appointment Desk",
-      "description": "Book a chair: range presets pick the day, slot rail, caret composer for the note; the confirmed slot issues a live pass that flies out",
-      "category": "app"
-    },
-    {
       "name": "archive-stamp",
       "title": "Archive Stamp",
       "description": "Brand archive stamp wall wax seals of product eras stamp on click Companion styles: @import \"@/components/archive-stamp/archive-stamp.css\".",
       "category": "branding"
-    },
-    {
-      "name": "async-multiselect",
-      "title": "Async Multiselect",
-      "description": "Async multi-select combobox — paged results, pills, create-item, load-more sentinel",
-      "category": "app"
-    },
-    {
-      "name": "attendance-desk",
-      "title": "Attendance Desk",
-      "description": "Time & attendance: shift segment, cell edits for punches, range totals, supervisor edits in bulk, offline kiosk sync",
-      "category": "app"
     },
     {
       "name": "audio",
@@ -256,18 +190,6 @@
       "category": "content"
     },
     {
-      "name": "breadcrumb-collapse",
-      "title": "Crumbs Overflow",
-      "description": "Overflow-aware breadcrumbs — tail-first collapsing, ⌥-menu, home-pin",
-      "category": "app"
-    },
-    {
-      "name": "bulk-select-bar",
-      "title": "Bulk Actions Bar",
-      "description": "Floating bulk-action bar — counted selection, merge actions, undo snackbar",
-      "category": "app"
-    },
-    {
       "name": "bundle-upsell",
       "title": "Commerce: Bundle",
       "description": "Website preset — bundle-upsell Companion styles: @import \"@/components/bundle-upsell/bundle-upsell.css\".",
@@ -316,18 +238,6 @@
       "category": "learn"
     },
     {
-      "name": "chat-thread-virtual",
-      "title": "Chat Thread",
-      "description": "Message thread — date dividers, streaming tail pin, reply-quote rails, reedit window",
-      "category": "app"
-    },
-    {
-      "name": "checkout-desk",
-      "title": "Checkout Desk",
-      "description": "Point-of-sale: line rows inline-edit qty → loyalty tags → delivery segments → pay; the receipt card springs out and the room applauds",
-      "category": "app"
-    },
-    {
       "name": "checkpoint-track",
       "title": "Checkpoint Track",
       "description": "Horizontal stepper track with stamped checkpoints per completed step Companion styles: @import \"@/components/checkpoint-track/checkpoint-track.css\".",
@@ -340,30 +250,6 @@
       "category": "engage"
     },
     {
-      "name": "citation-hover-card",
-      "title": "Citations",
-      "description": "Inline [n] citations — source hover card with snippet, domain favicon slot, pin list",
-      "category": "app"
-    },
-    {
-      "name": "classroom-roster",
-      "title": "Classroom Roster",
-      "description": "Teaching desk: attendance heatmap per student, pick enrolees, groups sticky rail, student-vs-staff permission sheet",
-      "category": "app"
-    },
-    {
-      "name": "clinic-intake",
-      "title": "Clinic Intake",
-      "description": "Patient intake: multi-step questionnaire with validation, document upload, first-visit window picker, record-key reveal",
-      "category": "app"
-    },
-    {
-      "name": "cmd-palette",
-      "title": "Palette · ⌘K",
-      "description": "⌘K command palette — fuzzy search, grouped commands, recents, inline calc, keyboard-first",
-      "category": "app"
-    },
-    {
       "name": "co-brand-lockup",
       "title": "Co Brand Lockup",
       "description": "Co-brand lockup builder drag two marks get approved lockups Companion styles: @import \"@/components/co-brand-lockup/co-brand-lockup.css\".",
@@ -374,12 +260,6 @@
       "title": "Code Reveal",
       "description": "Typed code block with line numbers caret and copy plate Companion styles: @import \"@/components/code-reveal/code-reveal.css\".",
       "category": "learn"
-    },
-    {
-      "name": "code-snippet-panel",
-      "title": "Code Panel",
-      "description": "Code panel — copy morph, wrap toggle, line-gutter spotlight, lang badge",
-      "category": "app"
     },
     {
       "name": "cohort-waves",
@@ -496,52 +376,16 @@
       "category": "content"
     },
     {
-      "name": "context-menu-stack",
-      "title": "Context Menu",
-      "description": "Right-click menu with flyout submenus, typeahead jump, palette-safe positioning, full keyboard path",
-      "category": "app"
-    },
-    {
-      "name": "copy-secret-field",
-      "title": "Secret Field",
-      "description": "Secret field — masked reveal morph, copy-with-countdown, rotate action",
-      "category": "app"
-    },
-    {
       "name": "countdown-flare",
       "title": "Launch Clock",
       "description": "Launch clock with ignition: LED digits burn down to T-0, the horizon lifts with an exhaust flash",
       "category": "commerce"
     },
     {
-      "name": "courier-dispatch",
-      "title": "Courier Dispatch",
-      "description": "Dispatch board: route groups stick, ETA scrubbers, map card with driver pins, offline resilience strip, courier-status toasts",
-      "category": "app"
-    },
-    {
-      "name": "crew-admin",
-      "title": "Crew Admin",
-      "description": "People ops: table of crew with checkboxes and bulk bar, async hire search, tri-state permission sheet, onboarding secret + tags",
-      "category": "app"
-    },
-    {
-      "name": "cron-preview",
-      "title": "Cron Builder",
-      "description": "Visual cron builder — human chips plus next-five-runs live preview",
-      "category": "app"
-    },
-    {
       "name": "cta",
       "title": "CTA",
       "description": "Professional call-to-action band preset — ink panel, shimmer heading, magnetic + border-trail buttons (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/cta/cta.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "curator-desk",
-      "title": "Curator Desk",
-      "description": "Exhibition tooling: collection seg, room tabs, labels as pins on wall mock, artefact uploads, embed keys",
-      "category": "app"
     },
     {
       "name": "curriculum-rail",
@@ -592,40 +436,10 @@
       "category": "hero"
     },
     {
-      "name": "customer-360",
-      "title": "Customer 360",
-      "description": "CRM record workspace: overflow tabs (profile/ledger/keys), sticky day timeline, secret cards, usage rings and an inline audit trail",
-      "category": "app"
-    },
-    {
-      "name": "customer-health-desk",
-      "title": "Customer Health Desk",
-      "description": "CSM book of business: health odometers, quota rings, usage heat, check-in timeline, renewal notes backed by cites",
-      "category": "app"
-    },
-    {
-      "name": "data-quality-desk",
-      "title": "Data Quality Desk",
-      "description": "Fix the records: token filters scope the tree table; rows edit inline, selections merge into the bulk bar; bad columns skeleton-scan",
-      "category": "app"
-    },
-    {
-      "name": "date-range-presets",
-      "title": "Date Range",
-      "description": "Range picker with smart presets, compare-shift, business-day math display",
-      "category": "app"
-    },
-    {
       "name": "departure-board",
       "title": "Departure Board",
       "description": "Split-flap departure-board headlines that scramble and settle — program/live-data masthead (site section + webapp status header)",
       "category": "hero"
-    },
-    {
-      "name": "detail-drawer-split",
-      "title": "Detail Drawer",
-      "description": "Resizable right detail drawer — prev/next record nav, tabs, persisted width",
-      "category": "app"
     },
     {
       "name": "device-desktop",
@@ -656,12 +470,6 @@
       "title": "Device: Tablet",
       "description": "Website section — landscape tablet mockup with film-strip screen switcher Companion styles: @import \"@/components/device-tablet/device-tablet.css\".",
       "category": "content"
-    },
-    {
-      "name": "diff-pane-split",
-      "title": "Diff Viewer",
-      "description": "Word-level diff viewer — unified/split toggle, hunk actions, wrap mode",
-      "category": "app"
     },
     {
       "name": "display-anti-design",
@@ -832,34 +640,16 @@
       "category": "commerce"
     },
     {
-      "name": "drag-number-field",
-      "title": "Drag Number",
-      "description": "Precision number field — drag to scrub, unit steps, wheel on focus, masked commas",
-      "category": "app"
-    },
-    {
       "name": "drawer",
       "title": "Drawer",
       "description": "Off-canvas bottom/side drawer preset — mobile-first navigation & quick actions (vaul, Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/drawer/drawer.css\".",
       "category": "chrome"
     },
     {
-      "name": "editorial-studio",
-      "title": "Editorial Studio",
-      "description": "Content CMS: title text-scramble drafts, body mention-composer, embed snippet blocks, publish window cron + channel segments",
-      "category": "app"
-    },
-    {
       "name": "elevator-floors",
       "title": "Plan Lift",
       "description": "Pricing as floors — floor indicator counts up, doors part per plan",
       "category": "engage"
-    },
-    {
-      "name": "embla-chip-rail",
-      "title": "Embla: Chip Rail",
-      "description": "Draggable variable-width filter chip rail with snap (Embla) Companion styles: @import \"@/components/embla-chip-rail/embla-chip-rail.css\".",
-      "category": "app"
     },
     {
       "name": "embla-day-timeline",
@@ -910,12 +700,6 @@
       "category": "commerce"
     },
     {
-      "name": "embla-steps-wizard",
-      "title": "Embla: Steps Wizard",
-      "description": "Draggable step wizard with dots and prev-next Companion styles: @import \"@/components/embla-steps-wizard/embla-steps-wizard.css\".",
-      "category": "app"
-    },
-    {
       "name": "embla-swatch-picker",
       "title": "Embla: Swatch Picker",
       "description": "Loop swatch picker that reads the focused hex aloud Companion styles: @import \"@/components/embla-swatch-picker/embla-swatch-picker.css\".",
@@ -950,18 +734,6 @@
       "title": "Error",
       "description": "Error states (404/500) — full-viewport error page with giant display code and recovery actions (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/error/error.css\".",
       "category": "chrome"
-    },
-    {
-      "name": "event-ops-desk",
-      "title": "Event Ops Desk",
-      "description": "Run the night: capacity window picker, pass issuance board, crew call sheets, service health, gate-import job tray",
-      "category": "app"
-    },
-    {
-      "name": "event-timeline-day",
-      "title": "Activity Timeline",
-      "description": "Activity timeline — day groups, hover detail card, presence dots",
-      "category": "app"
     },
     {
       "name": "events",
@@ -1000,12 +772,6 @@
       "category": "content"
     },
     {
-      "name": "farm-stand-desk",
-      "title": "Farm Stand Desk",
-      "description": "Market inventory: photo-logged harvest, product tree with editable prices, CSA funnel, weight fields with unit scrub",
-      "category": "app"
-    },
-    {
       "name": "feature-grid",
       "title": "Section: Feature Grid",
       "description": "Feature grid — icon-led bento-free feature cards Companion styles: @import \"@/components/feature-grid/feature-grid.css\".",
@@ -1036,28 +802,10 @@
       "category": "content"
     },
     {
-      "name": "filter-token-builder",
-      "title": "Filter Tokens",
-      "description": "Query-as-tokens builder — field/operator chips, AND/OR groups, paste to parse",
-      "category": "app"
-    },
-    {
       "name": "finale-confetti",
       "title": "Confetti Finale",
       "description": "Celebration overlay: confetti bursts from a banner line; trigger- or auto-fired, self-clearing Companion styles: @import \"@/components/finale-confetti/finale-confetti.css\".",
       "category": "chrome"
-    },
-    {
-      "name": "finance-desk",
-      "title": "Finance Desk",
-      "description": "Close the month: editable ledger rows, burn-rate gauge on a big dial, receipt drop queue, API keys, and a trail that re-stamps honest reversions",
-      "category": "app"
-    },
-    {
-      "name": "fitness-coach",
-      "title": "Fitness Coach",
-      "description": "Coach view: adherence heatmap, readiness gauge, form-video drops, session cadence cron, program segments",
-      "category": "app"
     },
     {
       "name": "flashcard-swipe",
@@ -1078,12 +826,6 @@
       "category": "insight"
     },
     {
-      "name": "floating-filter-toolbar",
-      "title": "Floating: Filter Toolbar",
-      "description": "Data table toolbar — filter popover, columns menu, tooltips; flips and shifts at edges (Floating UI) Companion styles: @import \"@/components/floating-filter-toolbar/floating-filter-toolbar.css\".",
-      "category": "app"
-    },
-    {
       "name": "floating-form-help",
       "title": "Floating: Form Help",
       "description": "Form fields with arrowed help bubbles Companion styles: @import \"@/components/floating-form-help/floating-form-help.css\".",
@@ -1102,22 +844,10 @@
       "category": "chrome"
     },
     {
-      "name": "floating-notif-dock",
-      "title": "Floating: Notif Dock",
-      "description": "Bell with grouped notifications popover and mark-as-read Companion styles: @import \"@/components/floating-notif-dock/floating-notif-dock.css\".",
-      "category": "app"
-    },
-    {
       "name": "floating-pin-notes",
       "title": "Floating: Pin Notes",
       "description": "Annotated image with numbered pins opening collision-aware floating notes (Floating UI) Companion styles: @import \"@/components/floating-pin-notes/floating-pin-notes.css\".",
       "category": "content"
-    },
-    {
-      "name": "floating-row-actions",
-      "title": "Floating: Row Actions",
-      "description": "Row hover reveals a floating action menu Companion styles: @import \"@/components/floating-row-actions/floating-row-actions.css\".",
-      "category": "app"
     },
     {
       "name": "floating-shade-picker",
@@ -1136,18 +866,6 @@
       "title": "Floating: Slot Popover",
       "description": "Schedule slots open an availability popover on hover Companion styles: @import \"@/components/floating-slot-popover/floating-slot-popover.css\".",
       "category": "engage"
-    },
-    {
-      "name": "floating-status-pills",
-      "title": "Floating: Status Pills",
-      "description": "Status pill cluster with latency detail popovers Companion styles: @import \"@/components/floating-status-pills/floating-status-pills.css\".",
-      "category": "app"
-    },
-    {
-      "name": "foh-restaurant",
-      "title": "Foh Restaurant",
-      "description": "Floor manager: switchboard for calls, table rail that sticks, covers odometer, wifi-drop resilience on the POS, ping inbox",
-      "category": "app"
     },
     {
       "name": "footer",
@@ -1180,22 +898,10 @@
       "category": "insight"
     },
     {
-      "name": "front-desk-hotel",
-      "title": "Front Desk Hotel",
-      "description": "Night porter: stay-window picker, room rail, keycards issued as passes, channel switchboard, PMS offline strip",
-      "category": "app"
-    },
-    {
       "name": "funnel-river",
       "title": "Funnel River",
       "description": "Funnel stages as liquid bands that expand to reveal drop reasons Companion styles: @import \"@/components/funnel-river/funnel-river.css\".",
       "category": "insight"
-    },
-    {
-      "name": "funnel-stage-bars",
-      "title": "Funnel Bars",
-      "description": "Conversion funnel — Bklit-style layered funnel chart with drop-off callouts, halo rings and controlled hover",
-      "category": "app"
     },
     {
       "name": "gallery",
@@ -1222,22 +928,10 @@
       "category": "insight"
     },
     {
-      "name": "ghost-suggest-input",
-      "title": "Ghost Suggest",
-      "description": "Inline ghost autocomplete — dim continuation, Tab-to-accept flash, debounce throttle view",
-      "category": "app"
-    },
-    {
       "name": "gift",
       "title": "Gift",
       "description": "Gift-card section where the card flips — the message lives on the back, like real gifts (Motion-Primitives 3D + Watermelon card kit) Companion styles: @import \"@/components/gift/gift.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "giving-circle",
-      "title": "Giving Circle",
-      "description": "Nonprofit gifts: campaign funnel, fund selector, date window, team tags, sync resilience while counting offerings",
-      "category": "app"
     },
     {
       "name": "glossary-morph",
@@ -1246,22 +940,10 @@
       "category": "learn"
     },
     {
-      "name": "grade-desk",
-      "title": "Grade Desk",
-      "description": "Marking: class segment switcher, cohort KPI, submission heatmap, student sticky list, artefact uploads",
-      "category": "app"
-    },
-    {
       "name": "gradient-text",
       "title": "Type: Gradient Text",
       "description": "Gradient & highlighted text — oversized gradient editorial headline Companion styles: @import \"@/components/gradient-text/gradient-text.css\".",
       "category": "hero"
-    },
-    {
-      "name": "grouped-search-results",
-      "title": "Grouped Search",
-      "description": "Search results — entity grouping, fuzzy highlight, arrow-key preview",
-      "category": "app"
     },
     {
       "name": "gsap-assembly-line",
@@ -1279,7 +961,7 @@
       "name": "gsap-drag-deck",
       "title": "GSAP: Drag Deck",
       "description": "Flingable card deck with Draggable and Inertia Companion styles: @import \"@/components/gsap-drag-deck/gsap-drag-deck.css\".",
-      "category": "app"
+      "category": "content"
     },
     {
       "name": "gsap-flash-cards",
@@ -1298,12 +980,6 @@
       "title": "GSAP: Kinetic Marquee",
       "description": "Velocity-reactive marquee band — speed, skew and direction follow your scroll (GSAP) Companion styles: @import \"@/components/gsap-kinetic-marquee/gsap-kinetic-marquee.css\".",
       "category": "content"
-    },
-    {
-      "name": "gsap-morph-tabs",
-      "title": "GSAP: Morph Tabs",
-      "description": "Tab panels that morph container height smoothly Companion styles: @import \"@/components/gsap-morph-tabs/gsap-morph-tabs.css\".",
-      "category": "app"
     },
     {
       "name": "gsap-parallax-strata",
@@ -1352,12 +1028,6 @@
       "title": "Commerce: Guarantee",
       "description": "Website preset — guarantee Companion styles: @import \"@/components/guarantee/guarantee.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "habit-strip",
-      "title": "Habit Strip",
-      "description": "Weekly habit strip with streak counter and check row Companion styles: @import \"@/components/habit-strip/habit-strip.css\".",
-      "category": "app"
     },
     {
       "name": "header",
@@ -1690,18 +1360,6 @@
       "category": "content"
     },
     {
-      "name": "inbox-snooze-center",
-      "title": "Inbox Zero",
-      "description": "Notification inbox — grouped, snooze chips, swipe-archive, digest composer",
-      "category": "app"
-    },
-    {
-      "name": "incident-command",
-      "title": "Incident Command",
-      "description": "War room: health strip on top, severity gauge ticking, live ops chat pinned, deploy pipeline, queued remediation jobs, toast pings",
-      "category": "app"
-    },
-    {
       "name": "ink-bloom",
       "title": "Ink Bloom",
       "description": "Headline soaks in like ink on paper — blur-to-sharp mask bloom",
@@ -1712,12 +1370,6 @@
       "title": "Ink Trust",
       "description": "Brand manifesto band serif-italic statement turns to ink band with letterpress sign-off Companion styles: @import \"@/components/ink-trust/ink-trust.css\".",
       "category": "branding"
-    },
-    {
-      "name": "inline-edit-cell",
-      "title": "Inline Edit Cell",
-      "description": "Optimistic inline cell editing — save states, conflict ping, Enter/Escape flow",
-      "category": "app"
     },
     {
       "name": "interactive-accordion-media",
@@ -1834,64 +1486,16 @@
       "category": "hero"
     },
     {
-      "name": "inventory-warroom",
-      "title": "Inventory Warroom",
-      "description": "Stock control: lazy category tree with per-row sparklines, receive-docs queue, token filters, bulk cycle-count, sync strip",
-      "category": "app"
-    },
-    {
       "name": "invite-gate",
       "title": "Engage: Invite Gate",
       "description": "Website preset — invite-gate Companion styles: @import \"@/components/invite-gate/invite-gate.css\".",
       "category": "engage"
     },
     {
-      "name": "invoice-builder",
-      "title": "Invoice Builder",
-      "description": "Line-item editor with live totals and drag-free rows Companion styles: @import \"@/components/invoice-builder/invoice-builder.css\".",
-      "category": "app"
-    },
-    {
-      "name": "job-tray",
-      "title": "Job Tray",
-      "description": "Background job tray — live status pips, expandable log tail, cancel-with-undo",
-      "category": "app"
-    },
-    {
-      "name": "keyboard-map-overlay",
-      "title": "Keyboard Map",
-      "description": "Press-? keymap overlay — region-lit shortcut cards, press-to-flash binding",
-      "category": "app"
-    },
-    {
-      "name": "kitchen-display",
-      "title": "Kitchen Display",
-      "description": "KDS screen: ticket rail that blurs at the edge, per-order flare countdowns, pass-load gauge, offline kitchen-line warning",
-      "category": "app"
-    },
-    {
       "name": "kpi-story-band",
       "title": "Kpi Story Band",
       "description": "KPI storytelling band count-up metrics with drawing sparklines and delta chips Companion styles: @import \"@/components/kpi-story-band/kpi-story-band.css\".",
       "category": "insight"
-    },
-    {
-      "name": "kpi-tile-live",
-      "title": "Live KPI Tile",
-      "description": "KPI tile — rolling odometer, trend spark, threshold alert states",
-      "category": "app"
-    },
-    {
-      "name": "lab-tracker",
-      "title": "Lab Tracker",
-      "description": "Sample chain: run schedule cron, result cells edit, assay tree, LIMS keys, instrument health, custody trail that re-stamps",
-      "category": "app"
-    },
-    {
-      "name": "legal-clause-desk",
-      "title": "Legal Clause Desk",
-      "description": "Contract review: clause edit with ghost continues, citations that lift hovercards, agent redlines accepted per hunk, matter audit",
-      "category": "app"
     },
     {
       "name": "letter",
@@ -1910,12 +1514,6 @@
       "title": "Lime Sport",
       "description": "Training-club landing for runners — near-black + electric lime, Archivo Black 900 display, live stat widgets and a lime marquee ticker (design direction: Lime / Sport) Companion styles: @import \"@/components/lime-sport/lime-sport.css\".",
       "category": "hero"
-    },
-    {
-      "name": "listing-desk",
-      "title": "Listing Desk",
-      "description": "Property listing: open-house window picker, media upload queue, price editable in grid, pin notes on photos, media quota ring + trail",
-      "category": "app"
     },
     {
       "name": "logo-constellation",
@@ -2032,12 +1630,6 @@
       "category": "content"
     },
     {
-      "name": "media-review-room",
-      "title": "Media Review Room",
-      "description": "Review a cut: canvas pins with collision fan, copy diffs, an agent-proposed re-edit reviewed hunk-by-hunk",
-      "category": "app"
-    },
-    {
       "name": "media-slideshow-mask",
       "title": "Media: Slideshow Mask",
       "description": "Advanced website preset — media-slideshow-mask Companion styles: @import \"@/components/media-slideshow-mask/media-slideshow-mask.css\".",
@@ -2062,12 +1654,6 @@
       "category": "content"
     },
     {
-      "name": "mention-textarea",
-      "title": "Mention Composer",
-      "description": "Rich textarea — @mention popover, /commands, autosize, caret ring counter",
-      "category": "app"
-    },
-    {
       "name": "mentor-fan",
       "title": "Mentor Fan",
       "description": "Instructor cards fan out on hover with availability dots Companion styles: @import \"@/components/mentor-fan/mentor-fan.css\".",
@@ -2078,18 +1664,6 @@
       "title": "Menu",
       "description": "Restaurant menu board — serif-italic dishes, dotted price leaders, course ordinals, tag glyphs (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/menu/menu.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "merch-console",
-      "title": "Merch Console",
-      "description": "Store backend: tabs per drop, sales funnel, heat of orders, price cells inline-edit, API embed keys",
-      "category": "app"
-    },
-    {
-      "name": "merge-conflict-panel",
-      "title": "Merge Conflicts",
-      "description": "Conflict resolution UI — side-by-side chooser, keep-both merge, keyboard accept",
-      "category": "app"
     },
     {
       "name": "metrics-band",
@@ -2138,12 +1712,6 @@
       "title": "Mission Etch",
       "description": "Mission statement etched in glass text outline fills on scroll haptic ticks Companion styles: @import \"@/components/mission-etch/mission-etch.css\".",
       "category": "branding"
-    },
-    {
-      "name": "model-monitor",
-      "title": "Model Monitor",
-      "description": "MLOps: feature-store skeleton, latency gauge, drift heatmap, deploy timeline + retrain cron, SLA odometer",
-      "category": "app"
     },
     {
       "name": "mood-portal",
@@ -2230,12 +1798,6 @@
       "category": "content"
     },
     {
-      "name": "night-audit",
-      "title": "Night Audit",
-      "description": "PMS close-out: wizard audits folios, keycard reconciliation issued per in-house pass, PMS health, offline resync",
-      "category": "app"
-    },
-    {
       "name": "notification",
       "title": "Notification",
       "description": "Notification center — unread-aware feed with kind chips, dismiss and mark-all-read (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/notification/notification.css\".",
@@ -2252,18 +1814,6 @@
       "title": "Commerce: Offer Stack",
       "description": "Website preset — offer-stack Companion styles: @import \"@/components/offer-stack/offer-stack.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "offline-queue-banner",
-      "title": "Offline Sync Strip",
-      "description": "Offline sync strip — pending diff counter, retry pulse, drop-on-resolve handoff",
-      "category": "app"
-    },
-    {
-      "name": "onboarding-journey",
-      "title": "Onboarding Journey",
-      "description": "New-hire flow: validated wizard steps, document uploads with rings, a live-app guided tour at the end, buddy note field",
-      "category": "app"
     },
     {
       "name": "ops-heartbeat",
@@ -2302,34 +1852,10 @@
       "category": "content"
     },
     {
-      "name": "password-meter",
-      "title": "Password Strength",
-      "description": "Strength meter — animated criteria ladder, breach flag, caps-lock whisper",
-      "category": "app"
-    },
-    {
-      "name": "payroll-review",
-      "title": "Payroll Review",
-      "description": "Payroll run: editable line cells, diff of changed rows, approve-with-checkbox bulk, signing keys, budget-to-actual gauge",
-      "category": "app"
-    },
-    {
-      "name": "permission-matrix",
-      "title": "Permission Matrix",
-      "description": "Role × permission grid — tri-state cells (allow/ask/deny) with cascade inheritance",
-      "category": "app"
-    },
-    {
       "name": "photo-essay",
       "title": "Media: Essay",
       "description": "Website preset — photo-essay Companion styles: @import \"@/components/photo-essay/photo-essay.css\".",
       "category": "content"
-    },
-    {
-      "name": "pipeline-run-graph",
-      "title": "Pipeline Run",
-      "description": "CI run strip — stage nodes with status, log drawer, rerun-failed flow",
-      "category": "app"
     },
     {
       "name": "place",
@@ -2342,12 +1868,6 @@
       "title": "Plan Builder",
       "description": "Base plan plus cadence and extras building a bundle summary Companion styles: @import \"@/components/plan-builder/plan-builder.css\".",
       "category": "commerce"
-    },
-    {
-      "name": "podcast-studio-desk",
-      "title": "Podcast Studio Desk",
-      "description": "Show runner: render jobs, guest episode timeline, publish cron, show-notes composer, drop-box uploads",
-      "category": "app"
     },
     {
       "name": "poll",
@@ -2386,28 +1906,10 @@
       "category": "commerce"
     },
     {
-      "name": "pricing-lab",
-      "title": "Pricing Lab",
-      "description": "Tune the price: drag levers move margin gauges and odometer revenue; agent proposes price edits you accept per hunk with a diff preview",
-      "category": "app"
-    },
-    {
-      "name": "print-desk",
-      "title": "Print Desk",
-      "description": "Shop floor: artwork queue, press stage graph, throughput odometer, copy proofs diffed by revision, stock selector",
-      "category": "app"
-    },
-    {
       "name": "process-steps",
       "title": "Section: Process",
       "description": "Website preset — process-steps Companion styles: @import \"@/components/process-steps/process-steps.css\".",
       "category": "content"
-    },
-    {
-      "name": "product-tour-spotlight",
-      "title": "Guided Tour",
-      "description": "Anchored spotlight tour — element cutouts, step progress, skip/forward deep links",
-      "category": "app"
     },
     {
       "name": "projection-burn",
@@ -2440,12 +1942,6 @@
       "category": "insight"
     },
     {
-      "name": "quick-actions-fab",
-      "title": "Quick Actions Fab",
-      "description": "Floating action button expanding radial quick actions Companion styles: @import \"@/components/quick-actions-fab/quick-actions-fab.css\".",
-      "category": "app"
-    },
-    {
       "name": "quiz-flip-deck",
       "title": "Quiz Flip Deck",
       "description": "Question cards flip to answers with tally streak counter Companion styles: @import \"@/components/quiz-flip-deck/quiz-flip-deck.css\".",
@@ -2462,18 +1958,6 @@
       "title": "Quote",
       "description": "One real sentence, given the whole room — quote mark as architecture (Watermelon testimonial base + Motion-Primitives) Companion styles: @import \"@/components/quote-feature/quote-feature.css\".",
       "category": "content"
-    },
-    {
-      "name": "radar-chart",
-      "title": "Radar Chart",
-      "description": "Radar/spider chart for multi-axis diagnostics — card-framed with kicker header, series legend hover lift",
-      "category": "app"
-    },
-    {
-      "name": "radial-gauge",
-      "title": "Radial Gauge",
-      "description": "Notch gauge — Bklit arc/linear notch tracks, zone-colored fills, count-up center readout",
-      "category": "app"
     },
     {
       "name": "recap",
@@ -2500,22 +1984,10 @@
       "category": "engage"
     },
     {
-      "name": "release-captain",
-      "title": "Release Captain",
-      "description": "Ship control: run graph with rerun-failed, config diff, install snippet, maintenance cron, health strip while it rolls",
-      "category": "app"
-    },
-    {
       "name": "report-unfold",
       "title": "Report Unfold",
       "description": "Annual report cover that folds open on scroll revealing stat tiles Companion styles: @import \"@/components/report-unfold/report-unfold.css\".",
       "category": "insight"
-    },
-    {
-      "name": "research-bench",
-      "title": "Research Bench",
-      "description": "Lab notebook: entries with cites, code run cells, dataset groups rail, version scrub, loading states that explain themselves",
-      "category": "app"
     },
     {
       "name": "resource-list",
@@ -2570,12 +2042,6 @@
       "title": "Roadmap",
       "description": "Public roadmap — Now / Next / Later columns with status-badged item cards (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/roadmap/roadmap.css\".",
       "category": "content"
-    },
-    {
-      "name": "rooftop-ops",
-      "title": "Rooftop Ops",
-      "description": "Venue night: hostess switchboard, wristband passes, wifi resilience on the tab rail, service log timeline",
-      "category": "app"
     },
     {
       "name": "rsvp-card",
@@ -2710,34 +2176,10 @@
       "category": "chrome"
     },
     {
-      "name": "security-posture",
-      "title": "Security Posture",
-      "description": "SecOps review: posture dialog from the strip, role matrix, rotated keys, audit pipeline, credential hygiene meters",
-      "category": "app"
-    },
-    {
-      "name": "segmented-control",
-      "title": "Segmented Control",
-      "description": "iOS segmented control — shared spring thumb, icon+label, roving tabindex",
-      "category": "app"
-    },
-    {
-      "name": "service-lane-desk",
-      "title": "Service Lane Desk",
-      "description": "Auto/shop lane: bay segment, damage photos queue, line edits, service history rail, vehicle keycards as passes",
-      "category": "app"
-    },
-    {
       "name": "services",
       "title": "Section: Services",
       "description": "Services — carded list of service offerings with pricing hints Companion styles: @import \"@/components/services/services.css\".",
       "category": "content"
-    },
-    {
-      "name": "settings-hub",
-      "title": "Settings Hub",
-      "description": "Account hub: segmented panes — profile (avatar upload queue), security (meter + secrets), plan (storage rings), prefs (switches)",
-      "category": "app"
     },
     {
       "name": "showcase",
@@ -2794,40 +2236,16 @@
       "category": "engage"
     },
     {
-      "name": "site-log-desk",
-      "title": "Site Log Desk",
-      "description": "Construction daily log: progress photos queue, WBS tree, crew notes, pins on plan sheets, hours heatmap",
-      "category": "app"
-    },
-    {
       "name": "skill-tree-rail",
       "title": "Skill Tree Rail",
       "description": "Skill roadmap rail with locked nodes that pulse-unlock in a chain Companion styles: @import \"@/components/skill-tree-rail/skill-tree-rail.css\".",
       "category": "learn"
     },
     {
-      "name": "smart-skeleton",
-      "title": "Smart Skeleton",
-      "description": "Content-aware skeletons — why-loading tooltip, staged reveal on data arrival",
-      "category": "app"
-    },
-    {
-      "name": "social-scheduler",
-      "title": "Social Scheduler",
-      "description": "Queue the week: cadence cron with next-runs, network segments, post composer with @mentions, heat of past reach, reply inbox",
-      "category": "app"
-    },
-    {
       "name": "sound-of-brand",
       "title": "Sound Of Brand",
       "description": "Sonic identity card waveform motif notes brand voice taglines with shimmer Companion styles: @import \"@/components/sound-of-brand/sound-of-brand.css\".",
       "category": "branding"
-    },
-    {
-      "name": "sparkline-cell",
-      "title": "Sparkline Cell",
-      "description": "Table cell sparkline — hover crosshair tooltip, delta chip, anomaly dot",
-      "category": "app"
     },
     {
       "name": "sparkline-ledger",
@@ -2840,12 +2258,6 @@
       "title": "Spec Sheet",
       "description": "Product spec table with expandable groups and unit tooltips Companion styles: @import \"@/components/spec-sheet/spec-sheet.css\".",
       "category": "content"
-    },
-    {
-      "name": "split-check",
-      "title": "Split Check",
-      "description": "Bill splitter with people chips, item assignment and per-person totals Companion styles: @import \"@/components/split-check/split-check.css\".",
-      "category": "app"
     },
     {
       "name": "spotlight-pickup",
@@ -2894,12 +2306,6 @@
       "title": "Stack: Listing",
       "description": "Composable property listing — media band, price head, facts band, agent row and viewing base as separate layers Companion styles: @import \"@/components/stack-listing/stack-listing.css\".",
       "category": "engage"
-    },
-    {
-      "name": "stack-onboard",
-      "title": "Stack: Onboarding",
-      "description": "Composable onboarding stack — head, repeatable task rows, progress rail and action base Companion styles: @import \"@/components/stack-onboard/stack-onboard.css\".",
-      "category": "app"
     },
     {
       "name": "stack-pricing",
@@ -2956,12 +2362,6 @@
       "category": "chrome"
     },
     {
-      "name": "status-health-strip",
-      "title": "System Health",
-      "description": "System health strip — service dots, incident ticker, region filter, sticky detail row",
-      "category": "app"
-    },
-    {
       "name": "status-page",
       "title": "Status Page",
       "description": "Uptime bars for 90 days plus incident list Companion styles: @import \"@/components/status-page/status-page.css\".",
@@ -2972,12 +2372,6 @@
       "title": "Stepper",
       "description": "Booking/checkout stepper — progress rail with live step states (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/stepper/stepper.css\".",
       "category": "engage"
-    },
-    {
-      "name": "stepper-form",
-      "title": "Stepper Form",
-      "description": "Validating multi-step form — per-step summary, dirty guards, deep-link steps",
-      "category": "app"
     },
     {
       "name": "steps",
@@ -2992,22 +2386,10 @@
       "category": "chrome"
     },
     {
-      "name": "sticky-group-list",
-      "title": "Sticky Groups",
-      "description": "Dense grouped list with pinned section headers and per-header action slots",
-      "category": "app"
-    },
-    {
       "name": "sticky-header",
       "title": "Chrome: Sticky",
       "description": "Website preset — sticky-header Companion styles: @import \"@/components/sticky-header/sticky-header.css\".",
       "category": "chrome"
-    },
-    {
-      "name": "storage-ring-meter",
-      "title": "Storage Rings",
-      "description": "Stacked quota rings — Bklit progress-ring stack, hover-lift legend, count-up center, over-commit wash",
-      "category": "app"
     },
     {
       "name": "story-horizontal-journal",
@@ -3046,28 +2428,10 @@
       "category": "learn"
     },
     {
-      "name": "studio-board",
-      "title": "Studio Board",
-      "description": "THE signature merge: a solari departures board as the live appointment display, KPI odometers, view segments, multi-select edits, board-version scrubber",
-      "category": "app"
-    },
-    {
-      "name": "support-desk",
-      "title": "Support Desk",
-      "description": "Agent console: search grouped by entity, assignee multiselect, ticket switchboard routing, snooze-able alerts",
-      "category": "app"
-    },
-    {
       "name": "swatch-spectrum",
       "title": "Swatch Spectrum",
       "description": "Color system explorer: click to copy token, contrast check, tint ramps Companion styles: @import \"@/components/swatch-spectrum/swatch-spectrum.css\".",
       "category": "branding"
-    },
-    {
-      "name": "switch-audit-trail",
-      "title": "Audit Trail",
-      "description": "Entity audit trail — field-diff rows, actor avatars, revert with reason prompt",
-      "category": "app"
     },
     {
       "name": "switchboard-reveal",
@@ -3080,12 +2444,6 @@
       "title": "Table",
       "description": "Sortable service/price list preset — menu-board for businesses (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/table/table.css\".",
       "category": "content"
-    },
-    {
-      "name": "tabs-overflow-strip",
-      "title": "Tabs Overflow",
-      "description": "Tab strip — pinned tabs, middle-click close, overflow chevron menu, scroll shade",
-      "category": "app"
     },
     {
       "name": "team",
@@ -3142,34 +2500,10 @@
       "category": "content"
     },
     {
-      "name": "toast-stack",
-      "title": "Toast Stack",
-      "description": "Swipeable toast stack — per-card actions, position memory, pause-on-hover timer",
-      "category": "app"
-    },
-    {
-      "name": "token-input",
-      "title": "Token Input",
-      "description": "Tokenizer input — paste splitting, dedupe, edit-as-tokens, backspace-select",
-      "category": "app"
-    },
-    {
       "name": "tone-ribbon",
       "title": "Tone Ribbon",
       "description": "Voice ticker ribbon infinite slider of sayings in brand tone Companion styles: @import \"@/components/tone-ribbon/tone-ribbon.css\".",
       "category": "branding"
-    },
-    {
-      "name": "travel-desk",
-      "title": "Travel Desk",
-      "description": "Itinerary ops: windows, leg rail, boarding passes issued as bookings land, offline traveller sync, ping center",
-      "category": "app"
-    },
-    {
-      "name": "tree-grid-table",
-      "title": "Tree Grid",
-      "description": "Lazy expandable tree table — async children, keyboard indent, sticky columns",
-      "category": "app"
     },
     {
       "name": "trend-scrub",
@@ -3256,22 +2590,10 @@
       "category": "hero"
     },
     {
-      "name": "undo-history-slider",
-      "title": "Version Scrubber",
-      "description": "Time-travel undo — scrub version history, ghost preview, restore commit",
-      "category": "app"
-    },
-    {
       "name": "upload",
       "title": "Upload",
       "description": "File dropzone preset — drag&drop, accept/size validation, async submit (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/upload/upload.css\".",
       "category": "engage"
-    },
-    {
-      "name": "upload-queue",
-      "title": "Upload Queue",
-      "description": "Upload queue — per-file progress arcs, retry with backoff display, remaining-time",
-      "category": "app"
     },
     {
       "name": "value-orbit",
@@ -3344,18 +2666,6 @@
       "title": "Engage: Waitlist",
       "description": "Website preset — waitlist-band Companion styles: @import \"@/components/waitlist-band/waitlist-band.css\".",
       "category": "engage"
-    },
-    {
-      "name": "warehouse-scan",
-      "title": "Warehouse Scan",
-      "description": "Scanner flow: bin token field, counted cells inline-edit + drag-scrub, discrepancy queue rail, sync jobs, offline resilience",
-      "category": "app"
-    },
-    {
-      "name": "waveform",
-      "title": "Waveform",
-      "description": "Live signal waveform — morphing polyline over mirrored level bars, dashed centreline, holds a static frame when paused or reduced-motion",
-      "category": "app"
     },
     {
       "name": "wishlist-drawer",

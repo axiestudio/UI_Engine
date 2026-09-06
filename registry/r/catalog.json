@@ -4,7 +4,7 @@
  "title": "UI Engine — pre-built website sections",
  "homepage": "https://ui-engine.pages.dev/",
  "updated": "2026-09-06",
- "count": 563,
+ "count": 448,
  "install": "npx shadcn@latest add https://ui-engine.pages.dev/r/<name>.json",
  "items": [
   {
@@ -29,48 +29,6 @@
    "url": "https://ui-engine.pages.dev/r/activity-constellation.json"
   },
   {
-   "name": "activity-heatmap",
-   "title": "Activity Heatmap",
-   "category": "app",
-   "description": "GitHub-style activity heatmap — Bklit HeatmapChart pattern: fluid week columns, level scale tokens, bloom entrance, tooltip + legend",
-   "url": "https://ui-engine.pages.dev/r/activity-heatmap.json"
-  },
-  {
-   "name": "agency-pipeline-desk",
-   "title": "Agency Pipeline Desk",
-   "category": "app",
-   "description": "Studio ops: pitch funnel, production run graph, crew assignment, client welcome passes, render job tray",
-   "url": "https://ui-engine.pages.dev/r/agency-pipeline-desk.json"
-  },
-  {
-   "name": "agent-console-desk",
-   "title": "Agent Console Desk",
-   "category": "app",
-   "description": "AI ops cockpit: composer with token ring, streamed answers barw with cites, change-approval hunks, agent job tray",
-   "url": "https://ui-engine.pages.dev/r/agent-console-desk.json"
-  },
-  {
-   "name": "ai-answer-toolbar",
-   "title": "AI Answer Bar",
-   "category": "app",
-   "description": "Answer action bar — thumbs morph, copy, regenerate spin cycle, token source note",
-   "url": "https://ui-engine.pages.dev/r/ai-answer-toolbar.json"
-  },
-  {
-   "name": "ai-change-review",
-   "title": "AI Change Review",
-   "category": "app",
-   "description": "Agent-proposed change review — per-hunk accept/reject cards with counts, undo window, and honest live totals",
-   "url": "https://ui-engine.pages.dev/r/ai-change-review.json"
-  },
-  {
-   "name": "ai-prompt-composer",
-   "title": "AI Composer",
-   "category": "app",
-   "description": "AI composer — token meter, variant seeds, streaming caret, model chip switch",
-   "url": "https://ui-engine.pages.dev/r/ai-prompt-composer.json"
-  },
-  {
    "name": "airlock-cycle",
    "title": "Airlock 2FA",
    "category": "engage",
@@ -85,25 +43,11 @@
    "url": "https://ui-engine.pages.dev/r/ambiance.json"
   },
   {
-   "name": "analytics-deck",
-   "title": "Analytics Deck",
-   "category": "app",
-   "description": "BI deck: range + token filters drive odometer KPIs, funnel, heatmap; versions rail scrubs saved cuts; sections skeleton-until-fetch",
-   "url": "https://ui-engine.pages.dev/r/analytics-deck.json"
-  },
-  {
    "name": "animated-headline",
    "title": "Type: Animated Headline",
    "category": "hero",
    "description": "Animated headline — per-word / per-char reveal via TextEffect",
    "url": "https://ui-engine.pages.dev/r/animated-headline.json"
-  },
-  {
-   "name": "annotation-pin-layer",
-   "title": "Annotation Pins",
-   "category": "app",
-   "description": "Pins on media — timed annotations, collision fanning, composer popover",
-   "url": "https://ui-engine.pages.dev/r/annotation-pin-layer.json"
   },
   {
    "name": "announcement",
@@ -134,32 +78,11 @@
    "url": "https://ui-engine.pages.dev/r/applause-meter.json"
   },
   {
-   "name": "appointment-desk",
-   "title": "Appointment Desk",
-   "category": "app",
-   "description": "Book a chair: range presets pick the day, slot rail, caret composer for the note; the confirmed slot issues a live pass that flies out",
-   "url": "https://ui-engine.pages.dev/r/appointment-desk.json"
-  },
-  {
    "name": "archive-stamp",
    "title": "Archive Stamp",
    "category": "branding",
    "description": "Brand archive stamp wall wax seals of product eras stamp on click",
    "url": "https://ui-engine.pages.dev/r/archive-stamp.json"
-  },
-  {
-   "name": "async-multiselect",
-   "title": "Async Multiselect",
-   "category": "app",
-   "description": "Async multi-select combobox — paged results, pills, create-item, load-more sentinel",
-   "url": "https://ui-engine.pages.dev/r/async-multiselect.json"
-  },
-  {
-   "name": "attendance-desk",
-   "title": "Attendance Desk",
-   "category": "app",
-   "description": "Time & attendance: shift segment, cell edits for punches, range totals, supervisor edits in bulk, offline kiosk sync",
-   "url": "https://ui-engine.pages.dev/r/attendance-desk.json"
   },
   {
    "name": "audio",
@@ -302,20 +225,6 @@
    "url": "https://ui-engine.pages.dev/r/brand-values.json"
   },
   {
-   "name": "breadcrumb-collapse",
-   "title": "Crumbs Overflow",
-   "category": "app",
-   "description": "Overflow-aware breadcrumbs — tail-first collapsing, ⌥-menu, home-pin",
-   "url": "https://ui-engine.pages.dev/r/breadcrumb-collapse.json"
-  },
-  {
-   "name": "bulk-select-bar",
-   "title": "Bulk Actions Bar",
-   "category": "app",
-   "description": "Floating bulk-action bar — counted selection, merge actions, undo snackbar",
-   "url": "https://ui-engine.pages.dev/r/bulk-select-bar.json"
-  },
-  {
    "name": "bundle-upsell",
    "title": "Commerce: Bundle",
    "category": "commerce",
@@ -372,20 +281,6 @@
    "url": "https://ui-engine.pages.dev/r/chapter-scrub.json"
   },
   {
-   "name": "chat-thread-virtual",
-   "title": "Chat Thread",
-   "category": "app",
-   "description": "Message thread — date dividers, streaming tail pin, reply-quote rails, reedit window",
-   "url": "https://ui-engine.pages.dev/r/chat-thread-virtual.json"
-  },
-  {
-   "name": "checkout-desk",
-   "title": "Checkout Desk",
-   "category": "app",
-   "description": "Point-of-sale: line rows inline-edit qty → loyalty tags → delivery segments → pay; the receipt card springs out and the room applauds",
-   "url": "https://ui-engine.pages.dev/r/checkout-desk.json"
-  },
-  {
    "name": "checkpoint-track",
    "title": "Checkpoint Track",
    "category": "learn",
@@ -400,34 +295,6 @@
    "url": "https://ui-engine.pages.dev/r/choice.json"
   },
   {
-   "name": "citation-hover-card",
-   "title": "Citations",
-   "category": "app",
-   "description": "Inline [n] citations — source hover card with snippet, domain favicon slot, pin list",
-   "url": "https://ui-engine.pages.dev/r/citation-hover-card.json"
-  },
-  {
-   "name": "classroom-roster",
-   "title": "Classroom Roster",
-   "category": "app",
-   "description": "Teaching desk: attendance heatmap per student, pick enrolees, groups sticky rail, student-vs-staff permission sheet",
-   "url": "https://ui-engine.pages.dev/r/classroom-roster.json"
-  },
-  {
-   "name": "clinic-intake",
-   "title": "Clinic Intake",
-   "category": "app",
-   "description": "Patient intake: multi-step questionnaire with validation, document upload, first-visit window picker, record-key reveal",
-   "url": "https://ui-engine.pages.dev/r/clinic-intake.json"
-  },
-  {
-   "name": "cmd-palette",
-   "title": "Palette · ⌘K",
-   "category": "app",
-   "description": "⌘K command palette — fuzzy search, grouped commands, recents, inline calc, keyboard-first",
-   "url": "https://ui-engine.pages.dev/r/cmd-palette.json"
-  },
-  {
    "name": "co-brand-lockup",
    "title": "Co Brand Lockup",
    "category": "branding",
@@ -440,13 +307,6 @@
    "category": "learn",
    "description": "Typed code block with line numbers caret and copy plate",
    "url": "https://ui-engine.pages.dev/r/code-reveal.json"
-  },
-  {
-   "name": "code-snippet-panel",
-   "title": "Code Panel",
-   "category": "app",
-   "description": "Code panel — copy morph, wrap toggle, line-gutter spotlight, lang badge",
-   "url": "https://ui-engine.pages.dev/r/code-snippet-panel.json"
   },
   {
    "name": "cohort-waves",
@@ -582,20 +442,6 @@
    "url": "https://ui-engine.pages.dev/r/contact-split.json"
   },
   {
-   "name": "context-menu-stack",
-   "title": "Context Menu",
-   "category": "app",
-   "description": "Right-click menu with flyout submenus, typeahead jump, palette-safe positioning, full keyboard path",
-   "url": "https://ui-engine.pages.dev/r/context-menu-stack.json"
-  },
-  {
-   "name": "copy-secret-field",
-   "title": "Secret Field",
-   "category": "app",
-   "description": "Secret field — masked reveal morph, copy-with-countdown, rotate action",
-   "url": "https://ui-engine.pages.dev/r/copy-secret-field.json"
-  },
-  {
    "name": "countdown-flare",
    "title": "Launch Clock",
    "category": "commerce",
@@ -603,39 +449,11 @@
    "url": "https://ui-engine.pages.dev/r/countdown-flare.json"
   },
   {
-   "name": "courier-dispatch",
-   "title": "Courier Dispatch",
-   "category": "app",
-   "description": "Dispatch board: route groups stick, ETA scrubbers, map card with driver pins, offline resilience strip, courier-status toasts",
-   "url": "https://ui-engine.pages.dev/r/courier-dispatch.json"
-  },
-  {
-   "name": "crew-admin",
-   "title": "Crew Admin",
-   "category": "app",
-   "description": "People ops: table of crew with checkboxes and bulk bar, async hire search, tri-state permission sheet, onboarding secret + tags",
-   "url": "https://ui-engine.pages.dev/r/crew-admin.json"
-  },
-  {
-   "name": "cron-preview",
-   "title": "Cron Builder",
-   "category": "app",
-   "description": "Visual cron builder — human chips plus next-five-runs live preview",
-   "url": "https://ui-engine.pages.dev/r/cron-preview.json"
-  },
-  {
    "name": "cta",
    "title": "CTA",
    "category": "commerce",
    "description": "Professional call-to-action band preset — ink panel, shimmer heading, magnetic + border-trail buttons (Watermelon UI + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/cta.json"
-  },
-  {
-   "name": "curator-desk",
-   "title": "Curator Desk",
-   "category": "app",
-   "description": "Exhibition tooling: collection seg, room tabs, labels as pins on wall mock, artefact uploads, embed keys",
-   "url": "https://ui-engine.pages.dev/r/curator-desk.json"
   },
   {
    "name": "curriculum-rail",
@@ -694,46 +512,11 @@
    "url": "https://ui-engine.pages.dev/r/curtain-zoom.json"
   },
   {
-   "name": "customer-360",
-   "title": "Customer 360",
-   "category": "app",
-   "description": "CRM record workspace: overflow tabs (profile/ledger/keys), sticky day timeline, secret cards, usage rings and an inline audit trail",
-   "url": "https://ui-engine.pages.dev/r/customer-360.json"
-  },
-  {
-   "name": "customer-health-desk",
-   "title": "Customer Health Desk",
-   "category": "app",
-   "description": "CSM book of business: health odometers, quota rings, usage heat, check-in timeline, renewal notes backed by cites",
-   "url": "https://ui-engine.pages.dev/r/customer-health-desk.json"
-  },
-  {
-   "name": "data-quality-desk",
-   "title": "Data Quality Desk",
-   "category": "app",
-   "description": "Fix the records: token filters scope the tree table; rows edit inline, selections merge into the bulk bar; bad columns skeleton-scan",
-   "url": "https://ui-engine.pages.dev/r/data-quality-desk.json"
-  },
-  {
-   "name": "date-range-presets",
-   "title": "Date Range",
-   "category": "app",
-   "description": "Range picker with smart presets, compare-shift, business-day math display",
-   "url": "https://ui-engine.pages.dev/r/date-range-presets.json"
-  },
-  {
    "name": "departure-board",
    "title": "Departure Board",
    "category": "hero",
    "description": "Split-flap departure-board headlines that scramble and settle — program/live-data masthead (site section + webapp status header)",
    "url": "https://ui-engine.pages.dev/r/departure-board.json"
-  },
-  {
-   "name": "detail-drawer-split",
-   "title": "Detail Drawer",
-   "category": "app",
-   "description": "Resizable right detail drawer — prev/next record nav, tabs, persisted width",
-   "url": "https://ui-engine.pages.dev/r/detail-drawer-split.json"
   },
   {
    "name": "device-desktop",
@@ -769,13 +552,6 @@
    "category": "content",
    "description": "Website section — landscape tablet mockup with film-strip screen switcher",
    "url": "https://ui-engine.pages.dev/r/device-tablet.json"
-  },
-  {
-   "name": "diff-pane-split",
-   "title": "Diff Viewer",
-   "category": "app",
-   "description": "Word-level diff viewer — unified/split toggle, hunk actions, wrap mode",
-   "url": "https://ui-engine.pages.dev/r/diff-pane-split.json"
   },
   {
    "name": "display-anti-design",
@@ -974,13 +750,6 @@
    "url": "https://ui-engine.pages.dev/r/download.json"
   },
   {
-   "name": "drag-number-field",
-   "title": "Drag Number",
-   "category": "app",
-   "description": "Precision number field — drag to scrub, unit steps, wheel on focus, masked commas",
-   "url": "https://ui-engine.pages.dev/r/drag-number-field.json"
-  },
-  {
    "name": "drawer",
    "title": "Drawer",
    "category": "chrome",
@@ -988,25 +757,11 @@
    "url": "https://ui-engine.pages.dev/r/drawer.json"
   },
   {
-   "name": "editorial-studio",
-   "title": "Editorial Studio",
-   "category": "app",
-   "description": "Content CMS: title text-scramble drafts, body mention-composer, embed snippet blocks, publish window cron + channel segments",
-   "url": "https://ui-engine.pages.dev/r/editorial-studio.json"
-  },
-  {
    "name": "elevator-floors",
    "title": "Plan Lift",
    "category": "engage",
    "description": "Pricing as floors — floor indicator counts up, doors part per plan",
    "url": "https://ui-engine.pages.dev/r/elevator-floors.json"
-  },
-  {
-   "name": "embla-chip-rail",
-   "title": "Embla: Chip Rail",
-   "category": "app",
-   "description": "Draggable variable-width filter chip rail with snap (Embla)",
-   "url": "https://ui-engine.pages.dev/r/embla-chip-rail.json"
   },
   {
    "name": "embla-day-timeline",
@@ -1065,13 +820,6 @@
    "url": "https://ui-engine.pages.dev/r/embla-rates-rail.json"
   },
   {
-   "name": "embla-steps-wizard",
-   "title": "Embla: Steps Wizard",
-   "category": "app",
-   "description": "Draggable step wizard with dots and prev-next",
-   "url": "https://ui-engine.pages.dev/r/embla-steps-wizard.json"
-  },
-  {
    "name": "embla-swatch-picker",
    "title": "Embla: Swatch Picker",
    "category": "branding",
@@ -1112,20 +860,6 @@
    "category": "chrome",
    "description": "Error states (404/500) — full-viewport error page with giant display code and recovery actions (shadcn/ui new-york-v4 + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/error.json"
-  },
-  {
-   "name": "event-ops-desk",
-   "title": "Event Ops Desk",
-   "category": "app",
-   "description": "Run the night: capacity window picker, pass issuance board, crew call sheets, service health, gate-import job tray",
-   "url": "https://ui-engine.pages.dev/r/event-ops-desk.json"
-  },
-  {
-   "name": "event-timeline-day",
-   "title": "Activity Timeline",
-   "category": "app",
-   "description": "Activity timeline — day groups, hover detail card, presence dots",
-   "url": "https://ui-engine.pages.dev/r/event-timeline-day.json"
   },
   {
    "name": "events",
@@ -1170,13 +904,6 @@
    "url": "https://ui-engine.pages.dev/r/faq-minimal.json"
   },
   {
-   "name": "farm-stand-desk",
-   "title": "Farm Stand Desk",
-   "category": "app",
-   "description": "Market inventory: photo-logged harvest, product tree with editable prices, CSA funnel, weight fields with unit scrub",
-   "url": "https://ui-engine.pages.dev/r/farm-stand-desk.json"
-  },
-  {
    "name": "feature-grid",
    "title": "Section: Feature Grid",
    "category": "content",
@@ -1212,32 +939,11 @@
    "url": "https://ui-engine.pages.dev/r/film-strip-wind.json"
   },
   {
-   "name": "filter-token-builder",
-   "title": "Filter Tokens",
-   "category": "app",
-   "description": "Query-as-tokens builder — field/operator chips, AND/OR groups, paste to parse",
-   "url": "https://ui-engine.pages.dev/r/filter-token-builder.json"
-  },
-  {
    "name": "finale-confetti",
    "title": "Confetti Finale",
    "category": "chrome",
    "description": "Celebration overlay: confetti bursts from a banner line; trigger- or auto-fired, self-clearing",
    "url": "https://ui-engine.pages.dev/r/finale-confetti.json"
-  },
-  {
-   "name": "finance-desk",
-   "title": "Finance Desk",
-   "category": "app",
-   "description": "Close the month: editable ledger rows, burn-rate gauge on a big dial, receipt drop queue, API keys, and a trail that re-stamps honest reversions",
-   "url": "https://ui-engine.pages.dev/r/finance-desk.json"
-  },
-  {
-   "name": "fitness-coach",
-   "title": "Fitness Coach",
-   "category": "app",
-   "description": "Coach view: adherence heatmap, readiness gauge, form-video drops, session cadence cron, program segments",
-   "url": "https://ui-engine.pages.dev/r/fitness-coach.json"
   },
   {
    "name": "flashcard-swipe",
@@ -1261,13 +967,6 @@
    "url": "https://ui-engine.pages.dev/r/floating-chart-legend.json"
   },
   {
-   "name": "floating-filter-toolbar",
-   "title": "Floating: Filter Toolbar",
-   "category": "app",
-   "description": "Data table toolbar — filter popover, columns menu, tooltips; flips and shifts at edges (Floating UI)",
-   "url": "https://ui-engine.pages.dev/r/floating-filter-toolbar.json"
-  },
-  {
    "name": "floating-form-help",
    "title": "Floating: Form Help",
    "category": "engage",
@@ -1289,25 +988,11 @@
    "url": "https://ui-engine.pages.dev/r/floating-nav-preview.json"
   },
   {
-   "name": "floating-notif-dock",
-   "title": "Floating: Notif Dock",
-   "category": "app",
-   "description": "Bell with grouped notifications popover and mark-as-read",
-   "url": "https://ui-engine.pages.dev/r/floating-notif-dock.json"
-  },
-  {
    "name": "floating-pin-notes",
    "title": "Floating: Pin Notes",
    "category": "content",
    "description": "Annotated image with numbered pins opening collision-aware floating notes (Floating UI)",
    "url": "https://ui-engine.pages.dev/r/floating-pin-notes.json"
-  },
-  {
-   "name": "floating-row-actions",
-   "title": "Floating: Row Actions",
-   "category": "app",
-   "description": "Row hover reveals a floating action menu",
-   "url": "https://ui-engine.pages.dev/r/floating-row-actions.json"
   },
   {
    "name": "floating-shade-picker",
@@ -1329,20 +1014,6 @@
    "category": "engage",
    "description": "Schedule slots open an availability popover on hover",
    "url": "https://ui-engine.pages.dev/r/floating-slot-popover.json"
-  },
-  {
-   "name": "floating-status-pills",
-   "title": "Floating: Status Pills",
-   "category": "app",
-   "description": "Status pill cluster with latency detail popovers",
-   "url": "https://ui-engine.pages.dev/r/floating-status-pills.json"
-  },
-  {
-   "name": "foh-restaurant",
-   "title": "Foh Restaurant",
-   "category": "app",
-   "description": "Floor manager: switchboard for calls, table rail that sticks, covers odometer, wifi-drop resilience on the POS, ping inbox",
-   "url": "https://ui-engine.pages.dev/r/foh-restaurant.json"
   },
   {
    "name": "footer",
@@ -1380,25 +1051,11 @@
    "url": "https://ui-engine.pages.dev/r/forecast-horizon.json"
   },
   {
-   "name": "front-desk-hotel",
-   "title": "Front Desk Hotel",
-   "category": "app",
-   "description": "Night porter: stay-window picker, room rail, keycards issued as passes, channel switchboard, PMS offline strip",
-   "url": "https://ui-engine.pages.dev/r/front-desk-hotel.json"
-  },
-  {
    "name": "funnel-river",
    "title": "Funnel River",
    "category": "insight",
    "description": "Funnel stages as liquid bands that expand to reveal drop reasons",
    "url": "https://ui-engine.pages.dev/r/funnel-river.json"
-  },
-  {
-   "name": "funnel-stage-bars",
-   "title": "Funnel Bars",
-   "category": "app",
-   "description": "Conversion funnel — Bklit-style layered funnel chart with drop-off callouts, halo rings and controlled hover",
-   "url": "https://ui-engine.pages.dev/r/funnel-stage-bars.json"
   },
   {
    "name": "gallery",
@@ -1429,25 +1086,11 @@
    "url": "https://ui-engine.pages.dev/r/gauge-cluster.json"
   },
   {
-   "name": "ghost-suggest-input",
-   "title": "Ghost Suggest",
-   "category": "app",
-   "description": "Inline ghost autocomplete — dim continuation, Tab-to-accept flash, debounce throttle view",
-   "url": "https://ui-engine.pages.dev/r/ghost-suggest-input.json"
-  },
-  {
    "name": "gift",
    "title": "Gift",
    "category": "commerce",
    "description": "Gift-card section where the card flips — the message lives on the back, like real gifts (Motion-Primitives 3D + Watermelon card kit)",
    "url": "https://ui-engine.pages.dev/r/gift.json"
-  },
-  {
-   "name": "giving-circle",
-   "title": "Giving Circle",
-   "category": "app",
-   "description": "Nonprofit gifts: campaign funnel, fund selector, date window, team tags, sync resilience while counting offerings",
-   "url": "https://ui-engine.pages.dev/r/giving-circle.json"
   },
   {
    "name": "glossary-morph",
@@ -1457,25 +1100,11 @@
    "url": "https://ui-engine.pages.dev/r/glossary-morph.json"
   },
   {
-   "name": "grade-desk",
-   "title": "Grade Desk",
-   "category": "app",
-   "description": "Marking: class segment switcher, cohort KPI, submission heatmap, student sticky list, artefact uploads",
-   "url": "https://ui-engine.pages.dev/r/grade-desk.json"
-  },
-  {
    "name": "gradient-text",
    "title": "Type: Gradient Text",
    "category": "hero",
    "description": "Gradient & highlighted text — oversized gradient editorial headline",
    "url": "https://ui-engine.pages.dev/r/gradient-text.json"
-  },
-  {
-   "name": "grouped-search-results",
-   "title": "Grouped Search",
-   "category": "app",
-   "description": "Search results — entity grouping, fuzzy highlight, arrow-key preview",
-   "url": "https://ui-engine.pages.dev/r/grouped-search-results.json"
   },
   {
    "name": "gsap-assembly-line",
@@ -1494,7 +1123,7 @@
   {
    "name": "gsap-drag-deck",
    "title": "GSAP: Drag Deck",
-   "category": "app",
+   "category": "content",
    "description": "Flingable card deck with Draggable and Inertia",
    "url": "https://ui-engine.pages.dev/r/gsap-drag-deck.json"
   },
@@ -1518,13 +1147,6 @@
    "category": "content",
    "description": "Velocity-reactive marquee band — speed, skew and direction follow your scroll (GSAP)",
    "url": "https://ui-engine.pages.dev/r/gsap-kinetic-marquee.json"
-  },
-  {
-   "name": "gsap-morph-tabs",
-   "title": "GSAP: Morph Tabs",
-   "category": "app",
-   "description": "Tab panels that morph container height smoothly",
-   "url": "https://ui-engine.pages.dev/r/gsap-morph-tabs.json"
   },
   {
    "name": "gsap-parallax-strata",
@@ -1581,13 +1203,6 @@
    "category": "commerce",
    "description": "Website preset — guarantee",
    "url": "https://ui-engine.pages.dev/r/guarantee.json"
-  },
-  {
-   "name": "habit-strip",
-   "title": "Habit Strip",
-   "category": "app",
-   "description": "Weekly habit strip with streak counter and check row",
-   "url": "https://ui-engine.pages.dev/r/habit-strip.json"
   },
   {
    "name": "header",
@@ -1975,20 +1590,6 @@
    "url": "https://ui-engine.pages.dev/r/image-triptych.json"
   },
   {
-   "name": "inbox-snooze-center",
-   "title": "Inbox Zero",
-   "category": "app",
-   "description": "Notification inbox — grouped, snooze chips, swipe-archive, digest composer",
-   "url": "https://ui-engine.pages.dev/r/inbox-snooze-center.json"
-  },
-  {
-   "name": "incident-command",
-   "title": "Incident Command",
-   "category": "app",
-   "description": "War room: health strip on top, severity gauge ticking, live ops chat pinned, deploy pipeline, queued remediation jobs, toast pings",
-   "url": "https://ui-engine.pages.dev/r/incident-command.json"
-  },
-  {
    "name": "ink-bloom",
    "title": "Ink Bloom",
    "category": "hero",
@@ -2001,13 +1602,6 @@
    "category": "branding",
    "description": "Brand manifesto band serif-italic statement turns to ink band with letterpress sign-off",
    "url": "https://ui-engine.pages.dev/r/ink-trust.json"
-  },
-  {
-   "name": "inline-edit-cell",
-   "title": "Inline Edit Cell",
-   "category": "app",
-   "description": "Optimistic inline cell editing — save states, conflict ping, Enter/Escape flow",
-   "url": "https://ui-engine.pages.dev/r/inline-edit-cell.json"
   },
   {
    "name": "interactive-accordion-media",
@@ -2143,13 +1737,6 @@
    "url": "https://ui-engine.pages.dev/r/intro-terminal.json"
   },
   {
-   "name": "inventory-warroom",
-   "title": "Inventory Warroom",
-   "category": "app",
-   "description": "Stock control: lazy category tree with per-row sparklines, receive-docs queue, token filters, bulk cycle-count, sync strip",
-   "url": "https://ui-engine.pages.dev/r/inventory-warroom.json"
-  },
-  {
    "name": "invite-gate",
    "title": "Engage: Invite Gate",
    "category": "engage",
@@ -2157,60 +1744,11 @@
    "url": "https://ui-engine.pages.dev/r/invite-gate.json"
   },
   {
-   "name": "invoice-builder",
-   "title": "Invoice Builder",
-   "category": "app",
-   "description": "Line-item editor with live totals and drag-free rows",
-   "url": "https://ui-engine.pages.dev/r/invoice-builder.json"
-  },
-  {
-   "name": "job-tray",
-   "title": "Job Tray",
-   "category": "app",
-   "description": "Background job tray — live status pips, expandable log tail, cancel-with-undo",
-   "url": "https://ui-engine.pages.dev/r/job-tray.json"
-  },
-  {
-   "name": "keyboard-map-overlay",
-   "title": "Keyboard Map",
-   "category": "app",
-   "description": "Press-? keymap overlay — region-lit shortcut cards, press-to-flash binding",
-   "url": "https://ui-engine.pages.dev/r/keyboard-map-overlay.json"
-  },
-  {
-   "name": "kitchen-display",
-   "title": "Kitchen Display",
-   "category": "app",
-   "description": "KDS screen: ticket rail that blurs at the edge, per-order flare countdowns, pass-load gauge, offline kitchen-line warning",
-   "url": "https://ui-engine.pages.dev/r/kitchen-display.json"
-  },
-  {
    "name": "kpi-story-band",
    "title": "Kpi Story Band",
    "category": "insight",
    "description": "KPI storytelling band count-up metrics with drawing sparklines and delta chips",
    "url": "https://ui-engine.pages.dev/r/kpi-story-band.json"
-  },
-  {
-   "name": "kpi-tile-live",
-   "title": "Live KPI Tile",
-   "category": "app",
-   "description": "KPI tile — rolling odometer, trend spark, threshold alert states",
-   "url": "https://ui-engine.pages.dev/r/kpi-tile-live.json"
-  },
-  {
-   "name": "lab-tracker",
-   "title": "Lab Tracker",
-   "category": "app",
-   "description": "Sample chain: run schedule cron, result cells edit, assay tree, LIMS keys, instrument health, custody trail that re-stamps",
-   "url": "https://ui-engine.pages.dev/r/lab-tracker.json"
-  },
-  {
-   "name": "legal-clause-desk",
-   "title": "Legal Clause Desk",
-   "category": "app",
-   "description": "Contract review: clause edit with ghost continues, citations that lift hovercards, agent redlines accepted per hunk, matter audit",
-   "url": "https://ui-engine.pages.dev/r/legal-clause-desk.json"
   },
   {
    "name": "letter",
@@ -2232,13 +1770,6 @@
    "category": "hero",
    "description": "Training-club landing for runners — near-black + electric lime, Archivo Black 900 display, live stat widgets and a lime marquee ticker (design direction: Lim…",
    "url": "https://ui-engine.pages.dev/r/lime-sport.json"
-  },
-  {
-   "name": "listing-desk",
-   "title": "Listing Desk",
-   "category": "app",
-   "description": "Property listing: open-house window picker, media upload queue, price editable in grid, pin notes on photos, media quota ring + trail",
-   "url": "https://ui-engine.pages.dev/r/listing-desk.json"
   },
   {
    "name": "logo-constellation",
@@ -2374,13 +1905,6 @@
    "url": "https://ui-engine.pages.dev/r/media-progressive-parallax.json"
   },
   {
-   "name": "media-review-room",
-   "title": "Media Review Room",
-   "category": "app",
-   "description": "Review a cut: canvas pins with collision fan, copy diffs, an agent-proposed re-edit reviewed hunk-by-hunk",
-   "url": "https://ui-engine.pages.dev/r/media-review-room.json"
-  },
-  {
    "name": "media-slideshow-mask",
    "title": "Media: Slideshow Mask",
    "category": "content",
@@ -2409,13 +1933,6 @@
    "url": "https://ui-engine.pages.dev/r/media-video-hover-mask.json"
   },
   {
-   "name": "mention-textarea",
-   "title": "Mention Composer",
-   "category": "app",
-   "description": "Rich textarea — @mention popover, /commands, autosize, caret ring counter",
-   "url": "https://ui-engine.pages.dev/r/mention-textarea.json"
-  },
-  {
    "name": "mentor-fan",
    "title": "Mentor Fan",
    "category": "learn",
@@ -2428,20 +1945,6 @@
    "category": "commerce",
    "description": "Restaurant menu board — serif-italic dishes, dotted price leaders, course ordinals, tag glyphs (shadcn/ui new-york-v4 + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/menu.json"
-  },
-  {
-   "name": "merch-console",
-   "title": "Merch Console",
-   "category": "app",
-   "description": "Store backend: tabs per drop, sales funnel, heat of orders, price cells inline-edit, API embed keys",
-   "url": "https://ui-engine.pages.dev/r/merch-console.json"
-  },
-  {
-   "name": "merge-conflict-panel",
-   "title": "Merge Conflicts",
-   "category": "app",
-   "description": "Conflict resolution UI — side-by-side chooser, keep-both merge, keyboard accept",
-   "url": "https://ui-engine.pages.dev/r/merge-conflict-panel.json"
   },
   {
    "name": "metrics-band",
@@ -2498,13 +2001,6 @@
    "category": "branding",
    "description": "Mission statement etched in glass text outline fills on scroll haptic ticks",
    "url": "https://ui-engine.pages.dev/r/mission-etch.json"
-  },
-  {
-   "name": "model-monitor",
-   "title": "Model Monitor",
-   "category": "app",
-   "description": "MLOps: feature-store skeleton, latency gauge, drift heatmap, deploy timeline + retrain cron, SLA odometer",
-   "url": "https://ui-engine.pages.dev/r/model-monitor.json"
   },
   {
    "name": "mood-portal",
@@ -2605,13 +2101,6 @@
    "url": "https://ui-engine.pages.dev/r/newsletter.json"
   },
   {
-   "name": "night-audit",
-   "title": "Night Audit",
-   "category": "app",
-   "description": "PMS close-out: wizard audits folios, keycard reconciliation issued per in-house pass, PMS health, offline resync",
-   "url": "https://ui-engine.pages.dev/r/night-audit.json"
-  },
-  {
    "name": "notification",
    "title": "Notification",
    "category": "chrome",
@@ -2631,20 +2120,6 @@
    "category": "commerce",
    "description": "Website preset — offer-stack",
    "url": "https://ui-engine.pages.dev/r/offer-stack.json"
-  },
-  {
-   "name": "offline-queue-banner",
-   "title": "Offline Sync Strip",
-   "category": "app",
-   "description": "Offline sync strip — pending diff counter, retry pulse, drop-on-resolve handoff",
-   "url": "https://ui-engine.pages.dev/r/offline-queue-banner.json"
-  },
-  {
-   "name": "onboarding-journey",
-   "title": "Onboarding Journey",
-   "category": "app",
-   "description": "New-hire flow: validated wizard steps, document uploads with rings, a live-app guided tour at the end, buddy note field",
-   "url": "https://ui-engine.pages.dev/r/onboarding-journey.json"
   },
   {
    "name": "ops-heartbeat",
@@ -2689,39 +2164,11 @@
    "url": "https://ui-engine.pages.dev/r/partners-strip.json"
   },
   {
-   "name": "password-meter",
-   "title": "Password Strength",
-   "category": "app",
-   "description": "Strength meter — animated criteria ladder, breach flag, caps-lock whisper",
-   "url": "https://ui-engine.pages.dev/r/password-meter.json"
-  },
-  {
-   "name": "payroll-review",
-   "title": "Payroll Review",
-   "category": "app",
-   "description": "Payroll run: editable line cells, diff of changed rows, approve-with-checkbox bulk, signing keys, budget-to-actual gauge",
-   "url": "https://ui-engine.pages.dev/r/payroll-review.json"
-  },
-  {
-   "name": "permission-matrix",
-   "title": "Permission Matrix",
-   "category": "app",
-   "description": "Role × permission grid — tri-state cells (allow/ask/deny) with cascade inheritance",
-   "url": "https://ui-engine.pages.dev/r/permission-matrix.json"
-  },
-  {
    "name": "photo-essay",
    "title": "Media: Essay",
    "category": "content",
    "description": "Website preset — photo-essay",
    "url": "https://ui-engine.pages.dev/r/photo-essay.json"
-  },
-  {
-   "name": "pipeline-run-graph",
-   "title": "Pipeline Run",
-   "category": "app",
-   "description": "CI run strip — stage nodes with status, log drawer, rerun-failed flow",
-   "url": "https://ui-engine.pages.dev/r/pipeline-run-graph.json"
   },
   {
    "name": "place",
@@ -2736,13 +2183,6 @@
    "category": "commerce",
    "description": "Base plan plus cadence and extras building a bundle summary",
    "url": "https://ui-engine.pages.dev/r/plan-builder.json"
-  },
-  {
-   "name": "podcast-studio-desk",
-   "title": "Podcast Studio Desk",
-   "category": "app",
-   "description": "Show runner: render jobs, guest episode timeline, publish cron, show-notes composer, drop-box uploads",
-   "url": "https://ui-engine.pages.dev/r/podcast-studio-desk.json"
   },
   {
    "name": "poll",
@@ -2787,32 +2227,11 @@
    "url": "https://ui-engine.pages.dev/r/pricing-addons.json"
   },
   {
-   "name": "pricing-lab",
-   "title": "Pricing Lab",
-   "category": "app",
-   "description": "Tune the price: drag levers move margin gauges and odometer revenue; agent proposes price edits you accept per hunk with a diff preview",
-   "url": "https://ui-engine.pages.dev/r/pricing-lab.json"
-  },
-  {
-   "name": "print-desk",
-   "title": "Print Desk",
-   "category": "app",
-   "description": "Shop floor: artwork queue, press stage graph, throughput odometer, copy proofs diffed by revision, stock selector",
-   "url": "https://ui-engine.pages.dev/r/print-desk.json"
-  },
-  {
    "name": "process-steps",
    "title": "Section: Process",
    "category": "content",
    "description": "Website preset — process-steps",
    "url": "https://ui-engine.pages.dev/r/process-steps.json"
-  },
-  {
-   "name": "product-tour-spotlight",
-   "title": "Guided Tour",
-   "category": "app",
-   "description": "Anchored spotlight tour — element cutouts, step progress, skip/forward deep links",
-   "url": "https://ui-engine.pages.dev/r/product-tour-spotlight.json"
   },
   {
    "name": "projection-burn",
@@ -2850,13 +2269,6 @@
    "url": "https://ui-engine.pages.dev/r/quadrant-scope.json"
   },
   {
-   "name": "quick-actions-fab",
-   "title": "Quick Actions Fab",
-   "category": "app",
-   "description": "Floating action button expanding radial quick actions",
-   "url": "https://ui-engine.pages.dev/r/quick-actions-fab.json"
-  },
-  {
    "name": "quiz-flip-deck",
    "title": "Quiz Flip Deck",
    "category": "learn",
@@ -2876,20 +2288,6 @@
    "category": "content",
    "description": "One real sentence, given the whole room — quote mark as architecture (Watermelon testimonial base + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/quote-feature.json"
-  },
-  {
-   "name": "radar-chart",
-   "title": "Radar Chart",
-   "category": "app",
-   "description": "Radar/spider chart for multi-axis diagnostics — card-framed with kicker header, series legend hover lift",
-   "url": "https://ui-engine.pages.dev/r/radar-chart.json"
-  },
-  {
-   "name": "radial-gauge",
-   "title": "Radial Gauge",
-   "category": "app",
-   "description": "Notch gauge — Bklit arc/linear notch tracks, zone-colored fills, count-up center readout",
-   "url": "https://ui-engine.pages.dev/r/radial-gauge.json"
   },
   {
    "name": "recap",
@@ -2920,25 +2318,11 @@
    "url": "https://ui-engine.pages.dev/r/referral.json"
   },
   {
-   "name": "release-captain",
-   "title": "Release Captain",
-   "category": "app",
-   "description": "Ship control: run graph with rerun-failed, config diff, install snippet, maintenance cron, health strip while it rolls",
-   "url": "https://ui-engine.pages.dev/r/release-captain.json"
-  },
-  {
    "name": "report-unfold",
    "title": "Report Unfold",
    "category": "insight",
    "description": "Annual report cover that folds open on scroll revealing stat tiles",
    "url": "https://ui-engine.pages.dev/r/report-unfold.json"
-  },
-  {
-   "name": "research-bench",
-   "title": "Research Bench",
-   "category": "app",
-   "description": "Lab notebook: entries with cites, code run cells, dataset groups rail, version scrub, loading states that explain themselves",
-   "url": "https://ui-engine.pages.dev/r/research-bench.json"
   },
   {
    "name": "resource-list",
@@ -3002,13 +2386,6 @@
    "category": "content",
    "description": "Public roadmap — Now / Next / Later columns with status-badged item cards (shadcn/ui new-york-v4 + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/roadmap.json"
-  },
-  {
-   "name": "rooftop-ops",
-   "title": "Rooftop Ops",
-   "category": "app",
-   "description": "Venue night: hostess switchboard, wristband passes, wifi resilience on the tab rail, service log timeline",
-   "url": "https://ui-engine.pages.dev/r/rooftop-ops.json"
   },
   {
    "name": "rsvp-card",
@@ -3165,39 +2542,11 @@
    "url": "https://ui-engine.pages.dev/r/search.json"
   },
   {
-   "name": "security-posture",
-   "title": "Security Posture",
-   "category": "app",
-   "description": "SecOps review: posture dialog from the strip, role matrix, rotated keys, audit pipeline, credential hygiene meters",
-   "url": "https://ui-engine.pages.dev/r/security-posture.json"
-  },
-  {
-   "name": "segmented-control",
-   "title": "Segmented Control",
-   "category": "app",
-   "description": "iOS segmented control — shared spring thumb, icon+label, roving tabindex",
-   "url": "https://ui-engine.pages.dev/r/segmented-control.json"
-  },
-  {
-   "name": "service-lane-desk",
-   "title": "Service Lane Desk",
-   "category": "app",
-   "description": "Auto/shop lane: bay segment, damage photos queue, line edits, service history rail, vehicle keycards as passes",
-   "url": "https://ui-engine.pages.dev/r/service-lane-desk.json"
-  },
-  {
    "name": "services",
    "title": "Section: Services",
    "category": "content",
    "description": "Services — carded list of service offerings with pricing hints",
    "url": "https://ui-engine.pages.dev/r/services.json"
-  },
-  {
-   "name": "settings-hub",
-   "title": "Settings Hub",
-   "category": "app",
-   "description": "Account hub: segmented panes — profile (avatar upload queue), security (meter + secrets), plan (storage rings), prefs (switches)",
-   "url": "https://ui-engine.pages.dev/r/settings-hub.json"
   },
   {
    "name": "showcase",
@@ -3263,13 +2612,6 @@
    "url": "https://ui-engine.pages.dev/r/signup-split.json"
   },
   {
-   "name": "site-log-desk",
-   "title": "Site Log Desk",
-   "category": "app",
-   "description": "Construction daily log: progress photos queue, WBS tree, crew notes, pins on plan sheets, hours heatmap",
-   "url": "https://ui-engine.pages.dev/r/site-log-desk.json"
-  },
-  {
    "name": "skill-tree-rail",
    "title": "Skill Tree Rail",
    "category": "learn",
@@ -3277,32 +2619,11 @@
    "url": "https://ui-engine.pages.dev/r/skill-tree-rail.json"
   },
   {
-   "name": "smart-skeleton",
-   "title": "Smart Skeleton",
-   "category": "app",
-   "description": "Content-aware skeletons — why-loading tooltip, staged reveal on data arrival",
-   "url": "https://ui-engine.pages.dev/r/smart-skeleton.json"
-  },
-  {
-   "name": "social-scheduler",
-   "title": "Social Scheduler",
-   "category": "app",
-   "description": "Queue the week: cadence cron with next-runs, network segments, post composer with @mentions, heat of past reach, reply inbox",
-   "url": "https://ui-engine.pages.dev/r/social-scheduler.json"
-  },
-  {
    "name": "sound-of-brand",
    "title": "Sound Of Brand",
    "category": "branding",
    "description": "Sonic identity card waveform motif notes brand voice taglines with shimmer",
    "url": "https://ui-engine.pages.dev/r/sound-of-brand.json"
-  },
-  {
-   "name": "sparkline-cell",
-   "title": "Sparkline Cell",
-   "category": "app",
-   "description": "Table cell sparkline — hover crosshair tooltip, delta chip, anomaly dot",
-   "url": "https://ui-engine.pages.dev/r/sparkline-cell.json"
   },
   {
    "name": "sparkline-ledger",
@@ -3317,13 +2638,6 @@
    "category": "content",
    "description": "Product spec table with expandable groups and unit tooltips",
    "url": "https://ui-engine.pages.dev/r/spec-sheet.json"
-  },
-  {
-   "name": "split-check",
-   "title": "Split Check",
-   "category": "app",
-   "description": "Bill splitter with people chips, item assignment and per-person totals",
-   "url": "https://ui-engine.pages.dev/r/split-check.json"
   },
   {
    "name": "spotlight-pickup",
@@ -3380,13 +2694,6 @@
    "category": "engage",
    "description": "Composable property listing — media band, price head, facts band, agent row and viewing base as separate layers",
    "url": "https://ui-engine.pages.dev/r/stack-listing.json"
-  },
-  {
-   "name": "stack-onboard",
-   "title": "Stack: Onboarding",
-   "category": "app",
-   "description": "Composable onboarding stack — head, repeatable task rows, progress rail and action base",
-   "url": "https://ui-engine.pages.dev/r/stack-onboard.json"
   },
   {
    "name": "stack-pricing",
@@ -3452,13 +2759,6 @@
    "url": "https://ui-engine.pages.dev/r/status.json"
   },
   {
-   "name": "status-health-strip",
-   "title": "System Health",
-   "category": "app",
-   "description": "System health strip — service dots, incident ticker, region filter, sticky detail row",
-   "url": "https://ui-engine.pages.dev/r/status-health-strip.json"
-  },
-  {
    "name": "status-page",
    "title": "Status Page",
    "category": "insight",
@@ -3471,13 +2771,6 @@
    "category": "engage",
    "description": "Booking/checkout stepper — progress rail with live step states (Watermelon UI + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/stepper.json"
-  },
-  {
-   "name": "stepper-form",
-   "title": "Stepper Form",
-   "category": "app",
-   "description": "Validating multi-step form — per-step summary, dirty guards, deep-link steps",
-   "url": "https://ui-engine.pages.dev/r/stepper-form.json"
   },
   {
    "name": "steps",
@@ -3494,25 +2787,11 @@
    "url": "https://ui-engine.pages.dev/r/sticky-cookie.json"
   },
   {
-   "name": "sticky-group-list",
-   "title": "Sticky Groups",
-   "category": "app",
-   "description": "Dense grouped list with pinned section headers and per-header action slots",
-   "url": "https://ui-engine.pages.dev/r/sticky-group-list.json"
-  },
-  {
    "name": "sticky-header",
    "title": "Chrome: Sticky",
    "category": "chrome",
    "description": "Website preset — sticky-header",
    "url": "https://ui-engine.pages.dev/r/sticky-header.json"
-  },
-  {
-   "name": "storage-ring-meter",
-   "title": "Storage Rings",
-   "category": "app",
-   "description": "Stacked quota rings — Bklit progress-ring stack, hover-lift legend, count-up center, over-commit wash",
-   "url": "https://ui-engine.pages.dev/r/storage-ring-meter.json"
   },
   {
    "name": "story-horizontal-journal",
@@ -3557,32 +2836,11 @@
    "url": "https://ui-engine.pages.dev/r/streak-strip.json"
   },
   {
-   "name": "studio-board",
-   "title": "Studio Board",
-   "category": "app",
-   "description": "THE signature merge: a solari departures board as the live appointment display, KPI odometers, view segments, multi-select edits, board-version scrubber",
-   "url": "https://ui-engine.pages.dev/r/studio-board.json"
-  },
-  {
-   "name": "support-desk",
-   "title": "Support Desk",
-   "category": "app",
-   "description": "Agent console: search grouped by entity, assignee multiselect, ticket switchboard routing, snooze-able alerts",
-   "url": "https://ui-engine.pages.dev/r/support-desk.json"
-  },
-  {
    "name": "swatch-spectrum",
    "title": "Swatch Spectrum",
    "category": "branding",
    "description": "Color system explorer: click to copy token, contrast check, tint ramps",
    "url": "https://ui-engine.pages.dev/r/swatch-spectrum.json"
-  },
-  {
-   "name": "switch-audit-trail",
-   "title": "Audit Trail",
-   "category": "app",
-   "description": "Entity audit trail — field-diff rows, actor avatars, revert with reason prompt",
-   "url": "https://ui-engine.pages.dev/r/switch-audit-trail.json"
   },
   {
    "name": "switchboard-reveal",
@@ -3597,13 +2855,6 @@
    "category": "content",
    "description": "Sortable service/price list preset — menu-board for businesses (Watermelon UI + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/table.json"
-  },
-  {
-   "name": "tabs-overflow-strip",
-   "title": "Tabs Overflow",
-   "category": "app",
-   "description": "Tab strip — pinned tabs, middle-click close, overflow chevron menu, scroll shade",
-   "url": "https://ui-engine.pages.dev/r/tabs-overflow-strip.json"
   },
   {
    "name": "team",
@@ -3669,39 +2920,11 @@
    "url": "https://ui-engine.pages.dev/r/timeline-vertical.json"
   },
   {
-   "name": "toast-stack",
-   "title": "Toast Stack",
-   "category": "app",
-   "description": "Swipeable toast stack — per-card actions, position memory, pause-on-hover timer",
-   "url": "https://ui-engine.pages.dev/r/toast-stack.json"
-  },
-  {
-   "name": "token-input",
-   "title": "Token Input",
-   "category": "app",
-   "description": "Tokenizer input — paste splitting, dedupe, edit-as-tokens, backspace-select",
-   "url": "https://ui-engine.pages.dev/r/token-input.json"
-  },
-  {
    "name": "tone-ribbon",
    "title": "Tone Ribbon",
    "category": "branding",
    "description": "Voice ticker ribbon infinite slider of sayings in brand tone",
    "url": "https://ui-engine.pages.dev/r/tone-ribbon.json"
-  },
-  {
-   "name": "travel-desk",
-   "title": "Travel Desk",
-   "category": "app",
-   "description": "Itinerary ops: windows, leg rail, boarding passes issued as bookings land, offline traveller sync, ping center",
-   "url": "https://ui-engine.pages.dev/r/travel-desk.json"
-  },
-  {
-   "name": "tree-grid-table",
-   "title": "Tree Grid",
-   "category": "app",
-   "description": "Lazy expandable tree table — async children, keyboard indent, sticky columns",
-   "url": "https://ui-engine.pages.dev/r/tree-grid-table.json"
   },
   {
    "name": "trend-scrub",
@@ -3802,25 +3025,11 @@
    "url": "https://ui-engine.pages.dev/r/typography-outline.json"
   },
   {
-   "name": "undo-history-slider",
-   "title": "Version Scrubber",
-   "category": "app",
-   "description": "Time-travel undo — scrub version history, ghost preview, restore commit",
-   "url": "https://ui-engine.pages.dev/r/undo-history-slider.json"
-  },
-  {
    "name": "upload",
    "title": "Upload",
    "category": "engage",
    "description": "File dropzone preset — drag&drop, accept/size validation, async submit (Watermelon UI + Motion-Primitives)",
    "url": "https://ui-engine.pages.dev/r/upload.json"
-  },
-  {
-   "name": "upload-queue",
-   "title": "Upload Queue",
-   "category": "app",
-   "description": "Upload queue — per-file progress arcs, retry with backoff display, remaining-time",
-   "url": "https://ui-engine.pages.dev/r/upload-queue.json"
   },
   {
    "name": "value-orbit",
@@ -3905,20 +3114,6 @@
    "category": "engage",
    "description": "Website preset — waitlist-band",
    "url": "https://ui-engine.pages.dev/r/waitlist-band.json"
-  },
-  {
-   "name": "warehouse-scan",
-   "title": "Warehouse Scan",
-   "category": "app",
-   "description": "Scanner flow: bin token field, counted cells inline-edit + drag-scrub, discrepancy queue rail, sync jobs, offline resilience",
-   "url": "https://ui-engine.pages.dev/r/warehouse-scan.json"
-  },
-  {
-   "name": "waveform",
-   "title": "Waveform",
-   "category": "app",
-   "description": "Live signal waveform — morphing polyline over mirrored level bars, dashed centreline, holds a static frame when paused or reduced-motion",
-   "url": "https://ui-engine.pages.dev/r/waveform.json"
   },
   {
    "name": "wishlist-drawer",

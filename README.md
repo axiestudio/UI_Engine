@@ -1,18 +1,17 @@
 # UI workspace
 
-563 preset packages, organized by role in the page — `UI/<category>/<preset>/`
-(package names unchanged; import by name). The engine sidebar shows 564 presets
-(563 + home); **all 563 ship to the shadcn registry** (see Install below).
+448 preset packages, organized by role in the page — `UI/<category>/<preset>/`
+(package names unchanged; import by name). The engine sidebar shows 449 presets
+(448 + home); **all 448 ship to the shadcn registry** (see Install below).
 
 | Category | Count | Role / "when do I use it" |
 |---|---|---|
 | `chrome/` | 38 | The page chassis & system surfaces: header variants, footer, drawer, sticky action bar, announcement, search, consent, notifications, status, error, empty-state |
 | `hero/` | 75 | Opening statements: classic/scroll/ink/manifesto/product/ticker heroes, curtain intros, type animators + the zigzag scroll tunnel |
-| `content/` | 158 | Proof and narrative sections: features, bento, stats, steps, team & expert spotlights, timeline, gallery, blog, events, careers, changelog/roadmap, testimonials, FAQ, tables, newsletter & letter… plus the **device stage family** (desktop / laptop / tablet / mobile / responsive mockups) and the composable **stack-proof** |
+| `content/` | 159 | Proof and narrative sections: features, bento, stats, steps, team & expert spotlights, timeline, gallery, blog, events, careers, changelog/roadmap, testimonials, FAQ, tables, newsletter & letter… plus the **device stage family** (desktop / laptop / tablet / mobile / responsive mockups) and the composable **stack-proof** |
 | `commerce/` | 50 | Offers and conversion: cta, pricing, offer (flip-clock countdown), gift (flip card), vault (value receipt), menu, download, waitlist, poll, review ask, aftercare recap — plus the **layer-stack family** (burger builder / pricing card / receipt) |
 | `engage/` | 35 | Do-the-thing & trust: contact, auth, upload, choice, stepper, visit-us, schedule (hours+slots), place, facts, ritual, ambiance, promise |
 | `dnd/` | 24 | Drag & drop systems: kanban, sortable lists/grids/trees, form & page builders (dnd-kit) |
-| `app/` | 116 | Webapp surfaces: command palette, data tables, meters & KPIs, AI surfaces, desk layouts — one shared APP SYSTEM brandkit — incl. composable **stack-onboard** |
 | `branding/` | 25 | Brand & identity surfaces: logo systems, palette tools, tone/voice strips |
 | `insight/` | 19 | Analytics & observation decks |
 | `learn/` | 18 | Educational & course surfaces |
@@ -25,7 +24,7 @@ Authoritative map: [`CATEGORIES.json`](./CATEGORIES.json) (read by the engine si
 In any shadcn-initialized project (aliases + `cn()` + theme tokens):
 
 ```sh
-npx shadcn@latest add https://axiestudio.github.io/UI_Engine/registry/r/footer-cta.json
+npx shadcn@latest add https://ui-engine.pages.dev/r/footer-cta.json
 ```
 
 The CLI writes the raw `.tsx` into your repo (`@components/`, `@ui/`), installs
