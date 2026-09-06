@@ -305,6 +305,9 @@
     "dnd-file-dropzone",
     "dnd-sidebar-reorder"
   ],
+  "sidebar": [
+    "sidebar-solid"
+  ],
   "engage": [
     "contact",
     "auth",
@@ -439,12 +442,5 @@
     "gsap-scroll-ring",
     "status-page",
     "metrics-headline"
-  ],
-  "sidebar": [
-    "sidebar-quiet-rail",
-    "sidebar-gsap-cinema",
-    "sidebar-gooey-flow",
-    "sidebar-float-rail",
-    "sidebar-anime-glass"
   ]
 }

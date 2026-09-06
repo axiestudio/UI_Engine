@@ -4,7 +4,7 @@
  "title": "UI Engine — pre-built website sections",
  "homepage": "https://ui-engine.pages.dev/",
  "updated": "2026-09-06",
- "count": 430,
+ "count": 426,
  "install": "npx shadcn@latest add https://ui-engine.pages.dev/r/<name>.json",
  "items": [
   {
@@ -2451,39 +2451,11 @@
    "url": "https://ui-engine.pages.dev/r/showcase.json"
   },
   {
-   "name": "sidebar-anime-glass",
-   "title": "Sidebar: Glass Launcher",
+   "name": "sidebar-solid",
+   "title": "Sidebar: Solid",
    "category": "sidebar",
-   "description": "Glass tile launcher rail — react-bits GlassIcons, Floating UI preview cards, anime.js v4 stagger",
-   "url": "https://ui-engine.pages.dev/r/sidebar-anime-glass.json"
-  },
-  {
-   "name": "sidebar-float-rail",
-   "title": "Sidebar: Float Rail",
-   "category": "sidebar",
-   "description": "Collapsible icon rail — shadcn buttons, Floating UI hover labels, GSAP width choreography",
-   "url": "https://ui-engine.pages.dev/r/sidebar-float-rail.json"
-  },
-  {
-   "name": "sidebar-gooey-flow",
-   "title": "Sidebar: Gooey Switcher",
-   "category": "sidebar",
-   "description": "Gooey section switcher rail — react-bits GooeyNav + anime.js v4 scope-staggered panels",
-   "url": "https://ui-engine.pages.dev/r/sidebar-gooey-flow.json"
-  },
-  {
-   "name": "sidebar-gsap-cinema",
-   "title": "Sidebar: Cinema Nav",
-   "category": "sidebar",
-   "description": "Cinema rail — react-bits SplitText char-entrance headline on a GSAP-timeline nav, reduced-motion aware",
-   "url": "https://ui-engine.pages.dev/r/sidebar-gsap-cinema.json"
-  },
-  {
-   "name": "sidebar-quiet-rail",
-   "title": "Sidebar: Quiet Rail",
-   "category": "sidebar",
-   "description": "Quiet app rail — shadcn primitives + motion-primitives InView entrances, controlled collapse, token-only",
-   "url": "https://ui-engine.pages.dev/r/sidebar-quiet-rail.json"
+   "description": "Solid app sidebar — shadcn primitives (button, dropdown, select, avatar), Floating UI anchored panels, anime.js v4 motion, react-bits AnimatedList",
+   "url": "https://ui-engine.pages.dev/r/sidebar-solid.json"
   },
   {
    "name": "signal-flags",

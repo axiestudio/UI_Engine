@@ -2098,33 +2098,9 @@
       "category": "content"
     },
     {
-      "name": "sidebar-anime-glass",
-      "title": "Sidebar: Glass Launcher",
-      "description": "Glass tile launcher rail — react-bits GlassIcons, Floating UI preview cards, anime.js v4 stagger Companion styles: @import \"@/components/sidebar-anime-glass/sidebar-anime-glass.css\".",
-      "category": "sidebar"
-    },
-    {
-      "name": "sidebar-float-rail",
-      "title": "Sidebar: Float Rail",
-      "description": "Collapsible icon rail — shadcn buttons, Floating UI hover labels, GSAP width choreography Companion styles: @import \"@/components/sidebar-float-rail/sidebar-float-rail.css\".",
-      "category": "sidebar"
-    },
-    {
-      "name": "sidebar-gooey-flow",
-      "title": "Sidebar: Gooey Switcher",
-      "description": "Gooey section switcher rail — react-bits GooeyNav + anime.js v4 scope-staggered panels Companion styles: @import \"@/components/sidebar-gooey-flow/sidebar-gooey-flow.css\".",
-      "category": "sidebar"
-    },
-    {
-      "name": "sidebar-gsap-cinema",
-      "title": "Sidebar: Cinema Nav",
-      "description": "Cinema rail — react-bits SplitText char-entrance headline on a GSAP-timeline nav, reduced-motion aware Companion styles: @import \"@/components/sidebar-gsap-cinema/sidebar-gsap-cinema.css\".",
-      "category": "sidebar"
-    },
-    {
-      "name": "sidebar-quiet-rail",
-      "title": "Sidebar: Quiet Rail",
-      "description": "Quiet app rail — shadcn primitives + motion-primitives InView entrances, controlled collapse, token-only Companion styles: @import \"@/components/sidebar-quiet-rail/sidebar-quiet-rail.css\".",
+      "name": "sidebar-solid",
+      "title": "Sidebar: Solid",
+      "description": "Solid app sidebar — shadcn primitives (button, dropdown, select, avatar), Floating UI anchored panels, anime.js v4 motion, react-bits AnimatedList Companion styles: @import \"@/components/sidebar-solid/sidebar-solid.css\".",
       "category": "sidebar"
     },
     {

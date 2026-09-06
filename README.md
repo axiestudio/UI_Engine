@@ -1,8 +1,8 @@
 # UI workspace
 
-430 preset packages, organized by role in the page — `UI/<category>/<preset>/`
-(package names unchanged; import by name). The engine sidebar shows 431 presets
-(430 + home); **all 430 ship to the shadcn registry** (see Install below).
+426 preset packages, organized by role in the page — `UI/<category>/<preset>/`
+(package names unchanged; import by name). The engine sidebar shows 427 presets
+(426 + home); **all 426 ship to the shadcn registry** (see Install below).
 
 | Category | Count | Role / "when do I use it" |
 |---|---|---|
@@ -12,9 +12,9 @@
 | `commerce/` | 50 | Offers and conversion: cta, pricing, offer (flip-clock countdown), gift (flip card), vault (value receipt), menu, download, waitlist, poll, review ask, aftercare recap — plus the **layer-stack family** (burger builder / pricing card / receipt) |
 | `engage/` | 35 | Do-the-thing & trust: contact, auth, upload, choice, stepper, visit-us, schedule (hours+slots), place, facts, ritual, ambiance, promise |
 | `dnd/` | 24 | Drag & drop systems: kanban, sortable lists/grids/trees, form & page builders (dnd-kit) |
+| `sidebar/` | 1 | Sidebar systems: solid rail — a complete `[sidebar \| content]` app shell: workspace switcher, primary nav, presence select, account menu, collapsible rail; built-in mobile (off-canvas below `md`), `mobile={false}` pins the desktop rail so hosts can mount it in their own sheet |
 | `branding/` | 25 | Brand & identity surfaces: logo systems, palette tools, tone/voice strips |
 | `insight/` | 19 | Analytics & observation decks |
-| `sidebar/` | 5 | Sidebar systems: quiet rail, cinema nav, gooey switcher, float rail, glass launcher — each a full `rail + content` showcase surface; built-in mobile (off-canvas below `md`, float-rail clamps to its 72px strip), `mobile={false}` pins the desktop rail so hosts can mount it in their own sheet |
 
 Authoritative map: [`CATEGORIES.json`](./CATEGORIES.json) (read by the engine sidebar grouping and `scripts/create-preset.py --cat`).
 

@@ -1,6 +1,6 @@
 # UI Engine registry — full item list
 
-> 430 pre-built website sections, installable with `npx shadcn@latest add https://ui-engine.pages.dev/r/<name>.json`. Canonical machine catalog: https://ui-engine.pages.dev/r/catalog.json
+> 426 pre-built website sections, installable with `npx shadcn@latest add https://ui-engine.pages.dev/r/<name>.json`. Canonical machine catalog: https://ui-engine.pages.dev/r/catalog.json
 
 ## branding
 
@@ -453,9 +453,5 @@
 
 ## sidebar
 
-- [sidebar-anime-glass]( https://ui-engine.pages.dev/r/sidebar-anime-glass.json ): Sidebar: Glass Launcher
-- [sidebar-float-rail]( https://ui-engine.pages.dev/r/sidebar-float-rail.json ): Sidebar: Float Rail
-- [sidebar-gooey-flow]( https://ui-engine.pages.dev/r/sidebar-gooey-flow.json ): Sidebar: Gooey Switcher
-- [sidebar-gsap-cinema]( https://ui-engine.pages.dev/r/sidebar-gsap-cinema.json ): Sidebar: Cinema Nav
-- [sidebar-quiet-rail]( https://ui-engine.pages.dev/r/sidebar-quiet-rail.json ): Sidebar: Quiet Rail
+- [sidebar-solid]( https://ui-engine.pages.dev/r/sidebar-solid.json ): Sidebar: Solid
 
