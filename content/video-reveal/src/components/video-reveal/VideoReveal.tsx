@@ -65,10 +65,11 @@ export function VideoReveal({
           className="aspect-video w-full object-cover will-change-[clip-path]"
           src={src}
         />
-        <Button type='button' aria-label="Play" className="absolute inset-0 flex items-center justify-center text-background opacity-0" variant="default">
+        {/* Controls sit directly on the video in both modes → absolute white (text-background flips dark in dark mode). */}
+        <Button type='button' aria-label="Play" className="absolute inset-0 flex items-center justify-center text-white opacity-0" variant="default">
           <Play className="h-10 w-10" />
         </Button>
-        {caption && <p className="pointer-events-none absolute inset-x-0 bottom-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-background/80">{caption}</p>}
+        {caption && <p className="pointer-events-none absolute inset-x-0 bottom-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">{caption}</p>}
       </div>
     
   </div>

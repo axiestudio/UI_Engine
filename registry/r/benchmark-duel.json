@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "benchmark-duel",
+  "type": "registry:block",
+  "title": "Benchmark Duel",
+  "description": "You versus industry tug-of-war benchmark bar with tension knot Companion styles: @import \"@/components/benchmark-duel/benchmark-duel.css\".",
+  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "categories": [
+    "ui-engine",
+    "insight"
+  ],
+  "dependencies": [
+    "class-variance-authority@^0.7.1",
+    "clsx@^2.1.1",
+    "lucide-react@^1.34.0",
+    "motion@^13.1.1",
+    "tailwind-merge@^3.6.0"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "benchmark-duel/components/benchmark-duel/BenchmarkDuel.tsx",
+      "type": "registry:component",
+      "target": "@components/benchmark-duel/BenchmarkDuel.tsx",
+      "content": "/**\n * benchmark-duel — vendored from the UI Engine preset library (axiestudio).\n * Install: npx shadcn@latest add https://axiestudio.github.io/UI_Engine/registry/r/benchmark-duel.json\n * Source of truth: UI/ — do not edit vendored copies blindly.\n */\nimport * as React from \"react\"\nimport { motion } from \"motion/react\"\nimport { cn } from \"@/lib/utils\"\n\n\nexport type BenchmarkDuelProps = {\n  eyebrow?: string\n  title?: string\n  subtitle?: string\n  you: { label: string; value: number }\n  industry: { label: string; value: number }\n  unit?: string\n  max?: number\n  className?: string\n}\n\nexport function BenchmarkDuel({\n  eyebrow = \"BENCHMARK · HEAD TO HEAD\",\n  title = \"Benchmark vs. median\",\n  subtitle = \"Same scale, same unit.\",\n  you = { label: \"Your team\", value: 94 },\n  industry = { label: \"Industry median\", value: 58 },\n  unit = \"% on-time\",\n  max = 100,\n  className,\n}: BenchmarkDuelProps) {\n  const gap = Math.round(you.value - industry.value)\n  const ahead = gap >= 0\n  const reduce = React.useMemo(() => typeof window !== \"undefined\" && window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches, [])\n\n  const Row = ({ item, tone, delay }: { item: { label: string; value: number }; tone: \"you\" | \"ind\"; delay: number }) => (\n    <div role=\"meter\" aria-valuenow={item.value} aria-valuemin={0} aria-valuemax={max} aria-label={`${item.label}: ${item.value} ${unit}`}>\n      <div className=\"flex items-baseline justify-between gap-4\">\n        <span className={cn(\"font-mono text-[11px] font-semibold uppercase tracking-[0.12em]\", tone === \"you\" ? \"text-foreground\" : \"text-muted-foreground\")}>\n          {item.label}\n        </span>\n        <span className={cn(\"font-display text-[22px] font-semibold tabular-nums tracking-[-0.02em]\", tone === \"you\" ? \"text-foreground\" : \"text-muted-foreground\")}>\n          {item.value}\n          <span className=\"ml-1 text-[12px] font-medium tracking-normal text-muted-foreground\">{unit}</span>\n        </span>\n      </div>\n      <div className=\"mt-2.5 h-2.5 overflow-hidden rounded-full bg-muted\">\n        <motion.div\n          initial={reduce ? undefined : { width: 0 }}\n          whileInView={{ width: `${Math.min(100, (item.value / max) * 100)}%` }}\n          viewport={{ once: true }}\n          transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}\n          className={cn(\"h-full rounded-full\", tone === \"you\" ? \"bg-foreground\" : \"bg-muted-foreground/40\")}\n        />\n      </div>\n      <span className=\"sr-only\">{item.value} out of {max} {unit}</span>\n    </div>\n  )\n\n  return (\n    <section className={cn(\"relative isolate w-full overflow-hidden\", className)}>\n  <div className={cn(\"relative mx-auto w-full px-4 sm:px-6 lg:px-8\", \"py-20 sm:py-24\")} style={{ maxWidth: (760), [\"--shell-w\" as string]: `${(760)}px` }}>\n\n      <span className={cn(\"inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]\", \"text-muted-foreground\")}><span aria-hidden className=\"inline-block size-[5px] rotate-45 bg-current\" />{eyebrow}</span>\n      <h2 className=\"mt-3 font-display text-[28px] font-semibold leading-[1.05] tracking-[-0.022em] text-foreground sm:text-[34px]\">{title}</h2>\n      {subtitle && <p className=\"mt-2 max-w-[48ch] text-[13px] leading-6 text-muted-foreground\">{subtitle}</p>}\n\n      <div className=\"mt-8 space-y-6\">\n        <Row item={you} tone=\"you\" delay={0.08} />\n        <Row item={industry} tone=\"ind\" delay={0.18} />\n      </div>\n\n      <div className=\"mt-8 flex items-start gap-4 rounded-xl border bg-card p-4 shadow-sm\">\n        <span\n          aria-hidden\n          className={cn(\n            \"grid size-11 shrink-0 place-items-center rounded-lg border font-display text-[15px] font-semibold tabular-nums\",\n            ahead ? \"border-success/20 bg-success-muted text-success\" : \"border-border bg-muted text-muted-foreground\",\n          )}\n        >\n          {ahead ? `+${gap}` : gap}\n        </span>\n        <div className=\"min-w-0\">\n          <p className=\"text-[13px] font-semibold leading-6 text-foreground\">\n            {Math.abs(gap)} point{gap === 1 || gap === -1 ? \"\" : \"s\"} {ahead ? \"ahead of\" : \"behind\"} the median\n          </p>\n          <p className=\"text-[13px] leading-5 text-muted-foreground\">\n            {ahead ? \"The gap is widening — the system is pulling your way.\" : \"Within striking distance. The next improvement closes it.\"}\n          </p>\n        </div>\n      </div>\n\n      <p className=\"mt-3 font-mono text-[11px] font-medium tracking-wide text-muted-foreground\">Scale 0–{max} · Compared on the same unit.</p>\n    \n  </div>\n</section>\n  )\n}\n"
+    },
+    {
+      "path": "benchmark-duel/benchmark-duel.css",
+      "type": "registry:file",
+      "target": "@components/benchmark-duel/benchmark-duel.css",
+      "content": "/* benchmark-duel companion styles — @import this file in your CSS (tokens come from your theme). */\n/* ─── Professional Insight Brandkit ───────────────────────────────────────\n   Palette: Neutral enterprise neutrals + chart tokens. Jet black #121212\n   replaced with layered neutral 950/900 for ink bands, success/warning\n   tokens added for data semantics. Every hard-coded emerald/amber/red\n   maps to these tokens.\n   ---------------------------------------------------------------------- */\n\n\n\n\n::selection {\n  background: hsl(var(--foreground));\n  color: hsl(var(--background));\n}\n.no-scrollbar::-webkit-scrollbar { display: none; }\n.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }\n\n/* professional focus ring fallback */\n:focus-visible {\n  outline: 2px solid hsl(var(--ring));\n  outline-offset: 2px;\n}\n"
+    }
+  ]
+}

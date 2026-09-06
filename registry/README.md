@@ -1,37 +1,56 @@
 # registry — shadcn-compatible distribution channel
 
-Generated from the vendored sources by `generate.py` (single source of truth: `UI/*/src`).
-
-```
-registry.json      # index — 19 items
-r/<name>.json      # per-preset manifest with full file contents (registry-item schema)
-```
-
-## Consume (one command, own the source)
-
-In any project with shadcn set up (Tailwind + the standard `cn()`/alias):
+One command, own the source. In any shadcn-initialized project:
 
 ```sh
-npx shadcn add https://<your-host>/r/steps.json
+npx shadcn@latest add https://axiestudio.github.io/UI_Engine/registry/r/footer-cta.json
 ```
 
-The CLI writes the raw `.tsx` into the consumer's repo (`components/`, `lib/`), installs the infra deps from the item's `dependencies` (`motion`, `radix-ui`, `lucide-react`, …), and that's it — the code is theirs, editable, no runtime registry, no npm package.
+The CLI writes the raw `.tsx` into the consumer's repo (`@components/`, `@ui/`),
+installs the npm deps from the item's `dependencies` (`motion`, `lucide-react`,
+…), asks before overwriting existing files — and that's it. The code is theirs:
+editable, no runtime registry, no npm package.
 
-## Host (any static host)
+## Layout
 
-Deploy this folder as static files. Every URL in `presetSources`/headers is metadata only — the CLI needs nothing but these JSONs. Examples:
+```
+registry.json      # index — every preset (name/title/description/category)
+r/<name>.json      # per-preset manifest, registry-item schema, full file contents
+```
 
-- GitHub Pages: push `registry/` to a `gh-pages` branch → `https://<user>.github.io/<repo>/r/steps.json`
-- Vercel/Netlify: point a project at this folder
+Each item ships **only the files its component actually imports** (import-graph
+reachability from the preset's `src/index.ts`): the section component, exactly
+the `ui/` + `primitives/` files it uses, and a cleaned companion CSS file when
+the preset needs more than theme tokens (`@import` it in your CSS — see the
+item `description`). `lib/utils.ts` is intentionally never shipped: initialized
+projects already have it and the CLI provisions it on `init`.
 
-## Regenerate
+`registryDependencies` stays empty on purpose: our vendored `ui/*` files carry
+project-specific variants, so inlining them (with the CLI's overwrite prompt as
+skip-if-exists) is more correct than pointing at canonical shadcn components.
 
-After editing any package's sources:
+## Regenerate (single source of truth: `UI/*/src`)
 
 ```sh
-python3 UI/registry/generate.py
+bun run --cwd engine generate:distribution
 ```
 
-## Themes/tokens note
+This runs `engine/scripts/generate-distribution.ts`, which writes here AND
+mirrors to `engine/public/r/` (dev-server DRY RUN + Cloudflare engine deploy —
+same bytes, verified identical). Never hand-edit generated JSON; never edit
+only one of the two locations.
 
-Items ship components only, not our `index.css` brandkit. Consumers render inside projects that already define the standard shadcn HSL tokens (`--background`, `--foreground`, `--primary`, `--radius`, …). Ship `UI/*/src/index.css` tokens as a separate style registry item later if desired.
+## Host
+
+Any static host. The `UI/` subtree is pushed to the public repo, so these files
+are live wherever that repo's Pages serves them:
+
+- Same-origin with the engine deploy (Cloudflare): `<engine-origin>/r/<name>.json`
+- GitHub path (if Pages is enabled on the public repo): `<pages-origin>/registry/r/<name>.json`
+
+## Consumer prerequisites
+
+- A shadcn-initialized project (aliases `@components`/`@ui`/`@lib` + `cn()` util).
+- Tailwind theme tokens the presets use: `--background/--foreground`,
+  `--muted/--muted-foreground`, `--border`, `--primary`, `--font-display`, etc.
+  (any shadcn theme provides these).

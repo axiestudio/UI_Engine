@@ -74,10 +74,11 @@ export function HeroImageSequence({
           ))}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
         </div>
-        <div className="relative z-10 w-full bg-gradient-to-t from-black/60 to-transparent p-8 pb-14 text-background">
-          <MonoLabel className="text-background/60">{eyebrow}</MonoLabel>
+        {/* Copy sits on the photo + dark scrim in both modes, so it must be absolute white — text-background flips dark in dark mode. */}
+        <div className="relative z-10 w-full bg-gradient-to-t from-black/60 to-transparent p-8 pb-14 text-white">
+          <MonoLabel className="text-white/60">{eyebrow}</MonoLabel>
           <h2 className="mt-2 font-display text-3xl font-black tracking-[-0.03em] sm:text-5xl">{title}</h2>
-          <p className="mt-2 font-mono text-[11px] font-bold uppercase tracking-widest text-background/50">frame {frame + 1} / {srcs.length}</p>
+          <p className="mt-2 font-mono text-[11px] font-bold uppercase tracking-widest text-white/50">frame {frame + 1} / {srcs.length}</p>
         </div>
       </div>
     </section>

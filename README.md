@@ -1,27 +1,55 @@
 # UI workspace
 
-555 presets, organized by role in the page — `UI/<category>/<preset>/` (package names unchanged; import by name).
+563 preset packages, organized by role in the page — `UI/<category>/<preset>/`
+(package names unchanged; import by name). The engine sidebar shows 564 presets
+(563 + home); **all 563 ship to the shadcn registry** (see Install below).
 
-| Category | Role / "when do I use it" |
-|---|---|
-| `chrome/` (34) | The page chassis & system surfaces: header variants, footer, drawer, sticky action bar, announcement, search, consent, notifications, status, error, empty-state |
-| `hero/` (72) | Opening statements: classic/scroll/ink/manifesto/product/ticker heroes, curtain intros, type animators + the zigzag scroll tunnel |
-| `content/` (141) | Proof and narrative sections: features, bento, stats, steps, team & expert spotlights, timeline, gallery, blog, events, careers, changelog/roadmap, testimonials, FAQ, tables, newsletter & letter… plus the **device stage family** (desktop / laptop / tablet / mobile / responsive mockups) and the composable **stack-proof** |
-| `commerce/` (40) | Offers and conversion: cta, pricing, offer (flip-clock countdown), gift (flip card), vault (value receipt), menu, download, waitlist, poll, review ask, aftercare recap — plus the **layer-stack family** (burger builder / pricing card / receipt) |
-| `engage/` (28) | Do-the-thing & trust: contact, auth, upload, choice, stepper, visit-us, schedule (hours+slots), place, facts, ritual, ambiance, promise |
-| `dnd/` (24) | Drag & drop systems: kanban, sortable lists/grids/trees, form & page builders (dnd-kit) |
-| `app/` (102) | Webapp surfaces: command palette, data tables, meters & KPIs, AI surfaces, desk layouts — one shared APP SYSTEM brandkit — incl. composable **stack-onboard** |
-| `branding/` (23) | Brand & identity surfaces: logo systems, palette tools, tone/voice strips |
-| `insight/` (14) | Analytics & observation decks |
-| `learn/` (13) | Educational & course surfaces |
-| `sidebar/` (5) | Sidebar systems: quiet rail, cinema nav, gooey switcher, float rail, glass launcher — each a full `rail + content` showcase surface; built-in mobile (off-canvas below `md`, float-rail clamps to its 72px strip), `mobile={false}` pins the desktop rail so hosts can mount it in their own sheet |
+| Category | Count | Role / "when do I use it" |
+|---|---|---|
+| `chrome/` | 38 | The page chassis & system surfaces: header variants, footer, drawer, sticky action bar, announcement, search, consent, notifications, status, error, empty-state |
+| `hero/` | 75 | Opening statements: classic/scroll/ink/manifesto/product/ticker heroes, curtain intros, type animators + the zigzag scroll tunnel |
+| `content/` | 158 | Proof and narrative sections: features, bento, stats, steps, team & expert spotlights, timeline, gallery, blog, events, careers, changelog/roadmap, testimonials, FAQ, tables, newsletter & letter… plus the **device stage family** (desktop / laptop / tablet / mobile / responsive mockups) and the composable **stack-proof** |
+| `commerce/` | 50 | Offers and conversion: cta, pricing, offer (flip-clock countdown), gift (flip card), vault (value receipt), menu, download, waitlist, poll, review ask, aftercare recap — plus the **layer-stack family** (burger builder / pricing card / receipt) |
+| `engage/` | 35 | Do-the-thing & trust: contact, auth, upload, choice, stepper, visit-us, schedule (hours+slots), place, facts, ritual, ambiance, promise |
+| `dnd/` | 24 | Drag & drop systems: kanban, sortable lists/grids/trees, form & page builders (dnd-kit) |
+| `app/` | 116 | Webapp surfaces: command palette, data tables, meters & KPIs, AI surfaces, desk layouts — one shared APP SYSTEM brandkit — incl. composable **stack-onboard** |
+| `branding/` | 25 | Brand & identity surfaces: logo systems, palette tools, tone/voice strips |
+| `insight/` | 19 | Analytics & observation decks |
+| `learn/` | 18 | Educational & course surfaces |
+| `sidebar/` | 5 | Sidebar systems: quiet rail, cinema nav, gooey switcher, float rail, glass launcher — each a full `rail + content` showcase surface; built-in mobile (off-canvas below `md`, float-rail clamps to its 72px strip), `mobile={false}` pins the desktop rail so hosts can mount it in their own sheet |
 
 Authoritative map: [`CATEGORIES.json`](./CATEGORIES.json) (read by the engine sidebar grouping and `scripts/create-preset.py --cat`).
+
+## Install any preset (shadcn registry — one command, own the source)
+
+In any shadcn-initialized project (aliases + `cn()` + theme tokens):
+
+```sh
+npx shadcn@latest add https://axiestudio.github.io/UI_Engine/registry/r/footer-cta.json
+```
+
+The CLI writes the raw `.tsx` into your repo (`@components/`, `@ui/`), installs
+the npm deps from the item manifest (`motion`, `lucide-react`, …), and asks
+before overwriting files you already have. The code is yours after that:
+editable, no runtime registry, no npm package. Every preset also carries a
+companion CSS file when it needs more than theme tokens (`@import` it — the
+manifest `description` says so).
+
+Regenerate after editing any package's sources (single source of truth:
+`UI/*/src` — never hand-edit generated JSON):
+
+```sh
+bun run --cwd engine generate:distribution
+```
+
+This writes `UI/registry/r/*.json` (+ `registry.json` index) and mirrors the
+same bytes to `engine/public/r/` (dev-server DRY RUN + engine deploy).
+Details: [`UI/registry/README.md`](./registry/README.md).
 
 ## Path invariants (do not regress)
 - Engine Tailwind scans **`../UI/*/*/src/**/*.{ts,tsx}`** — one wildcard, survives any future regrouping.
 - Package names (npm identifiers) are the stable key; workspace scripts address them **by name** (`--workspace=<name>`), never by path.
-- New presets: `python3 scripts/create-preset.py NAME --cat content …` then add to `CATEGORIES.json`, root `workspaces` is already glob-based.
+- New presets: `python3 scripts/create-preset.py NAME --cat content …` then add to `CATEGORIES.json`, root `workspaces` is already glob-based. Then wire into `engine/package.json` (`file:../UI/<cat>/<name>`), build its `dist/`, and regenerate sources + registry so sidebar, source panel, and shadcn all see it.
 
 ## Embedding fixed chrome in constrained shells
 Standalone sites want cookie/consent bars, headers and action bars pinned to the **viewport** —
