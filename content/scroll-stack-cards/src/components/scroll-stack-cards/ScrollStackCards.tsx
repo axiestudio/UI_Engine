@@ -28,7 +28,7 @@ export function ScrollStackCards({ eyebrow = "DECK", cards = DEFAULT_CARDS, tone
   const runway = `${cards.length * 100 + 40}vh`
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85])
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <p className={cn("pointer-events-none absolute top-20 z-20 text-center font-mono text-[11px] font-bold uppercase tracking-[0.3em]", ink ? "text-background/50" : "text-muted-foreground")}>{eyebrow}</p>
         <motion.div style={{ scale }} className="relative h-[420px] w-[320px] sm:w-[360px]">

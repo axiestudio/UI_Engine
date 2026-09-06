@@ -28,7 +28,7 @@ export function HeroScrollScene({ eyebrow = "SCENE", scenes = DEFAULT_SCENES, cl
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => scrollYProgress.on("change", (v) => setIdx(Math.min(scenes.length - 1, Math.floor(v * scenes.length)))), [scrollYProgress, scenes.length])
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-foreground text-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-foreground text-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
         <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 pb-4 sm:px-8">
           <MonoLabel className="text-background/55">{eyebrow}</MonoLabel>

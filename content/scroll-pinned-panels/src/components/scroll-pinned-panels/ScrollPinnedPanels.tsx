@@ -24,7 +24,7 @@ export function ScrollPinnedPanels({ eyebrow = "PANELS", panels = DEFAULT_PANELS
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
   const runway = `${panels.length * 90}vh`
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="absolute left-0 top-6 w-full px-5 sm:px-8">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</p>

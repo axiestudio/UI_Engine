@@ -112,7 +112,7 @@ export function ApertureHero({ img, kicker = "THROUGH THE LENS", title, sub, cta
 
   if (controlled) return <div className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--lens))] p-4", className)}>{Frame}</div>
   return (
-    <div ref={wrapRef} className={cn("relative isolate w-full overflow-hidden bg-[hsl(var(--lens))]", className)} style={{ height: `max(${height}, 100vh)` }}>
+    <div ref={wrapRef} className={cn("relative isolate w-full bg-[hsl(var(--lens))]", className)} style={{ height: `max(${height}, 100vh)` }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">{Frame}</div>
     </div>
   )

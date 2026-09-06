@@ -32,7 +32,7 @@ export function ScrollPathFollowing({ eyebrow = "ROUTE", stops = DEFAULT_STOPS, 
   const [active, setActive] = React.useState(0)
   React.useEffect(() => scrollYProgress.on("change", (v) => setActive(Math.min(stops.length - 1, Math.floor(v * stops.length)))), [scrollYProgress, stops.length])
   return (
-    <section className={cn("relative isolate w-full overflow-hidden", tone === 'ink' && "bg-foreground", cn("relative", className))}>
+    <section className={cn("relative isolate w-full", tone === 'ink' && "bg-foreground", cn("relative", className))}>
   <span aria-hidden className={cn("pointer-events-none absolute bottom-0 left-1/2 w-full max-w-[var(--shell-w)] -translate-x-1/2 border-b border-dashed", tone === 'ink' ? "border-background/10" : "border-border")} />
   <div className={cn("relative mx-auto w-full px-5 sm:px-8", "py-20 sm:py-24")} style={{ maxWidth: (920), ["--shell-w" as string]: `${(920)}px` }}>
 

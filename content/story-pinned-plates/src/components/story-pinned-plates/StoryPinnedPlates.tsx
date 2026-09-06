@@ -25,7 +25,7 @@ export function StoryPinnedPlates({ eyebrow = "PLATES", plates = DEFAULT_PLATES,
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
   const runway = `${plates.length * 90}vh`
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <div className="absolute left-0 top-6 w-full px-5 sm:px-8">
           <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", "text-muted-foreground")}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>

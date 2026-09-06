@@ -50,7 +50,7 @@ export function FilmStrip({ frames, eyebrow = "THE REEL", title, height = "320vh
   }
 
   return (
-    <div ref={wrapRef} className={cn("relative isolate overflow-hidden w-full", className)} style={{ height }}>
+    <div ref={wrapRef} className={cn("relative isolate w-full", className)} style={{ height }}>
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-background">
         <HeadLine eyebrow={eyebrow} title={title} idx={idx} total={frames.length} />
         <motion.div style={{ x }} className="mt-8 flex w-max gap-6 pl-[8vw] will-change-transform">

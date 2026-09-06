@@ -36,9 +36,9 @@ export function HeroStickyFullscreen({
   const coverOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4])
 
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
-      {/* pinned hero */}
-      <div className="sticky top-0 flex h-full min-h-screen items-center justify-center overflow-hidden">
+    <section ref={ref} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
+      {/* pinned hero — viewport-height child, else sticky has no travel room */}
+      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <motion.div style={{ scale, opacity: coverOpacity }} className="absolute inset-0">
           <img src={cover.src} alt={cover.alt} className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />

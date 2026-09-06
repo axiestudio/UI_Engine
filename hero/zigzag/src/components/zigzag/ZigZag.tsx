@@ -286,7 +286,7 @@ export function ZigZag({
   return (
     <div
       ref={wrapRef}
-      className={cn("relative isolate w-full overflow-hidden bg-background", !hideBorder && "border-t", className)}
+      className={cn("relative isolate w-full bg-background", !hideBorder && "border-t", className)}
       style={{ height, ["--vehicle-bg" as string]: "hsl(var(--foreground))", ["--vehicle-water" as string]: "hsl(var(--primary))" }}
     >
       <div className="sticky top-0 h-[100svh] overflow-hidden">

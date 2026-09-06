@@ -55,7 +55,7 @@ export function CurtainZoom({
   return (
     <div
       ref={mode === "stage" ? stageRef : undefined}
-      className={cn("relative isolate w-full overflow-hidden", mode === "overlay" && "min-h-[60vh]", className)}
+      className={cn("relative isolate w-full", mode === "overlay" && "min-h-[60vh]", className)}
       style={mode === "stage" ? { height: stageHeight } : undefined}
     >
       <div

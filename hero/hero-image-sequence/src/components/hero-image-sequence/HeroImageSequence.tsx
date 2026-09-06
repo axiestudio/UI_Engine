@@ -57,8 +57,10 @@ export function HeroImageSequence({
     return () => { window.removeEventListener("scroll", onScroll); unsub(); cancelAnimationFrame(raf) }
   }, [inView, srcs.length, spring, progress])
 
+  // No overflow-hidden on the runway: it would trap the sticky viewport
+  // (hidden overflow = scroll container) and pinning would never engage.
   return (
-    <section ref={ref} className="relative isolate w-full overflow-hidden bg-foreground" style={{ height: runway }}>
+    <section ref={ref} className="relative isolate w-full bg-foreground" style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-end justify-center overflow-hidden">
         <div className="absolute inset-0">
           {srcs.map((s, i) => (

@@ -33,7 +33,7 @@ export function HeroVideoScrub({ eyebrow = "SCRUB", title = "The film is in your
   }, [scrollYProgress])
   const clipX = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-5 sm:px-8 lg:px-12">
         <div className="relative h-[72vh] w-full max-w-[1200px] overflow-hidden rounded-[24px] bg-foreground">
           <video ref={videoRef} className="h-full w-full object-cover" src={src} muted playsInline preload="auto" />

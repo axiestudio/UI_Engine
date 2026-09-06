@@ -204,7 +204,7 @@ export function Header(props: HeaderProps = {}) {
         className={cn(
           "top-0 z-50 border-b ",
           position === "fixed"
-            ? "absolute left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)] w-auto"
+            ? "fixed left-[var(--fixed-inset-left,0px)] right-[var(--fixed-inset-right,0px)] w-auto"
             : "sticky w-full",
           scrolled
             ? "border-border bg-background/90 supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_0_0_hsl(var(--border)),0_8px_24px_-16px_hsl(var(--foreground)/0.16)]"

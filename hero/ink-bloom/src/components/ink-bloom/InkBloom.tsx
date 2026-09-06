@@ -66,7 +66,7 @@ export function InkBloom({ kicker = "静 — STILLNESS", title, sub, cta, height
   )
 
   if (mode === "app") {
-    return <div className={cn("relative isolate overflow-hidden bg-[hsl(var(--xuan))] py-4 text-[hsl(var(--sumi))]", className)}><div className="[&>*]:!h-auto [&_h1]:mt-3">{Head}</div><Grain opacity={0.05} /></div>
+    return <div className={cn("relative isolate bg-[hsl(var(--xuan))] py-4 text-[hsl(var(--sumi))]", className)}><div className="[&>*]:!h-auto [&_h1]:mt-3">{Head}</div><Grain opacity={0.05} /></div>
   }
   return (
     <div ref={wrapRef} className={cn("relative isolate bg-[hsl(var(--xuan))] text-[hsl(var(--sumi))]", className)} style={{ height }}>

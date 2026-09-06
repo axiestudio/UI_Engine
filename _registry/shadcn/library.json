@@ -4,16 +4,28 @@
   "homepage": "https://ui.shadcn.com",
   "kind": "registry",
   "tier": "foundation",
-  "responsibility": "Base-kit fallback for items the watermelon snapshot does not serve (scroll-area, command, carousel, input-group, button-group, dropdown-menu parity…). Watermelon remains the PRIMARY base-kit source — only fall back here when UI/_registry/watermelon/r/<item>.json is absent.",
+  "responsibility": "Base-kit fallback for items the watermelon snapshot does not serve (scroll-area, command, carousel, input-group, button-group, resizable, dropdown-menu parity\u2026). Watermelon remains the PRIMARY base-kit source \u2014 only fall back here when UI/_registry/watermelon/r/<item>.json is absent.",
   "snapshotDate": "2026-09-01",
   "upstream": "https://ui.shadcn.com/r/styles/new-york-v4/<name>.json",
   "consume": "create-preset.py --wm <item> (falls back here) or vendor-into.py",
-  "items": ["scroll-area", "command", "carousel", "input-group", "button-group"],
-  "notes": "command → imports dialog (rewrite @/registry/new-york-v4/ui/* → @/components/ui/*); carousel → embla-carousel-react; input-group/button-group need button+input+textarea+separator vendored (already present in presets).",
+  "items": [
+    "button-group",
+    "carousel",
+    "command",
+    "input-group",
+    "resizable",
+    "scroll-area"
+  ],
+  "notes": "command \u2192 imports dialog (rewrite @/registry/new-york-v4/ui/* \u2192 @/components/ui/*); carousel \u2192 embla-carousel-react; input-group/button-group need button+input+textarea+separator vendored (already present in presets).",
   "packages": {
     "radix-ui": "^1.6.7",
     "cmdk": "^1.1.1",
     "embla-carousel-react": "^8.6.0"
   },
-  "peers": ["radix-ui", "cmdk", "embla-carousel-react", "lucide-react"]
+  "peers": [
+    "radix-ui",
+    "cmdk",
+    "embla-carousel-react",
+    "lucide-react"
+  ]
 }

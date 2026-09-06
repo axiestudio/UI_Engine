@@ -47,7 +47,7 @@ export function HeaderPill({
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24))
 
   return (
-    <div className={cn("relative isolate flex min-h-screen w-full flex-col overflow-hidden bg-background", className)}>
+    <div className={cn("relative isolate flex min-h-screen w-full flex-col bg-background", className)}>
     <header className="sticky top-0 z-50 flex justify-center bg-background/60 px-4 pt-4 backdrop-blur-sm [left:var(--fixed-inset-left,0px)] [right:var(--fixed-inset-right,0px)]">
       <motion.div
         layout

@@ -233,7 +233,7 @@ export function CurtainCall({
     return (
       <div
         ref={stageRef}
-        className={cn("relative isolate w-full overflow-hidden", className)}
+        className={cn("relative isolate w-full", className)}
         style={{ height: stageHeight }}
       >
         <div className="sticky top-0 h-screen w-full overflow-hidden">

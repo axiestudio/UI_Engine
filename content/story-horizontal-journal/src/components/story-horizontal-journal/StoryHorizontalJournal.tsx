@@ -28,7 +28,7 @@ export function StoryHorizontalJournal({ eyebrow = "JOURNAL", spreads = DEFAULT_
   const [idx, setIdx] = React.useState(0)
   React.useEffect(() => scrollYProgress.on("change", (v) => setIdx(Math.min(spreads.length - 1, Math.floor(v * spreads.length)))), [scrollYProgress, spreads.length])
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
         <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 pb-4 sm:px-8">
           <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">{eyebrow}</span>

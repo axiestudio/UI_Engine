@@ -36,7 +36,7 @@ export function ScrollPinnedChapters({ eyebrow = "CHAPTERS", chapters = DEFAULT_
   const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1.04])
 
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <motion.div style={{ scale }} className="mx-auto max-w-2xl px-5 text-center sm:px-8">
           <span className={cn("inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]", cn(ink ? "text-background/55" : "text-muted-foreground", "justify-center"))}><span aria-hidden className="inline-block size-[5px] rotate-45 bg-current" />{eyebrow}</span>

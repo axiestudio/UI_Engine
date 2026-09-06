@@ -44,7 +44,7 @@ export function NavScrollspy({ brand = "STUDIO", sections = DEFAULT_SECTIONS, cl
     setActive(cur)
   })
   return (
-    <div className={cn("relative isolate overflow-hidden min-h-[480px] w-full", className)}>
+    <div className={cn("relative isolate min-h-[480px] w-full", className)}>
       <header className="relative isolate overflow-hidden sticky top-0 z-40 border-b bg-background/80 ">
         <div className="mx-auto flex max-w-[1280px] items-center gap-6 px-5 py-4 sm:px-8">
           <span className="font-display text-lg font-black tracking-tight">{brand}</span>

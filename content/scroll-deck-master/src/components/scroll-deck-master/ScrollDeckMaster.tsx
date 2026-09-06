@@ -32,7 +32,7 @@ export function ScrollDeckMaster({ eyebrow = "DECK MASTER", steps = DEFAULT_STEP
   const x = useTransform(scrollYProgress, [0, 1], ["2%", `-${(steps.length - 1) * 34}%`])
   const step = steps[idx]
   return (
-    <section ref={ref} className={cn("relative isolate w-full overflow-hidden bg-foreground text-background", className)} style={{ height: runway }}>
+    <section ref={ref} className={cn("relative isolate w-full bg-foreground text-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
         <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-background/60">{eyebrow}</p>

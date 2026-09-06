@@ -35,7 +35,7 @@ export function ScrollVideo({
   const radius = useTransform(progress, [0, 0.5, 1], ["32px", "8px", "32px"])
 
   return (
-    <section ref={targetRef} className={cn("relative isolate w-full overflow-hidden bg-background", className)} style={{ height: runway }}>
+    <section ref={targetRef} className={cn("relative isolate w-full bg-background", className)} style={{ height: runway }}>
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <ScrollProgress className="absolute left-0 top-0 z-20 h-1 w-full" />
         <motion.div style={{ scale, borderRadius: radius }} className="absolute inset-0 overflow-hidden bg-foreground">

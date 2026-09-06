@@ -275,8 +275,10 @@ export function HeroScroll({
   // Galleries: default showcase when none provided — still showcase new assets
   const galleryImages = gallery
 
+  // No overflow-hidden here: it would become the sticky child's scroll
+  // container and the pinned viewport would never stick to the window.
   return (
-    <div ref={containerRef} className={cn("relative isolate overflow-hidden bg-background", className)} style={{ height }}>
+    <div ref={containerRef} className={cn("relative isolate bg-background", className)} style={{ height }}>
       {/* Sticky viewport */}
       <div
         className={cn(
@@ -511,7 +513,7 @@ export function HeroScroll({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-[90] flex items-center justify-center bg-black/90 p-4 sm:p-8"
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/90 p-4 sm:p-8"
             onClick={() => setLightbox(null)}
           >
             <motion.div

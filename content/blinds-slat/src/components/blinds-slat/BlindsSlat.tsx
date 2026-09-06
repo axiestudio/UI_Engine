@@ -60,7 +60,7 @@ export function BlindsSlat({
   }, [reduce, controlled, mv])
 
   return (
-    <div ref={wrapRef} className={cn("relative isolate w-full overflow-hidden min-h-[400px]", className)} style={controlled ? undefined : { height }}>
+    <div ref={wrapRef} className={cn("relative isolate w-full min-h-[400px]", className)} style={controlled ? undefined : { height }}>
       <div className={controlled ? "w-full" : "sticky top-[8vh] w-full"}>
         <figure className="relative mx-auto w-full max-w-[980px] overflow-hidden rounded-lg border bg-card shadow-sm">
           {/* after: the revealed truth */}
