@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Tabs",
   "description": "Tabbed hero — TransitionPanel cycles statements on the same canvas Companion styles: @import \"@/components/hero-tabs/hero-tabs.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

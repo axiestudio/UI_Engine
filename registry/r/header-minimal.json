@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Header: Minimal",
   "description": "Minimal navbar — transparent hairline bar that solidifies on scroll, mono small-caps links (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/header-minimal/header-minimal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

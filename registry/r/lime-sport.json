@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Lime Sport",
   "description": "Training-club landing for runners — near-black + electric lime, Archivo Black 900 display, live stat widgets and a lime marquee ticker (design direction: Lime / Sport) Companion styles: @import \"@/components/lime-sport/lime-sport.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

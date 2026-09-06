@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav: Multilevel Menu",
   "description": "Advanced website preset — nav-multilevel-menu Companion styles: @import \"@/components/nav-multilevel-menu/nav-multilevel-menu.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

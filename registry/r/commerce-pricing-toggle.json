@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Pricing Toggle",
   "description": "Advanced website preset — commerce-pricing-toggle Companion styles: @import \"@/components/commerce-pricing-toggle/commerce-pricing-toggle.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

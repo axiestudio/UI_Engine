@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Model Monitor",
   "description": "MLOps: feature-store skeleton, latency gauge, drift heatmap, deploy timeline + retrain cron, SLA odometer",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

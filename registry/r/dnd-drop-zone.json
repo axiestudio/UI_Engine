@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Drop Zone",
   "description": "Draggable items into droppable slots Companion styles: @import \"@/components/dnd-drop-zone/dnd-drop-zone.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Diff Viewer",
   "description": "Word-level diff viewer — unified/split toggle, hunk actions, wrap mode",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

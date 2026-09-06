@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Radar Chart",
   "description": "Radar/spider chart for multi-axis diagnostics — card-framed with kicker header, series legend hover lift",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

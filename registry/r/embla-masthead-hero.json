@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Masthead Hero",
   "description": "Hero carousel with autoplay fade slides and a progress bar Companion styles: @import \"@/components/embla-masthead-hero/embla-masthead-hero.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

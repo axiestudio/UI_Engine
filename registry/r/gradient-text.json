@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Type: Gradient Text",
   "description": "Gradient & highlighted text — oversized gradient editorial headline Companion styles: @import \"@/components/gradient-text/gradient-text.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

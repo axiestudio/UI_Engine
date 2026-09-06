@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Fitness Coach",
   "description": "Coach view: adherence heatmap, readiness gauge, form-video drops, session cadence cron, program segments",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

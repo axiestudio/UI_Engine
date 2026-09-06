@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero Parallax Depth",
   "description": "Advanced website preset — hero-parallax-depth Companion styles: @import \"@/components/hero-parallax-depth/hero-parallax-depth.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

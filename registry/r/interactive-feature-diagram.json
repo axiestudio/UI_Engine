@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive: Feature Diagram",
   "description": "Advanced website preset — interactive-feature-diagram Companion styles: @import \"@/components/interactive-feature-diagram/interactive-feature-diagram.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

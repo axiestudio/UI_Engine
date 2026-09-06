@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Device: Desktop",
   "description": "Website section — desktop browser mockup with power-on reveal, tab strip and caption rail Companion styles: @import \"@/components/device-desktop/device-desktop.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

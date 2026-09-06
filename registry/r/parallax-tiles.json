@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Parallax Tiles",
   "description": "Website preset — parallax-tiles Companion styles: @import \"@/components/parallax-tiles/parallax-tiles.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

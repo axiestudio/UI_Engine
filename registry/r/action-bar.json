@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Action Bar",
   "description": "Mobile sticky action bar — rises once, thumb-reachable booking strip, honors safe-area (Motion-Primitives scroll) Companion styles: @import \"@/components/action-bar/action-bar.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

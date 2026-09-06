@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Hover Zoom Grid",
   "description": "Advanced website preset — media-hover-zoom-grid Companion styles: @import \"@/components/media-hover-zoom-grid/media-hover-zoom-grid.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

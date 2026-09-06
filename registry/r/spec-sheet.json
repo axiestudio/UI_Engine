@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Spec Sheet",
   "description": "Product spec table with expandable groups and unit tooltips Companion styles: @import \"@/components/spec-sheet/spec-sheet.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

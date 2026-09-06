@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Cron Builder",
   "description": "Visual cron builder — human chips plus next-five-runs live preview",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

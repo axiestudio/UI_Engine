@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Zip Reveal",
   "description": "Drag-zip package: a real zipper track opens on drag/scrub to release the drop contents Companion styles: @import \"@/components/zip-reveal/zip-reveal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Code Reveal",
   "description": "Typed code block with line numbers caret and copy plate Companion styles: @import \"@/components/code-reveal/code-reveal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Tab Reorder",
   "description": "Tab reordering — horizontal sortable tab strip with an animated active indicator Companion styles: @import \"@/components/dnd-tab-reorder/dnd-tab-reorder.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

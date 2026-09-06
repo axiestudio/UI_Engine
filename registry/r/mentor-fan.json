@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Mentor Fan",
   "description": "Instructor cards fan out on hover with availability dots Companion styles: @import \"@/components/mentor-fan/mentor-fan.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

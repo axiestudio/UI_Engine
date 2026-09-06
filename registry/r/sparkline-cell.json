@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Sparkline Cell",
   "description": "Table cell sparkline — hover crosshair tooltip, delta chip, anomaly dot",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

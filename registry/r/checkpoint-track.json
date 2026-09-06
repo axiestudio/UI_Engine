@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Checkpoint Track",
   "description": "Horizontal stepper track with stamped checkpoints per completed step Companion styles: @import \"@/components/checkpoint-track/checkpoint-track.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

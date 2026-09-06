@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Keyboard Map",
   "description": "Press-? keymap overlay — region-lit shortcut cards, press-to-flash binding",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

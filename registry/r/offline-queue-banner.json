@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Offline Sync Strip",
   "description": "Offline sync strip — pending diff counter, retry pulse, drop-on-resolve handoff",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Gauge Cluster",
   "description": "Radial gauge cluster with spring needle overshoot and tick stamps Companion styles: @import \"@/components/gauge-cluster/gauge-cluster.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

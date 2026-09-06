@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Courier Dispatch",
   "description": "Dispatch board: route groups stick, ETA scrubbers, map card with driver pins, offline resilience strip, courier-status toasts",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll: Scale Reveal",
   "description": "Advanced website preset — scroll-scale-reveal Companion styles: @import \"@/components/scroll-scale-reveal/scroll-scale-reveal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

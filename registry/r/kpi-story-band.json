@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Kpi Story Band",
   "description": "KPI storytelling band count-up metrics with drawing sparklines and delta chips Companion styles: @import \"@/components/kpi-story-band/kpi-story-band.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

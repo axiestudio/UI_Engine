@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Clinic Intake",
   "description": "Patient intake: multi-step questionnaire with validation, document upload, first-visit window picker, record-key reveal",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

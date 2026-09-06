@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Front Desk Hotel",
   "description": "Night porter: stay-window picker, room rail, keycards issued as passes, channel switchboard, PMS offline strip",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

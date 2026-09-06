@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Research Bench",
   "description": "Lab notebook: entries with cites, code run cells, dataset groups rail, version scrub, loading states that explain themselves",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

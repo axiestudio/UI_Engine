@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Quote",
   "description": "One real sentence, given the whole room — quote mark as architecture (Watermelon testimonial base + Motion-Primitives) Companion styles: @import \"@/components/quote-feature/quote-feature.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

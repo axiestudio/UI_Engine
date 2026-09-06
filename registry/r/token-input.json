@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Token Input",
   "description": "Tokenizer input — paste splitting, dedupe, edit-as-tokens, backspace-select",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

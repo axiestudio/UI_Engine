@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav Context Dock",
   "description": "Advanced website preset — nav-context-dock Companion styles: @import \"@/components/nav-context-dock/nav-context-dock.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

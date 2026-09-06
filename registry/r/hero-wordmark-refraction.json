@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero Wordmark Refraction",
   "description": "Advanced website preset — hero-wordmark-refraction Companion styles: @import \"@/components/hero-wordmark-refraction/hero-wordmark-refraction.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

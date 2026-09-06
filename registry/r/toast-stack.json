@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Toast Stack",
   "description": "Swipeable toast stack — per-card actions, position memory, pause-on-hover timer",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

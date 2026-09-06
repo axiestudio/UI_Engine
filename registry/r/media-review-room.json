@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media Review Room",
   "description": "Review a cut: canvas pins with collision fan, copy diffs, an agent-proposed re-edit reviewed hunk-by-hunk",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

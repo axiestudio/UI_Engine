@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Flashcard Swipe",
   "description": "Swipeable flashcard deck that reshuffles as you study Companion styles: @import \"@/components/flashcard-swipe/flashcard-swipe.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

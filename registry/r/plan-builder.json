@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Plan Builder",
   "description": "Base plan plus cadence and extras building a bundle summary Companion styles: @import \"@/components/plan-builder/plan-builder.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Device: Mobile",
   "description": "Website section — phone mockup with dynamic island, floating tilt and grip shadow Companion styles: @import \"@/components/device-mobile/device-mobile.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Split Check",
   "description": "Bill splitter with people chips, item assignment and per-person totals Companion styles: @import \"@/components/split-check/split-check.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

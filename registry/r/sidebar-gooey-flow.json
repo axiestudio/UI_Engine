@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Sidebar: Gooey Switcher",
   "description": "Gooey section switcher rail — react-bits GooeyNav + anime.js v4 scope-staggered panels Companion styles: @import \"@/components/sidebar-gooey-flow/sidebar-gooey-flow.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "sidebar"

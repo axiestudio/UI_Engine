@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Promo",
   "description": "Website preset — promo-ribbon Companion styles: @import \"@/components/promo-ribbon/promo-ribbon.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

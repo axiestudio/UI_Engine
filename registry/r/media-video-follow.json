@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Video Follow",
   "description": "Advanced website preset — media-video-follow Companion styles: @import \"@/components/media-video-follow/media-video-follow.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

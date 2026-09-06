@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Invoice Builder",
   "description": "Line-item editor with live totals and drag-free rows Companion styles: @import \"@/components/invoice-builder/invoice-builder.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Giving Circle",
   "description": "Nonprofit gifts: campaign funnel, fund selector, date window, team tags, sync resilience while counting offerings",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

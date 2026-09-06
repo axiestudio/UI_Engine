@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Newsletter",
   "description": "Newsletter subscribe section — ink band card with animated headline, inline email form and success state (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/newsletter/newsletter.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

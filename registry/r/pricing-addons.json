@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Pricing Addons",
   "description": "Base plan with add-on toggles recalculating the live total Companion styles: @import \"@/components/pricing-addons/pricing-addons.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

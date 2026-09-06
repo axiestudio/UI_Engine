@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Quadrant Scope",
   "description": "2x2 positioning matrix where hover quadrant zooms under a lens Companion styles: @import \"@/components/quadrant-scope/quadrant-scope.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

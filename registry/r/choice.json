@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Choice",
   "description": "Two-door decision — the chosen panel takes the width; the question is the design (Motion-Primitives layout magic) Companion styles: @import \"@/components/choice/choice.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

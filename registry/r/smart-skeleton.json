@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Smart Skeleton",
   "description": "Content-aware skeletons — why-loading tooltip, staged reveal on data arrival",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

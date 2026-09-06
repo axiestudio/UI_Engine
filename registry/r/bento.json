@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Bento",
   "description": "Bento/asymmetric highlight grid preset — hover spotlight cells, data-driven spans (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/bento/bento.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

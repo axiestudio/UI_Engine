@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Sidebar: Glass Launcher",
   "description": "Glass tile launcher rail — react-bits GlassIcons, Floating UI preview cards, anime.js v4 stagger Companion styles: @import \"@/components/sidebar-anime-glass/sidebar-anime-glass.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "sidebar"

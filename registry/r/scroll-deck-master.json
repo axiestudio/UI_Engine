@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll: Deck Master",
   "description": "Advanced website preset — scroll-deck-master Companion styles: @import \"@/components/scroll-deck-master/scroll-deck-master.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

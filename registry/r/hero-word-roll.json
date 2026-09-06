@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Word Roll",
   "description": "Advanced website preset — hero-word-roll Companion styles: @import \"@/components/hero-word-roll/hero-word-roll.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

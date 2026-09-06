@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Scroll Ring",
   "description": "KPI ring gauge scrubbed by scroll Companion styles: @import \"@/components/gsap-scroll-ring/gsap-scroll-ring.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

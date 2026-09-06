@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll Pinned Panels",
   "description": "Advanced website preset — scroll-pinned-panels Companion styles: @import \"@/components/scroll-pinned-panels/scroll-pinned-panels.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

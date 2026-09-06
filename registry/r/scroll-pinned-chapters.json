@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll: Pinned Chapters",
   "description": "Advanced website preset — scroll-pinned-chapters Companion styles: @import \"@/components/scroll-pinned-chapters/scroll-pinned-chapters.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

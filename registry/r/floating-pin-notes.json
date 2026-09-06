@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Pin Notes",
   "description": "Annotated image with numbered pins opening collision-aware floating notes (Floating UI) Companion styles: @import \"@/components/floating-pin-notes/floating-pin-notes.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

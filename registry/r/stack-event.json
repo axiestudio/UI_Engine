@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Event",
   "description": "Composable event detail — head, meta band, repeatable agenda talks and RSVP base as separate layers Companion styles: @import \"@/components/stack-event/stack-event.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

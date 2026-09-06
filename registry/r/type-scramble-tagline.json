@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Type Scramble Tagline",
   "description": "Advanced website preset — type-scramble-tagline Companion styles: @import \"@/components/type-scramble-tagline/type-scramble-tagline.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

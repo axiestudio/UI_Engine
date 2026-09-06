@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Curriculum Rail",
   "description": "Course curriculum accordion with self-drawing connector and progress Companion styles: @import \"@/components/curriculum-rail/curriculum-rail.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

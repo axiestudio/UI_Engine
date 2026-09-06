@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Swatch Spectrum",
   "description": "Color system explorer: click to copy token, contrast check, tint ramps Companion styles: @import \"@/components/swatch-spectrum/swatch-spectrum.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

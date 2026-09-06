@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Type: Char Anim",
   "description": "Character animation headline — text-scramble reveal on scroll into view Companion styles: @import \"@/components/typography-char-anim/typography-char-anim.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

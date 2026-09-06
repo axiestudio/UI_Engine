@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Scroll Swap",
   "description": "Pinned left heading swaps as the right column scrolls Companion styles: @import \"@/components/gsap-scroll-swap/gsap-scroll-swap.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

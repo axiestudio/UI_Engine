@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive Split Pane",
   "description": "Advanced website preset — interactive-split-pane Companion styles: @import \"@/components/interactive-split-pane/interactive-split-pane.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

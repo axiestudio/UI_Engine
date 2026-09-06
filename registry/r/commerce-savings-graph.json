@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Savings Graph",
   "description": "Advanced website preset — commerce-savings-graph Companion styles: @import \"@/components/commerce-savings-graph/commerce-savings-graph.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

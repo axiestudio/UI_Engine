@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Product 3D",
   "description": "Advanced website preset — commerce-product-3d Companion styles: @import \"@/components/commerce-product-3d/commerce-product-3d.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

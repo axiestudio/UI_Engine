@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Podcast Studio Desk",
   "description": "Show runner: render jobs, guest episode timeline, publish cron, show-notes composer, drop-box uploads",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

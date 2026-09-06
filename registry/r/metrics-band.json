@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Metrics",
   "description": "Website preset — metrics-band Companion styles: @import \"@/components/metrics-band/metrics-band.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

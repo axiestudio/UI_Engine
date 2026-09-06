@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce Product Gallery",
   "description": "Advanced website preset — commerce-product-gallery Companion styles: @import \"@/components/commerce-product-gallery/commerce-product-gallery.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

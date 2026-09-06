@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Type Barcode",
   "description": "Advanced website preset — type-barcode Companion styles: @import \"@/components/type-barcode/type-barcode.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

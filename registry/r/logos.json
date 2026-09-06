@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Logos",
   "description": "Trusted-by logo wall + InfiniteSlider marquee strip (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/logos/logos.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

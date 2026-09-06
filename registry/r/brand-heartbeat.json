@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Brand Heartbeat",
   "description": "Living logo strip: ECG pulse drives the mark's glow — the brand has a pulse Companion styles: @import \"@/components/brand-heartbeat/brand-heartbeat.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

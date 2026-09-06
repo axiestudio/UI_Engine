@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "AI Answer Bar",
   "description": "Answer action bar — thumbs morph, copy, regenerate spin cycle, token source note",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

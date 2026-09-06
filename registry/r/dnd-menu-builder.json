@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Menu Builder",
   "description": "Menu builder — build an ordered nav menu from a block palette Companion styles: @import \"@/components/dnd-menu-builder/dnd-menu-builder.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

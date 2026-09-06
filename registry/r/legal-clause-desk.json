@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Legal Clause Desk",
   "description": "Contract review: clause edit with ghost continues, citations that lift hovercards, agent redlines accepted per hunk, matter audit",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

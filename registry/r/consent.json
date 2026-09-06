@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Consent",
   "description": "GDPR cookie consent banner with preferences dialog — localStorage persistence (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/consent/consent.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

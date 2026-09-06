@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Customer Health Desk",
   "description": "CSM book of business: health odometers, quota rings, usage heat, check-in timeline, renewal notes backed by cites",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

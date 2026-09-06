@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Merch Console",
   "description": "Store backend: tabs per drop, sales funnel, heat of orders, price cells inline-edit, API embed keys",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

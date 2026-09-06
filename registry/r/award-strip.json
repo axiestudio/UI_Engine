@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Awards",
   "description": "Website preset — award-strip Companion styles: @import \"@/components/award-strip/award-strip.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

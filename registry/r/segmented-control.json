@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Segmented Control",
   "description": "iOS segmented control — shared spring thumb, icon+label, roving tabindex",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

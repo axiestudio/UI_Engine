@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Steps",
   "description": "How-it-works process section — numbered step flow with connector line, registry-sourced variants (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/steps/steps.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

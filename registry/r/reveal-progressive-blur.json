@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Reveal: Progressive Blur",
   "description": "x Companion styles: @import \"@/components/reveal-progressive-blur/reveal-progressive-blur.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

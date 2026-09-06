@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Gift",
   "description": "Gift-card section where the card flips — the message lives on the back, like real gifts (Motion-Primitives 3D + Watermelon card kit) Companion styles: @import \"@/components/gift/gift.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

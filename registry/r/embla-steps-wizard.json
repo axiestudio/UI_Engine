@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Steps Wizard",
   "description": "Draggable step wizard with dots and prev-next Companion styles: @import \"@/components/embla-steps-wizard/embla-steps-wizard.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

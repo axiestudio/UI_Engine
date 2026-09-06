@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Ritual",
   "description": "What-to-expect sequence — the step rail draws itself down as the visit unfolds (Watermelon UI stepper numerals + Motion-Primitives) Companion styles: @import \"@/components/ritual/ritual.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

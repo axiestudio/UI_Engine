@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Receipt",
   "description": "Composable receipt — head, repeatable line items, total band and barcode base as separate layers Companion styles: @import \"@/components/stack-receipt/stack-receipt.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

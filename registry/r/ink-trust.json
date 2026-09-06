@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Ink Trust",
   "description": "Brand manifesto band serif-italic statement turns to ink band with letterpress sign-off Companion styles: @import \"@/components/ink-trust/ink-trust.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

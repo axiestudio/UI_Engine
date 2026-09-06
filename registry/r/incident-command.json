@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Incident Command",
   "description": "War room: health strip on top, severity gauge ticking, live ops chat pinned, deploy pipeline, queued remediation jobs, toast pings",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

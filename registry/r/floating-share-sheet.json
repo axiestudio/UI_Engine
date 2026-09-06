@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Share Sheet",
   "description": "Share anchor with a floating share sheet, copy-link morph and tooltip (Floating UI) Companion styles: @import \"@/components/floating-share-sheet/floating-share-sheet.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

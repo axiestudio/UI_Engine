@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Curtain: Shutter",
   "description": "x Companion styles: @import \"@/components/curtain-shutter/curtain-shutter.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

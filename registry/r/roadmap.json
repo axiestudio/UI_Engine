@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Roadmap",
   "description": "Public roadmap — Now / Next / Later columns with status-badged item cards (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/roadmap/roadmap.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

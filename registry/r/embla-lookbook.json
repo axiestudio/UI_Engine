@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Lookbook",
   "description": "Drag lookbook — center-focus scale/opacity slides with a thumbnail rail (Embla) Companion styles: @import \"@/components/embla-lookbook/embla-lookbook.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

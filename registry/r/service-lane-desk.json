@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Service Lane Desk",
   "description": "Auto/shop lane: bay segment, damage photos queue, line edits, service history rail, vehicle keycards as passes",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Notif Dock",
   "description": "Bell with grouped notifications popover and mark-as-read Companion styles: @import \"@/components/floating-notif-dock/floating-notif-dock.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

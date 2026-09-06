@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Device: Responsive",
   "description": "Website section — browser frame you drag between breakpoints with a live ruler Companion styles: @import \"@/components/device-responsive/device-responsive.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

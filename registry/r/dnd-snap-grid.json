@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Snap Grid",
   "description": "Grid drag with snap-to-grid Companion styles: @import \"@/components/dnd-snap-grid/dnd-snap-grid.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

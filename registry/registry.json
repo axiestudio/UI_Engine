@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "ui-engine",
-  "homepage": "https://axiestudio.github.io/UI_Engine/",
+  "homepage": "https://ui-engine.pages.dev/",
   "items": [
     {
       "name": "action-bar",

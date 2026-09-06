@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Values",
   "description": "Brand values — a principle list with big ordinals Companion styles: @import \"@/components/brand-values/brand-values.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

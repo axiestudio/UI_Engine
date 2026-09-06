@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Receipt",
   "description": "Printed receipt slip — perforated tears, punched notches, mono ledger, barcode, rotated PAID stamp (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/receipt/receipt.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

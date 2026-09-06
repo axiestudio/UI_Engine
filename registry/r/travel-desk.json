@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Travel Desk",
   "description": "Itinerary ops: windows, leg rail, boarding passes issued as bookings land, offline traveller sync, ping center",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

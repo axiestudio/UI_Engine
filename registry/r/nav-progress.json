@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav: Progress",
   "description": "Navbar with scroll progress — a top progress rail plus sticky bar Companion styles: @import \"@/components/nav-progress/nav-progress.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

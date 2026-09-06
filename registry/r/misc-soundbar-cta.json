@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Misc Soundbar Cta",
   "description": "Advanced website preset — misc-soundbar-cta Companion styles: @import \"@/components/misc-soundbar-cta/misc-soundbar-cta.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

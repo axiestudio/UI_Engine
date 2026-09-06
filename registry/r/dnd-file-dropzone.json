@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: File Dropzone",
   "description": "File dropzone — drag OS files onto a drop target, thumbnails Companion styles: @import \"@/components/dnd-file-dropzone/dnd-file-dropzone.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

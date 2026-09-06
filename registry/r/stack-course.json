@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Course",
   "description": "Composable course card — head, meta band, repeatable module rows and enroll base as separate layers Companion styles: @import \"@/components/stack-course/stack-course.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

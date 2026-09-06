@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Skill Tree Rail",
   "description": "Skill roadmap rail with locked nodes that pulse-unlock in a chain Companion styles: @import \"@/components/skill-tree-rail/skill-tree-rail.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

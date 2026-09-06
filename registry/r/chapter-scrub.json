@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chapter Scrub",
   "description": "Video frame with chapter tick scrubber and preview labels Companion styles: @import \"@/components/chapter-scrub/chapter-scrub.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

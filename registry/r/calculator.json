@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Calculator",
   "description": "Website preset — calculator Companion styles: @import \"@/components/calculator/calculator.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

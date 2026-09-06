@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Trend Scrub",
   "description": "Pointer-scrubbed trend chart with crosshair readout and morphing values Companion styles: @import \"@/components/trend-scrub/trend-scrub.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

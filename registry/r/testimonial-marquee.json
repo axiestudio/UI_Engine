@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Testimonial Marquee",
   "description": "Website preset — testimonial-marquee Companion styles: @import \"@/components/testimonial-marquee/testimonial-marquee.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

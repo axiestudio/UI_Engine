@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce Cart Drawer",
   "description": "Advanced website preset — commerce-cart-drawer Companion styles: @import \"@/components/commerce-cart-drawer/commerce-cart-drawer.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

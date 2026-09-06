@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Listing",
   "description": "Composable property listing — media band, price head, facts band, agent row and viewing base as separate layers Companion styles: @import \"@/components/stack-listing/stack-listing.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

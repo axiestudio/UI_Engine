@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Social Scheduler",
   "description": "Queue the week: cadence cron with next-runs, network segments, post composer with @mentions, heat of past reach, reply inbox",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

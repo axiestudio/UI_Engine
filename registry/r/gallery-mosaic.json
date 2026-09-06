@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Mosaic",
   "description": "Website preset — gallery-mosaic Companion styles: @import \"@/components/gallery-mosaic/gallery-mosaic.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

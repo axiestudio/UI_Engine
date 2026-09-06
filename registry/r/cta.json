@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "CTA",
   "description": "Professional call-to-action band preset — ink panel, shimmer heading, magnetic + border-trail buttons (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/cta/cta.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

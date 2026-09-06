@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Page Turn",
   "description": "Hardcover flip: chapters or quotes turn on a 3D page rotate with paper shadow Companion styles: @import \"@/components/page-turn/page-turn.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

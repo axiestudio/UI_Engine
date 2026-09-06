@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Team Roster",
   "description": "Roster grid with filter chips and hover member cards Companion styles: @import \"@/components/team-roster/team-roster.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

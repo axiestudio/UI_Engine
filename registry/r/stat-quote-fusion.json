@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stat Quote Fusion",
   "description": "Giant stat counts in sync while a quote fades in word by word Companion styles: @import \"@/components/stat-quote-fusion/stat-quote-fusion.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

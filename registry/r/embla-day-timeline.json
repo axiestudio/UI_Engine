@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Day Timeline",
   "description": "Horizontal day-by-day timeline with detail panel below Companion styles: @import \"@/components/embla-day-timeline/embla-day-timeline.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

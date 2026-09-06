@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Error",
   "description": "Error states (404/500) — full-viewport error page with giant display code and recovery actions (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/error/error.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

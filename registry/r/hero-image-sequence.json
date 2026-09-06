@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Image Sequence",
   "description": "Advanced website preset — hero-image-sequence Companion styles: @import \"@/components/hero-image-sequence/hero-image-sequence.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

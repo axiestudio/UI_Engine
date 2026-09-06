@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Table Rows",
   "description": "Table row reordering — sortable table body with sticky rank column Companion styles: @import \"@/components/dnd-table-rows/dnd-table-rows.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

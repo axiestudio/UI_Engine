@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Crew Admin",
   "description": "People ops: table of crew with checkboxes and bulk bar, async hire search, tri-state permission sheet, onboarding secret + tags",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

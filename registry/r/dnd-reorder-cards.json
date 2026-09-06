@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Reorder Cards",
   "description": "Stacked card reorder Companion styles: @import \"@/components/dnd-reorder-cards/dnd-reorder-cards.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

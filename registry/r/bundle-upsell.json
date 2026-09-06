@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Bundle",
   "description": "Website preset — bundle-upsell Companion styles: @import \"@/components/bundle-upsell/bundle-upsell.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

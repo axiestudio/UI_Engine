@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Case Study",
   "description": "Customer story — feature quote, metric row and brand proof panel (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/case-study/case-study.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

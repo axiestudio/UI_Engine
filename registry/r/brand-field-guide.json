@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Brand Field Guide",
   "description": "Do dont field guide split cards that stamp APPROVED or AVOID on toggle Companion styles: @import \"@/components/brand-field-guide/brand-field-guide.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

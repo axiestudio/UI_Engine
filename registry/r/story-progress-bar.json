@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Story Progress Bar",
   "description": "Story-style auto-advance slides with segment progress chrome Companion styles: @import \"@/components/story-progress-bar/story-progress-bar.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

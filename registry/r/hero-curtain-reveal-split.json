@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero Curtain Reveal Split",
   "description": "Advanced website preset — hero-curtain-reveal-split Companion styles: @import \"@/components/hero-curtain-reveal-split/hero-curtain-reveal-split.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

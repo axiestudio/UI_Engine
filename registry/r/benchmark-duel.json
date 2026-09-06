@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Benchmark Duel",
   "description": "You versus industry tug-of-war benchmark bar with tension knot Companion styles: @import \"@/components/benchmark-duel/benchmark-duel.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

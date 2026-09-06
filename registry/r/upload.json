@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Upload",
   "description": "File dropzone preset — drag&drop, accept/size validation, async submit (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/upload/upload.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

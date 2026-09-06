@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Sticky Fullscreen",
   "description": "Sticky fullscreen hero — the hero pins as the next section overlaps it Companion styles: @import \"@/components/hero-sticky-fullscreen/hero-sticky-fullscreen.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

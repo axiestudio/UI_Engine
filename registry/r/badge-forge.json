@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Badge Forge",
   "description": "Certification badge with metallic shine sweep and ribbon draw Companion styles: @import \"@/components/badge-forge/badge-forge.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce Loyalty Tier",
   "description": "Advanced website preset — commerce-loyalty-tier Companion styles: @import \"@/components/commerce-loyalty-tier/commerce-loyalty-tier.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

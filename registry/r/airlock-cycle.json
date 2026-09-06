@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Airlock 2FA",
   "description": "Two-door airlock auth cycle — inner door opens only after outer seals",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

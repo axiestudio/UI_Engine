@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive Hover Swap",
   "description": "Advanced website preset — interactive-hover-swap Companion styles: @import \"@/components/interactive-hover-swap/interactive-hover-swap.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

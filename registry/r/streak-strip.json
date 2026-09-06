@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Streak Strip",
   "description": "Learning streak band with odometer counters and ticked day row Companion styles: @import \"@/components/streak-strip/streak-strip.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

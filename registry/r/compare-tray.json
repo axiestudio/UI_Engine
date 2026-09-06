@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Compare Tray",
   "description": "Products added to a bottom compare tray with spec columns Companion styles: @import \"@/components/compare-tray/compare-tray.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

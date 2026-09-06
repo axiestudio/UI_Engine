@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Review Wall",
   "description": "Rating breakdown bars, review list and write-review dialog Companion styles: @import \"@/components/review-wall/review-wall.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Tone Ribbon",
   "description": "Voice ticker ribbon infinite slider of sayings in brand tone Companion styles: @import \"@/components/tone-ribbon/tone-ribbon.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

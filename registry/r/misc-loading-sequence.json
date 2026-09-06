@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Misc Loading Sequence",
   "description": "Advanced website preset — misc-loading-sequence Companion styles: @import \"@/components/misc-loading-sequence/misc-loading-sequence.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

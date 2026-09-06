@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Video Reveal",
   "description": "Video reveal — a video that clips open on scroll into view Companion styles: @import \"@/components/video-reveal/video-reveal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

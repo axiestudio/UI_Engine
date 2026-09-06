@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Timeline",
   "description": "Vertical timeline — dated milestones rail Companion styles: @import \"@/components/timeline-vertical/timeline-vertical.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

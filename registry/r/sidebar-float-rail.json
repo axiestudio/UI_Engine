@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Sidebar: Float Rail",
   "description": "Collapsible icon rail — shadcn buttons, Floating UI hover labels, GSAP width choreography Companion styles: @import \"@/components/sidebar-float-rail/sidebar-float-rail.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "sidebar"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Co Brand Lockup",
   "description": "Co-brand lockup builder drag two marks get approved lockups Companion styles: @import \"@/components/co-brand-lockup/co-brand-lockup.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Sortable List",
   "description": "Vertical reorderable list Companion styles: @import \"@/components/dnd-sortable-list/dnd-sortable-list.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

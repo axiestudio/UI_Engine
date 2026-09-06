@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Engage: Signup Split",
   "description": "Website preset — signup-split Companion styles: @import \"@/components/signup-split/signup-split.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Ticker",
   "description": "Kinetic hero — rotating word headline with ticker base strip (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/hero-ticker/hero-ticker.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

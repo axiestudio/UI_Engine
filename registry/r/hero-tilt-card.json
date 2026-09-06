@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Tilt Card",
   "description": "Advanced website preset — hero-tilt-card Companion styles: @import \"@/components/hero-tilt-card/hero-tilt-card.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

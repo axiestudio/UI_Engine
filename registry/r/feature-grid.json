@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Feature Grid",
   "description": "Feature grid — icon-led bento-free feature cards Companion styles: @import \"@/components/feature-grid/feature-grid.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

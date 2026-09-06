@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive Tabs Sticky Nav",
   "description": "Advanced website preset — interactive-tabs-sticky-nav Companion styles: @import \"@/components/interactive-tabs-sticky-nav/interactive-tabs-sticky-nav.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

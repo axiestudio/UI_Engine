@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Scroll Video",
   "description": "Scroll video — pinned section with a scroll-progress rail Companion styles: @import \"@/components/scroll-video/scroll-video.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

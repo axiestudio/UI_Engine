@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Upload Queue",
   "description": "Upload queue — per-file progress arcs, retry with backoff display, remaining-time",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav Animated Underline",
   "description": "Advanced website preset — nav-animated-underline Companion styles: @import \"@/components/nav-animated-underline/nav-animated-underline.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

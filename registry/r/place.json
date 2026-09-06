@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Place",
   "description": "Neighbourhood-rooted identity block — the street name as a typographic landmark on a slow ribbon (Watermelon UI marquee base + Motion-Primitives) Companion styles: @import \"@/components/place/place.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

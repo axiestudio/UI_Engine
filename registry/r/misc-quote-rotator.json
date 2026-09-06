@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Misc: Quote Rotator",
   "description": "Advanced website preset — misc-quote-rotator Companion styles: @import \"@/components/misc-quote-rotator/misc-quote-rotator.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

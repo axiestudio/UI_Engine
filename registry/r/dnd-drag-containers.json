@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Drag Containers",
   "description": "Drag items between multiple free containers — cross-container useDraggable + useDroppable Companion styles: @import \"@/components/dnd-drag-containers/dnd-drag-containers.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive: Hover Sections",
   "description": "Advanced website preset — interactive-hover-sections Companion styles: @import \"@/components/interactive-hover-sections/interactive-hover-sections.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Rates Rail",
   "description": "Room rate cards snap rail with arrows and per-night pricing Companion styles: @import \"@/components/embla-rates-rail/embla-rates-rail.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

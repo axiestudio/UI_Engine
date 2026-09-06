@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Press",
   "description": "Website preset — press-strip Companion styles: @import \"@/components/press-strip/press-strip.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

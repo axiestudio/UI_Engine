@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Story Pinned Plates",
   "description": "Advanced website preset — story-pinned-plates Companion styles: @import \"@/components/story-pinned-plates/story-pinned-plates.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

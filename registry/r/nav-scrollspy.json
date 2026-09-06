@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav: Scrollspy",
   "description": "Advanced website preset — nav-scrollspy Companion styles: @import \"@/components/nav-scrollspy/nav-scrollspy.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

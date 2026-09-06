@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Type Marquee Collage",
   "description": "Advanced website preset — type-marquee-collage Companion styles: @import \"@/components/type-marquee-collage/type-marquee-collage.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll Tilt Follow",
   "description": "Advanced website preset — scroll-tilt-follow Companion styles: @import \"@/components/scroll-tilt-follow/scroll-tilt-follow.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

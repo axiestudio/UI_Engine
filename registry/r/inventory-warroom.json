@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Inventory Warroom",
   "description": "Stock control: lazy category tree with per-row sparklines, receive-docs queue, token filters, bulk cycle-count, sync strip",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

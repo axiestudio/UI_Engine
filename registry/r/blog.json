@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Blog",
   "description": "Blog / journal card grid preset — image cards, tags, read-time, shimmer titles (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/blog/blog.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

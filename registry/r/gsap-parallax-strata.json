@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Parallax Strata",
   "description": "Hero with layered strata bands at differing scrub speeds Companion styles: @import \"@/components/gsap-parallax-strata/gsap-parallax-strata.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

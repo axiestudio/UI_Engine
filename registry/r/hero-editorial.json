@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Editorial",
   "description": "Website preset — hero-editorial Companion styles: @import \"@/components/hero-editorial/hero-editorial.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

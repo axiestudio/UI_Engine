@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Fullscreen Lightbox",
   "description": "Advanced website preset — media-fullscreen-lightbox Companion styles: @import \"@/components/media-fullscreen-lightbox/media-fullscreen-lightbox.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Sidebar: Cinema Nav",
   "description": "Cinema rail — react-bits SplitText char-entrance headline on a GSAP-timeline nav, reduced-motion aware Companion styles: @import \"@/components/sidebar-gsap-cinema/sidebar-gsap-cinema.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "sidebar"

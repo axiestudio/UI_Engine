@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Intermission",
   "description": "Silent-film intermission break between chapters — spoked shutter wipe Companion styles: @import \"@/components/intermission-card/intermission-card.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

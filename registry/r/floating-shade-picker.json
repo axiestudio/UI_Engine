@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Shade Picker",
   "description": "Swatch grid opening a shade-scale popover with copy Companion styles: @import \"@/components/floating-shade-picker/floating-shade-picker.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

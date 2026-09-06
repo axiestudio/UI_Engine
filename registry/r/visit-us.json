@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Visit Us",
   "description": "Professional visit-us/location preset — Google Maps embed 2:1 grid, address, hours, phone/email, directions (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/visit-us/visit-us.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

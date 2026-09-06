@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Logo Motion Library",
   "description": "Logo motion rules replayable intro outro loading animation spec Companion styles: @import \"@/components/logo-motion-library/logo-motion-library.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

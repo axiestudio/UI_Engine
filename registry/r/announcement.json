@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Announcement",
   "description": "Dismissible site announcement bar — rotating messages via Text Roll, border trail accent (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/announcement/announcement.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

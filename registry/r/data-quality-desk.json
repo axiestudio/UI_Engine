@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Data Quality Desk",
   "description": "Fix the records: token filters scope the tree table; rows edit inline, selections merge into the bulk bar; bad columns skeleton-scan",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

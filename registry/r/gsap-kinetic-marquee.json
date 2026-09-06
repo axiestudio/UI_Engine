@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Kinetic Marquee",
   "description": "Velocity-reactive marquee band — speed, skew and direction follow your scroll (GSAP) Companion styles: @import \"@/components/gsap-kinetic-marquee/gsap-kinetic-marquee.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

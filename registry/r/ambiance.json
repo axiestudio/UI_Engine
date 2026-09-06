@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Ambiance",
   "description": "Sensory parallax collage — make the room felt through the screen (Watermelon UI hero craft + Motion-Primitives) Companion styles: @import \"@/components/ambiance/ambiance.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

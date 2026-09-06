@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Team",
   "description": "Professional team/staff grid preset — tilt cards, initials avatars, tags, socials (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/team/team.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

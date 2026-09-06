@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Match Pair Wire",
   "description": "Match two columns and connection wires draw between pairs Companion styles: @import \"@/components/match-pair-wire/match-pair-wire.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

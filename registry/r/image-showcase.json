@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Showcase",
   "description": "Image showcase — large imagery with caption and film strip Companion styles: @import \"@/components/image-showcase/image-showcase.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

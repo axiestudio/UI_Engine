@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Version Scrubber",
   "description": "Time-travel undo — scrub version history, ghost preview, restore commit",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

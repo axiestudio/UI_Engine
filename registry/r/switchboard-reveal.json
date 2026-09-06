@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Switchboard",
   "description": "Patch-cable contact routing — lights follow each jack until the line connects",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

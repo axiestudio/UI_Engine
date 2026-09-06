@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Status Page",
   "description": "Uptime bars for 90 days plus incident list Companion styles: @import \"@/components/status-page/status-page.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

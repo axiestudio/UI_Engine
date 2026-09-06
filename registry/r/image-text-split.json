@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Image+Text Split",
   "description": "Image + text split — image pane beside copy, editorial Companion styles: @import \"@/components/image-text-split/image-text-split.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

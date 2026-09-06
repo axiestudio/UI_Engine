@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Image Uploader",
   "description": "Image uploader with ordering — dropzone + sortable thumbnail grid Companion styles: @import \"@/components/dnd-image-uploader/dnd-image-uploader.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

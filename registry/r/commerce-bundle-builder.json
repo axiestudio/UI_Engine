@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Bundle Builder",
   "description": "Advanced website preset — commerce-bundle-builder Companion styles: @import \"@/components/commerce-bundle-builder/commerce-bundle-builder.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

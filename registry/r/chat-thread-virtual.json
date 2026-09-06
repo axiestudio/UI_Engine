@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chat Thread",
   "description": "Message thread — date dividers, streaming tail pin, reply-quote rails, reedit window",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

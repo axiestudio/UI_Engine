@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "ZigZag",
   "description": "Zig-zag tunnel with water — continuous scrub, left|tunnel|right Companion styles: @import \"@/components/zigzag/zigzag.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

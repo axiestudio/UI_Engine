@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Progressive Parallax",
   "description": "Advanced website preset — media-progressive-parallax Companion styles: @import \"@/components/media-progressive-parallax/media-progressive-parallax.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Foh Restaurant",
   "description": "Floor manager: switchboard for calls, table rail that sticks, covers odometer, wifi-drop resilience on the POS, ping inbox",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

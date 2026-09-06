@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Drop Zones",
   "description": "Multi-region drop zones — several droppable zones accept or reject dropped items Companion styles: @import \"@/components/dnd-drop-zones/dnd-drop-zones.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

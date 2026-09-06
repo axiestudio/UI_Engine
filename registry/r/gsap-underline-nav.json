@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Underline Nav",
   "description": "Nav whose underline morphs between items Companion styles: @import \"@/components/gsap-underline-nav/gsap-underline-nav.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

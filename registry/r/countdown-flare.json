@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Launch Clock",
   "description": "Launch clock with ignition: LED digits burn down to T-0, the horizon lifts with an exhaust flash",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

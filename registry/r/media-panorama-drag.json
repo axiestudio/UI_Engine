@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media Panorama Drag",
   "description": "Advanced website preset — media-panorama-drag Companion styles: @import \"@/components/media-panorama-drag/media-panorama-drag.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

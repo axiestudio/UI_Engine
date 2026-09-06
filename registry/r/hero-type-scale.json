@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero Type Scale",
   "description": "Advanced website preset — hero-type-scale Companion styles: @import \"@/components/hero-type-scale/hero-type-scale.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

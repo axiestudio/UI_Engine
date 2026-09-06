@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Centered",
   "description": "Centered hero — a single column statement with pill eyebrow and CTA row Companion styles: @import \"@/components/hero-centered/hero-centered.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

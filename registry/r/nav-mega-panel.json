@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav: Mega Panel",
   "description": "Advanced website preset — nav-mega-panel Companion styles: @import \"@/components/nav-mega-panel/nav-mega-panel.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

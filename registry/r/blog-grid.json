@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Blog Grid",
   "description": "Blog grid — article cards with category, date and read time Companion styles: @import \"@/components/blog-grid/blog-grid.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

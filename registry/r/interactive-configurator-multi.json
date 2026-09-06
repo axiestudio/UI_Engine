@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive Configurator Multi",
   "description": "Advanced website preset — interactive-configurator-multi Companion styles: @import \"@/components/interactive-configurator-multi/interactive-configurator-multi.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

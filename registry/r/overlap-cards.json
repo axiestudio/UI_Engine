@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Overlap Cards",
   "description": "Overlapping cards — cards that crest a section boundary Companion styles: @import \"@/components/overlap-cards/overlap-cards.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

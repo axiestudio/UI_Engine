@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Assembly Line",
   "description": "Exploded product view that assembles itself on a pinned scroll scrub (GSAP ScrollTrigger) Companion styles: @import \"@/components/gsap-assembly-line/gsap-assembly-line.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

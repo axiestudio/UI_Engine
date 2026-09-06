@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll Parallax Sticky Quote",
   "description": "Advanced website preset — scroll-parallax-sticky-quote Companion styles: @import \"@/components/scroll-parallax-sticky-quote/scroll-parallax-sticky-quote.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

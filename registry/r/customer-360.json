@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Customer 360",
   "description": "CRM record workspace: overflow tabs (profile/ledger/keys), sticky day timeline, secret cards, usage rings and an inline audit trail",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

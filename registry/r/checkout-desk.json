@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Checkout Desk",
   "description": "Point-of-sale: line rows inline-edit qty → loyalty tags → delivery segments → pay; the receipt card springs out and the room applauds",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Activity",
   "description": "Live activity rail — typed event nodes, breathing latest item, mono timestamps (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/activity/activity.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

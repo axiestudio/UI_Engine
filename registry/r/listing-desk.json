@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Listing Desk",
   "description": "Property listing: open-house window picker, media upload queue, price editable in grid, pin notes on photos, media quota ring + trail",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

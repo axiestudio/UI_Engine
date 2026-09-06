@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Sparkline Ledger",
   "description": "Metric ledger table where sparklines draw themselves on row hover Companion styles: @import \"@/components/sparkline-ledger/sparkline-ledger.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

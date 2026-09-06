@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Brand Badge Wall",
   "description": "Credential badge wall 3D tilt badges for awards and certs Companion styles: @import \"@/components/brand-badge-wall/brand-badge-wall.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

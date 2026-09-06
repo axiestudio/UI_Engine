@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Price Compare",
   "description": "Competitor price cards with scale-focus center Companion styles: @import \"@/components/embla-price-compare/embla-price-compare.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

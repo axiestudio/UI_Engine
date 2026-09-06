@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Cursor Glow",
   "description": "Advanced website preset — hero-cursor-glow Companion styles: @import \"@/components/hero-cursor-glow/hero-cursor-glow.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

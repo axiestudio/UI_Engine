@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Showcase",
   "description": "App screenshot showcase — browser-chrome framed shots with thumbnail switcher and spotlight hover (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/showcase/showcase.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

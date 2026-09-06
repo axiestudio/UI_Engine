@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Intro: Counter",
   "description": "x Companion styles: @import \"@/components/intro-counter/intro-counter.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

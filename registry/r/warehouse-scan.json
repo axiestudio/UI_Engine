@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Warehouse Scan",
   "description": "Scanner flow: bin token field, counted cells inline-edit + drag-scrub, discrepancy queue rail, sync jobs, offline resilience",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

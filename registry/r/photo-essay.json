@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Essay",
   "description": "Website preset — photo-essay Companion styles: @import \"@/components/photo-essay/photo-essay.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

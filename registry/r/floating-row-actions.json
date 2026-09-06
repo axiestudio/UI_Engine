@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Row Actions",
   "description": "Row hover reveals a floating action menu Companion styles: @import \"@/components/floating-row-actions/floating-row-actions.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

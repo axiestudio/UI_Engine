@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Team Grid",
   "description": "Team grid — people with role rails in a clean grid Companion styles: @import \"@/components/team-grid/team-grid.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

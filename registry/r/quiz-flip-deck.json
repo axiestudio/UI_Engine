@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Quiz Flip Deck",
   "description": "Question cards flip to answers with tally streak counter Companion styles: @import \"@/components/quiz-flip-deck/quiz-flip-deck.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

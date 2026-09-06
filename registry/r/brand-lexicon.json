@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Brand Lexicon",
   "description": "Lexicon wall brand dictionary terms flip cards with usage Companion styles: @import \"@/components/brand-lexicon/brand-lexicon.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

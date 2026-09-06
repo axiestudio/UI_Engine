@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll Smart Sections",
   "description": "Advanced website preset — scroll-smart-sections Companion styles: @import \"@/components/scroll-smart-sections/scroll-smart-sections.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

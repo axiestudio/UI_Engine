@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Typo Ramp Brand",
   "description": "Type specimen ramp display scale ladder from micro to mega with tracking Companion styles: @import \"@/components/typo-ramp-brand/typo-ramp-brand.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

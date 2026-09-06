@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: 360 Viewer",
   "description": "Advanced website preset — media-360-viewer Companion styles: @import \"@/components/media-360-viewer/media-360-viewer.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

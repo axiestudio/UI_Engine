@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Engage: Invite Gate",
   "description": "Website preset — invite-gate Companion styles: @import \"@/components/invite-gate/invite-gate.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

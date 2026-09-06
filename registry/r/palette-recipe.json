@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Palette Recipe",
   "description": "Color recipe cards mix ingredients with percentages get brand swatches Companion styles: @import \"@/components/palette-recipe/palette-recipe.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

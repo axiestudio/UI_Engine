@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Mask Reveal",
   "description": "Advanced website preset — hero-mask-reveal Companion styles: @import \"@/components/hero-mask-reveal/hero-mask-reveal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

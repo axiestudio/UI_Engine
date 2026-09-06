@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: FAQ Minimal",
   "description": "Website preset — faq-minimal Companion styles: @import \"@/components/faq-minimal/faq-minimal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

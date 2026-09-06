@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Gallery Rail",
   "description": "Museum wall hang — art swings in on wire under a single label plate Companion styles: @import \"@/components/gallery-rails/gallery-rails.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

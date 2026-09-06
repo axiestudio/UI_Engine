@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Promise",
   "description": "Quiet-conviction manifesto block — oversized display serif with an ink-drying word reveal (Motion-Primitives) Companion styles: @import \"@/components/promise/promise.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

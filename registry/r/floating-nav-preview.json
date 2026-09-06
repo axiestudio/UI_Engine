@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Nav Preview",
   "description": "Nav links open page-preview mini cards Companion styles: @import \"@/components/floating-nav-preview/floating-nav-preview.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

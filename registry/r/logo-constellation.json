@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Logo Constellation",
   "description": "Logomark system grid: every size, tone and clearspace variant of one mark Companion styles: @import \"@/components/logo-constellation/logo-constellation.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

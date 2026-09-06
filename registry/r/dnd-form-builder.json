@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Form Builder",
   "description": "Form builder — drag fields from a palette onto a canvas and reorder them Companion styles: @import \"@/components/dnd-form-builder/dnd-form-builder.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

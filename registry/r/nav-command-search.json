@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav Command Search",
   "description": "Advanced website preset — nav-command-search Companion styles: @import \"@/components/nav-command-search/nav-command-search.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

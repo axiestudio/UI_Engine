@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Ink",
   "description": "Full-bleed dark hero — glow orb, grain, corner ticks, coordinates strip (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/hero-ink/hero-ink.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

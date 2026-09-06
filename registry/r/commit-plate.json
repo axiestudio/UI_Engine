@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commit Plate",
   "description": "Goal input that stamps a COMMITTED plate with ink ring on submit Companion styles: @import \"@/components/commit-plate/commit-plate.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

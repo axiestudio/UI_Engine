@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Night Audit",
   "description": "PMS close-out: wizard audits folios, keycard reconciliation issued per in-house pass, PMS health, offline resync",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

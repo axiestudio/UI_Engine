@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Callout",
   "description": "Website preset — video-callout Companion styles: @import \"@/components/video-callout/video-callout.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Header: Command",
   "description": "Command-bar navbar — integrated ⌘K palette in the header (shadcn/ui new-york-v4 command + Motion-Primitives) Companion styles: @import \"@/components/header-command/header-command.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

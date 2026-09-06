@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Metrics Headline",
   "description": "KPI headline tiles with rolling number updates Companion styles: @import \"@/components/metrics-headline/metrics-headline.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

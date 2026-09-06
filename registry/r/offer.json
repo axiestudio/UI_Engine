@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Offer",
   "description": "Seasonal offer with a flip-clock countdown via SlidingNumber — urgency you can respect (Motion-Primitives) Companion styles: @import \"@/components/offer/offer.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

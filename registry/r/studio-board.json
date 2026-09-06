@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Studio Board",
   "description": "THE signature merge: a solari departures board as the live appointment display, KPI odometers, view segments, multi-select edits, board-version scrubber",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

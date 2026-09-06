@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Reveal: Parallax",
   "description": "x Companion styles: @import \"@/components/reveal-parallax/reveal-parallax.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

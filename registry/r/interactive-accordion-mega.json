@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive: Mega Accordion",
   "description": "Advanced website preset — interactive-accordion-mega Companion styles: @import \"@/components/interactive-accordion-mega/interactive-accordion-mega.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

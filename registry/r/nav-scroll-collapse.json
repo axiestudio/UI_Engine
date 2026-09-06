@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Nav Scroll Collapse",
   "description": "Advanced website preset — nav-scroll-collapse Companion styles: @import \"@/components/nav-scroll-collapse/nav-scroll-collapse.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

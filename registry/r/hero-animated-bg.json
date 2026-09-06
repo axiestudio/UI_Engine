@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Animated BG",
   "description": "Hero with animated background — drifting gradient / glow canvas Companion styles: @import \"@/components/hero-animated-bg/hero-animated-bg.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

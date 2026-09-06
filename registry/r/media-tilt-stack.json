@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media Tilt Stack",
   "description": "Advanced website preset — media-tilt-stack Companion styles: @import \"@/components/media-tilt-stack/media-tilt-stack.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

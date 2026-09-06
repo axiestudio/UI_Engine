@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Slideshow Mask",
   "description": "Advanced website preset — media-slideshow-mask Companion styles: @import \"@/components/media-slideshow-mask/media-slideshow-mask.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

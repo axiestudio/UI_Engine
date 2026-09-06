@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce: Checkout Recap",
   "description": "Advanced website preset — commerce-checkout-recap Companion styles: @import \"@/components/commerce-checkout-recap/commerce-checkout-recap.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

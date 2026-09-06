@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Stats Band",
   "description": "Stats band — a row of animated counting figures Companion styles: @import \"@/components/stats-band/stats-band.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Rsvp Card",
   "description": "RSVP card with plus-one stepper and meal radios Companion styles: @import \"@/components/rsvp-card/rsvp-card.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

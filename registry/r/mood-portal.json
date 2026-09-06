@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Mood Portal",
   "description": "Moodboard iris portal hover petals of imagery that open like an aperture Companion styles: @import \"@/components/mood-portal/mood-portal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

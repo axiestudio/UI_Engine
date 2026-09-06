@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Voice Magnet",
   "description": "Tone-of-voice dial: pick we-say / we-dont-say pairs with magnetic flip cards Companion styles: @import \"@/components/voice-magnet/voice-magnet.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "branding"

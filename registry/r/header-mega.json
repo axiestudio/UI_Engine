@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Header: Mega",
   "description": "Mega-menu navbar — full-width dropdown panels with columns and featured tile (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/header-mega/header-mega.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

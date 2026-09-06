@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Curtain: Pixels",
   "description": "x Companion styles: @import \"@/components/curtain-pixels/curtain-pixels.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Menu",
   "description": "Restaurant menu board — serif-italic dishes, dotted price leaders, course ordinals, tag glyphs (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/menu/menu.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

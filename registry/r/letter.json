@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Letter",
   "description": "The newsletter that arrives like post — stamp, greeting serif, blur-to-focus reveal (Watermelon newsletter base + Motion-Primitives) Companion styles: @import \"@/components/letter/letter.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

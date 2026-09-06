@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll: Text Fade",
   "description": "Advanced website preset — scroll-text-fade Companion styles: @import \"@/components/scroll-text-fade/scroll-text-fade.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

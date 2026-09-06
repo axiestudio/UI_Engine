@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Hero: Split Flap",
   "description": "Advanced website preset — hero-split-flap Companion styles: @import \"@/components/hero-split-flap/hero-split-flap.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

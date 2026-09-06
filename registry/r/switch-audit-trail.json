@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Audit Trail",
   "description": "Entity audit trail — field-diff rows, actor avatars, revert with reason prompt",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

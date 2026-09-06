@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Chart Legend",
   "description": "Chart legend chips toggling series with value tooltips Companion styles: @import \"@/components/floating-chart-legend/floating-chart-legend.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

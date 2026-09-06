@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Recap",
   "description": "Aftercare checklist — care that continues after the table; items physically cross themselves off (Motion-Primitives line reveal) Companion styles: @import \"@/components/recap/recap.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

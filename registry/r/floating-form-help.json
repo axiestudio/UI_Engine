@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Form Help",
   "description": "Form fields with arrowed help bubbles Companion styles: @import \"@/components/floating-form-help/floating-form-help.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

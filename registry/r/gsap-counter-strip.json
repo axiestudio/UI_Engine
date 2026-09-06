@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Counter Strip",
   "description": "Big count-up numbers with stagger and rule draws Companion styles: @import \"@/components/gsap-counter-strip/gsap-counter-strip.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

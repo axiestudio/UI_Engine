@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Lab Tracker",
   "description": "Sample chain: run schedule cron, result cells edit, assay tree, LIMS keys, instrument health, custody trail that re-stamps",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

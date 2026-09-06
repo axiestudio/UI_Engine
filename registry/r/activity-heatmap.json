@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Activity Heatmap",
   "description": "GitHub-style activity heatmap — Bklit HeatmapChart pattern: fluid week columns, level scale tokens, bloom entrance, tooltip + legend",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

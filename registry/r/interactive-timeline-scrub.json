@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive: Timeline Scrub",
   "description": "Advanced website preset — interactive-timeline-scrub Companion styles: @import \"@/components/interactive-timeline-scrub/interactive-timeline-scrub.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

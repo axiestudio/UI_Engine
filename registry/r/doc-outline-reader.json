@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Doc Outline Reader",
   "description": "Article reader with sticky TOC scrollspy and reading progress Companion styles: @import \"@/components/doc-outline-reader/doc-outline-reader.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

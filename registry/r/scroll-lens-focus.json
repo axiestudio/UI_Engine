@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll Lens Focus",
   "description": "Advanced website preset — scroll-lens-focus Companion styles: @import \"@/components/scroll-lens-focus/scroll-lens-focus.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

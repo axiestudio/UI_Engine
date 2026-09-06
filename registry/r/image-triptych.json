@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media: Triptych",
   "description": "Website preset — image-triptych Companion styles: @import \"@/components/image-triptych/image-triptych.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

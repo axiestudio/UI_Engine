@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Quick Actions Fab",
   "description": "Floating action button expanding radial quick actions Companion styles: @import \"@/components/quick-actions-fab/quick-actions-fab.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

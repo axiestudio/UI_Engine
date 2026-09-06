@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Glossary",
   "description": "Reading passage with dotted terms opening definition popovers Companion styles: @import \"@/components/floating-glossary/floating-glossary.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "learn"

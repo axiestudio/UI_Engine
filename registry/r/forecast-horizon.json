@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Forecast Horizon",
   "description": "Scenario slider morphs solid history into dashed forecast with confidence band Companion styles: @import \"@/components/forecast-horizon/forecast-horizon.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Pricing Card",
   "description": "Composable pricing plan — top band, price, perk rows and base CTA are separate layer components Companion styles: @import \"@/components/stack-pricing/stack-pricing.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

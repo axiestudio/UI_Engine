@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Reveal: In-View Wipe",
   "description": "x Companion styles: @import \"@/components/reveal-in-view-wipe/reveal-in-view-wipe.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

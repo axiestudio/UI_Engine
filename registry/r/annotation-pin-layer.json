@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Annotation Pins",
   "description": "Pins on media — timed annotations, collision fanning, composer popover",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

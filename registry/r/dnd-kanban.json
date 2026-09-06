@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "DnD: Kanban",
   "description": "Multi-column kanban board Companion styles: @import \"@/components/dnd-kanban/dnd-kanban.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "dnd"

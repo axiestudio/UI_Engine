@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Timeline",
   "description": "Professional timeline / history preset — alternating milestones with scroll-stagger entrance (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/timeline/timeline.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

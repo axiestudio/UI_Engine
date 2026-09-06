@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Onboarding Journey",
   "description": "New-hire flow: validated wizard steps, document uploads with rings, a live-app guided tour at the end, buddy note field",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

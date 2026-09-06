@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Interactive: Horizon Slider",
   "description": "Advanced website preset — interactive-horizon-slider Companion styles: @import \"@/components/interactive-horizon-slider/interactive-horizon-slider.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

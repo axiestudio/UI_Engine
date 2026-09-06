@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Media Video Hover Mask",
   "description": "Advanced website preset — media-video-hover-mask Companion styles: @import \"@/components/media-video-hover-mask/media-video-hover-mask.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

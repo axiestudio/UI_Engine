@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Support Desk",
   "description": "Agent console: search grouped by entity, assignee multiselect, ticket switchboard routing, snooze-able alerts",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

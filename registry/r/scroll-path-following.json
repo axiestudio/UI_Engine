@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll: Path Following",
   "description": "Advanced website preset — scroll-path-following Companion styles: @import \"@/components/scroll-path-following/scroll-path-following.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

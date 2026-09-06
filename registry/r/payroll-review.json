@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Payroll Review",
   "description": "Payroll run: editable line cells, diff of changed rows, approve-with-checkbox bulk, signing keys, budget-to-actual gauge",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

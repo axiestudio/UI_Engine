@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Fundraiser",
   "description": "Composable fundraiser — progress band, selectable backer tiers and CTA base as separate layers Companion styles: @import \"@/components/stack-fund/stack-fund.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

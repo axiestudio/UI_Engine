@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Job Post",
   "description": "Composable job post — title band, meta chips, repeatable text sections and apply base as separate layers Companion styles: @import \"@/components/stack-job/stack-job.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Vault Dial",
   "description": "Drag-to-rotate safe dial with magnetic detents to unlock tiers",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

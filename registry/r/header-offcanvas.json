@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chrome: Offcanvas",
   "description": "Website preset — header-offcanvas Companion styles: @import \"@/components/header-offcanvas/header-offcanvas.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

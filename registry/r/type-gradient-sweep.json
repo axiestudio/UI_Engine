@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Type: Gradient Sweep",
   "description": "Advanced website preset — type-gradient-sweep Companion styles: @import \"@/components/type-gradient-sweep/type-gradient-sweep.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "hero"

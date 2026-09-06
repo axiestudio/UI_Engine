@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Events",
   "description": "Events & webinars — date-block cards with register actions (shadcn/ui new-york-v4 + Motion-Primitives) Companion styles: @import \"@/components/events/events.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

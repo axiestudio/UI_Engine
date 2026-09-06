@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Story Horizontal Journal",
   "description": "Advanced website preset — story-horizontal-journal Companion styles: @import \"@/components/story-horizontal-journal/story-horizontal-journal.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

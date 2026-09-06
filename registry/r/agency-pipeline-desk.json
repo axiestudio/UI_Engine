@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Agency Pipeline Desk",
   "description": "Studio ops: pitch funnel, production run graph, crew assignment, client welcome passes, render job tray",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

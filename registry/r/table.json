@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Table",
   "description": "Sortable service/price list preset — menu-board for businesses (Watermelon UI + Motion-Primitives) Companion styles: @import \"@/components/table/table.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

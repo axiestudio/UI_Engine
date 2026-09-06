@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Time Picker",
   "description": "iOS-style loop time pickers on the y-axis for booking slots (Embla) Companion styles: @import \"@/components/embla-time-picker/embla-time-picker.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

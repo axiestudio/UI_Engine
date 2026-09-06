@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "District Map",
   "description": "Civic & Public Service service landing — address-lookup + ward map, ledger panels and cartographic detail (design direction: District / Map-forward) Companion styles: @import \"@/components/district-map-forward/district-map-forward.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

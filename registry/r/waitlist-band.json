@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Engage: Waitlist",
   "description": "Website preset — waitlist-band Companion styles: @import \"@/components/waitlist-band/waitlist-band.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "engage"

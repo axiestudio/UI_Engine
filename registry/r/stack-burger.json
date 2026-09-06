@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stack: Burger Builder",
   "description": "Interactive layer builder — every ingredient is its own component; the composed stack assembles them Companion styles: @import \"@/components/stack-burger/stack-burger.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

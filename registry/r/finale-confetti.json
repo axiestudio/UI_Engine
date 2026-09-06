@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Confetti Finale",
   "description": "Celebration overlay: confetti bursts from a banner line; trigger- or auto-fired, self-clearing Companion styles: @import \"@/components/finale-confetti/finale-confetti.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

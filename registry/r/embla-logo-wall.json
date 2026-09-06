@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Logo Wall",
   "description": "Infinite logo loop marquee, grayscale to color on hover Companion styles: @import \"@/components/embla-logo-wall/embla-logo-wall.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

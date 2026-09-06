@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Embla: Chip Rail",
   "description": "Draggable variable-width filter chip rail with snap (Embla) Companion styles: @import \"@/components/embla-chip-rail/embla-chip-rail.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

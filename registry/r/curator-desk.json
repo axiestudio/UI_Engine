@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Curator Desk",
   "description": "Exhibition tooling: collection seg, room tabs, labels as pins on wall mock, artefact uploads, embed keys",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "AI Change Review",
   "description": "Agent-proposed change review — per-hunk accept/reject cards with counts, undo window, and honest live totals Companion styles: @import \"@/components/ai-change-review/ai-change-review.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

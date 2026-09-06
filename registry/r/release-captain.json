@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Release Captain",
   "description": "Ship control: run graph with rerun-failed, config diff, install snippet, maintenance cron, health strip while it rolls",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

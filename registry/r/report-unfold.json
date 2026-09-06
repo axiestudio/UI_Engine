@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Report Unfold",
   "description": "Annual report cover that folds open on scroll revealing stat tiles Companion styles: @import \"@/components/report-unfold/report-unfold.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

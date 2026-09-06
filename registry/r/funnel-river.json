@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Funnel River",
   "description": "Funnel stages as liquid bands that expand to reveal drop reasons Companion styles: @import \"@/components/funnel-river/funnel-river.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating: Filter Toolbar",
   "description": "Data table toolbar — filter popover, columns menu, tooltips; flips and shifts at edges (Floating UI) Companion styles: @import \"@/components/floating-filter-toolbar/floating-filter-toolbar.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

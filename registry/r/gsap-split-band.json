@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "GSAP: Split Band",
   "description": "Ink statement band with SplitText masked line cascade on scroll (GSAP) Companion styles: @import \"@/components/gsap-split-band/gsap-split-band.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

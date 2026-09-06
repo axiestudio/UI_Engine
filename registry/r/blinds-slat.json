@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Slat Reveal",
   "description": "Venetian slat wipe between before/after states on scrub Companion styles: @import \"@/components/blinds-slat/blinds-slat.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

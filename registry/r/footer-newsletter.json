@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chrome: Footer News",
   "description": "Website preset — footer-newsletter Companion styles: @import \"@/components/footer-newsletter/footer-newsletter.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "chrome"

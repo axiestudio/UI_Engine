@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Review Moment",
   "description": "The ask-after-the-high — stars fill one by one, then the thank-you morphs in (Watermelon feedback base + Motion-Primitives) Companion styles: @import \"@/components/review-moment/review-moment.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"

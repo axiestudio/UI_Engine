@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Ops Heartbeat",
   "description": "Service status wall with ECG heartbeat pulses and uptime bars Companion styles: @import \"@/components/ops-heartbeat/ops-heartbeat.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "insight"

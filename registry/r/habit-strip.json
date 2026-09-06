@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Habit Strip",
   "description": "Weekly habit strip with streak counter and check row Companion styles: @import \"@/components/habit-strip/habit-strip.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "app"

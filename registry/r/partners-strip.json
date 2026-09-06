@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Section: Partners",
   "description": "Website preset — partners-strip Companion styles: @import \"@/components/partners-strip/partners-strip.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "content"

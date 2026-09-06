@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Commerce Plans Toggle",
   "description": "Advanced website preset — commerce-plans-toggle Companion styles: @import \"@/components/commerce-plans-toggle/commerce-plans-toggle.css\".",
-  "author": "UI Engine <https://axiestudio.github.io/UI_Engine/>",
+  "author": "UI Engine <https://ui-engine.pages.dev/>",
   "categories": [
     "ui-engine",
     "commerce"
